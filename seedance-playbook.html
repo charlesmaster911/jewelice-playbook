@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEWEL ICE × Higgsfield Seedance 2.0 — Production Playbook</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --border: #2a2a3a;
+    --amber: #C47722;
+    --amber-light: #F4A460;
+    --amber-dim: #7a4a14;
+    --crystal: #A8D8EA;
+    --crystal-dim: #2a4a5a;
+    --white: #f0f0f5;
+    --gray: #8888a0;
+    --green: #4ade80;
+    --red: #f87171;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(180deg, #0d0d18 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 48px 32px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%;
+    transform: translateX(-50%);
+    width: 400px; height: 200px;
+    background: radial-gradient(ellipse, rgba(196,119,34,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--amber);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .header-title {
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+  .header-title span { color: var(--amber); }
+  .header-sub {
+    font-size: 15px;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .header-concept {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(196,119,34,0.2), rgba(168,216,234,0.1));
+    border: 1px solid var(--amber-dim);
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 13px;
+    color: var(--amber-light);
+    letter-spacing: 1px;
+  }
+  .header-concept strong {
+    display: block;
+    font-size: 18px;
+    color: var(--amber);
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  /* ── BRAND CORE ── */
+  .brand-core {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0;
+  }
+  .brand-core-item {
+    background: var(--surface);
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .brand-core-item .label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .brand-core-item .value {
+    font-size: 14px;
+    color: var(--amber-light);
+    font-weight: 600;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,10,15,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-item {
+    padding: 14px 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gray);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-item:hover { color: var(--white); }
+  .nav-item.active { color: var(--amber); border-bottom-color: var(--amber); }
+
+  /* ── MAIN ── */
+  .main { max-width: 960px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 48px 0 0;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-num {
+    width: 36px; height: 36px;
+    background: var(--amber);
+    color: #000;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .section-title span {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--gray);
+    margin-left: 10px;
+  }
+
+  /* ── STEP BOX ── */
+  .step {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .step:hover { border-color: var(--amber-dim); }
+
+  .step-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .step-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .step-badge {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .step-badge.amber { color: var(--amber); border-color: var(--amber-dim); }
+  .step-badge.crystal { color: var(--crystal); border-color: var(--crystal-dim); }
+  .step-badge.green { color: var(--green); border-color: rgba(74,222,128,0.3); }
+  .step-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .step-time {
+    font-size: 12px;
+    color: var(--amber);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .step-chevron {
+    color: var(--gray);
+    font-size: 12px;
+    transition: transform 0.2s;
+    margin-left: 12px;
+  }
+  .step.open .step-chevron { transform: rotate(180deg); }
+
+  .step-body {
+    display: none;
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+  }
+  .step.open .step-body { display: block; }
+
+  /* ── PROMPT BOX ── */
+  .prompt-wrap {
+    margin-top: 16px;
+  }
+  .prompt-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .prompt-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+  .prompt-box {
+    background: #07070e;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #c8c8e0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    position: relative;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--gray);
+    font-size: 11px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    letter-spacing: 0.5px;
+  }
+  .copy-btn:hover { background: var(--amber); color: #000; border-color: var(--amber); }
+  .copy-btn.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+  /* ── INFO GRID ── */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .info-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .info-item .k {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .info-item .v {
+    font-size: 13px;
+    color: var(--amber-light);
+    font-weight: 500;
+  }
+
+  /* ── TIMELINE VIZ ── */
+  .timeline-viz {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 16px;
+    overflow-x: auto;
+  }
+  .tl-bar {
+    display: flex;
+    height: 40px;
+    border-radius: 6px;
+    overflow: hidden;
+    gap: 2px;
+    margin-bottom: 12px;
+  }
+  .tl-seg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: rgba(0,0,0,0.8);
+    border-radius: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 4px;
+  }
+  .tl-labels {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tl-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: var(--gray);
+  }
+  .tl-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ── PRODUCT CARDS ── */
+  .product-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .product-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .product-card .p-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 4px;
+    letter-spacing: 0.5px;
+  }
+  .product-card .p-size {
+    font-size: 11px;
+    color: var(--gray);
+    margin-bottom: 10px;
+    font-family: monospace;
+  }
+  .product-card .p-tag {
+    font-size: 12px;
+    color: var(--white);
+    font-style: italic;
+    margin-bottom: 10px;
+    border-left: 2px solid var(--amber);
+    padding-left: 10px;
+  }
+
+  /* ── CHECKLIST ── */
+  .checklist {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--white);
+    padding: 10px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+  }
+  .checklist li:hover { border-color: var(--amber-dim); }
+  .checklist li.done { opacity: 0.5; text-decoration: line-through; color: var(--gray); }
+  .check-box {
+    width: 18px; height: 18px;
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    color: var(--green);
+    flex-shrink: 0;
+    margin-top: 1px;
+    background: var(--surface);
+  }
+  .checklist li.done .check-box { background: rgba(74,222,128,0.15); border-color: var(--green); }
+
+  /* ── AUDIO TIMELINE ── */
+  .audio-timeline {
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .audio-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 12px;
+    padding: 9px 14px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+  .audio-time {
+    font-family: monospace;
+    color: var(--amber);
+    width: 38px;
+    flex-shrink: 0;
+    font-size: 11px;
+  }
+  .audio-bar {
+    flex: 1;
+    height: 3px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative;
+    overflow: visible;
+  }
+  .audio-desc { color: var(--gray); flex: 3; }
+
+  /* ── NEGATIVE BOX ── */
+  .negative-box {
+    background: rgba(248,113,113,0.05);
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-top: 16px;
+  }
+  .negative-box .n-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .negative-box .n-text {
+    font-family: monospace;
+    font-size: 12px;
+    color: #d08080;
+    line-height: 1.8;
+  }
+
+  /* ── GLOBAL SETTINGS BOX ── */
+  .settings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .setting-item {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .setting-item .sk { font-size: 10px; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; margin-bottom: 5px; }
+  .setting-item .sv { font-size: 13px; color: var(--crystal); font-family: monospace; }
+
+  /* ── CONCEPT FRAME ── */
+  .concept-frame {
+    background: linear-gradient(135deg, rgba(196,119,34,0.08), rgba(168,216,234,0.05));
+    border: 1px solid var(--amber-dim);
+    border-radius: 12px;
+    padding: 24px;
+    margin-top: 16px;
+  }
+  .concept-frame .cf-en {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .concept-frame .cf-ko {
+    font-size: 15px;
+    color: var(--amber-light);
+    margin-bottom: 16px;
+  }
+  .concept-frame .cf-line {
+    height: 1px;
+    background: var(--amber-dim);
+    margin: 16px 0;
+  }
+  .concept-frame .cf-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .concept-frame .cf-col .cf-k {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .concept-frame .cf-col .cf-v {
+    font-size: 13px;
+    color: var(--white);
+  }
+
+  /* ── SHOT CARDS ── */
+  .shot-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .shot-card-top {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+  }
+  .shot-num-bar {
+    width: 48px;
+    background: var(--surface2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--amber);
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+  }
+  .shot-meta {
+    padding: 12px 16px;
+    flex: 1;
+  }
+  .shot-meta .sm-time {
+    font-size: 11px;
+    color: var(--amber);
+    font-family: monospace;
+    margin-bottom: 3px;
+  }
+  .shot-meta .sm-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .shot-meta .sm-product {
+    font-size: 11px;
+    color: var(--crystal);
+    background: var(--crystal-dim);
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .shot-body {
+    padding: 16px;
+  }
+  .shot-specs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .shot-spec {
+    font-size: 10px;
+    color: var(--gray);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+  .shot-spec span { color: var(--white); margin-left: 3px; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 40px 0;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--gray);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .footer strong { color: var(--amber); }
+
+  /* ── PROGRESS BAR ── */
+  .progress-wrap {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    z-index: 200;
+    min-width: 160px;
+  }
+  .progress-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--amber-light));
+    border-radius: 2px;
+    transition: width 0.3s;
+  }
+  .progress-count {
+    font-size: 12px;
+    color: var(--amber);
+    font-family: monospace;
+    text-align: right;
+  }
+
+  @media (max-width: 640px) {
+    .header { padding: 32px 16px 24px; }
+    .progress-wrap { display: none; }
+    .shot-num-bar { width: 36px; font-size: 14px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-eyebrow">Higgsfield Seedance 2.0 × Production Playbook</div>
+  <h1 class="header-title"><span>JEWEL ICE</span> 숏폼 영상 제작 가이드</h1>
+  <p class="header-sub">컨셉수업 방법론 기반 — 단계별 완전 프로세스</p>
+  <div class="header-concept">
+    <strong>The Final Jewel of Every Drink</strong>
+    음료의 마지막 보석 · jewelice
+  </div>
+</div>
+
+<!-- BRAND CORE -->
+<div class="brand-core">
+  <div class="brand-core-item">
+    <div class="label">브랜드 컨셉</div>
+    <div class="value">음료의 마지막 보석</div>
+  </div>
+  <div class="brand-core-item">
+    <div class="label">핵심 메시지</div>
+    <div class="value">얼음이 술을 바꾼다</div>
+  </div>
+  <div class="brand-core-item">
+    <div class="label">포맷</div>
+    <div class="value">Instagram Reels / Shorts</div>
+  </div>
+  <div class="brand-core-item">
+    <div class="label">툴</div>
+    <div class="value">Higgsfield Seedance 2.0</div>
+  </div>
+  <div class="brand-core-item">
+    <div class="label">총 길이</div>
+    <div class="value">15초</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-item active" href="#s0">0. 브랜드</a>
+  <a class="nav-item" href="#s1">1. 전역설정</a>
+  <a class="nav-item" href="#s2">2. 캐릭터시트</a>
+  <a class="nav-item" href="#s3">3. 샷 프롬프트</a>
+  <a class="nav-item" href="#s4">4. 오디오</a>
+  <a class="nav-item" href="#s5">5. 타임라인</a>
+  <a class="nav-item" href="#s6">6. 실행체크</a>
+</nav>
+
+<div class="main">
+
+<!-- ════════════════════════════════════════
+     SECTION 0: BRAND CONCEPT
+════════════════════════════════════════ -->
+<div class="section" id="s0">
+  <div class="section-header">
+    <div class="section-num">0</div>
+    <div class="section-title">브랜드 컨셉 <span>호소다 다카히로 방법론 적용 결과</span></div>
+  </div>
+
+  <div class="concept-frame">
+    <div class="cf-en">The Final Jewel of Every Drink</div>
+    <div class="cf-ko">"음료의 마지막 보석" — 좋은 음료를 완성하는 마지막 재료는 얼음이다</div>
+    <div class="cf-line"></div>
+    <div class="cf-row">
+      <div class="cf-col">
+        <div class="cf-k">영문 슬로건</div>
+        <div class="cf-v">Ice changes everything</div>
+      </div>
+      <div class="cf-col">
+        <div class="cf-k">서브 컨셉</div>
+        <div class="cf-v">당신의 홈바는 얼음부터 시작된다</div>
+      </div>
+      <div class="cf-col">
+        <div class="cf-k">핵심 텐션</div>
+        <div class="cf-v">음료는 프리미엄화됐는데 얼음은 아직 "그냥 얼음"</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:20px;">
+    <div class="product-cards">
+      <div class="product-card">
+        <div class="p-name">아이스볼 (듀오메이커)</div>
+        <div class="p-size">⬤ 64mm diameter</div>
+        <div class="p-tag">"투명함이 곧 실력이다"</div>
+        <div class="prompt-wrap">
+          <div class="prompt-label">캐릭터 키워드</div>
+          <div style="font-size:12px;color:var(--gray);line-height:1.6;">크리스탈 클리어 구체 · 골프공보다 약간 큰 사이즈 · 빛을 굴절시키는 렌즈 효과 · 로우볼 글라스 거의 가득 채움</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="p-name">큐브 (아블러 큐브)</div>
+        <div class="p-size">■ 50mm × 50mm × 50mm</div>
+        <div class="p-tag">"각진 완벽함, 천천히 녹는 사치"</div>
+        <div class="prompt-wrap">
+          <div class="prompt-label">캐릭터 키워드</div>
+          <div style="font-size:12px;color:var(--gray);line-height:1.6;">기하학적 정확성 · 6면 각각 다른 빛 반사 · 위스키 온더록 정석 · 균일하게 천천히 녹음</div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="p-name">막대얼음 (아블러 스피어)</div>
+        <div class="p-size">▬ 120mm × 35mm × 35mm</div>
+        <div class="p-tag">"잔 속의 보석"</div>
+        <div class="prompt-wrap">
+          <div class="prompt-label">캐릭터 키워드</div>
+          <div style="font-size:12px;color:var(--gray);line-height:1.6;">하이볼 전용 · 탄산 버블이 막대 표면을 따라 수직 상승 · 3개 나란히 건축적 그리드 구성</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 1: GLOBAL SETTINGS
+════════════════════════════════════════ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">전역 설정 <span>Seedance 2.0 — 모든 샷에 동일 적용</span></div>
+  </div>
+
+  <div class="settings-grid">
+    <div class="setting-item"><div class="sk">Format</div><div class="sv">9:16 vertical</div></div>
+    <div class="setting-item"><div class="sk">Resolution</div><div class="sv">1080 × 1920</div></div>
+    <div class="setting-item"><div class="sk">Duration</div><div class="sv">15s total</div></div>
+    <div class="setting-item"><div class="sk">FPS</div><div class="sv">30 (slow-mo: 120fps src)</div></div>
+    <div class="setting-item"><div class="sk">Style</div><div class="sv">cinematic luxury commercial</div></div>
+    <div class="setting-item"><div class="sk">Color Grade</div><div class="sv">midnight teal + warm amber</div></div>
+    <div class="setting-item"><div class="sk">Slow-mo Playback</div><div class="sv">0.3x speed</div></div>
+    <div class="setting-item"><div class="sk">Film Grain</div><div class="sv">10%</div></div>
+  </div>
+
+  <div class="prompt-wrap" style="margin-top:20px;">
+    <div class="prompt-label">Master Style Prompt (모든 샷 앞에 추가)</div>
+    <div class="prompt-box">cinematic luxury beverage commercial, 9:16 vertical portrait format, deep midnight teal shadows with warm amber highlights and crystal clear midtones, anamorphic lens characteristics, film grain 10%, ultra sharp product focus, premium aspirational mood, The Final Jewel of Every Drink visual identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+  </div>
+
+  <div class="negative-box">
+    <div class="n-label">🚫 Negative Prompt — 전 샷 동일 적용</div>
+    <div class="n-text" id="neg-text">cartoon, anime, illustration, painting, watercolor, blurry subject, overexposed whites, text artifacts, watermark, frame border, green screen artifacts, unnatural color, amateur lighting, milky ice, cloudy ice, opaque ice, cracked ice, rounded cube edges, deformed sphere, oval shape instead of perfect sphere, small ice pieces, crushed ice, shaved ice, ice chips, irregular ice shapes, plastic cups, beer, wine, fast food aesthetic, bright saturated colors, people talking or mouthing words, generic stock footage look, sphere smaller than golf ball, cube edges not perfectly sharp and geometric</div>
+    <button class="copy-btn" style="position:static;margin-top:12px;display:block;" onclick="copyId('neg-text', this)">Copy Negative Prompt</button>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 2: CHARACTER SHEETS
+════════════════════════════════════════ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">캐릭터 시트 <span>Seedance 2.0 캐릭터 일관성 기능용 — Seed 고정</span></div>
+  </div>
+
+  <!-- Character 1 -->
+  <div class="step open">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-header-left">
+        <span class="step-badge amber">CH-01</span>
+        <span class="step-name">아이스볼 64mm — 브랜드 시그니처</span>
+      </div>
+      <span class="step-chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="prompt-wrap">
+        <div class="prompt-label">Character Prompt</div>
+        <div class="prompt-box">A single flawless crystal-clear ice sphere, exactly 64mm diameter, slightly larger than a golf ball, perfectly round with zero flat edges, completely transparent with absolutely no cloudiness or air bubbles inside, condensation micro-droplets beading naturally on smooth curved surface, the sphere catches and refracts ambient light like a precision glass lens creating prismatic caustics, product sits visibly large and dominant inside a standard lowball whiskey glass nearly filling the glass interior, premium product hero shot quality, The Final Jewel identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Shape</div><div class="v">Perfect sphere</div></div>
+        <div class="info-item"><div class="k">Size</div><div class="v">64mm diameter</div></div>
+        <div class="info-item"><div class="k">Clarity</div><div class="v">100% transparent</div></div>
+        <div class="info-item"><div class="k">Surface</div><div class="v">Condensation beads</div></div>
+        <div class="info-item"><div class="k">Light</div><div class="v">Prismatic refraction</div></div>
+        <div class="info-item"><div class="k">Glass fit</div><div class="v">Fills lowball</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Character 2 -->
+  <div class="step">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-header-left">
+        <span class="step-badge amber">CH-02</span>
+        <span class="step-name">큐브 50mm — 위스키 온더록 정석</span>
+      </div>
+      <span class="step-chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="prompt-wrap">
+        <div class="prompt-label">Character Prompt</div>
+        <div class="prompt-box">A single perfect ice cube, exactly 50mm on all sides, geometrically exact right angles and perfectly flat faces, crystal-clear and completely transparent, light passes through all six faces simultaneously creating three distinct internal caustic light patterns, edges are razor sharp and precise not rounded or melted in any way, the cube sits squarely and confidently inside a crystal whiskey glass, Japanese-style premium whiskey cube aesthetic, architectural and precise, The Final Jewel identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Shape</div><div class="v">Perfect cube</div></div>
+        <div class="info-item"><div class="k">Size</div><div class="v">50mm × 50mm × 50mm</div></div>
+        <div class="info-item"><div class="k">Edges</div><div class="v">Razor sharp</div></div>
+        <div class="info-item"><div class="k">Light</div><div class="v">3-face reflection</div></div>
+        <div class="info-item"><div class="k">Context</div><div class="v">Whiskey lowball</div></div>
+        <div class="info-item"><div class="k">Melt</div><div class="v">Uniform 6-side</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Character 3 -->
+  <div class="step">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-header-left">
+        <span class="step-badge amber">CH-03</span>
+        <span class="step-name">막대얼음 120×35mm — 하이볼의 건축</span>
+      </div>
+      <span class="step-chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="prompt-wrap">
+        <div class="prompt-label">Character Prompt</div>
+        <div class="prompt-box">A long rectangular ice bar, exactly 120mm long and 35mm wide cross-section, approximately the length of a thick premium marker pen, crystal-clear and completely transparent throughout, fits lengthwise inside a tall highball glass extending nearly full height to the rim, three bars arranged in parallel create an elegant architectural grid pattern inside the drink, carbonation bubbles rise in perfectly straight parallel lines along each flat bar face, premium and precise, The Final Jewel identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item"><div class="k">Shape</div><div class="v">Rectangle bar</div></div>
+        <div class="info-item"><div class="k">Size</div><div class="v">120mm × 35mm</div></div>
+        <div class="info-item"><div class="k">Context</div><div class="v">Highball glass × 3</div></div>
+        <div class="info-item"><div class="k">Carbonation</div><div class="v">Parallel bubble rise</div></div>
+        <div class="info-item"><div class="k">Form</div><div class="v">Architectural grid</div></div>
+        <div class="info-item"><div class="k">Height</div><div class="v">Near full glass height</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Character 4 -->
+  <div class="step">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-header-left">
+        <span class="step-badge crystal">CH-04</span>
+        <span class="step-name">손 & 글라스 — 인간적 연결</span>
+      </div>
+      <span class="step-chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="prompt-wrap">
+        <div class="prompt-label">Character Prompt</div>
+        <div class="prompt-box">Close-up of mature male hands, clean and confident deliberate grip, holding a crystal lowball whiskey glass with practiced precision suggesting bar expertise, warm olive skin tone, simple understated watch partially visible at wrist edge, no rings or jewelry, the grip communicates genuine expertise and intention, warm amber light from below catches hand details<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Character 5 -->
+  <div class="step">
+    <div class="step-header" onclick="toggleStep(this)">
+      <div class="step-header-left">
+        <span class="step-badge crystal">CH-05</span>
+        <span class="step-name">바 세팅 — 홈바 배경</span>
+      </div>
+      <span class="step-chevron">▼</span>
+    </div>
+    <div class="step-body">
+      <div class="prompt-wrap">
+        <div class="prompt-label">Character Prompt</div>
+        <div class="prompt-box">Dark wet slate bar counter surface with warm amber underlighting from beneath the counter edge, a premium whiskey bottle softly out of focus in background, wooden or slate coaster centered on counter, intimate home bar atmosphere that feels one step above a professional cocktail bar, deep shadows with selective warm pools of light, condensation wet surface catching reflections<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 3: SHOT PROMPTS
+════════════════════════════════════════ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">샷 프롬프트 <span>12 shots · 15초 완성 · 순서대로 생성</span></div>
+  </div>
+
+  <!-- SHOT 01 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">01</div>
+      <div class="shot-meta">
+        <div class="sm-time">0.0s — 0.5s</div>
+        <div class="sm-name">훅 — The Jewel Appears</div>
+        <div class="sm-product">64mm 아이스볼</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Extreme macro static</span></div>
+        <div class="shot-spec">Motion<span>Micro-shake</span></div>
+        <div class="shot-spec">Transition<span>Hard cut → 2-frame black</span></div>
+        <div class="shot-spec">Audio<span>Crystal PING C7</span></div>
+        <div class="shot-spec">Emotion<span>충격 · 호기심</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Extreme macro close-up of a single 64mm crystal-clear ice sphere surface, light refracting through the sphere creates a prismatic rainbow burst that fills the frame, handheld micro-shake adds urgency, 1-frame white flash then instant cut to black, slightly overexposed 1-stop, the sphere surface shows perfect clarity with zero cloudiness, condensation micro-droplets visible at this scale, cinematic 9:16 vertical, luxury beverage commercial opening hook, The Final Jewel of Every Drink<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">— (없음, 순수 비주얼 충격)<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 02 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">02</div>
+      <div class="shot-meta">
+        <div class="sm-time">0.5s — 2.5s</div>
+        <div class="sm-name">문제 제시 — 흐린 얼음의 민낯</div>
+        <div class="sm-product">일반 얼음 (대비용)</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Static, slow push in</span></div>
+        <div class="shot-spec">Transition<span>Hard cut</span></div>
+        <div class="shot-spec">Audio<span>Low murmur, dull clink</span></div>
+        <div class="shot-spec">Emotion<span>불쾌 · 인지충돌</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Close-up of a cheap cloudy irregular household ice cube slowly melting in a plain glass, milky white opacity throughout with no transparency, uneven misshapen corners that are rounded and irregular, cold clinical harsh white lighting makes it look unappealing and inferior, the ice looks defeated and cheap, condensation looks murky not elegant, the glass itself is unremarkable, cinematic 9:16 vertical, intentionally unflattering contrast shot<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">흐린 얼음이 당신의 술을 망치고 있다<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 03 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">03</div>
+      <div class="shot-meta">
+        <div class="sm-time">2.5s — 3.2s</div>
+        <div class="sm-name">반전 — The Final Jewel 등장</div>
+        <div class="sm-product">64mm 아이스볼</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Static macro, centered</span></div>
+        <div class="shot-spec">Transition<span>2-frame black → impact cut</span></div>
+        <div class="shot-spec">Audio<span>Silence 0.2s → Bass THUD</span></div>
+        <div class="shot-spec">Emotion<span>놀람 · 욕망</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">A single 64mm crystal-clear ice sphere dramatically revealed on a dark wet slate surface, the sphere is visibly large nearly the size of a billiard ball, a single golden amber rim light from behind splits into a full rainbow spectrum passing through the sphere interior, condensation forming in real time on the perfect surface, absolute zero cloudiness or imperfections, the sphere dominates the dark frame like a jewel on velvet, dramatic product reveal, cinematic 9:16 vertical, The Final Jewel of Every Drink identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">The Final Jewel of Every Drink<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 04 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">04</div>
+      <div class="shot-meta">
+        <div class="sm-time">3.2s — 6.5s</div>
+        <div class="sm-name">세계관 — 홈바 아크 샷</div>
+        <div class="sm-product">64mm 아이스볼 + 위스키</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Dolly in → 60° arc orbit</span></div>
+        <div class="shot-spec">Speed<span>0.3x slow motion</span></div>
+        <div class="shot-spec">Transition<span>Amber light leak wipe, 8fr</span></div>
+        <div class="shot-spec">Audio<span>Rhodes jazz piano enters</span></div>
+        <div class="shot-spec">Emotion<span>욕망 · 라이프스타일</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Slow dolly in toward a crystal lowball whiskey glass on a dark slate bar counter, a 64mm crystal-clear ice sphere nearly fills the glass interior, amber whiskey swirls elegantly around the sphere as a hand lifts the glass with deliberate confidence, the sphere glows with an inner light as warm bar light passes through it, camera smoothly arcs 60 degrees around the glass at eye level revealing different light angles through the sphere, ultra slow motion 0.3x speed, subtle film grain 10%, intimate home bar bokeh background with warm amber underlighting, cinematic 9:16 vertical, luxury beverage commercial world-building shot, The Final Jewel of Every Drink<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 05 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">05</div>
+      <div class="shot-meta">
+        <div class="sm-time">6.5s — 7.0s</div>
+        <div class="sm-name">빠른 컷 1/3 — 포어링</div>
+        <div class="sm-product">64mm 아이스볼</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Static macro, elevated</span></div>
+        <div class="shot-spec">Speed<span>0.3x extreme slow-mo</span></div>
+        <div class="shot-spec">Transition<span>Hard cut</span></div>
+        <div class="shot-spec">Audio<span>Percussion hit on cut</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Extreme slow motion macro of amber whiskey being poured from above over a 64mm crystal-clear ice sphere inside a lowball glass, golden amber liquid cascades in thick slow streams down the perfectly curved sphere surface, whiskey droplets scatter mid-air catching warm rim light and freezing in space, the pour feels intentional and sacred, backlit with warm golden rim light making the liquid glow, cinematic 9:16 vertical, luxury beverage pour shot<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 06 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">06</div>
+      <div class="shot-meta">
+        <div class="sm-time">7.0s — 7.5s</div>
+        <div class="sm-name">빠른 컷 2/3 — 구체 굴절 뷰</div>
+        <div class="sm-product">64mm 아이스볼</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Macro, low through glass base</span></div>
+        <div class="shot-spec">Transition<span>Hard cut</span></div>
+        <div class="shot-spec">Audio<span>Percussion hit on cut</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Looking through a 64mm crystal-clear ice sphere submerged in amber whiskey from below through the thick glass base of the lowball glass, the entire bar world seen through the sphere is beautifully refracted and compressed into a wide-angle distortion, the sphere acts as a fish-eye lens bending the warm bar environment into itself, abstract and mesmerizing, extreme macro perspective from directly below looking up, amber and teal color play, cinematic 9:16 vertical<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 07 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">07</div>
+      <div class="shot-meta">
+        <div class="sm-time">7.5s — 8.0s</div>
+        <div class="sm-name">빠른 컷 3/3 — 응결 방울</div>
+        <div class="sm-product">글라스 응결</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Extreme macro static</span></div>
+        <div class="shot-spec">Transition<span>Motion blur smear cut 0.7</span></div>
+        <div class="shot-spec">Audio<span>Hi-hat enters, music builds</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Ultra macro close-up of a single perfect condensation droplet sliding slowly down the outside wall of a crystal lowball whiskey glass, the droplet is in razor-sharp focus while the dark slate background is completely blurred, the droplet catches golden rim light from the right creating a warm lens flare inside the water drop, sensory and deeply satisfying, ASMR quality visual, dark background, cinematic 9:16 vertical, luxury detail shot<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 08 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">08</div>
+      <div class="shot-meta">
+        <div class="sm-time">8.0s — 11.0s</div>
+        <div class="sm-name">피크 — The Jewel Lifted</div>
+        <div class="sm-product">64mm 아이스볼 — 클라이막스</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Low angle tilt up</span></div>
+        <div class="shot-spec">Speed<span>0.5x slow motion</span></div>
+        <div class="shot-spec">Effect<span>Anamorphic lens flare</span></div>
+        <div class="shot-spec">Transition<span>Cross-dissolve 15 frames</span></div>
+        <div class="shot-spec">Audio<span>Music peak, bass drops</span></div>
+        <div class="shot-spec">Emotion<span>절정 · 완성</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Low angle looking up as a hand with a simple watch slowly lifts a crystal lowball whiskey glass containing a 64mm ice sphere, camera tilts upward tracking the glass as it rises, glass held up against warm amber bar lighting, the 64mm sphere refracts and contains the entire bar environment compressed into one glowing orb, dramatic anamorphic horizontal lens flare streaks left to right through the sphere, the face of the person is partially visible behind the glass with their eyes reflected perfectly in the sphere surface, 0.5x slow motion, cinematic 9:16 vertical, peak emotional moment, luxury commercial, The Final Jewel of Every Drink<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">마지막 한 덩이가 전부를 바꾼다<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 09 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">09</div>
+      <div class="shot-meta">
+        <div class="sm-time">11.0s — 12.5s</div>
+        <div class="sm-name">큐브 씬 — 위스키 온더록</div>
+        <div class="sm-product">50mm 큐브</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Static macro, slight low angle</span></div>
+        <div class="shot-spec">Speed<span>0.3x slow motion</span></div>
+        <div class="shot-spec">Transition<span>Hard cut</span></div>
+        <div class="shot-spec">Audio<span>Sharp ice-glass contact sound</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">A perfect 50mm crystal-clear ice cube sitting inside a crystal whiskey glass, the cube occupies a significant quarter of the glass volume with geometrically exact flat faces, each of the three visible faces catches the warm rim lighting differently creating three distinct bright reflections simultaneously, amber whiskey poured slowly from above hits the cube top surface and cascades perfectly evenly down all four vertical faces in ultra slow motion, ultra slow motion 0.3x, macro close-up from slight low angle to see cube geometry, dark slate bar surface below, warm rim lighting from left, cinematic 9:16 vertical, The Final Jewel identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">50mm 퍼펙트 큐브 — 각진 완벽함, 천천히 녹는 사치<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 10 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">10</div>
+      <div class="shot-meta">
+        <div class="sm-time">12.5s — 13.5s</div>
+        <div class="sm-name">막대얼음 씬 — 하이볼의 보석</div>
+        <div class="sm-product">120×35mm 막대얼음 × 3</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Eye-level, 30° arc left</span></div>
+        <div class="shot-spec">Transition<span>Dissolve</span></div>
+        <div class="shot-spec">Audio<span>Carbonation fizz, music softens</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Three 120mm×35mm crystal-clear rectangular ice bars arranged vertically and parallel inside a tall highball glass, each bar extends the nearly full height of the glass with perfect transparency, carbonation bubbles rise in straight perfectly parallel vertical lines along the flat face of each bar simultaneously creating a mesmerizing grid of bubbles, a thin lemon slice wedged at the rim beside the bars, eye-level macro close-up showing the full 120mm length of the bars, backlit from behind to maximally show their transparency, cinematic 9:16 vertical, The Final Jewel identity<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">120×35mm 막대얼음 — 잔 속의 보석<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 11 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">11</div>
+      <div class="shot-meta">
+        <div class="sm-time">13.5s — 14.5s</div>
+        <div class="sm-name">3종 비교 — The Full Collection</div>
+        <div class="sm-product">3종 제품 동시 등장</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Top-down flat lay static</span></div>
+        <div class="shot-spec">Transition<span>Slow crane up from flat lay</span></div>
+        <div class="shot-spec">Audio<span>Silence, ambient crystal tone</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Top-down flat lay shot looking straight down onto a dark wet slate surface, three Jewel Ice products arranged in a deliberate triangle formation with intentional spacing between them: upper left position — one 64mm crystal-clear ice sphere, upper right position — one 50mm crystal-clear perfect cube, bottom center position — two 120mm×35mm crystal-clear rectangular ice bars placed exactly parallel to each other, all three products completely transparent catching the same single overhead rim light source creating individual caustic patterns beneath each, condensation visible on all surfaces, scale relationships between the three products clearly legible, ultra-sharp focus across all three simultaneously, product photography flat lay composition, cinematic 9:16 vertical, The Final Jewel of Every Drink collection reveal<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay (순서대로 페이드인)</div>
+        <div class="prompt-box">64mm 아이스볼  ·  50mm 큐브  ·  120×35mm 막대얼음<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOT 12 -->
+  <div class="shot-card">
+    <div class="shot-card-top">
+      <div class="shot-num-bar">12</div>
+      <div class="shot-meta">
+        <div class="sm-time">14.5s — 15.0s</div>
+        <div class="sm-name">브랜드 클로징 — jewelice</div>
+        <div class="sm-product">홈바 풀샷 + 로고</div>
+      </div>
+    </div>
+    <div class="shot-body">
+      <div class="shot-specs">
+        <div class="shot-spec">Camera<span>Slow crane up + pull back</span></div>
+        <div class="shot-spec">Transition<span>Fade from amber</span></div>
+        <div class="shot-spec">Audio<span>Silence → final crystal PING</span></div>
+        <div class="shot-spec">Emotion<span>기억 · 브랜드 각인</span></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Shot Prompt</div>
+        <div class="prompt-box">Slow crane shot pulling upward and back from the three Jewel Ice products arranged on a dark slate bar counter, the camera movement gradually reveals the surrounding intimate home bar environment, warm amber lighting from below and sides, a premium whiskey bottle softly blurred in background, wooden coaster beneath the products, all three ice products remain visible and clear as the room is revealed around them, the scene feels complete and aspirational, cinematic 9:16 vertical, brand film closing shot, luxury home bar lifestyle, The Final Jewel of Every Drink<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+      <div class="prompt-wrap">
+        <div class="prompt-label">Text Overlay</div>
+        <div class="prompt-box">JEWEL ICE
+The Final Jewel of Every Drink
+jewelice<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 4: AUDIO
+════════════════════════════════════════ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">오디오 타임라인 <span>Native Audio — Seedance 2.0 입력용</span></div>
+  </div>
+
+  <div class="audio-timeline">
+    <div class="audio-row"><div class="audio-time">0.0s</div><div class="audio-desc">Crystal PING — C7 frequency, 0.1s sharp attack, 0.3s reverb tail / 영상 시작 시그니처 음</div></div>
+    <div class="audio-row"><div class="audio-time">0.5s</div><div class="audio-desc">40Hz sub bass rumble — 0.5s fade in, 불안감 조성</div></div>
+    <div class="audio-row"><div class="audio-time">2.5s</div><div class="audio-desc">SILENCE 0.2s — 반전 직전 긴장</div></div>
+    <div class="audio-row"><div class="audio-time">2.7s</div><div class="audio-desc">Deep bass THUD — 아이스볼 등장 임팩트 사운드</div></div>
+    <div class="audio-row"><div class="audio-time">3.2s</div><div class="audio-desc">Warm Rhodes jazz piano — 저음 친밀한 홈바 분위기 진입 / 얼음+액체 foley 함께</div></div>
+    <div class="audio-row"><div class="audio-time">6.5s</div><div class="audio-desc">Brushed snare + hi-hat layer — 빠른 컷 시작과 동시에 리듬 추가</div></div>
+    <div class="audio-row"><div class="audio-time">8.0s</div><div class="audio-desc">Full arrangement peak — bass + piano + brush kit 전체 / filter opens</div></div>
+    <div class="audio-row"><div class="audio-time">10.5s</div><div class="audio-desc">Music peak hold — reverb wash, 감정 최고점</div></div>
+    <div class="audio-row"><div class="audio-time">11.0s</div><div class="audio-desc">Strip back to piano only — 감정 착지 시작</div></div>
+    <div class="audio-row"><div class="audio-time">12.5s</div><div class="audio-desc">Carbonation fizz foley — 막대얼음 씬 전환 시 탄산 소리</div></div>
+    <div class="audio-row"><div class="audio-time">13.5s</div><div class="audio-desc">Music fades to silence — 브랜드 클로징 준비</div></div>
+    <div class="audio-row"><div class="audio-time">14.5s</div><div class="audio-desc">Final crystal PING — 오프닝과 동일 C7, 서클 완성 / 영상 마무리</div></div>
+    <div class="audio-row"><div class="audio-time">15.0s</div><div class="audio-desc">Silence + ambient room tone 페이드 아웃</div></div>
+  </div>
+
+  <div class="prompt-wrap" style="margin-top:20px;">
+    <div class="prompt-label">Audio Foley 리스트 (Seedance Native Audio 입력)</div>
+    <div class="prompt-box">1. Crystal ice sphere placed on slate surface — sharp high-frequency contact click
+2. Whiskey pour over ice sphere — organic liquid broadband 200-8000Hz
+3. Ice bar settling into highball glass — architectural clink
+4. Condensation drip onto counter — single water drop click
+5. Ambient home bar room tone — intimate low-level atmosphere<button class="copy-btn" onclick="copyThis(this)">Copy</button></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 5: TIMELINE
+════════════════════════════════════════ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">타임라인 전체 요약 <span>15초 구성안</span></div>
+  </div>
+
+  <div class="timeline-viz">
+    <div class="tl-bar">
+      <div class="tl-seg" style="flex:0.5;background:#e87c2a;">01 훅</div>
+      <div class="tl-seg" style="flex:2;background:#4a4a6a;">02 문제</div>
+      <div class="tl-seg" style="flex:0.7;background:#C47722;">03 반전</div>
+      <div class="tl-seg" style="flex:3.3;background:#d4881e;">04 세계관</div>
+      <div class="tl-seg" style="flex:0.5;background:#e87c2a;">05</div>
+      <div class="tl-seg" style="flex:0.5;background:#e87c2a;">06</div>
+      <div class="tl-seg" style="flex:0.5;background:#e87c2a;">07</div>
+      <div class="tl-seg" style="flex:3;background:#f4a460;">08 피크</div>
+      <div class="tl-seg" style="flex:1.5;background:#d4881e;">09 큐브</div>
+      <div class="tl-seg" style="flex:1;background:#d4881e;">10 막대</div>
+      <div class="tl-seg" style="flex:1;background:#C47722;">11 비교</div>
+      <div class="tl-seg" style="flex:0.5;background:#8a5a20;">12 로고</div>
+    </div>
+    <div class="tl-labels">
+      <div class="tl-label"><div class="tl-dot" style="background:#4a4a6a;"></div>문제제시</div>
+      <div class="tl-label"><div class="tl-dot" style="background:#e87c2a;"></div>훅/빠른컷</div>
+      <div class="tl-label"><div class="tl-dot" style="background:#C47722;"></div>아이스볼 64mm</div>
+      <div class="tl-label"><div class="tl-dot" style="background:#d4881e;"></div>세계관/제품</div>
+      <div class="tl-label"><div class="tl-dot" style="background:#f4a460;"></div>피크</div>
+      <div class="tl-label"><div class="tl-dot" style="background:#8a5a20;"></div>브랜드</div>
+    </div>
+  </div>
+
+  <div class="info-grid" style="margin-top:16px;">
+    <div class="info-item"><div class="k">Shot 01</div><div class="v">0.0 ~ 0.5s · 훅</div></div>
+    <div class="info-item"><div class="k">Shot 02</div><div class="v">0.5 ~ 2.5s · 문제</div></div>
+    <div class="info-item"><div class="k">Shot 03</div><div class="v">2.5 ~ 3.2s · 반전</div></div>
+    <div class="info-item"><div class="k">Shot 04</div><div class="v">3.2 ~ 6.5s · 세계관</div></div>
+    <div class="info-item"><div class="k">Shot 05</div><div class="v">6.5 ~ 7.0s · 포어링</div></div>
+    <div class="info-item"><div class="k">Shot 06</div><div class="v">7.0 ~ 7.5s · 굴절뷰</div></div>
+    <div class="info-item"><div class="k">Shot 07</div><div class="v">7.5 ~ 8.0s · 응결</div></div>
+    <div class="info-item"><div class="k">Shot 08</div><div class="v">8.0 ~ 11.0s · 피크</div></div>
+    <div class="info-item"><div class="k">Shot 09</div><div class="v">11.0 ~ 12.5s · 큐브</div></div>
+    <div class="info-item"><div class="k">Shot 10</div><div class="v">12.5 ~ 13.5s · 막대</div></div>
+    <div class="info-item"><div class="k">Shot 11</div><div class="v">13.5 ~ 14.5s · 비교</div></div>
+    <div class="info-item"><div class="k">Shot 12</div><div class="v">14.5 ~ 15.0s · 로고</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════════════════
+     SECTION 6: EXECUTION CHECKLIST
+════════════════════════════════════════ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">실행 체크리스트 <span>클릭하여 완료 표시</span></div>
+  </div>
+
+  <div style="font-size:12px;color:var(--gray);margin-bottom:16px;">※ 항목을 클릭하면 완료 처리됩니다</div>
+
+  <div style="margin-bottom:12px;font-size:13px;color:var(--amber);letter-spacing:1px;">PHASE 1 — 준비</div>
+  <ul class="checklist" id="cl1">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>실제 제품 사진 준비 — 아이스볼 64mm, 큐브 50mm, 막대 120×35mm 각각 촬영</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Character Sheet 1~5 이미지 레퍼런스 Seedance에 업로드</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>전역 설정 저장 (9:16, 30fps, color grade)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Negative Prompt 저장 및 적용 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Master Style Prompt 준비</li>
+  </ul>
+
+  <div style="margin:20px 0 12px;font-size:13px;color:var(--amber);letter-spacing:1px;">PHASE 2 — 훅 검증 (Shot 01~03)</div>
+  <ul class="checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 01 생성 — 아이스볼 매크로 플래시 훅 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 02 생성 — 흐린 얼음 대비 샷 (실제로 불쾌감 주는지 확인)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 03 생성 — 아이스볼 드라마틱 등장 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 01~03 연결 재생 — 훅 효과 검증 후 진행 여부 결정</li>
+  </ul>
+
+  <div style="margin:20px 0 12px;font-size:13px;color:var(--amber);letter-spacing:1px;">PHASE 3 — 본 생성 (Shot 04~12)</div>
+  <ul class="checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 04 생성 — 아이스볼 아크 샷, Seed 고정</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 05~07 생성 — 빠른 컷 3연속, 각 0.5초</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 08 생성 — 피크 샷, 아이스볼 렌즈 플레어 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 09 생성 — 큐브 50mm, 3면 반사 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 10 생성 — 막대얼음 3개, 병렬 버블 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 11 생성 — 3종 플랫레이, 스케일 비교 확인</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Shot 12 생성 — 브랜드 클로징 크레인 샷</li>
+  </ul>
+
+  <div style="margin:20px 0 12px;font-size:13px;color:var(--amber);letter-spacing:1px;">PHASE 4 — 편집 & 완성</div>
+  <ul class="checklist">
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>CapCut Pro / Premiere에서 12샷 타임라인 조립</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>오디오 타임라인 적용 (Crystal PING → Jazz → Final PING)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Text Overlay 추가 (한글 + 영문 병행)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>컷 타이밍 정밀 조정 (비트에 맞춰 컷 포인트 이동)</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Color grade 최종 확인 — 미드나이트 틸 + 앰버 일관성</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>최종 출력 1080×1920 MP4, 30fps</li>
+    <li onclick="toggleCheck(this)"><div class="check-box"></div>Instagram Reels / YouTube Shorts 업로드</li>
+  </ul>
+</div>
+
+</div><!-- /main -->
+
+<!-- PROGRESS WIDGET -->
+<div class="progress-wrap" id="progressWrap">
+  <div class="progress-label">진행률</div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-count" id="progressCount">0 / 17</div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>JEWEL ICE</strong> × Higgsfield Seedance 2.0 Production Playbook<br>
+  컨셉: "The Final Jewel of Every Drink" · 호소다 다카히로 방법론 적용<br>
+  <span style="color:var(--border);">제작: Claude Code + 찰스 · 2026</span>
+</div>
+
+<script>
+  // Toggle step open/close
+  function toggleStep(header) {
+    const step = header.closest('.step');
+    step.classList.toggle('open');
+  }
+
+  // Copy button
+  function copyThis(btn) {
+    const box = btn.closest('.prompt-box');
+    const text = box.innerText.replace('Copy','').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+
+  function copyId(id, btn) {
+    const text = document.getElementById(id).innerText.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy Negative Prompt'; btn.classList.remove('copied'); }, 1800);
+    });
+  }
+
+  // Checklist toggle
+  function toggleCheck(li) {
+    li.classList.toggle('done');
+    const box = li.querySelector('.check-box');
+    box.textContent = li.classList.contains('done') ? '✓' : '';
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.checklist li');
+    const done = document.querySelectorAll('.checklist li.done');
+    const pct = Math.round((done.length / all.length) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressCount').textContent = done.length + ' / ' + all.length;
+  }
+
+  // Nav active on scroll
+  const sections = document.querySelectorAll('.section[id]');
+  const navItems = document.querySelectorAll('.nav-item');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navItems.forEach(n => {
+      n.classList.toggle('active', n.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Init progress
+  updateProgress();
+</script>
+</body>
+</html>

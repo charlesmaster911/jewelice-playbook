@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JEWEL ICE SNS 콘텐츠 자동 생산 보드 — 블로그·인스타·릴스 프롬프트 즉시 복사, 새롭게 만들기로 무한 변형">
+<meta property="og:title" content="JEWEL ICE 콘텐츠 플레이북">
+<meta property="og:description" content="The Final Jewel of Every Drink — 블로그 4편·피드 12개·릴스 8개 SNS 콘텐츠 플레이북">
+<title>JEWEL ICE — SNS 콘텐츠 자동 생산 보드</title>
+<style>
+:root{
+  --bg:#080810;--s1:#0f0f1a;--s2:#171724;--s3:#1f1f30;
+  --border:#2a2a40;--amber:#C47722;--amber2:#F4A460;--amber3:#7a4a14;
+  --crystal:#A8D8EA;--crydim:#1a3a4a;--white:#eeeef8;--gray:#7a7a99;
+  --gray2:#555570;--green:#4ade80;--red:#f87171;--purple:#a78bfa;--pink:#f472b6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--white);font-family:'Helvetica Neue',Arial,sans-serif;min-height:100vh;line-height:1.6}
+
+/* ── HEADER ── */
+.hdr{background:linear-gradient(180deg,#0c0c1e,var(--bg));border-bottom:1px solid var(--border);padding:36px 24px 28px;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:260px;background:radial-gradient(ellipse,rgba(196,119,34,.12) 0%,transparent 70%);pointer-events:none}
+.hdr-eye{font-size:10px;letter-spacing:4px;color:var(--amber);text-transform:uppercase;margin-bottom:10px}
+.hdr-title{font-size:clamp(24px,4vw,42px);font-weight:800;letter-spacing:-1px;margin-bottom:6px}
+.hdr-title span{color:var(--amber)}
+.hdr-sub{font-size:13px;color:var(--gray);margin-bottom:20px}
+.hdr-concept{display:inline-block;background:linear-gradient(135deg,rgba(196,119,34,.15),rgba(168,216,234,.08));border:1px solid var(--amber3);border-radius:8px;padding:12px 24px;font-size:12px;color:var(--amber2);letter-spacing:1px}
+.hdr-concept strong{display:block;font-size:16px;color:var(--amber);letter-spacing:2px;margin-bottom:3px}
+
+/* ── CONTROLS ── */
+.gen-wrap{display:flex;justify-content:center;padding:20px 24px 0;gap:12px;flex-wrap:wrap;align-items:center}
+.btn-gen{background:linear-gradient(135deg,var(--amber),#e8a040);border:none;border-radius:10px;color:#000;font-size:14px;font-weight:800;padding:14px 36px;cursor:pointer;letter-spacing:.5px;transition:all .2s;box-shadow:0 4px 20px rgba(196,119,34,.3)}
+.btn-gen:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(196,119,34,.4)}
+.btn-gen:disabled{opacity:.6;pointer-events:none}
+.btn-clear{background:transparent;border:1px solid var(--border);border-radius:10px;color:var(--gray);font-size:13px;padding:14px 24px;cursor:pointer;transition:all .2s}
+.btn-clear:hover{border-color:var(--amber3);color:var(--amber2)}
+.gen-status{font-size:12px;color:var(--amber);text-align:center;padding:10px;letter-spacing:1px;min-height:32px;transition:opacity .3s}
+
+/* ── TABS ── */
+.tabs{position:sticky;top:0;z-index:100;background:rgba(8,8,16,.96);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;padding:0 12px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{padding:14px 20px;font-size:12px;letter-spacing:1px;color:var(--gray);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .2s;text-transform:uppercase;user-select:none}
+.tab:hover{color:var(--white)}
+.tab.on{color:var(--amber);border-bottom-color:var(--amber)}
+
+/* ── PANELS ── */
+.main{max-width:1000px;margin:0 auto;padding:0 16px 80px}
+.panel{display:none;animation:fadeIn .3s ease}
+.panel.on{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+.panel-hdr{padding:36px 0 20px;border-bottom:1px solid var(--border);margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.panel-num{width:34px;height:34px;background:var(--amber);color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;flex-shrink:0}
+.panel-title{font-size:19px;font-weight:700}
+.panel-title span{font-size:12px;color:var(--gray);font-weight:400;margin-left:10px}
+
+/* ── CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:16px;margin-bottom:24px}
+@media(max-width:520px){.cards{grid-template-columns:1fr}}
+
+.card{background:var(--s1);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:var(--amber3)}
+.card-top{display:flex;align-items:stretch}
+.card-accent{width:5px;background:var(--amber);flex-shrink:0}
+.card-accent.cry{background:var(--crystal)}
+.card-accent.pur{background:var(--purple)}
+.card-accent.pnk{background:var(--pink)}
+.card-accent.grn{background:var(--green)}
+.card-meta{padding:14px 16px;flex:1}
+.card-badge{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+.card-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px}
+.card-sub{font-size:11px;color:var(--amber2)}
+.card-body{padding:0 16px 16px}
+.card-body.bt{border-top:1px solid var(--border)}
+
+/* ── PROMPT BOX ── */
+.pb{margin-top:14px}
+.pb-lbl{font-size:9px;letter-spacing:3px;color:var(--gray);text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.pb-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+.pb-box{background:#050510;border:1px solid var(--border);border-radius:8px;padding:14px 14px 14px 14px;font-family:'SF Mono','Fira Code',monospace;font-size:12px;line-height:1.75;color:#bbbbd8;white-space:pre-wrap;word-break:break-word;position:relative;min-height:40px}
+.cp{position:absolute;top:8px;right:8px;background:var(--s2);border:1px solid var(--border);border-radius:6px;color:var(--gray);font-size:10px;padding:4px 10px;cursor:pointer;transition:all .15s;letter-spacing:.5px}
+.cp:hover{background:var(--amber);color:#000;border-color:var(--amber)}
+.cp.ok{background:var(--green);color:#000;border-color:var(--green)}
+
+/* ── HASHTAGS ── */
+.tags-wrap{display:flex;flex-wrap:wrap;gap:5px;padding:10px 0 0}
+.tag{font-size:11px;background:var(--s3);border:1px solid var(--border);border-radius:20px;padding:2px 9px;color:var(--gray2)}
+.tag.a{color:var(--amber);border-color:var(--amber3)}
+.tag.c{color:var(--crystal);border-color:var(--crydim)}
+
+/* ── CALENDAR ── */
+.cal-wrap{overflow-x:auto}
+.ctable{width:100%;border-collapse:collapse;font-size:12px;min-width:580px}
+.ctable th{background:var(--s2);color:var(--gray);font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:10px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.ctable td{padding:10px 12px;border-bottom:1px solid var(--border)}
+.ctable tr:last-child td{border-bottom:none}
+.ctable tr:hover td{background:var(--s2)}
+.ta{color:var(--amber2);font-weight:600}
+.tb{color:var(--crystal);font-weight:600}
+.tc{color:var(--purple);font-weight:600}
+.tv{color:var(--pink);font-weight:600}
+.tbl{color:var(--green);font-weight:600}
+
+/* ── SCENE ACCORDION ── */
+.scene-wrap{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.scene{background:var(--s2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.scene-hdr{display:flex;align-items:center;gap:10px;padding:10px 14px;cursor:pointer;user-select:none}
+.scene-n{background:var(--amber);color:#000;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;flex-shrink:0}
+.scene-title{font-size:12px;font-weight:600;flex:1;color:var(--white)}
+.scene-time{font-size:10px;color:var(--amber);font-family:monospace}
+.scene-chev{font-size:10px;color:var(--gray);transition:transform .2s;margin-left:4px}
+.scene.open .scene-chev{transform:rotate(180deg)}
+.scene-body{display:none;padding:0 14px 14px;border-top:1px solid var(--border)}
+.scene.open .scene-body{display:block}
+
+/* ── FUNNEL FLOW ── */
+.flow{display:flex;flex-direction:column;gap:0;margin-top:16px}
+.f-item{display:flex;gap:0}
+.f-dot{width:34px;height:34px;border:2px solid var(--amber);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--amber);background:var(--s1);flex-shrink:0;z-index:1}
+.f-con{padding:0 0 24px 16px;flex:1}
+.f-stage{font-size:10px;letter-spacing:2px;color:var(--amber);text-transform:uppercase;margin-bottom:5px}
+.f-body{font-size:12px;color:var(--gray);white-space:pre-wrap;line-height:1.7}
+.f-line{width:2px;background:var(--amber3);margin-left:16px;height:16px}
+
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:28px 0}
+
+/* ── PROGRESS WIDGET ── */
+.prog-float{position:fixed;bottom:20px;right:20px;background:var(--s1);border:1px solid var(--border);border-radius:10px;padding:12px 16px;box-shadow:0 8px 30px rgba(0,0,0,.5);z-index:200;min-width:140px}
+.prog-lbl{font-size:9px;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:7px}
+.prog-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber),var(--amber2));border-radius:2px;transition:width .4s;width:0%}
+.prog-ct{font-size:11px;color:var(--amber);font-family:monospace;text-align:right}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin{display:inline-block;animation:spin .7s linear infinite}
+@media(max-width:640px){.prog-float{display:none}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-eye">SNS 콘텐츠 자동 생산 보드 v2</div>
+  <h1 class="hdr-title"><span>JEWEL ICE</span> 콘텐츠 플레이북</h1>
+  <p class="hdr-sub">블로그 · 인스타 피드 · 릴스 · 캘린더 · 전환 설계 — Copy 버튼으로 즉시 복붙</p>
+  <div class="hdr-concept">
+    <strong>The Final Jewel of Every Drink</strong>
+    얼음도 예술이다 · jewelice
+  </div>
+</div>
+
+<div class="gen-wrap">
+  <button class="btn-gen" id="genBtn">✦ 새롭게 만들기</button>
+  <button class="btn-clear" id="resetBtn">↺ 초기화</button>
+</div>
+<div class="gen-status" id="genStatus"></div>
+
+<nav class="tabs" id="tabNav">
+  <div class="tab on" data-tab="0">① 블로그 4편</div>
+  <div class="tab" data-tab="1">② 인스타 피드 12개</div>
+  <div class="tab" data-tab="2">③ 숏폼 릴스 8개</div>
+  <div class="tab" data-tab="3">④ 콘텐츠 캘린더</div>
+  <div class="tab" data-tab="4">⑤ 전환 설계</div>
+</nav>
+
+<div class="main">
+  <div class="panel on" id="p0">
+    <div class="panel-hdr"><div class="panel-num">1</div><div class="panel-title">블로그 포스팅 <span>월 4편 · SEO 최적화 · 내부링크 + CTA 포함</span></div></div>
+    <div id="blog-out" class="cards"></div>
+  </div>
+  <div class="panel" id="p1">
+    <div class="panel-hdr"><div class="panel-num">2</div><div class="panel-title">인스타그램 피드 <span>주 3회 · 월 12개 · A제품/B라이프/C교육 순환</span></div></div>
+    <div id="feed-out" class="cards"></div>
+  </div>
+  <div class="panel" id="p2">
+    <div class="panel-hdr"><div class="panel-num">3</div><div class="panel-title">숏폼 릴스 <span>주 2회 · 월 8개 · Higgsfield Seedance 2.0 Scene 프롬프트</span></div></div>
+    <div id="reel-out"></div>
+  </div>
+  <div class="panel" id="p3">
+    <div class="panel-hdr"><div class="panel-num">4</div><div class="panel-title">콘텐츠 캘린더 <span>4주 스케줄 · 시즌 이벤트 연계</span></div></div>
+    <div id="cal-out"></div>
+  </div>
+  <div class="panel" id="p4">
+    <div class="panel-hdr"><div class="panel-num">5</div><div class="panel-title">전환 설계 <span>CTA 10개 · 링크인바이오 · 리타겟팅 플로우</span></div></div>
+    <div id="conv-out"></div>
+  </div>
+</div>
+
+<div class="prog-float">
+  <div class="prog-lbl">새로 만들기</div>
+  <div class="prog-bar"><div class="prog-fill" id="pFill"></div></div>
+  <div class="prog-ct" id="pCt">0 회</div>
+</div>
+
+<script>
+'use strict';
+
+// ══════════════════════════════════════════════════════════
+// DATA
+// ══════════════════════════════════════════════════════════
+
+var BLOGS = [
+  {acc:'',badge:'POST-01 · 정보성',title:'위스키 온더록, 얼음 하나로 완전히 달라진다',sub:'SEO: 위스키 온더록 얼음 · 투명 얼음 차이',
+   seo:'위스키 온더록, 얼음 하나로 완전히 달라진다 — 투명 얼음의 과학',
+   h2:'H2-1: 흐린 얼음이 위스키를 망치는 이유\nH2-2: 투명 얼음이란 무엇인가 — 방향성 동결 원리\nH2-3: 얼음 모양별 위스키 페어링 가이드\n  H3: 싱글몰트 — 75mm 큐브\n  H3: 하이볼 — 막대얼음 35×120mm\n  H3: 온더록 — 아이스볼 64mm\nH2-4: 집에서 바 경험을 만드는 마지막 재료',
+   body:'위스키를 좋아하는 사람이라면 한 번쯤 느꼈을 것이다.\n바에서 마시는 온더록과 집에서 마시는 온더록이 왜 이렇게 다를까.\n잔이 달라서? 술이 달라서? 아니다. 대부분의 경우, 답은 얼음이다.\n\n냉동실 얼음을 자세히 들여다보면 하얗고 불투명하다.\n그 흰색의 정체는 물 속에 녹아 있던 공기와 미네랄이 동결 과정에서 빠져나오지 못하고 얼음 내부에 갇혀버린 것이다.\n공기방울이 많다는 것은 표면적이 넓다는 의미. 5분 만에 위스키가 희석된다.\n\n쥬얼아이스는 방향성 동결(Directional Freezing) 방식으로 만들어진다.\n물이 한 방향에서만 천천히 얼도록 설계해, 공기와 불순물이 결국 얼음 바깥으로 배출된다.\n남는 것은 순수한 물 분자만으로 이루어진 완전한 결정 구조.\n그래서 쥬얼아이스는 유리처럼 투명하고, 훨씬 천천히 녹는다.\n\n■ 얼음 모양별 페어링\n【 75mm 큐브 】 싱글몰트와 정답. 6면 균일 녹음, 향이 가장 오래 유지.\n【 막대얼음 35×120mm 】 하이볼의 혁명. 탄산 버블이 직선으로 올라오는 경험.\n【 아이스볼 64mm 】 구(球)는 표면적 대비 부피 최소 형태. 가장 천천히 녹는다.',
+   img:'A perfectly transparent 75mm ice cube in a crystal whiskey glass, single malt whiskey poured over it in slow motion, amber liquid cascades down three perfectly flat cube faces, warm bar lighting, dark slate surface, anamorphic lens flare, cinematic --ar 16:9 --v 6',
+   cta:'오늘 밤 위스키 한 잔, 얼음부터 바꿔보세요\n[쥬얼아이스 쇼핑하기 →]'},
+
+  {acc:'cry',badge:'POST-02 · 튜토리얼',title:'홈바 셋팅 완벽 가이드 2026 — 쥬얼아이스로 시작',sub:'SEO: 홈바 셋팅 · 홈바 만들기 · 홈바 필수 도구',
+   seo:'홈바 셋팅 완벽 가이드 2026 — 쥬얼아이스로 시작하는 프리미엄 홈바',
+   h2:'H2-1: 홈바 셋팅 우선순위 — 얼음이 1순위인 이유\nH2-2: 얼음별 음료 페어링 완전 가이드\n  H3: 막대얼음 35×120mm — 하이볼\n  H3: 아이스볼 64mm — 온더록\n  H3: 큐브 75mm — 버번/아이리시\nH2-3: 홈바 공간 구성 팁 (선반 하나로 충분)\nH2-4: 홈바 첫 번째 밤 — 실전 레시피 3가지',
+   body:'홈바를 꿈꾸는 사람은 많다. 하지만 실제로 완성하는 사람은 적다.\n시작을 어디서 해야 할지 모르기 때문이다.\n결론부터 말한다. 홈바는 얼음부터 시작한다.\n\n아무리 좋은 맥캘란 12년도, 냉동실 각얼음이 15분 만에 다 녹으면 그 위스키는 물이 된다.\n반면, 쥬얼아이스 아이스볼 하나면 한 시간이 지나도 위스키의 농도가 거의 유지된다.\n\n■ 얼음 선택 가이드\n하이볼 → 막대얼음 35×120mm. 버블이 직선으로 올라오는 것을 눈으로 보면서 마신다.\n온더록 → 아이스볼 64mm. 빛을 굴절시켜 음료 전체가 빛나 보이는 효과.\n버번/아이리시 → 큐브 75mm. 무게감 있게 글라스 바닥에 앉는 각진 형태.\n\n■ 홈바 공간\n공간이 작아도 괜찮다. 주방 한 켠 선반 하나면 충분하다.\nLED 바 조명을 선반 아래에 붙이면 즉시 홈바 분위기가 완성된다.\n쥬얼아이스가 담긴 버킷이 그 빛을 받으면, 사진 한 장도 달라진다.',
+   img:'Intimate home bar setup on dark wooden shelf, warm amber LED underlighting, three premium whiskey bottles softly blurred background, foreground crystal highball glass with three 120mm transparent ice bars, carbonation bubbles rising in parallel, cozy night atmosphere --ar 9:16 --v 6',
+   cta:'홈바 스타터 세트로 오늘 시작하세요\n[홈바 스타터 세트 보기 →]'},
+
+  {acc:'pur',badge:'POST-03 · B2B',title:'카페 음료 퀄리티 높이는 비밀 — 투명 수제얼음',sub:'SEO: 카페 얼음 종류 · 수제얼음 카페 · 카페 차별화',
+   seo:'카페 음료 퀄리티 높이는 비밀 — 투명 수제얼음이 만드는 차이',
+   h2:'H2-1: 카페에서 얼음이 음료에 미치는 영향\n  H3: 희석 속도가 맛을 결정한다\n  H3: 비주얼이 SNS 공유를 결정한다\nH2-2: 일반 제빙기 vs 쥬얼아이스 — 카페 입장 비교\n  H3: 원가 계산 (음료 한 잔당)\n  H3: SNS 바이럴 효과 분석\nH2-3: 카페 유형별 추천 얼음\nH2-4: 쥬얼아이스 카페 B2B 문의 방법',
+   body:'카페를 운영하면서 경쟁에서 이기는 방법을 찾고 있다면,\n메뉴판보다 먼저 얼음을 바꾸는 것을 권한다.\n\n아이스 아메리카노는 여름 카페 매출의 60% 이상을 차지한다.\n그 음료에 들어가는 얼음이 흐릿하고 빠르게 녹는다면 고객이 5분 안에 느끼는 것은 "희석된 커피"다.\n반면 투명한 얼음이 천천히 녹으면 30분이 지나도 커피 맛이 유지된다.\n\n카페 음료 사진에서 얼음의 투명도는 생각보다 훨씬 중요하다.\n투명한 얼음이 담긴 음료는 사진에서 빛을 머금고 빛나 보인다.\n인스타그램에 올리고 싶은 음료는 그 사진에서 결정된다.\n\n■ 카페 유형별 추천\n스페셜티 커피숍 → 큐브 75mm. "우리 카페는 얼음도 진지하다"는 메시지.\n하이볼 바 겸 카페 → 막대얼음 35×120mm. 버블 라인으로 복제 불가 비주얼.\n브런치 감성 카페 → 아이스볼 64mm. 음료 위에 놓인 것 자체가 작품.',
+   img:'Premium cafe setting, barista hands placing a single 64mm crystal-clear ice sphere into a tall specialty coffee glass, amber espresso swirling around sphere, morning natural light, warm cafe atmosphere, shallow depth of field, cinematic --ar 9:16 --v 6',
+   cta:'카페 B2B 납품 문의 — 샘플 먼저 보내드립니다\n[카페 납품 문의하기 →]'},
+
+  {acc:'grn',badge:'POST-04 · 선물 시즌',title:'얼음을 선물한다고? 쥬얼아이스가 특별한 이유',sub:'SEO: 위스키 애호가 선물 · 홈바 선물 · 아버지 선물 추천',
+   seo:'얼음을 선물한다고? 쥬얼아이스가 특별한 이유 — 위스키 애호가 선물 추천',
+   h2:'H2-1: 왜 쥬얼아이스가 선물이 되는가\n  H3: "가지고 싶지만 스스로 사지 않는 것"의 법칙\nH2-2: 쥬얼아이스 선물이 잘 맞는 대상\nH2-3: 선물 구성 추천 (금액대별)\n  H3: 3만원대 / 5만원대 / 10만원대\nH2-4: 시즌별 선물 가이드 — 부모님날 / 크리스마스',
+   body:'세상에는 두 종류의 선물이 있다.\n"필요한 것"을 주는 선물과 "가지고 싶었지만 스스로 사지 않은 것"을 주는 선물.\n후자가 훨씬 오래 기억된다. 쥬얼아이스는 후자다.\n\n위스키를 좋아하는 사람에게 물어보면 대부분 이렇게 말한다.\n"쥬얼아이스 알아. 언젠가 한 번 써보려고."\n그 "언젠가"가 당신의 선물로 당겨지는 것이다.\n\n■ 금액대별 선물 구성\n【 3만원대 】 막대얼음 35×120mm 1박스 + 손편지\n【 5만원대 】 아이스볼 64mm 세트 + 락 글라스 1개\n【 10만원대 】 막대얼음 + 아이스볼 + 큐브 전 제품 + 위스키 잔 세트\n\n■ 선물 메시지 예시\n"위스키 좋아하는 사람한테 최고의 선물은 더 좋은 위스키가 아니라 더 좋은 얼음이래. 네가 마시는 술이 달라지길."\n"얼음도 예술이 될 수 있다는 걸 알았어. 네 홈바에 넣어줄게."',
+   img:'Premium gift box packaging, matte black box with gold foil JEWEL ICE lettering, lid partially open revealing crystal-clear ice balls and rectangular bars nestled in black velvet, warm spotlight, dark background, luxury product photography --ar 16:9 --v 6',
+   cta:'지금 선물 세트를 주문하면 3일 내 배송 가능합니다\n[선물 세트 구성하기 →]'},
+];
+
+var FEEDS = [
+  {type:'A',acc:'',title:'막대얼음 35×120mm 히어로 샷',time:'화요일 오후 7:00 PM',
+   sd:'Three 120mm×35mm crystal-clear rectangular ice bars arranged in perfect parallel on a dark wet slate surface, single warm amber rim light from directly behind creates three distinct prismatic light caustics beneath each bar, condensation micro-droplets beading on all surfaces, ultra macro close-up, top-down 45-degree angle, zero cloudiness, surgical sharpness, luxury product hero shot, deep midnight teal shadows, 9:16 vertical, The Final Jewel of Every Drink identity',
+   mj:'Three perfectly transparent 35×120mm rectangular ice bars on black marble, golden backlight refracting through each bar, condensation droplets, ultra sharp macro, flat lay 45-degree, dark luxury product photography --ar 4:5 --v 6 --style raw',
+   cap:'얼음 하나로 이렇게 달라집니다.\n\n쥬얼아이스 막대얼음은 흐릿함이 없습니다.\n방향성 동결 방식으로 공기와 불순물을 완전히 제거해\n완전히 투명한 크리스탈 클리어 얼음을 만들었습니다.\n\n35×120mm — 하이볼 잔 바닥부터 끝까지 닿는 길이.\n탄산이 직선으로 올라오는 것을 보면서 마시는 하이볼은\n편의점 얼음으로는 절대 경험할 수 없습니다.\n\n얼음도 예술이 될 수 있다는 걸, 쥬얼아이스가 증명합니다.\n\n#쥬얼아이스',
+   tags:['#쥬얼아이스','#jewelice','#투명얼음','#수제얼음','#프리미엄얼음','#막대얼음','#하이볼얼음','#홈바얼음','#얼음아트','#아이스아트','#홈바','#홈바셋팅','#위스키홈바','#하이볼','#하이볼바','#위스키','#whisky','#craftice','#clearice','#프리미엄주류','#홈바인테리어','#바텐더','#칵테일얼음','#아이스볼','#온더록','#싱글몰트','#위스키애호가','#홈카페','#선물추천','#특별한선물']},
+
+  {type:'B',acc:'cry',title:'홈바 나이트 무드 — 아이스볼',time:'금요일 오후 9:00 PM',
+   sd:'Intimate home bar night scene, confident male hand lifting a crystal lowball glass containing a 64mm ice sphere and amber whiskey, warm golden light from beneath the counter, the ice sphere glows from within refracting the whiskey world, whiskey bottles softly blurred in background, anamorphic lens flare through the sphere, 0.5x slow motion, quiet luxury aesthetic, 9:16 vertical, The Final Jewel of Every Drink',
+   mj:'Dark intimate home bar, male hand holding crystal whiskey glass with single clear ice sphere inside, warm amber underlight, whiskey bottles blurred background, cinematic lens flare, luxury lifestyle photography --ar 4:5 --v 6 --style raw',
+   cap:'이 한 잔이 완벽해지는 순간.\n\n하루가 끝나고 혼자 앉아 마시는 위스키 한 잔.\n그 잔 안에서 빛을 굴절시키는 아이스볼 하나.\n\n좋은 위스키, 좋은 잔, 그리고 쥬얼아이스.\n홈바의 마지막 퍼즐이 맞춰지는 순간입니다.\n\n당신의 오늘 밤을 조금 더 특별하게.\n얼음도 예술이 될 수 있습니다.\n\n#쥬얼아이스 #홈바 #위스키감성',
+   tags:['#쥬얼아이스','#jewelice','#홈바','#홈바감성','#위스키감성','#아이스볼','#위스키온더록','#싱글몰트','#맥캘란','#글렌피딕','#홈바인테리어','#위스키라이프','#홈바셋팅','#위스키애호가','#나이트무드','#바분위기','#홈바스타그램','#위스키스타그램','#craftice','#clearice','#iceball','#whiskylife','#homebarstagram','#홈바있는삶','#혼자술','#분위기술','#위스키한잔','#오늘밤한잔','#프리미엄라이프','#luxurylifestyle']},
+
+  {type:'C',acc:'pur',title:'흐린 얼음 vs 투명 얼음 비교',time:'수요일 오전 11:00 AM',
+   sd:'Side-by-side split frame comparison in 9:16 vertical, left half: highball glass with cheap cloudy milky irregular ice, murky and unappealing, cold harsh white lighting, right half: identical glass with three crystal-clear 120mm×35mm ice bars, carbonation bubbles rising in perfect straight parallel lines, warm amber backlight, hard vertical dividing line in center, cinematic color grade',
+   mj:'Split screen comparison, left: cloudy opaque ice in tall glass murky drink, right: crystal clear rectangular ice bars in identical glass vibrant drink, center dividing line, product comparison photography --ar 4:5 --v 6',
+   cap:'같은 하이볼인데 왜 이렇게 달라 보일까요?\n\n왼쪽: 일반 얼음 — 흐릿하고 빠르게 녹아 음료가 희석됩니다.\n오른쪽: 쥬얼아이스 막대얼음 — 탄산이 직선으로 올라오고, 음료가 오래 유지됩니다.\n\n공기와 불순물이 없는 얼음은 표면적이 작아 천천히 녹습니다.\n그만큼 당신의 하이볼이 오래 맛있습니다.\n\n얼음을 바꾸면 음료가 바뀝니다. 진짜입니다.\n\n#쥬얼아이스 #투명얼음차이',
+   tags:['#쥬얼아이스','#jewelice','#투명얼음차이','#얼음비교','#수제얼음','#하이볼','#하이볼얼음','#막대얼음','#투명얼음','#크리스탈아이스','#얼음정보','#얼음과학','#음료퀄리티','#카페음료','#홈바정보','#위스키정보','#하이볼만들기','#홈바팁','#음료레시피','#clearice','#craftice','#iceeducation','#whiskylovers','#highball','#바텐더팁','#칵테일팁','#음료차별화','#카페창업','#카페팁','#얼음선물']},
+
+  {type:'A',acc:'',title:'아이스볼 64mm 굴절 히어로',time:'토요일 오후 6:00 PM',
+   sd:'Single 64mm crystal-clear ice sphere on dark wet slate surface, positioned at golden ratio intersection, single amber theatrical spotlight from upper right splits into full rainbow spectrum inside the sphere, prismatic caustic light pattern radiates on slate beneath, condensation micro-droplets forming in real time, extreme macro, perfectly sharp, 9:16 vertical, luxury hero product shot, The Final Jewel of Every Drink',
+   mj:'Single perfect 64mm ice sphere on black slate, dramatic amber backlight creating rainbow caustics, macro photography, condensation droplets, dark luxury product photography, golden ratio composition --ar 4:5 --v 6 --style raw',
+   cap:'64mm. 이 구(球)가 당신의 위스키를 다르게 만듭니다.\n\n완벽한 구형은 모든 3D 형태 중 표면적 대비 부피가 가장 작습니다.\n가장 천천히 녹는다는 의미입니다.\n\n그래서 싱글몰트를 마시는 사람들은 아이스볼을 씁니다.\n위스키의 복잡한 향이 희석되기 전에 충분히 즐기기 위해.\n\n이 빛. 술 안에서 빛을 굴절시키는 얼음.\n그것은 도구가 아닙니다. 보석입니다.\n\n#쥬얼아이스 #아이스볼 #64mm',
+   tags:['#쥬얼아이스','#jewelice','#아이스볼','#iceball','#64mm','#위스키온더록','#싱글몰트위스키','#투명얼음','#수제얼음','#맥캘란','#글렌피딕','#글렌리벳','#싱글몰트','#스카치위스키','#홈바','#위스키애호가','#위스키라이프','#위스키스타그램','#craftice','#clearice','#premiumice','#whiskylover','#whiskylife','#얼음예술','#아이스아트','#홈바인테리어','#위스키선물','#프리미엄얼음','#프리미엄선물','#홈바선물']},
+
+  {type:'B',acc:'cry',title:'카페 시그니처 음료 무드',time:'월요일 오전 9:00 AM',
+   sd:'Specialty coffee cafe morning atmosphere, warm natural window light, barista hands placing a single 64mm crystal-clear ice sphere into a tall transparent cold brew glass, the sphere creates a lens effect magnifying the coffee layers, cappuccino-colored gradients swirl around the sphere, shallow depth of field on warm wooden cafe counter, cinematic 9:16 vertical, premium cafe commercial mood',
+   mj:'Premium cafe interior, crystal clear ice sphere in tall coffee glass, morning light, barista hands, warm wooden counter, plants blurred background, specialty coffee aesthetic, commercial photography --ar 4:5 --v 6',
+   cap:'카페도 얼음으로 달라집니다.\n\n아이스 아메리카노 한 잔.\n그 안에 64mm 크리스탈 아이스볼 하나.\n커피의 색, 빛, 맛이 모두 달라집니다.\n\n카페 사장님들이 가장 많이 물어보시는 것:\n"투명 얼음, 우리 카페에 쓸 수 있나요?"\n\n쥬얼아이스는 카페 B2B 납품도 합니다.\nDM으로 문의 주세요. 샘플 먼저 보내드립니다.\n\n#쥬얼아이스 #카페얼음 #카페창업',
+   tags:['#쥬얼아이스','#jewelice','#카페얼음','#카페창업','#카페차별화','#스페셜티커피','#아이스아메리카노','#카페인테리어','#카페스타그램','#투명얼음','#수제얼음','#프리미엄얼음','#카페음료','#카페메뉴','#카페사장님','#카페운영','#카페마케팅','#음료퀄리티','#카페비법','#craftice','#clearice','#cafephotography','#specialtycoffee','#homebarista','#coffeeshop','#cafelife','#coffeegram','#카페B2B','#카페납품','#얼음납품']},
+
+  {type:'C',acc:'pur',title:'얼음 형태별 음료 페어링 가이드',time:'목요일 오후 12:00 PM',
+   sd:'Clean product flat lay, three Jewel Ice products side by side on dark slate: a 64mm crystal-clear sphere on the left, a 75mm crystal-clear cube in the center, three 120mm×35mm rectangular bars on the right, each illuminated by different colored rim lights, condensation on all surfaces, ultra sharp focus, overhead 45-degree angle, 9:16 vertical, luxury educational content',
+   mj:'Three types of crystal clear ice products flat lay on black slate: sphere 64mm, cube 75mm, rectangular bar 120×35mm, different colored rim lights, comparison product photography, overhead angle --ar 4:5 --v 6',
+   cap:'어떤 얼음이 내 술에 맞을까요?\n\n🔵 막대얼음 35×120mm\n→ 하이볼, 롱드링크\n→ 탄산이 직선으로 올라오는 경험\n\n⚪ 아이스볼 64mm\n→ 위스키 온더록, 칵테일\n→ 가장 천천히 녹는 형태\n\n⬛ 큐브 75mm\n→ 버번, 아이리시, 진토닉\n→ 균일하게 6면 희석\n\n세 가지 모두 크리스탈 클리어.\n형태가 달라도 투명함은 같습니다.\n\n#쥬얼아이스 #얼음종류 #얼음페어링',
+   tags:['#쥬얼아이스','#jewelice','#얼음종류','#얼음페어링','#막대얼음','#아이스볼','#큐브얼음','#투명얼음','#수제얼음','#프리미엄얼음','#위스키페어링','#하이볼','#온더록','#진토닉','#칵테일얼음','#홈바정보','#홈바팁','#위스키정보','#음료정보','#바텐더팁','#craftice','#clearice','#iceguide','#icepairing','#whiskypairing','#highball','#ontherock','#cocktailice','#homebarsetup','#얼음가이드']},
+
+  {type:'A',acc:'',title:'큐브 75mm 위스키 포어링',time:'화요일 오후 7:00 PM',
+   sd:'A perfect 75mm crystal-clear ice cube sitting in a crystal whiskey glass, amber whiskey poured slowly from above in extreme slow motion, liquid cascades perfectly evenly down all four flat cube faces simultaneously, geometrically exact edges, three distinct light reflections on each visible face, dark slate bar counter, warm amber rim light, ultra slow motion 0.3x, macro close-up, 9:16 vertical',
+   mj:'Perfect 75mm crystal cube in whiskey glass, amber whisky pour slow motion, liquid cascading down cube faces, warm bar lighting, macro close-up, dark luxury background --ar 4:5 --v 6 --style raw',
+   cap:'위스키 온더록의 정석은 큐브 75mm입니다.\n\n정육면체는 6개의 완벽한 평면으로 이루어져 있습니다.\n각 면이 균일하게 녹으면서 위스키를 천천히, 균형있게 희석합니다.\n\n이 큐브의 세 면이 동시에 빛을 받아 반사하는 순간.\n얼음이 보석이 된다는 게 이런 의미입니다.\n\n쥬얼아이스 큐브 75mm — 위스키 온더록의 최선.\n\n#쥬얼아이스 #큐브얼음 #위스키온더록',
+   tags:['#쥬얼아이스','#jewelice','#큐브얼음','#75mm','#위스키온더록','#온더록','#위스키','#버번','#아이리시위스키','#투명얼음','#수제얼음','#프리미엄얼음','#홈바','#홈바셋팅','#위스키애호가','#위스키라이프','#싱글몰트','#스카치위스키','#craftice','#clearice','#whiskylovers','#whiskylife','#icecube','#premiumice','#homebarsetup','#바텐더','#칵테일','#홈바인테리어','#위스키선물','#프리미엄선물']},
+
+  {type:'B',acc:'cry',title:'선물 박스 언박싱 무드',time:'금요일 오후 9:00 PM',
+   sd:'Premium matte black gift box lid opening in slow motion, crystal-clear ice balls and rectangular bars revealed inside black velvet interior, dramatic product reveal lighting, warm spotlight from above, condensation on ice products, luxury unboxing experience, 9:16 vertical, gift giving aspirational mood, The Final Jewel of Every Drink',
+   mj:'Premium black gift box opening, crystal clear ice sphere and bar products in black velvet, dramatic warm spotlight, luxury unboxing photography, dark background --ar 4:5 --v 6',
+   cap:'얼음을 선물로 받아본 적 있으신가요?\n\n쥬얼아이스는 위스키 좋아하는 분께\n가장 예상하지 못한, 가장 오래 기억되는 선물이 됩니다.\n\n받는 사람이 위스키 마실 때마다 생각날 선물.\n"이 얼음 누가 선물해줬는데 진짜 달라" 라는 말을 듣게 될 선물.\n\n부모님날, 생일, 크리스마스 — 쥬얼아이스 선물 세트.\n\n#쥬얼아이스 #얼음선물 #위스키선물',
+   tags:['#쥬얼아이스','#jewelice','#얼음선물','#위스키선물','#홈바선물','#특별한선물','#선물추천','#남자선물','#아버지선물','#위스키애호가선물','#홈바셋팅','#프리미엄선물','#선물아이디어','#생일선물','#기념일선물','#크리스마스선물','#투명얼음','#수제얼음','#아이스볼','#막대얼음','#craftice','#clearice','#giftidea','#whiskylovers','#homebarsetup','#luxurygift','#icegift','#premiumgift','#부모님선물','#남편선물']},
+
+  {type:'C',acc:'pur',title:'얼음이 빠르게 녹는 과학적 이유',time:'수요일 오전 11:00 AM',
+   sd:'Scientific educational visual, split macro frame showing cross-section of cloudy ice on left with visible trapped air bubbles (white opaque), versus crystal-clear ice on right with zero internal structure, diagram-style lighting showing the difference in internal composition, clean product photography style, 9:16 vertical, educational content',
+   mj:'Scientific cross-section comparison of cloudy vs clear ice, left: white opaque ice with visible air bubbles, right: crystal clear ice with zero cloudiness, studio lighting, educational product photography --ar 4:5 --v 6',
+   cap:'왜 냉동실 얼음은 빠르게 녹을까요?\n\n냉동실 얼음 내부에는 공기방울이 가득 들어있습니다.\n이 공기방울들이 표면적을 넓혀서 얼음이 빨리 녹게 만듭니다.\n그래서 보기에도 흰색, 불투명합니다.\n\n쥬얼아이스는 방향성 동결로 공기와 불순물을 완전히 제거합니다.\n결과: 완전 투명 + 훨씬 천천히 녹음 + 술이 덜 희석됨.\n\n얼음 하나의 차이가 음료 전체를 바꿉니다.\n\n#쥬얼아이스 #얼음과학 #투명얼음원리',
+   tags:['#쥬얼아이스','#jewelice','#얼음과학','#투명얼음원리','#수제얼음원리','#방향성동결','#투명얼음','#크리스탈아이스','#얼음차이','#얼음정보','#음료과학','#위스키과학','#홈바정보','#홈바팁','#하이볼팁','#음료퀄리티','#카페정보','#바텐더정보','#craftice','#clearice','#icescience','#directionalfreezing','#premiumice','#clearicemaker','#whiskyeducation','#highballtips','#homebar','#beveragescience','#얼음교육','#음료교육']},
+
+  {type:'A',acc:'',title:'막대얼음 탄산 버블 ASMR',time:'토요일 오후 6:00 PM',
+   sd:'Extreme slow motion 120fps macro of a single 120mm×35mm crystal-clear ice bar being lowered into a tall highball glass of sparkling water, the moment it enters the liquid an explosion of carbonation bubbles erupts along all four flat faces rising in perfectly straight parallel vertical lines, backlit cold blue-white light from directly behind, the bubbles glow like fiber optic strands, ASMR visual quality, dark wet slate below, 9:16 vertical',
+   mj:'Macro of 120mm ice bar entering sparkling water, explosion of carbonation bubbles along flat faces, parallel bubble lines, cold blue backlight, ASMR quality visual, dark background --ar 4:5 --v 6 --style raw',
+   cap:'이 소리, 상상이 되시나요? 🧊\n\n쥬얼아이스 막대얼음이 하이볼 잔에 들어가는 순간.\n탄산이 4개의 평면을 따라 직선으로 폭발합니다.\n\n이 버블 라인은 일반 얼음으로는 절대 만들 수 없습니다.\n공기방울 없는 완전 투명 얼음의 평평한 면만이 만들 수 있는 현상.\n\n보면서 마시는 것까지 경험입니다.\n쥬얼아이스 막대얼음 35×120mm.\n\n#쥬얼아이스 #막대얼음ASMR #하이볼',
+   tags:['#쥬얼아이스','#jewelice','#막대얼음','#막대얼음ASMR','#하이볼얼음','#탄산버블','#ASMR얼음','#얼음ASMR','#하이볼','#하이볼만들기','#투명얼음','#크리스탈아이스','#수제얼음','#프리미엄얼음','#홈바','#홈바셋팅','#위스키홈바','#craftice','#clearice','#iceasmr','#highball','#bubblesasmr','#premiumice','#icelovers','#cocktailice','#homebarsetup','#바텐더','#홈바인테리어','#satisfying','#asmr']},
+
+  {type:'B',acc:'cry',title:'연인과 홈바 나이트',time:'금요일 오후 9:00 PM',
+   sd:'Two crystal whiskey glasses on a dark bar counter, both containing 64mm crystal-clear ice spheres and amber whiskey, warm intimate home bar setting with two people partially visible in background, soft bokeh, the two glasses are the focus with ice spheres glowing, romantic evening atmosphere, cinematic 9:16 vertical, luxury lifestyle',
+   mj:'Two crystal glasses with ice spheres on dark bar counter, couple blurred in background, warm romantic home bar lighting, shallow depth of field, luxury lifestyle photography --ar 4:5 --v 6',
+   cap:'오늘 밤, 집에서 바 하실래요?\n\n쥬얼아이스 아이스볼 두 개.\n좋아하는 위스키 한 병.\n그리고 좋아하는 사람.\n\n그것으로 충분합니다.\n\n밖에 나가지 않아도, 이 잔 하나가 오늘 밤을 특별하게 만듭니다.\n\n#쥬얼아이스 #홈바데이트 #위스키감성',
+   tags:['#쥬얼아이스','#jewelice','#홈바데이트','#홈바감성','#위스키감성','#커플홈바','#오늘밤한잔','#위스키한잔','#아이스볼','#홈바','#홈바셋팅','#홈바인테리어','#위스키라이프','#바분위기','#집에서바','#홈바있는삶','#craftice','#clearice','#homebardate','#whiskycouple','#homebarstagram','#iceball','#whiskynight','#homebarevibes','#luxuryathome','#datenight','#프리미엄라이프','#홈바스타그램','#위스키스타그램','#위스키애호가']},
+
+  {type:'C',acc:'pur',title:'녹는 속도 비교 실험',time:'목요일 오후 12:00 PM',
+   sd:'Time-lapse style comparison showing two glasses side by side at 0 minutes, 15 minutes, 30 minutes, left glass has regular cloudy ice that is mostly melted at 30min, right glass has Jewel Ice that is largely intact at 30min, dramatic visual difference showing whisky dilution on left vs unchanged on right, scientific experiment aesthetic, 9:16 vertical',
+   mj:'Split screen time comparison two whiskey glasses, left: cloudy ice melted at 30min, right: clear Jewel Ice still intact, before and after comparison, scientific product photography --ar 4:5 --v 6',
+   cap:'0분 vs 30분 후, 직접 비교해봤습니다.\n\n왼쪽 (일반 얼음):\n15분 → 희석 시작\n30분 → 얼음 거의 없음, 위스키 색 옅어짐\n\n오른쪽 (쥬얼아이스 큐브):\n15분 → 형태 유지\n30분 → 여전히 대부분 유지, 위스키 색 진함\n\n이 차이가 당신의 온더록 경험 전체를 바꿉니다.\n\n#쥬얼아이스 #얼음비교 #녹는속도',
+   tags:['#쥬얼아이스','#jewelice','#얼음비교','#녹는속도','#투명얼음차이','#수제얼음비교','#위스키실험','#얼음실험','#투명얼음','#크리스탈아이스','#수제얼음','#홈바정보','#위스키정보','#온더록팁','#위스키팁','#음료과학','#얼음과학','#craftice','#clearice','#icemelttest','#whiskyexperiment','#premiumice','#clearicetest','#homebarscience','#whiskylovers','#icescience','#홈바팁','#위스키애호가','#얼음정보','#음료정보']},
+];
+
+var REELS = [
+  {title:'일반 얼음 vs 쥬얼아이스 — 3초 만에 차이',product:'막대얼음 35×120mm',
+   hook:'"이게 같은 하이볼이라고?" — 두 잔 나란히 즉시 등장',
+   bgm:'저음 베이스 앰비언트 → Scene 3에서 비트 드롭 → 재즈 쿨다운',
+   cta:'쥬얼아이스 — 링크인바이오에서 주문',
+   scenes:[
+     {t:'0.0~2.0s',name:'비교 오프닝',p:'Split frame, left: cloudy irregular ice in highball glass with murky soda, right: three 120mm×35mm crystal-clear ice bars in identical glass with perfectly transparent carbonated drink, hard center dividing line, harsh left lighting vs warm right lighting, 9:16 vertical'},
+     {t:'2.0~5.0s',name:'흐린 얼음 매크로',p:'Extreme slow motion macro of a single cloudy ice cube melting rapidly in a glass, the water turns milky as it dilutes the drink, ugly and unsatisfying visual, cold clinical white lighting, 9:16 vertical'},
+     {t:'5.0~9.0s',name:'쥬얼아이스 버블',p:'Extreme slow motion macro of three 120mm×35mm crystal-clear ice bars in a highball glass, carbonation bubbles rising in perfectly straight parallel vertical lines along each flat face simultaneously, warm amber backlight, ASMR quality visual, 9:16 vertical'},
+     {t:'9.0~13.0s',name:'포어링 슬로우모션',p:'Hand pours premium whisky over the three ice bars, amber liquid cascades down all three bar surfaces in slow motion, the drink looks premium and intentional, cinematic 0.3x speed, warm amber bar lighting, dark slate counter, 9:16 vertical'},
+     {t:'13.0~15.0s',name:'브랜드 클로징',p:'Pull back reveal of the complete highball glass with three Jewel Ice bars, brand logo appears, text overlay 쥬얼아이스, warm intimate home bar setting, crane up shot, cinematic closing frame, 9:16 vertical'}
+   ],
+   script:'0s: "이게 같은 하이볼이라고?"\n2s: "일반 얼음 — 흐릿하고, 빠르게 녹고, 술을 희석시킵니다"\n5s: "쥬얼아이스 막대얼음 — 탄산이 직선으로 올라옵니다"\n9s: "35×120mm, 크리스탈 클리어"\n13s: "얼음도 예술이 될 수 있습니다 — 쥬얼아이스"'},
+
+  {title:'바텐더가 쥬얼아이스를 쓰는 이유',product:'아이스볼 64mm',
+   hook:'"바에서 저 얼음, 집에서도 됩니다" — 전문 바 클로즈업 오프닝',
+   bgm:'재즈 Rhodes 피아노 저음 따뜻하게 → 크레센도 → 부드럽게 마무리',
+   cta:'쥬얼아이스 아이스볼 — 링크인바이오',
+   scenes:[
+     {t:'0.0~2.0s',name:'바텐더 핸즈',p:'Cinematic close-up of expert bartender hands with a watch, picking up a 64mm crystal-clear ice sphere with tongs, the sphere catches bar light brilliantly, professional bar background, slow motion, 9:16 vertical'},
+     {t:'2.0~5.0s',name:'아이스볼 투입',p:'The ice sphere lowered slowly into a crystal lowball glass, it settles with a satisfying weight, amber whisky poured over it immediately, golden liquid swirls around the perfect sphere, ultra slow motion 0.3x, professional bar lighting, cinematic 9:16 vertical'},
+     {t:'5.0~9.0s',name:'글라스 리프트 피크',p:'Glass lifted up against warm bar light, 64mm sphere inside refracts entire bar through it, anamorphic lens flare through the sphere, person eye reflected in sphere surface, peak emotional moment, 0.5x slow motion, 9:16 vertical'},
+     {t:'9.0~12.0s',name:'홈바 전환',p:'Cut to intimate home bar setting, same action — hand places ice sphere into lowball glass, but now at home, warm personal atmosphere, the experience is identical to the professional bar, 9:16 vertical'},
+     {t:'12.0~15.0s',name:'브랜드 메시지',p:'Text reveal 집에서도 바 경험을, pull back from home bar to show full intimate setting, Jewel Ice logo appears, warm closing shot, 9:16 vertical'}
+   ],
+   script:'0s: "바에서 저 얼음, 집에서도 됩니다"\n2s: "바텐더가 아이스볼을 쓰는 이유 — 천천히 녹고, 빛을 머금어서"\n5s: "이 순간을 위해"\n9s: "집에서도 같은 경험이 가능합니다"\n12s: "쥬얼아이스 — 집을 바로 만드는 첫 번째 단계"'},
+
+  {title:'얼음 하나가 위스키 맛을 바꾼다',product:'큐브 75mm',
+   hook:'"같은 위스키인데 왜 맛이 다를까" — 두 잔 나란히 클로즈업',
+   bgm:'앰비언트 미니멀 → 마지막 5초에 재즈 한 마디',
+   cta:'프로필 링크에서 쥬얼아이스 큐브 75mm 보기',
+   scenes:[
+     {t:'0.0~3.0s',name:'두 잔 비교',p:'Two identical whiskey glasses side by side, left has cloudy irregular ice, right has crystal-clear 75mm cube, same whisky poured, comparison lighting, static camera, 9:16 vertical'},
+     {t:'3.0~6.0s',name:'흐린 얼음 희석',p:'Extreme macro of cloudy ice melting in whisky, water turning the amber liquid pale and diluted, time-lapse style, harsh white light, 9:16 vertical'},
+     {t:'6.0~10.0s',name:'큐브 30분 후',p:'Same macro of 75mm crystal cube in identical whisky, cube still geometrically perfect and intact, whisky color unchanged and vibrant amber, warm light, no degradation visible, 9:16 vertical'},
+     {t:'10.0~13.0s',name:'스월링 매크로',p:'Hand swirls the glass with the clear cube, whisky rotates around the cube like an axis, slow motion, cinematic, warm amber bar lighting, 9:16 vertical'},
+     {t:'13.0~15.0s',name:'첫 모금 반응',p:'Person face reflecting genuine quiet satisfaction on first sip, intimate close-up, whisky glass in soft focus foreground, warm home bar background, 9:16 vertical'}
+   ],
+   script:'0s: "같은 위스키인데 왜 맛이 다를까"\n3s: "흐린 얼음 — 5분 만에 희석 시작"\n6s: "쥬얼아이스 큐브 — 30분 후에도 그대로"\n10s: "얼음이 바뀌면, 맛이 바뀝니다"\n13s: "쥬얼아이스 — 얼음도 예술이다"'},
+
+  {title:'홈바 셋팅 30초 완성',product:'전 제품 3종',
+   hook:'"홈바, 이것 하나면 시작됩니다" — 블랙 박스 언박싱 임팩트',
+   bgm:'업비트 재즈 베이스라인 — 경쾌하고 설레는 톤',
+   cta:'홈바 스타터 세트 — 링크인바이오에서 주문',
+   scenes:[
+     {t:'0.0~3.0s',name:'박스 언박싱',p:'Premium matte black box lid opening, crystal-clear ice products revealed inside black velvet, dramatic unboxing reveal, warm spotlight on products, 9:16 vertical'},
+     {t:'3.0~7.0s',name:'제품 배치 몽타주',p:'Hands remove each product and place on dark slate counter one by one in deliberate slow motion: sphere first, then cube, then bars, each placement intentional and satisfying, 9:16 vertical'},
+     {t:'7.0~11.0s',name:'셋업 완성',p:'Crystal whiskey glass placed on counter, single ice bar inserted, whisky bottle appears, pour begins, the home bar assembles in real time, warm amber underlighting, 9:16 vertical'},
+     {t:'11.0~13.0s',name:'홈바 풀 리빌',p:'Pull back from complete home bar setup, glass with ice, bottle, slate counter, warm underlighting, the entire scene assembled and beautiful, cinematic reveal, 9:16 vertical'},
+     {t:'13.0~15.0s',name:'라이프스타일 엔딩',p:'Person silhouette sits with the glass in warm home bar, final lifestyle shot, Jewel Ice logo appears at bottom center, The Final Jewel of Every Drink tagline, 9:16 vertical'}
+   ],
+   script:'0s: "홈바, 이것 하나면 시작됩니다"\n3s: "쥬얼아이스 — 막대얼음, 아이스볼, 큐브"\n7s: "원하는 얼음을 고르고, 잔에 담고, 술을 붓고"\n11s: "오늘 밤, 집이 바가 됩니다"\n13s: "쥬얼아이스 — 얼음도 예술이다"'},
+];
+
+var CTAS = [
+  '"오늘 밤 위스키 한 잔, 얼음부터 바꿔보세요 → [쥬얼아이스 보러가기]"',
+  '"샘플 먼저 받아보고 싶으시면 DM 주세요 — 카페 사장님 환영합니다"',
+  '"지금 주문하면 3일 내 도착 · 첫 구매 할인코드: JEWEL10"',
+  '"홈바 스타터 세트 — 막대얼음 + 아이스볼 묶음 특가 → [확인하기]"',
+  '"프로필 링크에서 주문 가능합니다 🔗"',
+  '"선물하고 싶다면 DM으로 선물 포장 옵션 물어보세요"',
+  '"저장해두고 다음 하이볼 때 떠올려보세요 🧊"',
+  '"댓글에 막대 또는 아이스볼 남기시면 상품 링크 보내드립니다"',
+  '"링크인바이오 → 쥬얼아이스 공식 스토어"',
+  '"이 영상 저장하고 오늘 밤 따라 해보세요 — 진짜 달라집니다"',
+];
+
+// ══════════════════════════════════════════════════════════
+// HELPERS
+// ══════════════════════════════════════════════════════════
+
+function shuffle(arr) {
+  var a = arr.slice();
+  for (var i = a.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+  }
+  return a;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function escAttr(s) {
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+}
+
+function pb(label, text) {
+  return '<div class="pb">'
+    + '<div class="pb-lbl">' + label + '</div>'
+    + '<div class="pb-box" data-t="' + escAttr(text) + '">'
+    + escHtml(text)
+    + '<button class="cp" aria-label="Copy">Copy</button>'
+    + '</div></div>';
+}
+
+function tagsHTML(tags) {
+  var allText = tags.join(' ');
+  var inner = tags.map(function(t, i) {
+    var cls = i < 5 ? 'a' : i < 20 ? '' : 'c';
+    return '<span class="tag ' + cls + '">' + escHtml(t) + '</span>';
+  }).join('');
+  return '<div class="pb">'
+    + '<div class="pb-lbl">해시태그 (30개)</div>'
+    + '<div class="pb-box" data-t="' + escAttr(allText) + '">'
+    + '<div class="tags-wrap">' + inner + '</div>'
+    + '<button class="cp" aria-label="Copy">Copy</button>'
+    + '</div></div>';
+}
+
+// Clipboard copy — falls back to execCommand for non-HTTPS
+function copyText(text, btn) {
+  function ok() {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('ok');
+    setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('ok'); }, 1800);
+  }
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(ok).catch(function() { fallback(text, ok); });
+  } else {
+    fallback(text, ok);
+  }
+}
+
+function fallback(text, cb) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;opacity:0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER FUNCTIONS
+// ══════════════════════════════════════════════════════════
+
+function renderBlog(pool) {
+  var html = '';
+  pool.forEach(function(p) {
+    html += '<div class="card">'
+      + '<div class="card-top"><div class="card-accent ' + p.acc + '"></div>'
+      + '<div class="card-meta"><div class="card-badge">' + p.badge + '</div>'
+      + '<div class="card-title">' + escHtml(p.title) + '</div>'
+      + '<div class="card-sub">' + escHtml(p.sub) + '</div></div></div>'
+      + '<div class="card-body bt">'
+      + pb('SEO 제목', p.seo)
+      + pb('H2/H3 구조', p.h2)
+      + pb('본문 내용 (1,500자+)', p.body)
+      + pb('대표 이미지 프롬프트 (Higgsfield / MidJourney)', p.img)
+      + pb('CTA', p.cta)
+      + '</div></div>';
+  });
+  document.getElementById('blog-out').innerHTML = html;
+}
+
+function renderFeed(pool) {
+  var typeLabel = {A:'A · 제품 클로즈업', B:'B · 라이프스타일', C:'C · 교육/정보'};
+  var html = '';
+  pool.forEach(function(f) {
+    html += '<div class="card">'
+      + '<div class="card-top"><div class="card-accent ' + f.acc + '"></div>'
+      + '<div class="card-meta"><div class="card-badge">' + typeLabel[f.type] + '</div>'
+      + '<div class="card-title">' + escHtml(f.title) + '</div>'
+      + '<div class="card-sub">⏰ ' + f.time + '</div></div></div>'
+      + '<div class="card-body bt">'
+      + pb('Higgsfield Seedance 2.0 영상 프롬프트', f.sd)
+      + pb('미드저니 스틸컷 프롬프트', f.mj)
+      + pb('한국어 캡션 (300자)', f.cap)
+      + tagsHTML(f.tags)
+      + '</div></div>';
+  });
+  document.getElementById('feed-out').innerHTML = html;
+}
+
+function renderReels(pool) {
+  var html = '';
+  pool.forEach(function(r, ri) {
+    var scenesHtml = r.scenes.map(function(s, si) {
+      return '<div class="scene">'
+        + '<div class="scene-hdr">'
+        + '<div class="scene-n">' + (si + 1) + '</div>'
+        + '<div class="scene-title">' + escHtml(s.name) + '</div>'
+        + '<div class="scene-time">' + s.t + '</div>'
+        + '<div class="scene-chev">▼</div>'
+        + '</div>'
+        + '<div class="scene-body">'
+        + pb('Scene ' + (si + 1) + ' Prompt', s.p)
+        + '</div></div>';
+    }).join('');
+
+    html += '<div class="card" style="display:block;margin-bottom:16px">'
+      + '<div class="card-top"><div class="card-accent pnk"></div>'
+      + '<div class="card-meta">'
+      + '<div class="card-badge">REEL-0' + (ri + 1) + ' · ' + escHtml(r.product) + '</div>'
+      + '<div class="card-title">' + escHtml(r.title) + '</div>'
+      + '<div class="card-sub">BGM: ' + escHtml(r.bgm) + '</div>'
+      + '</div></div>'
+      + '<div class="card-body bt">'
+      + pb('훅 (첫 3초 — 스크롤 멈추는 문장)', r.hook)
+      + '<div class="pb"><div class="pb-lbl">장면별 Higgsfield Seedance 2.0 프롬프트</div>'
+      + '<div class="scene-wrap">' + scenesHtml + '</div></div>'
+      + pb('나레이션/자막 스크립트', r.script)
+      + pb('CTA (마지막 3초)', r.cta)
+      + '</div></div>';
+  });
+  document.getElementById('reel-out').innerHTML = html;
+}
+
+function renderCal() {
+  var rows = [
+    {w:'1주차',d:'화',pl:'인스타 피드',type:'A',title:'막대얼음 히어로 샷',time:'19:00'},
+    {w:'1주차',d:'목',pl:'릴스',type:'V',title:'일반얼음 vs 쥬얼아이스 비교',time:'18:00'},
+    {w:'1주차',d:'토',pl:'인스타 피드',type:'B',title:'홈바 나이트 무드',time:'21:00'},
+    {w:'1주차',d:'일',pl:'블로그',type:'BL',title:'위스키 온더록 얼음 과학',time:'10:00'},
+    {w:'2주차',d:'화',pl:'인스타 피드',type:'C',title:'얼음 형태별 페어링 가이드',time:'12:00'},
+    {w:'2주차',d:'목',pl:'릴스',type:'V',title:'바텐더가 쥬얼아이스를 쓰는 이유',time:'18:00'},
+    {w:'2주차',d:'금',pl:'인스타 피드',type:'B',title:'카페 시그니처 음료 무드',time:'09:00'},
+    {w:'2주차',d:'일',pl:'블로그',type:'BL',title:'홈바 셋팅 완벽 가이드',time:'10:00'},
+    {w:'3주차',d:'화',pl:'인스타 피드',type:'A',title:'아이스볼 64mm 굴절 히어로',time:'19:00'},
+    {w:'3주차',d:'목',pl:'릴스',type:'V',title:'얼음 하나가 위스키 맛을 바꾼다',time:'18:00'},
+    {w:'3주차',d:'토',pl:'인스타 피드',type:'B',title:'선물 언박싱 무드',time:'21:00'},
+    {w:'3주차',d:'일',pl:'블로그',type:'BL',title:'카페 음료 퀄리티 비밀',time:'10:00'},
+    {w:'4주차',d:'화',pl:'인스타 피드',type:'C',title:'투명 얼음 원리 인포그래픽',time:'12:00'},
+    {w:'4주차',d:'목',pl:'릴스',type:'V',title:'홈바 셋팅 30초 완성',time:'18:00'},
+    {w:'4주차',d:'금',pl:'인스타 피드',type:'A',title:'3종 비교 플랫레이',time:'19:00'},
+    {w:'4주차',d:'일',pl:'블로그',type:'BL',title:'선물로 주는 얼음',time:'10:00'},
+  ];
+  var tc = {A:'ta',B:'tb',C:'tc',V:'tv',BL:'tbl'};
+  var tl = {A:'A. 제품 클로즈업',B:'B. 라이프스타일',C:'C. 교육/정보',V:'▶ 숏폼 영상',BL:'✏ 블로그'};
+
+  var rowsHtml = rows.map(function(r) {
+    return '<tr>'
+      + '<td style="color:var(--amber2);font-family:monospace;font-size:11px">' + r.w + '</td>'
+      + '<td>' + r.d + '</td>'
+      + '<td>' + r.pl + '</td>'
+      + '<td class="' + tc[r.type] + '">' + tl[r.type] + '</td>'
+      + '<td>' + r.title + '</td>'
+      + '<td style="color:var(--gray);font-family:monospace">' + r.time + '</td>'
+      + '</tr>';
+  }).join('');
+
+  var seasons = [
+    {d:'5월 8일', icon:'🎁', t:'부모님날', desc:'아버지/어머니 선물 스토리 릴스 + 선물 피드 강화'},
+    {d:'6~8월', icon:'🌊', t:'하이볼 시즌', desc:'막대얼음 집중 캠페인 — 탄산 버블 ASMR 영상 시리즈'},
+    {d:'10월 31일', icon:'🎃', t:'할로윈', desc:'칵테일 무드 — 아이스볼 + 으스스한 칵테일 조합'},
+    {d:'12월', icon:'🎄', t:'크리스마스', desc:'선물 세트 집중 홍보 — 전 제품 묶음 패키지'},
+  ];
+
+  var seasonHtml = seasons.map(function(s) {
+    return '<div class="card">'
+      + '<div class="card-top"><div class="card-accent"></div>'
+      + '<div class="card-meta">'
+      + '<div class="card-badge">' + s.d + '</div>'
+      + '<div class="card-title">' + s.icon + ' ' + s.t + '</div>'
+      + '<div class="card-sub">' + s.desc + '</div>'
+      + '</div></div></div>';
+  }).join('');
+
+  document.getElementById('cal-out').innerHTML =
+    '<div class="cal-wrap"><table class="ctable"><thead><tr>'
+    + '<th>주차</th><th>요일</th><th>플랫폼</th><th>유형</th><th>주제/제목</th><th>시간</th>'
+    + '</tr></thead><tbody>' + rowsHtml + '</tbody></table></div>'
+    + '<div class="div"></div>'
+    + '<div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:12px;letter-spacing:1px">시즌 이벤트 연계</div>'
+    + '<div class="cards">' + seasonHtml + '</div>';
+}
+
+function renderConv() {
+  var ctaText = shuffle(CTAS).join('\n\n');
+  var stagesData = [
+    {s:'STAGE 1 — 인지', b:'콘텐츠: C타입 교육/정보 + REEL-01 비교 영상\n목표: 쥬얼아이스가 뭔지 알게 한다\n지표: 노출수, 저장율, 팔로워 증가'},
+    {s:'STAGE 2 — 관심', b:'콘텐츠: B타입 라이프스타일 + REEL-02 바텐더 스토리\n목표: 저 경험 나도 하고 싶다는 욕구 자극\n지표: 프로필 방문율, 링크인바이오 클릭'},
+    {s:'STAGE 3 — 고려', b:'콘텐츠: REEL-04 홈바 셋팅 + 블로그 가이드\n목표: 어떤 제품을 살지 결정하게 돕는다\n지표: 상품 페이지 체류시간, 장바구니 추가'},
+    {s:'STAGE 4 — 구매', b:'콘텐츠: A타입 제품 클로즈업 + CTA 강화 피드\n목표: 지금 사야 하는 이유 제공\n지표: 전환율, 주문 완료'},
+    {s:'STAGE 5 — 재구매 & 공유', b:'콘텐츠: UGC 리그램 + 선물 시즌 콘텐츠\n목표: 다시 사고, 주변에 소개한다\n지표: 재구매율, UGC 생성량, 추천 주문'},
+  ];
+
+  var flowHtml = stagesData.map(function(f, i) {
+    return '<div class="f-item">'
+      + '<div class="f-dot">' + (i + 1) + '</div>'
+      + '<div class="f-con">'
+      + '<div class="f-stage">' + f.s + '</div>'
+      + '<div class="f-body">' + f.b + '</div>'
+      + '</div></div>'
+      + (i < stagesData.length - 1 ? '<div class="f-line"></div>' : '');
+  }).join('');
+
+  document.getElementById('conv-out').innerHTML =
+    '<div class="cards">'
+    + '<div class="card"><div class="card-top"><div class="card-accent grn"></div>'
+    + '<div class="card-meta"><div class="card-badge">CTA · 블로그/피드/릴스</div>'
+    + '<div class="card-title">전환 문구 10개</div></div></div>'
+    + '<div class="card-body bt">' + pb('CTA 라이브러리 (즉시 복붙)', ctaText) + '</div></div>'
+
+    + '<div class="card"><div class="card-top"><div class="card-accent cry"></div>'
+    + '<div class="card-meta"><div class="card-badge">링크인바이오 구성</div>'
+    + '<div class="card-title">7구성 추천</div></div></div>'
+    + '<div class="card-body bt">'
+    + pb('링크인바이오 구성',
+        '[쥬얼아이스 공식 스토어]        ← 메인 구매 링크\n'
+      + '[막대얼음 35×120mm →]          ← 가장 인기 제품 직링크\n'
+      + '[아이스볼 64mm →]               ← 선물용 추천 직링크\n'
+      + '[큐브 75mm →]                   ← 위스키 애호가용 직링크\n'
+      + '[카페 B2B 납품 문의 →]          ← B2B 리드 페이지\n'
+      + '[홈바 가이드 블로그 →]          ← 정보 콘텐츠 신뢰 구축\n'
+      + '[선물 세트 구성하기 →]          ← 시즌 이벤트 연계')
+    + '</div></div></div>'
+
+    + '<div class="div"></div>'
+    + '<div style="font-size:12px;font-weight:700;color:var(--amber);margin-bottom:16px;letter-spacing:1px">리타겟팅 플로우 — 인지 → 구매</div>'
+    + '<div class="flow">' + flowHtml + '</div>';
+}
+
+// ══════════════════════════════════════════════════════════
+// GENERATE / RESET / PROGRESS
+// ══════════════════════════════════════════════════════════
+
+var genCount = 0;
+
+function renderAll(blogs, feeds, reels) {
+  renderBlog(blogs);
+  renderFeed(feeds);
+  renderReels(reels);
+  renderCal();
+  renderConv();
+}
+
+function doGenerate() {
+  var btn = document.getElementById('genBtn');
+  var status = document.getElementById('genStatus');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spin">⟳</span> 생성 중...';
+  status.textContent = '새로운 조합을 생성하고 있습니다...';
+
+  setTimeout(function() {
+    var blogs = shuffle(BLOGS);
+    var feeds = shuffle(FEEDS).slice(0, 6);
+    var reels = shuffle(REELS).slice(0, 4);
+    renderAll(blogs, feeds, reels);
+    genCount++;
+    updateProg();
+    btn.disabled = false;
+    btn.innerHTML = '✦ 새롭게 만들기';
+    status.textContent = '✓ ' + genCount + '번째 생성 완료 — 블로그 ' + blogs.length + '편 · 피드 ' + feeds.length + '개 · 릴스 ' + reels.length + '개';
+    setTimeout(function() { status.textContent = ''; }, 4000);
+  }, 700);
+}
+
+function doReset() {
+  genCount = 0;
+  renderAll(BLOGS, FEEDS.slice(0, 6), REELS);
+  updateProg();
+  var s = document.getElementById('genStatus');
+  s.textContent = '초기화 완료';
+  setTimeout(function() { s.textContent = ''; }, 2000);
+}
+
+function updateProg() {
+  document.getElementById('pFill').style.width = Math.min(100, genCount * 20) + '%';
+  document.getElementById('pCt').textContent = genCount + '회 생성';
+}
+
+// ══════════════════════════════════════════════════════════
+// EVENT DELEGATION — tabs, copy buttons, scene accordion
+// ══════════════════════════════════════════════════════════
+
+document.addEventListener('click', function(e) {
+  // Copy button
+  var cp = e.target.closest('.cp');
+  if (cp) {
+    var box = cp.closest('.pb-box');
+    if (box) copyText(box.getAttribute('data-t'), cp);
+    return;
+  }
+  // Scene accordion toggle
+  var hdr = e.target.closest('.scene-hdr');
+  if (hdr) {
+    hdr.closest('.scene').classList.toggle('open');
+    return;
+  }
+  // Tab switching
+  var tab = e.target.closest('.tab');
+  if (tab) {
+    var idx = parseInt(tab.getAttribute('data-tab'), 10);
+    document.querySelectorAll('.tab').forEach(function(t) { t.classList.toggle('on', t === tab); });
+    document.querySelectorAll('.panel').forEach(function(p, j) { p.classList.toggle('on', j === idx); });
+  }
+});
+
+document.getElementById('genBtn').addEventListener('click', doGenerate);
+document.getElementById('resetBtn').addEventListener('click', doReset);
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', function() {
+  renderAll(BLOGS, FEEDS.slice(0, 6), REELS);
+  updateProg();
+});
+</script>
+</body>
+</html>
