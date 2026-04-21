@@ -50,6 +50,51 @@
   .s5 .sec-header { background: #8e44ad; color: white; }
   .s6 .sec-header { background: #2d3436; color: white; }
   .s0 .sec-header { background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white; }
+  .sW .sec-header { background: linear-gradient(135deg, #d97706, #fbbf24); color: white; }
+
+  /* 와디즈 대시보드 링크 */
+  .wadiz-links {
+    padding: 14px 18px; background: #fff9e6; display: flex; gap: 12px; flex-wrap: wrap;
+    border-bottom: 1px solid #fbe1b7;
+  }
+  .wadiz-link {
+    flex: 1; min-width: 240px;
+    padding: 12px 16px; border-radius: 8px; text-decoration: none;
+    display: flex; flex-direction: column; gap: 4px;
+    transition: transform 0.15s;
+  }
+  .wadiz-link:hover { transform: translateY(-2px); box-shadow: 0 3px 10px rgba(0,0,0,0.12); }
+  .wadiz-link.internal { background: #4a1d8c; color: white; }
+  .wadiz-link.external { background: #27ae60; color: white; }
+  .wadiz-link .wl-title { font-size: 13px; font-weight: 700; }
+  .wadiz-link .wl-url { font-size: 10.5px; opacity: 0.85; word-break: break-all; }
+
+  /* KPI 카드 (와디즈 요약) */
+  .kpi-grid-4 {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    padding: 14px 18px; background: #fafafa;
+  }
+  @media (max-width: 900px) { .kpi-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-mini {
+    background: white; padding: 12px; border-radius: 8px;
+    border-left: 3px solid #d97706; text-align: left;
+  }
+  .kpi-mini .kl { font-size: 10.5px; color: #888; font-weight: 600; margin-bottom: 4px; }
+  .kpi-mini .kv { font-size: 16px; font-weight: 800; color: #d97706; }
+  .kpi-mini .ks { font-size: 10.5px; color: #aaa; margin-top: 2px; }
+
+  /* 이벤트 카드 (간단) */
+  .event-mini-grid { padding: 12px 18px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 900px) { .event-mini-grid { grid-template-columns: 1fr; } }
+  .event-mini {
+    padding: 10px 12px; border-radius: 8px; background: #fff9e6;
+    border-left: 3px solid #ffd600; font-size: 11.5px;
+  }
+  .event-mini h4 { font-size: 12px; color: #d97706; margin-bottom: 4px; }
+  .event-mini.b { background:#e8f4fd; border-left-color:#2980b9; }
+  .event-mini.b h4 { color:#2980b9; }
+  .event-mini.g { background:#e8f8f0; border-left-color:#27ae60; }
+  .event-mini.g h4 { color:#27ae60; }
   .s3 .sec-header { background: #2980b9; color: white; }
 
   /* 와디즈 KPI 카드 */
@@ -187,6 +232,140 @@
 <div class="edit-badge" id="editBadge">✏️ 편집 중 — 셀 클릭 후 바로 입력</div>
 
 <div class="container">
+
+<!-- ===== W. 와디즈 운영 현황 요약 (NEW) ===== -->
+<div class="section sW">
+  <div class="sec-header">🟡 W. 와디즈 운영 현황 요약 <span class="badge">#336790 · 4/23(목) 14:00 오픈</span></div>
+
+  <!-- 대시보드 링크 -->
+  <div class="wadiz-links">
+    <a class="wadiz-link internal" href="https://charlesmaster911.github.io/jewelice-playbook/jihyun-wadiz.html" target="_blank">
+      <div class="wl-title">🔒 와디즈 내부용 대시보드 (상세 원가/ROI)</div>
+      <div class="wl-url">charlesmaster911.github.io/jewelice-playbook/jihyun-wadiz.html</div>
+    </a>
+    <a class="wadiz-link external" href="https://charlesmaster911.github.io/jewelice-playbook/jihyun-wadiz-external.html" target="_blank">
+      <div class="wl-title">🌐 와디즈 외부용 (PD 김중수 프로 공유용)</div>
+      <div class="wl-url">charlesmaster911.github.io/jewelice-playbook/jihyun-wadiz-external.html</div>
+    </a>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid-4">
+    <div class="kpi-mini"><div class="kl">🎯 목표 매출</div><div class="kv">50,000,000원</div><div class="ks">평균 객단가 65K × 770건</div></div>
+    <div class="kpi-mini"><div class="kl">👥 팔로워</div><div class="kv">2,000명</div><div class="ks">전환율 38.5% 시 목표 달성</div></div>
+    <div class="kpi-mini"><div class="kl">💸 광고 실집행</div><div class="kv">5,500,000원</div><div class="ks">원가 8.9M - 할인 3.4M (VAT별도)</div></div>
+    <div class="kpi-mini"><div class="kl">🎁 이벤트 추가비</div><div class="kv">3,907,000원</div><div class="ks">매출 대비 7.81%</div></div>
+  </div>
+
+  <!-- 1차 가용재고 요약 -->
+  <div style="padding:10px 18px 4px;font-size:12px;font-weight:700;color:#d97706;">📦 와디즈 1차 가용재고 (내부용 기준 · 보수적 할당)</div>
+  <table style="margin:4px 18px 12px;width:calc(100% - 36px);font-size:11.5px;">
+    <thead>
+      <tr>
+        <th>제품군</th>
+        <th>화이트/아이보리</th><th>블랙</th><th>블루</th><th>실버</th>
+        <th>합계</th><th>생산후 전체</th><th>할당률</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>아블러</strong> (완제품)</td>
+        <td class="num">200</td><td class="num">250</td><td class="num">250</td><td class="num">200</td>
+        <td class="num num-bold">900</td>
+        <td class="num">2,370</td>
+        <td class="num">38%</td>
+      </tr>
+      <tr>
+        <td><strong>듀오메이커</strong> (완제품)</td>
+        <td class="num">250</td><td class="num">200</td><td class="num">200</td><td class="num">—</td>
+        <td class="num num-bold">650</td>
+        <td class="num">1,804</td>
+        <td class="num">36%</td>
+      </tr>
+      <tr>
+        <td><strong>아블러 몰드</strong> (큐브/볼/스피어)</td>
+        <td colspan="4" class="note" style="text-align:center;">큐브 500 · 볼 700 · 스피어 600</td>
+        <td class="num num-bold">1,800</td>
+        <td class="num">7,827</td>
+        <td class="num">23%</td>
+      </tr>
+      <tr>
+        <td><strong>듀오 몰드</strong> (스틱/볼)</td>
+        <td colspan="4" class="note" style="text-align:center;">스틱 30 · 볼 40 (재고 한정 ⚠️)</td>
+        <td class="num num-bold num-orange">70</td>
+        <td class="num num-orange">182</td>
+        <td class="num">38%</td>
+      </tr>
+      <tr>
+        <td><strong>증정품</strong> (보관통/집게)</td>
+        <td colspan="4" class="note" style="text-align:center;">보관통 400 · 집게 500</td>
+        <td class="num num-bold">900</td>
+        <td class="num">4,721</td>
+        <td class="num">19%</td>
+      </tr>
+      <tr style="background:#fff9e6;font-weight:800;">
+        <td style="text-align:right;">와디즈 1차 총 할당</td>
+        <td colspan="4" class="note" style="text-align:center;">타 용도 예비(스토어·공구·안전재고) 60%↑ 확보</td>
+        <td class="num num-big" style="color:#d97706;">4,320</td>
+        <td class="num">16,904</td>
+        <td class="num num-bold" style="color:#d97706;">26%</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 이벤트 3종 -->
+  <div style="padding:4px 18px 4px;font-size:12px;font-weight:700;color:#d97706;">🎁 이벤트 3종</div>
+  <div class="event-mini-grid">
+    <div class="event-mini">
+      <h4>🎟️ EVENT 1. 할인 쿠폰</h4>
+      <div>• 59K+ 구매 시 <strong>4,000원</strong> 할인</div>
+      <div>• 95K+ 구매 시 <strong>10,000원</strong> 할인</div>
+      <div style="color:#888;margin-top:4px;">예상 추가비 2,940,000원</div>
+    </div>
+    <div class="event-mini b">
+      <h4>🎁 EVENT 2. 보관통+집게 증정</h4>
+      <div>• 조합(85K) ✅</div>
+      <div>• 아블러 더블(74K)</div>
+      <div>• 듀오 더블(88K)</div>
+      <div style="color:#888;margin-top:4px;">증정원가 3,200원 × 290건 = 928K</div>
+    </div>
+    <div class="event-mini g">
+      <h4>⏰ EVENT 3. 72시간 이벤트</h4>
+      <div>• 4/23 14:00 ~ 4/26 14:00</div>
+      <div>• 30명 추첨 집게 증정</div>
+      <div>• 커뮤니티 응원글 + 펀딩번호</div>
+      <div style="color:#888;margin-top:4px;">1,300원 × 30 = 39K</div>
+    </div>
+  </div>
+
+  <!-- 광고 요약 -->
+  <div style="padding:4px 18px 4px;font-size:12px;font-weight:700;color:#d97706;">📣 미디어믹스 광고 (9건 · 실집행 5.5M)</div>
+  <table style="margin:4px 18px 12px;width:calc(100% - 36px);font-size:11.5px;">
+    <thead>
+      <tr><th>일정</th><th>광고상품</th><th>상태</th><th>원가</th><th>할인</th><th>최종</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>4/8(수)</td><td style="text-align:left;">타겟광고</td><td><span class="tag tag-blue">오픈예정</span></td><td class="num">3,000,000</td><td class="num">—</td><td class="num num-red num-bold">3,000,000</td></tr>
+      <tr><td>4/23(목)</td><td style="text-align:left;">앱푸시 + 메인리스트 + 팝업 (3건)</td><td><span class="tag tag-orange">오픈일</span></td><td class="num">1,500,000</td><td class="num" style="color:#27ae60;">-800,000</td><td class="num num-red num-bold">700,000</td></tr>
+      <tr><td>4/24(금)</td><td style="text-align:left;">앱푸시 + 메인리스트 + 단독 1만 (3건)</td><td><span class="tag tag-green">본펀딩</span></td><td class="num">1,400,000</td><td class="num" style="color:#27ae60;">-900,000</td><td class="num num-red num-bold">500,000</td></tr>
+      <tr><td>4/26(일)</td><td style="text-align:left;">LMS 이벤트 알림 (주말 고관여 2만)</td><td><span class="tag tag-green">본펀딩</span></td><td class="num">2,000,000</td><td class="num" style="color:#27ae60;">-1,000,000</td><td class="num num-red num-bold">1,000,000</td></tr>
+      <tr><td>4/27(월)</td><td style="text-align:left;">멀티 디스플레이</td><td><span class="tag tag-green">본펀딩</span></td><td class="num">400,000</td><td class="num" style="color:#27ae60;">-100,000</td><td class="num num-red num-bold">300,000</td></tr>
+      <tr style="background:#fff9e6;font-weight:800;border-top:2px solid #d97706;">
+        <td colspan="3" style="text-align:right;">💰 TOTAL (VAT별도)</td>
+        <td class="num">8,900,000</td>
+        <td class="num" style="color:#27ae60;">-3,400,000</td>
+        <td class="num num-big" style="color:#d97706;">5,500,000</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="padding:10px 18px;font-size:11.5px;color:#d97706;background:#fff9e6;border-top:1px solid #fbe1b7;line-height:1.7;">
+    📊 <strong>와디즈 총 운영비 합계:</strong> 광고 5.5M + 이벤트 3.9M = <strong>9.4M (매출 대비 18.8%)</strong><br>
+    🎯 <strong>ROI 손익분기:</strong> 9.4M ÷ 66.9%(평균마진) ≈ <strong>1,405만원 매출</strong> 시 회수<br>
+    ⚠️ <strong>재고 한정 주의:</strong> 듀오메이커 몰드 스틱 73개 / 볼 109개 뿐 → 조합·더블 세트 수요 집중 시 부족 우려<br>
+    🔗 <strong>실시간 편집:</strong> 위 내부용·외부용 대시보드 링크 클릭 → 판매 시작 후 수치 업데이트
+  </div>
+</div>
 
 <!-- ===== 0. 전체 재고 현황 ===== -->
 <div class="section s0">
