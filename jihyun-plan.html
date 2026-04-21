@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쥬얼아이스 2026 마스터플랜 · 박지현 팀장 · 화경</title>
+<style>
+  :root {
+    --purple: #6B46C1;
+    --purple-dark: #553C9A;
+    --purple-light: #EDE9FE;
+    --yellow: #FBBF24;
+    --yellow-dark: #F59E0B;
+    --yellow-light: #FEF3C7;
+    --green: #10B981;
+    --red: #EF4444;
+    --gray-900: #1F2937;
+    --gray-700: #374151;
+    --gray-500: #6B7280;
+    --gray-400: #9CA3AF;
+    --gray-200: #E5E7EB;
+    --gray-100: #F3F4F6;
+    --bg: #F9FAFB;
+    --white: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+    background: var(--bg); color: var(--gray-900);
+    line-height: 1.6; padding: 20px; font-size: 14px;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+    color: white; padding: 48px 40px; border-radius: 16px;
+    margin-bottom: 24px; position: relative; overflow: hidden;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: -50px; right: -50px;
+    width: 220px; height: 220px; background: var(--yellow);
+    border-radius: 50%; opacity: 0.25;
+  }
+  .hero-badge {
+    display: inline-block; background: var(--yellow); color: var(--gray-900);
+    padding: 6px 14px; border-radius: 999px;
+    font-size: 12px; font-weight: 800; margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 34px; font-weight: 800; margin-bottom: 10px; letter-spacing: -1px; }
+  .hero p { font-size: 16px; opacity: 0.95; max-width: 820px; }
+  .hero-meta { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; font-size: 13px; }
+  .hero-meta span { opacity: 0.9; }
+  .hero-meta strong { color: var(--yellow); margin-left: 4px; }
+
+  .nav {
+    display: flex; gap: 6px; background: white; padding: 8px;
+    border-radius: 12px; margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    overflow-x: auto; flex-wrap: wrap;
+    position: sticky; top: 10px; z-index: 100;
+  }
+  .nav a {
+    padding: 8px 14px; text-decoration: none;
+    color: var(--gray-700); font-weight: 700; font-size: 12px;
+    border-radius: 8px; transition: all 0.15s; white-space: nowrap;
+  }
+  .nav a:hover { background: var(--purple-light); color: var(--purple); }
+
+  section { margin-bottom: 44px; scroll-margin-top: 80px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px; border-left: 6px solid var(--yellow);
+    padding-left: 14px;
+  }
+  .section-header h2 { font-size: 22px; font-weight: 800; color: var(--gray-900); }
+  .section-header .tag {
+    background: var(--purple); color: white;
+    padding: 3px 9px; border-radius: 6px; font-size: 11px; font-weight: 800;
+  }
+  .section-desc { color: var(--gray-500); margin-bottom: 16px; font-size: 14px; }
+
+  .table-wrap {
+    background: white; border-radius: 10px; overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); overflow-x: auto;
+    margin-bottom: 12px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 640px; }
+  th {
+    background: var(--purple); color: white;
+    padding: 10px 12px; text-align: left; font-weight: 800; font-size: 12px;
+    position: sticky; top: 0;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--purple-light); }
+  td.center { text-align: center; }
+  td.right { text-align: right; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 5px;
+    font-size: 11px; font-weight: 800; white-space: nowrap;
+  }
+  .badge-y { background: var(--yellow); color: var(--gray-900); }
+  .badge-p { background: var(--purple); color: white; }
+  .badge-g { background: var(--green); color: white; }
+  .badge-r { background: var(--red); color: white; }
+  .badge-light { background: var(--purple-light); color: var(--purple); }
+  .badge-ai { background: linear-gradient(90deg, var(--purple), var(--yellow-dark)); color: white; }
+  .badge-run { background: #D1FAE5; color: #065F46; }
+  .badge-wait { background: #FEF3C7; color: #92400E; }
+  .badge-review { background: #DBEAFE; color: #1E40AF; }
+  .badge-stop { background: #FEE2E2; color: #991B1B; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .card {
+    background: white; border-radius: 10px; padding: 18px;
+    border-top: 4px solid var(--yellow);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .card.purple { border-top-color: var(--purple); }
+  .card h3 { font-size: 15px; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .card h3 .dot { width: 8px; height: 8px; background: var(--yellow); border-radius: 50%; }
+  .card.purple h3 .dot { background: var(--purple); }
+  .card p { font-size: 13px; color: var(--gray-700); margin-bottom: 10px; }
+  .card ul { list-style: none; padding-left: 0; }
+  .card ul li {
+    font-size: 12px; color: var(--gray-700); padding: 5px 0;
+    padding-left: 16px; position: relative;
+    border-bottom: 1px dashed var(--gray-200);
+  }
+  .card ul li:last-child { border-bottom: none; }
+  .card ul li::before { content: '◆'; position: absolute; left: 0; color: var(--yellow-dark); font-size: 9px; top: 8px; }
+
+  .ai-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+  .ai-card {
+    background: linear-gradient(135deg, white 0%, var(--purple-light) 100%);
+    border-radius: 12px; padding: 20px;
+    border: 2px solid var(--purple); position: relative;
+  }
+  .ai-card .num {
+    position: absolute; top: -14px; left: 18px;
+    background: var(--yellow); color: var(--gray-900);
+    width: 34px; height: 34px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 15px; border: 3px solid white;
+  }
+  .ai-card h3 { font-size: 15px; font-weight: 800; margin: 8px 0 10px; color: var(--purple-dark); }
+  .ai-card .trend { font-size: 12px; color: var(--gray-700); margin-bottom: 10px; padding: 10px; background: white; border-radius: 8px; }
+  .ai-card .trend strong { color: var(--purple); }
+  .ai-card .apply { font-size: 12px; color: var(--gray-900); padding: 10px; background: var(--yellow-light); border-radius: 8px; border-left: 3px solid var(--yellow-dark); line-height: 1.6; }
+  .ai-card .apply strong { display: block; margin-bottom: 4px; color: var(--yellow-dark); font-size: 11px; text-transform: uppercase; }
+
+  .timeline {
+    background: white; border-radius: 10px; padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .timeline-row {
+    display: grid; grid-template-columns: 70px 1fr; gap: 16px;
+    padding: 12px 0; border-bottom: 1px dashed var(--gray-200);
+  }
+  .timeline-row:last-child { border-bottom: none; }
+  .timeline-date {
+    background: var(--purple); color: white;
+    padding: 6px; border-radius: 7px;
+    text-align: center; font-weight: 700; font-size: 12px;
+    align-self: start;
+  }
+  .timeline-date.today { background: var(--yellow); color: var(--gray-900); }
+  .timeline-date .day { font-size: 18px; display: block; margin-top: 2px; font-weight: 800; }
+  .timeline-content h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+  .timeline-content p { font-size: 12px; color: var(--gray-500); }
+  .timeline-tags { margin-top: 6px; display: flex; gap: 5px; flex-wrap: wrap; }
+
+  .log-item {
+    background: white; border-radius: 10px; padding: 14px 18px;
+    margin-bottom: 8px; display: flex; gap: 14px; align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-left: 4px solid var(--yellow);
+  }
+  .log-date { font-size: 11px; color: var(--gray-500); font-weight: 700; min-width: 85px; }
+  .log-content { flex: 1; font-size: 13px; }
+  .log-content strong { color: var(--purple); }
+
+  .footer {
+    text-align: center; padding: 28px 20px;
+    color: var(--gray-500); font-size: 12px;
+    border-top: 2px solid var(--purple-light); margin-top: 28px;
+  }
+  .footer strong { color: var(--purple); }
+
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .kpi {
+    background: white; padding: 16px; border-radius: 10px;
+    text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    border-top: 3px solid var(--yellow);
+  }
+  .kpi.purple { border-top-color: var(--purple); }
+  .kpi .label { font-size: 11px; color: var(--gray-500); font-weight: 700; }
+  .kpi .value { font-size: 22px; font-weight: 800; color: var(--purple); margin: 6px 0 3px; }
+  .kpi .sub { font-size: 11px; color: var(--gray-500); }
+
+  .progress { background: var(--gray-200); border-radius: 99px; height: 8px; overflow: hidden; margin-top: 6px; }
+  .progress-bar { background: linear-gradient(90deg, var(--purple), var(--yellow)); height: 100%; transition: width 0.3s; }
+
+  .sub-header { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 10px; }
+  .sub-header h3 { font-size: 16px; font-weight: 800; color: var(--purple-dark); }
+  .sub-header .count { font-size: 12px; color: var(--gray-500); font-weight: 700; }
+
+  .alert {
+    background: var(--yellow-light); border-left: 4px solid var(--yellow-dark);
+    padding: 12px 16px; border-radius: 8px; font-size: 13px; margin: 12px 0;
+  }
+  .alert strong { color: var(--yellow-dark); }
+
+  details { background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  details summary { cursor: pointer; font-weight: 700; font-size: 14px; color: var(--purple-dark); }
+  details[open] summary { margin-bottom: 10px; }
+
+  @media print { body { background: white; padding: 0; } .nav, .edit-toolbar { display: none; } section { page-break-inside: avoid; } }
+
+  /* 편집모드 */
+  .edit-toolbar {
+    position: fixed; top: 16px; right: 16px; z-index: 1000;
+    background: white; padding: 8px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; gap: 6px;
+    border: 2px solid var(--purple);
+  }
+  .edit-toolbar button {
+    padding: 8px 14px; border: none; border-radius: 8px;
+    font-weight: 800; font-size: 12px; cursor: pointer;
+    transition: all 0.15s; font-family: inherit;
+  }
+  .btn-edit { background: var(--yellow); color: var(--gray-900); }
+  .btn-edit:hover { background: var(--yellow-dark); color: white; }
+  .btn-save { background: var(--purple); color: white; }
+  .btn-save:hover { background: var(--purple-dark); }
+  .btn-download { background: var(--green); color: white; }
+  .btn-download:hover { background: #059669; }
+  .btn-reset { background: var(--gray-200); color: var(--gray-700); }
+  .btn-reset:hover { background: var(--red); color: white; }
+
+  body.edit-mode { padding-top: 60px; }
+  body.edit-mode .edit-toolbar { border-color: var(--yellow-dark); background: var(--yellow-light); }
+  body.edit-mode [contenteditable="true"] {
+    outline: 1px dashed var(--gray-400); border-radius: 3px;
+    transition: all 0.15s;
+  }
+  body.edit-mode [contenteditable="true"]:hover {
+    outline: 2px dashed var(--purple); background: var(--yellow-light);
+  }
+  body.edit-mode [contenteditable="true"]:focus {
+    outline: 2px solid var(--purple); background: white;
+    box-shadow: 0 0 0 3px var(--purple-light);
+  }
+  .edit-status {
+    display: none; position: fixed; bottom: 20px; right: 20px;
+    background: var(--green); color: white; padding: 10px 18px;
+    border-radius: 8px; font-weight: 700; font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000;
+  }
+  .edit-status.show { display: block; animation: fadein 0.3s; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="edit-toolbar">
+  <button class="btn-edit" onclick="toggleEdit()">✏️ 편집모드</button>
+  <button class="btn-save" onclick="saveLocal()">💾 저장</button>
+  <button class="btn-download" onclick="downloadHTML()">⬇️ 다운로드</button>
+  <button class="btn-reset" onclick="resetPlan()">🔄 원본</button>
+</div>
+<div class="edit-status" id="editStatus">저장됨</div>
+
+<div class="container">
+
+  <div class="hero">
+    <span class="hero-badge">HWAGYEONG · 화경 × 박지현 팀장</span>
+    <h1>쥬얼아이스 2026 마스터플랜 v2.0</h1>
+    <p>박지현 팀장 3개월 실행계획(03.03 기준) + 사방넷 21개 제품 세팅 현황 + 32개 채널 운영지도 + MIF 기후테크 사업 + AI 트렌드 접목 통합 플랜. 매일 업데이트.</p>
+    <div class="hero-meta">
+      <span>작성 <strong>2026-04-21</strong></span>
+      <span>적용 <strong>2026.04~12</strong></span>
+      <span>버전 <strong>v2.0 (디테일 풀장착)</strong></span>
+      <span>운영목표 <strong>30억 (연간)</strong></span>
+      <span>업데이트 <strong>매일 화경 자동반영</strong></span>
+    </div>
+  </div>
+
+  <div class="nav">
+    <a href="#kpi">KPI</a>
+    <a href="#annual">연간</a>
+    <a href="#half">반기</a>
+    <a href="#quarter">분기</a>
+    <a href="#monthly">월간</a>
+    <a href="#weekly">이번주</a>
+    <a href="#daily">일일루틴</a>
+    <a href="#sabangnet">사방넷</a>
+    <a href="#channel">채널32</a>
+    <a href="#product">제품</a>
+    <a href="#influencer">인플</a>
+    <a href="#b2b">B2B</a>
+    <a href="#mif">MIF사업</a>
+    <a href="#ai">AI접목</a>
+    <a href="#risk">리스크</a>
+    <a href="#log">업데이트</a>
+  </div>
+
+  <!-- KPI -->
+  <section id="kpi">
+    <div class="section-header"><h2>① 2026 핵심지표 (North Star)</h2><span class="tag">KPI</span></div>
+    <p class="section-desc">모든 플랜은 이 숫자에 귀속. 월별 매출 비중 = 1월1% · 2월3% · 3월5% · 4월6% · 5월8% · 6월19% · 7월10% · 8월10% · 9월13% · 10월11% · 11월14% · 12월22%.</p>
+    <div class="kpi-grid">
+      <div class="kpi purple"><div class="label">연간 목표매출</div><div class="value">30억</div><div class="sub">온라인 기준</div></div>
+      <div class="kpi"><div class="label">하반기 비중</div><div class="value">70%</div><div class="sub">7~12월 집중</div></div>
+      <div class="kpi purple"><div class="label">광고 ROAS</div><div class="value">3.0+</div><div class="sub">퍼포먼스 최소선</div></div>
+      <div class="kpi"><div class="label">인플루언서 ER</div><div class="value">3%+</div><div class="sub">팔로워 아닌 참여율</div></div>
+      <div class="kpi purple"><div class="label">B2B 월 발주</div><div class="value">10 듀오+</div><div class="sub">프리미엄 업장</div></div>
+      <div class="kpi"><div class="label">사방넷 연동</div><div class="value">21/21</div><div class="sub">제품 세팅 완료</div></div>
+      <div class="kpi purple"><div class="label">운영 채널</div><div class="value">18개</div><div class="sub">32개 중 O</div></div>
+      <div class="kpi"><div class="label">AI 자동화율</div><div class="value">50%</div><div class="sub">기획·디자인·영상</div></div>
+    </div>
+  </section>
+
+  <!-- ANNUAL -->
+  <section id="annual">
+    <div class="section-header"><h2>② 2026 연간 전략 (계절·이벤트 기반)</h2><span class="tag">YEAR</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th width="60">월</th><th width="110">시즌</th><th width="140">주요 이벤트</th><th>핵심 실행</th><th width="80">매출비중</th></tr></thead>
+      <tbody>
+        <tr><td><b>1월</b></td><td>겨울/봄준비</td><td>설 연휴·신학기</td><td>(지난 시즌) 연말 결산 · 2026 킥오프</td><td class="center"><span class="badge badge-light">1%</span></td></tr>
+        <tr><td><b>2월</b></td><td>봄 신상</td><td>졸업·입학</td><td>(지난 시즌)</td><td class="center"><span class="badge badge-light">3%</span></td></tr>
+        <tr><td><b>3월</b></td><td>봄</td><td>이사·결혼</td><td>3개월 계획 수립 · 사방넷 21개 세팅 완료(3/24~31)</td><td class="center"><span class="badge badge-light">5%</span></td></tr>
+        <tr><td><b>4월</b></td><td>간절기</td><td>가정의달 준비</td><td><b>박명훈 입사(4/22) · 업무분장 확정 · 사방넷 가동 · 조직재편</b></td><td class="center"><span class="badge badge-y">6%</span></td></tr>
+        <tr><td><b>5월</b></td><td>간절기</td><td>어버이날·스승의날·이사결혼</td><td>선물 각인 단독 · 브랜드검색광고 · B2B 룰 확정 · 가정의 달 캠페인</td><td class="center"><span class="badge badge-y">8%</span></td></tr>
+        <tr><td><b>6월</b></td><td>여름 성수기 시작</td><td>호캉스·피서 시작</td><td>ZERO 캠페인 기획 · 위스키채널 후보 3개 · 인플루언서 신규 3팀 계약</td><td class="center"><span class="badge badge-p">19%</span></td></tr>
+        <tr><td><b>7월</b></td><td>여름 피크</td><td>여름휴가 본격</td><td><b>ZERO 런칭 · 아블러 '얼음부자' 캠페인 · 정기구독 MVP 런칭</b></td><td class="center"><span class="badge badge-p">10%</span></td></tr>
+        <tr><td><b>8월</b></td><td>여름 피크</td><td>휴가·바캉스</td><td>퍼포먼스 예산 최대 · B2B 납품 5건+ · 오프라인 미팅 본격화</td><td class="center"><span class="badge badge-p">10%</span></td></tr>
+        <tr><td><b>9월</b></td><td>FW 시작</td><td>추석·신학기</td><td>추석 선물 · 자사몰 리뉴얼 착수 · 콜라보 1건 · 오프라인 첫 입점</td><td class="center"><span class="badge badge-p">13%</span></td></tr>
+        <tr><td><b>10월</b></td><td>겨울 시작</td><td>이사·결혼</td><td>선물 패키지 기획 · 플로우뮤직 브랜드송 · AI 포스터 50종</td><td class="center"><span class="badge badge-r">11%</span></td></tr>
+        <tr><td><b>11월</b></td><td>겨울</td><td>블프·빼빼로·수능</td><td>전채널 선물 단독전 · B2B 연말영업 집중 · 퍼포먼스 풀가동</td><td class="center"><span class="badge badge-r">14%</span></td></tr>
+        <tr><td><b>12월</b></td><td>겨울 피크</td><td>크리스마스·연말선물</td><td><b>연말 선물 폭발 · 2027 플랜 수립 · MIF 성남 실증 마감</b></td><td class="center"><span class="badge badge-r">22%</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert"><strong>⚠️ 인사이트:</strong> 12월이 22%로 최대. 하반기(7~12월) 80%. 즉 상반기는 기반다지기, 하반기가 진짜 승부. 박명훈 3개월 SNS 회복 미션은 이 흐름을 만드는 선행조건.</div>
+  </section>
+
+  <!-- HALF -->
+  <section id="half">
+    <div class="section-header"><h2>③ 상·하반기 플랜</h2><span class="tag">HALF</span></div>
+    <div class="cards">
+      <div class="card purple">
+        <h3><span class="dot"></span>상반기 H1 (4~6월) — 기반 다지기</h3>
+        <p>박지현 3개월 계획 완결 + 확장 기반 완성. 돈 버는 구조.</p>
+        <ul>
+          <li>브랜드 구조 확정: 쥬얼아이스(메인) / 아블러 / 듀오메이커</li>
+          <li>사방넷 21개 제품 완전 운영 (3/24~31 세팅 완료, 4월 가동)</li>
+          <li>A채널 선물하기 각인 단독 상품 런칭</li>
+          <li>B2B 제안서 템플릿 (클로드 디자인)</li>
+          <li>박명훈 입사 4/22 · 3개월 SNS 도달 회복</li>
+          <li>퍼포먼스 ROAS 3.0 안착 · 검색광고 가동</li>
+          <li>MIF 기후테크·디자인협업 사업 착수</li>
+          <li>가정의 달 5월 집중 캠페인</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3><span class="dot"></span>하반기 H2 (7~12월) — 체급 올리기 · 매출 폭발</h3>
+        <p>연간 매출의 70% 달성 구간. 오프라인·해외·구독 3축.</p>
+        <ul>
+          <li>ZERO 캠페인 대규모 (AI 아바타 옴니쇼 활용)</li>
+          <li>오프라인 유통 1개+ 입점 (올리브영·교보·아트박스)</li>
+          <li>프리미엄 바·호텔 콜라보 2건</li>
+          <li>정기구독 서비스 MVP (바이브 코딩, 여름 한정)</li>
+          <li>자사몰 리뉴얼 (그록 4.3 UI 벤치마킹)</li>
+          <li>연말 선물시즌 AI 포스터 대량생산 체제</li>
+          <li>MIF 성남 납품처 5곳 · 매출 5천만원</li>
+          <li>2027 사업계획 수립 (12월)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUARTER -->
+  <section id="quarter">
+    <div class="section-header"><h2>④ 분기별 3축 전략 (天地人)</h2><span class="tag">QUARTER</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th width="60">Q</th><th width="130">중심(一)</th><th>天 전략</th><th>地 운영</th><th>人 접점</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Q2</b><br><small>4~6월</small></td>
+          <td>수익구조 안착</td>
+          <td>A채널 집중 · B2B 룰 확정 · 키워드 정비 · 브랜드검색광고</td>
+          <td>사방넷 세팅 · NAS 서버 · CS 매뉴얼 · 통합가격표</td>
+          <td>박명훈 온보딩 · MD 인사 · 인플루언서 신규 3팀</td>
+        </tr>
+        <tr>
+          <td><b>Q3</b><br><small>7~9월</small></td>
+          <td>여름피크 + 브랜드 부스트</td>
+          <td>ZERO 캠페인 · 위스키채널 · 콜라보 · 추석선물</td>
+          <td>정기구독 MVP · 자사몰 리뉴얼 · 사방넷 풀가동</td>
+          <td>옴니쇼 AI 인플루언서 · 숏폼 100편 · MD 행사</td>
+        </tr>
+        <tr>
+          <td><b>Q4</b><br><small>10~12월</small></td>
+          <td>선물 폭발 + 2027 준비</td>
+          <td>연말선물 캠페인 · 오프라인 입점 · MIF 실증 마감</td>
+          <td>AI 포스터 100종 · 광고 자동화 · 결산</td>
+          <td>기업판촉 50건 · 2027 플랜 공유 · 팀 회고</td>
+        </tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- MONTHLY -->
+  <section id="monthly">
+    <div class="section-header"><h2>⑤ 월간 상세 로드맵 (4~12월)</h2><span class="tag">MONTH</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th width="55">월</th><th width="150">테마</th><th>핵심 실행</th><th width="170">AI 활용</th><th width="90">담당</th></tr></thead>
+      <tbody>
+        <tr><td><b>4월</b></td><td>조직재편·박명훈 온보딩</td><td>업무분장 확정 · 박명훈 3개월 계획서(4/24) · 사방넷 가동 · 서버 체계 · MIF 착수</td><td><span class="badge badge-ai">클로드 4.7 기획</span></td><td>박지현·박명훈</td></tr>
+        <tr><td><b>5월</b></td><td>수익구조 1차 완성</td><td>선물 각인 단독 · 브랜드검색광고 · B2B 룰 · 가격 통합표 · 가정의달 캠페인</td><td><span class="badge badge-ai">클로드 디자인 PPT</span></td><td>박지현·권나경</td></tr>
+        <tr><td><b>6월</b></td><td>여름 사전 준비</td><td>ZERO 캠페인 기획 · 위스키채널 후보3 · 인플루언서 3팀 계약 · 여름 숏폼 50편 제작</td><td><span class="badge badge-ai">비디오유즈 숏폼</span></td><td>박지현·조송희</td></tr>
+        <tr><td><b>7월</b></td><td>여름 피크 진입</td><td>ZERO 런칭 · 아블러 '얼음부자' 캠페인 · 정기구독 MVP · 피서 콘텐츠</td><td><span class="badge badge-ai">옴니쇼·바이브코딩</span></td><td>전팀</td></tr>
+        <tr><td><b>8월</b></td><td>볼륨 최대화</td><td>퍼포먼스 예산 최대 · B2B 납품 5건+ · 오프라인 미팅 · 휴가 시즌</td><td><span class="badge badge-ai">GPT 한글 포스터</span></td><td>박지현·권나경</td></tr>
+        <tr><td><b>9월</b></td><td>체급 전환·추석</td><td>추석 선물 · 자사몰 리뉴얼 · 콜라보 1건 · 오프라인 첫 입점 확정</td><td><span class="badge badge-ai">그록 4.3 UI 복제</span></td><td>박지현</td></tr>
+        <tr><td><b>10월</b></td><td>연말 워밍업</td><td>선물 패키지 기획 · 플로우뮤직 브랜드송 · AI 포스터 50종 · 이사 시즌</td><td><span class="badge badge-ai">구글 플로우뮤직</span></td><td>조송희·박명훈</td></tr>
+        <tr><td><b>11월</b></td><td>선물 피크 진입</td><td>전채널 선물 단독전 · B2B 연말영업 · 퍼포먼스 풀가동 · 블프</td><td><span class="badge badge-ai">엑셀 GPT 수요예측</span></td><td>전팀</td></tr>
+        <tr><td><b>12월</b></td><td>폭발 + 2027 설계</td><td>크리스마스·연말 · MIF 실증 마감 · 2027 플랜 · 팀 회고</td><td><span class="badge badge-ai">클로드 연간분석</span></td><td>박지현</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- WEEKLY -->
+  <section id="weekly">
+    <div class="section-header"><h2>⑥ 이번주 W17 (4/21~4/27) 일별 실행점</h2><span class="tag">WEEK</span></div>
+    <p class="section-desc">매일 갱신. 박명훈 입사주차 + 박명훈 3개월 계획서 마감주차.</p>
+    <div class="timeline">
+      <div class="timeline-row">
+        <div class="timeline-date today">월<span class="day">21</span></div>
+        <div class="timeline-content">
+          <h4>마스터플랜 v2.0 배포 (오늘)</h4>
+          <p>화경이 사방넷·채널·MIF 디테일 전부 녹여서 재구축 · 박지현·찰스 공유 · 피드백 수집 시작</p>
+          <div class="timeline-tags"><span class="badge badge-y">TODAY</span><span class="badge badge-light">화경</span></div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">화<span class="day">22</span></div>
+        <div class="timeline-content">
+          <h4>박명훈 입사일 · 온보딩</h4>
+          <p>업무지시서 전달(0422.xlsx) · 3개월 SNS 도달 회복 미션 브리핑 · 잔디 채널 세팅 · 계정 권한 부여</p>
+          <div class="timeline-tags"><span class="badge badge-p">박지현</span><span class="badge badge-y">필수</span></div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">수<span class="day">23</span></div>
+        <div class="timeline-content">
+          <h4>사방넷 가동 점검 + 통합 가격표 v1</h4>
+          <p>21개 제품 사방넷 등록 확인 · 권나경 과장과 SKU 정리 · 통합 가격 기준표 초안</p>
+          <div class="timeline-tags"><span class="badge badge-p">권나경</span></div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">목<span class="day">24</span></div>
+        <div class="timeline-content">
+          <h4>박명훈 3개월 계획서 제출·검토 (마감)</h4>
+          <p>박지현 팀장 컨펌 → 찰스 최종 승인 → 5월 킥오프 일정 확정</p>
+          <div class="timeline-tags"><span class="badge badge-r">DEADLINE</span></div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">금<span class="day">25</span></div>
+        <div class="timeline-content">
+          <h4>B2B 제안서 템플릿 v1 (클로드 디자인)</h4>
+          <p>프리미엄 바·호텔 납품용 PPT 자동생성 · 레퍼런스 5곳(데블스도어·제이코스·바차·코어인터·와배송) 반영</p>
+          <div class="timeline-tags"><span class="badge badge-ai">AI</span><span class="badge badge-p">박지현</span></div>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">토<span class="day">26</span></div>
+        <div class="timeline-content">
+          <h4>숏폼 원본 3편 아카이빙 + 인플루언서 현황 정리</h4>
+          <p>비디오유즈 입력용 소스 정리 · 7월 여름 캠페인 재고 · Mr.위스키·어쿠스틱드링크 성과 요약</p>
+        </div>
+      </div>
+      <div class="timeline-row">
+        <div class="timeline-date">일<span class="day">27</span></div>
+        <div class="timeline-content">
+          <h4>주간 회고 + W18 씨앗 정리</h4>
+          <p>"화경아, 이번주 어땠어?" 호출 → 자동 업데이트 · 다음주 우선순위 재설정</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAILY -->
+  <section id="daily">
+    <div class="section-header"><h2>⑦ 박지현 팀장 일일 루틴</h2><span class="tag">DAILY</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th width="90">시간</th><th width="160">행동</th><th>상세</th><th width="130">산출물</th></tr></thead>
+      <tbody>
+        <tr><td><b>09:00</b></td><td>지시 배분</td><td>회의록 확인 · 잔디 #찰스지시 확인 · 팀원 3명+콘텐츠팀 배분안 생성 (화경에게 요청)</td><td>#업무배분 채널 게시</td></tr>
+        <tr><td><b>10:00</b></td><td>채널 모니터링</td><td>사방넷 주문 확인 · CS 이슈 · 광고 성과 체크 (ROAS·CPC)</td><td>이슈 리스트</td></tr>
+        <tr><td><b>11:00</b></td><td>전략 작업</td><td>B2B 제안 · 채널 MD 소통 · 인플루언서 매칭</td><td>제안서·미팅록</td></tr>
+        <tr><td><b>14:00</b></td><td>내부 미팅</td><td>팀원 1:1 또는 전체 싱크 (주 2회)</td><td>회의록</td></tr>
+        <tr><td><b>15:00</b></td><td>팀원 점검</td><td>화경에게: "오늘 블로커 있어? 팀원별로 정리해줘"</td><td>블로커 리스트</td></tr>
+        <tr><td><b>17:30</b></td><td>팀장 로그</td><td><code>/cheongye log</code> · 팀 진행 요약 · 찰스 보고 이슈 · 내일 우선순위</td><td>cheongye-logger</td></tr>
+        <tr><td><b>18:00</b></td><td>마감 체크</td><td>사방넷 재고 · 당일 출고 완료 · 광고 일일예산 소진율</td><td>데일리 리포트</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- SABANGNET -->
+  <section id="sabangnet">
+    <div class="section-header"><h2>⑧ 사방넷 진행 현황 (세팅 완료)</h2><span class="tag">SYSTEM</span></div>
+    <p class="section-desc">3/24~3/31 권나경 과장이 21개 제품 사방넷 등록 완료. 계정: jewelice99 / Charles@911 마스터. 서브계정 5개(찰스·박지현·이호혁·권나경·조송희).</p>
+
+    <div class="sub-header"><h3>사방넷 등록 제품 21종</h3><span class="count">전원 공급중 · 마진율 57~88%</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>품번</th><th width="200">상품명</th><th>옵션</th><th>원산지·제조사</th><th class="center">판매가</th><th class="center">원가</th><th class="center">이익률</th><th>등록일</th></tr></thead>
+      <tbody>
+        <tr><td>100034</td><td>하이볼 유리잔 홈바</td><td>-</td><td>중국 MARKET UNION</td><td class="num">9,600</td><td class="num">2,660</td><td class="center"><span class="badge badge-g">72.3%</span></td><td>3/31</td></tr>
+        <tr><td>100033</td><td>온더락 유리잔 홈바</td><td>-</td><td>중국 MARKET UNION</td><td class="num">9,600</td><td class="num">3,360</td><td class="center"><span class="badge badge-g">65.0%</span></td><td>3/31</td></tr>
+        <tr><td>100032</td><td>스틱보관통 (듀오메이커 전용)</td><td>-</td><td>한국 세기프라텍</td><td class="num">10,000</td><td class="num">1,900</td><td class="center"><span class="badge badge-g">81.0%</span></td><td>3/31</td></tr>
+        <tr><td>100031</td><td>지거 30/45ml 칵테일 계량컵</td><td>-</td><td>중국 Guangzhou Magic</td><td class="num">15,000</td><td class="num">6,500</td><td class="center"><span class="badge badge-y">56.7%</span></td><td>3/31</td></tr>
+        <tr><td>100030</td><td>이글 집게 얼음집게</td><td>-</td><td>중국 Guangzhou Magic</td><td class="num">20,000</td><td class="num">8,500</td><td class="center"><span class="badge badge-y">57.5%</span></td><td>3/31</td></tr>
+        <tr><td>100029</td><td>얼음보관통+집게세트</td><td>-</td><td>한국 프라피아</td><td class="num">12,000</td><td class="num">4,000</td><td class="center"><span class="badge badge-g">66.7%</span></td><td>3/31</td></tr>
+        <tr><td>100028</td><td>아블러 전용몰드 (텀블러제외)</td><td>컬러</td><td>한국 성준테크</td><td class="num">29,000</td><td class="num">7,318</td><td class="center"><span class="badge badge-g">74.8%</span></td><td>3/30</td></tr>
+        <tr><td>100027</td><td>아블러 텀블러 (몰드제외)</td><td>컬러</td><td>중국 Zhejiang Green</td><td class="num">25,000</td><td class="num">4,384</td><td class="center"><span class="badge badge-g">82.5%</span></td><td>3/30</td></tr>
+        <tr><td>100026</td><td>듀오메이커 + 추가몰드</td><td>옵션/추가</td><td>한국 해피홈</td><td class="num">158,000</td><td class="num">18,600</td><td class="center"><span class="badge badge-g">88.2%</span></td><td>3/26</td></tr>
+        <tr><td>100025</td><td>아블러 + 추가몰드</td><td>옵션/추가</td><td>한국 성준테크</td><td class="num">108,000</td><td class="num">19,818</td><td class="center"><span class="badge badge-g">81.7%</span></td><td>3/26</td></tr>
+        <tr><td>100024</td><td>아블러 더블세트</td><td>옵션1/옵션2</td><td>한국 성준테크</td><td class="num">138,000</td><td class="num">25,000</td><td class="center"><span class="badge badge-g">81.9%</span></td><td>3/26</td></tr>
+        <tr><td>100023</td><td>아블러 텀블러세트 390ml</td><td>옵션</td><td>한국 성준테크</td><td class="num">69,000</td><td class="num">12,500</td><td class="center"><span class="badge badge-g">81.9%</span></td><td>3/26</td></tr>
+        <tr><td>100022</td><td>듀오메이커 프리미엄</td><td>옵션</td><td>한국 해피홈</td><td class="num">89,000</td><td class="num">13,600</td><td class="center"><span class="badge badge-g">84.7%</span></td><td>3/26</td></tr>
+        <tr><td>100020</td><td>아블러제로 더블세트</td><td>옵션1/옵션2</td><td>중국 ForeverGold</td><td class="num">98,000</td><td class="num">12,518</td><td class="center"><span class="badge badge-g">87.2%</span></td><td>3/26</td></tr>
+        <tr><td>100019</td><td>듀오메이커 더블세트</td><td>옵션1/옵션2</td><td>한국 해피홈</td><td class="num">197,000</td><td class="num">27,200</td><td class="center"><span class="badge badge-g">86.2%</span></td><td>3/26</td></tr>
+        <tr><td>100008</td><td>아블러제로 (단품)</td><td>컬러</td><td>중국 ForeverGold</td><td class="num">49,000</td><td class="num">6,259</td><td class="center"><span class="badge badge-g">87.2%</span></td><td>3/24</td></tr>
+        <tr><td>100007</td><td>듀오메이커 스틱</td><td>컬러</td><td>한국 해피홈</td><td class="num">89,000</td><td class="num">13,600</td><td class="center"><span class="badge badge-g">84.7%</span></td><td>3/24</td></tr>
+        <tr><td>100006</td><td>듀오메이커 아이스볼</td><td>컬러</td><td>한국 해피홈</td><td class="num">89,000</td><td class="num">13,600</td><td class="center"><span class="badge badge-g">84.7%</span></td><td>3/24</td></tr>
+        <tr><td>100005</td><td>아블러 큐브 3in1</td><td>컬러</td><td>한국 성준테크</td><td class="num">69,000</td><td class="num">12,500</td><td class="center"><span class="badge badge-g">81.9%</span></td><td>3/24</td></tr>
+        <tr><td>100003</td><td>아블러 스피어다이아 3in1</td><td>컬러</td><td>한국 성준테크</td><td class="num">69,000</td><td class="num">12,500</td><td class="center"><span class="badge badge-g">81.9%</span></td><td>3/24</td></tr>
+        <tr><td>100002</td><td>아블러 아이스볼 3in1</td><td>컬러</td><td>한국 성준테크</td><td class="num">69,000</td><td class="num">12,500</td><td class="center"><span class="badge badge-g">81.9%</span></td><td>3/24</td></tr>
+      </tbody>
+    </table></div>
+    <div class="alert"><strong>⚠️ 마진 리스크:</strong> 지거(56.7%)·이글집게(57.5%) 2종은 이익률 60% 미만. 행사가 집행 시 마이너스 가능. B2B 번들 전용으로 전환 검토.</div>
+  </section>
+
+  <!-- CHANNEL -->
+  <section id="channel">
+    <div class="section-header"><h2>⑨ 채널 32개 전수 현황</h2><span class="tag">CHANNEL</span></div>
+    <p class="section-desc">운영중 18 · 입점신청 9 · 기존계정 2 · 입점검토 3 · 미운영/중단 다수. 박지현 팀장 A등급 집중 · B2B 병행.</p>
+
+    <div class="sub-header"><h3>A등급 · 운영중 ⭐⭐⭐⭐⭐</h3><span class="count">자사몰·핵심 오픈마켓</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>순번</th><th>채널</th><th>구분</th><th>수수료</th><th>상태</th><th>담당 ID</th><th>2026 전략</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>카페24 (자사몰)</b></td><td>자사몰</td><td class="center">3%</td><td class="center"><span class="badge badge-run">O</span></td><td>nemochip</td><td>메인 브랜드 허브 · 9월 리뉴얼</td></tr>
+        <tr><td>2</td><td>네이버 스마트스토어</td><td>자사몰</td><td class="center">2+5%</td><td class="center"><span class="badge badge-run">O</span></td><td>jewelice99@gmail</td><td>브랜드검색광고 집중</td></tr>
+        <tr><td>3</td><td>네이버페이</td><td>자사몰</td><td class="center">2+5%</td><td class="center"><span class="badge badge-run">O</span></td><td>nemochip2</td><td>전환 최적화</td></tr>
+        <tr><td>4</td><td>카카오 파트너센터/페이</td><td>오픈마켓</td><td class="center">3.3+3.3%</td><td class="center"><span class="badge badge-run">O</span></td><td>jewelice99@daum</td><td>선물 카테고리 진입</td></tr>
+        <tr><td>5</td><td><b>카카오 선물하기/톡스토어</b></td><td>오픈마켓</td><td class="center">3.3+3.3%</td><td class="center"><span class="badge badge-run">O</span></td><td>jewelice99@daum</td><td>🎯 <b>각인 단독 상품</b> · 선물시즌 핵심</td></tr>
+        <tr><td>6</td><td>와디즈</td><td>오픈마켓</td><td class="center">3.3+3.3%</td><td class="center"><span class="badge badge-run">O</span></td><td>jewelice99@gmail</td><td>신제품 펀딩 · 알렌미디어 협력</td></tr>
+        <tr><td>7</td><td><b>쿠팡 (한반도키친)</b></td><td>오픈마켓</td><td class="center">35%</td><td class="center"><span class="badge badge-run">O</span></td><td>hanbandokitchen</td><td>볼륨 대표</td></tr>
+        <tr><td>8</td><td>쿠팡 (씨앤에프)</td><td>오픈마켓</td><td class="center">35%</td><td class="center"><span class="badge badge-run">O</span></td><td>nemochip</td><td>로켓그로스 검토</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>B등급 · 운영중 ⭐⭐⭐</h3><span class="count">종합몰·오픈마켓·전문몰</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>순번</th><th>채널</th><th>구분</th><th>수수료</th><th>상태</th><th>2026 방향</th></tr></thead>
+      <tbody>
+        <tr><td>9</td><td>SSG</td><td>종합몰</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>감성/라이프스타일 어필</td></tr>
+        <tr><td>10</td><td>롯데ON</td><td>종합몰</td><td class="center">15+15%</td><td class="center"><span class="badge badge-run">O</span></td><td>행사 참여 중심</td></tr>
+        <tr><td>11</td><td>이베이 마스터</td><td>오픈마켓</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>G마켓·옥션 통합 운영</td></tr>
+        <tr><td>12-13</td><td>지마켓 x2 (메인/서브)</td><td>오픈마켓</td><td class="center">13%</td><td class="center"><span class="badge badge-run">O</span></td><td>기본 운영</td></tr>
+        <tr><td>14</td><td>옥션</td><td>오픈마켓</td><td class="center">13%</td><td class="center"><span class="badge badge-run">O</span></td><td>배송비 판매예치금 관리</td></tr>
+        <tr><td>15</td><td>11번가</td><td>오픈마켓</td><td class="center">13%</td><td class="center"><span class="badge badge-run">O</span></td><td>기본 운영</td></tr>
+        <tr><td>16</td><td>오아시스</td><td>전문몰</td><td class="center">8%</td><td class="center"><span class="badge badge-run">O</span></td><td>프리미엄 포지션</td></tr>
+        <tr><td>17</td><td><b>오늘의집</b></td><td>전문몰</td><td class="center">8%</td><td class="center"><span class="badge badge-run">O</span></td><td>🎯 홈바·홈카페 감성 핏</td></tr>
+        <tr><td>18</td><td>유튜브 쇼핑</td><td>전문몰</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>크리에이터 연계</td></tr>
+        <tr><td>19</td><td>토스</td><td>전문몰</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>MZ 타겟</td></tr>
+        <tr><td>20</td><td>올웨이즈</td><td>기타몰</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>볼륨 보조</td></tr>
+        <tr><td>21</td><td>고려기프트</td><td>판촉</td><td class="center">-</td><td class="center"><span class="badge badge-run">O</span></td><td>B2B 판촉 연결</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>🟡 입점 신청중 · 5월~6월 결과 기대</h3><span class="count">9개</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>순번</th><th>채널</th><th>구분</th><th>수수료</th><th>우선순위</th><th>2026 액션</th></tr></thead>
+      <tbody>
+        <tr><td>24</td><td><b>마켓컬리</b></td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐⭐⭐⭐</td><td>프리미엄 홈바 타겟 · 최우선 입점</td></tr>
+        <tr><td>25</td><td>GS</td><td>종합몰</td><td class="center">30+15%</td><td class="center">⭐⭐⭐</td><td>홈쇼핑 라이브 연계</td></tr>
+        <tr><td>26</td><td>CJ</td><td>종합몰</td><td class="center">30+15%</td><td class="center">⭐⭐⭐</td><td>온스타일 라이브</td></tr>
+        <tr><td>27</td><td>갤러리아몰</td><td>종합몰</td><td class="center">25+8%</td><td class="center">⭐⭐⭐⭐</td><td>프리미엄 포지션 확보</td></tr>
+        <tr><td>28</td><td>그립</td><td>라이브</td><td class="center">-</td><td class="center">⭐⭐</td><td>라이브 커머스 테스트</td></tr>
+        <tr><td>29</td><td><b>리멤버 선물하기</b></td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐⭐⭐</td><td>B2B 선물 채널 핵심</td></tr>
+        <tr><td>30</td><td>신세계TV쇼핑</td><td>종합몰</td><td class="center">-</td><td class="center">⭐⭐⭐</td><td>홈쇼핑 진입</td></tr>
+        <tr><td>35</td><td>SK스토아</td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐</td><td>T딜 연계</td></tr>
+        <tr><td>36</td><td><b>올리브영</b></td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐⭐⭐⭐</td><td>🎯 오프라인 체급상승 · Q3 타겟</td></tr>
+        <tr><td>43</td><td>지그재그</td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐</td><td>여성 타겟 부가</td></tr>
+        <tr><td>45</td><td>코오롱</td><td>전문몰</td><td class="center">-</td><td class="center">⭐⭐⭐</td><td>라이프스타일</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>🔵 기타 · 기존계정/검토중/중단</h3><span class="count">입점검토 3 · 미운영 2 · 중단 10+</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>상태</th><th>채널</th><th>판단</th></tr></thead>
+      <tbody>
+        <tr><td class="center"><span class="badge badge-review">기존계정</span></td><td>Hmall · 더현대닷컴</td><td>활성화 여부 4월 결정</td></tr>
+        <tr><td class="center"><span class="badge badge-wait">입점검토</span></td><td>공영홈쇼핑 · NS · 홈앤쇼핑</td><td>홈쇼핑 3사 비교 후 1곳 선택</td></tr>
+        <tr><td class="center"><span class="badge badge-wait">미운영</span></td><td>쇼피파이 · 아마존</td><td>글로벌 진출 Q4 검토</td></tr>
+        <tr><td class="center"><span class="badge badge-stop">중단 X</span></td><td>인터파크 · AK · 닥터다이어리 · 국민클럽 · 군복지몰 · PX몰 · 에이블리 · 허닭 · 제이슨딜 · 핑크다이어리 · W컨셉 · 떠리몰 · 이유몰 · 카카오메이커스 · 홈플러스 · 롯데마트 · 아이스크림미디어 · 이케이 · 키즈노트</td><td>부활 여부 8월 검토</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- PRODUCT -->
+  <section id="product">
+    <div class="section-header"><h2>⑩ 브랜드·제품 라인업 + 본질</h2><span class="tag">PRODUCT</span></div>
+
+    <div class="sub-header"><h3>브랜드 포지셔닝</h3><span class="count">3개 주브랜드 + ZERO·GLASS</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>브랜드</th><th>역할</th><th>타겟</th><th>본질 한 줄</th><th>경험 언어</th><th>체급</th><th>수익</th><th>확장성</th></tr></thead>
+      <tbody>
+        <tr><td><b>쥬얼아이스</b></td><td>프리미엄 홈바 마스터</td><td>위스키·하이볼</td><td>투명 얼음의 격을 올리는 마스터 브랜드</td><td>고급 · 투명 · 홈바</td><td class="center">🔥🔥</td><td class="center">간접</td><td>프리미엄 이미지</td></tr>
+        <tr><td><b>아블러</b></td><td>드링크웨어 라인</td><td>20~40 여성 · 홈바</td><td>얼음 좋아하는 사람이 시원함을 오래 누리게</td><td>얼음 부자 · 하루종일</td><td class="center">🔥🔥🔥</td><td class="center">🔥🔥🔥</td><td>텀블러→글라스→와인잔→바세트</td></tr>
+        <tr><td><b>아블러 ZERO</b></td><td>텀블러 서브</td><td>데일리 사용자</td><td>매일 쓰는 텀블러를 깨끗하고 안심되게</td><td>위생 · 안심 · 데일리</td><td class="center">🔥🔥</td><td class="center">🔥🔥</td><td>제품력 보완 우선</td></tr>
+        <tr><td><b>아블러 GLASS</b></td><td>유리잔 (신규)</td><td>홈바 마니아</td><td>하이볼·언더락 맞춤 프리미엄 글라스</td><td>감성 · 연출</td><td class="center">🔥</td><td class="center">🔥</td><td>바 세트 패키지</td></tr>
+        <tr><td><b>듀오메이커</b></td><td>아이스툴 라인</td><td>홈술·SNS층</td><td>좋은 음료를 더 제대로 즐기게 하는 좋은 얼음</td><td>재미 · 연출 · 홈메이크</td><td class="center">🔥</td><td class="center">🔥</td><td>얼음툴 한정</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="alert"><strong>📦 아블러 5차 발주 확정 (2026-04-03):</strong> 6개월 판매량 6,000개 기반 · <b>총 7,300pcs 발주 확정</b> · 컬러 비율 재조정 완료.</div>
+  </section>
+
+  <!-- INFLUENCER -->
+  <section id="influencer">
+    <div class="section-header"><h2>⑪ 인플루언서 · 공동구매 운영</h2><span class="tag">INFLUENCER</span></div>
+    <p class="section-desc">조송희 대리 주관 · 콘텐츠·광고팀 · 참여율(ER) 3% 이상 기준.</p>
+
+    <div class="sub-header"><h3>유튜브 크리에이터 (주류·요리 전문)</h3><span class="count">10명</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>채널명</th><th>카테고리</th><th>대표</th><th>연락처</th><th>2026 성과/방향</th></tr></thead>
+      <tbody>
+        <tr><td><b>Mr.위스키</b></td><td>위스키 리뷰</td><td>박제영</td><td>010-8896-5357</td><td class="center"><span class="badge badge-g">ROAS 260%</span> 최고 효율 · 재협업</td></tr>
+        <tr><td>어쿠스틱 드링크</td><td>칵테일 리뷰</td><td>김정규</td><td>010-9277-6862</td><td>3월 PPL 완료 · 스피어다이아 재고소진 성공</td></tr>
+        <tr><td>생명의물</td><td>위스키 리뷰</td><td>박진수·오민우</td><td>010-5272-7059</td><td>위스키 롱폼 협업</td></tr>
+        <tr><td>술익는집</td><td>전통주 리뷰</td><td>이찬주</td><td>010-8963-2059</td><td>전통주 × 쥬얼아이스 크로스</td></tr>
+        <tr><td>은수저</td><td>요리 리뷰</td><td>허철(CYP)</td><td>010-4236-7774</td><td>요리 × 하이볼 크로스</td></tr>
+        <tr><td>위안의 시간</td><td>위스키 리뷰</td><td>현영민</td><td>010-9978-7100</td><td>감성 롱폼 후보</td></tr>
+        <tr><td>한잔하는 MJ</td><td>위스키 리뷰</td><td>전명진</td><td>010-9094-0003</td><td>위스키 서브 채널</td></tr>
+        <tr><td>빛나는 요술TV</td><td>위스키 리뷰</td><td>김빛나</td><td>010-8570-5231</td><td>여성 시청자 타겟</td></tr>
+        <tr><td>술주하</td><td>위스키 리뷰</td><td>황부영</td><td>010-7582-5601</td><td>크리에이터 매니저</td></tr>
+        <tr><td>아밥남</td><td>요리 리뷰</td><td>진태두</td><td>010-9050-3512</td><td>요리 채널</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>공동구매·후원·기타</h3><span class="count">협력사 5</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>구분</th><th>업체</th><th>대표</th><th>연락처</th><th>역할</th></tr></thead>
+      <tbody>
+        <tr><td>공동구매 중계</td><td>우하컴퍼니</td><td>우석준 대표</td><td>010-7577-7225</td><td>인스타 공동구매</td></tr>
+        <tr><td>공동구매 직영</td><td>비즈브릭스</td><td>김희철 이사</td><td>010-9668-9667</td><td>인스타 공동구매</td></tr>
+        <tr><td>영상제작</td><td>알렌미디어</td><td>홍정우 대표</td><td>010-5508-3235</td><td>와디즈 펀딩 · 턴키</td></tr>
+        <tr><td>CM송</td><td>케이준 (김경준)</td><td>김경준 PD</td><td>010-3295-1081</td><td>브랜드송 제작</td></tr>
+        <tr><td>후원사</td><td>베버리지마스터협회</td><td>이석현 협회장</td><td>010-5329-2992</td><td>연 110만원 후원</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- B2B -->
+  <section id="b2b">
+    <div class="section-header"><h2>⑫ B2B 영업 전략</h2><span class="tag">B2B</span></div>
+    <p class="section-desc">박지현 팀장 직할 · 월 10듀오+ 발주 목표 · 레퍼런스 기반 오프라인 확장.</p>
+
+    <div class="sub-header"><h3>기존 레퍼런스 5곳</h3><span class="count">2026 기준</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>업장</th><th>카테고리</th><th>포지션</th><th>확장 방향</th></tr></thead>
+      <tbody>
+        <tr><td><b>데블스도어</b></td><td>프리미엄 바</td><td>홈바 체인 협력</td><td>정기납품 리텐션</td></tr>
+        <tr><td><b>제이코스</b></td><td>라운지 바</td><td>프리미엄 포지션</td><td>콜라보 1건 검토</td></tr>
+        <tr><td><b>바차</b></td><td>프리미엄 바</td><td>위스키 전문</td><td>위스키 채널 연계</td></tr>
+        <tr><td><b>코어인터내셔날</b></td><td>식음료 유통</td><td>다중 업장 관리</td><td>체인 확장 루트</td></tr>
+        <tr><td><b>와배송</b></td><td>주류 유통</td><td>B2B 배송망</td><td>물류 파트너</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>B2B 확장 로드맵 (6단계)</h3></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>단계</th><th>핵심</th><th>매출 의미</th><th>다음</th></tr></thead>
+      <tbody>
+        <tr><td>① 기존채널 정비</td><td>상품정렬·가격정책·MD 직접소통</td><td>기존매출 안정</td><td>효율채널 선별</td></tr>
+        <tr><td>② A채널 집중</td><td>선물하기 각인단독 · 효율몰 점유</td><td>고마진 확보</td><td>대표 매출</td></tr>
+        <tr><td>③ <b>B2B 확장</b></td><td>기업납품 · 폐쇄몰 · 직접영업</td><td>물량 매출</td><td>레퍼런스 축적</td></tr>
+        <tr><td>④ 레퍼런스 축적</td><td>납품사례 · 후기 · 실적 정리</td><td>신뢰 상승</td><td>오프라인 제안</td></tr>
+        <tr><td>⑤ 오프라인 도전</td><td>올리브영 · 교보 · 아트박스 제안</td><td>체급 상승</td><td>브랜드 확장</td></tr>
+        <tr><td>⑥ 캠페인 확장</td><td>주류채널 · 인플루언서 · SNS</td><td>전체 매출 상승</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="sub-header"><h3>B2B 제안서 표준 5단 구조</h3></div>
+    <div class="cards">
+      <div class="card"><h3><span class="dot"></span>① 문제 먼저</h3><p>상대 업장의 현재 얼음 문제점 짚기 (위생·사이즈·연출감)</p></div>
+      <div class="card"><h3><span class="dot"></span>② 솔루션</h3><p>쥬얼아이스 제품이 해결하는 방식 (투명도·크기·프리미엄)</p></div>
+      <div class="card"><h3><span class="dot"></span>③ 레퍼런스</h3><p>유사 업장 도입사례 (데블스도어·제이코스 등 5곳)</p></div>
+      <div class="card purple"><h3><span class="dot"></span>④ 수익 계산</h3><p>월 사용량 × 단가 → ROI 제시 (환산표 삽입)</p></div>
+      <div class="card"><h3><span class="dot"></span>⑤ 다음 단계</h3><p>샘플 체험 → 소량 발주 → 정기 계약 (3단 플로우)</p></div>
+    </div>
+  </section>
+
+  <!-- MIF -->
+  <section id="mif">
+    <div class="section-header"><h2>⑬ MIF 기후테크 사업 (2026.04~12)</h2><span class="tag">GOV</span></div>
+    <p class="section-desc">㈜마스터마인딩그룹 × 디블러 컨소시엄 · 성남기후테크 + 디자인·기술협업 1단계 통합 · 총 1억 6,720만원.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi purple"><div class="label">총 사업비</div><div class="value">1.67억</div><div class="sub">정부 1.4억 + 자부담 2,720만</div></div>
+      <div class="kpi"><div class="label">사업기간</div><div class="value">9개월</div><div class="sub">2026.04~12</div></div>
+      <div class="kpi purple"><div class="label">납품처 목표</div><div class="value">5곳</div><div class="sub">성남시 실증</div></div>
+      <div class="kpi"><div class="label">매출 목표</div><div class="value">5,000만</div><div class="sub">구독 납품</div></div>
+      <div class="kpi purple"><div class="label">CO₂ 감축</div><div class="value">90%↑</div><div class="sub">탄소 실증</div></div>
+      <div class="kpi"><div class="label">IP 출원</div><div class="value">1건+</div><div class="sub">특허/디자인권</div></div>
+    </div>
+
+    <div class="sub-header"><h3>제품 사양</h3></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>사양</th><th>MIF-20 (무인 키오스크)</th><th>MIF-40 (플래그십 바)</th></tr></thead>
+      <tbody>
+        <tr><td>컨테이너</td><td>20ft 스탠다드</td><td>40ft 확장형</td></tr>
+        <tr><td>몰드</td><td>96몰드 동시생산</td><td>144몰드 대량생산</td></tr>
+        <tr><td>서비스</td><td>로봇 바리스타 + 키오스크</td><td>바리스타 + 바텐더 (8석)</td></tr>
+        <tr><td>CAPEX</td><td class="num">$85K~$120K</td><td class="num">$180K~$250K</td></tr>
+        <tr><td>PaaS 월구독</td><td class="num">$1,500~$2,000</td><td class="num">$2,500~$3,500</td></tr>
+        <tr><td>전력 효율</td><td class="center">40% 절감</td><td class="center">40% 절감</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="alert"><strong>🎯 BYI (Bring Your Ice) 캠페인:</strong> 아블러 텀블러 + 보증금/리워드 순환모델 · 재방문 +40% · 회수율 85% · ESG 연동. 박지현 팀장 영업과 연동.</div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai">
+    <div class="section-header"><h2>⑭ AI 도구 접목 카드 (2026.04 최신)</h2><span class="tag">AI</span></div>
+    <div class="ai-grid">
+      <div class="ai-card">
+        <span class="num">1</span>
+        <h3>앤트로픽 — 기획·디자인·영상 자동화</h3>
+        <div class="trend"><strong>트렌드:</strong> 클로드 오퍼스 4.7 (코딩 1위) · 클로드 디자인(PPT/앱/웹→코드) · 비디오 유즈(무음컷·색보정·자막)</div>
+        <div class="apply"><strong>쥬얼아이스 적용</strong>
+          ① B2B 제안서 자동화 — 레퍼런스 5곳 반영 PPT 즉시 생성<br>
+          ② SNS 숏폼 공장화 — 원본 1개 → 인스타 릴스·틱톡 10+편<br>
+          ③ 와디즈 펀딩 페이지 초안 생성</div>
+      </div>
+      <div class="ai-card">
+        <span class="num">2</span>
+        <h3>오픈AI — 시각물 · 엑셀 업무</h3>
+        <div class="trend"><strong>트렌드:</strong> 차세대 GPT 한글 완벽 이미지 · ChatGPT 4 Excel 내장</div>
+        <div class="apply"><strong>쥬얼아이스 적용</strong>
+          ① 스튜디오급 광고 포스터 무비용 — "고급 호텔 바, 위스키잔 속 쥬얼아이스, '프리미엄 투명 얼음' 한글"<br>
+          ② 사방넷 데이터 분석 — 채널별 주문·재고·수요예측 대화형<br>
+          ③ 엑셀 기반 통합가격표 자동 갱신</div>
+      </div>
+      <div class="ai-card">
+        <span class="num">3</span>
+        <h3>구글·그록 — 벤치마킹 · 브랜드 경험</h3>
+        <div class="trend"><strong>트렌드:</strong> 그록 4.3 스크린샷→UI코드 · 맥 제미나이 앱 · 구글 플로우 뮤직(BGM·MV)</div>
+        <div class="apply"><strong>쥬얼아이스 적용</strong>
+          ① 명품급 자사몰 리뉴얼 — 롤렉스·프리미엄 주류 UI 캡처→복제(9월)<br>
+          ② 브랜드 전용 BGM — 쥬얼아이스 CM송 → 홍보영상·매장<br>
+          ③ 페이커마트 경쟁사 UI 복제 연구</div>
+      </div>
+      <div class="ai-card">
+        <span class="num">4</span>
+        <h3>3D·비디오·바이브 코딩</h3>
+        <div class="trend"><strong>트렌드:</strong> 옴니쇼(AI 아바타 홍보) · Llo 1.1 (SVG 벡터 로고) · 바이브 코딩 1인 창업</div>
+        <div class="apply"><strong>쥬얼아이스 적용</strong>
+          ① AI 가상 인플루언서 홈텐딩 리뷰 → 유튜브 배포<br>
+          ② 정기구독 MVP — 바이브 코딩으로 여름 한정 1주내 런칭<br>
+          ③ MIF 프로덕트 3D 렌더링 + IR 피치덱 자산화</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RISK -->
+  <section id="risk">
+    <div class="section-header"><h2>⑮ 리스크 & 모니터링</h2><span class="tag">RISK</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th width="120">영역</th><th>현재 리스크</th><th>대응</th><th width="90">우선순위</th></tr></thead>
+      <tbody>
+        <tr><td>채널 연동</td><td>사방넷 외 일부 미연동 → 재고꼬임/품절오류</td><td>4월 중 전채널 사방넷 편입</td><td class="center">⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>파일 관리</td><td>개별 PC/드라이브 혼재 → 최종본 혼선</td><td>NAS 공용서버 확립 (4~5월)</td><td class="center">⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>가격 관리</td><td>채널별 개별관리 → 최저가 붕괴·영업신뢰 훼손</td><td>통합 가격 기준표 (4/23)</td><td class="center">⭐⭐⭐⭐</td></tr>
+        <tr><td>저마진 SKU</td><td>지거·이글집게·글라스류 마진 -%</td><td>B2B 번들 전용 전환</td><td class="center">⭐⭐⭐⭐</td></tr>
+        <tr><td>CS 기준</td><td>반복 클레임 데이터 부재 → 광고 효율 방어 불가</td><td>CS매뉴얼 확립 (5월)</td><td class="center">⭐⭐⭐⭐</td></tr>
+        <tr><td>SNS 도달</td><td>급락 지속 → 박명훈 투입</td><td>3개월 회복 미션 (4/22~7/22)</td><td class="center">⭐⭐⭐⭐⭐</td></tr>
+        <tr><td>물류 마진</td><td>3PL 계약 조건·출고량 분석 부재</td><td>월/일 출고 데이터 확보 · 네고</td><td class="center">⭐⭐⭐</td></tr>
+        <tr><td>브랜드 혼란</td><td>쥬얼아이스/아블러/듀오메이커 경계 모호</td><td>키워드·검색광고 재정비 (5월)</td><td class="center">⭐⭐⭐</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- LOG -->
+  <section id="log">
+    <div class="section-header"><h2>⑯ 업데이트 로그 (매일 화경 자동반영)</h2><span class="tag">LOG</span></div>
+    <p class="section-desc">찰스가 아이디어 던지면 여기에 누적. 똑같은 말 두 번 할 필요 없음.</p>
+    <div class="log-item">
+      <div class="log-date">2026-04-21</div>
+      <div class="log-content"><strong>v2.0 디테일 풀장착:</strong> 사방넷 21개 제품 세팅 현황·마진율 · 채널 32개 전수 현황(운영18/신청9/검토3/중단) · MIF 기후테크 1.67억 사업 · 인플루언서 10명+공구5 · B2B 레퍼런스 5곳 · 아블러 5차 7,300pcs · 월별 매출 비중(12월22%최대) · 일일루틴 7시간 · 리스크 8영역 전부 반영.</div>
+    </div>
+    <div class="log-item">
+      <div class="log-date">2026-04-21</div>
+      <div class="log-content"><strong>v1.0 초안:</strong> 박지현 3개월 계획(03~05)을 4~12월로 확장 + AI 트렌드 4종 접목. 주/월/분기/반기/년 5계층 구조.</div>
+    </div>
+    <div class="log-item">
+      <div class="log-date">(다음)</div>
+      <div class="log-content">찰스가 아이디어를 던지면 여기에 추가되고 해당 레이어(일/주/월/분기)에 자동 편입됨. <em>"화경아, 플랜 업데이트 해"</em> 한마디면 끝.</div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <strong>화경 (HWAGYEONG)</strong> · 박지현 팀장과 찰스의 실행 파트너 AI<br>
+    天啓 WORKSPACE · CHEONGYE Protocol v2.0 · 쥬얼아이스 마스터마인딩그룹<br>
+    <small>次一 — "마켓컬리·올리브영 입점 제안서를 이번주 안에 클로드 디자인으로 초안 뽑을까?"</small>
+  </div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'jewelice_masterplan_v2';
+  const EDITABLE_SELECTOR = 'td, th, h1, h2, h3, h4, p, li, summary, .kpi .value, .kpi .sub, .kpi .label, .badge, .hero p, .timeline-content h4, .timeline-content p, .card p, .card h3, .footer small, .section-desc, .alert';
+
+  function toggleEdit() {
+    const on = !document.body.classList.contains('edit-mode');
+    document.body.classList.toggle('edit-mode', on);
+    document.querySelectorAll(EDITABLE_SELECTOR).forEach(el => {
+      el.contentEditable = on;
+    });
+    const btn = document.querySelector('.btn-edit');
+    btn.textContent = on ? '🔒 편집끝' : '✏️ 편집모드';
+    btn.style.background = on ? 'var(--green)' : 'var(--yellow)';
+    btn.style.color = on ? 'white' : 'var(--gray-900)';
+    if (on) showStatus('편집모드 ON — 원하는 셀 클릭해서 수정', 3000);
+  }
+
+  function saveLocal() {
+    try {
+      localStorage.setItem(STORAGE_KEY, document.querySelector('.container').innerHTML);
+      localStorage.setItem(STORAGE_KEY + '_time', new Date().toLocaleString('ko-KR'));
+      showStatus('💾 로컬 저장 완료 (' + new Date().toLocaleTimeString('ko-KR') + ')', 2000);
+    } catch (e) {
+      showStatus('❌ 저장 실패: ' + e.message, 3000);
+    }
+  }
+
+  function downloadHTML() {
+    const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+    const blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const ts = new Date().toISOString().slice(0,16).replace(/[T:]/g,'-');
+    a.href = url; a.download = '2026_마스터플랜_' + ts + '.html';
+    a.click();
+    URL.revokeObjectURL(url);
+    showStatus('⬇️ 다운로드 시작 · 박지현-팀장 폴더에 저장하세요', 3000);
+  }
+
+  function resetPlan() {
+    if (!confirm('원본으로 복원하시겠습니까? 저장된 수정사항이 삭제됩니다.')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY + '_time');
+    location.reload();
+  }
+
+  function showStatus(msg, ms) {
+    const el = document.getElementById('editStatus');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(el._t);
+    el._t = setTimeout(() => el.classList.remove('show'), ms || 2000);
+  }
+
+  // 로컬 저장된 버전 복원
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const time = localStorage.getItem(STORAGE_KEY + '_time');
+    if (saved) {
+      document.querySelector('.container').innerHTML = saved;
+      showStatus('🔄 로컬 저장본 복원 (' + time + ')', 3000);
+    }
+  });
+
+  // 편집모드 ON 상태에서 Ctrl+S 저장
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+      e.preventDefault();
+      if (document.body.classList.contains('edit-mode')) saveLocal();
+    }
+  });
+</script>
+
+</body>
+</html>
