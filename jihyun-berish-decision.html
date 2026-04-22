@@ -186,17 +186,23 @@
 
 <!-- 1. 핵심 결론 -->
 <div class="card">
-  <h2><span class="num">★</span>현실 결론</h2>
+  <h2><span class="num">★</span>현실 결론 (2단계 의사결정)</h2>
   <div class="verdict">
-    <strong>🎯 하이브리드 추천 — 외주 공장에서 얼음 1,000개 생산(주력) + 사내 냉동고 3대는 '보관·QC·분할배송 허브'로 활용. 금형비는 베리쉬 별도 청구로 원가 깔끔. 개당 정상 제시가 6,500원 / 최저 4,500원 / BEP 3,000원.</strong>
+    <strong>🎯 1순위 — 외주 단독 (여유발주 10%) · 공장 QC 신뢰 확보 시 최적.<br>
+    🎯 2순위 — 하이브리드 (외주 800 + 사내 200) · QC 신뢰 불충분 시 백업.<br>
+    공통: 금형비 베리쉬 별도청구 · 개당 정상 제시가 6,500원 / 최저 4,500원.</strong>
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi danger"><div class="label">내부 생산 (냉동고 3대 풀가동)</div><div class="value">불가 → 제한가능</div><div class="sub">캐파 365개/40일 한계</div></div>
-    <div class="kpi success"><div class="label">외주 생산 + 사내 보관</div><div class="value">✅ 최적</div><div class="sub">캐파·리스크·원가 모두 해결</div></div>
-    <div class="kpi yellow"><div class="label">개당 실질 원가</div><div class="value">₩3,300</div><div class="sub">기존인력·냉동고·금형 제외</div></div>
-    <div class="kpi success"><div class="label">정상 제시가</div><div class="value">₩6,500</div><div class="sub">마진 약 49%</div></div>
-    <div class="kpi"><div class="label">예상 순이익</div><div class="value">₩321만</div><div class="sub">+ 금형비 별도 수익</div></div>
+    <div class="kpi success"><div class="label">⭐ 1순위 — 외주 단독 (여유발주)</div><div class="value">₩2,150</div><div class="sub">개당 원가 · 순이익 435만</div></div>
+    <div class="kpi yellow"><div class="label">2순위 — 하이브리드</div><div class="value">₩3,300</div><div class="sub">개당 원가 · 순이익 321만</div></div>
+    <div class="kpi danger"><div class="label">내부 100%</div><div class="value">불가</div><div class="sub">캐파·배송 이중 한계</div></div>
+    <div class="kpi success"><div class="label">정상 제시가</div><div class="value">₩6,500</div><div class="sub">마진 최대 67%</div></div>
+    <div class="kpi"><div class="label">결정 분기점</div><div class="value">QC 신뢰</div><div class="sub">샘플 테스트로 판단</div></div>
+  </div>
+
+  <div class="info" style="margin-top:10px;">
+    <strong>💡 핵심 논리:</strong> 외주 공장이 대빙 캐파 하루 10만개 수준이라면 <strong>1,100개 여유발주(불량률 10% 환산) 주고 공장에서 QC 후 1,000개 베리쉬 직송</strong>하면 사내 경유 불필요. 한 번에 끝. <strong>샘플 테스트에서 각인 품질·투명도 확인되면 외주 단독이 정답.</strong>
   </div>
 </div>
 
@@ -223,9 +229,56 @@
   </div>
 </div>
 
-<!-- 3. 하이브리드 설계 -->
+<!-- 2-A. 외주 단독 (여유발주) 1순위 -->
+<div class="card" style="border:3px solid var(--success); background:linear-gradient(135deg, #F0FAF8 0%, #FFFFFF 60%);">
+  <h2><span class="num">⭐</span>1순위 — 외주 단독 (불량률 환산 여유발주)</h2>
+
+  <h3>A-1. 작동 원리</h3>
+  <table>
+    <tr><th width="20%">단계</th><th>내용</th></tr>
+    <tr><td>① 주문</td><td>베리쉬 납품량 1,000개 + 불량 여유분 10% = <strong>외주 1,100개 발주</strong></td></tr>
+    <tr><td>② 생산·QC</td><td>부산 공장 반나절 생산 후 <strong>공장 내부 QC 전수검사</strong> (불량 선별)</td></tr>
+    <tr><td>③ 직송</td><td>냉동탑차로 <strong>공장 → 베리쉬 현장 직접 배송</strong> (사내 경유 X)</td></tr>
+    <tr><td>④ 인수</td><td>베리쉬 현장에서 1,000개 최종 인수확인 · 여유분은 클레임 대응용 보관</td></tr>
+  </table>
+
+  <h3>A-2. 실질 원가</h3>
+  <table>
+    <tr><th>분류</th><th>항목</th><th>계산 근거</th><th class="num">금액 (원)</th></tr>
+    <tr><td>A. 생산</td><td>각인얼음 1,100개 (10% 여유)</td><td>1,100 × 1,250원</td><td class="num">1,375,000</td></tr>
+    <tr><td>B. 세팅</td><td>공장 각인 몰드 세팅비</td><td>일회성</td><td class="num">200,000</td></tr>
+    <tr><td>C. 배송</td><td>냉동탑차 부산→수도권 직송</td><td>1회 · 드라이아이스 포함</td><td class="num">450,000</td></tr>
+    <tr class="success"><td>D. 관리</td><td><strong>기존 인력 (박지현 팀장)</strong></td><td>신규 지출 0</td><td class="num">0</td></tr>
+    <tr><td>E. 예비비</td><td>재시공·돌발비</td><td>5%</td><td class="num">100,000</td></tr>
+    <tr class="total"><td colspan="3">총원가 (금형비 별도)</td><td class="num">2,125,000</td></tr>
+    <tr class="total success"><td colspan="3"><strong>✅ 개당 실질 원가</strong></td><td class="num"><strong>약 2,150원</strong></td></tr>
+  </table>
+
+  <h3>A-3. 6,500원 납품 시 순이익</h3>
+  <table>
+    <tr><th>매출</th><th class="num">원가</th><th class="num">순이익</th><th class="num">마진율</th></tr>
+    <tr class="success"><td>6,500,000원 (6,500×1,000)</td><td class="num">2,125,000</td><td class="num"><strong>4,375,000</strong></td><td class="num"><strong>67%</strong></td></tr>
+  </table>
+
+  <div class="info">
+    <strong>💡 전제조건 (반드시 확인):</strong>
+    <ul style="margin-top:8px; padding-left:20px;">
+      <li>외주 공장 QC 시스템 신뢰 가능 (GS25 납품 이력 등 검증)</li>
+      <li>샘플 각인얼음 3~5개 사전 테스트 → 투명도·각인 품질 통과</li>
+      <li>공장 불량률이 10% 이내 (여유발주분으로 충분 커버)</li>
+      <li>베리쉬 현장 냉동고 용량 충분 (일괄 수령 가능)</li>
+    </ul>
+  </div>
+
+  <div class="alert">
+    <strong>⚠️ QC 실패 시 리스크:</strong> 베리쉬 현장 도착 후 불량 발견되면 재생산·재배송 불가(납기 실패) → <strong>샘플 테스트 단계에서 반드시 확정</strong>. 불합격 시 즉시 2순위(하이브리드)로 전환.
+  </div>
+</div>
+
+<!-- 3. 하이브리드 설계 (2순위 백업) -->
 <div class="card">
-  <h2><span class="num">2</span>하이브리드 운영 설계 (외주 70% + 내부 30%)</h2>
+  <h2><span class="num">2</span>2순위 (백업) — 하이브리드 (외주 70% + 내부 30%)</h2>
+  <p style="color:var(--gray); font-size:13px; margin-bottom:10px;">샘플 QC에서 외주 공장 품질이 불확실할 때의 대안</p>
 
   <h3>2-1. 역할 분담</h3>
   <table>
@@ -363,42 +416,54 @@
   </div>
 </div>
 
-<!-- 6. 내부 vs 외주 vs 하이브리드 -->
+<!-- 6. 내부 vs 외주 단독 vs 하이브리드 -->
 <div class="card">
-  <h2><span class="num">5</span>3가지 시나리오 최종 비교</h2>
+  <h2><span class="num">5</span>4가지 시나리오 최종 비교</h2>
   <table>
-    <tr><th>구분</th><th class="num">내부 100%</th><th class="num">외주 100%</th><th class="num"><strong>하이브리드 (추천)</strong></th></tr>
-    <tr><td>생산 가능성</td><td><span class="badge bad">불가 (60%)</span></td><td><span class="badge good">가능</span></td><td><span class="badge good">가능</span></td></tr>
-    <tr><td>배송 가능성</td><td><span class="badge bad">불가 (녹음·캐파)</span></td><td><span class="badge warn">가능 (QC無)</span></td><td><span class="badge good">가능 (QC有)</span></td></tr>
-    <tr><td>총원가 (기존인력 제외)</td><td class="num">배송 불가로 의미 없음</td><td class="num">285만원</td><td class="num"><strong>329만원</strong></td></tr>
-    <tr><td>개당 실질 원가</td><td class="num">—</td><td class="num">2,850원</td><td class="num"><strong>3,300원</strong></td></tr>
-    <tr><td>QC 수준</td><td>상</td><td>하 (원격)</td><td><strong>상 (사내 직접)</strong></td></tr>
-    <tr><td>납기 안정성</td><td>하 (배송 실패)</td><td>중 (배송 변수)</td><td><strong>상 (버퍼 有)</strong></td></tr>
-    <tr><td>불량 대응</td><td>가능하나 납품 불가</td><td>재외주 필요</td><td><strong>즉시 내부 보충</strong></td></tr>
-    <tr><td>베리쉬 신뢰 구축</td><td>—</td><td>중</td><td><strong>상</strong></td></tr>
-    <tr class="success"><td><strong>6,500원 납품 시 순이익</strong></td><td class="num">—</td><td class="num">365만</td><td class="num"><strong>321만 + 금형비 마진</strong></td></tr>
+    <tr>
+      <th>구분</th>
+      <th class="num">내부 100%</th>
+      <th class="num">외주+직송 (QC無)</th>
+      <th class="num" style="background:var(--success);"><strong>⭐ 외주 여유발주 (QC有)</strong></th>
+      <th class="num">하이브리드</th>
+    </tr>
+    <tr><td>생산 가능성</td><td><span class="badge bad">불가</span></td><td><span class="badge good">가능</span></td><td><span class="badge good">가능</span></td><td><span class="badge good">가능</span></td></tr>
+    <tr><td>배송 가능성</td><td><span class="badge bad">불가</span></td><td><span class="badge good">가능</span></td><td><span class="badge good">가능</span></td><td><span class="badge good">가능</span></td></tr>
+    <tr><td>발주량</td><td class="num">—</td><td class="num">1,000</td><td class="num"><strong>1,100 (여유 10%)</strong></td><td class="num">1,000 (외800+내200)</td></tr>
+    <tr><td>QC 주체</td><td>사내</td><td class="num"><span class="badge bad">없음</span></td><td class="num"><strong>공장 전수검사</strong></td><td>사내 (입고 후)</td></tr>
+    <tr><td>총원가</td><td class="num">—</td><td class="num">285만원</td><td class="num"><strong>213만원</strong></td><td class="num">329만원</td></tr>
+    <tr><td>개당 실질 원가</td><td class="num">—</td><td class="num">2,850원</td><td class="num"><strong>2,150원</strong></td><td class="num">3,300원</td></tr>
+    <tr><td>납기 단순성</td><td>—</td><td>상 (한번)</td><td><strong>상 (한번)</strong></td><td>중 (2단계)</td></tr>
+    <tr><td>불량 발견 시 대응</td><td>—</td><td>재외주 (실패)</td><td><strong>여유분 10% 커버</strong></td><td>사내 즉시 보충</td></tr>
+    <tr><td>전제 조건</td><td>—</td><td>—</td><td><strong>샘플 QC 통과 확보</strong></td><td>공장 QC 불신 시</td></tr>
+    <tr class="success"><td><strong>6,500원 납품 시 순이익</strong></td><td class="num">—</td><td class="num">365만</td><td class="num"><strong>437만</strong></td><td class="num">321만</td></tr>
+    <tr><td><strong>마진율</strong></td><td class="num">—</td><td class="num">56%</td><td class="num"><strong>67%</strong></td><td class="num">49%</td></tr>
   </table>
 
   <div class="comparison">
     <div class="good-col">
-      <h4>✅ 하이브리드 선택 이유</h4>
+      <h4>⭐ 외주 여유발주가 1순위인 이유</h4>
       <ul>
-        <li>냉동고 3대 + 기존 인력 = <strong>sunk cost 활용</strong></li>
-        <li>사내 QC로 <strong>베리쉬에 완벽품만 전달</strong></li>
-        <li>외주 대량 + 내부 정밀 = 캐파·품질 동시</li>
-        <li>납기 안전 버퍼 1~2주 확보</li>
-        <li>재발주 시 <strong>신뢰 구축 효과</strong> 최대</li>
+        <li><strong>원가 최저</strong> (개당 2,150원 · 순이익 437만)</li>
+        <li><strong>공정 단순</strong> — 공장→베리쉬 한 번에 끝</li>
+        <li><strong>불량 여유 10%</strong> 자동 커버 (클레임 대응도 가능)</li>
+        <li>사내 냉동고·인력 점유 0 — 다른 업무 방해 없음</li>
+        <li>재발주 시 동일 공정 반복 용이</li>
       </ul>
     </div>
     <div class="bad-col">
-      <h4>⚠️ 외주 100%가 아닌 이유</h4>
+      <h4>🔄 하이브리드로 전환하는 조건</h4>
       <ul>
-        <li>부산→베리쉬 직송 = 사내 QC 기회 0</li>
-        <li>공장이 찍어낸 불량품 그대로 납품 시 신뢰 붕괴</li>
-        <li>각인 위치·깊이 편차 사후 확인 불가</li>
-        <li>베리쉬 일정 변경 시 공장 대응 느림</li>
+        <li>샘플 각인 QC에서 투명도·각인 품질 <strong>불합격</strong></li>
+        <li>외주 공장 불량률이 10% 초과 가능성</li>
+        <li>베리쉬 현장 냉동고 용량 부족 → 분할 납품 필요</li>
+        <li>베리쉬가 "사내 최종 검수" 명시 요구</li>
       </ul>
     </div>
+  </div>
+
+  <div class="info" style="margin-top:14px;">
+    <strong>🎯 결정 순서:</strong> ① 샘플 3~5개 외주 제작 테스트 → ② 투명도·각인 품질 확인 → <strong>③ 합격 시 외주 여유발주(1순위) / 불합격 시 하이브리드(2순위) 전환</strong>. 이 순서만 지키면 리스크 최소화.
   </div>
 </div>
 
@@ -407,23 +472,28 @@
   <h2><span class="num">6</span>베리쉬 협상 가격표 (v2 · 금형비 별도)</h2>
 
   <div class="kpi-grid">
-    <div class="kpi danger"><div class="label">절대 방어선 (BEP)</div><div class="value">₩3,300</div><div class="sub">실질 원가 = 이하 거절</div></div>
-    <div class="kpi yellow"><div class="label">최저 수용가</div><div class="value">₩4,500</div><div class="sub">마진 27%</div></div>
-    <div class="kpi success"><div class="label">정상 제시가</div><div class="value">₩6,500</div><div class="sub">마진 49%</div></div>
-    <div class="kpi"><div class="label">최초 제시가</div><div class="value">₩8,000</div><div class="sub">마진 59% · 협상 여지</div></div>
+    <div class="kpi danger"><div class="label">절대 방어선 (BEP)</div><div class="value">₩2,150</div><div class="sub">외주 여유발주 원가</div></div>
+    <div class="kpi yellow"><div class="label">최저 수용가</div><div class="value">₩4,500</div><div class="sub">마진 52% (외주 기준)</div></div>
+    <div class="kpi success"><div class="label">정상 제시가</div><div class="value">₩6,500</div><div class="sub">마진 67% (외주 기준)</div></div>
+    <div class="kpi"><div class="label">최초 제시가</div><div class="value">₩8,000</div><div class="sub">마진 73%</div></div>
   </div>
 
-  <h3>6-1. 시나리오별 순이익 (실질 원가 329만 기준)</h3>
+  <h3>6-1. 시나리오별 순이익 (1순위=외주 213만 / 2순위=하이브리드 329만)</h3>
   <table>
-    <tr><th>시나리오</th><th class="num">개당</th><th class="num">1,000개 총액</th><th class="num">원가</th><th class="num">순이익</th><th class="num">마진율</th></tr>
-    <tr class="danger"><td>BEP (방어선)</td><td class="num">3,300</td><td class="num">330만</td><td class="num">329만</td><td class="num">1만</td><td class="num">0%</td></tr>
-    <tr><td>최저 수용</td><td class="num">4,500</td><td class="num">450만</td><td class="num">329만</td><td class="num">121만</td><td class="num">27%</td></tr>
-    <tr class="success"><td><strong>정상 제시</strong></td><td class="num"><strong>6,500</strong></td><td class="num"><strong>650만</strong></td><td class="num">329만</td><td class="num"><strong>321만</strong></td><td class="num"><strong>49%</strong></td></tr>
-    <tr><td>최초 제시</td><td class="num">8,000</td><td class="num">800만</td><td class="num">329만</td><td class="num">471만</td><td class="num">59%</td></tr>
+    <tr>
+      <th>납품가</th>
+      <th class="num">총매출</th>
+      <th class="num">⭐ 외주 여유발주 순이익</th>
+      <th class="num">하이브리드 순이익</th>
+    </tr>
+    <tr><td>8,000원 (최초 제시)</td><td class="num">800만</td><td class="num"><strong>587만 (73%)</strong></td><td class="num">471만 (59%)</td></tr>
+    <tr class="success"><td><strong>6,500원 (정상 제시) ⭐</strong></td><td class="num"><strong>650만</strong></td><td class="num"><strong>437만 (67%)</strong></td><td class="num">321만 (49%)</td></tr>
+    <tr><td>4,500원 (최저 수용)</td><td class="num">450만</td><td class="num">237만 (52%)</td><td class="num">121만 (27%)</td></tr>
+    <tr class="danger"><td>2,150원 (BEP)</td><td class="num">215만</td><td class="num">0</td><td class="num">-114만 (역마진)</td></tr>
   </table>
 
   <div class="alert">
-    <strong>⚠️ BEP 주의:</strong> 실질 현금 원가 329만 기준. 단 이는 <strong>기존 인력·냉동고가 sunk cost</strong>인 전제. 4,500원 아래 수락 시 기회비용 손실 → 절대 하한 4,500원 권장.
+    <strong>⚠️ 주의:</strong> 1순위(외주 여유발주)를 기준으로 협상. 하이브리드 전환 시에도 <strong>4,500원이 절대 하한</strong>. 그 이하는 기회비용 손실.
   </div>
 
   <h3>6-2. 금형비 별도 청구 (수익 보너스)</h3>
@@ -451,12 +521,13 @@
   <h2><span class="num">7</span>단계별 실행 로드맵 (D-40 역산)</h2>
 
   <div class="step-flow">
-    <div class="step"><span class="n">1</span><strong>D-40 ~ D-38</strong><br>베리쉬 확인 (주소·냉동고·예산·로고·저작권)</div>
-    <div class="step"><span class="n">2</span><strong>D-37 ~ D-35</strong><br>외주 3곳 RFQ + 샘플 각인 테스트</div>
-    <div class="step"><span class="n">3</span><strong>D-34 ~ D-32</strong><br>시안 확정 + 단가·계약 체결 (금형비 별도 포함)</div>
-    <div class="step"><span class="n">4</span><strong>D-31 ~ D-15</strong><br>외주 800개 생산 / 사내 냉동고 3대 보조 생산 200개 동시</div>
-    <div class="step"><span class="n">5</span><strong>D-14 ~ D-7</strong><br>외주분 사내 입고 + 전량 QC + 불량 내부 재생산</div>
-    <div class="step"><span class="n">6</span><strong>D-6 ~ D-Day</strong><br>포장·냉동탑차 예약·납품·잔금 청구</div>
+    <div class="step"><span class="n">1</span><strong>D-40 ~ D-38</strong><br>베리쉬 확인 (납기·주소·냉동고·로고·저작권)</div>
+    <div class="step"><span class="n">2</span><strong>D-37 ~ D-33</strong><br>외주 3곳 RFQ + <strong>샘플 각인 3~5개 제작·QC 테스트</strong></div>
+    <div class="step"><span class="n">3</span><strong>D-32</strong><br>🔀 <strong>샘플 합격 → 1순위 / 불합격 → 2순위 확정</strong></div>
+    <div class="step"><span class="n">4</span><strong>D-31 ~ D-29</strong><br>시안·단가·계약 체결 (금형비 별도)</div>
+    <div class="step"><span class="n">5A</span><strong>[1순위] D-28 ~ D-10</strong><br>외주 1,100개 (여유 10%) 생산 + 공장 전수QC</div>
+    <div class="step"><span class="n">5B</span><strong>[2순위] D-28 ~ D-10</strong><br>외주 800 + 사내 200 동시생산 → 사내 입고·QC</div>
+    <div class="step"><span class="n">6</span><strong>D-7 ~ D-Day</strong><br>냉동탑차 예약 · 베리쉬 직송 · 납품 · 잔금</div>
   </div>
 
   <h3>🔥 오늘~내일 (D-40 기준) 필수 체크</h3>
@@ -501,9 +572,9 @@
   <h2><span class="num">∞</span>귀환 3점 (CHEONGYE)</h2>
   <table>
     <tr><th width="20%">구분</th><th>내용</th></tr>
-    <tr><td><strong>① 중심 한 문장</strong></td><td>외주 800개 + 사내 냉동고 3대 200개 하이브리드로 개당 실질원가 3,300원에 생산, 베리쉬 6,500원 납품, 금형비 80만원 별도 청구, 순이익 321만원+α 확보.</td></tr>
-    <tr><td><strong>② 다음 질문</strong></td><td>베리쉬 납기가 6월 초 정확히 며칠인가? (D-40인지 D-35인지가 사내 생산 200개 스케줄의 분기점)</td></tr>
-    <tr><td><strong>③ 실행 한 점</strong></td><td>지금 바로 — 대표님께 위 코멘트 발송 + 베리쉬에 "① 정확 납기일 ② 수령 주소·냉동고 용량 ③ 로고 벡터파일 ④ 금형비 별도 80만원 예정 안내" 메시지 발송</td></tr>
+    <tr><td><strong>① 중심 한 문장</strong></td><td>1순위 외주 여유발주(1,100개·QC후 직송)로 개당 2,150원 · 6,500원 납품 시 순이익 437만. 샘플 QC 불합격 시 2순위 하이브리드 전환.</td></tr>
+    <tr><td><strong>② 다음 질문</strong></td><td>외주 공장 샘플 각인얼음 3~5개 QC 테스트 통과 가능한가? (이 결과가 1순위/2순위 분기점)</td></tr>
+    <tr><td><strong>③ 실행 한 점</strong></td><td>지금 바로 — ① 부산 빅볼/아이스팜/VONESTIS 3곳에 샘플 견적 요청 ② 베리쉬에 납기·주소·로고파일·저작권 5개 질문 발송 ③ 금형비 별도 80만원 방침 전달</td></tr>
   </table>
 </div>
 
