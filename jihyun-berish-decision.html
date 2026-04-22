@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>베리쉬 각인얼음 1,000개 — 의사결정 보드 | 박지현 팀장</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  :root {
+    --purple: #6B3FA0;
+    --purple-light: #E8DCF5;
+    --purple-dark: #4A2876;
+    --yellow: #FFD93D;
+    --yellow-light: #FFF4B8;
+    --danger: #E63946;
+    --success: #2A9D8F;
+    --gray: #6C757D;
+    --bg: #FAFAFC;
+    --card: #FFFFFF;
+    --text: #2B2D42;
+    --border: #E5E5EA;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, 'Pretendard', 'Malgun Gothic', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  header {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-dark) 100%);
+    color: white;
+    padding: 32px 28px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 24px rgba(107,63,160,0.2);
+  }
+  header h1 { font-size: 26px; margin-bottom: 8px; }
+  header .meta { font-size: 13px; opacity: 0.85; }
+  header .tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--purple-dark);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 12px;
+    margin-top: 10px;
+  }
+  .toolbar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    padding: 10px 18px;
+    border: 2px solid var(--purple);
+    background: white;
+    color: var(--purple);
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: var(--purple); color: white; }
+  .btn.active { background: var(--yellow); border-color: var(--yellow); color: var(--purple-dark); }
+  .btn.print { background: var(--purple); color: white; }
+  .btn.print:hover { background: var(--purple-dark); }
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 20px;
+    color: var(--purple-dark);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--yellow);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card h2 .num {
+    background: var(--purple);
+    color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .card h3 { font-size: 16px; color: var(--purple-dark); margin: 14px 0 8px; }
+
+  /* KPI */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: white;
+    border-left: 5px solid var(--purple);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+  .kpi.yellow { border-left-color: var(--yellow); }
+  .kpi.success { border-left-color: var(--success); }
+  .kpi.danger { border-left-color: var(--danger); }
+  .kpi .label { font-size: 12px; color: var(--gray); margin-bottom: 4px; }
+  .kpi .value { font-size: 22px; font-weight: 800; color: var(--purple-dark); }
+  .kpi .sub { font-size: 11px; color: var(--gray); margin-top: 4px; }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  th {
+    background: var(--purple);
+    color: white;
+    padding: 12px 10px;
+    text-align: left;
+    font-weight: 600;
+  }
+  th.num, td.num { text-align: right; }
+  td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:hover { background: var(--purple-light); }
+  tr.total {
+    background: var(--yellow-light) !important;
+    font-weight: 700;
+  }
+  tr.total td { border-top: 2px solid var(--yellow); }
+  tr.danger td { background: #FFE5E8; }
+  tr.success td { background: #E0F5F2; }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge.bad { background: var(--danger); color: white; }
+  .badge.good { background: var(--success); color: white; }
+  .badge.warn { background: var(--yellow); color: var(--purple-dark); }
+
+  .verdict {
+    background: linear-gradient(135deg, var(--yellow-light) 0%, #FFF9DB 100%);
+    border-left: 6px solid var(--yellow);
+    padding: 18px 22px;
+    border-radius: 8px;
+    margin: 16px 0;
+  }
+  .verdict strong { color: var(--purple-dark); font-size: 16px; }
+
+  .alert {
+    background: #FFE5E8;
+    border-left: 6px solid var(--danger);
+    padding: 14px 18px;
+    border-radius: 8px;
+    margin: 10px 0;
+    color: #8B1A1F;
+  }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .comparison > div {
+    padding: 18px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+  }
+  .comparison .bad-col {
+    background: #FFF5F5;
+    border-color: var(--danger);
+  }
+  .comparison .good-col {
+    background: #F0FAF8;
+    border-color: var(--success);
+  }
+  .comparison h4 { font-size: 15px; margin-bottom: 10px; }
+  .comparison .bad-col h4 { color: var(--danger); }
+  .comparison .good-col h4 { color: var(--success); }
+  .comparison ul { list-style: none; }
+  .comparison li { padding: 6px 0; font-size: 13px; }
+  .comparison li::before { content: "▸ "; color: var(--purple); font-weight: bold; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .checklist input[type="checkbox"] {
+    width: 18px; height: 18px; accent-color: var(--purple);
+  }
+  .checklist li.done { background: var(--purple-light); text-decoration: line-through; opacity: 0.7; }
+
+  .nav-dots {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav-dots a {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--purple-light);
+    border: 2px solid var(--purple);
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .nav-dots a:hover { background: var(--yellow); transform: scale(1.3); }
+
+  .footer {
+    text-align: center;
+    color: var(--gray);
+    font-size: 12px;
+    padding: 30px 0;
+  }
+
+  [contenteditable="true"] {
+    background: var(--yellow-light);
+    outline: 2px dashed var(--yellow);
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .comparison { grid-template-columns: 1fr; }
+    table { font-size: 12px; }
+    th, td { padding: 8px 6px; }
+    .nav-dots { display: none; }
+  }
+  @media print {
+    body { background: white; padding: 0; }
+    .toolbar, .nav-dots { display: none; }
+    .card { page-break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav-dots">
+  <a href="#summary" title="핵심 요약"></a>
+  <a href="#sec1" title="발주 개요"></a>
+  <a href="#sec2" title="내부 원가"></a>
+  <a href="#sec3" title="외주 원가"></a>
+  <a href="#sec4" title="비교"></a>
+  <a href="#sec5" title="협상"></a>
+  <a href="#sec6" title="액션"></a>
+</nav>
+
+<div class="wrap">
+
+<header>
+  <h1>베리쉬 각인얼음 1,000개 — 의사결정 보드</h1>
+  <div class="meta">📅 발주일 2026-04-21 · 납기 2026-06-10 (D-50) · 박지현 팀장 · 화경 작성</div>
+  <div class="tag">⚡ 무조건 성사 · 마이너스 금지 · 외주 전략 확정</div>
+</header>
+
+<div class="toolbar">
+  <button class="btn active" id="editBtn" onclick="toggleEdit()">✏️ 편집 모드</button>
+  <button class="btn" onclick="saveLocal()">💾 저장</button>
+  <button class="btn" onclick="resetLocal()">🔄 초기화</button>
+  <button class="btn print" onclick="window.print()">🖨 PDF 인쇄</button>
+  <button class="btn" onclick="copyShareLink()">🔗 공유링크 복사</button>
+</div>
+
+<!-- SUMMARY -->
+<div class="card" id="summary">
+  <h2><span class="num">★</span>한 줄 결론</h2>
+  <div class="verdict">
+    <strong>🎯 외주 100% — 부산 빅볼아이스 또는 아이스팜 공장 직송, 각인 몰드 30개만 내부 지급. 개당 최저 수용가 5,500원 / 정상 제시가 7,500원. 마이너스 절대 금지.</strong>
+  </div>
+
+  <div class="kpi-grid">
+    <div class="kpi danger"><div class="label">내부 생산 개당 원가</div><div class="value">₩11,500~14,000</div><div class="sub">❌ 설비·인건·공간 불가</div></div>
+    <div class="kpi success"><div class="label">외주 생산 개당 원가</div><div class="value">₩2,850~3,500</div><div class="sub">✅ 현실 가능</div></div>
+    <div class="kpi yellow"><div class="label">최저 수용가</div><div class="value">₩5,500</div><div class="sub">마진 30% 방어선</div></div>
+    <div class="kpi"><div class="label">정상 제시가</div><div class="value">₩7,500</div><div class="sub">마진 53%</div></div>
+    <div class="kpi"><div class="label">1,000개 총액 (정상)</div><div class="value">₩750만</div><div class="sub">순이익 400만</div></div>
+  </div>
+
+  <div class="alert">
+    <strong>⚠️ 절대 하지 말 것:</strong> ① 내부 냉동고에 1,000개 보관 ② 개별 드라이아이스 택배 분산 발송 ③ 개당 5,000원 이하 수락 ④ 로고 저작권 서면 없이 생산 진입
+  </div>
+</div>
+
+<!-- SEC 0: 구글독스 분석 검증 (2026-04-22 추가) -->
+<div class="card" id="sec0" style="border:3px solid var(--yellow); background:linear-gradient(135deg, #FFF9DB 0%, #FFFFFF 60%);">
+  <h2><span class="num">✓</span>구글독스 "베리쉬 프로젝트 최종 지출 및 손익 분석" 검증 <span class="badge warn">2026-04-22 추가</span></h2>
+  <div class="verdict">
+    <strong>🎯 결론: 구글독스 안(내부생산 550만 제안가)은 냉동설비·정상 인건·로스 리스크 누락 → 실제 내부 원가 약 1,016만 → 466만 역마진.<br>→ 제 4/21 HTML 보드(외주 100% + 정상가 7,500원) 기준이 현실적. 제안가 750만 + 몰드비 별도 청구가 정답.</strong>
+  </div>
+
+  <h3>0-1. 두 분석 비교</h3>
+  <table>
+    <tr><th>항목</th><th class="num">구글독스 (내부)</th><th class="num">HTML 보드 (외주)</th><th>판정</th></tr>
+    <tr><td>기간</td><td class="num">14일</td><td class="num">50일 (D-50 기준)</td><td>📌 6/10 납기 OK</td></tr>
+    <tr><td>생산 원가</td><td class="num">384.6만</td><td class="num">외주 285~350만 / 내부 1,130~1,400만</td><td><span class="badge bad">내부 누락 多</span></td></tr>
+    <tr class="danger"><td>냉동설비 렌탈</td><td class="num"><strong>0원 (누락)</strong></td><td class="num">280만 (챔버+냉동고 2대)</td><td>❌ 치명 누락</td></tr>
+    <tr class="danger"><td>인건비</td><td class="num">61.6만 (4h×14일)</td><td class="num">480만 + QC 12만</td><td>❌ 비현실</td></tr>
+    <tr><td>몰드</td><td class="num">100개×22,000=220만</td><td class="num">30개×20,000=60만</td><td>⚠ 과잉</td></tr>
+    <tr><td>배송</td><td class="num">퀵 63만 (14회 분산)</td><td class="num">냉동탑차 1회 45만</td><td>⚠ 녹음 리스크</td></tr>
+    <tr><td>로스율</td><td class="num">30% (+430개 추가)</td><td class="num">10% (공장 QC)</td><td>⚠ 곡면 각인 1.5~2배</td></tr>
+    <tr><td>제안가</td><td class="num">550만</td><td class="num">750만 (정상) / 550만 (최저)</td><td>📌 구글독스 = 최저선</td></tr>
+  </table>
+
+  <h3>0-2. 구글독스에서 빠진 실비</h3>
+  <table>
+    <tr><th>#</th><th>누락 항목</th><th class="num">예상 금액</th></tr>
+    <tr><td>1</td><td>급속냉동 챔버 렌탈 (투명얼음 필수)</td><td class="num">2,000,000</td></tr>
+    <tr><td>2</td><td>보관 냉동고 2대 × 14일</td><td class="num">약 250,000</td></tr>
+    <tr><td>3</td><td>RO 필터 교체</td><td class="num">70,000</td></tr>
+    <tr><td>4</td><td>인건 보정 (실제 8h + QC 2h)</td><td class="num">+3,800,000</td></tr>
+    <tr><td>5</td><td>예비비 (녹음·재생산) 5%</td><td class="num">약 200,000</td></tr>
+    <tr class="total"><td colspan="2"><strong>추가 필요 원가</strong></td><td class="num"><strong>+6,320,000</strong></td></tr>
+    <tr class="total danger"><td colspan="2"><strong>🚫 내부 생산 실제 원가</strong></td><td class="num"><strong>약 10,166,000</strong></td></tr>
+    <tr class="total danger"><td colspan="2"><strong>🚫 제안가 550만 적용 시 손실</strong></td><td class="num"><strong>-4,660,000 역마진</strong></td></tr>
+  </table>
+
+  <h3>0-3. 팀장님 결정 필요 3가지</h3>
+  <ul class="checklist" id="cl0">
+    <li><input type="checkbox"> ① 구글독스 제안가 550만 → <strong>750만으로 상향 수정</strong> (마진 30% → 60%)</li>
+    <li><input type="checkbox"> ② 몰드 방식 결정: 실리콘 30개 60만 (1회성) vs 정식 금형 200~400만 (재발주 포석)</li>
+    <li><input type="checkbox"> ③ 베리쉬 <strong>재발주 가능성 확인</strong> → 금형 투자 결정 분기점</li>
+  </ul>
+</div>
+
+<!-- SEC 1: 발주 개요 -->
+<div class="card" id="sec1">
+  <h2><span class="num">1</span>발주 개요 (베리쉬 요구)</h2>
+  <table>
+    <tr><th width="25%">항목</th><th>내용</th></tr>
+    <tr><td>발주 업체</td><td contenteditable="true">베리쉬 (Berish)</td></tr>
+    <tr><td>품목</td><td contenteditable="true">커스텀 로고 각인 투명얼음 1,000개 (볼 64mm 추정)</td></tr>
+    <tr><td>납기</td><td contenteditable="true">2026-06-10 (D-50)</td></tr>
+    <tr><td>각인 시안 확정 목표</td><td contenteditable="true">2026-04-28 (D-43)</td></tr>
+    <tr><td>단가 합의 목표</td><td contenteditable="true">2026-05-02 (D-39)</td></tr>
+    <tr><td>베리쉬 예상 사용처</td><td contenteditable="true">미확인 — 브랜드 이벤트/납품처/오픈행사 여부 확인 필요</td></tr>
+    <tr><td>납품 장소 / 냉동고 용량</td><td contenteditable="true">미확인 — 필수 확인</td></tr>
+  </table>
+</div>
+
+<!-- SEC 2: 내부 생산 원가 -->
+<div class="card" id="sec2">
+  <h2><span class="num">2</span>내부 생산 실제 총원가 <span class="badge bad">불가</span></h2>
+  <p style="color:var(--gray); font-size:13px; margin-bottom:10px;">— 설비·유틸·인건·소모품·배송·불량·리스크 전부 반영 (50일 기준)</p>
+  <table>
+    <tr><th>분류</th><th>항목</th><th>계산 근거</th><th class="num">금액 (원)</th></tr>
+    <tr><td rowspan="3">A. 설비</td><td>급속냉동 챔버 렌탈</td><td>업소용 -30℃ × 50일</td><td class="num">2,000,000</td></tr>
+    <tr><td>보관 냉동고 렌탈</td><td>500L × 2대 × 50일</td><td class="num">800,000</td></tr>
+    <tr><td>각인 실리콘 몰드</td><td>30개 × 20,000원</td><td class="num">600,000</td></tr>
+    <tr><td rowspan="3">B. 유틸리티</td><td>전기세</td><td>3,600kWh × 150원 (산업용)</td><td class="num">540,000</td></tr>
+    <tr><td>수도세</td><td>얼음 410L + 세척 200L</td><td class="num">40,000</td></tr>
+    <tr><td>RO 필터 교체</td><td>투명얼음 핵심</td><td class="num">70,000</td></tr>
+    <tr><td rowspan="2">C. 인건비</td><td>생산 담당 1명</td><td>8h × 50일 × 12,000</td><td class="num">4,800,000</td></tr>
+    <tr><td>QC·탈형 보조</td><td>2h × 50일</td><td class="num">120,000</td></tr>
+    <tr><td rowspan="2">D. 소모품</td><td>드라이아이스 (보관)</td><td>5kg × 50일 × 3,000</td><td class="num">750,000</td></tr>
+    <tr><td>포장재</td><td>1,000개 × 500원</td><td class="num">500,000</td></tr>
+    <tr><td rowspan="2">E. 배송</td><td>냉동탑차 대절</td><td>수도권 왕복 1회</td><td class="num">350,000</td></tr>
+    <tr><td>배송용 드라이아이스</td><td>10kg</td><td class="num">30,000</td></tr>
+    <tr><td>F. 불량</td><td>불량 10% 재생산</td><td>100개 × 2,000원</td><td class="num">200,000</td></tr>
+    <tr><td>G. 예비비</td><td>녹음·파손·재배송</td><td>전체 5%</td><td class="num">500,000</td></tr>
+    <tr class="total"><td colspan="3">합계 (금형 별도)</td><td class="num">11,300,000 ~ 14,000,000</td></tr>
+    <tr class="total danger"><td colspan="3"><strong>🚫 개당 원가</strong></td><td class="num"><strong>11,300 ~ 14,000</strong></td></tr>
+  </table>
+  <div class="alert">
+    <strong>판정:</strong> 개당 1.1만~1.4만원 → 베리쉬가 5,000원에 받고 싶다 하면 <strong>개당 6,000~9,000원 역마진</strong>. 내부 생산 즉시 배제.
+  </div>
+</div>
+
+<!-- SEC 3: 외주 원가 -->
+<div class="card" id="sec3">
+  <h2><span class="num">3</span>외주 생산 실제 총원가 <span class="badge good">추천</span></h2>
+
+  <h3>3-1. 외주 후보 3곳</h3>
+  <table>
+    <tr><th>순위</th><th>업체</th><th>근거</th><th>강점</th><th>상태</th></tr>
+    <tr class="success"><td>1</td><td><strong>부산 빅볼아이스 공장</strong></td><td>하루 10만개 대빙 가공, GS25 납품</td><td>캐파 압도적, 1,000개 반나절</td><td contenteditable="true">컨택 필요</td></tr>
+    <tr><td>2</td><td><strong>아이스팜 공장</strong></td><td>과거 거래 경험</td><td>관계 有, 협상 유리</td><td contenteditable="true">연락처 확인 중</td></tr>
+    <tr><td>3</td><td><strong>VONESTIS</strong></td><td>과거 각인 견적서 존재</td><td>각인 경험</td><td contenteditable="true">견적 재요청</td></tr>
+  </table>
+
+  <h3>3-2. 외주 총원가 (1,000개)</h3>
+  <table>
+    <tr><th>분류</th><th>항목</th><th>계산 근거</th><th class="num">금액 (원)</th></tr>
+    <tr><td>A. 외주 생산</td><td>각인얼음 개당</td><td>1,000 × 1,250원 (중간값)</td><td class="num">1,250,000</td></tr>
+    <tr><td>B. 각인 몰드</td><td>실리콘 30개</td><td>공장 전달용</td><td class="num">600,000</td></tr>
+    <tr><td>C. 배송 (공장→베리쉬 직송)</td><td>냉동탑차 부산→수도권 1회</td><td>드라이아이스 포함</td><td class="num">450,000</td></tr>
+    <tr><td>D. 내부 관리</td><td>발주·QC·소통</td><td>1주 인건비</td><td class="num">300,000</td></tr>
+    <tr><td>E. 예비비</td><td>재시공·샘플</td><td>5%</td><td class="num">130,000</td></tr>
+    <tr class="total"><td colspan="3">합계 (금형 별도)</td><td class="num">2,730,000 ~ 3,500,000</td></tr>
+    <tr class="total success"><td colspan="3"><strong>✅ 개당 원가</strong></td><td class="num"><strong>2,730 ~ 3,500</strong></td></tr>
+  </table>
+
+  <h3>3-3. 각인 몰드 — 실리콘 vs 금형</h3>
+  <table>
+    <tr><th>구분</th><th>실리콘 몰드 30개</th><th>정식 금형 1벌</th></tr>
+    <tr><td>초기 비용</td><td class="num">60만원</td><td class="num">200~400만원</td></tr>
+    <tr><td>수명</td><td>단기 (1회성)</td><td>장기 (재발주 대응)</td></tr>
+    <tr><td>리드타임</td><td>1주</td><td>3~4주</td></tr>
+    <tr><td>추천 조건</td><td>1회성 납품</td><td>베리쉬 재발주 확약 시 (50% 부담 협상)</td></tr>
+  </table>
+</div>
+
+<!-- SEC 4: 최종 비교 -->
+<div class="card" id="sec4">
+  <h2><span class="num">4</span>최종 비교 — 내부 vs 외주</h2>
+  <table>
+    <tr><th>구분</th><th class="num">내부 생산</th><th class="num">외주 생산</th><th>차이</th></tr>
+    <tr><td>총원가</td><td class="num">1,150~1,400만원</td><td class="num">285~350만원</td><td><strong>4배</strong></td></tr>
+    <tr><td>개당 원가</td><td class="num">11,500~14,000원</td><td class="num">2,850~3,500원</td><td>약 4배</td></tr>
+    <tr><td>납기 가능성</td><td><span class="badge bad">불가</span></td><td><span class="badge good">가능</span></td><td></td></tr>
+    <tr><td>배송 리스크</td><td>상(自 포장배송)</td><td>하(공장 직송)</td><td></td></tr>
+    <tr><td>공간 점유</td><td>챔버+냉동고 2대</td><td>없음</td><td></td></tr>
+    <tr><td>인력 부담</td><td>전담 1명 50일</td><td>관리자 1주</td><td></td></tr>
+    <tr class="success"><td>마진 2x 기준 납품가</td><td class="num">23,000~28,000원 (비현실)</td><td class="num"><strong>6,000~7,000원</strong></td><td>외주만 성립</td></tr>
+  </table>
+
+  <div class="comparison">
+    <div class="bad-col">
+      <h4>❌ 내부 생산 치명적 이유</h4>
+      <ul>
+        <li>급속냉동 챔버 + 보관 냉동고 = 200만원 이상 50일 점유</li>
+        <li>전기세 54만원 · 인건비 500만원 고정비 폭발</li>
+        <li>듀오메이커 몰드 불량률 1.5~2배 (곡면 각인)</li>
+        <li>1,000개 분산 드라이아이스 배송 = 녹음 리스크</li>
+        <li>개당 역마진 6,000~9,000원</li>
+      </ul>
+    </div>
+    <div class="good-col">
+      <h4>✅ 외주 생산 승리 이유</h4>
+      <ul>
+        <li>부산 빅볼 공장 하루 10만개 캐파 → 1,000개 반나절</li>
+        <li>공장 직송(냉동탑차) = 녹음 리스크 0</li>
+        <li>내부 공간·인력 0 점유</li>
+        <li>각인 몰드 30개만 지급하면 끝</li>
+        <li>개당 마진 2,000~4,500원 확보</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SEC 5: 협상 가격 -->
+<div class="card" id="sec5">
+  <h2><span class="num">5</span>베리쉬 협상 가격표</h2>
+
+  <div class="kpi-grid">
+    <div class="kpi danger"><div class="label">절대 방어선 (BEP)</div><div class="value">₩3,500</div><div class="sub">이하 무조건 거절</div></div>
+    <div class="kpi yellow"><div class="label">최저 수용가</div><div class="value">₩5,500</div><div class="sub">마진 36%</div></div>
+    <div class="kpi success"><div class="label">정상 제시가</div><div class="value">₩7,500</div><div class="sub">마진 53%</div></div>
+    <div class="kpi"><div class="label">최초 제시가</div><div class="value">₩9,000</div><div class="sub">협상 여지 카드</div></div>
+  </div>
+
+  <h3>5-1. 시나리오별 총액 & 순이익</h3>
+  <table>
+    <tr><th>시나리오</th><th class="num">개당</th><th class="num">1,000개 총액</th><th class="num">원가</th><th class="num">순이익</th><th class="num">마진율</th></tr>
+    <tr class="danger"><td>BEP (방어선)</td><td class="num">3,500</td><td class="num">350만</td><td class="num">300만</td><td class="num">50만</td><td class="num">14%</td></tr>
+    <tr><td>최저 수용</td><td class="num">5,500</td><td class="num">550만</td><td class="num">300만</td><td class="num">250만</td><td class="num">45%</td></tr>
+    <tr class="success"><td><strong>정상 제시</strong></td><td class="num"><strong>7,500</strong></td><td class="num"><strong>750만</strong></td><td class="num">300만</td><td class="num"><strong>450만</strong></td><td class="num"><strong>60%</strong></td></tr>
+    <tr><td>최초 제시</td><td class="num">9,000</td><td class="num">900만</td><td class="num">300만</td><td class="num">600만</td><td class="num">67%</td></tr>
+  </table>
+
+  <h3>5-2. 협상 카드 (우리 무기)</h3>
+  <table>
+    <tr><th>카드</th><th>내용</th><th>언제 쓸까</th></tr>
+    <tr><td>① 프리미엄 포지셔닝</td><td>"부산 빅볼은 3,500원, 우리는 투명+커스텀 각인"</td><td>가격 깎자 할 때</td></tr>
+    <tr><td>② 금형 부담 협상</td><td>"정식 금형은 재발주 시 50% 환급"</td><td>재발주 의사 떠볼 때</td></tr>
+    <tr><td>③ 배송비 별도</td><td>착불 또는 베리쉬 자체 픽업</td><td>단가 방어 최후</td></tr>
+    <tr><td>④ 분할 납품 수수료</td><td>일괄 무료 / 분할 시 +50만원</td><td>수량 쪼개자 할 때</td></tr>
+    <tr><td>⑤ 확장 제안</td><td>정기 분기 납품 시 단가 -10%</td><td>관계 확장 트리거</td></tr>
+  </table>
+
+  <h3>5-3. 배송 옵션 (최종 권장)</h3>
+  <table>
+    <tr><th>방식</th><th>비용</th><th>리스크</th><th>권장</th></tr>
+    <tr class="success"><td><strong>공장→베리쉬 직송</strong> (냉동탑차)</td><td class="num">45만</td><td>하</td><td>⭐ 최우선</td></tr>
+    <tr><td>우리 창고 경유 1회 일괄</td><td class="num">65만</td><td>중</td><td>QC 필요 시</td></tr>
+    <tr><td>드라이아이스 분산 택배</td><td class="num">90~120만</td><td>상</td><td>❌</td></tr>
+    <tr><td>베리쉬 자체 픽업</td><td class="num">0</td><td>하</td><td>가격 방어 카드</td></tr>
+  </table>
+</div>
+
+<!-- SEC 6: 액션 -->
+<div class="card" id="sec6">
+  <h2><span class="num">6</span>실행 체크리스트 (D-50 역산)</h2>
+
+  <h3>🔥 48시간 내 (D-48 이전)</h3>
+  <ul class="checklist" id="cl1">
+    <li><input type="checkbox"> 베리쉬에 확인: 납품 주소 / 냉동고 용량 / 사용 목적 / 예산대</li>
+    <li><input type="checkbox"> 베리쉬에 요청: 로고 AI/벡터 파일 + 저작권 사용 동의서</li>
+    <li><input type="checkbox"> 부산 빅볼아이스 공장 컨택 (각인얼음 1,000개 견적)</li>
+    <li><input type="checkbox"> 아이스팜 공장 과거 담당자 연락</li>
+    <li><input type="checkbox"> VONESTIS 견적서 원본 찾아 단가 확인</li>
+  </ul>
+
+  <h3>📅 1주 내 (D-43 · 4/28 시안 확정)</h3>
+  <ul class="checklist" id="cl2">
+    <li><input type="checkbox"> 외주 3곳 RFQ 견적 수취 · 비교표 작성</li>
+    <li><input type="checkbox"> 각인 시안 2~3안 베리쉬 송부 → 확정</li>
+    <li><input type="checkbox"> 실리콘 vs 금형 결정 (재발주 의사 확인 후)</li>
+    <li><input type="checkbox"> 샘플 각인 얼음 3개 테스트 (불량률 측정)</li>
+  </ul>
+
+  <h3>💰 D-39 (5/2 단가 합의)</h3>
+  <ul class="checklist" id="cl3">
+    <li><input type="checkbox"> 베리쉬 최초 제시가 9,000원 발송</li>
+    <li><input type="checkbox"> 협상 마지노선 5,500원 내부 결재</li>
+    <li><input type="checkbox"> 계약서: 저작권·납기·불량교환·결제조건(선금 30~50%)</li>
+    <li><input type="checkbox"> 선금 입금 확인 후 본 생산 지시</li>
+  </ul>
+
+  <h3>🏭 D-35 ~ D-7 (5/6 ~ 6/3 생산)</h3>
+  <ul class="checklist" id="cl4">
+    <li><input type="checkbox"> 1차 500개 생산 · QC · 샘플 베리쉬 승인</li>
+    <li><input type="checkbox"> 2차 500개 생산</li>
+    <li><input type="checkbox"> 냉동탑차 예약 (공장→베리쉬)</li>
+  </ul>
+
+  <h3>🚚 D-6 ~ D-Day (6/4 ~ 6/10 납품)</h3>
+  <ul class="checklist" id="cl5">
+    <li><input type="checkbox"> 최종 QC · 포장 완료</li>
+    <li><input type="checkbox"> 냉동 직송 출발</li>
+    <li><input type="checkbox"> 베리쉬 수령 확인 · 잔금 청구</li>
+    <li><input type="checkbox"> 납품 후 재발주 제안 (정기 분기 계약)</li>
+  </ul>
+</div>
+
+<!-- 귀환 -->
+<div class="card" style="background:linear-gradient(135deg, var(--purple-light) 0%, var(--yellow-light) 100%); border:2px solid var(--yellow);">
+  <h2><span class="num">∞</span>귀환 3점 (CHEONGYE)</h2>
+  <table>
+    <tr><th width="20%">구분</th><th>내용</th></tr>
+    <tr><td><strong>① 중심 한 문장</strong></td><td>베리쉬 1,000개 각인얼음은 외주 100% + 각인 몰드 30개 지급 + 정상가 7,500원으로 순이익 450만원 확보한다.</td></tr>
+    <tr><td><strong>② 다음 질문</strong></td><td>베리쉬는 1회성 이벤트인가, 분기 정기 납품으로 확장 가능한가? (재발주 의사 확인이 금형 투자 결정의 분기점)</td></tr>
+    <tr><td><strong>③ 실행 한 점</strong></td><td>지금 바로 — 베리쉬에 "납품 주소·냉동고·예산·로고파일·저작권" 5개 질문 메시지 발송</td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  天啓 WORKSPACE · CHEONGYE Protocol v2.0 · 박지현 팀장 × 화경 · 2026-04-21 작성<br>
+  쥬얼아이스 내부기밀 · 외부 공유 금지
+</div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'berrish_decision_board_v1';
+
+  function toggleEdit() {
+    const btn = document.getElementById('editBtn');
+    const editables = document.querySelectorAll('[contenteditable]');
+    const isEditing = btn.classList.toggle('active');
+    editables.forEach(el => {
+      el.setAttribute('contenteditable', isEditing ? 'true' : 'false');
+    });
+    btn.textContent = isEditing ? '✏️ 편집 모드 (ON)' : '✏️ 편집 모드';
+  }
+
+  function saveLocal() {
+    const data = {
+      edits: {},
+      checks: {}
+    };
+    document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+      data.edits[i] = el.innerHTML;
+    });
+    document.querySelectorAll('.checklist input[type=checkbox]').forEach((cb, i) => {
+      data.checks[i] = cb.checked;
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    alert('✅ 저장됨 (이 브라우저)');
+  }
+
+  function loadLocal() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+      if (data.edits[i] !== undefined) el.innerHTML = data.edits[i];
+    });
+    document.querySelectorAll('.checklist input[type=checkbox]').forEach((cb, i) => {
+      if (data.checks[i]) {
+        cb.checked = true;
+        cb.closest('li').classList.add('done');
+      }
+    });
+  }
+
+  function resetLocal() {
+    if (!confirm('모든 편집·체크 내용을 초기화하시겠어요?')) return;
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+
+  function copyShareLink() {
+    navigator.clipboard.writeText(location.href);
+    alert('🔗 현재 URL 복사됨 — 공유하세요');
+  }
+
+  document.querySelectorAll('.checklist input[type=checkbox]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      cb.closest('li').classList.toggle('done', cb.checked);
+      saveLocal();
+    });
+  });
+
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    el.addEventListener('blur', saveLocal);
+  });
+
+  window.addEventListener('load', loadLocal);
+</script>
+
+</body>
+</html>
