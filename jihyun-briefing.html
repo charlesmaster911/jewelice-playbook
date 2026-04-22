@@ -86,6 +86,31 @@
   .dday.d7 { background: var(--yellow-dark); }
   .dday.d10 { background: var(--gray-400); }
 
+  /* 업무 주체 뱃지 */
+  .owner { display: inline-block; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-weight: 800; margin-right: 4px; letter-spacing: 0.3px; }
+  .owner-charles { background: #4C1D95; color: #F5D99C; }
+  .owner-jihyun { background: #F59E0B; color: #78350F; }
+  .owner-cm { background: #DB2777; color: white; }
+  .owner-amd { background: #2563EB; color: white; }
+  .owner-support { background: #059669; color: white; }
+  .owner-all { background: #6B7280; color: white; }
+
+  /* 주체별 섹션 레이블 */
+  .owner-group-head {
+    display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+    border-radius: 8px; font-size: 13px; font-weight: 800; margin: 18px 0 10px;
+  }
+  .owner-group-head.charles { background: #4C1D95; color: white; }
+  .owner-group-head.jihyun { background: #F59E0B; color: #78350F; }
+  .owner-group-head.team { background: #374151; color: white; }
+
+  /* 주체별 범례 */
+  .owner-legend {
+    display: flex; gap: 8px; padding: 10px 16px; background: #F3F4F6;
+    border-radius: 8px; font-size: 11.5px; flex-wrap: wrap; margin-bottom: 16px;
+  }
+  .owner-legend b { font-size: 11px; }
+
   /* 편집모드 toolbar */
   .edit-toolbar { position: fixed; top: 16px; right: 16px; z-index: 1000; background: white; padding: 8px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); display: flex; gap: 6px; border: 2px solid var(--purple); }
   .edit-toolbar button { padding: 8px 14px; border: none; border-radius: 8px; font-weight: 800; font-size: 12px; cursor: pointer; transition: all 0.15s; font-family: inherit; }
@@ -149,6 +174,16 @@
     ③ 유튜브 지원 마감 D-0 · 와디즈 광고 3건 집행 시작
   </div>
 
+  <!-- 업무 주체 구분 범례 -->
+  <div class="owner-legend">
+    <span><b style="color:#4C1D95;">👑 대표</b> = 찰스 (Q2·매출·전략·MASTER BRIEF)</span>
+    <span><b style="color:#F59E0B;">🎯 팀장</b> = 쥬얼아이스 (팀 관리·의사결정·운영)</span>
+    <span><b style="color:#DB2777;">📣 콘텐츠 마케터</b></span>
+    <span><b style="color:#2563EB;">🛍️ AMD</b></span>
+    <span><b style="color:#059669;">🧰 경영지원</b></span>
+    <span><b style="color:#6B7280;">🌐 공통</b></span>
+  </div>
+
   <!-- KPI -->
   <section>
     <div class="section-header"><h2>📊 이번주 핵심지표</h2><span class="tag">KPI</span></div>
@@ -174,43 +209,55 @@
 
       <div class="item done">
         <div class="time">🔥 종일</div>
-        <div class="title">브랜드커넥트 공동구매(아들속에~) 시작</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>브랜드커넥트 공동구매(아들속에~) 시작</div>
         <div class="desc">인스타 공동구매 2호 런칭 · 초기 24h 모니터링</div>
       </div>
 
       <div class="item done">
         <div class="time">📦 종일</div>
-        <div class="title">아블러 새컬러 샘플 확인</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>아블러 새컬러 샘플 확인</div>
         <div class="desc">5차 발주 7,300pcs 관련 샘플 도착 · 품질 검수</div>
       </div>
 
       <div class="item done">
         <div class="time">🕚 11:00</div>
-        <div class="title">콘텐츠 마케터 후보 면접</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>콘텐츠 마케터 후보 면접 (오전)</div>
         <div class="desc">2차 후보자 면접 진행</div>
       </div>
 
       <div class="item done">
         <div class="time">🕑 14:00</div>
-        <div class="title">콘텐츠 마케터 후보 면접 (심층)</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>콘텐츠 마케터 후보 면접 (심층)</div>
         <div class="desc">포지션 비교 · 최종 선발 검토</div>
       </div>
 
       <div class="item done">
         <div class="time">📄 문서 작성</div>
-        <div class="title">허브 연동 문서 · 온보딩 3종 대규모 정비</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>허브 연동 문서 · 온보딩 3종 대규모 정비</div>
         <div class="desc">AMD·경영지원·콘텐츠 마케터 온보딩 통일 · 아이디어 누적 박스 설치 · 개인 이름 전수 제거</div>
       </div>
 
       <div class="item done">
         <div class="time">🎯 와디즈</div>
-        <div class="title">와디즈 재고·이벤트 3종·미디어믹스 9건 확정</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>와디즈 재고·이벤트 3종·미디어믹스 9건 확정</div>
         <div class="desc">리워드 1 조합세트에 보관통+집게 증정 추가 · 1차 가용재고 확정</div>
       </div>
 
       <div class="item done">
+        <div class="time">📧 세무</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>세무업체 교체 4곳 견적 요청</div>
+        <div class="desc">자비스·세무특공대·혜움·우대영 · 세무특공대 답변 수신 (월 18만원~)</div>
+      </div>
+
+      <div class="item done">
+        <div class="time">📮 21:08</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>MASTER BRIEF 이메일 발송 (100억 로드맵)</div>
+        <div class="desc">각인 서비스 + 이번주 실행안 · 찰스+쥬얼아이스 공동 결정 요청</div>
+      </div>
+
+      <div class="item done">
         <div class="time">⏰ 08:28</div>
-        <div class="title">자동 업데이트 크론 설정</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>자동 업데이트 크론 설정</div>
         <div class="desc">매일 08:28에 허브 연동 문서 4종 자동 업데이트</div>
       </div>
     </div>
@@ -223,68 +270,92 @@
       </div>
 
       <div class="item focus">
+        <div class="time">🎯 대표 Q2</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>Q2 선포·시스템 세팅일 (매출 500만 목표)</div>
+        <div class="desc">Q2 선포 정리 + 광고 재세팅 + 마케팅-에이전트-팀 선물세트 랜딩 초안 + CHEONGYE 글 1편 · 딥워크 4h (09:00~13:00)</div>
+      </div>
+
+      <div class="item focus">
         <div class="time">🎯 입사일</div>
-        <div class="title">🎉 콘텐츠 마케터 첫 출근 환영</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>🎉 콘텐츠 마케터 첫 출근 환영</div>
         <div class="desc">온보딩 문서 3종 전달 (콘텐츠 마케터·AMD·경영지원) · 계정 권한 발급 · 잔디 초대 · 업무지시서 공유 · 허브 URL 북마크 안내</div>
+      </div>
+
+      <div class="item focus">
+        <div class="time">🎓 Day 1</div>
+        <div class="title"><span class="owner owner-cm">📣 콘텐츠 마케터</span>온보딩 Day 1 · 환영 + 문서 정독</div>
+        <div class="desc">온보딩 페이지 정독 · 브랜드 컨셉북 · 광고 에이전시 6곳 자료 · 프로그레스미디어 DAILY REPORT 접근</div>
       </div>
 
       <div class="item urgent">
         <div class="time">🔥 오늘 마감</div>
-        <div class="title">세무 1분기 매출내역 최종 컨펌 회신</div>
-        <div class="desc">세무법인함께 (tax@jpsemu.com) · 경영지원 검토 → 쥬얼아이스 최종 회신 · <b>오늘까지 필수</b></div>
+        <div class="title"><span class="owner owner-support">🧰 경영지원</span>세무 1분기 매출내역 최종 컨펌 회신</div>
+        <div class="desc">세무법인함께 (tax@jpsemu.com) · 경영지원 검토 → 팀장 최종 회신 · <b>오늘까지 필수</b></div>
       </div>
 
       <div class="item urgent">
         <div class="time">🚨 D-1</div>
-        <div class="title">⚠️ 유튜브 마케팅 지원 신청 (성남산업진흥원)</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>⚠️ 유튜브 마케팅 지원 신청 (성남산업진흥원)</div>
         <div class="desc">snip.or.kr · 마감 4/23 · <b>오늘 마감 전 제출 필수</b></div>
       </div>
 
       <div class="item urgent">
         <div class="time">🚨 D-2</div>
-        <div class="title">🚨 소상공인 도약지원 + 노동안전보건 (결정)</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>🚨 소상공인 도약지원 + 노동안전보건 (결정)</div>
         <div class="desc">소진공 + 경기도일자리재단 · 마감 4/24 · 최대 5천만원 · 신청 여부 오늘 확정</div>
       </div>
 
       <div class="item">
         <div class="time">🕙 10:00</div>
-        <div class="title">잔디 주간업무보고 · W17</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>잔디 주간업무보고 · W17</div>
         <div class="desc">콘텐츠 마케터 입사 + 와디즈 D-1 + 정부지원 3건 종합 리포트</div>
       </div>
 
       <div class="item focus">
         <div class="time">📅 와디즈 D-1</div>
-        <div class="title">와디즈 #336790 오픈 D-1 최종 점검</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>와디즈 #336790 오픈 D-1 최종 점검</div>
         <div class="desc">리워드 7종 · 1차 가용재고 · 4/23 광고 3건(앱푸시·메인리스트·팝업) 준비 · 내부/외부 대시보드 최종 확인</div>
       </div>
 
       <div class="item">
+        <div class="time">📦 사방넷</div>
+        <div class="title"><span class="owner owner-amd">🛍️ AMD</span>사방넷 21개 SKU 현황 점검 (신규 합류)</div>
+        <div class="desc">완제품 21 · 마진 60% 미만 SKU 정리 검토 (지거·이글집게 등) · 채널 연동 상태 확인</div>
+      </div>
+
+      <div class="item">
+        <div class="time">📦 3PL</div>
+        <div class="title"><span class="owner owner-support">🧰 경영지원</span>피플스토리 실재고 교차확인 · 와디즈 발송 준비</div>
+        <div class="desc">70 SKU 재고 정확도 점검 · 4/23 와디즈 오픈 대응 준비</div>
+      </div>
+
+      <div class="item">
         <div class="time">📄 D-2</div>
-        <div class="title">콘텐츠 마케터 실행안 작성 안내</div>
-        <div class="desc">팀장 3개월 추진과제 참고 → 콘텐츠 마케터 본인 영역 계획 수립 · 4/24 제출 협의</div>
+        <div class="title"><span class="owner owner-cm">📣 콘텐츠 마케터</span>본인 3개월 실행안 초안 작성 시작</div>
+        <div class="desc">팀장 3개월 추진과제 참고 → 본인 영역 SNS·광고·콘텐츠 계획 초안 · 4/24 팀장 협의</div>
       </div>
 
       <div class="item">
         <div class="time">🕘 09:00</div>
-        <div class="title">킨스타워 입주기업 신청 준비 (D-6)</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>킨스타워 입주기업 신청 준비 (D-6)</div>
         <div class="desc">분당 글로벌R&D센터 · 마감 4/28 · 연 임대료 1.4억 · 사업계획서 초안</div>
       </div>
 
       <div class="item">
         <div class="time">📧 쿠팡 CS</div>
-        <div class="title">쿠팡 판매 진행 현황 확인 (씨앤에프)</div>
+        <div class="title"><span class="owner owner-support">🧰 경영지원</span>쿠팡 판매 진행 현황 확인 (씨앤에프)</div>
         <div class="desc">4/22 08:53 수신 · 결제완료 미확인 · 출고중지 요청 등 모니터링</div>
       </div>
 
       <div class="item">
         <div class="time">📬 인사</div>
-        <div class="title">경영지원 사무직 신규 지원자 이력서 검토</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>경영지원 사무직 신규 지원자 이력서 검토</div>
         <div class="desc">잡코리아 4/22 수신 · 세무 6년 2개월 경력 지원자 · 면접 여부 결정</div>
       </div>
 
       <div class="item">
         <div class="time">💰 세무</div>
-        <div class="title">세무업체 교체 검토 (답변 수신 중)</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>세무업체 교체 검토 (답변 수신 중)</div>
         <div class="desc">자비스·세무특공대·혜움·우대영 4곳 견적 요청 완료 · 세무특공대 답변 도착 (월 18만원~플러스케어)</div>
       </div>
     </div>
@@ -297,69 +368,81 @@
       </div>
 
       <div class="item focus">
+        <div class="time">🎯 Q2</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>"인플 집중일" (매출 700만 목표)</div>
+        <div class="desc">인플 티어·기준 확정 + 크리에이터 30명 스크리닝 + B2B 타겟 50곳 (天啓 자율) · 딥워크 4h (09:00~13:00)</div>
+      </div>
+
+      <div class="item focus">
         <div class="time">🎯 14:00</div>
-        <div class="title">🎉 와디즈 프로젝트 #336790 오픈 (D-0)</div>
+        <div class="title"><span class="owner owner-all">🌐 공통</span>🎉 와디즈 프로젝트 #336790 오픈 (D-0)</div>
         <div class="desc">2년만의 귀환 · 목표 5,000만원 · 리워드 7종(39K~88K) · 광고 3건(앱푸시 2만·메인리스트·팝업 3만) 동시 집행</div>
       </div>
 
       <div class="item urgent">
         <div class="time">🔥 11:00</div>
-        <div class="title">AMPM 글로벌 미팅 (AMPM 글로벌 담당)</div>
-        <div class="desc">광고 에이전시 비딩 미팅 · 제안서 검토 · 3단 구조(탐색→리타겟→재구매) · <b>와디즈 오픈 당일이므로 시간 엄수</b></div>
-      </div>
-
-      <div class="item urgent">
-        <div class="time">🚨 D-0</div>
-        <div class="title">⚠️ 유튜브 마케팅 지원 신청 마감 (오늘 미신청이면 필수)</div>
-        <div class="desc">성남산업진흥원 snip.or.kr · 14시 마감 가능성 높음 · 오전 중 완료</div>
-      </div>
-
-      <div class="item urgent">
-        <div class="time">🚨 D-1</div>
-        <div class="title">노동안전보건 + 소상공인 도약 (D-1)</div>
-        <div class="desc">4/24 마감 · 사업계획서 최종 점검 · 제출 준비</div>
-      </div>
-
-      <div class="item focus">
-        <div class="time">📊 와디즈 72h</div>
-        <div class="title">와디즈 오픈 후 72시간 이벤트 시작</div>
-        <div class="desc">4/23 14:00 ~ 4/26 14:00 · 30명 추첨 집게 증정 · 커뮤니티 응원글 + 펀딩번호 수집 시작</div>
-      </div>
-
-      <div class="item">
-        <div class="time">💬 종일</div>
-        <div class="title">콘텐츠 마케터 온보딩 Day 2</div>
-        <div class="desc">프로그레스미디어 데일리 리포트 숙지 · 광고 에이전시 6곳 자료 정독 · 브랜드 컨셉북 읽기</div>
-      </div>
-
-      <div class="item">
-        <div class="time">📣 광고</div>
-        <div class="title">와디즈 미디어믹스 1일차 집행 (3건)</div>
-        <div class="desc">앱푸시 2만 (15시 발송) · 메인 리스트 (자동) · 앱 메인 팝업 (70만원) · 총 700,000원</div>
-      </div>
-
-      <div class="item">
-        <div class="time">📦 대기</div>
-        <div class="title">4/30 생산 입고 준비 모니터링</div>
-        <div class="desc">아블러 몰드 3종 (볼 2,750 · 큐브 2,000 · 스피어 2,750) · 성준테크 생산중</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>AMPM 글로벌 미팅</div>
+        <div class="desc">광고 에이전시 비딩 미팅 · 제안서 검토 · 3단 구조(탐색→리타겟→재구매) · <b>와디즈 오픈 당일이므로 시간 엄수</b> · 콘텐츠 마케터 동행 검토</div>
       </div>
 
       <div class="item">
         <div class="time">🕒 11:00</div>
-        <div class="title">성남 기업성장 포럼 (연기 상태 확인 필요)</div>
+        <div class="title"><span class="owner owner-charles">👑 대표</span>성남 기업성장 포럼 (연기 상태 확인 필요)</div>
         <div class="desc">2026년 제1회 · 성남산업진흥원 대강당 · 주제: 기술→투자·매출 성장전략과 지원사업 · 캘린더 "연기" 표시됨 · 참석 여부 확인</div>
       </div>
 
       <div class="item">
         <div class="time">🕑 14:00</div>
-        <div class="title">김현정 면접</div>
-        <div class="desc">신규 면접 일정 · AMPM 미팅과 와디즈 오픈 사이 시간 조정 검토</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>김현정 면접</div>
+        <div class="desc">신규 면접 일정 · AMPM 미팅과 와디즈 오픈 사이 시간 조정 검토 (충돌 가능성)</div>
+      </div>
+
+      <div class="item urgent">
+        <div class="time">🚨 D-0</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>⚠️ 유튜브 마케팅 지원 신청 마감 (오늘 미신청이면 필수)</div>
+        <div class="desc">성남산업진흥원 snip.or.kr · 14시 마감 가능성 높음 · 오전 중 완료</div>
+      </div>
+
+      <div class="item urgent">
+        <div class="time">🚨 D-1</div>
+        <div class="title"><span class="owner owner-jihyun">🎯 팀장</span>노동안전보건 + 소상공인 도약 (D-1)</div>
+        <div class="desc">4/24 마감 · 사업계획서 최종 점검 · 제출 준비</div>
       </div>
 
       <div class="item focus">
-        <div class="time">🎯 Q2</div>
-        <div class="title">대표 "인플 집중일" (매출 700만 목표)</div>
-        <div class="desc">인플 티어·기준 확정 + 크리에이터 30명 스크리닝 + B2B 타겟 50곳 (天啓 자율)</div>
+        <div class="time">📊 와디즈 72h</div>
+        <div class="title"><span class="owner owner-all">🌐 공통</span>와디즈 오픈 후 72시간 이벤트 시작</div>
+        <div class="desc">4/23 14:00 ~ 4/26 14:00 · 30명 추첨 집게 증정 · 커뮤니티 응원글 + 펀딩번호 수집 시작</div>
+      </div>
+
+      <div class="item">
+        <div class="time">💬 종일</div>
+        <div class="title"><span class="owner owner-cm">📣 콘텐츠 마케터</span>온보딩 Day 2 · 광고·콘텐츠 인수인계</div>
+        <div class="desc">프로그레스미디어 데일리 리포트 숙지 · 광고 에이전시 6곳 자료 정독 · 브랜드 컨셉북 읽기 · AMPM 미팅 동행 검토</div>
+      </div>
+
+      <div class="item">
+        <div class="time">📣 광고</div>
+        <div class="title"><span class="owner owner-cm">📣 콘텐츠 마케터</span>와디즈 미디어믹스 1일차 집행 모니터링</div>
+        <div class="desc">앱푸시 2만 (15시 발송) · 메인 리스트 (자동) · 앱 메인 팝업 (70만원) · 총 700,000원 · 실시간 반응 체크</div>
+      </div>
+
+      <div class="item">
+        <div class="time">📦 사방넷</div>
+        <div class="title"><span class="owner owner-amd">🛍️ AMD</span>와디즈 오픈 연동 상품 최종 점검</div>
+        <div class="desc">리워드 7종 상품 정보 · 1차 가용재고 사방넷 반영 · 판매 개시 시각 정확도 확인</div>
+      </div>
+
+      <div class="item">
+        <div class="time">📦 재고</div>
+        <div class="title"><span class="owner owner-support">🧰 경영지원</span>와디즈 실판매 실시간 재고 차감</div>
+        <div class="desc">재고 대시보드 실시간 업데이트 · 3PL 피플스토리 출고 준비 · CS 응대 대기</div>
+      </div>
+
+      <div class="item">
+        <div class="time">📦 대기</div>
+        <div class="title"><span class="owner owner-support">🧰 경영지원</span>4/30 생산 입고 준비 모니터링</div>
+        <div class="desc">아블러 몰드 3종 (볼 2,750 · 큐브 2,000 · 스피어 2,750) · 성준테크 생산중</div>
       </div>
     </div>
   </div>
