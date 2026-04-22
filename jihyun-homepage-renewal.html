@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쥬얼아이스 홈페이지 리뉴얼 마스터플랜 (5~7월) · 박지현 팀장</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', '맑은 고딕', 'Pretendard', -apple-system, sans-serif; background: #f0f2f5; color: #222; font-size: 13px; line-height: 1.6; }
+
+  .top-bar {
+    background: linear-gradient(135deg, #4a1d8c, #7c3aed);
+    color: white; padding: 18px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .top-bar h1 { font-size: 17px; font-weight: 700; letter-spacing: -0.3px; }
+  .top-bar .meta { font-size: 11px; opacity: 0.88; margin-top: 4px; }
+  .top-bar .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .btn {
+    padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer;
+    font-size: 12px; font-weight: 600; font-family: inherit;
+  }
+  .btn-edit { background: #ffd600; color: #2d1a6e; }
+  .btn-save { background: #27ae60; color: white; }
+  .btn-reset { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
+  .btn-print { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
+  .btn-idea { background: #ffd600; color: #2d1a6e; }
+
+  .edit-badge {
+    display: none; position: fixed; top: 72px; right: 20px;
+    background: #ffd600; color: #2d1a6e; padding: 6px 14px;
+    border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .save-toast {
+    display: none; position: fixed; bottom: 20px; right: 20px;
+    background: #27ae60; color: white; padding: 10px 18px;
+    border-radius: 8px; font-weight: 700; font-size: 13px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000;
+  }
+
+  .container { max-width: 1320px; margin: 0 auto; padding: 20px 16px 40px; }
+
+  .nav-back {
+    display: inline-block; margin-bottom: 14px; padding: 6px 14px;
+    background: rgba(74,29,140,0.08); border-radius: 20px;
+    font-size: 11.5px; color: #4a1d8c; font-weight: 700;
+    text-decoration: none;
+  }
+  .nav-back:hover { background: rgba(74,29,140,0.15); }
+
+  /* 중심 선언 */
+  .one-banner {
+    background: linear-gradient(135deg, #2d1a6e 0%, #7c3aed 60%, #ffd600 140%);
+    color: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px;
+    box-shadow: 0 6px 20px rgba(124,58,237,0.25);
+  }
+  .one-banner .label { font-size: 11px; opacity: 0.85; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+  .one-banner .one-sentence { font-size: 20px; font-weight: 800; line-height: 1.5; letter-spacing: -0.3px; }
+  .one-banner .one-sub { font-size: 12.5px; opacity: 0.92; margin-top: 10px; line-height: 1.7; }
+  .one-banner .one-sub b { color: #ffd600; }
+
+  /* 섹션 */
+  .section { background: white; border-radius: 10px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .sec-header {
+    padding: 13px 18px; font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white;
+  }
+  .sec-header .badge {
+    background: rgba(255,255,255,0.25); padding: 2px 8px;
+    border-radius: 10px; font-size: 11px;
+  }
+  .sec-header.yellow { background: linear-gradient(135deg, #d97706, #fbbf24); color: #2d1a6e; }
+  .sec-header.red { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+  .sec-header.blue { background: linear-gradient(135deg, #1e40af, #2563eb); }
+  .sec-header.green { background: linear-gradient(135deg, #065f46, #10b981); }
+  .sec-header.pink { background: linear-gradient(135deg, #be185d, #ec4899); }
+
+  .sec-body { padding: 16px 18px; }
+  .sec-note {
+    padding: 10px 18px; font-size: 11.5px; color: #d97706; background: #fff9e6;
+    border-top: 1px solid #fbe1b7; line-height: 1.7;
+  }
+
+  /* KPI */
+  .kpi-grid-5 {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
+    padding: 14px 18px; background: #fafafa;
+  }
+  .kpi-grid-4 {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    padding: 14px 18px; background: #fafafa;
+  }
+  @media (max-width: 1000px) { .kpi-grid-5, .kpi-grid-4 { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-mini {
+    background: white; padding: 14px; border-radius: 8px;
+    border-left: 3px solid #7c3aed; text-align: left;
+  }
+  .kpi-mini .kl { font-size: 10.5px; color: #888; font-weight: 600; margin-bottom: 4px; }
+  .kpi-mini .kv { font-size: 18px; font-weight: 800; color: #4a1d8c; }
+  .kpi-mini .ks { font-size: 10.5px; color: #aaa; margin-top: 2px; line-height: 1.5; }
+  .kpi-mini.ytd { border-left-color: #ffd600; background: #fffef0; }
+  .kpi-mini.ytd .kv { color: #d97706; font-size: 18px; }
+  .kpi-mini.warn { border-left-color: #c0392b; }
+  .kpi-mini.warn .kv { color: #c0392b; font-size: 17px; }
+  .kpi-mini.ok { border-left-color: #10b981; }
+  .kpi-mini.ok .kv { color: #065f46; }
+
+  /* 표 */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th {
+    background: #f3f0fa; padding: 9px 10px; text-align: left;
+    font-size: 11.5px; font-weight: 700; color: #4a1d8c;
+    border-bottom: 2px solid #c4b5fd; white-space: nowrap;
+  }
+  th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  th.center, td.center { text-align: center; }
+  td {
+    padding: 9px 10px; border-bottom: 1px solid #f0f0f0;
+    vertical-align: top; line-height: 1.55;
+  }
+  tr:hover td { background: #fafafa; }
+  tr.subtotal td { background: #ede9fe; font-weight: 700; color: #4a1d8c; }
+  tr.high td { background: #fff9e6; }
+  tr.highlight td { background: #fef3c7; font-weight: 700; }
+
+  .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 10.5px; font-weight: 700; white-space: nowrap;
+  }
+  .tag-design { background: #ede9fe; color: #6d28d9; }
+  .tag-dev { background: #dbeafe; color: #1e40af; }
+  .tag-copy { background: #fce7f3; color: #be185d; }
+  .tag-content { background: #dcfce7; color: #059669; }
+  .tag-b2b { background: #fef3c7; color: #b45309; }
+  .tag-high { background: #fee2e2; color: #dc2626; }
+  .tag-mid { background: #fef3c7; color: #b45309; }
+  .tag-low { background: #e5e7eb; color: #6b7280; }
+  .tag-done { background: #dcfce7; color: #059669; }
+  .tag-wip { background: #dbeafe; color: #2563eb; }
+  .tag-plan { background: #f3f0fa; color: #7c3aed; }
+
+  /* 2단 */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 18px; }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+  .sub-panel { background: #fafafa; border-radius: 8px; padding: 14px 16px; }
+  .sub-panel h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #4a1d8c; padding-bottom: 6px; border-bottom: 1px solid #e5e0f5; }
+
+  /* 월 배너 (5·6·7월) */
+  .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 18px; }
+  @media (max-width: 900px) { .month-grid { grid-template-columns: 1fr; } }
+  .month-card {
+    background: white; border: 1px solid #e5e0f5; border-radius: 10px;
+    padding: 14px; border-top: 4px solid #7c3aed;
+  }
+  .month-card.jun { border-top-color: #ec4899; }
+  .month-card.jul { border-top-color: #10b981; }
+  .month-card .m-title { font-size: 14px; font-weight: 800; color: #4a1d8c; margin-bottom: 4px; }
+  .month-card.jun .m-title { color: #be185d; }
+  .month-card.jul .m-title { color: #065f46; }
+  .month-card .m-sub { font-size: 11.5px; color: #666; margin-bottom: 10px; font-weight: 600; }
+  .month-card ul { list-style: none; padding: 0; }
+  .month-card li { font-size: 12px; padding: 5px 0; padding-left: 14px; position: relative; line-height: 1.6; }
+  .month-card li:before { content: "▸"; position: absolute; left: 0; color: #7c3aed; font-weight: 700; }
+  .month-card li b { color: #4a1d8c; }
+
+  /* 주차별 플랜 */
+  .week-row {
+    display: grid; grid-template-columns: 85px 1fr; gap: 12px;
+    padding: 12px 14px; border-bottom: 1px solid #f0f0f0;
+  }
+  .week-row:hover { background: #fafafa; }
+  .week-row .wk {
+    background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white;
+    padding: 8px; border-radius: 6px; text-align: center; font-weight: 800;
+    font-size: 11px; line-height: 1.3; height: fit-content;
+  }
+  .week-row .wk .date { font-size: 10px; opacity: 0.85; margin-top: 2px; font-weight: 600; }
+  .week-row .content { font-size: 12px; line-height: 1.7; }
+  .week-row .content .goal { font-weight: 800; color: #4a1d8c; margin-bottom: 4px; font-size: 12.5px; }
+  .week-row .content ul { list-style: none; padding-left: 0; }
+  .week-row .content li { padding: 3px 0; padding-left: 16px; position: relative; }
+  .week-row .content li:before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 700; }
+  .week-row .content li b { color: #2d1a6e; }
+
+  /* 페이지 IA */
+  .ia-tree { padding: 14px 18px; background: #fafafa; }
+  .ia-tree .page-row {
+    background: white; border-radius: 8px; padding: 10px 14px;
+    margin-bottom: 8px; display: grid; grid-template-columns: 30px 1fr 100px 140px; gap: 10px;
+    align-items: center; border-left: 3px solid #7c3aed;
+  }
+  .ia-tree .page-row.b2b { border-left-color: #f59e0b; }
+  .ia-tree .page-row.new { border-left-color: #10b981; }
+  .ia-tree .page-row .pg-num { font-weight: 800; color: #7c3aed; }
+  .ia-tree .page-row .pg-name { font-weight: 700; font-size: 13px; color: #2d1a6e; }
+  .ia-tree .page-row .pg-desc { font-size: 11.5px; color: #666; margin-top: 2px; }
+  .ia-tree .page-row .pg-pri { text-align: center; font-size: 11px; font-weight: 700; }
+  .ia-tree .page-row .pg-assign { text-align: right; font-size: 11px; color: #555; }
+
+  /* 아이디어 박스 (노란) */
+  .idea-box {
+    background: #fffbe6; border: 2px dashed #ffd600; border-radius: 10px;
+    padding: 14px 16px; margin: 14px 18px;
+  }
+  .idea-box h4 { color: #d97706; font-size: 13px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+  .idea-box .idea-item {
+    background: white; border-left: 3px solid #ffd600; border-radius: 6px;
+    padding: 8px 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.6;
+  }
+  .idea-box .idea-item .stamp { font-size: 10.5px; color: #d97706; font-weight: 700; margin-bottom: 3px; }
+  .idea-box .idea-item b { color: #2d1a6e; }
+  .idea-box .idea-add {
+    margin-top: 8px; padding: 10px; background: white; border-radius: 6px;
+    border: 1px dashed #ffd600; font-size: 11.5px; color: #666;
+  }
+  .idea-box .idea-add input {
+    width: 100%; padding: 6px 10px; border: 1px solid #e5e5e5; border-radius: 4px;
+    font-family: inherit; font-size: 12px; margin-bottom: 6px;
+  }
+  .idea-box button { padding: 5px 12px; background: #ffd600; border: none; border-radius: 4px; font-weight: 700; font-size: 11px; cursor: pointer; color: #2d1a6e; }
+
+  /* 회수/귀환 */
+  .return-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+    padding: 14px 18px;
+  }
+  @media (max-width: 900px) { .return-grid { grid-template-columns: 1fr; } }
+  .return-card {
+    background: white; border: 1px solid #e5e0f5; border-radius: 10px;
+    padding: 14px 16px; text-align: left;
+  }
+  .return-card .rl {
+    font-size: 10px; font-weight: 700; color: #7c3aed; margin-bottom: 6px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .return-card .rv { font-size: 14px; font-weight: 800; color: #2d1a6e; line-height: 1.6; }
+  .return-card .rs { font-size: 11.5px; color: #666; margin-top: 6px; line-height: 1.6; }
+  .return-card.yellow { background: #fffbe6; border-color: #ffd600; }
+  .return-card.yellow .rl { color: #d97706; }
+
+  /* 현황 문제 */
+  .issue-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .issue-row.header { font-weight: 800; color: #4a1d8c; background: #f3f0fa; padding: 10px; border-radius: 4px; border: 0; }
+  .issue-row .cell { font-size: 12px; line-height: 1.6; padding: 4px 8px; }
+  .issue-row .cell b { color: #2d1a6e; }
+
+  /* 리스트 일반 */
+  .clean-list { list-style: none; padding: 10px 18px; }
+  .clean-list li {
+    padding: 10px 14px; background: #f3f0fa; border-left: 3px solid #ffd600;
+    border-radius: 6px; margin-bottom: 8px; font-size: 12.5px;
+    display: flex; gap: 10px; align-items: flex-start; line-height: 1.7;
+  }
+  .clean-list li .num { font-weight: 800; color: #7c3aed; min-width: 22px; }
+  .clean-list li b { color: #4a1d8c; }
+
+  /* 편집 가능 */
+  .editable { outline: none; transition: background 0.2s; border-radius: 3px; padding: 1px 3px; }
+  body.edit-mode .editable { background: #fffde7; border-bottom: 1px dashed #d97706; cursor: text; }
+  body.edit-mode .editable:focus { background: #fff7cc; box-shadow: 0 0 0 2px #ffd600; }
+  body.edit-mode .edit-badge { display: block; }
+
+  .footer {
+    text-align: center; margin: 30px 0 10px; padding: 20px;
+    font-size: 11px; color: #888; line-height: 1.8;
+    border-top: 1px solid #e5e5e5;
+  }
+  .footer strong { color: #4a1d8c; }
+
+  /* Anchor TOC */
+  .toc {
+    background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .toc a {
+    font-size: 11.5px; padding: 5px 10px; background: #f3f0fa; color: #4a1d8c;
+    text-decoration: none; border-radius: 14px; font-weight: 700;
+  }
+  .toc a:hover { background: #ede9fe; }
+
+  @media print {
+    body { background: white; font-size: 11px; }
+    .top-bar .btns, .edit-badge, .save-toast, .toc { display: none !important; }
+    .top-bar, .sec-header, .one-banner { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section, .one-banner, .month-card { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>🏠 쥬얼아이스 홈페이지 리뉴얼 마스터플랜 (5~7월)</h1>
+    <div class="meta">작성일: 2026-04-22 · 박지현 팀장 · 화경(AI) 제작 · 컨셉 기반 재정의 + B2B 랜드마크 동시 론칭 · 영구 URL · localStorage 자동저장</div>
+  </div>
+  <div class="btns">
+    <button class="btn btn-edit" onclick="toggleEdit()">✏️ 편집 모드</button>
+    <button class="btn btn-save" onclick="saveAll()">💾 저장</button>
+    <button class="btn btn-reset" onclick="resetAll()">🔄 초기화</button>
+    <button class="btn btn-print" onclick="window.print()">🖨️ 인쇄</button>
+  </div>
+</div>
+<div class="edit-badge" id="editBadge">✏️ 편집 중 — 수치·문장 클릭 후 직접 수정 (자동저장)</div>
+
+<div class="container">
+
+<a class="nav-back" href="jihyun-hub.html">← 박지현 팀장 HUB로 돌아가기</a>
+
+<!-- 목차 -->
+<div class="toc">
+  <a href="#one">一 중심선언</a>
+  <a href="#kpi">핵심 KPI</a>
+  <a href="#status">① 현황진단</a>
+  <a href="#concept">② 컨셉 축</a>
+  <a href="#roadmap">③ 5·6·7월 로드맵</a>
+  <a href="#may">④ 5월 주차별</a>
+  <a href="#b2b">⑤ B2B 랜드마크</a>
+  <a href="#ia">⑥ 페이지 IA</a>
+  <a href="#team">⑦ 팀 협업</a>
+  <a href="#budget">⑧ 예산·리소스</a>
+  <a href="#kpi-detail">⑨ KPI 상세</a>
+  <a href="#risk">⑩ 리스크</a>
+  <a href="#idea">💡 아이디어 박스</a>
+  <a href="#return">↻ 귀환 3가지</a>
+</div>
+
+<!-- ===== 一 중심선언 ===== -->
+<div class="one-banner" id="one">
+  <div class="label">一 · 이 작업의 중심 한 문장</div>
+  <div class="one-sentence editable" data-k="one">
+    "쥬얼아이스 홈페이지를 『음료의 마지막 보석』 컨셉 축 하나로 재건하고, B2B 장비 도입/각인 서비스 랜드마크 페이지를 동시 론칭한다."
+  </div>
+  <div class="one-sub editable" data-k="one_sub">
+    <b>6월 여름 성수기 진입 전(5/31)</b> B2C 메인·상세페이지 컨셉 교체 + B2B 랜드마크 1차 오픈 → <b>7월 말까지</b> 전수 전환 + 유기 유입 회복.
+    <br>B2B 타겟 A등급 60곳 이메일·DM 파이프라인에 <b>홈페이지 B2B 페이지 링크</b>가 핵심 CTA로 들어가야 하므로 5월 우선순위 최상위.
+  </div>
+</div>
+
+<!-- ===== 핵심 KPI ===== -->
+<div class="section" id="kpi">
+  <div class="sec-header">🎯 핵심 KPI — 3개월 목표 (리뉴얼 효과 측정축)</div>
+  <div class="kpi-grid-5">
+    <div class="kpi-mini">
+      <div class="kl">B2C 전환율 (스마트스토어+자사몰)</div>
+      <div class="kv editable" data-k="kpi_cvr">+30%</div>
+      <div class="ks">현재 대비 · 상세페이지 컨셉 교체 효과</div>
+    </div>
+    <div class="kpi-mini">
+      <div class="kl">홈페이지 체류시간</div>
+      <div class="kv editable" data-k="kpi_dwell">+40%</div>
+      <div class="ks">영상·스크롤형 재설계 효과</div>
+    </div>
+    <div class="kpi-mini ytd">
+      <div class="kl">⭐ B2B 문의 (홈페이지 폼)</div>
+      <div class="kv editable" data-k="kpi_b2b">월 15건 ↑</div>
+      <div class="ks">신규 B2B 랜드마크 페이지 효과</div>
+    </div>
+    <div class="kpi-mini">
+      <div class="kl">유기 유입 (Organic)</div>
+      <div class="kv editable" data-k="kpi_organic">+50%</div>
+      <div class="ks">SEO 재구조화 + 콘텐츠 허브</div>
+    </div>
+    <div class="kpi-mini ok">
+      <div class="kl">B2B A등급 60곳 컨택 완료</div>
+      <div class="kv editable" data-k="kpi_outreach">5월 100%</div>
+      <div class="ks">홈페이지 B2B 링크 포함 발송</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ① 현황 진단 ===== -->
+<div class="section" id="status">
+  <div class="sec-header red">① 현황 진단 — 지금 어디에 있는가</div>
+  <div class="sec-body">
+    <div class="issue-row header">
+      <div class="cell">채널·자산</div>
+      <div class="cell">현재 상태</div>
+      <div class="cell">리뉴얼 시 조치</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>jewelice.co.kr (자사 홈페이지)</b></div>
+      <div class="cell editable" data-k="s1">기능 설명 중심 · 얼음 '경험' 서사 부재 · 모바일 비주얼 약함 · B2B 진입 동선 없음</div>
+      <div class="cell editable" data-k="s1a">컨셉 A "음료의 마지막 보석" 메인 서사 전환 + B2B 랜드마크 신설</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>쇼피파이 (글로벌 테스트)</b></div>
+      <div class="cell editable" data-k="s2">jewelicemaker.myshopify.com 운영 중 · 영문 카피 · 브랜드 자산 미정렬</div>
+      <div class="cell editable" data-k="s2a">"The Final Jewel of Every Drink" 영문 컨셉 동기화 · 해외 B2B 인콰이어리 라우팅</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>상세페이지 (NAVER/쿠팡/자사몰)</b></div>
+      <div class="cell editable" data-k="s3">2020년 이미지 자산 그대로 (홈페이지 상세페이지 듀오팩·피티팩 JPG) · 스펙 나열형</div>
+      <div class="cell editable" data-k="s3a">상세페이지 5월 리뉴얼 기획안 (기존 'Renewal' 시트 반영) · 재고/SKU 정정 + 컨셉 카피 교체</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>인스타그램 (@jewelice_official)</b></div>
+      <div class="cell editable" data-k="s4">1월 도달 34만 → 4월 2,700/일 폭락 · 바이오/피드 컨셉 불일치</div>
+      <div class="cell editable" data-k="s4a">바이오 "음료의 마지막 보석 | JewelIce" 즉시 변경 (홈페이지 리뉴얼과 동시 · 4월 말)</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>B2B 접촉 창구</b></div>
+      <div class="cell editable" data-k="s5">전화·이메일(richard@jewelice.co.kr) · 제안서 PDF 수동 발송 · 표준 랜딩 페이지 없음</div>
+      <div class="cell editable" data-k="s5a">/business 전용 랜드마크 + 카테고리별(호텔/골프/바/파인다이닝/카페) 모듈형 페이지</div>
+    </div>
+    <div class="issue-row">
+      <div class="cell"><b>기존 리뉴얼 자산</b></div>
+      <div class="cell editable" data-k="s6">구글드라이브: <i>홈페이지_리뉴얼_09기타</i> · <i>Jewelice_Brand_2024_Renewal.pptx</i> · <i>홈페이지 메인 이미지 바레이션0309</i> · <i>컨셉북.pdf (2026-04-21)</i></div>
+      <div class="cell editable" data-k="s6a">5월 1주차 리소스 인벤토리 정리 후 컨셉 A 기준 재선별 · 미사용 자산 아카이브</div>
+    </div>
+  </div>
+  <div class="sec-note">
+    📌 <b>구글드라이브 원천:</b> <code>컨셉수업 쥬얼아이스 기획잡기</code> → <code>쥬얼아이스_컨셉북.pdf</code> (2026-04-21) · <code>A안_음료의마지막보석_상세기획.md</code> · <code>홈페이지 리뉴얼관련</code> · <code>플랫폼별 Renewal.gsheet</code> · <code>Jewelice_Brand_2024_Renewal.pptx</code>
+  </div>
+</div>
+
+<!-- ===== ② 컨셉 축 ===== -->
+<div class="section" id="concept">
+  <div class="sec-header pink">② 컨셉 축 — "음료의 마지막 보석" (컨셉북 2026-04-21 기반)</div>
+  <div class="two-col">
+    <div class="sub-panel">
+      <h4>📖 브랜드 재정의</h4>
+      <table>
+        <tr><th>관점</th><th>기존 (AS-IS)</th><th>리뉴얼 (TO-BE)</th></tr>
+        <tr><td>카테고리</td><td>가정용 제빙기</td><td><b>음료 완성 도구</b></td></tr>
+        <tr><td>기능</td><td>얼음을 만든다</td><td><b>음료 경험을 설계한다</b></td></tr>
+        <tr><td>포지션</td><td>편의용품</td><td><b>홈바 라이프스타일</b></td></tr>
+        <tr><td>경쟁상대</td><td>냉장고 제빙기</td><td><b>없음 (새 카테고리)</b></td></tr>
+      </table>
+      <p style="font-size:11.5px;margin-top:10px;color:#666;line-height:1.7;">
+        📌 출처: <b>쥬얼아이스 컨셉북.pdf</b> (2026-04-11 작성, 04-21 최신) · 디블러 독서모임 발제 『컨셉수업』 × JEWELICE
+      </p>
+    </div>
+    <div class="sub-panel">
+      <h4>💎 제품별 컨셉 카피 (상세페이지 헤드카피 교체용)</h4>
+      <table>
+        <tr><th>제품</th><th>태그라인</th></tr>
+        <tr><td><b>듀오메이커</b></td><td class="editable" data-k="c1">투명함이 곧 실력이다 — 크리스탈 아이스볼의 탄생</td></tr>
+        <tr><td><b>아블러 큐브</b></td><td class="editable" data-k="c2">각진 완벽함, 천천히 녹는 사치</td></tr>
+        <tr><td><b>아블러 스피어</b></td><td class="editable" data-k="c3">잔 속의 보석 — 하이볼의 시각적 주인공</td></tr>
+        <tr><td><b>아블러 제로</b></td><td class="editable" data-k="c4">아름다움은 책임과 함께 — 지구를 생각하는 보석</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="padding:0 18px 16px;">
+    <h4 style="font-size:13px;color:#4a1d8c;font-weight:800;margin-bottom:10px;">🎨 컨셉가치도 4축 (홈페이지 섹션 매핑)</h4>
+    <table>
+      <tr>
+        <th style="width:90px;">가치축</th>
+        <th style="width:130px;">홈페이지 섹션</th>
+        <th>표현 포인트</th>
+        <th style="width:160px;">연결 URL/콘텐츠</th>
+      </tr>
+      <tr>
+        <td><span class="tag tag-design">기능</span></td>
+        <td>/products/* (상세)</td>
+        <td>투명·천천히 녹음·희석 없음 · 얼음 비교 영상</td>
+        <td>투명한얼음 광고영상.mp4</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-copy">감성</span></td>
+        <td>/ (메인 hero)</td>
+        <td>"오늘 내 한 잔이 완벽해지는 순간" · 슬로모션 비주얼</td>
+        <td>이 한 잔이 완벽해지는 순간 × Hatozaki</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-content">사회</span></td>
+        <td>/community · /hashtag</td>
+        <td>#음료의마지막보석 UGC · 홈바 셋업 공유</td>
+        <td>인스타 릴스 캠페인 연동</td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-b2b">윤리</span></td>
+        <td>/zero · /about/sustainability</td>
+        <td>아블러 제로 탄소절감 · "보석은 깨끗해야 한다"</td>
+        <td>ZERO 캠페인 (5~7월 콘텐츠)</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ③ 로드맵 ===== -->
+<div class="section" id="roadmap">
+  <div class="sec-header blue">③ 5·6·7월 로드맵 — 석 달 큰 그림</div>
+  <div class="month-grid">
+    <div class="month-card">
+      <div class="m-title">📌 5월 — 파이프라인 세팅</div>
+      <div class="m-sub">컨셉 교체 + B2B 랜드마크 1차 오픈</div>
+      <ul>
+        <li><b>W1</b> 자산 인벤토리 · 컨셉 확정 · 와이어프레임</li>
+        <li><b>W2</b> 메인·대표상세 3종 카피 교체 / B2B IA 확정</li>
+        <li><b>W3</b> B2B 랜드마크 1차 론칭 (/business)</li>
+        <li><b>W4</b> 쇼피파이 영문 동기화 · 상세페이지 2차</li>
+        <li><b>W5</b> 5월 성과 점검 + 6월 KPI 확정</li>
+        <li><b>연동:</b> B2B 타겟 60곳 이메일/DM 발송 시점과 맞춤</li>
+      </ul>
+    </div>
+    <div class="month-card jun">
+      <div class="m-title">🔥 6월 — 여름 성수기 폭발</div>
+      <div class="m-sub">트래픽 × 전환 동시 가동</div>
+      <ul>
+        <li><b>W1~W2</b> 얼음 비교 영상 시리즈 (메인 hero 교체)</li>
+        <li><b>W3</b> 바텐더 콜라보 페이지 신설</li>
+        <li><b>W4</b> 인플루언서 협업 페이지 · UGC 허브</li>
+        <li><b>B2B:</b> A등급 60곳 리턴 케어 + B등급 33곳 신규</li>
+        <li><b>ZERO 캠페인:</b> /zero 독립 랜딩 · 여름 한정</li>
+        <li><b>KPI:</b> 월 도달 20만 이상 / B2B 문의 15건 이상</li>
+      </ul>
+    </div>
+    <div class="month-card jul">
+      <div class="m-title">📊 7월 — 분석·최적화·하반기 준비</div>
+      <div class="m-sub">데이터 기반 예산·페이지 재배치</div>
+      <ul>
+        <li><b>W1~W2</b> A/B 테스트 (hero 카피·CTA·상세페이지)</li>
+        <li><b>W3</b> 잘되는 페이지에 광고비 집중 재배분</li>
+        <li><b>W4</b> 하반기(가을/위스키 시즌) 캠페인 기획 착수</li>
+        <li><b>B2B:</b> 1차 계약 성사 레퍼런스 페이지 추가</li>
+        <li><b>리포팅:</b> 3개월 성과 보고서 (대표님께)</li>
+        <li><b>KPI:</b> ROAS 3.0 유지 / 유기 유입 +50%</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ④ 5월 주차별 상세 ===== -->
+<div class="section" id="may">
+  <div class="sec-header">④ 5월 주차별 상세 실행 — 핵심 한 달</div>
+  <div style="padding:0;">
+
+    <div class="week-row">
+      <div class="wk">W1<div class="date">05/01~05/04</div></div>
+      <div class="content">
+        <div class="goal">🧭 인벤토리 + 착수 — "지금 가진 것부터 다 꺼낸다"</div>
+        <ul>
+          <li><b>[월 5/4]</b> 리뉴얼 킥오프 미팅 (팀장·박명훈·권나경·권수지·대표님 배석) · 킥오프 덱 내가 작성</li>
+          <li><b>[월 5/4]</b> 구글드라이브 <i>홈페이지 리뉴얼관련</i> · <i>홈페이지_리뉴얼_09기타</i> 전수 인벤토리 시트 작성</li>
+          <li><b>[화 5/5] 근로자의 날 다음주 이월 대비 — 일정 여유 확보</b></li>
+          <li><b>[수 5/6]</b> 기존 Jewelice_Brand_2024_Renewal.pptx 분해 · 재사용 가능 자산 선별</li>
+          <li><b>[목 5/7]</b> jewelice.co.kr 현재 페이지 전체 캡처·URL·트래픽 베이스라인 기록 (GA·Search Console)</li>
+          <li><b>[금 5/8]</b> 컨셉북 기반 와이어프레임 초안 (메인 + /business) 외주/인하우스 결정</li>
+          <li><b>산출물:</b> ① 자산 인벤토리 시트 ② 와이어프레임 초안 v0.1 ③ 베이스라인 지표 시트</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="wk">W2<div class="date">05/11~05/15</div></div>
+      <div class="content">
+        <div class="goal">✍️ 메인 카피·상세 3종 교체 — "홈 hero부터 바꾼다"</div>
+        <ul>
+          <li><b>[월~화]</b> 메인 hero 카피 3안 작성 (대표님 선택) · 슬로모션 영상 소재 의뢰 (박명훈)</li>
+          <li><b>[수]</b> 듀오메이커·아블러 큐브·아블러 스피어 상세페이지 헤드카피 + 오프닝 영상 제작 브리프</li>
+          <li><b>[목]</b> /business B2B 랜드마크 IA 확정 (카테고리별 모듈 5개 · 호텔/골프/바/파인다이닝/카페)</li>
+          <li><b>[금]</b> 1차 대표님 보고 · 피드백 반영</li>
+          <li><b>병행:</b> 인스타 바이오 "음료의 마지막 보석 | JewelIce" 즉시 교체 (권나경)</li>
+          <li><b>산출물:</b> ① 메인 hero 확정본 ② 상세 3종 카피 초안 ③ /business IA 문서</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="wk">W3<div class="date">05/18~05/22</div></div>
+      <div class="content">
+        <div class="goal">🏢 B2B 랜드마크 1차 론칭 — "타겟 60곳 발송 타이밍에 맞춘다"</div>
+        <ul>
+          <li><b>[월~수]</b> /business 페이지 HTML·CSS 구현 (5개 카테고리 모듈 + 문의 폼)</li>
+          <li><b>[월]</b> 카테고리별 핵심 카피 작성 — A등급 60곳 실제 업장 근거로</li>
+          <li><b>[목]</b> 문의 폼 → Gmail/슬랙 라우팅 세팅 · 박경열 리드 채널 연결</li>
+          <li><b>[금]</b> 소프트 론칭 (내부 공유) · 대표님 최종 OK 후 공개</li>
+          <li><b>병행:</b> B2B 타겟 100곳 중 A등급 60곳 컨택 발송 시작 (메일·DM 포함 /business 링크 삽입)</li>
+          <li><b>산출물:</b> ① /business 1차 오픈 ② 문의 폼 라우팅 ③ 발송 배치 #1 완료</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="wk">W4<div class="date">05/25~05/29</div></div>
+      <div class="content">
+        <div class="goal">🌐 쇼피파이·상세페이지 2차 — "영문 + 나머지 상세"</div>
+        <ul>
+          <li><b>[월]</b> jewelicemaker.myshopify.com 영문 카피 "The Final Jewel of Every Drink" 동기화</li>
+          <li><b>[화~수]</b> 상세페이지 2차 그룹 (선물세트·아블러 제로 + NAVER/쿠팡 반영)</li>
+          <li><b>[목]</b> /zero 랜딩 초안 (ZERO 캠페인 여름 티저)</li>
+          <li><b>[금]</b> 5월 성과 베이스라인 대비 중간 점검 + 6월 액션 플랜 확정</li>
+          <li><b>병행:</b> 인플루언서 섭외 시작 (홈텐딩/홈카페 2명 최소)</li>
+          <li><b>산출물:</b> ① 쇼피파이 영문 동기화 ② 상세 2차 3종 ③ /zero 초안</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="week-row">
+      <div class="wk">W5<div class="date">06/01~06/02</div></div>
+      <div class="content">
+        <div class="goal">📊 5월 종료 보고 — "숫자로 검증"</div>
+        <ul>
+          <li><b>[월 6/1]</b> 5월 리뉴얼 결과 보고서 (KPI 5개 지표 + B2B 발송 60곳 응답률)</li>
+          <li><b>[화 6/2]</b> 대표님 보고 + 6월 여름 성수기 플랜 승인 요청</li>
+          <li><b>산출물:</b> 5월 리뉴얼 보고서 HTML (jihyun-homepage-renewal-may-report.html)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="sec-note">
+    🗓 <b>근로자의날(5/5) 어린이날(5/5) 부처님오신날(5/24 예상) 확인 필요</b> — 공휴일 배치는 확정되면 일정 재조정.
+  </div>
+</div>
+
+<!-- ===== ⑤ B2B 랜드마크 ===== -->
+<div class="section" id="b2b">
+  <div class="sec-header yellow">⑤ B2B 랜드마크 전략 — /business 페이지 구조</div>
+  <div class="sec-body">
+    <p style="font-size:12.5px;color:#555;margin-bottom:14px;line-height:1.8;">
+      📌 <b>비즈니스 모델:</b> 쥬얼아이스는 <b>프리미엄 투명얼음 제조 장비 판매사</b>. 얼음 납품 X / 장비 판매 + 각인 서비스 투트랙.
+      기존 레퍼런스: 데블스도어·바차·제이코스·코어인터내셔날·와배송·Bar 81(시그니엘)·해슬리 나인브릿지.
+    </p>
+    <table>
+      <tr><th style="width:110px;">카테고리 모듈</th><th>타겟</th><th>권장 장비</th><th>핵심 메시지</th><th>타겟 수</th></tr>
+      <tr class="high">
+        <td><b>🥂 프리미엄바·위스키바</b></td>
+        <td>Zest·르챔버·바차·Pine&Co</td>
+        <td>Sphere Maker 1대 (+40MM 큐브 6월)</td>
+        <td>"세계 챔피언 바텐더의 선택"</td>
+        <td class="center">A급 8 · B급 6</td>
+      </tr>
+      <tr class="high">
+        <td><b>🏨 호텔 F&B·라운지</b></td>
+        <td>시그니엘·포시즌스·파크하얏트·JW메리어트</td>
+        <td>듀오메이커 3~5대</td>
+        <td>"스위트룸·룸서비스까지 확장되는 디테일"</td>
+        <td class="center">A급 14</td>
+      </tr>
+      <tr>
+        <td><b>⛳ 골프장 클럽하우스</b></td>
+        <td>안양CC·베네스트·해슬리나인브릿지</td>
+        <td>Sphere Maker 1~2대 + 듀오</td>
+        <td>"VIP 라운지의 마지막 퍼즐"</td>
+        <td class="center">A급 9 · B급 3</td>
+      </tr>
+      <tr>
+        <td><b>🍽 파인다이닝·오마카세</b></td>
+        <td>모수·밍글스·코지마·카네사카</td>
+        <td>듀오메이커 1대 or Sphere 1대</td>
+        <td>"미쉐린 셰프가 서빙하는 잔"</td>
+        <td class="center">A급 11 · B급 5</td>
+      </tr>
+      <tr>
+        <td><b>☕ 로스터리·프리미엄 카페</b></td>
+        <td>프릳츠·앤트러사이트·블루보틀</td>
+        <td>듀오메이커 1대</td>
+        <td>"아이스 드링크 라인 프리미엄화"</td>
+        <td class="center">A급 6 · B급 4</td>
+      </tr>
+    </table>
+
+    <div style="margin-top:14px;font-size:12px;color:#555;line-height:1.7;">
+      ✅ <b>각인 서비스 트랙 (이메일 양식 기반):</b> 주류유통사 / 카페 프랜차이즈 / 식품유통 / 호텔&리조트 / 판촉·홍보물 / 온라인 커뮤니티 · 총 7개 섹션
+      → /business 페이지 하단 "브랜드 각인 서비스" 모듈로 통합
+    </div>
+
+    <h4 style="font-size:13px;color:#4a1d8c;font-weight:800;margin:18px 0 10px;">🎯 핫픽 TOP 10 — 홈페이지 "실제 도입 사례" 섹션 카드</h4>
+    <table>
+      <tr><th>#</th><th>업장</th><th>앵글</th><th>사례 카드 노출</th></tr>
+      <tr><td>1</td><td><b>Zest</b></td><td>제로웨이스트 + 외주 얼음 폐기물 제로</td><td>6월 이후 인터뷰 촬영</td></tr>
+      <tr class="highlight"><td>2</td><td><b>Bar 81 (시그니엘)</b> ⭐</td><td>기존 설치 + 스위트룸 확장</td><td>✅ 5월 즉시 (레퍼런스 승인)</td></tr>
+      <tr class="highlight"><td>3</td><td><b>해슬리 나인브릿지</b> ⭐</td><td>멤버 라운지 + VIP 캐비닛 확장</td><td>✅ 5월 즉시</td></tr>
+      <tr><td>4</td><td>Charles H (포시즌스)</td><td>바+스위트 룸서비스 공유</td><td>6월 제안 후</td></tr>
+      <tr><td>5</td><td>앨리스 청담</td><td>10주년 한정 + 40MM 큐브</td><td>6월 이후 론칭 시</td></tr>
+    </table>
+  </div>
+  <div class="sec-note">
+    📎 <b>원천 자료:</b> <code>B2B_타겟100곳_2026-04-22.csv</code> · <code>B2B_타겟100곳_우선순위근거_2026-04-22.md</code> · <code>2026-04-24-B2B-OUTREACH-V2-ENGRAVING.md</code>
+  </div>
+</div>
+
+<!-- ===== ⑥ 페이지 IA ===== -->
+<div class="section" id="ia">
+  <div class="sec-header">⑥ 페이지 IA — 리뉴얼 후 사이트맵</div>
+  <div class="ia-tree">
+    <div class="page-row">
+      <div class="pg-num">01</div>
+      <div>
+        <div class="pg-name">/ (메인)</div>
+        <div class="pg-desc">Hero 슬로모션 영상 · "음료의 마지막 보석" · 제품 4축 · 실사용 갤러리 · B2B CTA</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-high">최상</span></div>
+      <div class="pg-assign">팀장+박명훈(카피) · 외주(디자인)</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">02</div>
+      <div>
+        <div class="pg-name">/products/duo-maker</div>
+        <div class="pg-desc">"투명함이 곧 실력" · 비교영상 · 구체 얼음 제작 과정 · 홈바 사용 씬</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-high">최상</span></div>
+      <div class="pg-assign">팀장 기획 · 박명훈 영상</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">03</div>
+      <div>
+        <div class="pg-name">/products/ablr-cube</div>
+        <div class="pg-desc">"각진 완벽함" · 위스키 온더록 · 천천히 녹는 희석 비교</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-high">최상</span></div>
+      <div class="pg-assign">팀장 기획</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">04</div>
+      <div>
+        <div class="pg-name">/products/ablr-sphere</div>
+        <div class="pg-desc">"잔 속의 보석" · 하이볼 시각적 주인공 · 탄산 흐름 슬로모션</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-high">최상</span></div>
+      <div class="pg-assign">팀장 기획</div>
+    </div>
+    <div class="page-row new">
+      <div class="pg-num">05</div>
+      <div>
+        <div class="pg-name">/zero (신규)</div>
+        <div class="pg-desc">"아름다움은 책임과 함께" · 아블러 제로 탄소절감 · 텀블러 일체형 · 여름 캠페인</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-mid">높음</span></div>
+      <div class="pg-assign">팀장 + 박명훈</div>
+    </div>
+    <div class="page-row b2b">
+      <div class="pg-num">06</div>
+      <div>
+        <div class="pg-name">/business (신규 · 랜드마크) ⭐</div>
+        <div class="pg-desc">5개 카테고리 모듈 + 장비 판매 + 각인 서비스 7개 섹션 + 도입 사례 TOP 10 + 문의 폼</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-high">최상</span></div>
+      <div class="pg-assign">팀장 + 박경열(리드) + 외주</div>
+    </div>
+    <div class="page-row new">
+      <div class="pg-num">07</div>
+      <div>
+        <div class="pg-name">/business/cases (레퍼런스)</div>
+        <div class="pg-desc">Bar 81 · 해슬리 나인브릿지 · 데블스도어 · 바차 · 제이코스 사례 카드</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-mid">높음</span></div>
+      <div class="pg-assign">6월 1차</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">08</div>
+      <div>
+        <div class="pg-name">/bartenders (신규 · 6월)</div>
+        <div class="pg-desc">바텐더 콜라보 시리즈 · 인터뷰 · "바텐더가 먼저 선택한 얼음" 신뢰 구축</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-mid">중간</span></div>
+      <div class="pg-assign">6월 박명훈</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">09</div>
+      <div>
+        <div class="pg-name">/community (#음료의마지막보석)</div>
+        <div class="pg-desc">UGC 허브 · 인스타 피드 임베드 · 홈바 셋업 갤러리</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-low">보통</span></div>
+      <div class="pg-assign">7월 이후</div>
+    </div>
+    <div class="page-row">
+      <div class="pg-num">10</div>
+      <div>
+        <div class="pg-name">/about (리뉴얼)</div>
+        <div class="pg-desc">브랜드 스토리 · 음료의 마지막 보석 선언 · 팀 · 인증·특허</div>
+      </div>
+      <div class="pg-pri"><span class="tag tag-mid">중간</span></div>
+      <div class="pg-assign">팀장</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ⑦ 팀 협업 ===== -->
+<div class="section" id="team">
+  <div class="sec-header green">⑦ 팀 협업 — 누가 무엇을 담당하는가</div>
+  <div class="sec-body">
+    <table>
+      <tr><th style="width:120px;">담당자</th><th style="width:100px;">역할</th><th>리뉴얼 담당 범위</th><th style="width:120px;">5월 마감</th></tr>
+      <tr>
+        <td><b>박지현 팀장 (나)</b></td>
+        <td><span class="tag tag-design">총괄/기획</span></td>
+        <td class="editable" data-k="t1">전체 리뉴얼 총괄 · 컨셉 적용 검증 · 대표님 보고 · /business 페이지 기획 · KPI 트래킹 · 외주 관리</td>
+        <td class="center">5월 전구간</td>
+      </tr>
+      <tr>
+        <td><b>박명훈 콘텐츠 마케터</b></td>
+        <td><span class="tag tag-content">콘텐츠/영상</span></td>
+        <td class="editable" data-k="t2">메인 hero 슬로모션 영상 · 상세 3종 오프닝 영상 · 얼음 비교 영상 시리즈 · 인스타 바이오/피드 컨셉 동기화 · /bartenders 섭외 (6월)</td>
+        <td class="center">5/25 영상 1차</td>
+      </tr>
+      <tr>
+        <td><b>권나경 과장</b></td>
+        <td><span class="tag tag-copy">채널/마케팅</span></td>
+        <td class="editable" data-k="t3">NAVER/쿠팡 상세페이지 반영 · 스마트스토어 동기화 · 인스타·카카오 채널 일관성 · 리뉴얼 후 채널 트래픽 트래킹</td>
+        <td class="center">5/29 1차 반영</td>
+      </tr>
+      <tr>
+        <td><b>권수지 대리</b></td>
+        <td><span class="tag tag-dev">운영/재고</span></td>
+        <td class="editable" data-k="t4">SKU·품번 정확도 크로스체크 (v2 허브 기준) · 재고 상태 → 상세페이지 "판매중/품절" 표기 · 선물세트 구성 정리 · 40MM 큐브 6월 출시 페이지 예약</td>
+        <td class="center">5/22 정리본</td>
+      </tr>
+      <tr>
+        <td><b>박경열 (B2B 리드)</b></td>
+        <td><span class="tag tag-b2b">B2B 영업</span></td>
+        <td class="editable" data-k="t5">/business 페이지 메시지 감수 · B2B 타겟 60곳 이메일·DM 발송 · 문의 폼 리드 응대 · 기존 레퍼런스(Bar 81·해슬리) 확장 제안</td>
+        <td class="center">5/22~31 발송</td>
+      </tr>
+      <tr>
+        <td><b>대표님 (찰스)</b></td>
+        <td><span class="tag tag-high">최종 결정</span></td>
+        <td class="editable" data-k="t6">컨셉 축 승인 · 메인 hero 선택 · /business 메시지 최종 OK · 외주 예산 승인 · 퍼블리싱 GO</td>
+        <td class="center">각 게이트</td>
+      </tr>
+      <tr>
+        <td><b>외주 (디자인/개발)</b></td>
+        <td><span class="tag tag-dev">외부</span></td>
+        <td class="editable" data-k="t7">와이어프레임 고급화 · 반응형 HTML/CSS 구현 · 영상 프로덕션 · (대안: 인하우스 W1 결정)</td>
+        <td class="center">5/18 납품</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ⑧ 예산·리소스 ===== -->
+<div class="section" id="budget">
+  <div class="sec-header yellow">⑧ 예산·리소스 예상 (5월 기준 · 대표님 검토)</div>
+  <div class="sec-body">
+    <table>
+      <tr><th>항목</th><th>내용</th><th class="num">예상</th><th>비고</th></tr>
+      <tr><td><b>디자인·개발 외주</b></td><td class="editable" data-k="b1">와이어 + 반응형 구현 (메인+상세3+business) · 에이전시 또는 프리랜서</td><td class="num editable" data-k="b1v">500~1,200만</td><td>W1 견적 3개 비교</td></tr>
+      <tr><td><b>영상 프로덕션</b></td><td class="editable" data-k="b2">슬로모션 hero · 얼음 비교 영상 3편 · 바텐더 인터뷰 (6월)</td><td class="num editable" data-k="b2v">300~500만</td><td>박명훈 내부 + 외주 하이브리드</td></tr>
+      <tr><td><b>사진 촬영</b></td><td class="editable" data-k="b3">제품·홈바 씬·인물 · 상세페이지용</td><td class="num editable" data-k="b3v">200~400만</td><td>5월 2주차</td></tr>
+      <tr><td><b>카피라이팅</b></td><td class="editable" data-k="b4">컨셉북 기반 상세 전용 카피 (외주 or 인하우스)</td><td class="num editable" data-k="b4v">100~200만</td><td>박명훈 커버 가능 시 생략</td></tr>
+      <tr><td><b>소프트웨어·인프라</b></td><td class="editable" data-k="b5">CMS 변경 (Shopify/WordPress/Framer) · 도메인 · SSL</td><td class="num editable" data-k="b5v">연 50~150만</td><td>기존 유지 가능성 검토</td></tr>
+      <tr class="subtotal"><td colspan="2"><b>총 예상 (5월 한 달)</b></td><td class="num"><b>~1,150~2,450만</b></td><td>대표님 승인 필요</td></tr>
+    </table>
+  </div>
+  <div class="sec-note">
+    💡 <b>자금현황 연결:</b> 4월 결제완료 41.3M (+미결 18.4M) 대비 <b>5월 plan 스트립에 리뉴얼 예산 명시</b> → <code>jihyun-cash.html</code> 5월 칸 업데이트 필요.
+  </div>
+</div>
+
+<!-- ===== ⑨ KPI 상세 ===== -->
+<div class="section" id="kpi-detail">
+  <div class="sec-header blue">⑨ KPI 상세 — 주간 점검표</div>
+  <div class="sec-body">
+    <table>
+      <tr>
+        <th>지표</th><th>베이스라인 (4월)</th><th>5월 목표</th><th>6월 목표</th><th>7월 목표</th><th>측정 방법</th>
+      </tr>
+      <tr>
+        <td><b>홈페이지 체류시간</b></td>
+        <td class="center editable" data-k="k1a">1분 10초</td>
+        <td class="center editable" data-k="k1b">1분 30초</td>
+        <td class="center editable" data-k="k1c">1분 45초</td>
+        <td class="center editable" data-k="k1d">2분</td>
+        <td>GA4 Avg Engagement Time</td>
+      </tr>
+      <tr>
+        <td><b>B2C 전환율 (자사몰)</b></td>
+        <td class="center editable" data-k="k2a">-</td>
+        <td class="center editable" data-k="k2b">+15%</td>
+        <td class="center editable" data-k="k2c">+25%</td>
+        <td class="center editable" data-k="k2d">+30%</td>
+        <td>자사몰 + 스마트스토어 주문/세션</td>
+      </tr>
+      <tr class="highlight">
+        <td><b>B2B 문의 (홈페이지 폼)</b></td>
+        <td class="center editable" data-k="k3a">0건 (폼 없음)</td>
+        <td class="center editable" data-k="k3b">5건</td>
+        <td class="center editable" data-k="k3c">15건</td>
+        <td class="center editable" data-k="k3d">20건</td>
+        <td>/business 문의 폼 제출</td>
+      </tr>
+      <tr>
+        <td><b>유기 유입 (Organic)</b></td>
+        <td class="center editable" data-k="k4a">월 베이스</td>
+        <td class="center editable" data-k="k4b">+10%</td>
+        <td class="center editable" data-k="k4c">+30%</td>
+        <td class="center editable" data-k="k4d">+50%</td>
+        <td>GA4 Organic Sessions</td>
+      </tr>
+      <tr>
+        <td><b>인스타 월 도달</b></td>
+        <td class="center editable" data-k="k5a">2,700/일</td>
+        <td class="center editable" data-k="k5b">5만/월</td>
+        <td class="center editable" data-k="k5c">20만/월</td>
+        <td class="center editable" data-k="k5d">30만/월</td>
+        <td>인스타 인사이트</td>
+      </tr>
+      <tr>
+        <td><b>광고 ROAS</b></td>
+        <td class="center editable" data-k="k6a">측정중</td>
+        <td class="center editable" data-k="k6b">3.0 이상</td>
+        <td class="center editable" data-k="k6c">3.0 이상</td>
+        <td class="center editable" data-k="k6d">3.0 이상</td>
+        <td>통합 광고 리포트 (박명훈)</td>
+      </tr>
+      <tr>
+        <td><b>B2B 컨택 커버리지</b></td>
+        <td class="center editable" data-k="k7a">0/100</td>
+        <td class="center editable" data-k="k7b">60/100 (A등급)</td>
+        <td class="center editable" data-k="k7c">93/100 (+B등급)</td>
+        <td class="center editable" data-k="k7d">100/100 (+리턴)</td>
+        <td>발송 기록 시트</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== ⑩ 리스크 ===== -->
+<div class="section" id="risk">
+  <div class="sec-header red">⑩ 리스크·블로커 — 사전 감시 항목</div>
+  <div class="sec-body">
+    <table>
+      <tr><th style="width:180px;">리스크</th><th>시나리오</th><th>완화책</th><th style="width:120px;">담당</th></tr>
+      <tr>
+        <td><b>외주 견적 초과 / 납기 지연</b></td>
+        <td class="editable" data-k="r1">디자인+개발 외주 2,450만 초과 · 납기 W3(5/18) 놓치면 B2B 발송 연쇄 지연</td>
+        <td class="editable" data-k="r1a">W1 견적 3개 비교 · 납기 계약 명시 · 인하우스 백업 플랜(HTML 직접 작성)</td>
+        <td>팀장</td>
+      </tr>
+      <tr>
+        <td><b>컨셉 교체 후 SEO 유기 감소</b></td>
+        <td class="editable" data-k="r2">URL 변경 / 기존 메타 태그 손실 · 6월 유입 일시 감소</td>
+        <td class="editable" data-k="r2a">301 리다이렉트 전수 설정 · Search Console 제출 · 기존 랭킹 키워드 유지</td>
+        <td>팀장+박명훈</td>
+      </tr>
+      <tr>
+        <td><b>B2B 문의 응대 지연</b></td>
+        <td class="editable" data-k="r3">/business 문의 폼 리드 대량 유입 시 응대 인력 부족</td>
+        <td class="editable" data-k="r3a">박경열 리드 채널 연결 · 24시간 내 1차 응답 SLA · Gmail 라벨 자동화</td>
+        <td>박경열+팀장</td>
+      </tr>
+      <tr>
+        <td><b>재고·SKU 부정확으로 "품절" 노출</b></td>
+        <td class="editable" data-k="r4">리뉴얼 페이지에서 실재고와 상이 · 고객 신뢰 하락</td>
+        <td class="editable" data-k="r4a">권수지 대리 W3(5/22)까지 SKU 전수 크로스체크 · 실시간 연동 불가 시 수동 주 2회 업데이트</td>
+        <td>권수지</td>
+      </tr>
+      <tr>
+        <td><b>대표님 최종 OK 게이트 지연</b></td>
+        <td class="editable" data-k="r5">hero 카피 / B2B 메시지 승인 대기 → 발송 일정 밀림</td>
+        <td class="editable" data-k="r5a">각 게이트 사전 정의 (5/8·5/15·5/22) · 대안 3안 항상 준비 · 24시간 내 회신 요청</td>
+        <td>팀장</td>
+      </tr>
+      <tr>
+        <td><b>박명훈 온보딩 × 리뉴얼 동시 부담</b></td>
+        <td class="editable" data-k="r6">4/22 입사 → 5월 바로 리뉴얼 영상 제작 투입 · 번아웃 위험</td>
+        <td class="editable" data-k="r6a">3개월 기획안(4/25 제출) 검수 후 5월 업무 배분 명확히 · 외주 영상 프로덕션 일부 활용</td>
+        <td>팀장</td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ===== 💡 아이디어 박스 ===== -->
+<div class="section" id="idea">
+  <div class="sec-header yellow">💡 아이디어 누적 박스 — 이 플랜에 추가할 것들 (삭제 없음, 계속 쌓인다)</div>
+  <div class="idea-box">
+    <h4>🎈 아이디어 박스 · 시작 내용</h4>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>#음료의마지막보석</b> UGC 해시태그 캠페인 — 홈페이지 /community 허브에 인스타 피드 임베드 · 우수작 리그램 + 선물세트 증정
+    </div>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>"바텐더의 비밀" 인터뷰 시리즈</b> — /bartenders 페이지로 독립 · Asia's 50 Best 수상 바 (Zest·르챔버·바차·Pine&Co) 최소 2곳 섭외
+    </div>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>얼음 비교 영상 시리즈</b> — 일반 얼음 vs 아블러 큐브 · 같은 위스키 동일 조건 · 자막: "이게 같은 술이라고?" (박명훈 첫 영상 5/25)
+    </div>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>호텔 계정 1컨택 = 복수 매장 레버리지</b> — @signielseoul 1건 → Bar 81/The Lounge/Stay/비채나 4매장 동시 제안 · /business 페이지에 호텔 통합 제안 모듈 별도 구성
+    </div>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>패키지 카피 "이 안에 음료의 마지막 보석이 있습니다"</b> — 박스 여는 순간부터 컨셉 경험 · 권수지 + 박명훈 협업 3분기 신규 박스 디자인
+    </div>
+
+    <div class="idea-item">
+      <div class="stamp">2026-04-22</div>
+      <b>쇼피파이 영문 → 해외 B2B 인콰이어리 게이트웨이</b> — 영문 "The Final Jewel of Every Drink" 랜딩에 해외 업장 문의 폼 분리 · 7월 하반기 검토
+    </div>
+
+    <div class="idea-add">
+      <input type="text" id="newIdea" placeholder="새 아이디어 입력 후 Enter 또는 + 버튼 (날짜 스탬프 자동)" />
+      <button onclick="addIdea()">+ 아이디어 추가 (노란 박스에 누적)</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ↻ 귀환 ===== -->
+<div class="section" id="return">
+  <div class="sec-header pink">↻ 귀환 3가지 — 一終無終一</div>
+  <div class="return-grid">
+    <div class="return-card">
+      <div class="rl">① 중심 한 문장</div>
+      <div class="rv editable" data-k="ret1">"5월 홈페이지 리뉴얼은 『음료의 마지막 보석』 하나로 수렴한다."</div>
+      <div class="rs">— B2C 상세 + B2B 랜드마크 + 쇼피파이 영문까지 같은 축</div>
+    </div>
+    <div class="return-card yellow">
+      <div class="rl">② 다음 질문</div>
+      <div class="rv editable" data-k="ret2">"외주 vs 인하우스 · 5월 첫 주 결정 — 어느 경로가 5/18 납기를 지키는가?"</div>
+      <div class="rs">— W1 킥오프 미팅에서 확정. 대표님 예산 승인 타임라인이 결정 변수.</div>
+    </div>
+    <div class="return-card">
+      <div class="rl">③ 실행 한 점 (지금)</div>
+      <div class="rv editable" data-k="ret3">"5/4(월) 킥오프 미팅 회의록 템플릿 준비 + 외주 견적 3곳 RFP 초안 작성"</div>
+      <div class="rs">— 4/28~4/30 (다음 주) 내 마감. 대표님께는 4/30 리뷰 요청.</div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>천계(天啓) 홈페이지 리뉴얼 마스터플랜</strong> · CHEONGYE Protocol v2.0 · 박지현 팀장 × 화경(AI) 공동작성<br>
+  영구 URL: <code>https://charlesmaster911.github.io/jewelice-playbook/jihyun-homepage-renewal.html</code><br>
+  편집 모드 시 모든 수치·문장 클릭하여 직접 수정 · localStorage 자동저장 · 같은 주소에 덮어쓰기 업데이트<br>
+  연결: <a href="jihyun-hub.html" style="color:#7c3aed;font-weight:700;">박지현 허브</a> · <a href="jihyun-cash.html" style="color:#7c3aed;font-weight:700;">자금현황</a> · <a href="jihyun-briefing.html" style="color:#7c3aed;font-weight:700;">모닝브리핑</a> · <a href="jihyun-plan.html" style="color:#7c3aed;font-weight:700;">월간계획</a>
+</div>
+
+</div>
+
+<div class="save-toast" id="saveToast">✓ 저장되었습니다</div>
+
+<script>
+const KEY = 'jihyun_homepage_renewal_v1';
+const IDEAS_KEY = 'jihyun_homepage_renewal_ideas_v1';
+let editMode = false;
+
+function toggleEdit(){
+  editMode = !editMode;
+  document.body.classList.toggle('edit-mode', editMode);
+  document.querySelectorAll('.editable').forEach(el=>{
+    el.contentEditable = editMode ? 'true' : 'false';
+  });
+  const btn = document.querySelector('.btn-edit');
+  btn.textContent = editMode ? '✓ 편집 종료' : '✏️ 편집 모드';
+  btn.style.background = editMode ? '#27ae60' : '#ffd600';
+  btn.style.color = editMode ? 'white' : '#2d1a6e';
+}
+
+function saveAll(){
+  const data = {};
+  document.querySelectorAll('.editable').forEach(el=>{
+    data[el.dataset.k] = el.innerText;
+  });
+  localStorage.setItem(KEY, JSON.stringify(data));
+  showToast('✓ 저장되었습니다');
+}
+
+function loadAll(){
+  const raw = localStorage.getItem(KEY);
+  if(raw){
+    try{
+      const data = JSON.parse(raw);
+      document.querySelectorAll('.editable').forEach(el=>{
+        if(data[el.dataset.k] !== undefined) el.innerText = data[el.dataset.k];
+      });
+    }catch(e){console.error(e);}
+  }
+  loadIdeas();
+}
+
+function resetAll(){
+  if(!confirm('편집한 내용(본문·아이디어)을 모두 초기화하시겠습니까? (새로고침됩니다)')) return;
+  localStorage.removeItem(KEY);
+  localStorage.removeItem(IDEAS_KEY);
+  location.reload();
+}
+
+function showToast(msg){
+  const el = document.getElementById('saveToast');
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(()=>{ el.style.display = 'none'; }, 2000);
+}
+
+function addIdea(){
+  const input = document.getElementById('newIdea');
+  const text = input.value.trim();
+  if(!text) return;
+  const now = new Date();
+  const stamp = now.toISOString().slice(0,10);
+  const ideas = JSON.parse(localStorage.getItem(IDEAS_KEY) || '[]');
+  ideas.push({ stamp, text });
+  localStorage.setItem(IDEAS_KEY, JSON.stringify(ideas));
+  input.value = '';
+  renderIdeas();
+  showToast('💡 아이디어가 박스에 추가되었습니다');
+}
+
+function loadIdeas(){ renderIdeas(); }
+
+function renderIdeas(){
+  const ideas = JSON.parse(localStorage.getItem(IDEAS_KEY) || '[]');
+  // 기존 동적 아이디어 제거 (stamp가 날짜인 .idea-item 중 data-dynamic="1" 만)
+  document.querySelectorAll('.idea-item[data-dynamic="1"]').forEach(el=>el.remove());
+  const container = document.querySelector('.idea-box');
+  const addBox = container.querySelector('.idea-add');
+  ideas.forEach(idea=>{
+    const div = document.createElement('div');
+    div.className = 'idea-item';
+    div.setAttribute('data-dynamic', '1');
+    div.innerHTML = `<div class="stamp">${idea.stamp} · 추가</div>${escapeHtml(idea.text)}`;
+    container.insertBefore(div, addBox);
+  });
+}
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+document.addEventListener('input', (e)=>{
+  if(e.target.classList.contains('editable')){
+    clearTimeout(window._saveTimer);
+    window._saveTimer = setTimeout(saveAll, 800);
+  }
+});
+
+document.addEventListener('keydown', (e)=>{
+  if((e.ctrlKey||e.metaKey) && e.key==='s'){
+    e.preventDefault();
+    saveAll();
+  }
+});
+
+document.getElementById('newIdea').addEventListener('keydown', (e)=>{
+  if(e.key === 'Enter'){ e.preventDefault(); addIdea(); }
+});
+
+loadAll();
+</script>
+</body>
+</html>
