@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>재고·발주 통합 분석표 2026-04-20</title>
+<title>재고·발주 통합 분석표 2026-04-22</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background: #f0f2f5; color: #222; font-size: 13px; }
@@ -222,7 +222,7 @@
 <div class="top-bar">
   <div>
     <div class="h1">📦 재고·발주 통합 분석표</div>
-    <div class="meta">작성일: 2026-04-20 &nbsp;|&nbsp; 쥬얼아이스 &nbsp;|&nbsp; 와디즈 + 공동구매 + 정기 운영 물량 통합 발주 판단용</div>
+    <div class="meta">최종 업데이트: 2026-04-22 &nbsp;|&nbsp; 실재고 기준일: 2026-04-21 (권수지 대리) &nbsp;|&nbsp; 쥬얼아이스 &nbsp;|&nbsp; 와디즈 + 공동구매 + 정기 운영 물량 통합 발주 판단용</div>
   </div>
   <div class="btns">
     <button class="btn btn-edit" onclick="toggleEdit()">✏️ 편집 모드</button>
@@ -369,10 +369,10 @@
 
 <!-- ===== 0. 전체 재고 현황 ===== -->
 <div class="section s0">
-  <div class="sec-header">📊 0. 전체 재고 현황 <span class="badge">70 SKU</span></div>
+  <div class="sec-header">📊 0. 전체 재고 현황 <span class="badge">72 SKU · 부족 2,661 · 확정생산 42,355 · 생산필요 12</span></div>
   <div class="filter-bar">
     <span class="lbl">필터:</span>
-    <button class="fbtn active" onclick="filterRows('all', this)">전체 (70)</button>
+    <button class="fbtn active" onclick="filterRows('all', this)">전체 (72)</button>
     <button class="fbtn" onclick="filterRows('긴급', this)">🔴 긴급</button>
     <button class="fbtn" onclick="filterRows('부족', this)">🟡 부족</button>
     <button class="fbtn" onclick="filterRows('적정', this)">🟢 적정</button>
@@ -407,11 +407,13 @@
       <tr data-status="적정"><td>본품</td><td>듀오메이커</td><td>EPP</td><td>—</td><td>태양케미컬</td><td class="num num-bold">7,140</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">7,140</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">총 7팔레트</td></tr>
 
       <!-- 본품 - 아블러 텀블러 -->
-      <tr class="group-hd"><td colspan="13">■ 본품 · 아블러 텀블러 (4)</td></tr>
-      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/화이트</td><td>중국발주</td><td class="num num-bold">1,619</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">1,619</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note"></td></tr>
-      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/블랙</td><td>중국발주</td><td class="num num-bold">1,747</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">1,747</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note"></td></tr>
-      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/블루</td><td>중국발주</td><td class="num num-bold">1,075</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">1,075</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note"></td></tr>
-      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/실버</td><td>중국발주</td><td class="num num-bold">1,725</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">1,725</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note"></td></tr>
+      <tr class="group-hd"><td colspan="13">■ 본품 · 아블러 텀블러 (6)</td></tr>
+      <tr data-status="부족"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/화이트</td><td>중국발주</td><td class="num num-orange">100</td><td class="num">200</td><td class="num num-orange">100</td><td class="num">2,000</td><td class="num num-bold">2,100</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산중</span></td><td class="note">실재고 4/21 기준</td></tr>
+      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/블랙</td><td>중국발주</td><td class="num num-bold">475</td><td class="num">200</td><td class="num">0</td><td class="num">1,300</td><td class="num num-bold">1,775</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">실재고 4/21 기준</td></tr>
+      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/블루</td><td>중국발주</td><td class="num num-bold">675</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,675</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">실재고 4/21 기준</td></tr>
+      <tr data-status="적정"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/실버</td><td>중국발주</td><td class="num num-bold">1,150</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num">1,150</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">실재고 4/21 기준</td></tr>
+      <tr data-status="생산필요"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/딥그린</td><td>중국발주</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,500</td><td class="num num-bold">1,500</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러 (NEW)</td></tr>
+      <tr data-status="생산필요"><td>본품</td><td>아블러</td><td>텀블러</td><td>1박스/코랄</td><td>중국발주</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,500</td><td class="num num-bold">1,500</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러 (NEW)</td></tr>
 
       <!-- 본품 - 기타 -->
       <tr class="group-hd"><td colspan="13">■ 본품 · 기타 (5)</td></tr>
@@ -423,24 +425,24 @@
 
       <!-- 부자재 - 아블러 실링스티커 -->
       <tr class="group-hd"><td colspan="13">■ 부자재 · 아블러 실링스티커 (18)</td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/화이트</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">피플스토리 수량확인중</td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/블랙</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/블루</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/실버</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/딥그린</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/코랄</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/화이트</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/블랙</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/블루</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/실버</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/딥그린</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/코랄</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/화이트</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/블랙</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/블루</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/실버</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num num-orange">200</td><td class="num">1,000</td><td class="num">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note"></td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/딥그린</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
-      <tr data-status="대기"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/코랄</td><td>삼성피아이티</td><td class="num">—</td><td class="num">200</td><td class="num">—</td><td class="num">1,000</td><td class="num">—</td><td><span class="tag tag-orange">수요확인</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">수요처 재확인</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/화이트</td><td>삼성피아이티</td><td class="num num-bold">300</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,300</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31, 피플스토리 수량확인중</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/블랙</td><td>삼성피아이티</td><td class="num num-bold">300</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,300</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/블루</td><td>삼성피아이티</td><td class="num num-bold">700</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,700</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/실버</td><td>삼성피아이티</td><td class="num num-bold">700</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,700</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/딥그린</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>볼/코랄</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/화이트</td><td>삼성피아이티</td><td class="num num-bold">1,200</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">2,200</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/블랙</td><td>삼성피아이티</td><td class="num num-bold">1,300</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">2,300</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/블루</td><td>삼성피아이티</td><td class="num num-bold">500</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,500</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/실버</td><td>삼성피아이티</td><td class="num num-bold">1,000</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">2,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/딥그린</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>큐브/코랄</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/화이트</td><td>삼성피아이티</td><td class="num num-bold">1,100</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">2,100</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/블랙</td><td>삼성피아이티</td><td class="num num-bold">800</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,800</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/블루</td><td>삼성피아이티</td><td class="num num-bold">800</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,800</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="적정"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/실버</td><td>삼성피아이티</td><td class="num num-bold">700</td><td class="num">200</td><td class="num">0</td><td class="num">1,000</td><td class="num num-bold">1,700</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">대기</span></td><td class="note">생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/딥그린</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
+      <tr data-status="생산필요"><td>부자재</td><td>아블러</td><td>실링스티커</td><td>스피어/코랄</td><td>삼성피아이티</td><td class="num num-red">0</td><td class="num">200</td><td class="num num-red">200</td><td class="num">1,000</td><td class="num num-bold">1,000</td><td><span class="tag tag-orange">신규</span></td><td><span class="tag tag-blue">생산필요</span></td><td class="note">신규 컬러, 생산완료 4/31</td></tr>
 
       <!-- 부자재 - 듀오메이커 실링스티커 -->
       <tr class="group-hd"><td colspan="13">■ 부자재 · 듀오메이커 실링스티커 (6)</td></tr>
@@ -485,8 +487,8 @@
 
       <!-- 완제품 - 아블러제로 -->
       <tr class="group-hd"><td colspan="13">■ 완제품 · 아블러제로 (2)</td></tr>
-      <tr data-status="적정"><td>완제품</td><td>아블러제로</td><td>텀블러</td><td>1박스/아이보리</td><td>중국발주</td><td class="num num-bold">1,000</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num num-bold">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">입고완료</span></td><td class="note">공구 258개 커버 + 와디즈</td></tr>
-      <tr data-status="적정"><td>완제품</td><td>아블러제로</td><td>텀블러</td><td>1박스/블랙</td><td>중국발주</td><td class="num num-bold">1,000</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num num-bold">1,000</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">입고완료</span></td><td class="note">공구 127개 커버 + 와디즈</td></tr>
+      <tr data-status="적정"><td>완제품</td><td>아블러제로</td><td>텀블러</td><td>1박스/아이보리</td><td>중국발주</td><td class="num num-bold">2,284</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num num-bold">2,284</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">입고완료</span></td><td class="note">실재고 4/21 · 공구 258개 커버 + 와디즈</td></tr>
+      <tr data-status="적정"><td>완제품</td><td>아블러제로</td><td>텀블러</td><td>1박스/블랙</td><td>중국발주</td><td class="num num-bold">669</td><td class="num">200</td><td class="num">0</td><td class="num">—</td><td class="num num-bold">669</td><td><span class="tag tag-green">적정</span></td><td><span class="tag tag-gray">입고완료</span></td><td class="note">실재고 4/21 · 공구 127개 커버 + 와디즈</td></tr>
     </tbody>
   </table>
 </div>
@@ -505,13 +507,13 @@
     <tbody>
       <tr>
         <td>완제품</td><td>아블러제로</td><td>텀블러/아이보리</td>
-        <td class="num num-bold">1,000</td><td class="num">—</td><td class="num">미확정</td><td class="num">258</td><td class="num num-bold">742</td>
-        <td><span class="tag tag-green">확보</span></td><td class="num-bold">입고완료</td><td>중국발주</td><td class="note">✅ 재고 확보 완료, 공구 + 와디즈 커버</td>
+        <td class="num num-bold">2,284</td><td class="num">—</td><td class="num">미확정</td><td class="num">258</td><td class="num num-bold">2,026</td>
+        <td><span class="tag tag-green">확보</span></td><td class="num-bold">입고완료</td><td>중국발주</td><td class="note">✅ 실재고 2,284 (4/21) · 공구 + 와디즈 충분 커버</td>
       </tr>
       <tr>
         <td>완제품</td><td>아블러제로</td><td>텀블러/블랙</td>
-        <td class="num num-bold">1,000</td><td class="num">—</td><td class="num">미확정</td><td class="num">127</td><td class="num num-bold">873</td>
-        <td><span class="tag tag-green">확보</span></td><td class="num-bold">입고완료</td><td>중국발주</td><td class="note">✅ 재고 확보 완료, 공구 + 와디즈 커버</td>
+        <td class="num num-bold">669</td><td class="num">—</td><td class="num">미확정</td><td class="num">127</td><td class="num num-bold">542</td>
+        <td><span class="tag tag-green">확보</span></td><td class="num-bold">입고완료</td><td>중국발주</td><td class="note">✅ 실재고 669 (4/21) · 공구 127 + 와디즈 커버</td>
       </tr>
       <tr>
         <td>완제품</td><td>아블러 볼</td><td>화이트</td>
@@ -991,6 +993,15 @@
     <div>· 2026-04-21 — 듀오메이커 몰드(스틱·볼) 재고 한정 주의 (조합·더블 수요 대응 계획)</div>
     <div>· 2026-04-21 — 악성재고 후보(보관통 볼·딥그린·코랄 실링) SKU 정리 검토</div>
     <div>· 2026-04-21 — 매일 08:28 자동 업데이트 (재고 변동 반영)</div>
+    <div style="background:#FDE68A;padding:8px 10px;border-radius:6px;margin-top:6px;border-left:3px solid #D97706;">
+      <div style="font-weight:700;color:#92400E;margin-bottom:4px;">🔄 2026-04-22 실재고 크로스체크 업데이트 (권수지 대리 4/21 생산일정표 기준)</div>
+      <div>· <strong>아블러 텀블러</strong> 4종 실재고 대폭 수정: 화이트 1,619→<strong>100</strong>, 블랙 1,747→<strong>475</strong>, 블루 1,075→<strong>675</strong>, 실버 1,725→<strong>1,150</strong></div>
+      <div>· <strong>아블러 텀블러 신규 2종 (딥그린·코랄)</strong> 각 1,500개 중국발주 착수 → 6 SKU로 확장</div>
+      <div>· <strong>아블러제로 실재고 상향</strong>: 아이보리 1,000→<strong>2,284</strong>, 블랙 1,000→<strong>669</strong> (기존 보수 기재 정정)</div>
+      <div>· <strong>아블러 실링스티커 18종</strong> 현재고 전량 기재 (기존 "—" → 실수량 300~1,300), 딥그린·코랄 6종 재고 0 → 각 1,000개 생산 (MOQ 1,000)</div>
+      <div>· 핵심 지표: 총 SKU 70→<strong>72</strong> · 부족수량 합계 <strong>2,661</strong> · 확정생산량 합계 <strong>42,355</strong> · 생산필요 SKU <strong>12</strong></div>
+      <div>· 핵심 생산 완료 예정일: 아블러 몰드 <strong>4/30 입고</strong>(41일 리드타임) · 아블러 큐브 완제품 <strong>4/21</strong> · 듀오메이커 스틱/볼 <strong>5/1</strong> · 실링스티커·컬러박스 <strong>4/30</strong></div>
+    </div>
     <div style="color:#92400E;margin-top:6px;font-style:italic;opacity:0.7;">→ 다음 아이디어 대기 중</div>
   </div>
 </div>
