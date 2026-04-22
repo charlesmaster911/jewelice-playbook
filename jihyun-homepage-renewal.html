@@ -8,8 +8,18 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Malgun Gothic', '맑은 고딕', 'Pretendard', -apple-system, sans-serif; background: #f0f2f5; color: #222; font-size: 13px; line-height: 1.6; }
 
+  :root {
+    --tiffany: #0ABAB5;
+    --tiffany-deep: #007C78;
+    --tiffany-soft: #B2E8E5;
+    --tiffany-bg: #E8F7F6;
+    --ivory: #F5F0E8;
+    --gold: #C9A961;
+    --black: #0a0a14;
+  }
+
   .top-bar {
-    background: linear-gradient(135deg, #4a1d8c, #7c3aed);
+    background: linear-gradient(135deg, #007C78 0%, #0ABAB5 100%);
     color: white; padding: 18px 28px;
     display: flex; justify-content: space-between; align-items: center;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -19,22 +29,22 @@
   .top-bar .meta { font-size: 11px; opacity: 0.88; margin-top: 4px; }
   .top-bar .btns { display: flex; gap: 8px; flex-wrap: wrap; }
   .btn { padding: 7px 14px; border-radius: 6px; border: none; cursor: pointer; font-size: 12px; font-weight: 600; font-family: inherit; }
-  .btn-edit { background: #ffd600; color: #2d1a6e; }
+  .btn-edit { background: #ffd600; color: #005552; }
   .btn-save { background: #27ae60; color: white; }
   .btn-reset { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
   .btn-print { background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.4); }
 
-  .edit-badge { display: none; position: fixed; top: 72px; right: 20px; background: #ffd600; color: #2d1a6e; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .edit-badge { display: none; position: fixed; top: 72px; right: 20px; background: #ffd600; color: #005552; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
   .save-toast { display: none; position: fixed; bottom: 20px; right: 20px; background: #27ae60; color: white; padding: 10px 18px; border-radius: 8px; font-weight: 700; font-size: 13px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); z-index: 1000; }
 
   .container { max-width: 1320px; margin: 0 auto; padding: 20px 16px 40px; }
 
-  .nav-back { display: inline-block; margin-bottom: 14px; padding: 6px 14px; background: rgba(74,29,140,0.08); border-radius: 20px; font-size: 11.5px; color: #4a1d8c; font-weight: 700; text-decoration: none; }
+  .nav-back { display: inline-block; margin-bottom: 14px; padding: 6px 14px; background: rgba(74,29,140,0.08); border-radius: 20px; font-size: 11.5px; color: #007C78; font-weight: 700; text-decoration: none; }
   .nav-back:hover { background: rgba(74,29,140,0.15); }
 
   /* 一 */
   .one-banner {
-    background: linear-gradient(135deg, #0a0a14 0%, #2d1a6e 50%, #7c3aed 110%);
+    background: linear-gradient(135deg, #005552 0%, #0ABAB5 60%, #B2E8E5 120%);
     color: white; border-radius: 12px; padding: 28px 32px; margin-bottom: 20px;
     box-shadow: 0 6px 24px rgba(10,10,20,0.35);
     position: relative; overflow: hidden;
@@ -66,33 +76,33 @@
     padding: 18px 20px; border-radius: 10px;
   }
   .pivot-col.asis { background: linear-gradient(135deg, #fef2f2, #fee2e2); border: 1px solid #fecaca; }
-  .pivot-col.tobe { background: linear-gradient(135deg, #f0f9ff, #e0e7ff); border: 1px solid #c4b5fd; }
+  .pivot-col.tobe { background: linear-gradient(135deg, #f0f9ff, #e0e7ff); border: 1px solid #B2E8E5; }
   .pivot-col .tag-title {
     display: inline-block; padding: 3px 10px; border-radius: 12px;
     font-size: 10.5px; font-weight: 800; letter-spacing: 1px; margin-bottom: 10px;
   }
   .pivot-col.asis .tag-title { background: #dc2626; color: white; }
-  .pivot-col.tobe .tag-title { background: #4a1d8c; color: white; }
+  .pivot-col.tobe .tag-title { background: #007C78; color: white; }
   .pivot-col h3 { font-size: 15px; font-weight: 800; margin-bottom: 10px; line-height: 1.5; }
   .pivot-col.asis h3 { color: #991b1b; }
-  .pivot-col.tobe h3 { color: #2d1a6e; }
+  .pivot-col.tobe h3 { color: #005552; }
   .pivot-col ul { list-style: none; padding: 0; }
   .pivot-col li { font-size: 12px; padding: 5px 0; padding-left: 16px; position: relative; line-height: 1.65; }
   .pivot-col.asis li:before { content: "✗"; position: absolute; left: 0; color: #dc2626; font-weight: 800; }
-  .pivot-col.tobe li:before { content: "✓"; position: absolute; left: 0; color: #7c3aed; font-weight: 800; }
-  .pivot-arrow { display: flex; align-items: center; justify-content: center; font-size: 32px; color: #7c3aed; font-weight: 800; }
+  .pivot-col.tobe li:before { content: "✓"; position: absolute; left: 0; color: #0ABAB5; font-weight: 800; }
+  .pivot-arrow { display: flex; align-items: center; justify-content: center; font-size: 32px; color: #0ABAB5; font-weight: 800; }
   @media (max-width: 900px) { .pivot-arrow { transform: rotate(90deg); padding: 10px 0; } }
 
   /* 섹션 */
   .section { background: white; border-radius: 10px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-  .sec-header { padding: 13px 18px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white; }
+  .sec-header { padding: 13px 18px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 10px; background: linear-gradient(135deg, #007C78, #0ABAB5); color: white; }
   .sec-header .badge { background: rgba(255,255,255,0.25); padding: 2px 8px; border-radius: 10px; font-size: 11px; }
-  .sec-header.yellow { background: linear-gradient(135deg, #d97706, #fbbf24); color: #2d1a6e; }
+  .sec-header.yellow { background: linear-gradient(135deg, #d97706, #fbbf24); color: #005552; }
   .sec-header.red { background: linear-gradient(135deg, #b91c1c, #dc2626); }
   .sec-header.blue { background: linear-gradient(135deg, #1e40af, #2563eb); }
   .sec-header.green { background: linear-gradient(135deg, #065f46, #10b981); }
   .sec-header.pink { background: linear-gradient(135deg, #be185d, #ec4899); }
-  .sec-header.dark { background: linear-gradient(135deg, #0a0a14, #2d1a6e); }
+  .sec-header.dark { background: linear-gradient(135deg, #0a0a14, #005552); }
 
   .sec-body { padding: 16px 18px; }
   .sec-note { padding: 10px 18px; font-size: 11.5px; color: #d97706; background: #fff9e6; border-top: 1px solid #fbe1b7; line-height: 1.7; }
@@ -100,85 +110,95 @@
   /* ═══════ 와이어프레임 (레이아웃 시각화) ═══════ */
   .wireframe-wrap { padding: 18px; background: #fafafa; }
   .wf-frame {
-    background: linear-gradient(180deg, #0a0a14 0%, #1a1333 100%);
-    border-radius: 10px; padding: 0; overflow: hidden; color: white;
-    box-shadow: 0 8px 24px rgba(10,10,20,0.3);
+    background: #F5F0E8;
+    border-radius: 10px; padding: 0; overflow: hidden; color: #005552;
+    box-shadow: 0 8px 24px rgba(0,124,120,0.2);
   }
   .wf-browser-bar {
-    background: #2d2d3d; padding: 8px 14px; display: flex; align-items: center; gap: 8px;
+    background: #005552; padding: 8px 14px; display: flex; align-items: center; gap: 8px;
     font-size: 11px;
   }
   .wf-dot { width: 10px; height: 10px; border-radius: 50%; }
   .wf-dot.r { background: #ff5f57; }
   .wf-dot.y { background: #ffbd2e; }
   .wf-dot.g { background: #28c840; }
-  .wf-url { margin-left: 10px; padding: 3px 10px; background: rgba(255,255,255,0.1); border-radius: 10px; font-family: monospace; font-size: 10px; color: #ddd; }
+  .wf-url { margin-left: 10px; padding: 3px 10px; background: rgba(255,255,255,0.15); border-radius: 10px; font-family: monospace; font-size: 10px; color: #E8F7F6; }
 
-  .wf-section { padding: 20px; border-bottom: 1px dashed rgba(255,255,255,0.15); position: relative; }
+  .wf-section { padding: 20px; border-bottom: 1px solid rgba(0,124,120,0.08); position: relative; }
   .wf-section .wf-label {
     position: absolute; top: 8px; left: 12px; font-size: 9px; font-weight: 700;
-    letter-spacing: 1.5px; color: #ffd600; opacity: 0.75;
+    letter-spacing: 1.5px; color: #0ABAB5; opacity: 0.7;
   }
-  .wf-hero { padding: 50px 30px; background: linear-gradient(135deg, #0a0a14 0%, #2d1a6e 80%); text-align: center; }
-  .wf-hero .wf-headline { font-size: 22px; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 10px; color: white; line-height: 1.4; }
-  .wf-hero .wf-headline b { font-weight: 700; color: #ffd600; }
-  .wf-hero .wf-sub { font-size: 12px; opacity: 0.7; margin-bottom: 22px; letter-spacing: 2px; }
-  .wf-hero .wf-cta { display: inline-block; padding: 10px 28px; border: 1px solid #ffd600; color: #ffd600; font-size: 11px; letter-spacing: 2px; font-weight: 700; margin: 0 6px; }
-  .wf-hero .wf-cta.primary { background: #ffd600; color: #0a0a14; }
-  .wf-hero .wf-video-hint { margin-top: 20px; font-size: 10px; opacity: 0.5; letter-spacing: 1px; }
+  .wf-hero { padding: 60px 30px; background: linear-gradient(180deg, #E8F7F6 0%, #B2E8E5 100%); text-align: center; }
+  .wf-hero .wf-headline { font-size: 24px; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 10px; color: #005552; line-height: 1.5; font-family: 'Times New Roman', serif; }
+  .wf-hero .wf-headline b { font-weight: 600; color: #007C78; font-style: italic; }
+  .wf-hero .wf-sub { font-size: 11px; color: #007C78; opacity: 0.75; margin-bottom: 24px; letter-spacing: 4px; font-weight: 600; }
+  .wf-hero .wf-cta { display: inline-block; padding: 10px 28px; border: 1px solid #007C78; color: #007C78; font-size: 11px; letter-spacing: 2px; font-weight: 700; margin: 0 6px; background: transparent; }
+  .wf-hero .wf-cta.primary { background: #007C78; color: #F5F0E8; border-color: #007C78; }
+  .wf-hero .wf-video-hint { margin-top: 20px; font-size: 10px; color: #007C78; opacity: 0.5; letter-spacing: 1px; }
 
-  .wf-section.manifesto { padding: 40px 30px; background: #0f0f1e; text-align: center; }
-  .wf-manifesto-txt { font-size: 15px; font-weight: 300; line-height: 1.85; max-width: 600px; margin: 0 auto; color: #e5e5e5; letter-spacing: -0.2px; }
-  .wf-manifesto-txt b { color: #ffd600; font-weight: 600; }
+  .wf-section.manifesto { padding: 50px 30px; background: #F5F0E8; text-align: center; }
+  .wf-manifesto-txt { font-size: 16px; font-weight: 300; line-height: 1.95; max-width: 620px; margin: 0 auto; color: #005552; letter-spacing: -0.2px; font-family: 'Times New Roman', serif; }
+  .wf-manifesto-txt b { color: #0ABAB5; font-weight: 600; font-style: italic; }
 
-  .wf-products { padding: 40px 20px; background: #14142a; }
-  .wf-products-title { text-align: center; font-size: 12px; letter-spacing: 4px; color: #7c3aed; font-weight: 700; margin-bottom: 8px; }
-  .wf-products-sub { text-align: center; font-size: 18px; font-weight: 300; color: white; margin-bottom: 30px; }
-  .wf-products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .wf-products { padding: 50px 20px; background: white; }
+  .wf-products-title { text-align: center; font-size: 11px; letter-spacing: 5px; color: #0ABAB5; font-weight: 700; margin-bottom: 8px; }
+  .wf-products-sub { text-align: center; font-size: 20px; font-weight: 300; color: #005552; margin-bottom: 32px; font-family: 'Times New Roman', serif; font-style: italic; }
+  .wf-products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; max-width: 1000px; margin: 0 auto; }
   @media (max-width: 900px) { .wf-products-grid { grid-template-columns: repeat(2, 1fr); } }
   .wf-prod-card {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,214,0,0.15);
-    padding: 22px 14px; text-align: center; border-radius: 4px;
+    background: #E8F7F6; border: 1px solid #B2E8E5;
+    padding: 24px 14px; text-align: center; border-radius: 2px;
   }
-  .wf-prod-card .pc-img { width: 100%; height: 80px; background: rgba(255,255,255,0.05); border: 1px dashed rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 9px; color: #888; letter-spacing: 1px; margin-bottom: 12px; }
-  .wf-prod-card .pc-name { font-size: 13px; font-weight: 700; color: #ffd600; margin-bottom: 4px; }
-  .wf-prod-card .pc-tag { font-size: 10px; color: #aaa; line-height: 1.5; }
+  .wf-prod-card .pc-img { width: 100%; height: 90px; background: white; border: 1px dashed #B2E8E5; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #0ABAB5; letter-spacing: 1px; margin-bottom: 14px; }
+  .wf-prod-card .pc-name { font-size: 13px; font-weight: 700; color: #005552; margin-bottom: 6px; letter-spacing: 2px; }
+  .wf-prod-card .pc-tag { font-size: 10.5px; color: #007C78; line-height: 1.6; font-style: italic; }
 
-  .wf-section.story { padding: 40px 30px; background: #0a0a14; }
-  .wf-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: center; }
+  .wf-section.story { padding: 50px 30px; background: #E8F7F6; }
+  .wf-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; max-width: 1000px; margin: 0 auto; }
   @media (max-width: 900px) { .wf-story-grid { grid-template-columns: 1fr; } }
-  .wf-story-img { height: 180px; background: rgba(255,255,255,0.04); border: 1px dashed rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 11px; color: #666; letter-spacing: 1.5px; }
-  .wf-story-txt .s-kicker { font-size: 10px; color: #ffd600; letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
-  .wf-story-txt h4 { font-size: 18px; font-weight: 400; color: white; margin-bottom: 12px; line-height: 1.5; }
-  .wf-story-txt p { font-size: 11.5px; color: #aaa; line-height: 1.85; }
+  .wf-story-img { height: 200px; background: white; border: 1px solid #B2E8E5; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #0ABAB5; letter-spacing: 1.5px; }
+  .wf-story-txt .s-kicker { font-size: 10px; color: #0ABAB5; letter-spacing: 4px; font-weight: 700; margin-bottom: 12px; }
+  .wf-story-txt h4 { font-size: 20px; font-weight: 400; color: #005552; margin-bottom: 14px; line-height: 1.5; font-family: 'Times New Roman', serif; }
+  .wf-story-txt p { font-size: 12px; color: #007C78; line-height: 1.95; }
 
-  .wf-section.bartender { padding: 40px 30px; background: #14142a; text-align: center; }
-  .wf-quote { font-size: 18px; font-style: italic; font-weight: 300; color: #ffd600; line-height: 1.6; max-width: 640px; margin: 0 auto 14px; }
-  .wf-quote-author { font-size: 11px; color: #aaa; letter-spacing: 2px; }
+  .wf-section.bartender { padding: 60px 30px; background: #005552; text-align: center; }
+  .wf-quote { font-size: 20px; font-style: italic; font-weight: 300; color: #B2E8E5; line-height: 1.7; max-width: 660px; margin: 0 auto 16px; font-family: 'Times New Roman', serif; }
+  .wf-quote-author { font-size: 11px; color: #B2E8E5; opacity: 0.7; letter-spacing: 3px; }
 
-  .wf-section.business { padding: 40px 30px; background: linear-gradient(135deg, #2d1a6e 0%, #0a0a14 100%); }
-  .wf-business-title { text-align: center; font-size: 11px; letter-spacing: 4px; color: #ffd600; font-weight: 700; margin-bottom: 6px; }
-  .wf-business-sub { text-align: center; font-size: 18px; font-weight: 300; color: white; margin-bottom: 24px; }
-  .wf-biz-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .wf-section.summer { padding: 50px 30px; background: white; }
+  .wf-summer-title { text-align: center; font-size: 11px; letter-spacing: 5px; color: #0ABAB5; font-weight: 700; margin-bottom: 6px; }
+  .wf-summer-sub { text-align: center; font-size: 20px; font-weight: 300; color: #005552; margin-bottom: 32px; font-family: 'Times New Roman', serif; font-style: italic; }
+  .wf-summer-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 1000px; margin: 0 auto; }
+  @media (max-width: 900px) { .wf-summer-grid { grid-template-columns: repeat(2, 1fr); } }
+  .wf-summer-cell { background: #E8F7F6; padding: 18px 10px; border-radius: 2px; text-align: center; border: 1px solid #B2E8E5; }
+  .wf-summer-cell .sc-icon { font-size: 24px; margin-bottom: 6px; }
+  .wf-summer-cell .sc-name { font-size: 12px; color: #005552; font-weight: 700; letter-spacing: 1px; }
+  .wf-summer-cell .sc-sub { font-size: 9.5px; color: #007C78; margin-top: 4px; line-height: 1.5; font-style: italic; }
+
+  .wf-section.business { padding: 50px 30px; background: #F5F0E8; }
+  .wf-business-title { text-align: center; font-size: 11px; letter-spacing: 5px; color: #0ABAB5; font-weight: 700; margin-bottom: 6px; }
+  .wf-business-sub { text-align: center; font-size: 20px; font-weight: 300; color: #005552; margin-bottom: 28px; font-family: 'Times New Roman', serif; font-style: italic; }
+  .wf-biz-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 1000px; margin: 0 auto; }
   @media (max-width: 900px) { .wf-biz-grid { grid-template-columns: repeat(2, 1fr); } }
-  .wf-biz-cell { background: rgba(255,255,255,0.05); padding: 16px 10px; border-radius: 4px; text-align: center; border: 1px solid rgba(255,214,0,0.1); }
-  .wf-biz-cell .bc-icon { font-size: 20px; margin-bottom: 6px; }
-  .wf-biz-cell .bc-name { font-size: 11px; color: #ffd600; font-weight: 700; }
-  .wf-biz-cell .bc-sub { font-size: 9px; color: #999; margin-top: 4px; line-height: 1.4; }
+  .wf-biz-cell { background: white; padding: 18px 10px; border-radius: 2px; text-align: center; border: 1px solid #B2E8E5; }
+  .wf-biz-cell .bc-icon { font-size: 22px; margin-bottom: 6px; }
+  .wf-biz-cell .bc-name { font-size: 12px; color: #005552; font-weight: 700; letter-spacing: 1.5px; }
+  .wf-biz-cell .bc-sub { font-size: 9.5px; color: #007C78; margin-top: 4px; line-height: 1.5; }
 
-  .wf-section.journal { padding: 36px 30px; background: #0f0f1e; }
-  .wf-journal-title { text-align: center; font-size: 11px; letter-spacing: 4px; color: #7c3aed; font-weight: 700; margin-bottom: 6px; }
-  .wf-journal-sub { text-align: center; font-size: 18px; font-weight: 300; color: white; margin-bottom: 24px; }
-  .wf-journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .wf-section.journal { padding: 50px 30px; background: #E8F7F6; }
+  .wf-journal-title { text-align: center; font-size: 11px; letter-spacing: 5px; color: #0ABAB5; font-weight: 700; margin-bottom: 6px; }
+  .wf-journal-sub { text-align: center; font-size: 20px; font-weight: 300; color: #005552; margin-bottom: 28px; font-family: 'Times New Roman', serif; font-style: italic; }
+  .wf-journal-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1000px; margin: 0 auto; }
   @media (max-width: 900px) { .wf-journal-grid { grid-template-columns: 1fr; } }
-  .wf-j-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
-  .wf-j-card .jc-img { height: 120px; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; }
-  .wf-j-card .jc-meta { padding: 12px 14px; }
-  .wf-j-card .jc-cat { font-size: 9px; color: #ffd600; letter-spacing: 1.5px; font-weight: 700; }
-  .wf-j-card .jc-title { font-size: 12px; color: white; font-weight: 600; margin-top: 6px; line-height: 1.5; }
+  .wf-j-card { background: white; border: 1px solid #B2E8E5; border-radius: 2px; overflow: hidden; }
+  .wf-j-card .jc-img { height: 130px; background: #F5F0E8; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #0ABAB5; letter-spacing: 1px; }
+  .wf-j-card .jc-meta { padding: 14px 16px; }
+  .wf-j-card .jc-cat { font-size: 9.5px; color: #0ABAB5; letter-spacing: 2px; font-weight: 700; }
+  .wf-j-card .jc-title { font-size: 13px; color: #005552; font-weight: 600; margin-top: 8px; line-height: 1.55; font-family: 'Times New Roman', serif; }
 
-  .wf-footer { background: #050510; padding: 30px; text-align: center; color: #666; font-size: 10px; letter-spacing: 2px; }
-  .wf-footer .ff-logo { font-size: 14px; color: #ffd600; letter-spacing: 5px; font-weight: 700; margin-bottom: 10px; }
+  .wf-footer { background: #005552; padding: 36px; text-align: center; color: #B2E8E5; font-size: 10px; letter-spacing: 2px; }
+  .wf-footer .ff-logo { font-size: 16px; color: #F5F0E8; letter-spacing: 6px; font-weight: 700; margin-bottom: 12px; font-family: 'Times New Roman', serif; }
   .wf-footer .ff-links { margin-bottom: 10px; }
   .wf-footer .ff-links span { margin: 0 8px; }
 
@@ -187,9 +207,9 @@
   /* KPI */
   .kpi-grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; padding: 14px 18px; background: #fafafa; }
   @media (max-width: 1000px) { .kpi-grid-5 { grid-template-columns: repeat(2, 1fr); } }
-  .kpi-mini { background: white; padding: 14px; border-radius: 8px; border-left: 3px solid #7c3aed; text-align: left; }
+  .kpi-mini { background: white; padding: 14px; border-radius: 8px; border-left: 3px solid #0ABAB5; text-align: left; }
   .kpi-mini .kl { font-size: 10.5px; color: #888; font-weight: 600; margin-bottom: 4px; }
-  .kpi-mini .kv { font-size: 18px; font-weight: 800; color: #4a1d8c; }
+  .kpi-mini .kv { font-size: 18px; font-weight: 800; color: #007C78; }
   .kpi-mini .ks { font-size: 10.5px; color: #aaa; margin-top: 2px; line-height: 1.5; }
   .kpi-mini.ytd { border-left-color: #ffd600; background: #fffef0; }
   .kpi-mini.ytd .kv { color: #d97706; font-size: 18px; }
@@ -199,17 +219,17 @@
   .kpi-mini.ok .kv { color: #065f46; }
 
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  th { background: #f3f0fa; padding: 9px 10px; text-align: left; font-size: 11.5px; font-weight: 700; color: #4a1d8c; border-bottom: 2px solid #c4b5fd; white-space: nowrap; }
+  th { background: #E8F7F6; padding: 9px 10px; text-align: left; font-size: 11.5px; font-weight: 700; color: #007C78; border-bottom: 2px solid #B2E8E5; white-space: nowrap; }
   th.num, td.num { text-align: right; font-variant-numeric: tabular-nums; }
   th.center, td.center { text-align: center; }
   td { padding: 9px 10px; border-bottom: 1px solid #f0f0f0; vertical-align: top; line-height: 1.55; }
   tr:hover td { background: #fafafa; }
-  tr.subtotal td { background: #ede9fe; font-weight: 700; color: #4a1d8c; }
+  tr.subtotal td { background: #D4F1EF; font-weight: 700; color: #007C78; }
   tr.high td { background: #fff9e6; }
   tr.highlight td { background: #fef3c7; font-weight: 700; }
 
   .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10.5px; font-weight: 700; white-space: nowrap; }
-  .tag-design { background: #ede9fe; color: #6d28d9; }
+  .tag-design { background: #D4F1EF; color: #007C78; }
   .tag-dev { background: #dbeafe; color: #1e40af; }
   .tag-copy { background: #fce7f3; color: #be185d; }
   .tag-content { background: #dcfce7; color: #059669; }
@@ -219,19 +239,19 @@
   .tag-low { background: #e5e7eb; color: #6b7280; }
   .tag-done { background: #dcfce7; color: #059669; }
   .tag-wip { background: #dbeafe; color: #2563eb; }
-  .tag-plan { background: #f3f0fa; color: #7c3aed; }
+  .tag-plan { background: #E8F7F6; color: #0ABAB5; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 14px 18px; }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
   .sub-panel { background: #fafafa; border-radius: 8px; padding: 14px 16px; }
-  .sub-panel h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #4a1d8c; padding-bottom: 6px; border-bottom: 1px solid #e5e0f5; }
+  .sub-panel h4 { font-size: 13px; font-weight: 700; margin-bottom: 10px; color: #007C78; padding-bottom: 6px; border-bottom: 1px solid #C2E8E5; }
 
   /* 브랜드 무드보드 */
   .mood-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 14px 18px; background: #fafafa; }
   @media (max-width: 900px) { .mood-grid { grid-template-columns: repeat(2, 1fr); } }
-  .mood-card { background: white; padding: 14px; border-radius: 8px; border-top: 3px solid #7c3aed; }
-  .mood-card .mc-label { font-size: 10px; letter-spacing: 2px; color: #7c3aed; font-weight: 700; margin-bottom: 6px; }
-  .mood-card .mc-val { font-size: 13px; font-weight: 800; color: #2d1a6e; margin-bottom: 6px; }
+  .mood-card { background: white; padding: 14px; border-radius: 8px; border-top: 3px solid #0ABAB5; }
+  .mood-card .mc-label { font-size: 10px; letter-spacing: 2px; color: #0ABAB5; font-weight: 700; margin-bottom: 6px; }
+  .mood-card .mc-val { font-size: 13px; font-weight: 800; color: #005552; margin-bottom: 6px; }
   .mood-card .mc-desc { font-size: 11px; color: #666; line-height: 1.6; }
   .mood-card .mc-swatch { display: flex; gap: 4px; margin-top: 8px; }
   .mood-card .mc-swatch span { width: 24px; height: 24px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
@@ -239,37 +259,37 @@
   /* 월 카드 */
   .month-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 18px; }
   @media (max-width: 900px) { .month-grid { grid-template-columns: 1fr; } }
-  .month-card { background: white; border: 1px solid #e5e0f5; border-radius: 10px; padding: 14px; border-top: 4px solid #7c3aed; }
+  .month-card { background: white; border: 1px solid #C2E8E5; border-radius: 10px; padding: 14px; border-top: 4px solid #0ABAB5; }
   .month-card.jun { border-top-color: #ec4899; }
   .month-card.jul { border-top-color: #10b981; }
-  .month-card .m-title { font-size: 14px; font-weight: 800; color: #4a1d8c; margin-bottom: 4px; }
+  .month-card .m-title { font-size: 14px; font-weight: 800; color: #007C78; margin-bottom: 4px; }
   .month-card.jun .m-title { color: #be185d; }
   .month-card.jul .m-title { color: #065f46; }
   .month-card .m-sub { font-size: 11.5px; color: #666; margin-bottom: 10px; font-weight: 600; }
   .month-card ul { list-style: none; padding: 0; }
   .month-card li { font-size: 12px; padding: 5px 0; padding-left: 14px; position: relative; line-height: 1.6; }
-  .month-card li:before { content: "▸"; position: absolute; left: 0; color: #7c3aed; font-weight: 700; }
-  .month-card li b { color: #4a1d8c; }
+  .month-card li:before { content: "▸"; position: absolute; left: 0; color: #0ABAB5; font-weight: 700; }
+  .month-card li b { color: #007C78; }
 
   /* 주차 플랜 */
   .week-row { display: grid; grid-template-columns: 85px 1fr; gap: 12px; padding: 12px 14px; border-bottom: 1px solid #f0f0f0; }
   .week-row:hover { background: #fafafa; }
-  .week-row .wk { background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white; padding: 8px; border-radius: 6px; text-align: center; font-weight: 800; font-size: 11px; line-height: 1.3; height: fit-content; }
+  .week-row .wk { background: linear-gradient(135deg, #007C78, #0ABAB5); color: white; padding: 8px; border-radius: 6px; text-align: center; font-weight: 800; font-size: 11px; line-height: 1.3; height: fit-content; }
   .week-row .wk .date { font-size: 10px; opacity: 0.85; margin-top: 2px; font-weight: 600; }
   .week-row .content { font-size: 12px; line-height: 1.7; }
-  .week-row .content .goal { font-weight: 800; color: #4a1d8c; margin-bottom: 4px; font-size: 12.5px; }
+  .week-row .content .goal { font-weight: 800; color: #007C78; margin-bottom: 4px; font-size: 12.5px; }
   .week-row .content ul { list-style: none; padding-left: 0; }
   .week-row .content li { padding: 3px 0; padding-left: 16px; position: relative; }
   .week-row .content li:before { content: "✓"; position: absolute; left: 0; color: #10b981; font-weight: 700; }
-  .week-row .content li b { color: #2d1a6e; }
+  .week-row .content li b { color: #005552; }
 
   /* 페이지 IA */
   .ia-tree { padding: 14px 18px; background: #fafafa; }
-  .ia-tree .page-row { background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; display: grid; grid-template-columns: 30px 1fr 100px 140px; gap: 10px; align-items: center; border-left: 3px solid #7c3aed; }
+  .ia-tree .page-row { background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; display: grid; grid-template-columns: 30px 1fr 100px 140px; gap: 10px; align-items: center; border-left: 3px solid #0ABAB5; }
   .ia-tree .page-row.b2b { border-left-color: #f59e0b; }
   .ia-tree .page-row.new { border-left-color: #10b981; }
-  .ia-tree .page-row .pg-num { font-weight: 800; color: #7c3aed; }
-  .ia-tree .page-row .pg-name { font-weight: 700; font-size: 13px; color: #2d1a6e; }
+  .ia-tree .page-row .pg-num { font-weight: 800; color: #0ABAB5; }
+  .ia-tree .page-row .pg-name { font-weight: 700; font-size: 13px; color: #005552; }
   .ia-tree .page-row .pg-desc { font-size: 11.5px; color: #666; margin-top: 2px; }
   .ia-tree .page-row .pg-pri { text-align: center; font-size: 11px; font-weight: 700; }
   .ia-tree .page-row .pg-assign { text-align: right; font-size: 11px; color: #555; }
@@ -279,33 +299,33 @@
   .idea-box h4 { color: #d97706; font-size: 13px; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
   .idea-box .idea-item { background: white; border-left: 3px solid #ffd600; border-radius: 6px; padding: 8px 12px; margin-bottom: 8px; font-size: 12px; line-height: 1.6; }
   .idea-box .idea-item .stamp { font-size: 10.5px; color: #d97706; font-weight: 700; margin-bottom: 3px; }
-  .idea-box .idea-item b { color: #2d1a6e; }
+  .idea-box .idea-item b { color: #005552; }
   .idea-box .idea-add { margin-top: 8px; padding: 10px; background: white; border-radius: 6px; border: 1px dashed #ffd600; font-size: 11.5px; color: #666; }
   .idea-box .idea-add input { width: 100%; padding: 6px 10px; border: 1px solid #e5e5e5; border-radius: 4px; font-family: inherit; font-size: 12px; margin-bottom: 6px; }
-  .idea-box button { padding: 5px 12px; background: #ffd600; border: none; border-radius: 4px; font-weight: 700; font-size: 11px; cursor: pointer; color: #2d1a6e; }
+  .idea-box button { padding: 5px 12px; background: #ffd600; border: none; border-radius: 4px; font-weight: 700; font-size: 11px; cursor: pointer; color: #005552; }
 
   /* 귀환 */
   .return-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 14px 18px; }
   @media (max-width: 900px) { .return-grid { grid-template-columns: 1fr; } }
-  .return-card { background: white; border: 1px solid #e5e0f5; border-radius: 10px; padding: 14px 16px; text-align: left; }
-  .return-card .rl { font-size: 10px; font-weight: 700; color: #7c3aed; margin-bottom: 6px; letter-spacing: 1.5px; text-transform: uppercase; }
-  .return-card .rv { font-size: 14px; font-weight: 800; color: #2d1a6e; line-height: 1.6; }
+  .return-card { background: white; border: 1px solid #C2E8E5; border-radius: 10px; padding: 14px 16px; text-align: left; }
+  .return-card .rl { font-size: 10px; font-weight: 700; color: #0ABAB5; margin-bottom: 6px; letter-spacing: 1.5px; text-transform: uppercase; }
+  .return-card .rv { font-size: 14px; font-weight: 800; color: #005552; line-height: 1.6; }
   .return-card .rs { font-size: 11.5px; color: #666; margin-top: 6px; line-height: 1.6; }
   .return-card.yellow { background: #fffbe6; border-color: #ffd600; }
   .return-card.yellow .rl { color: #d97706; }
 
   /* 현황 문제 */
   .issue-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
-  .issue-row.header { font-weight: 800; color: #4a1d8c; background: #f3f0fa; padding: 10px; border-radius: 4px; border: 0; }
+  .issue-row.header { font-weight: 800; color: #007C78; background: #E8F7F6; padding: 10px; border-radius: 4px; border: 0; }
   .issue-row .cell { font-size: 12px; line-height: 1.6; padding: 4px 8px; }
-  .issue-row .cell b { color: #2d1a6e; }
+  .issue-row .cell b { color: #005552; }
 
   /* 벤치마크 */
   .bench-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 14px 18px; background: #fafafa; }
   @media (max-width: 900px) { .bench-grid { grid-template-columns: 1fr; } }
-  .bench-card { background: white; border-radius: 8px; padding: 14px; border-top: 3px solid #2d1a6e; }
-  .bench-card .b-name { font-size: 14px; font-weight: 800; color: #2d1a6e; margin-bottom: 4px; }
-  .bench-card .b-cat { font-size: 10.5px; color: #7c3aed; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 8px; }
+  .bench-card { background: white; border-radius: 8px; padding: 14px; border-top: 3px solid #005552; }
+  .bench-card .b-name { font-size: 14px; font-weight: 800; color: #005552; margin-bottom: 4px; }
+  .bench-card .b-cat { font-size: 10.5px; color: #0ABAB5; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 8px; }
   .bench-card .b-note { font-size: 11.5px; color: #555; line-height: 1.7; margin-bottom: 8px; }
   .bench-card .b-point { font-size: 11px; color: #059669; font-weight: 700; padding: 4px 8px; background: #dcfce7; border-radius: 4px; display: inline-block; }
 
@@ -315,11 +335,11 @@
   body.edit-mode .edit-badge { display: block; }
 
   .footer { text-align: center; margin: 30px 0 10px; padding: 20px; font-size: 11px; color: #888; line-height: 1.8; border-top: 1px solid #e5e5e5; }
-  .footer strong { color: #4a1d8c; }
+  .footer strong { color: #007C78; }
 
   .toc { background: white; border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; box-shadow: 0 1px 4px rgba(0,0,0,0.08); display: flex; flex-wrap: wrap; gap: 8px; }
-  .toc a { font-size: 11.5px; padding: 5px 10px; background: #f3f0fa; color: #4a1d8c; text-decoration: none; border-radius: 14px; font-weight: 700; }
-  .toc a:hover { background: #ede9fe; }
+  .toc a { font-size: 11.5px; padding: 5px 10px; background: #E8F7F6; color: #007C78; text-decoration: none; border-radius: 14px; font-weight: 700; }
+  .toc a:hover { background: #D4F1EF; }
 
   @media print {
     body { background: white; font-size: 11px; }
@@ -363,6 +383,7 @@
   <a href="#may">5월 주차별</a>
   <a href="#b2b">B2B 랜드마크</a>
   <a href="#ia">페이지 IA</a>
+  <a href="#summer">☀️ 여름 콘텐츠</a>
   <a href="#team">팀 협업</a>
   <a href="#budget">예산</a>
   <a href="#kpi-detail">KPI 상세</a>
@@ -375,15 +396,15 @@
 <div class="one-banner" id="one">
   <div class="label">一 · 이 리뉴얼의 중심 한 문장</div>
   <div class="one-sentence editable" data-k="one">
-    "쇼핑몰 같은 세일즈 사이트를 버리고, <span style="color:#ffd600;">『음료의 마지막 보석』</span>을 파는 고급 브랜드 사이트로 완전히 다시 태어난다."
+    "쇼핑몰 같은 세일즈 사이트를 버리고, <span style="color:#F5F0E8;background:rgba(255,255,255,0.12);padding:2px 10px;border-radius:3px;">『음료의 마지막 보석』</span>을 파는 <b style="color:#F5F0E8;">티파니 앤 코 톤</b>의 고급 브랜드 사이트로 다시 태어난다."
   </div>
   <div class="one-sub editable" data-k="one_sub">
-    사는 곳(Shop)이 아니라 <b>경험하는 곳(Brand House)</b>으로 — 기능·스펙·할인 배너가 아닌 <b>컨셉·장면·서사</b>로 방문자를 붙잡는다.
-    구매는 서두르지 않고 결과로 따라오게 한다. <b>"아, 이 브랜드 갖고 싶다"</b>가 먼저다.
+    카페24에서 <b>티파니 홈페이지 골격과 최대한 유사한 프리미엄 테마</b>를 구매한 뒤 티파니 블루·세리프·여백으로 커스텀.
+    사는 곳(Shop)이 아니라 <b>경험하는 곳(Brand House)</b>으로 — 구매는 결과로 따라오게. <b>"아, 이 브랜드 갖고 싶다"</b>가 먼저다.
   </div>
   <div class="tension">
-    <b>TENSION:</b> 지금 쥬얼아이스 사이트는 "얼음 기계를 파는 곳"으로 읽힌다. 하지만 컨셉은 이미 "음료의 마지막 보석" — <b>말은 보석인데 얼굴은 쇼핑몰</b>.
-    이 간극을 닫는 게 리뉴얼의 전부다.
+    <b>TENSION:</b> 지금 사이트는 "얼음 기계를 파는 곳"으로 읽힌다. 컨셉은 이미 "음료의 마지막 보석" — <b>말은 보석인데 얼굴은 쇼핑몰</b>.
+    티파니 앤 코의 시각 언어(티파니블루·아이보리·세리프·여백)로 이 간극을 닫는다.
   </div>
 </div>
 
@@ -396,6 +417,7 @@
       <li>상단에 "구매하기" "할인" CTA 최상단</li>
       <li>제품 스펙·가격·배송 정보 중심</li>
       <li>배너·팝업·세일 문구가 시선 잠식</li>
+      <li>화이트 배경 + 빨간 가격 강조 = 쇼핑몰 톤</li>
       <li>기능 설명형 상세페이지 (2020년 자산)</li>
       <li>얼음 =  도구 / 제빙기 = 편의용품</li>
       <li>B2B 경로 없음 (전화·이메일 수동)</li>
@@ -407,9 +429,10 @@
     <span class="tag-title">TO-BE · 리뉴얼</span>
     <h3>프리미엄 브랜드 하우스</h3>
     <ul>
-      <li>상단에 <b>시네마틱 영상 + 한 문장</b> (Issey Miyake·Aesop 톤)</li>
+      <li>상단에 <b>시네마틱 영상 + 한 문장</b> (Tiffany & Co·Aesop 톤)</li>
       <li>컨셉·장면·서사 중심 · 구매는 하단·서브 동선</li>
       <li>배너 제거 · <b>넉넉한 여백</b>과 타이포그래피로 격 올림</li>
+      <li>티파니블루 + 아이보리 배경 · 세리프 헤드</li>
       <li>제품별 <b>스토리 페이지</b> (경험·바텐더·씬)</li>
       <li>얼음 = <b>음료의 마지막 보석</b> / 새 카테고리</li>
       <li>B2B <b>/business 랜드마크</b> 전용 동선</li>
@@ -435,7 +458,7 @@
         <div class="wf-headline editable" data-k="wf_hero">음료의 <b>마지막 보석</b>.<br>얼음이 달라지면, 오늘이 달라진다.</div>
         <div class="wf-cta">EXPLORE</div>
         <div class="wf-cta primary">FOR BUSINESS</div>
-        <div class="wf-video-hint">▶ 배경: 슬로모션 영상 (얼음 구체에 위스키 붓는 장면 · 무음 루프)</div>
+        <div class="wf-video-hint">▶ 배경: 슬로모션 영상 (얼음 구체에 음료 붓는 장면 · 무음 루프) · 티파니톤 아이보리 배경에 오브젝트 플로팅</div>
       </div>
 
       <!-- 02. MANIFESTO -->
@@ -497,6 +520,20 @@
         <div class="wf-quote-author">— 국내 TOP 바텐더 (섭외 예정 · 6월)</div>
       </div>
 
+      <!-- 05-B. SUMMER COLLECTION -->
+      <div class="wf-section summer">
+        <div class="wf-label">05B · SUMMER 2026</div>
+        <div class="wf-summer-title">SUMMER 2026 · EDITORIAL</div>
+        <div class="wf-summer-sub">이 여름, 얼려둔 다섯 잔의 보석</div>
+        <div class="wf-summer-grid">
+          <div class="wf-summer-cell"><div class="sc-icon">🥛</div><div class="sc-name">MILK</div><div class="sc-sub">우유 얼음 라떼</div></div>
+          <div class="wf-summer-cell"><div class="sc-icon">🍧</div><div class="sc-name">PATBINGSU</div><div class="sc-sub">크리스탈 팥빙수</div></div>
+          <div class="wf-summer-cell"><div class="sc-icon">🧃</div><div class="sc-name">JUICE</div><div class="sc-sub">얼린 주스 큐브</div></div>
+          <div class="wf-summer-cell"><div class="sc-icon">🥤</div><div class="sc-name">SODA</div><div class="sc-sub">탄산 클리어 큐브</div></div>
+          <div class="wf-summer-cell"><div class="sc-icon">🍶</div><div class="sc-name">MAKGEOLLI</div><div class="sc-sub">막걸리 온더록</div></div>
+        </div>
+      </div>
+
       <!-- 06. FOR BUSINESS -->
       <div class="wf-section business">
         <div class="wf-label">06 · FOR BUSINESS</div>
@@ -550,11 +587,12 @@
         <div>음료의 마지막 보석 · The Final Jewel of Every Drink</div>
       </div>
     </div>
-    <div class="wf-caption">↑ 메인 페이지 예상 레이아웃 (1차 스케치) · 8개 섹션 · 하단 스크롤형 · 다크톤 + 골드 악센트 · 타이포그래피 중심</div>
+    <div class="wf-caption">↑ 메인 페이지 예상 레이아웃 (1차 스케치) · 9개 섹션 · 하단 스크롤형 · <b>티파니 앤 코 톤</b>(아이보리+티파니블루) · 세리프 타이포그래피 중심</div>
   </div>
 
   <div class="sec-note">
-    🎬 <b>핵심 변화:</b> "구매하기" 버튼·가격·할인 배너 → 전부 하단으로. 상단은 <b>영상 · 선언 · 여백</b>뿐. Issey Miyake / Aesop / Hatozaki 사이트 톤 차용.
+    🎬 <b>핵심 변화:</b> "구매하기" 버튼·가격·할인 배너 → 전부 하단으로. 상단은 <b>영상 · 선언 · 여백</b>. <b>카페24 프리미엄 브랜드 테마 구매 후 티파니톤으로 커스텀</b>.
+    참고 톤: Tiffany & Co · Aesop · Hatozaki.
   </div>
 </div>
 
@@ -564,19 +602,19 @@
   <div class="mood-grid">
     <div class="mood-card">
       <div class="mc-label">TONE</div>
-      <div class="mc-val">다크 + 골드</div>
-      <div class="mc-desc">블랙·딥퍼플 배경 + 아이보리·골드 타이포. 쇼핑몰 화이트 배경 탈출.</div>
+      <div class="mc-val">티파니 앤 코</div>
+      <div class="mc-desc">티파니 블루(#0ABAB5) 시그니처 + 아이보리·딥티파니. 티파니 앤 코의 상징적 고급스러움을 얼음 브랜드로 번역.</div>
       <div class="mc-swatch">
-        <span style="background:#0a0a14"></span>
-        <span style="background:#2d1a6e"></span>
-        <span style="background:#ffd600"></span>
-        <span style="background:#f5f0e8"></span>
+        <span style="background:#0ABAB5" title="Tiffany Blue"></span>
+        <span style="background:#005552" title="Deep Tiffany"></span>
+        <span style="background:#B2E8E5" title="Tiffany Soft"></span>
+        <span style="background:#F5F0E8" title="Ivory"></span>
       </div>
     </div>
     <div class="mood-card">
       <div class="mc-label">TYPO</div>
       <div class="mc-val">세리프 헤드라인</div>
-      <div class="mc-desc">영문: Playfair Display / Canela · 국문: Pretendard Serif / 본명조. 제품명은 전부 대문자 레터스페이싱.</div>
+      <div class="mc-desc">영문: Didot / Playfair Display (티파니 앤 코 스타일) · 국문: 본명조·Pretendard Serif. 제품명은 전부 대문자 넓은 레터스페이싱.</div>
     </div>
     <div class="mood-card">
       <div class="mc-label">LAYOUT</div>
@@ -605,8 +643,13 @@
     </div>
     <div class="mood-card">
       <div class="mc-label">CTA</div>
-      <div class="mc-val">텍스트 링크 · 보더 버튼</div>
-      <div class="mc-desc">화려한 구매 버튼 대신 얇은 골드 보더 라인 버튼. 스토어는 하단·서브. 구매는 결과로 따라오게.</div>
+      <div class="mc-val">얇은 티파니 보더</div>
+      <div class="mc-desc">화려한 구매 버튼 대신 얇은 #007C78 보더 라인 버튼. 스토어는 하단·서브. 구매는 결과로 따라오게.</div>
+    </div>
+    <div class="mood-card">
+      <div class="mc-label">CMS</div>
+      <div class="mc-val">카페24 프리미엄 테마</div>
+      <div class="mc-desc">카페24 디자인센터에서 <b>프리미엄 브랜드 톤 유료 템플릿 구매</b> → 티파니 컬러·세리프·여백으로 커스텀. 티파니 앤 코 공식 홈과 최대한 유사한 골격 차용.</div>
     </div>
   </div>
 </div>
@@ -616,26 +659,26 @@
   <div class="sec-header dark">📸 벤치마크 — "이 톤으로 가자" 3곳</div>
   <div class="bench-grid">
     <div class="bench-card">
-      <div class="b-cat">글로벌 · 아이스 · 참고 1순위</div>
-      <div class="b-name">Hatozaki Whisky</div>
-      <div class="b-note">"이 한 잔이 완벽해지는 순간" 컨셉의 원형. 제품 아닌 장면을 판다. 슬로모션 hero + 단문 카피 + 여백.</div>
-      <div class="b-point">✓ Hero 톤 · Manifesto 문장형</div>
+      <div class="b-cat">최상위 벤치 · 컬러·고급감 원형</div>
+      <div class="b-name">Tiffany & Co.</div>
+      <div class="b-note">티파니 블루 단일 컬러 + 세리프 + 풀블리드 영상 + 여백. 한 컬러로 브랜드 세계관 완결하는 교본. 상품 설명이 아닌 '선물의 서사'를 판다.</div>
+      <div class="b-point">✓ 컬러·타이포·레이아웃 전면 차용</div>
     </div>
     <div class="bench-card">
-      <div class="b-cat">라이프스타일 · 여백 톤</div>
+      <div class="b-cat">아이스 컨셉 · 참고</div>
+      <div class="b-name">Hatozaki Whisky</div>
+      <div class="b-note">"이 한 잔이 완벽해지는 순간" 컨셉의 원형. 제품 아닌 장면을 판다. 슬로모션 hero + 단문 카피.</div>
+      <div class="b-point">✓ Hero 영상 · Manifesto 문장</div>
+    </div>
+    <div class="bench-card">
+      <div class="b-cat">여백·에디토리얼</div>
       <div class="b-name">Aesop</div>
       <div class="b-note">쇼핑몰 기능은 다 갖고 있지만 사이트는 에세이. 타이포와 여백만으로 격이 결정된다. 배너 없음.</div>
-      <div class="b-point">✓ 타이포 · 여백 · Journal 구조</div>
-    </div>
-    <div class="bench-card">
-      <div class="b-cat">로컬 · 홈바 인접</div>
-      <div class="b-name">The Hyundai Seoul / Sool</div>
-      <div class="b-note">한국형 프리미엄 F&B 브랜드 사이트 톤. 국문 세리프 + 다크톤 + 제품을 에디토리얼처럼 보여주는 레이아웃.</div>
-      <div class="b-point">✓ 국문 타이포 · 로컬 톤</div>
+      <div class="b-point">✓ Journal 구조 · 카피톤</div>
     </div>
   </div>
   <div class="sec-note">
-    🎯 <b>제외 벤치:</b> 쇼피파이 표준 템플릿·쿠팡·네이버 스마트스토어 → 절대 참고하지 않는다 (세일즈 톤 재감염 방지).
+    🎯 <b>1순위 벤치 = 티파니 앤 코.</b> 카페24에서 <b>티파니 홈페이지 골격과 최대한 유사한 프리미엄 브랜드 테마</b>를 구매한 뒤 티파니 블루·세리프·여백으로 커스텀. 제외 벤치: 쇼피파이 표준·쿠팡·네이버 스마트스토어.
   </div>
 </div>
 
@@ -787,27 +830,30 @@
     <div class="week-row">
       <div class="wk">W1<div class="date">05/01~05/04</div></div>
       <div class="content">
-        <div class="goal">🧭 인벤토리 + 벤치마크 + 와이어프레임 확정</div>
+        <div class="goal">🧭 카페24 테마 선정 + 여름 촬영 본편 + 킥오프</div>
         <ul>
-          <li><b>[월 5/4]</b> 킥오프 미팅 · 벤치마크 3곳(Hatozaki·Aesop·Sool) 공유 · 대표님 톤 승인</li>
-          <li>구글드라이브 리뉴얼 폴더 전수 인벤토리 · 재사용 가능 자산 선별</li>
+          <li><b>[금~일 5/1~5/3]</b> 여름 5종 본 촬영(우유·팥빙수·주스·탄산·막걸리) · 티파니톤 세팅 · 스틸+숏폼 병행</li>
+          <li><b>[월 5/4]</b> 킥오프 · 벤치마크 3곳(Tiffany·Hatozaki·Aesop) 공유 · 티파니톤 대표님 승인</li>
+          <li><b>[월~화]</b> 카페24 디자인센터 프리미엄 테마 3개 후보 비교 → 대표님 1개 결정 → 구매</li>
+          <li>구글드라이브 리뉴얼 폴더 인벤토리 · 재사용 자산 선별</li>
           <li>jewelice.co.kr 베이스라인 지표 (GA·Search Console) 기록</li>
-          <li>와이어프레임 v1 (8섹션 메인) 대표님 OK</li>
-          <li>외주 vs 인하우스 결정 · RFP 3곳 요청</li>
+          <li>와이어프레임 v1 (9섹션 메인 + Summer) 대표님 OK</li>
+          <li>커스텀 외주 RFP 3곳 요청 (카페24 테마 기반)</li>
         </ul>
       </div>
     </div>
     <div class="week-row">
       <div class="wk">W2<div class="date">05/11~05/15</div></div>
       <div class="content">
-        <div class="goal">✍️ Hero 영상 촬영 + 카피 교체</div>
+        <div class="goal">✍️ 카페24 테마 커스텀 + Hero·Summer 섹션 적용</div>
         <ul>
-          <li>Hero 슬로모션 영상 촬영 (위스키 + 아이스볼) · 박명훈 또는 외주</li>
-          <li>메인 hero 카피 3안 → 대표님 선택</li>
-          <li>Manifesto 문장 확정 (컨셉북 문장 기반)</li>
-          <li>듀오메이커·큐브·스피어 상세페이지 헤드카피 + 오프닝 영상 브리프</li>
+          <li>외주 착수 · 카페24 테마에 티파니블루·세리프·여백 커스텀</li>
+          <li>Hero: 여름 5종 중 1~2종으로 슬로모션 Hero 교체 (대표님 픽)</li>
+          <li>메인 Summer 섹션(05B) 5종 컷 실반영</li>
+          <li>Manifesto 문장 확정 (컨셉북 + 여름 톤)</li>
+          <li>듀오메이커·큐브·스피어 상세 헤드카피 + 오프닝 영상 브리프 (소재 매핑: 우유→큐브 / 탄산→스피어 / 막걸리→스피어)</li>
           <li>/business IA 확정 (5개 카테고리 모듈)</li>
-          <li>인스타 바이오 즉시 교체 (권나경)</li>
+          <li>인스타 바이오 즉시 교체 · 9그리드 여름 5종 업로드 시작 (권나경)</li>
         </ul>
       </div>
     </div>
@@ -889,20 +935,63 @@
   </div>
 </div>
 
+<!-- ═══════ ☀️ 여름 콘텐츠 제작 ═══════ -->
+<div class="section" id="summer">
+  <div class="sec-header" style="background: linear-gradient(135deg, #0ABAB5, #B2E8E5); color: #005552;">☀️ 여름 타겟 콘텐츠 제작 — 얼려둔 5종 활용 (우유·팥빙수·주스·탄산·막걸리)</div>
+  <div class="sec-body">
+    <p style="font-size:12.5px;color:#555;margin-bottom:14px;line-height:1.8;">
+      📌 <b>현재 준비물:</b> 우유 / 팥빙수(팥 포함) / 주스 / 탄산 / 막걸리 — 전부 얼림 완료. <b>홈페이지 리뉴얼 Hero·Summer 섹션·Journal·상세페이지·인스타 릴스</b>에 전면 활용.
+      티파니톤(아이보리·티파니블루) 배경에서 촬영 → 한 가지 톤으로 시리즈 묶음.
+    </p>
+    <table>
+      <tr><th style="width:90px;">소재</th><th>컨셉</th><th>카피 (국문/영문)</th><th>용도</th><th style="width:120px;">연출 포인트</th></tr>
+      <tr class="high"><td><b>🥛 우유</b></td><td>"얼린 우유가 녹으며 라떼를 완성한다"</td><td>희석 없는 우유 라떼 · <i>Milk, Undiluted</i></td><td>Hero 후보 · 인스타 릴스 · 상세(아블러 큐브)</td><td>슬로모션 · 투명컵 · 커피 푸어링</td></tr>
+      <tr class="high"><td><b>🍧 팥빙수</b></td><td>"크리스탈 팥빙수 — 얼음도 보석이다"</td><td>투명한 빙수의 격 · <i>Crystal Bingsu</i></td><td>Summer Editorial 메인 · Journal 첫 기사</td><td>세리프 자막 · 팥 위 클리어 큐브 고급 플레이팅</td></tr>
+      <tr><td><b>🧃 주스</b></td><td>"과일을 그대로 얼린 보석"</td><td>주스 큐브 · <i>Frozen Gem</i></td><td>인스타 피드 · UGC 캠페인 시드</td><td>티파니블루 배경에 오렌지·딸기 색 대비</td></tr>
+      <tr><td><b>🥤 탄산</b></td><td>"녹지 않는 탄산, 마지막까지 시원한"</td><td>탄산 클리어 큐브 · <i>Sparkling, Preserved</i></td><td>/collection/ablr-sphere 상세 영상</td><td>탄산 버블 매크로 · 구체 얼음 회전</td></tr>
+      <tr><td><b>🍶 막걸리</b></td><td>"막걸리 온더록 — 한국 술의 새로운 순간"</td><td>막걸리 온더록 · <i>On the Rocks, K-Style</i></td><td>로컬 에디토리얼 · /journal K-pairing</td><td>옹기 느낌 잔 + 티파니톤 대비 · 로컬 모던 미학</td></tr>
+    </table>
+
+    <h4 style="font-size:13px;color:#007C78;font-weight:800;margin:18px 0 10px;">📸 촬영·편집 플랜 (박명훈 주도)</h4>
+    <table>
+      <tr><th>아이템</th><th>촬영</th><th>결과물</th><th>마감</th></tr>
+      <tr><td>5종 스틸 컷 (에디토리얼)</td><td>스튜디오 또는 사무실 한 톤 세팅 · 4/25~5/2</td><td>홈페이지 Summer 섹션 5컷 · 인스타 9그리드</td><td>5/2</td></tr>
+      <tr><td>5종 숏폼 영상 (10~15초)</td><td>슬로모션 + 한 줄 카피 · 각 1분씩 5편</td><td>릴스 · 쇼츠 · Hero 후보 / 상세 오프닝</td><td>5/9</td></tr>
+      <tr><td>Journal 에디토리얼 "이 여름의 다섯 잔"</td><td>스토리텔링 장문 + 5컷 · 티파니톤 풀블리드</td><td>/journal 1호 · 메인 Summer 섹션 링크</td><td>5/16</td></tr>
+      <tr><td>상세페이지 매핑</td><td>우유→큐브 / 탄산→스피어 / 주스→큐브 / 막걸리→스피어 / 팥빙수→큐브</td><td>각 상세 오프닝 영상 연결</td><td>5/22</td></tr>
+      <tr><td>UGC 시드 포스트</td><td>#음료의마지막보석 해시태그 런칭 + 5종 인증샷 챌린지</td><td>인스타 공식 피드 · 스토리 하이라이트</td><td>5/25</td></tr>
+    </table>
+
+    <h4 style="font-size:13px;color:#007C78;font-weight:800;margin:18px 0 10px;">🎯 카피 라이브러리 (여름 시리즈 · 티파니톤)</h4>
+    <table>
+      <tr><th>톤</th><th>국문</th><th>영문</th></tr>
+      <tr><td>Hero 1안</td><td>"이 여름, 얼려둔 다섯 잔의 보석"</td><td>Five Jewels, Frozen for Summer.</td></tr>
+      <tr><td>Hero 2안</td><td>"얼음이 달라지면, 여름이 달라진다"</td><td>A Different Ice, A Different Summer.</td></tr>
+      <tr><td>Manifesto</td><td>"우유도, 팥빙수도, 막걸리도 — 얼음이 마지막을 완성한다."</td><td>Milk, Bingsu, Makgeolli — ice completes the final note.</td></tr>
+      <tr><td>Journal 제목</td><td>"이 여름의 다섯 잔 — 얼려둔 모든 것이 보석이 되는 순간"</td><td>Five Glasses of Summer — When Everything Frozen Becomes a Jewel.</td></tr>
+      <tr><td>릴스 훅</td><td>"이 팥빙수, 왜 이렇게 예뻐 보이지?"</td><td>Why does this bingsu look so… elegant?</td></tr>
+    </table>
+  </div>
+  <div class="sec-note">
+    🎬 <b>시너지:</b> 여름 5종 촬영 = 홈페이지 Summer 섹션 + Journal 1호 + 릴스 5편 + 상세페이지 오프닝 + UGC 시드 — <b>한 번 촬영으로 5개 채널 동시 공급</b>. 5/2까지 세팅 마치면 리뉴얼 W2(카피 교체) 일정 정확히 맞춤.
+  </div>
+</div>
+
 <!-- ═══════ 팀 협업 ═══════ -->
 <div class="section" id="team">
-  <div class="sec-header green">⑦ 팀 협업</div>
+  <div class="sec-header green">⑦ 팀 협업 (리뉴얼 코어 팀)</div>
   <div class="sec-body">
     <table>
       <tr><th style="width:120px;">담당자</th><th style="width:100px;">역할</th><th>범위</th><th style="width:120px;">5월 마감</th></tr>
-      <tr><td><b>박지현 팀장</b></td><td><span class="tag tag-design">총괄</span></td><td class="editable" data-k="t1">전체 총괄 · 브랜드 톤 검증 · 대표님 보고 · /business 기획 · KPI · 외주 관리</td><td class="center">전구간</td></tr>
-      <tr><td><b>박명훈</b></td><td><span class="tag tag-content">영상/카피</span></td><td class="editable" data-k="t2">Hero 슬로모션 · 상세 오프닝 영상 · 비교 시리즈 · 인스타 피드 컨셉 동기화 · /bartenders(6월)</td><td class="center">5/25 1차</td></tr>
-      <tr><td><b>권나경</b></td><td><span class="tag tag-copy">채널</span></td><td class="editable" data-k="t3">NAVER/쿠팡 상세 반영 · 스마트스토어 동기화 · /store 동선 · 트래픽 트래킹</td><td class="center">5/29</td></tr>
-      <tr><td><b>권수지</b></td><td><span class="tag tag-dev">운영</span></td><td class="editable" data-k="t4">SKU·품번 크로스체크 · 재고 상태 표기 · 선물세트 정리 · 40MM 큐브(6월)</td><td class="center">5/22</td></tr>
-      <tr><td><b>박경열</b></td><td><span class="tag tag-b2b">B2B</span></td><td class="editable" data-k="t5">/business 메시지 감수 · 60곳 발송 · 문의 응대 · 기존 레퍼런스 확장</td><td class="center">5/22~31</td></tr>
-      <tr><td><b>대표님</b></td><td><span class="tag tag-high">결정</span></td><td class="editable" data-k="t6">컨셉 축 승인 · Hero 선택 · /business OK · 예산 · 퍼블리싱 GO</td><td class="center">게이트</td></tr>
-      <tr><td><b>외주</b></td><td><span class="tag tag-dev">외부</span></td><td class="editable" data-k="t7">와이어 고급화 · 반응형 구현 · 영상 프로덕션 · 다크톤 디자인</td><td class="center">5/18</td></tr>
+      <tr><td><b>박지현 팀장</b></td><td><span class="tag tag-design">총괄</span></td><td class="editable" data-k="t1">전체 총괄 · 티파니톤 브랜드 검증 · 대표님 보고 · /business 기획 · KPI · 카페24 테마 선정 · 외주 관리</td><td class="center">전구간</td></tr>
+      <tr><td><b>박명훈</b></td><td><span class="tag tag-content">영상/카피</span></td><td class="editable" data-k="t2">Hero 슬로모션 · 상세 오프닝 영상 · 여름 5종(우유·팥빙수·주스·탄산·막걸리) 얼음 컨텐츠 제작 · 인스타 피드 컨셉 동기화 · /bartenders(6월)</td><td class="center">5/25 1차</td></tr>
+      <tr><td><b>권나경</b></td><td><span class="tag tag-copy">채널</span></td><td class="editable" data-k="t3">카페24 테마 세팅 · NAVER/쿠팡 상세 반영 · 스마트스토어 동기화 · /store 동선 · 트래픽 트래킹</td><td class="center">5/29</td></tr>
+      <tr><td><b>대표님</b></td><td><span class="tag tag-high">결정</span></td><td class="editable" data-k="t6">티파니톤 승인 · Hero 선택 · 카페24 테마 최종 OK · /business OK · 예산 · 퍼블리싱 GO</td><td class="center">게이트</td></tr>
+      <tr><td><b>외주</b></td><td><span class="tag tag-dev">외부</span></td><td class="editable" data-k="t7">카페24 테마 위에 티파니 컬러·세리프 커스텀 · 영상 프로덕션 · 반응형 QA</td><td class="center">5/18</td></tr>
     </table>
+  </div>
+  <div class="sec-note">
+    👥 <b>코어 4인:</b> 팀장 · 박명훈 · 권나경 · 대표님 (+ 외주). 권수지·박경열은 리뉴얼 직접 참여 제외 — 본인 본업(생산·B2B 영업)에 집중.
   </div>
 </div>
 
@@ -912,12 +1001,13 @@
   <div class="sec-body">
     <table>
       <tr><th>항목</th><th>내용</th><th class="num">예상</th><th>비고</th></tr>
-      <tr><td><b>디자인·개발 외주</b></td><td class="editable" data-k="b1">와이어 + 반응형 구현 (메인+상세3+business) · 다크톤 커스텀 테마</td><td class="num editable" data-k="b1v">800~1,500만</td><td>브랜드 사이트 수준 상향</td></tr>
-      <tr><td><b>영상 프로덕션</b></td><td class="editable" data-k="b2">Hero 시네마틱 · 비교 영상 3편 · 바텐더 인터뷰(6월)</td><td class="num editable" data-k="b2v">400~700만</td><td>슬로모션 촬영 포함</td></tr>
-      <tr><td><b>사진 촬영</b></td><td class="editable" data-k="b3">에디토리얼 제품컷·홈바 씬·인물</td><td class="num editable" data-k="b3v">300~500만</td><td>5/14~15 예정</td></tr>
-      <tr><td><b>카피라이팅</b></td><td class="editable" data-k="b4">컨셉북 기반 상세·Journal 카피</td><td class="num editable" data-k="b4v">150~300만</td><td>박명훈 커버 가능 시 축소</td></tr>
-      <tr><td><b>CMS·인프라</b></td><td class="editable" data-k="b5">Framer/Shopify Liquid 커스텀 · 도메인·SSL</td><td class="num editable" data-k="b5v">연 80~200만</td><td>CMS 결정 W1</td></tr>
-      <tr class="subtotal"><td colspan="2"><b>총 예상 (5월)</b></td><td class="num"><b>~1,730~3,200만</b></td><td>브랜드 톤 상향 반영</td></tr>
+      <tr><td><b>카페24 프리미엄 테마</b></td><td class="editable" data-k="b0">디자인센터에서 티파니톤과 최대한 유사한 고급 브랜드 템플릿 1회 구매</td><td class="num editable" data-k="b0v">50~200만</td><td>W1 3개 후보 비교 후 결정</td></tr>
+      <tr><td><b>디자인·개발 외주 (커스텀)</b></td><td class="editable" data-k="b1">카페24 테마 위 티파니 컬러·세리프·여백 커스텀 + 메인/상세3/business 반응형</td><td class="num editable" data-k="b1v">400~900만</td><td>템플릿 기반이라 대폭 절감</td></tr>
+      <tr><td><b>영상 프로덕션</b></td><td class="editable" data-k="b2">Hero 시네마틱 + 여름 5종(우유·팥빙수·주스·탄산·막걸리) 숏폼 · 바텐더 인터뷰(6월)</td><td class="num editable" data-k="b2v">400~700만</td><td>슬로모션 촬영 포함</td></tr>
+      <tr><td><b>사진 촬영 (에디토리얼)</b></td><td class="editable" data-k="b3">여름 5종 스틸 + 제품컷 + 홈바 씬 · 티파니톤 한 톤 세팅</td><td class="num editable" data-k="b3v">300~500만</td><td>5/2 마감</td></tr>
+      <tr><td><b>카피라이팅</b></td><td class="editable" data-k="b4">컨셉북·여름 시리즈 기반 상세·Journal·Hero 카피</td><td class="num editable" data-k="b4v">100~250만</td><td>박명훈 커버 가능 시 축소</td></tr>
+      <tr><td><b>CMS·인프라</b></td><td class="editable" data-k="b5">카페24 월 사용료 · 도메인 · SSL · 부가 앱</td><td class="num editable" data-k="b5v">연 60~120만</td><td>기존 활용</td></tr>
+      <tr class="subtotal"><td colspan="2"><b>총 예상 (5월)</b></td><td class="num"><b>~1,250~2,550만</b></td><td>카페24 테마 기반으로 절감</td></tr>
     </table>
   </div>
 </div>
@@ -969,7 +1059,10 @@
     <div class="idea-item"><div class="stamp">2026-04-22</div><b>호텔 1컨택 = 복수 매장</b> — @signielseoul 1건 → Bar 81/Lounge/Stay/비채나 4매장 동시 제안</div>
     <div class="idea-item"><div class="stamp">2026-04-22</div><b>패키지 카피</b> — "이 안에 음료의 마지막 보석이 있습니다" · 박스 여는 순간 경험</div>
     <div class="idea-item"><div class="stamp">2026-04-22</div><b>쇼피파이 영문 = 해외 B2B 게이트웨이</b> — "The Final Jewel" 랜딩 · 해외 문의 분리</div>
-    <div class="idea-item"><div class="stamp">2026-04-22</div><b>다크톤 + 골드 악센트</b> — 쇼핑몰 화이트 배경 완전 탈출 · Issey Miyake 톤</div>
+    <div class="idea-item"><div class="stamp">2026-04-22</div><b>티파니 앤 코 톤 채택</b> — 티파니 블루(#0ABAB5) + 아이보리 + 딥티파니 + 세리프. 한 컬러로 세계관 완결.</div>
+    <div class="idea-item"><div class="stamp">2026-04-22</div><b>카페24 프리미엄 테마 구매 → 커스텀</b> — 티파니 홈페이지 골격과 최대한 유사한 템플릿 선 구매, 컬러·폰트만 조정.</div>
+    <div class="idea-item"><div class="stamp">2026-04-22</div><b>여름 5종 얼려둔 소재 활용</b> — 우유·팥빙수·주스·탄산·막걸리 — Hero·Summer 섹션·Journal·릴스·상세 한 번 촬영으로 5채널 동시 공급.</div>
+    <div class="idea-item"><div class="stamp">2026-04-22</div><b>막걸리 온더록 — K-pairing Journal</b> — 한국 로컬 × 프리미엄 얼음 서사, 해외 B2B(해외 VIP) 어필 포인트.</div>
     <div class="idea-item"><div class="stamp">2026-04-22</div><b>/store 서브 격리</b> — 세일즈 기능은 격리해서 브랜드 메인 오염 방지</div>
     <div class="idea-add">
       <input type="text" id="newIdea" placeholder="새 아이디어 입력 후 Enter 또는 + 버튼 (날짜 스탬프 자동)" />
@@ -989,13 +1082,13 @@
     </div>
     <div class="return-card yellow">
       <div class="rl">② 다음 질문</div>
-      <div class="rv editable" data-k="ret2">"CMS 어떤 걸 쓸 것인가? Framer · Shopify 커스텀 · WordPress · 헤드리스 중 W1에 결정."</div>
-      <div class="rs">— 브랜드 톤·속도·확장성 3축 비교. 외주 견적과 묶어 결정.</div>
+      <div class="rv editable" data-k="ret2">"카페24 디자인센터에서 티파니톤과 가장 가까운 프리미엄 테마 3개 · 4/28까지 후보 선정"</div>
+      <div class="rs">— 세리프 타이포·풀블리드 영상·여백·단색 악센트 가능 여부 3축 비교. 대표님 최종 픽.</div>
     </div>
     <div class="return-card">
       <div class="rl">③ 실행 한 점</div>
-      <div class="rv editable" data-k="ret3">"4/28~30 · 킥오프 덱 + 벤치마크 캡처(Hatozaki·Aesop·Sool) + RFP 초안 · 대표님 4/30 리뷰 요청"</div>
-      <div class="rs">— 다음 주 내 완료. 5/4 킥오프 전 대표님 톤 OK 필수.</div>
+      <div class="rv editable" data-k="ret3">"4/24~26 · 여름 5종(우유·팥빙수·주스·탄산·막걸리) 1차 테스트 촬영 → 4/28 티파니 톤 샘플 컷 대표님 공유"</div>
+      <div class="rs">— 얼려둔 소재 보존 기한 고려 빠른 촬영. 5/2 본 촬영 전 톤·구도 합의.</div>
     </div>
   </div>
 </div>
@@ -1004,7 +1097,7 @@
   <strong>天啓 홈페이지 리뉴얼 마스터플랜 v2</strong> · 세일즈몰 → 프리미엄 브랜드 하우스 전환 · 박지현 팀장 × 화경(AI)<br>
   영구 URL: <code>https://charlesmaster911.github.io/jewelice-playbook/jihyun-homepage-renewal.html</code><br>
   편집 모드 시 수치·문장 클릭 수정 · localStorage 자동저장 · 아이디어 박스 누적(삭제 없음)<br>
-  연결: <a href="jihyun-hub.html" style="color:#7c3aed;font-weight:700;">허브</a> · <a href="jihyun-cash.html" style="color:#7c3aed;font-weight:700;">자금</a> · <a href="jihyun-briefing.html" style="color:#7c3aed;font-weight:700;">브리핑</a> · <a href="jihyun-plan.html" style="color:#7c3aed;font-weight:700;">플랜</a>
+  연결: <a href="jihyun-hub.html" style="color:#0ABAB5;font-weight:700;">허브</a> · <a href="jihyun-cash.html" style="color:#0ABAB5;font-weight:700;">자금</a> · <a href="jihyun-briefing.html" style="color:#0ABAB5;font-weight:700;">브리핑</a> · <a href="jihyun-plan.html" style="color:#0ABAB5;font-weight:700;">플랜</a>
 </div>
 
 </div>
@@ -1023,7 +1116,7 @@ function toggleEdit(){
   const btn = document.querySelector('.btn-edit');
   btn.textContent = editMode ? '✓ 편집 종료' : '✏️ 편집 모드';
   btn.style.background = editMode ? '#27ae60' : '#ffd600';
-  btn.style.color = editMode ? 'white' : '#2d1a6e';
+  btn.style.color = editMode ? 'white' : '#005552';
 }
 function saveAll(){
   const data = {};
