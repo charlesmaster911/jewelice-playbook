@@ -304,7 +304,7 @@
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi danger"><div class="label">내부 생산 개당 원가</div><div class="value">₩11,500~14,000</div><div class="sub">❌ 설비·인건·공간 불가</div></div>
+    <div class="kpi danger"><div class="label">내부 생산 개당 원가</div><div class="value">₩9,800~12,500</div><div class="sub">❌ 냉동고 3대 자체보유 반영, 여전히 불가</div></div>
     <div class="kpi success"><div class="label">외주 생산 개당 원가</div><div class="value">₩2,850~3,500</div><div class="sub">✅ 현실 가능</div></div>
     <div class="kpi yellow"><div class="label">최저 수용가</div><div class="value">₩5,500</div><div class="sub">마진 30% 방어선</div></div>
     <div class="kpi"><div class="label">정상 제시가</div><div class="value">₩7,500</div><div class="sub">마진 53%</div></div>
@@ -324,8 +324,8 @@
   <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr);">
     <div class="kpi danger">
       <div class="label">❌ 내부생산 개당 원가</div>
-      <div class="value">₩10,166</div>
-      <div class="sub">설비+인건+냉동+소모+리스크 전부 반영</div>
+      <div class="value">₩9,366</div>
+      <div class="sub">냉동고 3대 자체보유 반영 (렌탈비 제외)</div>
     </div>
     <div class="kpi success">
       <div class="label">✅ 외주생산 개당 원가</div>
@@ -334,9 +334,12 @@
     </div>
     <div class="kpi yellow">
       <div class="label">💰 원가 차이</div>
-      <div class="value">약 3배</div>
-      <div class="sub">내부시 개당 6,700원 추가부담</div>
+      <div class="value">약 2.7배</div>
+      <div class="sub">내부시 개당 5,900원 추가부담</div>
     </div>
+  </div>
+  <div class="note" style="background:var(--yellow-light); border-left-color:var(--yellow);">
+    <strong>🧊 내부 자산 반영 (2026-04-22 업데이트):</strong> 쥬얼아이스 내부 <strong>냉동고 3대 보유</strong> 확인 → 보관 냉동고 렌탈비 80만원 제외. 대신 전기세는 3대 기준(3대 × 50일 = 약 55만원)으로 재산출. 그래도 급속냉동 챔버(200만) + 인건비(482만)가 절대 구조적으로 외주 대비 열위.
   </div>
 
   <!-- 가로 통비교표 -->
@@ -349,13 +352,13 @@
     </tr>
     <tr>
       <td><strong>총원가 (1,000개)</strong></td>
-      <td class="num">10,166,000원</td>
+      <td class="num">9,366,000원 <span style="color:var(--gray); font-size:11px;">(냉동고 자체보유 반영)</span></td>
       <td class="num">2,850,000 ~ 3,500,000원</td>
       <td class="c"><span class="badge good">외주 승</span></td>
     </tr>
     <tr>
       <td><strong>개당 원가</strong></td>
-      <td class="num">10,166원</td>
+      <td class="num">9,366원</td>
       <td class="num">2,850 ~ 3,500원</td>
       <td class="c"><span class="badge good">외주 승</span></td>
     </tr>
@@ -371,10 +374,16 @@
       <td class="num">공장 자체 보유</td>
       <td class="c"><span class="badge good">외주 승</span></td>
     </tr>
-    <tr>
+    <tr class="success">
       <td><strong>보관 냉동고</strong></td>
-      <td class="num">500L × 2대 렌탈 80만</td>
+      <td class="num">✅ <strong>자체 보유 3대</strong> (렌탈비 0원)</td>
       <td class="num">불필요 (직송)</td>
+      <td class="c"><span class="badge warn">동점</span></td>
+    </tr>
+    <tr>
+      <td><strong>냉동고 전기세 (3대 × 50일)</strong></td>
+      <td class="num">약 550,000원</td>
+      <td class="num">0원</td>
       <td class="c"><span class="badge good">외주 승</span></td>
     </tr>
     <tr>
@@ -421,13 +430,13 @@
     </tr>
     <tr class="success">
       <td><strong>마진 (제안가 750만 기준)</strong></td>
-      <td class="num">-2,666,000원 <strong>(역마진)</strong></td>
+      <td class="num">-1,866,000원 <strong>(역마진)</strong></td>
       <td class="num">+4,000,000 ~ 4,650,000원 <strong>(60%)</strong></td>
       <td class="c"><span class="badge good">외주 승</span></td>
     </tr>
     <tr class="total">
       <td><strong>종합 판정</strong></td>
-      <td class="num" style="color:var(--danger);"><strong>❌ 불가 (13:0)</strong></td>
+      <td class="num" style="color:var(--danger);"><strong>❌ 불가 (13:1 · 냉동고만 동점)</strong></td>
       <td class="num" style="color:var(--success);"><strong>✅ 채택</strong></td>
       <td class="c">⭐ 외주 100%</td>
     </tr>
@@ -436,13 +445,13 @@
   <!-- 장단점 컬럼 -->
   <div class="comparison" style="margin-top:20px;">
     <div class="bad-col">
-      <h4>🏠 내부생산 — 치명적 5가지</h4>
+      <h4>🏠 내부생산 — 치명적 5가지 <span style="font-size:11px; color:var(--gray);">(냉동고 3대 보유 반영)</span></h4>
       <ul>
-        <li><strong>설비비 폭발</strong> — 급속냉동 챔버 + 냉동고 = 280만원 50일 점유</li>
+        <li><strong>급속냉동 챔버 필요</strong> — 투명얼음 핵심 설비 200만 렌탈 (냉동고는 자체 보유 ✅)</li>
         <li><strong>인건비 역전</strong> — 전담 1명 × 50일 = 482만 (매출보다 큼)</li>
         <li><strong>30% 로스율</strong> — 곡면 각인은 자체 몰드로 1.5~2배 불량</li>
         <li><strong>배송 녹음 리스크</strong> — 드라이아이스 분산 택배 클레임 우려</li>
-        <li><strong>납기 물리적 불가</strong> — 1,000개를 50일 내 자체 생산은 한계</li>
+        <li><strong>납기 물리적 불가</strong> — 1,000개를 50일 내 자체 생산은 인력 한계</li>
       </ul>
     </div>
     <div class="good-col">
@@ -487,13 +496,13 @@
   <table>
     <tr><th>#</th><th>누락 항목</th><th class="num">예상 금액</th></tr>
     <tr><td>1</td><td>급속냉동 챔버 렌탈 (투명얼음 필수)</td><td class="num">2,000,000</td></tr>
-    <tr><td>2</td><td>보관 냉동고 2대 × 14일</td><td class="num">약 250,000</td></tr>
+    <tr class="success"><td>2</td><td>보관 냉동고 <strong>자체 보유 3대</strong> (렌탈비 0, 전기세만)</td><td class="num">0 (렌탈) / +300,000 (3대 전기)</td></tr>
     <tr><td>3</td><td>RO 필터 교체</td><td class="num">70,000</td></tr>
     <tr><td>4</td><td>인건 보정 (실제 8h + QC 2h)</td><td class="num">+3,800,000</td></tr>
     <tr><td>5</td><td>예비비 (녹음·재생산) 5%</td><td class="num">약 200,000</td></tr>
-    <tr class="total"><td colspan="2"><strong>추가 필요 원가</strong></td><td class="num"><strong>+6,320,000</strong></td></tr>
-    <tr class="total danger"><td colspan="2"><strong>🚫 내부 생산 실제 원가</strong></td><td class="num"><strong>약 10,166,000</strong></td></tr>
-    <tr class="total danger"><td colspan="2"><strong>🚫 제안가 550만 적용 시 손실</strong></td><td class="num"><strong>-4,660,000 역마진</strong></td></tr>
+    <tr class="total"><td colspan="2"><strong>추가 필요 원가 (냉동고 자체보유 반영)</strong></td><td class="num"><strong>+5,520,000</strong></td></tr>
+    <tr class="total danger"><td colspan="2"><strong>🚫 내부 생산 실제 원가</strong></td><td class="num"><strong>약 9,366,000</strong></td></tr>
+    <tr class="total danger"><td colspan="2"><strong>🚫 제안가 550만 적용 시 손실</strong></td><td class="num"><strong>-3,866,000 역마진</strong></td></tr>
   </table>
 
   <h3>0-3. 팀장님 결정 필요 3가지</h3>
@@ -526,9 +535,9 @@
   <table>
     <tr><th>분류</th><th>항목</th><th>계산 근거</th><th class="num">금액 (원)</th></tr>
     <tr><td rowspan="3">A. 설비</td><td>급속냉동 챔버 렌탈</td><td>업소용 -30℃ × 50일</td><td class="num">2,000,000</td></tr>
-    <tr><td>보관 냉동고 렌탈</td><td>500L × 2대 × 50일</td><td class="num">800,000</td></tr>
+    <tr class="success"><td>보관 냉동고 <strong>자체 보유 3대</strong></td><td>렌탈비 0원 (내부 자산)</td><td class="num">0</td></tr>
     <tr><td>각인 실리콘 몰드</td><td>30개 × 20,000원</td><td class="num">600,000</td></tr>
-    <tr><td rowspan="3">B. 유틸리티</td><td>전기세</td><td>3,600kWh × 150원 (산업용)</td><td class="num">540,000</td></tr>
+    <tr><td rowspan="3">B. 유틸리티</td><td>전기세 (냉동고 3대 풀가동)</td><td>3,600kWh × 150원 + 냉동고 3대 추가</td><td class="num">840,000</td></tr>
     <tr><td>수도세</td><td>얼음 410L + 세척 200L</td><td class="num">40,000</td></tr>
     <tr><td>RO 필터 교체</td><td>투명얼음 핵심</td><td class="num">70,000</td></tr>
     <tr><td rowspan="2">C. 인건비</td><td>생산 담당 1명</td><td>8h × 50일 × 12,000</td><td class="num">4,800,000</td></tr>
@@ -539,8 +548,8 @@
     <tr><td>배송용 드라이아이스</td><td>10kg</td><td class="num">30,000</td></tr>
     <tr><td>F. 불량</td><td>불량 10% 재생산</td><td>100개 × 2,000원</td><td class="num">200,000</td></tr>
     <tr><td>G. 예비비</td><td>녹음·파손·재배송</td><td>전체 5%</td><td class="num">500,000</td></tr>
-    <tr class="total"><td colspan="3">합계 (금형 별도)</td><td class="num">11,300,000 ~ 14,000,000</td></tr>
-    <tr class="total danger"><td colspan="3"><strong>🚫 개당 원가</strong></td><td class="num"><strong>11,300 ~ 14,000</strong></td></tr>
+    <tr class="total"><td colspan="3">합계 (금형 별도, 냉동고 자체보유 반영)</td><td class="num">9,800,000 ~ 12,500,000</td></tr>
+    <tr class="total danger"><td colspan="3"><strong>🚫 개당 원가</strong></td><td class="num"><strong>9,800 ~ 12,500</strong></td></tr>
   </table>
   <div class="alert">
     <strong>판정:</strong> 개당 1.1만~1.4만원 → 베리쉬가 5,000원에 받고 싶다 하면 <strong>개당 6,000~9,000원 역마진</strong>. 내부 생산 즉시 배제.
