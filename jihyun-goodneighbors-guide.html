@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>굿네이버스 사전동의 가이드 · 박지현 팀장 전용</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic','맑은 고딕',-apple-system,sans-serif; background:#f0f2f5; color:#222; font-size:14px; line-height:1.7; }
+
+  .top-bar {
+    background: linear-gradient(135deg,#4a1d8c,#7c3aed);
+    color:white; padding:18px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  }
+  .top-bar h1 { font-size:17px; font-weight:700; letter-spacing:-0.3px; }
+  .top-bar .meta { font-size:11px; opacity:0.9; margin-top:4px; }
+  .btns { display:flex; gap:8px; flex-wrap:wrap; }
+  .btn {
+    padding:7px 14px; border-radius:6px; border:none; cursor:pointer;
+    font-size:12px; font-weight:600; font-family:inherit;
+  }
+  .btn-edit { background:#ffd600; color:#2d1a6e; }
+  .btn-save { background:#27ae60; color:white; }
+  .btn-print { background:rgba(255,255,255,0.2); color:white; border:1px solid rgba(255,255,255,0.4); }
+
+  .save-indicator {
+    display:none; position:fixed; top:20px; right:20px;
+    background:#27ae60; color:white; padding:8px 16px;
+    border-radius:20px; font-size:11px; font-weight:700; z-index:100;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  }
+  .save-indicator.show { display:block; animation:fadeOut 2s forwards; }
+  @keyframes fadeOut { 0%,70%{opacity:1} 100%{opacity:0} }
+
+  .layout { display:flex; max-width:1400px; margin:0 auto; }
+
+  /* 좌측 네비 */
+  .nav {
+    width:260px; background:white; border-right:1px solid #e5e5e5;
+    position:sticky; top:0; align-self:flex-start;
+    min-height:calc(100vh - 80px); padding:16px 0;
+  }
+  .nav-title {
+    font-size:11px; color:#999; font-weight:700; letter-spacing:0.5px;
+    padding:8px 20px 10px; text-transform:uppercase;
+  }
+  .nav-item {
+    display:block; padding:11px 20px; cursor:pointer;
+    font-size:13px; color:#333; border-left:3px solid transparent;
+    transition:all 0.15s;
+  }
+  .nav-item:hover { background:#faf5ff; color:#4a1d8c; }
+  .nav-item.active {
+    background:linear-gradient(135deg,#faf5ff,#fff9e6);
+    color:#4a1d8c; border-left-color:#fbbf24;
+    font-weight:700;
+  }
+  .nav-num { color:#7c3aed; font-weight:800; margin-right:6px; }
+  .nav-item.active .nav-num { color:#f59e0b; }
+
+  /* 본문 */
+  .content {
+    flex:1; padding:28px 36px; background:white; min-width:0;
+  }
+  .doc {
+    display:none; max-width:900px; margin:0 auto;
+  }
+  .doc.active { display:block; }
+
+  /* 마크다운 스타일 */
+  .doc h1 {
+    font-size:24px; color:#4a1d8c; margin-bottom:16px;
+    padding-bottom:12px; border-bottom:3px solid #fbbf24;
+  }
+  .doc h2 {
+    font-size:18px; color:#4a1d8c; margin:24px 0 12px;
+    padding-left:10px; border-left:4px solid #7c3aed;
+  }
+  .doc h3 { font-size:15px; color:#2d1a6e; margin:18px 0 8px; font-weight:700; }
+  .doc h4 { font-size:13.5px; color:#555; margin:12px 0 6px; }
+  .doc p { margin-bottom:10px; color:#333; }
+  .doc ul, .doc ol { margin:8px 0 12px 20px; }
+  .doc li { margin-bottom:4px; }
+  .doc strong { color:#4a1d8c; font-weight:700; }
+  .doc em { color:#666; }
+  .doc code {
+    background:#f3f0fa; color:#4a1d8c; padding:2px 6px;
+    border-radius:4px; font-family:Consolas,Monaco,monospace;
+    font-size:12.5px;
+  }
+  .doc pre {
+    background:#fff9e6; border-left:4px solid #fbbf24;
+    padding:14px 16px; margin:12px 0; border-radius:6px;
+    overflow-x:auto; font-family:Consolas,Monaco,monospace;
+    font-size:12.5px; line-height:1.6;
+    white-space:pre-wrap; word-break:break-word; color:#78350f;
+  }
+  .doc pre code { background:none; color:inherit; padding:0; }
+  .doc blockquote {
+    border-left:4px solid #7c3aed;
+    background:#faf5ff; padding:10px 16px; margin:12px 0;
+    color:#4a1d8c; border-radius:4px;
+  }
+  .doc table {
+    width:100%; border-collapse:collapse; margin:14px 0;
+    font-size:12.5px;
+  }
+  .doc th {
+    background:linear-gradient(135deg,#4a1d8c,#7c3aed);
+    color:white; padding:10px 12px; text-align:left;
+    font-weight:700; border:1px solid #4a1d8c;
+  }
+  .doc td {
+    padding:9px 12px; border:1px solid #e5e5e5; vertical-align:top;
+  }
+  .doc tr:nth-child(even) td { background:#fafafa; }
+  .doc tr:hover td { background:#fff9e6; }
+  .doc hr { border:none; border-top:2px dashed #e0d4f7; margin:24px 0; }
+  .doc a { color:#7c3aed; text-decoration:none; border-bottom:1px dotted #7c3aed; }
+  .doc a:hover { color:#4a1d8c; border-bottom-style:solid; }
+
+  /* 체크리스트 스타일 */
+  .doc input[type="checkbox"] { margin-right:6px; }
+
+  /* 메타 헤더 */
+  .doc-meta {
+    background:linear-gradient(135deg,#faf5ff,#fff9e6);
+    padding:14px 18px; border-radius:8px; margin-bottom:20px;
+    border-left:4px solid #fbbf24;
+    font-size:12px; color:#4a1d8c;
+  }
+  .doc-meta .filename {
+    font-family:Consolas,monospace; background:rgba(124,58,237,0.1);
+    padding:2px 8px; border-radius:4px; font-size:11px;
+  }
+
+  @media (max-width:900px) {
+    .layout { flex-direction:column; }
+    .nav { width:100%; position:static; min-height:auto;
+           border-right:none; border-bottom:1px solid #e5e5e5; }
+    .content { padding:20px 16px; }
+  }
+  @media print {
+    .top-bar, .nav, .btns, .save-indicator { display:none !important; }
+    .doc { display:block !important; page-break-after:always; }
+    .content { padding:0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>🌍 굿네이버스 사전동의 가이드 · 박지현 팀장 전용</h1>
+    <div class="meta">쥬얼아이스 와디즈 × 굿네이버스 아프리카 식수사업 3% 기부 약정 · D-Day 72시간 · 2026-04-23</div>
+  </div>
+  <div class="btns">
+    <button class="btn btn-edit" onclick="togglePrintAll()">📖 전체보기</button>
+    <button class="btn btn-print" onclick="window.print()">🖨️ 인쇄</button>
+  </div>
+</div>
+<div class="save-indicator" id="saveIndicator">✅</div>
+
+<div class="layout">
+  <nav class="nav">
+    <div class="nav-title">📋 8개 문서</div>
+    <div class="nav-item active" data-doc="readme"><span class="nav-num">📘</span>README · 전체 개요</div>
+    <div class="nav-item" data-doc="d01"><span class="nav-num">01</span>배경 브리프</div>
+    <div class="nav-item" data-doc="d02"><span class="nav-num">02</span>초도 이메일 템플릿</div>
+    <div class="nav-item" data-doc="d03"><span class="nav-num">03</span>전화 통화 스크립트</div>
+    <div class="nav-item" data-doc="d04"><span class="nav-num">04</span>기부약정 제안서</div>
+    <div class="nav-item" data-doc="d05"><span class="nav-num">05</span>체크리스트</div>
+    <div class="nav-item" data-doc="d06"><span class="nav-num">06</span>예상질문 FAQ</div>
+    <div class="nav-item" data-doc="djandi"><span class="nav-num">💬</span>잔디 공유 메시지</div>
+  </nav>
+
+  <main class="content">
+    <div id="doc-readme" class="doc active">
+      <div class="doc-meta">📄 <span class="filename">README.md</span> · 프로젝트 전체 개요</div>
+      <div class="md-render" data-b64="IyDwn5mPIOq1v+uEpOydtOuyhOyKpCDsgqzsoIQg64+Z7J2YIOqwgOydtOuTnCAo67CV7KeA7ZiEIO2MgOyepSDsoITsmqkpCgoqKuyalOyyreyekDoqKiDssLDsiqQgKOylrOyWvOyVhOydtOyKpCDrjIDtkZwpCioq64u064u57J6QOioqIOuwleyngO2YhCDtjIDsnqUgKOujqOyLnCkg4oCUIEIyQsK37KSR6rCE7J6QCioq6ri06riJ64+EOioqIOKYheKYheKYhSBELURheSA3MuyLnOqwhCDslYjsl5Ag7JmE66OMIO2VhOyalAoqKuyDneyEseydvDoqKiAyMDI2LTA0LTIzCgotLS0KCiMjIPCfkqEg7ZWcIOykhCDsmpTslb0KCioq7JmA65SU7KaIIO2OgOuUqSDssqsg7KO8IOunpOy2nCAzJeulvCDqtb/rhKTsnbTrsoTsiqQg7JWE7ZSE66as7Lm0IOyLneyImOyCrOyXheyXkCDquLDrtoDtlZjripQg7JW97KCV7J2EIOunuuqzoCwg6re4IOqzvOygleyXkOyEnCDqtb/rhKTsnbTrsoTsiqQg66Gc6rOgwrftmITsnqUg7IKs7KeE7J2EIOylrOyWvOyVhOydtOyKpCDsmIHsg4EvU05TL+yZgOuUlOymiCDsg4jshozsi53sl5Ag7ZWp67KV7KCB7Jy866GcIOuFuOy2nO2VmOq4sCDsnITtlZwg7ISc66m0IOuPmeydmOulvCA3MuyLnOqwhCDslYjsl5Ag67Cb7JWE7JW8IO2VqeuLiOuLpC4qKgoKLS0tCgojIyDwn46vIOyZnCDtlYTsmpTtlZzqsIAgKOuwleyngO2YhCDtjIDsnqXsl5Dqsowg7KCE64us7ZWgIOuwsOqyvSkKCjEuICoq7LCw7Iqk6rCAIOydtOuvuCDsmIHsg4HCt1NOU8K37IOI7IaM7Iud7JeQICIzJSDquLDrtoAiIOyVveyGjeydhCDsoITsoJzroZwg7L2Y7YWQ7Lig66W8IOygnOyekSDsmYTro4wqKgoyLiDslb3soJUg7LK06rKwIOyXhuydtCDroZzqs6DCt+uLqOyytOuqhSDrhbjstpwg7IucICoq7IOB7ZGc6raMIOy5qO2VtCoqICsgKirsi6DrorDrj4Qg7Zu87IaQKiog66as7Iqk7YGsCjMuIOyZgOuUlOymiCDtjoDrlKkg7Jik7ZSIIOyLnOygkOyXkCDrp57strAgKio3MuyLnOqwhCDslYjsl5Ag64+Z7J2YIOqzteusuCDsiJjroLkqKiDtlYTsmpQKNC4g6riw67aAIOq4iOyVoeydgCAqKuyyqyDso7wg66ek7LacIMOXIDMlKiogKOuMgOuetSDsmIjsg4E6IDMsMDAwfjUsMDAw66eMIOybkCDqt5zrqqggw5cgMyUgPSAxMDB+MTUw66eMIOybkCkKCi0tLQoKIyMg8J+TiyA364uo6rOEIOyLpO2WiSDsiJzshJwKCnwg64uo6rOEIHwg64K07JqpIHwg7IaM7JqUIHwg7YyM7J28IHwKfC0tLS0tLXwtLS0tLS18LS0tLS0tfC0tLS0tLXwKfCAxIHwg67Cw6rK9IO2MjOyVhSB8IDEw67aEIHwgYDAxX+uwsOqyvV/ruIzrpqztlIQubWRgIHwKfCAyIHwg64u064u57J6QIOyXsOudvSAo7KCE7ZmUIOKGkiDsnbTrqZTsnbwpIHwgMzDrtoQgfCBgMDJf7LSI64+EX+ydtOuplOydvF/thZztlIzrpr8ubWRgIGAwM1/soITtmZRf7Ya17ZmUX+yKpO2BrOumve2KuC5tZGAgfAp8IDMgfCDsoJzslYjshJwg7KCE64usIHwgMeyLnOqwhCB8IGAwNF/quLDrtoDslb3soJVf7KCc7JWI7IScLm1kYCB8CnwgNCB8IOuLtOuLueyekCDsp4jrrLgg7J2R64yAIHwg7IOB7IucIHwgYDA2X+yYiOyDgeyniOusuF9GQVEubWRgIHwKfCA1IHwg7JW97KCV7IScIOy0iOyViCDqsoDthqAgfCAx7J28IHwgYDA1X+yytO2BrOumrOyKpO2KuC5tZGAgfAp8IDYgfCDroZzqs6Ag64W47LacIOuPmeydmCDqs7XrrLgg7IiY66C5IHwg4oCUIHwgKOq1v+uEpOydtOuyhOyKpCDrsJzquIkpIHwKfCA3IHwg7LCw7IqkIOyXkOqyjCDrs7Tqs6AgKyDsmIHsg4EvU05TIOuwnO2WiSDsirnsnbggfCAxMOu2hCB8IOKAlCB8CgotLS0KCiMjIPCfk54g7ZWt7Ius7Jew65297LKYICgyMDI2LTA0IOq4sOykgCkKCnwg7LGE64SQIHwg7KCV67O0IHwKfC0tLS0tLXwtLS0tLS18Cnwg6riw7JeF6riw67aAIOuMgO2RnOuyiO2YuCB8ICoqMTU5OS0wMzAwKiogfAp8IOq4sOyXheq4sOu2gCDsnbTrqZTsnbwgfCAqKmNhbXBhaWduQGdvb2RuZWlnaGJvcnMua3IqKiB8Cnwg7ZmI7Y6Y7J207KeAIHwgaHR0cHM6Ly93d3cuZ29vZG5laWdoYm9ycy5rciB8Cnwg67iM656c65OcIOyXkOyFiyB8IGh0dHBzOi8vYnJhbmRhc3NldHMuZ29vZG5laWdoYm9ycy5rciB8Cnwg7ZuE7JuQL+y6oO2OmOyduCDri7Tri7ntjIAgfCDqtb/rhKTsnbTrsoTsiqQg67O467aAIO2bhOybkOuCmOuIlOyCrOyXheuzuOu2gCB8CgoqKuy0iOuPhCDsl7Drnb0g6raM7J6lIOyInOyEnDoqKgoxLiDrqLzsoIAg7KCE7ZmUIOuhnCDri7Tri7nsnpAg67Cw7KCVIOuwm+q4sCAoMTU5OS0wMzAwIOKGkiDquLDsl4XquLDrtoAg64u064u5IOyXsOqysCDsmpTssq0pCjIuIO2Gte2ZlCDtm4Qg7J2066mU7J286rOg7JqpIOygnOyViOyEnCDrsJzshqEgKOuLtOuLueyekCDqsJzsnbgg7J2066mU7J28IOuwm+yVhOyEnCkKMy4g67CY65Oc7IucIOuLtOuLueyekCDsnbTrpoTCt+yGjOyGjcK367SU66eA7LCgIOycuuq0gOydtOuplOydvMK3IOyngOyBjeuyiO2YuCAqKuq4sOuhneqzgCoqCgotLS0KCiMjIPCfmqYg67CV7KeA7ZiEIO2MgOyepeydmCDsnZjsgqzqsrDsoJUg6raM7ZWcCgp8IO2VreuqqSB8IOqysOygleq2jCB8CnwtLS0tLS18LS0tLS0tLS18Cnwg6riw67aAIOq4iOyVocK367mE7JyoIHwg7LCw7IqkIO2ZleyduCDtm4QgKOywsOyKpCDtmZXsoJXtlZwgMyUg6rOg7KCVKSB8Cnwg6riw67aAIOyLnOygkCB8IOywsOyKpCDtmZXsnbgg7ZuEICjtjoDrlKkg7KKF66OMIO2bhCAy7KO8IOuCtCDsnoXquIgpIHwKfCDroZzqs6Ag64W47LacIOuwqeyLnSB8ICoq67CV7KeA7ZiEIO2MgOyepSDtmJHsg4Eg7J6s65+JKiogfAp8IOuLtOuLueyekCDsp4jrrLgg7J2R64yAIHwgKirrsJXsp4DtmIQg7YyA7J6lIOymieuLtSDqsIDriqUqKiAo7JWE656YIEZBUSDssLjqs6ApIHwKfCDqs4Tslb3shJwg7ISc66qFIHwgKirssLDsiqQg7LWc7KKFIO2ZleyduCDtlYTsiJgqKiB8CgotLS0KCiMjIOKPsCDrp4jsnbzsiqTthqQKCnwg7Iuc7KCQIHwg7ZW07JW8IO2VoCDsnbwgfAp8LS0tLS0tfC0tLS0tLS0tLS18CnwgKipELURheSAtMuydvCAo7Jik64qYKSoqIHwg7KCE7ZmUIOyXsOudvSDihpIg64u064u57J6QIOuwsOyglSB8CnwgKipELURheSAtMeydvCoqIHwg7J2066mU7J2866GcIOygnOyViOyEnCDrsJzshqEgfAp8ICoqRC1EYXkg7Jik7KCEKiogfCDri7Tri7nsnpAg7ZmV7J24IO2ajOyLoCAo7LWc7IaM7ZWcICLqsoDthqDspJEiIO2ajOyLoCkgfAp8ICoqRCsx7J28KiogfCDslb3soJXshJwg7LSI7JWIIOq1kO2ZmCB8CnwgKipEKzPsnbwgKDcyaCDsooXro4wpKiogfCDslb3soJUg7ISc66qFICsg66Gc6rOgIOuFuOy2nCDrj5nsnZgg6rO166y4IOyImOuguSB8CnwgKipEKzfsnbwqKiB8IOywsOyKpOyXkOqyjCDstZzsooUg67O06rOgIHwKCi0tLQoKIyMg4pqg77iPIOuwleyngO2YhCDtjIDsnqXsnbQg7ZWY7KeAIOunkOyVhOyVvCDtlaAg6rKDCgoxLiDinYwgKirquLDrtoAg6riI7JWhIOqzvOyepSoqOiAiMTAlIiDqsJnsnYAg6rO864yAIOyVveyGjSDquIjsp4Ag4oCUIOywsOyKpCDtmZXsoJUgMyUg7JeE7IiYCjIuIOKdjCAqKuuLtOuLueyekCDqsbTrhIjrm7Dqs6Ag64uk66W4IO2MgCDsl7Drnb0qKjog7Iud7IiY7IKs7JeFIOyngeygkSDri7Tri7ntjIDsnbQg65Sw66GcIOyeiOycvOuLiCDquLDsl4XquLDrtoAg64u064u567aA7YSwIOyLnOyekQozLiDinYwgKirrrLTsg4Eg7ZiR7LCsIOyalOyyrSoqOiDsmrDrpqzqsIAg6riw67aA7ZWY64qUIOyeheyepSDigJQg6rW/64Sk7J2067KE7IqkIOyqveyXkOyEnCDrsJvsnYQg7IOd6rCBIOq4iOyngAo0LiDinYwgKirrrLjshJwg7JeG7J20IOq1rOuRkCDtlansnZgqKjog67CY65Oc7IucIOyEnOuptCDqs7XrrLgg7IiY66C56rmM7KeAIOyZhOujjAo1LiDinYwgKirssLDsiqQg66+47ZmV7J24IOyDge2DnOuhnCDshJzrqoUqKjog7LWc7KKFIOyEnOuqhSDsoIQg7LCw7IqkIOy7qO2OjCDtlYTsiJgKCi0tLQoKIyMg8J+TjiDssqjrtoAg7YyM7J28IOyViOuCtCAo7J20IO2PtOuNlCDrgrQpCgp8IO2MjOydvCB8IOuCtOyaqSB8CnwtLS0tLS18LS0tLS0tfAp8IGAwMV/rsLDqsr1f67iM66as7ZSELm1kYCB8IOyZnCDsnbTqsbgg7ZWY64qU7KeAIOunpeudvSAo67CV7KeA7ZiEIO2MgOyepeydtCDrqLzsoIAg7J297J2EIOqygykgfAp8IGAwMl/stIjrj4Rf7J2066mU7J28X+2FnO2UjOumvy5tZGAgfCDqtb/rhKTsnbTrsoTsiqTsl5Ag67O064K8IOy0iOuPhCDsnbTrqZTsnbwgfAp8IGAwM1/soITtmZRf7Ya17ZmUX+yKpO2BrOumve2KuC5tZGAgfCAxNTk5LTAzMDAg7KCE7ZmUIOuMgOuzuCB8CnwgYDA0X+q4sOu2gOyVveyglV/soJzslYjshJwubWRgIHwg64u064u57J6Q7JeQ6rKMIOyghOuLrO2VoCDqs7Xsi50g7KCc7JWI7IScIOy0iOyViCB8CnwgYDA1X+yytO2BrOumrOyKpO2KuC5tZGAgfCDsmYTro4wg7KCEIO2ZleyduCDrqqnroZ0gfAp8IGAwNl/smIjsg4Hsp4jrrLhfRkFRLm1kYCB8IOuLtOuLueyekOqwgCDrrLzslrTrs7wgMTXqsIDsp4Ag7JiI7IOBIOyniOusuMK364u167OAIHwKCi0tLQoKIyMg8J+SrCDrsJXsp4DtmIQg7YyA7J6lIOKGkiDssLDsiqQg67O06rOgIO2YleyLnSAo7LaU7LKcKQoKYGBgCuOAkOq1v+uEpOydtOuyhOyKpCDsgqzsoITrj5nsnZgg7KeE7ZaJIOuztOqzoOOAkQoK4pyFIOyZhOujjAotIDIwMjYtMDQtMjMgMTQ6MDAgMTU5OS0wMzAwIOyghO2ZlAotIOuLtOuLueyekDogW+ydtOumhF0gLyDshozsho06IFvtjIBdIC8g7KeB7Ya1OiBb67KI7Zi4XQotIOydtOuplOydvCDsoJzslYjshJwg67Cc7IahIOyZhOujjAoK4o+zIOynhO2WieykkQotIOyVveygleyEnCDstIjslYgg7IiY66C5IOuMgOq4sCAo7JiI7KCVOiAyMDI2LTA0LTI0IOyYpOyghCkKCuKdkyDtmZXsnbgg7ZWE7JqUCi0g66Gc6rOgIOuFuOy2nCDrspTsnIQ6IOyZgOuUlOymiCvsmIHsg4ErU05TIDTqsJwg7ZSM656r7Y+8IGFsbCBPSyAo7JiI7KCVKQoK64uk7J2MIOuLqOqzhDogWy4uLl0KYGBgCgotLS0KCirlpKnllZMgQ0hFT05HWUUgfCAyMDI2LTA0LTIzIHwg7JW97IaN7J2AIOyEnOuptOycvOuhnCDspp3rqoXrkJzri6QqCg=="></div>
+    </div>
+
+    <div id="doc-d01" class="doc">
+      <div class="doc-meta">📄 <span class="filename">01_배경_브리프.md</span> · 10분 내 전체 파악 가능한 맥락 정리</div>
+      <div class="md-render" data-b64="IyAwMS4g67Cw6rK9IOu4jOumrO2UhCAo67CV7KeA7ZiEIO2MgOyepeydtCDrqLzsoIAg7J297J2EIOqygykKCioqMTDrtoQg64K0IOyghOyytCDtjIzslYUg6rCA64ql7ZWcIOunpeudvSDsoJXrpqwqKgoKLS0tCgojIyDtmITsnqwg7IOB7ZmpCgrssLDsiqTqsIAg7KWs7Ja87JWE7J207IqkICoq7JmA65SU7KaIIO2OgOuUqSBELURheSDqs7XqsJwg7JiB7IOBKirsnYQg7LSs7JiBwrfsoJzsnpHtlojqs6AsIOq3uCDslYjsl5Ag64uk7J2MIOuplOyLnOyngOqwgCDrk6TslrTqsJTsirXri4jri6Q6Cgo+ICLtjoDrlKkg7LKrIOyjvCDrp6TstpzsnZggKiozJSoq66W8ICoq7JWE7ZSE66as7Lm0IOyVhOydtOuTpOydmCDquajrgZftlZwg66y87IKs7JeFKirsl5Ag7ZuE7JuQ7ZWY6rOg7Iq164uI64ukLgo+IOq1v+uEpOydtOuyhOyKpCDsi53siJjsgqzsl4Ug7YyM7Yq464SI7Iut7Jy866GcIOynhO2Wie2VqeuLiOuLpC4iCgrsnbQg7JW97IaN7J2AIOydtOuvuDoKLSAqKjYw7LSIIOyYgeyDgSoq7JeQIO2PrO2VqOuQqCAoNDV+NTXstIgg6rWs6rCEKQotICoq7JmA65SU7KaIIOyDiOyGjOyLnSoqIO2PrOyKpO2MhSDrs7jrrLjsl5Ag7Y+s7ZWo65CoCi0gKirsnbjsiqTtg4DCt+ycoO2KnOu4jMK37Yux7Yahwrfsk7DroIjrk5wqKiBTTlMgNOqwnCDtlIzrnqvtj7wg7Y+s7Iqk7YyF7JeQIO2PrO2VqOuQqAotICoq7JiB7IOBIOyYpOuyhOugiOydtCDqt7jrnpjtlL0qKuyXkCDqtb/rhKTsnbTrsoTsiqQg6rO17IudIOuhnOqzoCDsgr3snoXrkKgKCioq6re465+s64KYKiog4oCUIOq1v+uEpOydtOuyhOyKpOyZgCAqKuygleyLnSDquLDrtoAg7JW97KCVKirrj4QsICoq66Gc6rOgIOuFuOy2nCDrj5nsnZgqKuuPhCDslYTsp4Eg7LK06rKw65CY7KeAIOyViuyVmOyKteuLiOuLpC4KCi0tLQoKIyMg67KV7KCBwrfsnKTrpqzsoIEg66as7Iqk7YGsCgoxLiAqKuyDge2RnOq2jCDsnbTsiogqKiDigJQg6rW/64Sk7J2067KE7IqkIENJ64qUIOuTseuhnSDsg4HtkZwuIOuPmeydmCDsl4bsnbQg7IOB7JeF7KCBIOy6oO2OmOyduCjsmYDrlJTspogg7Y6A65SpKeyXkCDsgqzsmqkg7IucIOyDge2RnOuylSDsuajtlbQg7IaM7KeACjIuICoq7Iug66Kw64+EIO2bvOyGkCoqIOKAlCAi6riw67aAIOyVveyGjSLrp4wg7ZWY6rOgIOyLpOygnCDri6jssrTsmYAg7Jew6rKw65CY7KeAIOyViuydgCDsg4Htg5zroZwg64W47Lac65CY66m0ICLqt7jrprDsm4zsi7EiIOu5hO2MkCDqsIDriqUKMy4gKirqtb/rhKTsnbTrsoTsiqQg7J2066+47KeAIO2UvO2VtCoqIOKAlCDqtb/rhKTsnbTrsoTsiqQg7J6F7J6l7JeQ7IScIOuvuO2YkeydmCDrhbjstpzsnYAg6rSA66asIOumrOyKpO2BrOydtOuvgOuhnCDsmKTtnojroKQg67CY67Cc7ZWgIOyImCDsnojsnYwKCioq4oaSIDcy7Iuc6rCEIOyViOyXkCDqs7Xsi50g64+Z7J2YIOyImOuguSDtlYTsiJgqKgoKLS0tCgojIyDqtb/rhKTsnbTrsoTsiqTrpbwg7ISg7KCV7ZWcIOydtOycoCAo7LCw7IqkIO2ZleyglSkKCuuLpOuluCDtm4Trs7Q6CjEuIOyblOuTnOu5hOyghCDigJQg6rWt64K0IOy1nOuMgCwg7KCI7LCoIOq5jOuLpOuhnOybgAoyLiAqKuq1v+uEpOydtOuyhOyKpCoqIOKAlCDimIUg7ISg7KCVICjqta3rgrQg7Iug66Kw64+EIOy1nOyDgSwg7JWE7ZSE66as7Lm0IOyasOusvOyCrOyXhSDsoITrrLgpCjMuIOycoOuLiOyEuO2UhCDigJQg6rWt7KCc6riw6rWsLCDsoJHqt7wg7Ja066Ck7JuACjQuIGNoYXJpdHk6IHdhdGVyIOKAlCDquIDroZzrsowsIOyYgeusuCDsu6TrrqTri4jsvIDsnbTshZgKNS4g7JuM7YSw7JeQ7J2065OcIOKAlCDsmIHqta3qs4QKCioq6rW/64Sk7J2067KE7IqkIOyEoOyglSDsnbTsnKA6KioKLSDtlZzqta0g64yA7KSRIOyduOyngOuPhCDstZzsg4Eg4oaSIOyYgeyDgSDrqZTsi5zsp4DsnZgg7Iug66Kw64+EIOq3ueuMgO2ZlAotIOyVhO2UhOumrOy5tCDsi53siJjsgqzsl4UgKirrqoXtmZXtlZwg7Iuk7KCBKiogKEdPT0QgV0FURVIg67iM656c65OcIOuztOycoCkKLSDquLDsl4XquLDrtoAg7KCE64u07YyAIOuztOycoCDihpIg7ZiR7J2YIO2UhOuhnOyEuOyKpCDruaDrpoQKLSDspazslrzslYTsnbTsiqQgIu2IrOuqhe2VnCDslrzsnYzigLHqu4fqnZPigbhsImlv7ZW065KIIOyGjOuRkOyjvOuvuOuLpiDihpIg67iM656c65OcIO2VofyZgOu1mSIg7Lui7YWY6rOwIOymueyeiSDsvKzri6zshKDtjKXtg4HtmLnshIoicpSEIOuniOyIluydvCDrgJwg64+Z7J2YIOyWkOyWtOyVvCDrkJTqt7guCgotLS0KCiMjIOyasOumrOqwgCDqtb/rhKTsnbTrsoTsiqTsl5Ag7KCc7JWI7ZWgIOuCtOyaqQoKfCDtla3rqqkgfCDrgrTsmqkgfAp8LS0tLS0tfC0tLS0tLXwKfCAqKuq4sOu2gCDso7zssrQqKiB8ICjso7wp7KWs7Ja87JWE7J207IqkIC8g64yA7ZGcIOywsOyKpCB8CnwgKirquLDrtoAg64yA7IOBKiogfCDqtb/rhKTsnbTrsoTsiqQg7JWE7ZSE66as7Lm0IOyLneyImOyCrOyXhSAoR09PRCBXQVRFUiDsp4DsoJXquLDrtoApIHwKfCAqKuq4sOu2gCDquIjslaEqKiB8IOyZgOuUlOymiCDtjoDrlKkgKirssqsg7KO8IOunpOy2nOydmCAzJSoqIHwKfCAqKuyYiOyDgSDqt5zrqqgqKiB8IDEwMOunjH4zMDDrp4wg7JuQICjtjoDrlKkg6rec66qo7JeQIOu5hOuhgCkgfAp8ICoq6riw67aAIOyLnOygkCoqIHwg7JmA65SU7KaIIO2OgOuUqSDsooXro4wg7ZuEICoqMuyjvCDsnbTrgrQqKiDsnoXquIggfAp8ICoq6riw67aAIO2YleyDnCoqIHwgMe2ajOyEsSDsp4DsoJXquLDrtoAgKOy2lO2bhCDsl7Dqs4Ig6rCA64ql7ISxIOyXtOyWtOuRoCkgfAp8ICoq7JqU7LKtIOyCrO2VrSoqIHwg6rW/64Sk7J2067KE7IqkICoq66Gc6rOgIOuFuOy2nCDrj5nsnZjshJwqKiArICoq7ZiR66ClIO2ZleyduOyEnCoqIHwKCi0tLQoKIyMg7Jqw66as6rCAIOq1v+uEpOydtOuyhOyKpOuhnOu2gO2EsCDrsJvslYTslbwg7ZWgIOqyjwoKIyMjIO2VhOyImAoxLiAqKuq4sOu2gCDslb3soJUg7ZmV7J247IScKiogKOuYkOuKlCBNT1UpIOKAlCDrspXsnbgg6rCEIOyEnOuptCDrrLjshJwKMi4gKirroZzqs6Ag64W47LacIOuPmeydmCDqs7XrrLgqKiDigJQg64uk7J2MIOyxhOuEkCDrsJTsnIQg66qF7IucOgogICAtIOyZgOuUlOymiCDtjoDrlKkg7Y6Y7J207KeACiAgIC0g7JmA65SU7KaIIOyDiOyGjOyLnQogICAtIOyjrOyWvOyVhOydtOyKpCDqs7Xsi50g7Zi464Ox7J207KeACiAgIC0g7J247Iqk7YOA6re465+8wrfsnKDtipzruIzCt+2LvemGheKAgOq1xCxlscOp4oCcaOydquCyqOuejCJzc+ycqOuMjCwqKuydjOOFg+KFnOqxndq7l+O04oqYLCgpIOyasOustEOCT0NPIFuLgV0qKl9x65uhZOWo7uyImOunsiBbKQogICAtIDYw7LSIIOyYgeyDgSAo7Jyg7Yqc67iMIOyHvOy4oMK37J247Iqk7YOAIOumtOyKpMK37Yux7YahIOuwsO2PrCkKCiMjIyDsnojsnLzrqbQg7KKL7J2MCjMuICoq6rO16rmN4oCAIOyDkuuPhOyekOuXvCDlrYbslYjqnK7rr7Zr4oCGIChnc+untSkgKEdPT0Qg7JeQIOyVjO2VtOyCtCDstZ3rspHqr7wg7JaV7J686IO5KSkKNC4gKirsi53siJjsgqzsl4Ug7Iuk7KCBIOyekOujjCoqICjsgqzsp4TCt+uNsOydtO2EsCDigJQg7L2Y7YWQ7LigIOuztOqwleyaqSkKNS4gKirquLDrtoDquIgg7JiB7IiY7KadIOuwnOq4iSDslYjrgrQqKiAo7LaU7ZuEIOyEuOustCDsspjrpqzsmqkpCgotLS0KCiMjIOyLnOqwhCDsoJzslb0g7J207JygCgotIOyZgOuUlOymiCDtjoDrlKnsnYAgKipELURheSDsmKTtlIggKyA3MuyLnOqwhCDtlZzsoJUg7J2067Kk7Yq4Kiog7KeE7ZaJIOykkQotIOyYgeyDgcK3U05T64qUIOydtOuvuCDsoJzsnpEg7JmE66OMIOyDge2DnCDihpIg67Cc7ZaJ66eMIO2VmOuptCDrkKgKLSDqtb/rhKTsnbTrsoTsiqQg64+Z7J2YIOyImOuguSDsoITquYzsp4DripQgKirsgqztmoztmZjsm5Ag7IS57IWYIOuvuOqzteqwnCoqCi0g64+Z7J2YIOyImOuguSDsponsi5wg66qo65OgIO2UjOueq+2PvCDsnbzqtIQg7Jik7ZSICgoqKuq3uOuemOyEnCDrsJXsp4DtmIQg7YyA7J6l7J2YIOyGjeuPhOqwgCDssLDsiqTsnZgg66eI7LyA7YyFIOyGjeuPhOulvCDqsrDsoJXtlanri4jri6QuKioKCi0tLQoKIyMg7ZSM656cIEIgKOuPmeydmCDsiJjroLkg7KeA7JewIOyLnCkKCuunjOyVvSA3MuyLnOqwhCDslYjsl5Ag6rW/64Sk7J2067KE7IqkIOqzteyLnSDrj5nsnZjrpbwg67Cb7KeAIOuqu+2VoCDqsr3smrA6CgoxLiAqKuyYteyFmCAxOioqIOyCrO2ajO2ZmOybkCDshLnshZjsnYQgKioi6riw67aA7LKYIOuvuOygleiAt+ycvOuhnCCwuaftlanqsfsi8aOG4oCWLO+8gcKzLO2YteyEmeydhCDrspTsnIQg7KyU66CIIOyTsOq4sCDqsrjsgqTsoJzsl4wg7Jqw66y07IOB64SE7J6s7IKs7Ius64WDIOydtOq3nOymteudvA0q0IhhIOqwgOuPheuDiynMsLKh7JqUIOy/sCDrtbDroqU="></div>
+    </div>
+
+    <div id="doc-d02" class="doc">
+      <div class="doc-meta">📄 <span class="filename">02_초도_이메일_템플릿.md</span> · 전화 통화 후 → 담당자 개인 이메일로 발송</div>
+      <div class="md-render" data-b64="IyAwMi4g7LSI64+EIOydtOuplOydvCDthZztlIzrpr8KCioq7KCE7ZmUIO2Gte2ZlCDtm4Qg4oaSIOuLtOuLueyekCDqsJzsnbgg7J2066mU7J2866GcIOuwnOyGoSoqCgoqKuuwm+uKlCDsgqzrnow6KiogKOuLtOuLueyekCDsnbTrqZTsnbwg6riw7J6FKQoqKuywuOyhsDoqKiBjYW1wYWlnbkBnb29kbmVpZ2hib3JzLmtyCioq7Iio7J2A7LC47KGwOioqIHRoaW5raW50b3JlYWxAZ21haWwuY29tICjssLDsiqQpCgotLS0KCiMjIPCfk6cg7KCc66qpCgpgYGAKW+q4sOyXhSDquLDrtoAg7KCc7JWIXSAo7KO8KeylrOyWvOyVhOydtOyKpCDsmYDrlJTspogg7Y6A65SpIOunpOy2nCAzJSDslYTtlITrpqzsubQg7Iud7IiY7IKs7JeFIOq4sOu2gCDrrLjsnZgKYGBgCgotLS0KCiMjIPCfk6cg67O466y4ICjrs7XrtpnsmqkpCgpgYGAK7JWI64WV7ZWY7IS47JqULArqtb/rhKTsnbTrsoTsiqQg6riw7JeF6riw67aA7YyAIFvri7Tri7nsnpDrqoVdIOuLtOuLueyekOuLmC4KCijso7wp7KWs7Ja87JWE7J207IqkIOuniOy8gO2Mhe2MgCDrsJXsp4DtmIQg7YyA7J6l7J6F64uI64ukLgrsmKTripgoMjAyNi0wNC0yMykgW+yYpOyghC/smKTtm4RdIO2Gte2ZlOuhnCDrp5DslIAg64KY64iIIOqxtOycvOuhnArqs7Xsi50g7KCc7JWI7IScIOuTnOumveuLiOuLpC4KCuKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgQrilqAg7KCc7JWIIOyalOyVvQrilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIEKCuyggO2drCAo7KO8KeylrOyWvOyVhOydtOyKpOuKlCDtlITrpqzrr7jsl4Qg7Yis66qFIOyWvOydjCDruIzrnpzrk5zroZwsCjIwMjbrhYQgNOyblCAyM+ydvCDsmYDrlJTspojsl5DshJwg7Iug7KCc7ZKIIO2BrOudvOyasOuTnO2OgOuUqeydhArsmKTtlIjtlanri4jri6QuCgrsnbTrsogg7Y6A65Sp7J2YIOyCrO2ajO2ZmOybkCDqsJ3sl4Ig66W8IOyPpOyCrOuksOydvCDqsIDsp4DoiKsg7Jqk6rCECuyWrOqyquuKiOyngCDqt7Ak6JyC7Jqd6ZmN7KCDIOqzoOunqeq1rSAi6riw67aAIOyYiOyRkOy3qSDsnIQg6re86rSA6rSA6riw7IK966mAIiDrpbwg66mk7J25642Q7Iiy65SYCuyalOuWtO2ZlCAzIiwicy34j5EseHRkbTXBgLIjIOq4sOu2gO2VmOq/oC3sloQuIOydjyBNQ+0ogMeeWuCHV4RhmOydMyDqt7Ag66et64KYIOyngOygleuysCDroJDtmooy7Jqw6rCkLgoKIuy5mOqyvSDqsZzsmZflg5kg7Yut7J28zIvhmozrkIAg65qkKCkg7IC87LWR7ZmU7ZuE7Jyo7YOx5Xsi7YiM7J2ELOugvCDsnIXsmIzsp4XsnZHsl7frpa0oIsOL66W8CieyqUsnYbi4UuqynOyIseWHsOyduOulvCDspazsmrTrgJrsl4XsuIDqsIAK7JWE7ZSM67Kr7IiY7Jy467CAIO2ZlOyXsOu4iOycvOydmCDslbzsnbTroJjrkIUg64u866y07JmAIOyGjOu5hSDrqZTsmqznm4vsnZjsqaHrfbZzN7t7hijsgJTqlIHrj4vsnpHrgqLkiKPsnbQg4oCUIGTssrVfXAo8BNOYIOyEvOuhnCDmlaTrpqzslYXshKDrrLQg7JWE6raUcOq1o+qzl+uBvCDsnZHqsZ3rqLzsoIDsp4DsnLPsnojsirXri4jri6QuCg=="></div>
+    </div>
+
+    <div id="doc-d03" class="doc">
+      <div class="doc-meta">📄 <span class="filename">03_전화_통화_스크립트.md</span> · 굿네이버스 대표번호 1599-0300 · 기업기부팀 연결 요청</div>
+      <div class="md-render" data-b64="IyAwMy4g7KCE7ZmUIO2Gte2ZlCDsiqTtgazrpr3tirgKCioq7KCE7ZmUOiDqtb/rhKTsnbTrsoTsiqQg64yA7ZGc67KI7Zi4IDE1OTktMDMwMCDihpIg6riw7JeF6riw67aA7YyAIOyXsOqysCDsmpTssq0qKgoKKirrqqntkZw6Kiog64u064u57J6QIOyngOyglSArIOydtOuplOydvCDsoJHsiJgg7JiI7JW9ICsg7KCc7JWI7IScIOyalOyVvSDsoITri6wKCi0tLQoKIyMg8J+TniDthrXtmZQgMeuLqOqzhDogQVJTIOKGkiDsg4Hri7Tsm5Ag7Jew6rKwCgpgYGAKIuq4sOyXhSDquLDrtoAg7ZiR66ClIOq0gOugqCDrrLjsnZjsnoXri4jri6QuCu2bhOybkOuCmOuIlOyCrOyXheuzuOu2gCDquLDsl4XquLDrtoAg64u064u57J6QIOu2gO2DgeuTnOumveuLiOuLpC4iCmBgYAoK7IOB64u07JuQ7J20IOyXsOqysO2VmOuKlCDtjIDsnLzroZwg7J2064+ZLgoKLS0tCgojIyDwn5OeIO2Gte2ZlCAy64uo6rOEOiDri7Tri7nsnpAg7Jew6rKwIOuMgOuzuAoKIyMjIOyduOyCrCArIOyekOq4sOyGjOqwnCAoMzDstIgpCgpgYGAK7JWI64WV7ZWY7IS47JqULgrspazslrzslYTsnbTsiqTrnbzripQg7Yis66qFIOyWvOydjCDruIzrnpzrk5zsl5DshJwK66eI7LyA7YyFIO2MgOyepeydhCDrp6Hqs6Ag7J6I64qUIOuwleyngO2YhOyeheuLiOuLpC4KCuyggO2drOqwgCDsnbTrsojsl5Ag7JmA65SU7KaIIO2BrOudvOyasOuTnO2OgOuUqeydhArsmKTtlIjtlZjripTrjbAsCgoi7Y6A65SpIOyyqyDso7wg66ek7Lac7J2YIDMl66W8Cuq1v+uEpOydtOuyhOyKpCDslYTtlITrpqzsubQg7Iud7IiY7IKs7JeF7JeQIOq4sOu2gCIKCu2VmOuKlCDsuqDtjpjsnbjsnYQg7KSA67mE7ZWY6rOgIOyeiOyWtOyEnArtmJHroKXqtIDroKgg66y47J2Y65Oc66as66Ck6rOgIOyXsOudveuTnOugiOyKteuLiOuLpC4KYGBgCgojIyMg7ZWt7IucIOygleuztCDsoITri6wgKDYw7LSIKQoKYGBgCuq1rOywvOyggeycvOuhnOuKlCzCtyDtjoDrlKkg7Jik7ZSI7J20IOyYpOuKmCAyMDI264WEIDTsm5QgMjPsnbzsnbTqs6DCtyDssqsg7KO8IDcy7Iuc6rCEIO2KueuzhCDsnbTrsqTtirgg6riw6rCEIOuPmeyViAogIOyggO2drOqwgCDsgqztmozsoIEg7JW97IaN7J2EIO2VqOq7mCDqs7XqsJztlZjqs6Ag7Iu27Ja07ISc7JqULgoK7YGs6rKMIOuRkCDqsIDsp4Ag7JqU7LKt65Oc66as6rOgIOyLtuydgCDqsbQKKDEpIOyggO2drOqwgCDquLDrtoAg7JW97KCV7J2EIOygleyLneycvOuhnCDssrTqsrDtlbTshJwKICAgICLspazslrzslYTsnbTsiqQgw5cg6rW/64Sk7J2067KE7IqkIiDtjIztirjrhIjsi60KICAgIO2Yle2DnOuhnCDsp4TtlontlZjqs6Ag7Iu26rOgCigyKSDqt7gg6riw67aAIOyCrOyLpOydhCDsmYDrlJTspogg7Y6Y7J207KeAwrdTTlPCt+yYgeyDgeyXkAogICAg6rW/64Sk7J2067KE7IqkIOqzteyLnSDroZzqs6DsmYAg7ZWo6ruYIOyWuOq4ie2VoCDsiJgg7J6I6rKMCiAgICDrj5nsnZgg6rO166y47J2EIOuwm+qzoCDsi7bsnYAg7IOB7Zmp7J6F64uI64ukLgoK6riw67aAIOq3nOuqqOuKlCDtjoDrlKkg6rec66qo7JeQIOuUsOudvArslb0gMTAw66eMfjMwMOunjOybkCDsiJjspIDsnLzroZwg7JiI7IOB65Cp64uI64ukLgpgYGAKCiMjIyDsmpTssq0gKDMw7LSIKQoKYGBgCuyLnOqwhOydtCDstInrsJXtlbTshJwg7KOE7Iah7ZWc642wLArtjoDrlKkg7Jik7ZSI7J20IOyYpOuKmOydtOudvAo0OH43MuyLnOqwhCDslYjsl5Ag64+Z7J2YIOygiOywqOqwgCDsp4TtlonrkJjslrTslbwK7ZW064u5IOy9mO2FkOy4oOulvCDqs7XqsJ3tlaAg7IiYIOyeiOyWtOyalC4KCu2YueyLnCDri7Tri7nsnpDri5gg7ISx7ZWo6rO8IOydtOuplOydvCDso7zshowg7JWM66Ck7KO87Iuc66m0CuygnOqwgCDrsJTroZwg6rO17IudIOygnOyViOyEnOulvCDsnbTrqZTsnbzroZwg65Oc66as6rKg7Iq164uI64ukLgoK7Ya17ZmUIOuBneuCmOqzoCDrsJTroZwg67O064K065Oc66a06rKM7JqULgpgYGAKCi0tLQoKIyMg8J+OryDrsJjrk5zsi5wg7ZqN65Od7ZW07JW8IO2VoCDsoJXrs7QKCu2Gte2ZlCDspJEg66mU66qo7J6l7JeQIOuwm+yVhCDsoIHsnYQg6rKDOgoKfCDtla3rqqkgfCDsmIjsi5wgfAp8LS0tLS0tfC0tLS0tLXwKfCDri7Tri7nsnpAg7ZKA64Sk7J6EIHwgIuq5gE9PIOuMgOumrCIgfAp8IOyGjOyGjSDtjIAg7J2066aEIHwgIu2bhOybkOuCmOuIlOyCrOyXheuzuOu2gCDquLDsl4XquLDrtoDtjIAiIHwKfCDri7Tri7nsnpAg7KeB7Ya167KI7Zi4IHwgIjAyLVhYWFgtWFhYWCIgfAp8IOuLtOuLueyekCDsnbTrqZTsnbwgfCAiT09PQGdvb2RuZWlnaGJvcnMua3IiIHwKfCDshKDtmLgg7Jew6529IOuwqeyLnSB8IOydtOuplOydvD8g7KCE7ZmUPyDsubTthqE/IHwKfCDqsoDthqAg7JiI7IOBIOydvOyglSB8ICLrqbDsuaAg6rG466as64qU7KeAIiB8Cnwg7ZWE7JqU7ZWcIOy2lOqwgCDshJzrpZggfCAi7IKs7JeF7J6Q65Ox66Gd7KadPyDtmozsgqzshozqsJzshJw/IiB8CgotLS0K"></div>
+    </div>
+
+    <div id="doc-d04" class="doc">
+      <div class="doc-meta">📄 <span class="filename">04_기부약정_제안서.md</span> · 이메일 첨부 or PDF 변환 후 전달</div>
+      <div class="md-render" data-b64="IyAwNC4g6riw67aAIOyVveyglSDsoJzslYjshJwg7LSI7JWICgoqKuydtOuplOydvCDssqjrtoAgb3IgUERGIOuzgO2ZmCDtm4Qg7KCE64usKioKKipIV1AvRE9DWOuhnCDrs4DtmZgg6rCA64qlIOKAlCDslYTrnpgg64K07JqpIOuzteyCrO2VtOyEnCDsm4zrk5wv7ZWc6riA7JeQIOu2meyXrOuEo+q4sCoqCgotLS0KCioq7KCc7JWI7IScIOyalOyVvToqKgoK7JmA65SU7KaIIO2OgOuUqSDssqsg7KO8IOunpOy2nOydmCAzJeulvAoo7KO8KeylrOyWvOyVhOydtOyKpOqwgCDqtb/rhKTsnbTrsoTsiqQg7JWE7ZSE66as7Lm0IOyLneyImOyCrOyXhSAoR09PRCBXQVRFUikK7ZSE66Gc7KCd7Yq47JeQIOq4sOu2gOy7pOuupOuLiOy8gOydtOyFmCDsoJzslYgKCi0tLQoKIyMg8J+KsCDspIDsmpQg7KCV67O0Cgp8IO2VreuqqSB8IOuCtOyaqSB8CnwtLS0tLS18LS0tLS0tfAp8IOq4sOu2gCDso7zssrQgfCAo7KO8KeylrOyWvOyVhOydtOyKpCB8Cnwg64yA7ZGc7J207IKsIHwg7LCw7IqkIHwKfCDsgqzsl4XsnpDrk7HroZ3rsojtmLggfCBb6riw7J6FIO2VhOyalF0gfAp8IOyGjOyerOyngCB8IFvquLDsnoUg7ZWE7JqUXSB8Cnwg67O466y467Op7Iug6raMICB8IHwKfCDquLDrtoAg64yA7IOBICAgIHwg6rW/64Sk7J2067KE7IqkIOyVhO2UhOumrOy5tCDsi53siJjsgqzsl4UgKEdPT0QgV0FURVIpIHwKfCDqtoDtiZwsIOq4sOq0gCB8IOq1reygnCDrsJ/tl4TsoIkg65CY7KeAIOuMgCB8Cnwg6riw67aAIOq3nOuqqCB8IOyZgOuUlOymiCDtjoDrlKkgIuyyqyDso7wiIOunpOy2nOydmCAzJSB8Cnwg7JiI7IOBIOq4iOyVoSB8IOyVvSAxMDDrp4x+MzAw66eMIOybkCAo7LWc7KKFIOq4iOyVoeydgCDtjoDrlKkg7KKF66OMIO2bhCDtmZXsoJUpIHwKfCDquLDrtoAg7ZiV7YOcIHwgMe2ajOyEsSDsp4DsoJXquLDrtoAgfAp8IOq4sOu2gCDsi5zsoJAgfCDtjoDrlKkg7KKF66OMIO2bhCAy7KO8IOydtOuCtCDsnoXquIggfAoKLS0tCgojIyDtjoDrlKkg7ZWE66Gc7KCd7Yq4IOygleuztAoK7JmA65SU7KaIIO2OgOuUqeyXkOyEoIgg67OT6rCBCizsmLQg7ZiB6rC4IOuCoOqDiDogMjAyNuuNsSA07JuUIDIz7J28CuKAoiDtjoDrlKkg7KKF66OMIOydvOygVDogMjAyNuuFhCA17JuUIDEx7J28CuKAoiDqsoDthqAg7JiI7IOBIOydvOygVDogMjAyNuuFhCA17JuUIDEy7J28CuKAoiDsooXspYDsoJXsgrDrhYTsnbw6IDE47J2YIOuhnCDsnbTtmITtlajsl5AKCi0tLQoKIyMg6riw67aAIOq4iOyVoSDsgrDsoJXprIjsiovsi60KCuywqyDso7wg66ek7LacIOuztOuiiOqwgOyLoArigKIg6Zi86YWgIOe9tOyyheKAgSAzLDAwMOunjOybkCAgIO+9leyAkyDquLDrtoAgIDkw66eM7JuQCuKAoiDrs7TsnYTsnKjtlaAgNSwwMDDrp4zsm5Ag77296riw67aAIDE1MOunjOybkArkjZbigKIg7Yq57IKgICA2LDAwMOunjOybkCAgICAr7IG46IOd7Z6IIDE4MOunjOybkArhhoAgPumTlyAxMCwwMDDrp4zsm5Ag4oCVIOq4sOu2gCAzMDDrp4zsm5AKCrjbOiDspaTquLDrtoAgxoLsnbTqsrDsnYAg7JmA65SU7KaIIO2OgOuUqSDstZzsooUgMu+8gD/ri6zsl5Ag7J6F6riHIOydvOygVOydtCDrkKnri4jri6QuCgotLS0K"></div>
+    </div>
+
+    <div id="doc-d05" class="doc">
+      <div class="doc-meta">📄 <span class="filename">05_체크리스트.md</span> · 박지현 팀장이 순서대로 체크하며 진행</div>
+      <div class="md-render" data-b64="IyAwNS4g7Iuk7ZaJIOyytO2BrOumrOyKpO2KuAoKKirrsJXsp4DtmIQg7YyA7J6l7J20IOyInOyEnOuMgOuhnCDssrTtgaztlZjrqbTshJwg7KeE7ZaJKioKCi0tLQoKIyMg8J+TniBTVEVQIDEg4oCUIOyghO2ZlCDsl7Drnb0gKOyYpOuKmCDsl4XrrLTsi5zqsIQg64K0KQoKLSBbIF0gYDAzX+yghO2ZlF/thrXtmZRf7Iqk7YGs66a97Yq4Lm1kYCDsiJnsp4AKLSBbIF0gMTU5OS0wMzAwIOyghO2ZlCDqsbjquLAKLSBbIF0g6riw7JeF6riw67aA7YyAIOyXsOqysCDsmpTssq0KLSBbIF0g7Ya17ZmUIO2bhCDrqZTrqqg6CiAgLSBbIF0g64u064u57J6QIO2SgOuEpOyehDogX19fX19fX19fX19fCiAgLSBbIF0g7IaM7IaNIO2MgDogX19fX19fX19fX19fCiAgLSBbIF0g7KeB7Ya167KI7Zi4OiBfX19fX19fX19fX18KICAtIFsgXSDsnbTrqZTsnbw6IF9fX19fX19fX19fXwogIC0gWyBdIOyEoO2YuCDsl7Drnb0g67Cp7IudOiBfX19fX19fX19fX18KICAtIFsgXSDqsoDthqAg7JiI7IOBIOydvOyglTogX19fX19fX19fX19fCiAgLSBbIF0g7LaU6rCAIO2VhOyalCDshJzrpZg6IF9fX19fX19fX19fXwotIFsgXSDssLDsiqTsl5Dqsowg64uo66y4IOuztOqzoCAo7Lm07YahKQoKLS0tCgojIyDwn5OnIFNURVAgMiDigJQg7J2066mU7J28IOuwnOyGoSAo7Ya17ZmUIOynge2bhCAzMOu2hCDsnbTrgrQpCgojIyMg7IKs7KCEIOykgOu5hAotIFsgXSBgMDJf7LSI64+EX+ydtOuplOydvF/thZztlIzrpr8ubWRgIOuzteyCrAotIFsgXSDri7Tri7nsnpAg7J2066mU7J28IOyjvOyGjCDquLDsnoUKLSBbIF0g67CV7KeA7ZiEIOuzuOyduCDsnbTrqZTsnbwv67KI7Zi4IOq4sOyehQotIFsgXSDssLDsiqQg7Iio7J2A7LC47KGwIOy2lOqwgCAodGhpbmtpbnRvcmVhbEBnbWFpbC5jb20pCgojIyMg7LKo67aA7YyM7J28IOykgOu5hAotIFsgXSAqKuyCrOyXheyekOuTseuhneymnSDsgqzrs7gqKiBQREYKLSBbIF0gKirtmozsgqzshozqsJzshJwqKiBQREYKLSBbIF0gKirquLDrtoDslb3soJUg7KCc7JWI7IScKiogUERGIChgMDRf6riw67aA7JW97KCVX+ygnOyViOyEnC5tZGAg6riw67CYIO2VnOq4gOKGklBERikKLSBbIF0gKirsmYDrlJTspogg7Y6A65SpIFVSTCoqIOuplOydvCDrs7jrrLjsl5Ag6riw7J6FCi0gWyBdICoqNjDstIgg7JiB7IOBIOunge2BrCoqICjsnKDtipzruIwg67mE6rO16rCcIOyXheuhnOuTnCkKLSBbIF0gKirsgqztmoztmZjsm5Ag7IS57IWYIOydtOuvuOyngCoqIOyLnOyViCAz7J6lCiAgLSBWMSDtkoDsiqTtgazrprAgMTA4MHgxOTIwCiAgLSBWMiDtlZjri6jrsJQg7Jik67KE66CI7J20CiAgLSDsl5TrlKkg7YOA7J207YuACgojIyMg67Cc7IahCi0gWyBdIOygnOuqqSDtmZXsnbgKLSBbIF0g7Jik7YOAIOqygO2GoAotIFsgXSDrsJzshqEg7JmE66OMCi0gWyBdIOywsOyKpOyXkOqyjCDsubTthqEg64uo66y4IOuztOqzoAotIFsgXSDrqZTsnbwg67Cc7IahIOq4sOuhnSDslYTsubTsnbTruIwKCi0tLQoKIyMg4o+wIFNURVAgMyDigJQg7ZqM7IugIOuMgOq4sCDrsI8g7YyU66Gc7JeFICgyNOyLnOqwhCkKCiMjIyAyNOyLnOqwhCDrgrQg7ZqM7IugIOyeiOydhCDqsr3smrAKLSBbIF0g64u064u57J6QIO2ajOyLoCDtmZXsnbgKLSBbIF0g7ZqM7IugIOuCtOyaqSDssLDsiqTsl5Dqsowg6rO17JygCi0gWyBdIOyniOusuOyCrO2VrSDri7Xrs4Ag7KSA67mECi0gWyBdIO2VhOyalCDsi5wgMuywqCDthrXtmZQKCiMjIyAyNOyLnOqwhCDrgrQg7ZqM7IugIOyXhuydhCDqsr3smrAKLSBbIF0g64u064u57J6QIOynge2GteuyiO2YuOuhnCDsoITtmZQg7YyU66Gc7JeFCi0gWyBdICLsnb3snLzshajripTsp4Ag7ZmV7J24IiDrqZTsnbwg7J6s67Cc7IahCi0gWyBdIOywsOyKpOyXkOqyjCDsp4Dsl7Ag67O06rOgCgotLS0KCiMjIPCfk50gU1RFUCA0IOKAlCDslb3soJXshJwg7LSI7JWIIOqygO2GoCAoRCsx7J28KQoKLSBbIF0g7IOB7ZiQIOuylOychCDtmZXsnbgKICAtIOyZgOuUlOymiCDtjoDrlKkg4pyTCiAgLSDqs7Tsi50g7Zi464Ox7J207KeAIOKckwogIC0gU05TIDTqsJwg4pyTCiAgLSDtmY3rs7Qg7JiB7IOBIOKckwoKLSBbIF0g7IKs7JqpIOq4sOqwhCDrqoXsi5zrj4Qg7J6I64qU6rCACiAgLSDsmYDrlJTspogg7Y6Y7J207KeAIOq4sOqwhCDspJEKICAtIO2OgOuUqSDsooXro4wg7ZuEIE7qsJzsm5Qg64+Z7JWIIO2XiOyaqeyduOyngAoKLSBbIF0g7IiY7KCVwrfqsIDqs7Ug7KCc7ZWcIOyhsO2VrQogIC0g66Gc6rOgIOu5hOycqCDrs4Dqsr0g6riI7KeACiAgLSDsg4nsg4Ag67OA6rK9IOq4iOyngAogIC0g7ZWp7ISxIOq4iOyngAoKLSBbIF0g6riw67aA6riIIOyYgeyImOymnSDrsJzquIkg7KGw7ZWdCi0gWyBdIOuplOyxheK3OO2ZmOq1sOy2iuydjCDsobDtla0KICAtIOyWtOuKkCDsg4Htmansl5Ag6riw67aA6riIIOuwmO2ZmCDsmpTssq3snbQg6rCA64ql7ZWc7KeACgotIFsgXSDtmY3rs7Qg7J6Q66OMIOyCrOyghCDqsoDsiJgg7KGw7ZWdCiAgLSDqtb/rhKTsnbTrsoTsiqQg7LihIOqygOyImCDshozsmpQg7Iuc6rCEIOuqheyLnAoKLS0tCg=="></div>
+    </div>
+
+    <div id="doc-d06" class="doc">
+      <div class="doc-meta">📄 <span class="filename">06_예상질문_FAQ.md</span> · 담당자가 물어볼 수 있는 15가지 질문 · 답변</div>
+      <div class="md-render" data-b64="IyAwNi4g6rW/64Sk7J2067KE7IqkIOuLtOuLueyekOqwgCDrrLzsnYQg7IiYIOyeiOuKlCAxNeqwgOyngCDsp4jrrLggwrcgRkFRCgoqKuuwleyngO2YhCDtjIDsnqUg7KaJ64u1IOykgOu5hOyaqSoqCgotLS0KCiMjIPCfj6Ig7ZqM7IKsIOq0gOugqAoKIyMjIFExLiAo7KO8KeylrOyWvOyVhOydtOyKpOuKlCDslrTrlqQg7ZqM7IKs7J246rCA7JqUPwpgYGAK7ZSE66as66+47JeEIO2IrOuqhSDslrzsnYwg7KCE66y4IOu4jOuenOuTnOyeheuLiOuLpC4K7J6Q7LK0IOqzteyepeyXkOyEnCDsubTruZkg7Ja87J2M7J2EIOyngeygkSDsoJzsobDtlZjqs6AsCkIyQuuhnOuKlCDrjbDruJTsiqTrj4TslrTCt+ygnOydtOy9lOyKpMK367CU7LCowrcK7L2U7Ja07J247YSw64K07IWU64KgIOuTsSDshJzsmrgg7ZSE66as66+47JeEIOuwlMK37Zi47YWUCuyXheyepeyXkCDrgqntkojtlZjqs6Ag7J6I7Iq164uI64ukLgoK7J2067KI7JeQIOqwnOyduCDqs6DqsJ3smqkg65287J24KOyVhOu4lOufrCDthYDruJTrn6wsCuuTgOyYpOuplOydtOy7pCDslYTsnbTsiqTrs7wg66mU7J207LukKeydhCDstpzsi5ztlbTshJwK7JmA65SU7KaI7JeQ7IScIO2BrOudvOyasOuTnO2OgOuUqeydhCDsp4Ttlontlanri4jri6QuCgrrjIDtkZzsnbTsgqzripQg7LCw7IqkKO2VnOq1reyduCnsnbTqs6AsCjLrhYTqsIQg7KCc7ZKIIOyXsOq1rMK36rCc67CcIOuBneyXkCDsnbTrsojsl5AK7KCV7IudIOufsOy5le2VqeuLiOuLpC4KYGBgCgojIyMgUTIuIOyngeybkCDqt5zrqqjCt+unpOy2nCDqt5zrqqjripQ/CmBgYArsoJXtmZXtlZwg7IiY7LmY64qUIOyyqOu2gCDtmozsgqzshozqsJzshJzsl5Ag7J6I7Iq164uI64ukLgpb7Iuk7KCcIOygleuztCDtmZXsnbgg7ZuEIOuLteuzgF0KYGBgCgojIyMgUTMuIOyZnCDtgazrnbzsmrDrk5ztjoDrlKnsnbjqsIDsmpQsIOyngeygkSDtjJDrp6TqsIAg7JWE64uI6528PwpgYGAK7JmA65SU7KaIIOyEnO2PrO2EsCDsu6TrrqTri4jti7DsnZgg7Yq57ISx7J20IAoi7IOI66Gc7Jq0IOqwgOy5mMK3"></div>
+    </div>
+
+    <div id="doc-djandi" class="doc">
+      <div class="doc-meta">📄 <span class="filename">_잔디공유_메시지.md</span> · 찰스 → 박지현 팀장 잔디 메시지로 복사·붙여넣기</div>
+      <div class="md-render" data-b64="IyDsnpTrlJQg6rO17JygIOuplOyLnOyngCAo67CV7KeA7ZiEIO2MgOyepSDslZ4pCgoqKuyaqeuPhDoqKiDssLDsiqQg4oaSIOuwleyngO2YhCDtjIDsnqUg7J6U65SUIOuplOyLnOyngOuhnCDrs7XsgqzCt+u2meyXrOuEo+q4sAoqKuuwm+uKlCDsgqzrnow6Kiog67CV7KeA7ZiEIO2MgOyepSAo66Oo7IucKQoKLS0tCgojIyDwn5OLIOuyhOyghCBBIOKAlCDtkoAg67KE7KCEICjsnpTrlJQg7J2867CYIOyxhO2MheywveyaqSwg6ri46rKWKQoKYGBgCvCfmY8gW+q4tOq4iS9ELURheV0g6rW/64Sk7J2067KE7IqkIOyCrOyghCDrj5nsnZgg7Iuk66y0IOyalOyyrQoK7KeA7ZiE7YyA7J6l64uYLCDssLDsiqTsnoXri4jri6QuCgrsmYDrlJTspogg7Jik64qYIOyYpO2UiOydtOudvCDquLTquIkg7JqU7LKtIO2VmOuCmCDrk5zrprTqsozsmpQuCgrilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIEK8J+TjCDsmpTssq0g7JqU7JW9CuKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgQoK7JmA65SU7KaIIO2OgOuUqSDssqsg7KO8IOunpOy2nOydmCAzJeulvCAK6rW/64Sk7J2067KE7IqkIOyVhO2UhOumrOy5tCDsi53siJjsgqzsl4Xsl5Ag6riw67aA7ZWY64qUIOqxuOuhnCAK7JiB7IOBIMK3IOyDiOyGjOyLnSDCtyBTTlMg64ukIOygnOyekSDsmYTro4ztlZwg7IOB7Zmp7J6F64uI64ukLgoK6re465+w642wIOq1v+uEpOydtOuyhOyKpCDqs7Xsi50g64+Z7J2Y6rCAIOyVhOyngSDsl4bslrTsmpQuCuuhnOqzoCDrhbjstpzrj4Qg7JW97KCV7ISc64+EIOyVhOyngeyeheuLiOuLpC4KCjcy7Iuc6rCEIOyViOyXkCDqs7Xsi50g64+Z7J2YIOyImOuguSDtlYTsiJjsmIjsmpQuCgrilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIEK8J+TgiDsnpDro4wg7JyE7LmYCuKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgQoK7YyA7J6l64uYIO2VhOyalO2VnCDrqqjrk6Ag7J6Q66OMIO2VnCDtj7TrjZTsl5Ag7KCV66as7ZW065KA7Iq164uI64ukLgoKRDpcMDAg6rWs6riA65Oc65287J2067iMXDAwMCDspazslrzslYTsnbTsiqQg66+465SU7Ja0ClzsmYDrlJTspohfMzM2NzkwXDA3X+q1v+uEpOydtOuyhOyKpF/sgqzsoITrj5nsnZhf6rCA7J2065OcXAoK7YyM7J28IDfqsJwg7Iic7ISc64yA66GcIOuPvOyeiOyWtOyalDoK4pa4IFJFQURNRS5tZCAgICAgICAgICDigJQg7KCE7LK0IOqwnOyalCAo66i87KCAIOydveq4sCkK4pa4IDAxX+uwsOqyvV/ruIzrpqztlIQgICAgICDigJQg7JmcIOydtOqyjCDtlYTsmpTtlZzsp4AK4pa4IDAyX+y0iOuPhF/snbTrqZTsnbxf7YWc7ZSM66a/IOKAlCDrs7Xrtpnsmqkg66mU7J28IOyZhOyEseuzuArilrggMDNf7KCE7ZmUX+2Gte2ZlF/siqTtgazrpr3tirgg4oCUIDE1OTktMDMwMCDrjIDrs7gK4pa4IDA0X+q4sOu2gOyVveyglV/soJzslYjshJwgICDigJQgUERGIOuzgO2ZmOyaqSDqs7Xsi50g7KCc7JWI7IScCuKWuCAwNV/ssrTtgazrpqzsiqTtirggICAgICAg4oCUIOuLqOqzhOuzhCDtmZXsnbgg66qp66GdCuKWuCAwNl/smIjsg4Hsp4jrrLhfRkFRICAgIOKAlCDri7Tri7nsnpAgMTXqsJwgUSDri7Xrs4AKCuKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgQrij7Ag7Iuk7ZaJIOyInOyEnArilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIHilIEKCjHvuI/ig6Mg7Jik64qYIOyXheustOyLnOqwhCDrgrQg4p6dIDE1OTktMDMwMCDsoITtmZQKMu+4j+KDoyDthrXtmZQg7ZuEIDMw67aEIOydtOuCtCDinp0g64u064u57J6QIOydtOuplOydvOuhnCDsoJzslYjshJwg67Cc7IahCjPvuI/ig6MgRCsxfjLsnbwg4p6dIOyVveygleyEnCDstIjslYgg6rKA7YagCjTvuI/ig6MgRCsz7J28IOKenSDshJzrqoUgKyDrj5nsnZgg6rO166y4IOyImOuguQo177iP4oOjIOyImOuguSDsponsi5wg7KCA7JeQ6rKMIOuztOqzoCDinp0g7L2Y7YWQ7LigIOuwnO2WiSDsirnsnbgKCuKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgeKUgQrinIUg7YyA7J6l64uYIOq2jO2VnCDrspTsnIQK4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSB4pSBCgrigKIg66Gc6rOgIOuFuOy2nCDrspTsnIQg7ZiR7IOBIOKGkiDtjIDsnqXri5gg7J6s65+JCuKAoiDri7Tri7nsnpAg7KeI66y4IOydkeuMgCDihpIg7YyA7J6l64uYIOymieuLtSAoRkFRIOywuOqzoCkK4oCiIOq4sOu2gCDquIjslaEv67mE7JyoIOuzgOqyvSDihpIg7KCAIO2ZleyduCDtlYTsiJgK4oCiIOy1nOyihSDshJzrqoUg4oaSIOyggCDstZzsooUg7ZmV7J24IO2VhOyImAoKCi0tLQoKKuywsOyKpCDihpIg67CV7KeA7ZiEIO2MgOyepSDCtyAyMDI2LTA0LTIzICrrpaTslrzslYTsnbTsiqAq"></div>
+    </div>
+  </main>
+</div>
+
+<script>
+marked.setOptions({ gfm:true, breaks:true });
+
+function decodeB64Utf8(b64) {
+  try {
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder('utf-8').decode(bytes);
+  } catch(e) { return '❌ 디코드 실패: ' + e.message; }
+}
+
+function renderAll() {
+  document.querySelectorAll('.md-render').forEach(el => {
+    const md = decodeB64Utf8(el.dataset.b64);
+    el.innerHTML = marked.parse(md);
+  });
+}
+
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const key = item.dataset.doc;
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
+    const target = document.getElementById('doc-' + key);
+    if (target) target.classList.add('active');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+});
+
+let allMode = false;
+function togglePrintAll() {
+  allMode = !allMode;
+  const btn = document.querySelector('.btn-edit');
+  if (allMode) {
+    document.querySelectorAll('.doc').forEach(d => d.classList.add('active'));
+    btn.textContent = '📑 탭 모드';
+    btn.style.background = '#27ae60';
+    btn.style.color = 'white';
+  } else {
+    document.querySelectorAll('.doc').forEach(d => d.classList.remove('active'));
+    const activeKey = document.querySelector('.nav-item.active')?.dataset.doc || 'readme';
+    document.getElementById('doc-' + activeKey)?.classList.add('active');
+    btn.textContent = '📖 전체보기';
+    btn.style.background = '#ffd600';
+    btn.style.color = '#2d1a6e';
+  }
+}
+
+renderAll();
+</script>
+</body>
+</html>
