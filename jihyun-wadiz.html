@@ -143,6 +143,84 @@
     .btns, .edit-badge, .save-indicator { display: none !important; }
     .section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
   }
+
+  /* ===== 프로젝트 진행 플로우 ===== */
+  .s-flow .sec-header { background: linear-gradient(135deg,#4a1d8c,#7c3aed); color:white; }
+  .flow-wrap { padding: 18px; background: linear-gradient(135deg,#faf5ff,#fff9e6); }
+  .flow-link {
+    display:inline-flex; align-items:center; gap:6px;
+    background:#ffd600; color:#2d1a6e; padding:6px 12px;
+    border-radius:6px; font-size:11.5px; font-weight:700;
+    text-decoration:none; margin-bottom:14px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.1);
+  }
+  .flow-link:hover { background:#ffcc00; transform:translateY(-1px); }
+  .flow {
+    display:flex; flex-wrap:nowrap; gap:0;
+    overflow-x:auto; padding-bottom:6px;
+  }
+  .flow-step {
+    flex:1 1 0; min-width:150px;
+    position:relative; padding:14px 12px 14px 22px;
+    background:white; border-radius:8px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.08);
+    border-left:4px solid #e0d4f7;
+    margin-right:10px;
+  }
+  .flow-step:last-child { margin-right:0; }
+  .flow-step .flow-num {
+    position:absolute; top:-8px; left:12px;
+    background:#7c3aed; color:white;
+    width:22px; height:22px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:800;
+    box-shadow:0 1px 3px rgba(124,58,237,0.4);
+  }
+  .flow-step .flow-date {
+    font-size:12px; font-weight:800; color:#4a1d8c;
+    margin-bottom:4px; margin-top:4px;
+  }
+  .flow-step .flow-time {
+    font-size:10.5px; color:#7c3aed; font-weight:600;
+    margin-bottom:6px;
+  }
+  .flow-step .flow-title {
+    font-size:12.5px; font-weight:700; color:#2d1a6e;
+    margin-bottom:4px;
+  }
+  .flow-step .flow-desc {
+    font-size:10.5px; color:#666; line-height:1.5;
+  }
+  .flow-step.current {
+    border-left-color:#fbbf24;
+    background:linear-gradient(135deg,#fffbeb,#fef3c7);
+    box-shadow:0 2px 8px rgba(251,191,36,0.3);
+  }
+  .flow-step.current .flow-num { background:#f59e0b; }
+  .flow-step.current::after {
+    content:'⭐ NOW'; position:absolute; top:-8px; right:10px;
+    background:#fbbf24; color:#78350f;
+    padding:2px 8px; border-radius:10px;
+    font-size:9.5px; font-weight:800;
+  }
+  .flow-step.done { opacity:0.7; border-left-color:#a7f3d0; }
+  .flow-step.done .flow-num { background:#10b981; }
+  .flow-step.done::after {
+    content:'✓ 완료'; position:absolute; top:-8px; right:10px;
+    background:#10b981; color:white;
+    padding:2px 8px; border-radius:10px;
+    font-size:9.5px; font-weight:800;
+  }
+  .flow-note {
+    margin-top:14px; padding:10px 14px;
+    background:rgba(124,58,237,0.08); border-left:3px solid #7c3aed;
+    border-radius:4px;
+    font-size:11.5px; color:#4a1d8c; line-height:1.7;
+  }
+  @media (max-width:900px) {
+    .flow { flex-direction:column; flex-wrap:wrap; }
+    .flow-step { margin-right:0; margin-bottom:10px; min-width:auto; }
+  }
 </style>
 </head>
 <body>
@@ -164,6 +242,231 @@
 <div class="edit-badge" id="editBadge">✏️ 편집 중 — 자동 저장됨</div>
 
 <div class="container">
+
+<!-- ===== 프로젝트 진행 플로우 ===== -->
+<div class="section s-flow">
+  <div class="sec-header">🗓️ 와디즈 프로젝트 진행 플로우 <span class="badge">#336790 · 알림받기 → 공개 → 종료 → 결제 → 배송</span></div>
+  <div class="flow-wrap">
+    <a class="flow-link" href="https://www.wadiz.kr/web/wcomingsoon/rwd/336790" target="_blank" rel="noopener">
+      🔗 본 행사 페이지 — 운영 리워드 가격 및 옵션
+    </a>
+    <div class="flow">
+      <div class="flow-step done">
+        <div class="flow-num">1</div>
+        <div class="flow-date">4월 4일 (금)</div>
+        <div class="flow-time">오전 09:00</div>
+        <div class="flow-title">🔔 알림받기 오픈</div>
+        <div class="flow-desc">사전 알림 신청 집객 시작 · 펀딩 오픈 전 타겟 확보</div>
+      </div>
+      <div class="flow-step current">
+        <div class="flow-num">2</div>
+        <div class="flow-date">4월 23일 (목)</div>
+        <div class="flow-time">오후 02:00</div>
+        <div class="flow-title">🚀 프로젝트 공개</div>
+        <div class="flow-desc">본펀딩 오픈 · 리워드 판매 개시 · 72시간 이벤트 시작</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-date">5월 11일 (일)</div>
+        <div class="flow-time">오후 12:00</div>
+        <div class="flow-title">🏁 프로젝트 종료</div>
+        <div class="flow-desc">펀딩 마감 (종료일 중간 조정 가능) · 종료 후 고객 정보 데이터 전달</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-date">5월 12~13일 (화·수)</div>
+        <div class="flow-time">오후 05:00</div>
+        <div class="flow-title">💳 펀딩금·성공금 결제</div>
+        <div class="flow-desc">프로젝트 성공 종료 후 2일간 자동 결제 · 5/12 17:00 1차 / 5/13 17:00 2차</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-date">5월 11일 ~ 5월 20일</div>
+        <div class="flow-time">리워드 발송 기간</div>
+        <div class="flow-title">📦 리워드 발송</div>
+        <div class="flow-desc">전 리워드 공통 발송기간 · 메이커스튜디오에서 발송 완료 처리 필수</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">6</div>
+        <div class="flow-date">5월 하순 ~</div>
+        <div class="flow-time">잠정 일정</div>
+        <div class="flow-title">💰 최종정산</div>
+        <div class="flow-desc">발송 + 환불 완료 후 정산금 수령 · 서포터 환불·수수료 조정으로 변경 가능</div>
+      </div>
+    </div>
+    <div class="flow-note">
+      📌 <strong>주요 체크포인트:</strong><br>
+      ▸ 종료일(5/11 12:00)은 <strong>중간 조정 가능</strong> — 판매 추이 보며 연장/단축 검토<br>
+      ▸ 종료 후 <strong>고객 정보 데이터</strong> 와디즈에서 전달 → CS·배송·리마케팅 준비 필요<br>
+      ▸ 실결제(5/12·13 각 17:00)는 <strong>예약 구매 고객 대상</strong>만 자동 결제 → 실패분 팔로업 체크<br>
+      ▸ 리워드 발송(5/11~5/20) — 발송 후 <strong>메이커스튜디오 "발송 완료 처리"</strong> 꼭 클릭해야 정산 진행<br>
+      ▸ 최종정산일은 <strong>잠정 일정</strong> — 환불 처리·수수료 조정 등으로 변경될 수 있음 (와디즈 정산 정책 가이드 확인)
+    </div>
+  </div>
+</div>
+
+<!-- ===== 리워드 발송 일정 상세 ===== -->
+<div class="section s2">
+  <div class="sec-header">📦 리워드 발송 일정 <span class="badge">전 리워드 공통: 2026-05-11 ~ 2026-05-20 · 10일 창</span></div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:40px;">#</th>
+        <th>리워드명</th>
+        <th>구성</th>
+        <th>발송 시작</th>
+        <th>발송 마감</th>
+        <th>발송완료처리</th>
+        <th>담당</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-key="ship-r1">
+        <td class="num-bold" style="color:#d97706;">⭐1</td>
+        <td style="text-align:left;"><strong>[BEST] 와디즈 스페셜 구성</strong></td>
+        <td style="text-align:left;" class="note">아블러 1개 + 듀오메이커 1개 (+보관통·집게 증정)</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r2">
+        <td class="num-bold">2</td>
+        <td style="text-align:left;"><strong>[아블러 싱글 세트]</strong></td>
+        <td style="text-align:left;" class="note">아블러 3in1 아이스메이커 텀블러</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r3">
+        <td class="num-bold">3</td>
+        <td style="text-align:left;"><strong>[아블러 더블 세트]</strong></td>
+        <td style="text-align:left;" class="note">아블러 3in1 × 2개 (+보관통·집게 증정)</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r4">
+        <td class="num-bold">4</td>
+        <td style="text-align:left;"><strong>[아블러 찐팬 세트]</strong></td>
+        <td style="text-align:left;" class="note">아블러 3in1 + 추가몰드</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r5">
+        <td class="num-bold">5</td>
+        <td style="text-align:left;"><strong>[듀오메이커 싱글 세트]</strong></td>
+        <td style="text-align:left;" class="note">듀오메이커 투명 얼음틀</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r6">
+        <td class="num-bold">6</td>
+        <td style="text-align:left;"><strong>[듀오메이커 더블 세트]</strong></td>
+        <td style="text-align:left;" class="note">듀오메이커 투명 얼음틀 × 2 (+보관통·집게 증정)</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r7">
+        <td class="num-bold">7</td>
+        <td style="text-align:left;"><strong>[듀오메이커 찐팬 세트]</strong></td>
+        <td style="text-align:left;" class="note">듀오메이커 투명 얼음틀 + 추가몰드</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+      <tr data-key="ship-r8">
+        <td class="num-bold">8</td>
+        <td style="text-align:left;"><strong>도서산간 배송비</strong></td>
+        <td style="text-align:left;" class="note">옵션 결제분 — 본품 발송과 동시 처리</td>
+        <td>5/11(일)</td>
+        <td>5/20(화)</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:12px 18px;font-size:11.5px;color:#d97706;background:#fff9e6;border-top:1px solid #ffe8a8;line-height:1.8;">
+    ⚠️ <strong>발송완료 처리 필수:</strong> 리워드 발송 후 반드시 <strong>메이커스튜디오 → 발송 완료 처리</strong> 클릭해야 정산 프로세스 진행됨<br>
+    📦 <strong>내부 준비 일정 역산:</strong> 5/11 발송 시작 → 5/8~5/10 박스 포장·송장 출력·택배 픽업 준비<br>
+    🚚 <strong>도서산간 옵션:</strong> 별도 결제된 건은 본품과 함께 처리 (분리발송 금지 — 재고·CS 리스크)<br>
+    🎁 <strong>증정품 동봉:</strong> 조합·더블 세트 구매자 전원 <strong>보관통+집게</strong> 동봉, 72시간 이벤트 당첨 30명 <strong>집게 추가</strong>
+  </div>
+</div>
+
+<!-- ===== 정산 프로세스 ===== -->
+<div class="section s3">
+  <div class="sec-header">💰 정산 프로세스 <span class="badge">결제 → 발송완료 → 환불 정리 → 최종정산</span></div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:60px;">단계</th>
+        <th>일정</th>
+        <th>내용</th>
+        <th>필수 행동</th>
+        <th>담당</th>
+        <th>상태</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr data-key="settle-1">
+        <td class="num-bold" style="color:#7c3aed;">STEP 1</td>
+        <td><strong>5/12(화) 17:00</strong></td>
+        <td style="text-align:left;">펀딩금·성공금 <strong>1차 결제</strong> 자동 진행</td>
+        <td class="note" style="text-align:left;">결제 실패분 리스트 확인 → 재시도 안내 준비</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+      </tr>
+      <tr data-key="settle-2">
+        <td class="num-bold" style="color:#7c3aed;">STEP 2</td>
+        <td><strong>5/13(수) 17:00</strong></td>
+        <td style="text-align:left;">펀딩금·성공금 <strong>2차 결제</strong> (재시도 포함)</td>
+        <td class="note" style="text-align:left;">최종 결제 실패분 확정 → 해당 주문 자동 취소 처리</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+      </tr>
+      <tr data-key="settle-3">
+        <td class="num-bold" style="color:#d97706;">STEP 3</td>
+        <td><strong>5/11 ~ 5/20</strong></td>
+        <td style="text-align:left;">리워드 발송 완료 + <strong>메이커스튜디오 발송완료 처리</strong></td>
+        <td class="note" style="text-align:left;">송장번호 일괄 업로드 · 발송 완료 버튼 전 리워드 처리</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+      </tr>
+      <tr data-key="settle-4">
+        <td class="num-bold" style="color:#2980b9;">STEP 4</td>
+        <td><strong>5/20 이후</strong></td>
+        <td style="text-align:left;">서포터 환불 처리 · CS 클레임 정리</td>
+        <td class="note" style="text-align:left;">교환·반품·파손 대응 완료 후 환불 내역 와디즈 반영</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+      </tr>
+      <tr data-key="settle-5">
+        <td class="num-bold" style="color:#27ae60;">STEP 5</td>
+        <td><strong>5월 하순~6월 초 (잠정)</strong></td>
+        <td style="text-align:left;"><strong>최종정산금 수령</strong></td>
+        <td class="note" style="text-align:left;">수수료 조정·환불 사유로 확정일 변경 가능 — 정산 정책 가이드 확인</td>
+        <td class="editable" contenteditable="true" data-field="owner">-</td>
+        <td class="editable" contenteditable="true" data-field="status">대기</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="padding:12px 18px;font-size:11.5px;color:#2980b9;background:#f0f8ff;border-top:1px solid #cfe7fd;line-height:1.8;">
+    📌 <strong>정산 잠정 일정:</strong> 확정 일정이 아니며 서포터 환불·수수료 조정 사유로 변경 가능<br>
+    ✅ <strong>최종정산 수령 조건:</strong> 리워드 발송 + 환불 처리가 <strong>모두 문제 없이 완료</strong>되어야 정산금 수령<br>
+    ⚠️ <strong>리스크 포인트:</strong> 발송완료 처리 누락 → 정산 지연 · 환불 미정리 → 정산금 차감<br>
+    📖 <strong>상세:</strong> 와디즈 <strong>정산 정책 가이드</strong> 수시 확인 (정산 규정 변경 시 알림 수신)
+  </div>
+</div>
 
 <!-- ===== SHEET 1: 재고 현황 ===== -->
 <div class="section s1">
@@ -628,6 +931,13 @@
     <div>· 2026-04-21 — 와디즈 1차 가용재고 보수적 할당, 실판매 보며 2차 조정 전략</div>
     <div>· 2026-04-21 — 이벤트 3종(쿠폰·증정·72시간) 총 추가비 3.9M / 매출 대비 7.81%</div>
     <div>· 2026-04-21 — 외부용 PD 공유용은 원가·마진 제거 + 가용재고 최대치 노출</div>
+    <div>· 2026-04-23 — 프로젝트 진행 플로우 섹션 추가 (알림받기→공개→종료→결제→배송 5단계 타임라인)</div>
+    <div>· 2026-04-23 — 본 행사 페이지 링크 상단 연결 (#336790) · "오늘=공개일" 현재 단계 강조</div>
+    <div>· 2026-04-23 — 종료일(5/11) 중간 조정 가능성 · 종료 후 고객 데이터 수령 · 실결제(5/12·13) 체크포인트 명시</div>
+    <div>· 2026-04-23 — 플로우 4·5·6단계 정식 확정: <strong>결제(5/12·13 17:00) · 리워드 발송(5/11~5/20) · 최종정산(잠정)</strong></div>
+    <div>· 2026-04-23 — 리워드 8건(BEST 스페셜·아블러 3종·듀오메이커 3종·도서산간) 발송 일정 테이블 신설 — 발송완료 처리 상태·담당 편집 가능</div>
+    <div>· 2026-04-23 — 정산 5단계 프로세스 테이블 신설 (결제1차→결제2차→발송완료→환불정리→최종정산)</div>
+    <div>· 2026-04-23 — 메이커스튜디오 <strong>발송 완료 처리</strong> 필수 체크포인트 명시 (누락 시 정산 지연)</div>
     <div style="color:#92400E;margin-top:6px;font-style:italic;opacity:0.7;">→ 다음 아이디어 대기 중 (와디즈 오픈 후 실판매 반영 예정)</div>
   </div>
 </div>
@@ -640,6 +950,10 @@
     <div class="log-item"><span class="log-date">2026-04-21</span> 미디어믹스 9건 추가 · 리워드 1에 보관통+집게 증정 확정 · 1차 가용재고 보수적 재산정</div>
     <div class="log-item"><span class="log-date">2026-04-21</span> 개인 이름 전부 제거 → "쥬얼아이스 ↔ 와디즈" 표기로 통일</div>
     <div class="log-item"><span class="log-date">2026-04-21</span> 팀장 아이디어 누적 박스 추가 (허브 연동 문서 통일 UX)</div>
+    <div class="log-item"><span class="log-date">2026-04-23</span> 프로젝트 진행 플로우 섹션 추가 · 본 행사 페이지 링크 · 5단계 타임라인(알림받기/공개/종료/결제/배송) · 현재 단계 자동 하이라이트</div>
+    <div class="log-item"><span class="log-date">2026-04-23</span> 플로우 6단계 확장: 결제(5/12·13 17:00) · 리워드 발송(5/11~5/20) · 최종정산(잠정) — 와디즈 공식 일정 반영</div>
+    <div class="log-item"><span class="log-date">2026-04-23</span> 리워드 발송 일정 상세 테이블 신설 (리워드 8건 · 발송완료처리 체크 · 담당자 편집)</div>
+    <div class="log-item"><span class="log-date">2026-04-23</span> 정산 프로세스 5단계 테이블 신설 (결제 1·2차 → 발송완료 → 환불정리 → 최종정산 · 잠정 일정 명시)</div>
   </div>
 </div>
 
