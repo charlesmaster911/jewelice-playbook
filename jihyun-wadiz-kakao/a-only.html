@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>A · 음료의 마지막 보석</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+  html,body{background:#000;width:800px;height:600px;overflow:hidden;}
+  .canvas{
+    width:800px;height:600px;position:relative;overflow:hidden;background:#000;
+  }
+  .bg{
+    position:absolute;inset:0;
+    background-size:cover;background-position:center;background-repeat:no-repeat;
+    background-image:
+      url('https://drive.google.com/thumbnail?id=1K6C6E2PlbMggxOSrLRaowN2ct17sqTmf&sz=w1600'),
+      url('https://lh3.googleusercontent.com/d/1K6C6E2PlbMggxOSrLRaowN2ct17sqTmf=w1600');
+  }
+  .shade{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse at center, rgba(0,0,0,.30) 0%, rgba(0,0,0,.10) 55%, rgba(0,0,0,.50) 100%);
+  }
+  .slogan{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    text-align:center;z-index:5;width:92%;
+  }
+  .slogan .kr{
+    font-family:'Pretendard Variable','Pretendard',sans-serif;
+    font-weight:600;
+    font-size:50px;letter-spacing:0.25em;line-height:1;
+    color:#81D8D0;
+    text-indent:0.25em;
+    text-align:center;
+    white-space:nowrap;
+    text-shadow:0 2px 28px rgba(0,0,0,.6);
+  }
+  .slogan .mark{
+    display:block;width:72px;height:2px;
+    background:#81D8D0;margin:28px auto 0;opacity:.9;
+  }
+</style>
+</head>
+<body>
+  <div class="canvas">
+    <div class="bg"></div>
+    <div class="shade"></div>
+    <div class="slogan">
+      <div class="kr">음료의 마지막 보석</div>
+      <span class="mark"></span>
+    </div>
+  </div>
+</body>
+</html>
