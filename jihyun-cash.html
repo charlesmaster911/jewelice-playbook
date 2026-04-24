@@ -207,12 +207,142 @@
   }
   .footer strong { color: #4a1d8c; }
 
+  /* ===== 1장 총정리 (대표 보고) 전용 ===== */
+  .exec-summary {
+    border: 2px solid #7c3aed;
+    box-shadow: 0 4px 20px rgba(124,58,237,0.15);
+    background: linear-gradient(180deg, #ffffff 0%, #faf7ff 100%);
+  }
+  .exec-summary .sec-header {
+    background: linear-gradient(135deg, #2d1a6e, #4a1d8c 50%, #7c3aed);
+    padding: 16px 22px; font-size: 16px;
+  }
+  .exec-summary .sec-header .ribbon {
+    background: #ffd600; color: #2d1a6e; padding: 3px 10px;
+    border-radius: 4px; font-size: 11px; font-weight: 800; margin-left: 8px;
+  }
+  .exec-hero {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    padding: 18px 20px 10px;
+  }
+  @media (max-width: 900px) { .exec-hero { grid-template-columns: repeat(2, 1fr); } }
+  .hero-box {
+    background: white; border-radius: 10px; padding: 16px 18px;
+    border-top: 4px solid #7c3aed; position: relative;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .hero-box.yellow { border-top-color: #fbbf24; background: linear-gradient(180deg, #fffef0 0%, white 70%); }
+  .hero-box.red { border-top-color: #dc2626; background: linear-gradient(180deg, #fff5f5 0%, white 70%); }
+  .hero-box.green { border-top-color: #10b981; background: linear-gradient(180deg, #f0fdf9 0%, white 70%); }
+  .hero-box .hl {
+    font-size: 11px; color: #666; font-weight: 700; margin-bottom: 6px;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .hero-box .hv {
+    font-size: 26px; font-weight: 900; color: #2d1a6e;
+    letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
+  }
+  .hero-box.yellow .hv { color: #b45309; }
+  .hero-box.red .hv { color: #b91c1c; }
+  .hero-box.green .hv { color: #047857; }
+  .hero-box .hs { font-size: 11px; color: #888; margin-top: 4px; line-height: 1.5; }
+  .hero-box .tag-small {
+    position: absolute; top: 12px; right: 12px;
+    font-size: 9.5px; font-weight: 700; padding: 2px 7px;
+    border-radius: 10px; background: #ede9fe; color: #6d28d9;
+  }
+
+  .exec-row {
+    padding: 12px 20px; border-top: 1px dashed #e5e0f5;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  @media (max-width: 900px) { .exec-row { grid-template-columns: 1fr; } }
+  .exec-row h5 {
+    font-size: 12px; font-weight: 800; color: #4a1d8c;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+
+  .timeline-bar {
+    display: grid; grid-template-columns: repeat(12, 1fr); gap: 3px;
+    padding: 4px 0;
+  }
+  .tl-cell {
+    background: #f3f0fa; border-radius: 4px; padding: 8px 4px;
+    text-align: center; font-size: 10.5px; position: relative;
+  }
+  .tl-cell .tm { font-weight: 800; color: #4a1d8c; font-size: 10px; }
+  .tl-cell .tv { font-weight: 800; color: #2d1a6e; font-size: 11px; margin-top: 3px; font-variant-numeric: tabular-nums; }
+  .tl-cell.done { background: #ede9fe; border: 1px solid #c4b5fd; }
+  .tl-cell.current { background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white; }
+  .tl-cell.current .tm, .tl-cell.current .tv { color: white; }
+  .tl-cell.hot { background: linear-gradient(135deg, #fef3c7, #fcd34d); border: 1px solid #f59e0b; }
+  .tl-cell.hot .tm, .tl-cell.hot .tv { color: #92400e; }
+  .tl-cell.future { background: white; border: 1px dashed #ccc; color: #aaa; }
+  .tl-cell.future .tm, .tl-cell.future .tv { color: #aaa; }
+
+  .cat-strip {
+    display: flex; height: 34px; border-radius: 6px; overflow: hidden;
+    box-shadow: inset 0 0 0 1px #e5e0f5; font-size: 11px; font-weight: 800;
+  }
+  .cat-seg { display: flex; align-items: center; justify-content: center; color: white; text-align: center; padding: 0 4px; }
+  .cat-seg.prod { background: linear-gradient(135deg, #6d28d9, #4a1d8c); }
+  .cat-seg.ad { background: linear-gradient(135deg, #d97706, #fbbf24); color: #2d1a6e; }
+  .cat-seg.tax { background: linear-gradient(135deg, #374151, #6b7280); }
+  .cat-seg.log { background: linear-gradient(135deg, #1e40af, #3b82f6); }
+  .cat-seg.op { background: linear-gradient(135deg, #0e7490, #06b6d4); }
+  .cat-legend { font-size: 10.5px; color: #555; margin-top: 6px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .cat-legend .dot { display: inline-block; width: 8px; height: 8px; border-radius: 2px; margin-right: 4px; vertical-align: middle; }
+
+  .schedule-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+    padding: 4px 0;
+  }
+  @media (max-width: 900px) { .schedule-grid { grid-template-columns: repeat(2, 1fr); } }
+  .sch-card {
+    background: white; border-radius: 8px; padding: 12px 14px;
+    border-left: 4px solid #7c3aed;
+  }
+  .sch-card.urgent { border-left-color: #dc2626; background: #fff5f5; }
+  .sch-card.near { border-left-color: #d97706; background: #fffef0; }
+  .sch-card.plan { border-left-color: #2563eb; background: #f0f9ff; }
+  .sch-card.later { border-left-color: #6b7280; background: #f9fafb; }
+  .sch-card .sm { font-size: 11px; font-weight: 800; color: #666; }
+  .sch-card .sv { font-size: 18px; font-weight: 900; color: #2d1a6e; margin: 4px 0; font-variant-numeric: tabular-nums; }
+  .sch-card.urgent .sv { color: #b91c1c; }
+  .sch-card.near .sv { color: #b45309; }
+  .sch-card.plan .sv { color: #1e40af; }
+  .sch-card .sd { font-size: 10.5px; color: #666; line-height: 1.6; }
+
+  .exec-action {
+    background: linear-gradient(180deg, #fef3c7 0%, #fffce8 100%);
+    padding: 14px 20px 18px; border-top: 2px solid #fbbf24;
+  }
+  .exec-action h5 { font-size: 13px; color: #92400e; margin-bottom: 10px; }
+  .exec-action ol {
+    list-style: none; padding: 0; counter-reset: acnt;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  }
+  @media (max-width: 900px) { .exec-action ol { grid-template-columns: 1fr; } }
+  .exec-action li {
+    background: white; border-radius: 8px; padding: 10px 14px 12px 40px;
+    position: relative; font-size: 12px; line-height: 1.55;
+    counter-increment: acnt; border-left: 3px solid #fbbf24;
+  }
+  .exec-action li::before {
+    content: counter(acnt); position: absolute; left: 12px; top: 10px;
+    width: 22px; height: 22px; border-radius: 50%;
+    background: #d97706; color: white; font-weight: 800; font-size: 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .exec-action li b { color: #92400e; }
+
   /* 인쇄 */
   @media print {
     body { background: white; font-size: 11px; }
     .top-bar .btns, .edit-badge, .save-toast { display: none !important; }
     .top-bar, .sec-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .section { break-inside: avoid; }
+    .exec-summary { page-break-after: always; }
   }
 </style>
 </head>
@@ -220,8 +350,8 @@
 
 <div class="top-bar">
   <div>
-    <h1>💰 쥬얼아이스 자금 현황 온보딩</h1>
-    <div class="meta">작성일: 2026-04-21 · 박지현 팀장 전용 · 화경(AI) 관리 · 원천: 구글드라이브 결제승인요청 2026 + 상품별 원가 분석</div>
+    <h1>💰 쥬얼아이스 자금 현황 · 대표 보고 1장 통합본</h1>
+    <div class="meta">작성일 2026-04-24 · v2.0 대표 보고형 (맨 위 1장 총정리 + 하단 세부내역) · 박지현 팀장 전용 · 화경(AI) 관리 · 원천: 구글드라이브 결제승인요청 2026 + 상품별 원가 분석 + 손익분석 + 재고시트</div>
   </div>
   <div class="btns">
     <button class="btn btn-edit" onclick="toggleEdit()">✏️ 편집 모드</button>
@@ -235,6 +365,144 @@
 <div class="container">
 
 <a class="nav-back" href="jihyun-hub.html">← 박지현 팀장 HUB로 돌아가기</a>
+
+<!-- ============================================================== -->
+<!-- ===== 📋 0. 1장 총정리 — 대표 보고용 (맨 위 요약) ===== -->
+<!-- ============================================================== -->
+<div class="section exec-summary">
+  <div class="sec-header">
+    📋 자금 현황 1장 총정리
+    <span class="badge">장정훈 대표 보고용</span>
+    <span class="ribbon">2026-04-24 기준</span>
+  </div>
+
+  <!-- HERO: 대표님이 먼저 보는 4개 숫자 -->
+  <div class="exec-hero">
+    <div class="hero-box">
+      <div class="tag-small">1-4월 확정</div>
+      <div class="hl">💰 YTD 자금유출 (결제완료)</div>
+      <div class="hv">₩125.5M</div>
+      <div class="hs">1월 45.8 · 2월 12.3 · 3월 26.0 · 4월 41.4<br>월평균 ₩31.4M</div>
+    </div>
+    <div class="hero-box red">
+      <div class="tag-small" style="background:#fee2e2;color:#dc2626;">대기</div>
+      <div class="hl">💸 확정 대기지급 총액</div>
+      <div class="hv">₩130.9M</div>
+      <div class="hs">4월 미결 18.5 + 5월 이후 예정 112.4<br>YTD의 <b>104%</b> — 1년치 만큼 더 나갈 예정</div>
+    </div>
+    <div class="hero-box yellow">
+      <div class="tag-small" style="background:#fef3c7;color:#b45309;">5월 집중</div>
+      <div class="hl">⚠️ 5월 지급 임박</div>
+      <div class="hv">~₩52M</div>
+      <div class="hs">태양EPP 잔금 8.6 + 해피홈 조립 20.8<br>+ 성준 7500 중도·착수잔 19.2</div>
+    </div>
+    <div class="hero-box green">
+      <div class="tag-small" style="background:#dcfce7;color:#059669;">원가</div>
+      <div class="hl">📦 와디즈 1차 할당재고</div>
+      <div class="hv">₩27.0M</div>
+      <div class="hs">아블러 900 + 듀오 650 + 몰드·집게·보관통<br>원가 기준 추정값</div>
+    </div>
+  </div>
+
+  <!-- 연간 월별 타임라인 -->
+  <div class="exec-row" style="grid-template-columns:1fr;">
+    <div>
+      <h5>📅 2026 연간 월별 자금유출 타임라인 (완료 / 진행 / 예정)</h5>
+      <div class="timeline-bar">
+        <div class="tl-cell done"><div class="tm">1월</div><div class="tv">45.8M</div></div>
+        <div class="tl-cell done"><div class="tm">2월</div><div class="tv">12.3M</div></div>
+        <div class="tl-cell done"><div class="tm">3월</div><div class="tv">41.7M</div></div>
+        <div class="tl-cell current"><div class="tm">4월</div><div class="tv">59.9M</div></div>
+        <div class="tl-cell hot"><div class="tm">5월</div><div class="tv">~52M</div></div>
+        <div class="tl-cell hot"><div class="tm">6월</div><div class="tv">~45M</div></div>
+        <div class="tl-cell future"><div class="tm">7월</div><div class="tv">~15M</div></div>
+        <div class="tl-cell future"><div class="tm">8월</div><div class="tv">-</div></div>
+        <div class="tl-cell future"><div class="tm">9월</div><div class="tv">-</div></div>
+        <div class="tl-cell future"><div class="tm">10월</div><div class="tv">-</div></div>
+        <div class="tl-cell future"><div class="tm">11월</div><div class="tv">-</div></div>
+        <div class="tl-cell future"><div class="tm">12월</div><div class="tv">-</div></div>
+      </div>
+      <div style="font-size:11px;color:#666;margin-top:6px;">
+        ✅ <b>1-4월 확정 ₩125.5M</b> (결제완료) · 🔥 <b>5-6월 피크 ~₩97M</b> — 성준테크 몰드 2건 동시 진행기 · 7월 이후 ~₩15M (물류·고정비 제외)
+      </div>
+    </div>
+  </div>
+
+  <!-- 카테고리 구조 + 향후 3개월 -->
+  <div class="exec-row">
+    <div>
+      <h5>📊 지출 카테고리 구조 (1-4월 ₩125.5M 기준)</h5>
+      <div class="cat-strip">
+        <div class="cat-seg prod" style="flex:47.1;">🏭 생산 47.1%</div>
+        <div class="cat-seg ad" style="flex:18.0;">📢 광고 18.0%</div>
+        <div class="cat-seg tax" style="flex:16.6;">🏛 세금 16.6%</div>
+        <div class="cat-seg log" style="flex:13.8;">🚚 물류 13.8%</div>
+        <div class="cat-seg op" style="flex:4.5;">🏢 기타 4.5%</div>
+      </div>
+      <div class="cat-legend">
+        <span><span class="dot" style="background:#6d28d9;"></span>생산·원가 ₩59.1M</span>
+        <span><span class="dot" style="background:#d97706;"></span>광고·마케팅 ₩22.6M</span>
+        <span><span class="dot" style="background:#374151;"></span>세금·금융 ₩20.8M</span>
+        <span><span class="dot" style="background:#1e40af;"></span>물류·배송 ₩17.4M</span>
+        <span><span class="dot" style="background:#0e7490;"></span>운영·기타 ₩5.6M</span>
+      </div>
+      <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6;">
+        💡 <b>생산비가 절반(47%)</b> — 몰드·조립·패키지 발주가 자금 흐름의 중심.<br>
+        광고(18%)는 1월 ₩18.7M 집중 후 급감 · 와디즈 오픈 후 재상승 예정.
+      </div>
+    </div>
+
+    <div>
+      <h5>🔥 향후 3개월 예정 지급 흐름 (₩130.9M)</h5>
+      <div class="schedule-grid">
+        <div class="sch-card urgent">
+          <div class="sm">⏰ 4월 미결</div>
+          <div class="sv">₩18.5M</div>
+          <div class="sd">성준 7500 착수잔 9.6 · 태양 EPP 잔 8.6 · 퀵/쿠팡 0.3</div>
+        </div>
+        <div class="sch-card near">
+          <div class="sm">🔥 5월 임박</div>
+          <div class="sv">~₩52M</div>
+          <div class="sd">해피홈 조립 20.8 · 성준 7500 중도 9.6 · 성준 10000 중도 13.5 · EPP·보명 등</div>
+        </div>
+        <div class="sch-card plan">
+          <div class="sm">📅 6월 예정</div>
+          <div class="sv">~₩45M</div>
+          <div class="sd">성준 10000 잔금 26.0 · 성준 7500 잔금 19.5</div>
+        </div>
+        <div class="sch-card later">
+          <div class="sm">📆 7월+ 예정</div>
+          <div class="sv">~₩15M</div>
+          <div class="sd">보명 잔금 2.9 · 삼성피아이티 1.8 · 고정 물류 4-6/월 · 광고 2-5/월</div>
+        </div>
+      </div>
+      <div style="font-size:11px;color:#666;margin-top:8px;line-height:1.6;">
+        📌 <b>단일최대 = 성준테크 ₩78.2M</b> (7500개+10000개 몰드 잔금·중도 합산) · 자금계획의 최대 변수.
+      </div>
+    </div>
+  </div>
+
+  <!-- 핵심 액션 3개 -->
+  <div class="exec-action">
+    <h5>🎯 대표님 결정 필요 — 핵심 3가지</h5>
+    <ol>
+      <li><b>5-6월 ₩97M 자금 확보 방안 확정</b><br>
+        경기도IBK 융성자금(4/21 신청) 승인·도착 시점 확인 → 부족분 대출/현금흐름 연결
+      </li>
+      <li><b>성준테크 지급 우선순위 재정비</b><br>
+        7500개 착수잔금 9.6M vs 10000개 중도금 13.5M 중 납품·품질 리스크 기준 선후 조정
+      </li>
+      <li><b>와디즈 오픈 후 광고비 월 상한 확정</b><br>
+        4월 ₩2.2M → 5월 재상승 예상. 월 ₩10M 상한 기준 확정 후 에버런스 운영 지침 전달
+      </li>
+    </ol>
+  </div>
+
+  <div class="sec-note" style="background:#f3f0fa;border-top-color:#c4b5fd;color:#4a1d8c;">
+    📋 <b>요약:</b> 1-4월 ₩125.5M 이미 지출 · 앞으로 3개월(4월말~7월) <b>추가 ₩130.9M</b> 집행 예정 — <b>연간 총자금 소요 ₩260M+ 수준</b>. 현재 재고자산 ₩27M(와디즈 1차) → 와디즈 매출이 5월 이후 자금계획의 핵심.<br>
+    📄 <b>세부내역은 아래 ① ~ ⑧ 섹션 참조</b> (월별 결제·카테고리·업체 TOP10·리드타임·5월이후 예정·원가수익·재고·액션).
+  </div>
+</div>
 
 <!-- ===== 1. 한눈에 — 2026 YTD ===== -->
 <div class="section">
@@ -257,13 +525,13 @@
       <div class="ks">(+미결 ₩15.7M = 시트상단 41.7M)</div>
     </div>
     <div class="kpi-mini warn">
-      <div class="kl">4월 (4/21 기준)</div>
-      <div class="kv editable" data-k="m4_paid">₩41,318,306</div>
-      <div class="ks">(+미결 ₩18.4M = 시트상단 59.7M)</div>
+      <div class="kl">4월 (4/24 기준)</div>
+      <div class="kv editable" data-k="m4_paid">₩41,384,306</div>
+      <div class="ks">(+미결 ₩18.5M = 시트상단 ₩59.9M)</div>
     </div>
     <div class="kpi-mini ytd">
       <div class="kl">⭐ YTD 결제완료 누계</div>
-      <div class="kv editable" data-k="ytd">₩125,425,569</div>
+      <div class="kv editable" data-k="ytd">₩125,491,569</div>
       <div class="ks">월평균 ₩31.4M · 4개월 합</div>
     </div>
   </div>
@@ -273,10 +541,10 @@
     <div class="month-cell done"><div class="m">1월</div><div class="v">45.8M</div></div>
     <div class="month-cell done"><div class="m">2월</div><div class="v">12.3M</div></div>
     <div class="month-cell done"><div class="m">3월</div><div class="v">41.7M</div></div>
-    <div class="month-cell current"><div class="m">4월</div><div class="v">59.7M</div></div>
-    <div class="month-cell hot"><div class="m">5월</div><div class="v editable" data-k="plan5">~112M</div></div>
-    <div class="month-cell future"><div class="m">6월</div><div class="v editable" data-k="plan6">-</div></div>
-    <div class="month-cell future"><div class="m">7월</div><div class="v editable" data-k="plan7">-</div></div>
+    <div class="month-cell current"><div class="m">4월</div><div class="v">59.9M</div></div>
+    <div class="month-cell hot"><div class="m">5월</div><div class="v editable" data-k="plan5">~52M</div></div>
+    <div class="month-cell hot"><div class="m">6월</div><div class="v editable" data-k="plan6">~45M</div></div>
+    <div class="month-cell future"><div class="m">7월</div><div class="v editable" data-k="plan7">~15M</div></div>
     <div class="month-cell future"><div class="m">8월</div><div class="v editable" data-k="plan8">-</div></div>
     <div class="month-cell future"><div class="m">9월</div><div class="v editable" data-k="plan9">-</div></div>
     <div class="month-cell future"><div class="m">10월</div><div class="v editable" data-k="plan10">-</div></div>
@@ -285,15 +553,15 @@
   </div>
 
   <div class="sec-note">
-    💡 <strong>읽는 법:</strong> 상단 KPI는 "결제완료" 확정값(구글시트 교차검증, 2026-04-22 재검증). 월 스트립은 시트 상단 표기(결제완료+미결 합계).<br>
-    ✅ <strong>1원 단위 재검증 완료 (2026-04-22):</strong> 1월 ₩45,835,805(시트 상단과 완전일치) · 원본 시트의 1/3 META 86,160→86,460 합계컬럼 차 ₩300원 정상 반영.<br>
-    📌 <strong>미결 = 결제여부 컬럼 비어있는 건</strong>: 3월 미결 ₩15,742,975 · 4월 미결 ₩18,477,053 (쿠팡 비품 35,850+37,900 포함)
+    💡 <strong>읽는 법:</strong> 상단 KPI는 "결제완료" 확정값(구글시트 교차검증). 월 스트립은 시트 상단 표기(결제완료+미결 합계).<br>
+    ✅ <strong>1원 단위 재검증 (2026-04-24 재갱신):</strong> 1월 ₩45,835,805 · 2월 ₩12,318,749 · 3월 ₩25,952,709 · 4월 ₩41,384,306 (+4/24 종량제봉투 ₩66,000 추가) → <b>YTD ₩125,491,569</b>.<br>
+    📌 <strong>미결 = 결제여부 컬럼 비어있는 건</strong>: 3월 미결 ₩15,742,975 · <b>4월 미결 ₩18,525,163</b> (성준7500착수잔 9.6M + 태양EPP잔 8.6M + 퀵비 165K + 쿠팡비품 35.8K/37.9K + 인터넷케이블 48K)
   </div>
 </div>
 
 <!-- ===== 2. 카테고리 비중 ===== -->
 <div class="section">
-  <div class="sec-header yellow">② 카테고리별 지출 구조 (1-4월 결제완료 기준 ₩125,425,569)</div>
+  <div class="sec-header yellow">② 카테고리별 지출 구조 (1-4월 결제완료 기준 ₩125,491,569)</div>
 
   <div class="two-col">
     <div class="sub-panel">
@@ -455,9 +723,58 @@
 
 <!-- ===== 5. 5월 이후 예정 지급 ===== -->
 <div class="section">
-  <div class="sec-header red">⑤ 5월 이후 확정·예정 지급 <span class="badge">NO_HEADER 블록 = 미결 발주건 ₩112,370,098 (4월 섹션 원본 9행)</span></div>
+  <div class="sec-header red">⑤ 4월 미결 + 5월 이후 확정·예정 지급 <span class="badge">총 ₩130,895,261 = 4월 미결 18.5M + NO_HEADER 112.4M</span></div>
 
-  <table style="margin:14px 18px;width:calc(100% - 36px);">
+  <div style="padding:12px 18px 4px;font-size:12px;color:#4a1d8c;font-weight:700;">🔴 4월 미결 지급건 (결제일 미기재 · 5월 초 처리 예상)</div>
+  <table style="margin:6px 18px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th style="width:70px">카테고리</th><th>업체</th><th>내역</th>
+        <th class="num">금액</th><th class="center">상태</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="tag tag-prod">몰드</span></td>
+        <td><b>성준테크</b></td>
+        <td>아블러 몰드 7,500개 착수금의 잔금 (4/8 기재)</td>
+        <td class="num">₩9,624,775</td>
+        <td class="center"><span class="tag tag-due">4월 미결</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-prod">생산</span></td>
+        <td>태양케미칼</td>
+        <td>EPP 생산 추가(4,956개) 잔금(50%) — 4/20 기재</td>
+        <td class="num">₩8,613,528</td>
+        <td class="center"><span class="tag tag-due">4월 미결</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-log">물류</span></td>
+        <td>(주)퀵서비스</td>
+        <td>해피홈→피플스토리 운송 퀵비 (4/15)</td>
+        <td class="num">₩165,000</td>
+        <td class="center"><span class="tag tag-due">4월 미결</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-op">비품</span></td>
+        <td>쿠팡</td>
+        <td>사무실 비품 2건 (4/22 · 칼·가위·키보드·패드 등)</td>
+        <td class="num">₩73,750</td>
+        <td class="center"><span class="tag tag-due">4월 미결</span></td>
+      </tr>
+      <tr>
+        <td><span class="tag tag-op">비품</span></td>
+        <td>쿠팡</td>
+        <td>인터넷 유선케이블·전선쫄대 (4/24 · 신규)</td>
+        <td class="num">₩48,110</td>
+        <td class="center"><span class="tag tag-due">4월 미결</span></td>
+      </tr>
+      <tr class="total"><td colspan="3">4월 미결 소계</td><td class="num">₩18,525,163</td><td class="center">5월 초</td></tr>
+    </tbody>
+  </table>
+
+  <div style="padding:14px 18px 4px;font-size:12px;color:#4a1d8c;font-weight:700;">🟠 5월 이후 확정 예정 지급 (NO_HEADER 블록 원본 9행)</div>
+  <table style="margin:6px 18px;width:calc(100% - 36px);">
     <thead>
       <tr>
         <th style="width:70px">카테고리</th><th>업체</th><th>내역</th>
@@ -468,7 +785,7 @@
       <tr>
         <td><span class="tag tag-prod">생산</span></td>
         <td>태양케미칼</td>
-        <td>EPP 생산 발주 추가(4,956개) 잔금(50%)</td>
+        <td>EPP 생산 발주 추가(4,956개) 잔금(50%) — NO_HEADER 재기재분</td>
         <td class="num editable" data-k="p_epp">₩8,613,528</td>
         <td class="center"><span class="tag tag-due">임박</span></td>
       </tr>
@@ -531,18 +848,41 @@
       </tr>
       <tr class="subtotal"><td colspan="3">소계 (성준테크 몰드 5건)</td><td class="num">₩78,248,550</td><td></td></tr>
       <tr class="total">
-        <td colspan="3">🔥 NO_HEADER 미결 총액 (원본 9행 · 1원 단위 재검증)</td>
+        <td colspan="3">🔥 NO_HEADER 예정지급 (원본 9행 · 1원 단위 재검증)</td>
         <td class="num">₩112,370,098</td>
+        <td class="center">5~7월</td>
+      </tr>
+      <tr class="total" style="background:linear-gradient(90deg,#fef3c7,#fcd34d);border-color:#92400e;color:#92400e;">
+        <td colspan="3">💥 4월 미결 + NO_HEADER 통합 <b>확정 대기지급 총액</b></td>
+        <td class="num">₩130,895,261</td>
         <td class="center">대기</td>
       </tr>
     </tbody>
   </table>
 
+  <div style="padding:14px 18px 4px;font-size:12px;color:#4a1d8c;font-weight:700;">📅 월별 예상 타임라인 (대기지급 ₩130.9M 분배 시나리오)</div>
+  <table style="margin:6px 18px 14px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>시점</th><th>주요 지급건</th><th class="num">예상 금액</th><th>비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>5월 초 (임박)</b></td><td>4월 미결 5건 전체 처리</td><td class="num">₩18.5M</td><td>성준 착수잔 9.6 + 태양 EPP 8.6 + 기타 0.3</td></tr>
+      <tr><td><b>5월 중순</b></td><td>해피홈 조립잔금 + 성준 7500 중도</td><td class="num">~₩30.4M</td><td>해피홈 20.8 + 성준7500 중도 9.6</td></tr>
+      <tr><td><b>5월 말</b></td><td>성준 10000 중도 + 보명·삼성 선금 잔</td><td class="num">~₩18.2M</td><td>성준10000 중도 13.5 + 보명 2.9 + 삼성 1.8</td></tr>
+      <tr class="subtotal"><td>5월 합계</td><td>─</td><td class="num">~₩52M</td><td>태양 EPP NO_HEADER 분은 중복 제거 시 ~₩44M</td></tr>
+      <tr><td><b>6월</b></td><td>성준 10000 잔금 + 성준 7500 잔금</td><td class="num">~₩45.5M</td><td>10000잔 26.0 + 7500잔 19.5</td></tr>
+      <tr class="subtotal"><td>6월 합계</td><td>─</td><td class="num">~₩45M</td><td>단일최대월 — 성준테크 몰드 완납 시점</td></tr>
+      <tr><td><b>7월 이후</b></td><td>고정 물류·광고·운영</td><td class="num">~₩15M+</td><td>물류 4-6/월 · 광고 2-5/월 · 운영 3/월</td></tr>
+    </tbody>
+  </table>
+
   <div class="sec-note">
-    ✅ <strong>원본 시트 재검증 결과 (2026-04-22):</strong> 4월 섹션 NO_HEADER 블록은 <b>실제 9행</b>이며 성준테크 항목은 <b>이중 기재가 아님</b>(기존 HTML 11행 146.5M은 잔금·중도금 값을 복수 버전으로 기재했던 오류). 재검증 확정값 ₩112,370,098.<br>
-    📋 <strong>성준테크 몰드 세부:</strong> 7,500개 발주(착수30%+중도30%+잔금40% = 9,624,775+9,624,775+19,499,700 = 38,749,250) · 10,000개 발주(중도30%+잔금40% = 13,499,700+25,999,600 = 39,499,300, 착수30%는 이미 2025-06 완료) · 합계 78,248,550.<br>
-    📌 <strong>월별 예상 타임라인:</strong> 5월 임박(태양+해피홈+성준 중도들 ~₩52M) → 6월(성준 잔금 ~₩45M) → 7월 이후 보명·삼성 잔금 ~₩5M.<br>
-    ⚠️ <strong>추가 고정비 (월 추정):</strong> 물류비 ₩4~6M + 광고비 ₩2~5M(와디즈 오픈 이후 증가) + 운영비 ₩3M = <b>월 ₩9~14M 상시 지출</b>
+    ✅ <strong>원본 시트 재검증 (2026-04-24):</strong> 4월 섹션 NO_HEADER 블록 실제 9행 = ₩112,370,098 + 4월 미결 5건 = ₩18,525,163 → 통합 <b>₩130,895,261</b> 확정.<br>
+    📋 <strong>성준테크 몰드 세부:</strong> 7,500개(착수30+중도30+잔금40 = 9.6+9.6+19.5 = 38.7M) · 10,000개(중도30+잔금40 = 13.5+26.0 = 39.5M, 착수30%는 2025-06 완료) · 합계 ₩78.2M.<br>
+    ⚠️ <strong>성준테크 7500 착수금 상태 주의:</strong> 시트에 "착수금 ₩14.6M"(4/2 완료) + "착수금의 잔금 ₩9.6M"(4/8 미결) 이중 기재 — 이호혁/권수지 확인 필요.<br>
+    ⚠️ <strong>추가 월 고정비 (위 표와 별도):</strong> 물류비 ₩4~6M + 광고비 ₩2~5M(와디즈 오픈 후 증가) + 운영·급여 ₩3M = <b>월 ₩9~14M 상시 지출</b>
   </div>
 </div>
 
@@ -636,7 +976,7 @@
         <tr>
           <td>결제승인요청</td>
           <td>2026년 결제승인요청(10만원 이상)</td>
-          <td>2026-04-21</td>
+          <td>2026-04-24 (최신)</td>
           <td><a href="https://docs.google.com/spreadsheets/d/1BDKw1MMEADroxNTjssGFmcMpMXUx1C1BfHZibhAFlkk/edit" target="_blank" style="color:#7c3aed;">📄 구글시트</a></td>
         </tr>
         <tr>
@@ -672,20 +1012,22 @@
       </tbody>
     </table>
     <div style="margin-top:10px;padding:10px;background:#f3f0fa;border-radius:6px;font-size:11.5px;color:#4a1d8c;line-height:1.6;">
-      🔒 <strong>크로스체크 로그 (2026-04-21 00시 기준):</strong><br>
+      🔒 <strong>크로스체크 로그 (2026-04-24 재갱신):</strong><br>
       • 1월 결제완료: 시트표기 ₩45,835,805 vs 재계산 ₩45,835,805 ✅ (1/3 META 86,460은 원본 합계컬럼 기준, 총비용 86,160 오기 흡수)<br>
       • 2월 결제완료: 시트표기 ₩12,318,749 vs 재계산 ₩12,318,749 ✅ 완전일치<br>
       • 3월 결제완료: 시트표기 ₩41,695,684 (결제완료 ₩25,952,709 + 미결 ₩15,742,975) ✅ 완전일치<br>
-      • 4월 결제완료: 시트표기 ₩59,795,359 (결제완료 ₩41,318,306 + 미결 ₩18,477,053 · 쿠팡 비품 2건 포함) ✅ 완전일치<br>
-      • YTD 1-4월 합계 ₩125,425,569 · META ₩8,657,301 · 1월 광고비 ₩18,667,541 (2026-04-22 1원 단위 재검증 완료)
+      • <b>4월 결제완료: 시트표기 ₩59,909,469</b> (결제완료 ₩41,384,306 + 미결 ₩18,525,163) ✅ 완전일치 — 4/24 종량제봉투 ₩66K 신규 반영 · 4/24 인터넷케이블 ₩48K 신규 미결 반영<br>
+      • <b>YTD 1-4월 합계 ₩125,491,569</b> (전일 대비 +₩66,000) · 확정 대기지급 ₩130,895,261 (4월 미결 18.5 + NO_HEADER 112.4)<br>
+      • 메모리 대조: <code>reference_jihyun_finance_sources.md</code> (2일 전) 기재 YTD ₩125,425,269 → 4/22-24 추가분 +₩66,000로 조정
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <strong>💰 JEWEL ICE · 자금 현황 온보딩 v1.0</strong><br>
-  박지현 팀장 전용 · 화경(AI) 제작 · 영구 URL 고정 · 편집 내용 localStorage 자동저장<br>
-  🔗 <code style="background:#f3f0fa;padding:2px 8px;border-radius:4px;color:#4a1d8c;">charlesmaster911.github.io/jewelice-playbook/jihyun-cash.html</code>
+  <strong>💰 JEWEL ICE · 자금 현황 v2.0 — 대표 보고 1장 통합본</strong><br>
+  박지현 팀장 전용 · 화경(AI) 제작 · 2026-04-24 갱신 · 영구 URL 고정 · 편집 내용 localStorage 자동저장<br>
+  🔗 <code style="background:#f3f0fa;padding:2px 8px;border-radius:4px;color:#4a1d8c;">charlesmaster911.github.io/jewelice-playbook/jihyun-cash.html</code><br>
+  <span style="font-size:10.5px;color:#aaa;">구조: ⓪ 1장 총정리 (대표 보고) → ① YTD 한눈에 → ② 카테고리 → ③ 업체 TOP10 → ④ 리드타임 → ⑤ 4월미결+예정지급 → ⑥ 원가수익 → ⑦ 재고 → ⑧ 액션</span>
 </div>
 
 </div>
