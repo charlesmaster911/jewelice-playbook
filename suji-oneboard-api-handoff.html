@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OneBoard API 연동 인수인계 · 권수지 대리</title>
+<title>OneBoard API 연동 가이드 · 권수지 대리 · Self-Service</title>
 <style>
   :root {
     --purple: #6B46C1; --purple-dark: #553C9A; --purple-light: #EDE9FE;
@@ -22,26 +22,46 @@
   .hero::after { content: ''; position: absolute; top: -50px; right: -50px; width: 220px; height: 220px; background: var(--yellow); border-radius: 50%; opacity: 0.25; }
   .hero-badge { display: inline-block; background: var(--yellow); color: var(--gray-900); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 800; margin-bottom: 12px; position: relative; z-index: 2; }
   .hero h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; letter-spacing: -1px; position: relative; z-index: 2; }
-  .hero p { font-size: 15px; opacity: 0.95; position: relative; z-index: 2; max-width: 680px; }
+  .hero p { font-size: 15px; opacity: 0.95; position: relative; z-index: 2; max-width: 720px; }
   .hero-meta { display: flex; gap: 20px; margin-top: 20px; flex-wrap: wrap; font-size: 13px; position: relative; z-index: 2; }
   .hero-meta strong { color: var(--yellow); margin-left: 4px; }
 
-  .quick-start {
-    background: var(--yellow-light); border: 2px solid var(--yellow);
-    border-radius: 12px; padding: 20px 24px; margin-bottom: 24px;
+  .big-cta {
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--yellow-dark) 100%);
+    padding: 24px 28px; border-radius: 14px; margin-bottom: 24px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
   }
-  .quick-start h3 { font-size: 15px; font-weight: 800; color: var(--yellow-dark); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-  .quick-start ol { margin-left: 20px; font-size: 13px; }
-  .quick-start li { margin: 4px 0; }
+  .big-cta-text { flex: 1; min-width: 280px; }
+  .big-cta-title { font-size: 18px; font-weight: 800; margin-bottom: 4px; color: var(--gray-900); }
+  .big-cta-sub { font-size: 13px; color: var(--gray-700); }
+  .big-cta-btn {
+    background: var(--purple); color: white; padding: 14px 28px; border-radius: 10px;
+    font-weight: 800; text-decoration: none; font-size: 15px; white-space: nowrap;
+  }
+  .big-cta-btn:hover { background: var(--purple-dark); }
+
+  .step-guide {
+    background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .step-guide-title { font-size: 18px; font-weight: 800; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--purple-light); }
+  .step-row {
+    display: flex; gap: 16px; margin-bottom: 14px; padding: 14px;
+    background: var(--gray-100); border-radius: 10px;
+  }
+  .step-row-num {
+    flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--purple); color: white; display: flex; align-items: center;
+    justify-content: center; font-weight: 800; font-size: 16px;
+  }
+  .step-row-content { flex: 1; }
+  .step-row-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+  .step-row-desc { font-size: 13px; color: var(--gray-700); line-height: 1.7; }
 
   section { margin-bottom: 32px; }
   .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; border-left: 6px solid var(--yellow); padding-left: 14px; }
   .section-header h2 { font-size: 22px; font-weight: 800; }
   .section-header .tag { background: var(--purple); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 800; }
-
-  .panel { background: white; border-radius: 12px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 16px; }
-  .panel h3 { font-size: 16px; font-weight: 800; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--purple-light); }
-  .panel h4 { font-size: 14px; font-weight: 700; margin: 14px 0 8px; color: var(--purple-dark); }
 
   .priority-card {
     background: white; border-radius: 12px; padding: 0; margin-bottom: 16px;
@@ -58,9 +78,7 @@
     flex-wrap: wrap; gap: 12px;
   }
   .priority-head .title-row { display: flex; align-items: center; gap: 10px; }
-  .priority-head .prio-badge {
-    padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 800; color: white;
-  }
+  .prio-badge { padding: 3px 8px; border-radius: 5px; font-size: 11px; font-weight: 800; color: white; }
   .p1 .prio-badge { background: var(--red); }
   .p2 .prio-badge { background: var(--yellow-dark); }
   .p3 .prio-badge { background: var(--blue); }
@@ -70,42 +88,37 @@
 
   .priority-body { padding: 18px 22px; background: var(--gray-100); }
 
-  .step { display: flex; gap: 12px; margin-bottom: 10px; padding: 10px 12px; background: white; border-radius: 8px; }
-  .step-num {
-    background: var(--purple); color: white; width: 24px; height: 24px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 12px; font-weight: 800; flex-shrink: 0;
+  .ob-instructions {
+    background: white; padding: 14px 16px; border-radius: 8px; margin-bottom: 10px;
+    border-left: 3px solid var(--purple); font-size: 13px; line-height: 1.7;
   }
-  .step-text { font-size: 13px; line-height: 1.55; }
-  .step-text strong { color: var(--purple-dark); }
+  .ob-instructions strong { color: var(--purple-dark); }
+  .ob-instructions code {
+    background: #F1F5F9; padding: 2px 6px; border-radius: 4px;
+    font-family: 'Monaco','Consolas',monospace; font-size: 11px;
+  }
 
-  .keys-needed {
-    background: #F0FDF4; border: 1px solid var(--green);
-    padding: 10px 14px; border-radius: 8px; margin: 10px 0; font-size: 12px;
+  .platform-step {
+    background: white; border-radius: 8px; padding: 12px 14px; margin-bottom: 8px;
+    display: flex; gap: 10px; font-size: 13px;
   }
-  .keys-needed strong { color: var(--green); }
-  .keys-needed code {
-    background: white; padding: 2px 6px; border-radius: 4px;
-    font-family: 'Monaco', 'Consolas', monospace; font-size: 11px;
-    border: 1px solid var(--gray-200); margin: 2px;
-    display: inline-block;
+  .platform-step-num {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--purple); color: white; font-size: 11px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
   }
 
   .link-btn {
-    display: inline-block; padding: 8px 14px; background: var(--purple); color: white;
-    border-radius: 8px; font-size: 12px; font-weight: 700; text-decoration: none;
-    margin-top: 8px; margin-right: 6px;
+    display: inline-block; padding: 6px 14px; background: var(--purple-dark); color: white;
+    border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none;
   }
-  .link-btn:hover { background: var(--purple-dark); }
   .link-btn.yellow { background: var(--yellow-dark); }
-  .link-btn.green { background: var(--green); }
 
   .warn-box {
     background: var(--red-light); border-left: 4px solid var(--red);
     padding: 14px 16px; border-radius: 8px; margin: 12px 0; font-size: 13px;
   }
   .warn-box strong { color: var(--red); }
-
   .info-box {
     background: var(--blue-light); border-left: 4px solid var(--blue);
     padding: 14px 16px; border-radius: 8px; margin: 12px 0; font-size: 13px;
@@ -124,10 +137,10 @@
 
   .handoff-box {
     background: var(--yellow); padding: 24px; border-radius: 12px;
-    margin: 24px 0; position: relative;
+    margin: 24px 0;
   }
-  .handoff-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; color: var(--gray-900); }
-  .handoff-box p { font-size: 14px; color: var(--gray-900); margin-bottom: 8px; }
+  .handoff-box h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; }
+  .handoff-box p { font-size: 14px; margin-bottom: 8px; }
   .handoff-box .contact {
     background: white; padding: 12px 16px; border-radius: 8px; margin-top: 12px;
     font-size: 13px;
@@ -138,7 +151,6 @@
   th { background: var(--purple); color: white; padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 800; }
   td { padding: 10px 12px; border-bottom: 1px solid var(--gray-200); vertical-align: top; }
   tr:last-child td { border-bottom: none; }
-  tr:hover td { background: var(--purple-light); }
   td code { background: var(--gray-100); padding: 2px 6px; border-radius: 4px; font-size: 11px; font-family: monospace; }
 
   .footer { text-align: center; padding: 32px 0; color: var(--gray-500); font-size: 12px; }
@@ -150,53 +162,65 @@
 
   <!-- Hero -->
   <div class="hero">
-    <span class="hero-badge">📋 인수인계 · 권수지 대리</span>
+    <span class="hero-badge">📋 인수인계 · 권수지 대리 · Self-Service v2</span>
     <h1>OneBoard API 연동 작업</h1>
-    <p>쥬얼아이스 통합 운영 보드에 매출 데이터를 실시간으로 끌어오기 위한 채널별 API 키 발급 작업입니다. 코드는 전부 완성되어 있고, 각 플랫폼에서 발급받은 키만 찰스에게 전달해주시면 바로 연동됩니다.</p>
+    <p>수지야, 이 작업은 <strong>외부 문서 오가지 않고 OneBoard 안에서 전부 끝낼 수 있게</strong> 만들어 뒀어. 각 플랫폼에서 키를 받으면 OneBoard 설정 화면에 바로 붙여넣고, 카페24는 버튼 한 번으로 OAuth 자동 처리 돼. 찰스 거치지 않아도 혼자서 완결 가능.</p>
     <div class="hero-meta">
-      <div>📅 배포일: <strong>2026-04-24</strong></div>
+      <div>📅 배포: <strong>2026-04-24</strong></div>
       <div>👤 담당: <strong>권수지 대리</strong></div>
-      <div>⏰ 목표: <strong>4/29 (수) 까지 전체 완료</strong></div>
-      <div>💬 문의: <strong>찰스</strong></div>
+      <div>⏰ 목표: <strong>4/29 (수) 완료</strong></div>
+      <div>🔐 접근: <strong>JEWELICE</strong></div>
     </div>
   </div>
 
-  <!-- 빠른 시작 -->
-  <div class="quick-start">
-    <h3>⚡ 빠른 시작 — 순서대로만 진행</h3>
-    <ol>
-      <li><strong>OneBoard 현재 상태 확인</strong> → <a href="https://oneboard-kef0.onrender.com" target="_blank" style="color:var(--yellow-dark);font-weight:700">oneboard-kef0.onrender.com</a> 접속 (⚙️ 설정 탭 → 비밀번호 <code style="background:white;padding:2px 6px;border-radius:4px">JEWELICE</code>)</li>
-      <li><strong>P1 (스마트스토어)</strong> 부터 시작 — 제일 쉬움 (10분)</li>
-      <li>키 받으면 <strong>찰스 Gmail 또는 잔디 DM</strong> 으로 즉시 전달</li>
-      <li>키는 <strong>절대 카톡/공개 채팅에 올리지 말 것</strong> (보안)</li>
-      <li>P1 완료되면 P2 (카페24), 그 다음 P3·P4 순서</li>
-    </ol>
+  <!-- Big CTA -->
+  <div class="big-cta">
+    <div class="big-cta-text">
+      <div class="big-cta-title">🚀 지금 바로 시작 — OneBoard 설정 열기</div>
+      <div class="big-cta-sub">이 탭 닫고 <strong>OneBoard → ⚙️ 설정 → JEWELICE</strong> 입력하면 키 입력 화면이 나옵니다.</div>
+    </div>
+    <a href="https://oneboard-kef0.onrender.com" target="_blank" class="big-cta-btn">OneBoard 설정 →</a>
   </div>
 
-  <!-- OneBoard 현황 -->
-  <section>
-    <div class="section-header">
-      <h2>📊 OneBoard 현재 현황</h2>
-      <span class="tag">완료된 부분</span>
+  <!-- Core Workflow -->
+  <div class="step-guide">
+    <div class="step-guide-title">📖 핵심 작업 흐름 — 6개 플랫폼 모두 공통</div>
+    <div class="step-row">
+      <div class="step-row-num">1</div>
+      <div class="step-row-content">
+        <div class="step-row-title">OneBoard 접속 → ⚙️ 설정 탭 → 비밀번호 <code>JEWELICE</code> 입력</div>
+        <div class="step-row-desc">한 번 입력하면 브라우저에 저장됨. 다시 안 물어봄.</div>
+      </div>
     </div>
-    <div class="panel">
-      <h4>✅ 이미 완성된 것 (이번 주 배포)</h4>
-      <ul style="margin-left:20px;font-size:13px;line-height:1.8">
-        <li><strong>6개 섹션</strong>: 📊 매출 / 👥 팀 업무 / 📋 회의록 / 🏆 팀 KPI / 📘 운영매뉴얼 / ⚙️ 설정</li>
-        <li><strong>팀 업무 3층 구조</strong>: ① 월간 주관업무 ② 주간업무 (1~5주차+상시) ③ 일간 캘린더</li>
-        <li><strong>팀원 탭 동적 추가/삭제</strong> — 박지현·권나경·권수지·컨텐츠팀 + 얼마든지 추가 가능</li>
-        <li><strong>회의록 29건</strong> 전수 이관 (2026-01-09 ~ 04-23)</li>
-        <li><strong>운영매뉴얼 20개 문서</strong> 통합 (CS 대응·제품·FAQ·SOP·영상자산)</li>
-        <li><strong>매출 데이터</strong> — 현재는 <span class="badge" style="background:var(--green);color:white;padding:2px 8px;border-radius:5px;font-size:11px">🟢 Google Sheets 연동</span> 중</li>
-      </ul>
-
-      <h4 style="margin-top:20px">⏳ 대기 중 — 권수지 대리 작업 영역</h4>
-      <ul style="margin-left:20px;font-size:13px;line-height:1.8">
-        <li><strong>6개 채널 실시간 API 연동</strong> — 각 플랫폼 API 키 발급만 남음</li>
-        <li>키 발급 후 <strong>oneboard-server 환경변수</strong>에 주입 → 자동으로 실시간 매출로 승격</li>
-      </ul>
+    <div class="step-row">
+      <div class="step-row-num">2</div>
+      <div class="step-row-content">
+        <div class="step-row-title">각 플랫폼 카드에서 <strong>"🔑 키 입력"</strong> 버튼 클릭</div>
+        <div class="step-row-desc">팝업이 열리면 플랫폼에서 발급받은 키를 필드에 붙여넣기만 하면 됨.</div>
+      </div>
     </div>
-  </section>
+    <div class="step-row">
+      <div class="step-row-num">3</div>
+      <div class="step-row-content">
+        <div class="step-row-title">저장하면 서버에서 <strong>자동 암호화</strong>되어 저장</div>
+        <div class="step-row-desc">키는 브라우저에 저장되지 않고 서버 암호화 DB에만 저장. 안전함.</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-row-num">4</div>
+      <div class="step-row-content">
+        <div class="step-row-title">카페24만 특별 — 키 저장 후 <strong>"🔗 OAuth 인증 시작"</strong> 버튼 추가로 클릭</div>
+        <div class="step-row-desc">버튼 누르면 카페24 로그인 페이지로 자동 이동 → "허용" 클릭하면 끝. access_token/refresh_token은 자동 저장됨.</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-row-num">5</div>
+      <div class="step-row-content">
+        <div class="step-row-title">플랫폼 카드 상태가 <strong>🟢 연결됨</strong>으로 바뀌면 완료</div>
+        <div class="step-row-desc">나머지 플랫폼도 같은 방식으로 반복.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- 전체 지도 -->
   <section>
@@ -209,391 +233,212 @@
           <tr>
             <th style="width:8%">순위</th>
             <th style="width:20%">채널</th>
-            <th style="width:22%">난이도/시간</th>
-            <th style="width:30%">필요 키</th>
-            <th style="width:20%">이유</th>
+            <th style="width:18%">소요시간</th>
+            <th style="width:34%">필요 키</th>
+            <th style="width:20%">OAuth</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td><span class="badge" style="background:var(--red);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P1</span></td>
-            <td><strong>🟢 네이버 스마트스토어</strong></td>
-            <td>⭐ 쉬움 / 10분</td>
-            <td><code>client_id</code> <code>client_secret</code></td>
-            <td>매출 비중 높음, 가장 빠름</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:var(--yellow-dark);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P2</span></td>
-            <td><strong>🛒 카페24 (자사몰)</strong></td>
-            <td>⭐⭐ 중간 / 30분</td>
-            <td><code>mall_id</code> <code>client_id</code> <code>client_secret</code> <code>access_token</code> <code>refresh_token</code></td>
-            <td>자사몰 = 우리 핵심 채널</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:var(--blue);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P3</span></td>
-            <td><strong>📘 META (Facebook/Instagram)</strong></td>
-            <td>⭐⭐ 중간 / 20분</td>
-            <td><code>app_id</code> <code>app_secret</code> <code>access_token</code> <code>ad_account_id</code></td>
-            <td>광고비/ROAS 추적</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:var(--blue);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P3</span></td>
-            <td><strong>🟢 네이버 검색광고</strong></td>
-            <td>⭐⭐ 중간 / 15분</td>
-            <td><code>api_key</code> <code>secret_key</code> <code>customer_id</code></td>
-            <td>광고 ROAS</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:var(--gray-400);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P4</span></td>
-            <td><strong>🟡 쿠팡 Wing</strong></td>
-            <td>⭐⭐⭐ 난이도 있음</td>
-            <td><code>access_key</code> <code>secret_key</code> <code>vendor_id</code></td>
-            <td>쿠팡 오픈API 승인 심사</td>
-          </tr>
-          <tr>
-            <td><span class="badge" style="background:var(--gray-400);color:white;padding:2px 8px;border-radius:5px;font-size:11px">P4</span></td>
-            <td><strong>🟡 카카오모먼트</strong></td>
-            <td>⭐⭐ 중간</td>
-            <td><code>access_token</code> <code>ad_account_id</code></td>
-            <td>카카오 광고 비중 작음</td>
-          </tr>
+          <tr><td><span class="prio-badge" style="background:var(--red)">P1</span></td><td><strong>🟢 네이버 스마트스토어</strong></td><td>10분 · ⭐</td><td><code>client_id</code> <code>client_secret</code></td><td>불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--yellow-dark)">P2</span></td><td><strong>🛒 카페24 (자사몰)</strong></td><td>20분 · ⭐⭐</td><td><code>mall_id</code> <code>client_id</code> <code>client_secret</code></td><td><strong>필요</strong> (버튼 1회 클릭)</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--blue)">P3</span></td><td><strong>📘 META</strong></td><td>20분 · ⭐⭐</td><td><code>app_id</code> <code>app_secret</code> <code>access_token</code> <code>ad_account_id</code></td><td>불필요 (토큰 직접 입력)</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--blue)">P3</span></td><td><strong>🟢 네이버 검색광고</strong></td><td>15분 · ⭐⭐</td><td><code>api_key</code> <code>secret_key</code> <code>customer_id</code></td><td>불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--gray-400)">P4</span></td><td><strong>🟡 쿠팡</strong></td><td>승인 심사 후</td><td><code>access_key</code> <code>secret_key</code> <code>vendor_id</code></td><td>불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--gray-400)">P4</span></td><td><strong>🟡 카카오모먼트</strong></td><td>20분 · ⭐⭐</td><td><code>access_token</code> <code>ad_account_id</code></td><td>불필요</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- P1: 스마트스토어 -->
+  <!-- P1 -->
   <section>
-    <div class="section-header">
-      <h2>🟢 P1 · 네이버 스마트스토어</h2>
-      <span class="tag">먼저 시작</span>
-    </div>
+    <div class="section-header"><h2>🟢 P1 · 네이버 스마트스토어</h2><span class="tag">먼저 시작</span></div>
     <div class="priority-card p1">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P1</span>
-          <h3>네이버 커머스 API 센터 앱 등록</h3>
-        </div>
-        <div class="meta">소요시간 10분 · 난이도 ⭐</div>
+        <div class="title-row"><span class="prio-badge">P1</span><h3>client_id · client_secret 2개 받아서 OneBoard에 입력</h3></div>
+        <div class="meta">10분 · ⭐</div>
       </div>
       <div class="priority-body">
-
-        <div class="keys-needed">
-          <strong>필요한 키 2개</strong> — <code>client_id</code> · <code>client_secret</code>
+        <div class="ob-instructions">
+          <strong>OneBoard 조작 순서:</strong> 설정 → 네이버 스마트스토어 카드 → 🔑 키 입력 → <code>client_id</code> + <code>client_secret</code> 입력 → 저장
         </div>
-
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-text"><strong>네이버 커머스 API 센터</strong> 접속 → <code>apicenter.commerce.naver.com</code>
-            <br><a href="https://apicenter.commerce.naver.com/" target="_blank" class="link-btn yellow">🔗 API 센터 열기</a></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-text">스마트스토어 운영 계정으로 <strong>로그인</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-text">상단 <strong>"애플리케이션 등록"</strong> 클릭 → 새 앱 만들기</div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-text">앱 이름: <code>OneBoard 연동</code> 입력
-            <br>앱 용도: <strong>매출/주문 조회용</strong>
-            <br>Redirect URL: 나중에 찰스가 알려줌 (일단 <code>https://oneboard-server.onrender.com/auth/callback</code> 입력)</div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-text">권한 스코프 체크: <strong>판매자 주문 조회 ✓</strong>, <strong>상품 조회 ✓</strong>, <strong>매출 통계 ✓</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">6</div>
-          <div class="step-text">등록 완료 → <strong>"내 애플리케이션"</strong> 페이지에서 <code>client_id</code> 와 <code>client_secret</code> 복사</div>
-        </div>
-        <div class="step">
-          <div class="step-num">7</div>
-          <div class="step-text"><strong>찰스에게 전달</strong> (Gmail 또는 잔디 DM — 카톡/공개 채팅 금지)</div>
-        </div>
-
-        <div class="warn-box">
-          <strong>⚠️ 보안 주의:</strong> client_secret 은 비밀번호처럼 다뤄야 합니다. 화면 캡처, 카톡, 공개 문서에 절대 올리지 마세요. 유출 시 재발급 가능합니다.
-        </div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://apicenter.commerce.naver.com/" target="_blank" class="link-btn yellow">🔗 네이버 커머스 API 센터</a> 접속 → 쥬얼아이스 운영 계정 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div><strong>"애플리케이션 등록"</strong> 클릭 → 앱 이름 <code>OneBoard 연동</code></div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>권한 스코프 ✓ 판매자 주문 조회 · 상품 조회 · 매출 통계</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>등록 완료 → 내 애플리케이션에서 <code>client_id</code> · <code>client_secret</code> 복사</div></div>
+        <div class="platform-step"><div class="platform-step-num">5</div><div>OneBoard 설정 → 🔑 키 입력 → 붙여넣기 → 저장 ✅</div></div>
       </div>
     </div>
   </section>
 
-  <!-- P2: 카페24 -->
+  <!-- P2 카페24 -->
   <section>
-    <div class="section-header">
-      <h2>🛒 P2 · 카페24 (자사몰)</h2>
-      <span class="tag">중요</span>
-    </div>
+    <div class="section-header"><h2>🛒 P2 · 카페24 (자사몰)</h2><span class="tag">OAuth 자동 처리</span></div>
     <div class="priority-card p2">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P2</span>
-          <h3>카페24 개발자센터 앱 등록 + OAuth 인증</h3>
-        </div>
-        <div class="meta">소요시간 30분 · 난이도 ⭐⭐</div>
+        <div class="title-row"><span class="prio-badge">P2</span><h3>3개 키 저장 → OAuth 버튼 1회 클릭 = 완료</h3></div>
+        <div class="meta">20분 · ⭐⭐</div>
       </div>
       <div class="priority-body">
-
-        <div class="keys-needed">
-          <strong>필요한 키 5개</strong> — <code>mall_id</code> · <code>client_id</code> · <code>client_secret</code> · <code>access_token</code> · <code>refresh_token</code>
-        </div>
-
         <div class="info-box">
-          <strong>ℹ️ 이 작업은 2단계:</strong><br>
-          1단계: 앱 등록 → client_id/secret 받기<br>
-          2단계: OAuth 인증 플로우 한 번 돌려서 access/refresh 토큰 발급
+          <strong>💡 이 작업의 특징:</strong> 과거에는 수동 OAuth 플로우 필요했지만, 이제는 <strong>OneBoard 설정에서 "🔗 OAuth 인증 시작" 버튼 한 번</strong> 누르면 카페24 로그인 페이지로 자동 이동 → "허용" 클릭 → 자동 복귀. access/refresh 토큰은 서버가 알아서 받아 저장합니다.
         </div>
 
-        <h4>📍 1단계: 앱 등록</h4>
-
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-text"><a href="https://developers.cafe24.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 카페24 개발자센터</a> 접속 → <strong>쥬얼아이스 운영자 계정으로 로그인</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-text"><strong>"앱 만들기"</strong> 클릭 → Public App (공개 앱) 선택</div>
-        </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-text">앱 기본 정보 입력:
-            <br>• 앱 이름: <code>OneBoard 매출 연동</code>
-            <br>• Redirect URI: <code>https://oneboard-server.onrender.com/auth/cafe24/callback</code>
-            <br>• 앱 종류: <strong>일반 앱</strong></div>
-        </div>
-        <div class="step">
-          <div class="step-num">4</div>
-          <div class="step-text">권한(Scopes) 체크:
-            <br>✓ <code>mall.read_application</code>
-            <br>✓ <code>mall.read_order</code> (주문 조회)
-            <br>✓ <code>mall.read_product</code> (상품 조회)
-            <br>✓ <code>mall.read_analytics</code> (통계 조회)
-            <br>✓ <code>mall.read_store</code> (쇼핑몰 정보)</div>
-        </div>
-        <div class="step">
-          <div class="step-num">5</div>
-          <div class="step-text">저장 후 <strong>앱 상세</strong> 페이지에서:
-            <br>• <code>Client ID</code> 복사
-            <br>• <code>Client Secret</code> 복사
-            <br>• <code>mall_id</code> 는 우리 자사몰 URL 앞부분 (예: <code>jewelice.cafe24.com</code> → <code>jewelice</code>)</div>
+        <div class="ob-instructions">
+          <strong>OneBoard 조작 순서:</strong><br>
+          1) 설정 → 카페24 카드 → 🔑 키 입력 → <code>mall_id</code> + <code>client_id</code> + <code>client_secret</code> 3개 입력 → 저장<br>
+          2) 같은 카드에서 <strong>🔗 OAuth 인증 시작</strong> 버튼 클릭 → 카페24 페이지로 이동<br>
+          3) 카페24 로그인 후 "허용" 클릭 → 자동으로 OneBoard로 돌아옴 → ✅ 연결됨
         </div>
 
-        <h4>📍 2단계: OAuth 인증 → 토큰 발급</h4>
+        <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">1단계: 카페24 개발자센터에서 앱 등록</h4>
 
-        <div class="step">
-          <div class="step-num">6</div>
-          <div class="step-text"><strong>찰스에게 1단계 키 3개 먼저 전달</strong> (mall_id, client_id, client_secret)<br>
-            → 찰스가 oneboard-server 설정 후 인증 URL 생성해서 다시 전달</div>
-        </div>
-        <div class="step">
-          <div class="step-num">7</div>
-          <div class="step-text">찰스가 보낸 인증 URL을 브라우저에 붙여넣고 → <strong>"허용"</strong> 클릭</div>
-        </div>
-        <div class="step">
-          <div class="step-num">8</div>
-          <div class="step-text">리다이렉트되면 자동으로 access/refresh 토큰이 서버에 저장됨 (권수지 대리가 직접 복사할 필요 없음)</div>
-        </div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://developers.cafe24.com" target="_blank" class="link-btn yellow">🔗 카페24 개발자센터</a> 접속 → 쥬얼아이스 운영자 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div><strong>"앱 만들기"</strong> → Public App (공개 앱) 선택</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>앱 기본 정보:
+          <br>• 앱 이름: <code>OneBoard 매출 연동</code>
+          <br>• Redirect URI: <code>https://oneboard-server.onrender.com/api/admin/oauth/cafe24/callback</code>
+          <br>• 앱 종류: 일반 앱</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>Scopes ✓ <code>mall.read_order</code> · <code>mall.read_product</code> · <code>mall.read_analytics</code> · <code>mall.read_store</code> · <code>mall.read_application</code></div></div>
+        <div class="platform-step"><div class="platform-step-num">5</div><div>저장 → 앱 상세 페이지에서:
+          <br>• <code>Client ID</code> 복사
+          <br>• <code>Client Secret</code> 복사
+          <br>• <code>mall_id</code>: 자사몰 URL 앞부분 (예: <code>jewelice.cafe24.com</code> → <code>jewelice</code>)</div></div>
+
+        <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">2단계: OneBoard에서 입력 + OAuth</h4>
+
+        <div class="platform-step"><div class="platform-step-num">6</div><div>OneBoard 설정 → 카페24 카드 → <strong>🔑 키 입력</strong> → 3개 값 입력 → 저장</div></div>
+        <div class="platform-step"><div class="platform-step-num">7</div><div>같은 카드에서 <strong>🔗 OAuth 인증 시작</strong> 클릭</div></div>
+        <div class="platform-step"><div class="platform-step-num">8</div><div>카페24 페이지에서 <strong>"허용"</strong> 클릭 → 자동 복귀 → ✅ 완료</div></div>
 
         <div class="warn-box">
-          <strong>⚠️ OAuth 인증은 한 번만:</strong> 인증을 한 번 통과하면 토큰은 오래(수개월) 유지됩니다. 토큰 만료되면 자동 갱신됩니다.
+          <strong>⚠️ 주의:</strong> Redirect URI는 <strong>정확히</strong> <code>https://oneboard-server.onrender.com/api/admin/oauth/cafe24/callback</code>으로 카페24 앱 설정에 등록해야 합니다. 한 글자라도 다르면 OAuth 인증이 거부됩니다.
         </div>
       </div>
     </div>
   </section>
 
-  <!-- P3 -->
+  <!-- P3 META -->
   <section>
-    <div class="section-header">
-      <h2>📘 P3 · META & 네이버 검색광고</h2>
-      <span class="tag">광고 ROAS용</span>
-    </div>
-
+    <div class="section-header"><h2>📘 P3 · META</h2></div>
     <div class="priority-card p3">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P3</span>
-          <h3>META (Facebook/Instagram 광고)</h3>
-        </div>
-        <div class="meta">소요시간 20분 · 난이도 ⭐⭐</div>
+        <div class="title-row"><span class="prio-badge">P3</span><h3>Facebook Developer 앱 → 4개 키 받아서 OneBoard 입력</h3></div>
+        <div class="meta">20분 · ⭐⭐</div>
       </div>
       <div class="priority-body">
-        <div class="keys-needed">
-          <strong>필요한 키 4개</strong> — <code>app_id</code> · <code>app_secret</code> · <code>access_token</code> · <code>ad_account_id</code>
+        <div class="ob-instructions">
+          <strong>OneBoard 조작:</strong> 설정 → META 카드 → 🔑 키 입력 → 4개 값 입력 → 저장
         </div>
-        <div class="step"><div class="step-num">1</div><div class="step-text"><a href="https://developers.facebook.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 Meta for Developers</a> 접속 → 쥬얼아이스 계정 로그인</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-text"><strong>"내 앱"</strong> → <strong>"앱 만들기"</strong> → <strong>비즈니스</strong> 선택</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-text">앱 이름 <code>OneBoard 연동</code>, 앱 용도: 광고 관리</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-text">제품 추가 → <strong>Marketing API</strong> 활성화</div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-text">설정 → 기본 설정에서 <code>App ID</code> · <code>App Secret</code> 복사</div></div>
-        <div class="step"><div class="step-num">6</div><div class="step-text"><strong>Graph API Explorer</strong> 접속 → <code>ads_read</code>, <code>ads_management</code>, <code>business_management</code> 권한으로 Long-Lived Access Token 생성</div></div>
-        <div class="step"><div class="step-num">7</div><div class="step-text">비즈니스 관리자 → 광고 계정 → <code>ad_account_id</code> 복사 (act_ 로 시작)</div></div>
-        <div class="step"><div class="step-num">8</div><div class="step-text"><strong>4개 키 모두 찰스에게 전달</strong></div></div>
-
-        <div class="info-box"><strong>💡 Tip:</strong> 현재 메타 광고 대행사(AMPM글로벌 또는 이전 대행사)가 이미 계정에 접근 중일 수 있습니다. 기존 앱이 있다면 그것을 활용해도 됩니다.</div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://developers.facebook.com" target="_blank" class="link-btn yellow">🔗 Meta for Developers</a> → 로그인 → 내 앱 → 앱 만들기 → 비즈니스</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div>제품 추가 → <strong>Marketing API</strong> 활성화</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>설정 → 기본 설정: <code>App ID</code> · <code>App Secret</code> 복사</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>Graph API Explorer → <code>ads_read</code> · <code>ads_management</code> · <code>business_management</code> 권한으로 <strong>Long-Lived Access Token</strong> 생성 → 복사</div></div>
+        <div class="platform-step"><div class="platform-step-num">5</div><div>비즈니스 관리자 → 광고 계정 → <code>ad_account_id</code> 복사 (<code>act_</code>로 시작)</div></div>
+        <div class="platform-step"><div class="platform-step-num">6</div><div>OneBoard 설정 → META 카드 → 🔑 키 입력 → 4개 붙여넣기 → 저장 ✅</div></div>
       </div>
     </div>
+  </section>
 
+  <!-- P3 네이버 검색광고 -->
+  <section>
+    <div class="section-header"><h2>🟢 P3 · 네이버 검색광고</h2></div>
     <div class="priority-card p3">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P3</span>
-          <h3>네이버 검색광고</h3>
-        </div>
-        <div class="meta">소요시간 15분 · 난이도 ⭐⭐</div>
+        <div class="title-row"><span class="prio-badge">P3</span><h3>API 라이선스 발급 → 3개 키 OneBoard 입력</h3></div>
+        <div class="meta">15분 · ⭐⭐</div>
       </div>
       <div class="priority-body">
-        <div class="keys-needed">
-          <strong>필요한 키 3개</strong> — <code>api_key</code> · <code>secret_key</code> · <code>customer_id</code>
+        <div class="ob-instructions">
+          <strong>OneBoard 조작:</strong> 설정 → 네이버 검색광고 카드 → 🔑 키 입력 → 3개 값 입력 → 저장
         </div>
-        <div class="step"><div class="step-num">1</div><div class="step-text"><a href="https://searchad.naver.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 네이버 검색광고</a> 접속 → 로그인</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-text">우측 상단 <strong>"도구"</strong> → <strong>"API 사용 관리"</strong> 클릭</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>"API 라이선스 발급"</strong> 버튼 클릭 → 라이선스 발급</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-text">발급된 화면에서 복사:
-          <br>• <code>API Key</code> (긴 문자열)
-          <br>• <code>Secret Key</code>
-          <br>• <code>CUSTOMER_ID</code> (광고주 고유 번호)</div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-text"><strong>3개 키 찰스에게 전달</strong></div></div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://searchad.naver.com" target="_blank" class="link-btn yellow">🔗 네이버 검색광고</a> → 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div>우측 상단 <strong>도구 → API 사용 관리</strong></div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div><strong>"API 라이선스 발급"</strong> → <code>API Key</code> · <code>Secret Key</code> · <code>CUSTOMER_ID</code> 3개 복사</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>OneBoard에 붙여넣기 → 저장 ✅</div></div>
       </div>
     </div>
   </section>
 
   <!-- P4 -->
   <section>
-    <div class="section-header">
-      <h2>🟡 P4 · 쿠팡 & 카카오모먼트 (후순위)</h2>
-      <span class="tag">시간 나면</span>
-    </div>
+    <div class="section-header"><h2>🟡 P4 · 쿠팡 & 카카오모먼트</h2><span class="tag">후순위</span></div>
 
     <div class="priority-card p4">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P4</span>
-          <h3>쿠팡 Wing 오픈 API</h3>
-        </div>
-        <div class="meta">소요시간 길 수 있음 · 난이도 ⭐⭐⭐</div>
+        <div class="title-row"><span class="prio-badge">P4</span><h3>쿠팡 Wing 오픈 API</h3></div>
+        <div class="meta">승인 심사 후</div>
       </div>
       <div class="priority-body">
-        <div class="keys-needed">
-          <strong>필요한 키 3개</strong> — <code>access_key</code> · <code>secret_key</code> · <code>vendor_id</code>
-        </div>
-        <div class="warn-box">
-          <strong>⚠️ 쿠팡은 오픈 API 사용 승인이 필요합니다.</strong> 승인 심사에 며칠 걸릴 수 있으므로 여유있게 신청해주세요.
-        </div>
-        <div class="step"><div class="step-num">1</div><div class="step-text"><a href="https://wing.coupang.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 쿠팡 Wing</a> → 로그인</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-text">우측 상단 <strong>계정관리 → 오픈API 관리</strong></div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-text"><strong>"API 사용 신청"</strong> → 용도: 매출/주문 조회 → 제출</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-text">승인 완료 알림 받으면 access/secret key 발급</div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-text">vendor_id 는 Wing 계정의 업체 코드 (A로 시작)</div></div>
+        <div class="warn-box"><strong>⚠️ 승인 심사 며칠 걸립니다.</strong> 여유있게 신청해주세요.</div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://wing.coupang.com" target="_blank" class="link-btn yellow">🔗 쿠팡 Wing</a> → 계정관리 → 오픈API 관리</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div>"API 사용 신청" → 용도: 매출/주문 조회 → 제출 → 승인 대기</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>승인 후 <code>access_key</code> · <code>secret_key</code> · <code>vendor_id</code> (A로 시작) 받기</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>OneBoard 설정 → 쿠팡 카드 → 🔑 키 입력 → 저장 ✅</div></div>
       </div>
     </div>
 
     <div class="priority-card p4">
       <div class="priority-head">
-        <div class="title-row">
-          <span class="prio-badge">P4</span>
-          <h3>카카오모먼트 (카카오 광고)</h3>
-        </div>
-        <div class="meta">소요시간 20분 · 난이도 ⭐⭐</div>
+        <div class="title-row"><span class="prio-badge">P4</span><h3>카카오모먼트</h3></div>
+        <div class="meta">20분 · ⭐⭐</div>
       </div>
       <div class="priority-body">
-        <div class="keys-needed">
-          <strong>필요한 키 2개</strong> — <code>access_token</code> · <code>ad_account_id</code>
-        </div>
-        <div class="step"><div class="step-num">1</div><div class="step-text"><a href="https://moment.kakao.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 카카오 모먼트</a> → 로그인</div></div>
-        <div class="step"><div class="step-num">2</div><div class="step-text"><a href="https://developers.kakao.com" target="_blank" class="link-btn yellow" style="margin:0">🔗 Kakao Developers</a> → 앱 생성</div></div>
-        <div class="step"><div class="step-num">3</div><div class="step-text">앱 이름 <code>OneBoard</code> → 플랫폼 웹 추가</div></div>
-        <div class="step"><div class="step-num">4</div><div class="step-text">카카오 모먼트 API 동의 → access token 발급</div></div>
-        <div class="step"><div class="step-num">5</div><div class="step-text">모먼트 광고 계정 대시보드에서 <code>ad_account_id</code> 확인</div></div>
-        <div class="step"><div class="step-num">6</div><div class="step-text"><strong>2개 키 찰스에게 전달</strong></div></div>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://moment.kakao.com" target="_blank" class="link-btn yellow">🔗 카카오 모먼트</a> → 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div><a href="https://developers.kakao.com" target="_blank" class="link-btn yellow">🔗 Kakao Developers</a> → 앱 생성 → 카카오 모먼트 API 동의</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>access_token 발급 + 모먼트 대시보드에서 ad_account_id 확인</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>OneBoard에 붙여넣기 → 저장 ✅</div></div>
       </div>
     </div>
   </section>
 
   <!-- 체크리스트 -->
   <section>
-    <div class="section-header">
-      <h2>✅ 진행 체크리스트</h2>
-      <span class="tag">체크해가며</span>
-    </div>
-    <div class="panel">
+    <div class="section-header"><h2>✅ 진행 체크리스트</h2></div>
+    <div class="step-guide">
       <ul class="checklist">
-        <li><input type="checkbox" id="c1"><label for="c1">OneBoard 접속해보고 현재 화면 확인 (oneboard-kef0.onrender.com)</label></li>
-        <li><input type="checkbox" id="c2"><label for="c2">⚙️ 설정 탭 → 비밀번호 JEWELICE 입력 → 6개 채널 미연동 상태 확인</label></li>
-        <li><input type="checkbox" id="c3"><label for="c3"><strong>[P1]</strong> 네이버 스마트스토어 API 센터 앱 등록 완료</label></li>
-        <li><input type="checkbox" id="c4"><label for="c4"><strong>[P1]</strong> client_id + client_secret 찰스에게 전달 완료</label></li>
-        <li><input type="checkbox" id="c5"><label for="c5"><strong>[P2]</strong> 카페24 개발자센터 앱 등록 완료</label></li>
-        <li><input type="checkbox" id="c6"><label for="c6"><strong>[P2]</strong> 카페24 mall_id + client_id + client_secret 찰스에게 전달</label></li>
-        <li><input type="checkbox" id="c7"><label for="c7"><strong>[P2]</strong> 찰스가 보낸 OAuth 인증 URL 클릭해서 "허용" 완료</label></li>
-        <li><input type="checkbox" id="c8"><label for="c8"><strong>[P3]</strong> META 광고 앱 등록 + 키 4개 전달</label></li>
-        <li><input type="checkbox" id="c9"><label for="c9"><strong>[P3]</strong> 네이버 검색광고 API 라이선스 발급 + 키 3개 전달</label></li>
-        <li><input type="checkbox" id="c10"><label for="c10"><strong>[P4]</strong> 쿠팡 Wing 오픈API 신청 접수</label></li>
-        <li><input type="checkbox" id="c11"><label for="c11"><strong>[P4]</strong> 카카오모먼트 앱 등록 + 키 2개 전달</label></li>
-        <li><input type="checkbox" id="c12"><label for="c12">📊 전체 6개 채널 🟢 연결됨 상태 확인</label></li>
+        <li><input type="checkbox" id="c0"><label for="c0">OneBoard 접속 (oneboard-kef0.onrender.com) → ⚙️ 설정 → JEWELICE 언락</label></li>
+        <li><input type="checkbox" id="c1"><label for="c1"><strong>[P1]</strong> 네이버 스마트스토어 client_id/secret 2개 입력 → 🟢 연결됨</label></li>
+        <li><input type="checkbox" id="c2"><label for="c2"><strong>[P2]</strong> 카페24 mall_id/client_id/client_secret 3개 입력</label></li>
+        <li><input type="checkbox" id="c3"><label for="c3"><strong>[P2]</strong> 카페24 🔗 OAuth 인증 시작 → 허용 → 🟢 연결됨</label></li>
+        <li><input type="checkbox" id="c4"><label for="c4"><strong>[P3]</strong> META 4개 키 입력 → 🟢 연결됨</label></li>
+        <li><input type="checkbox" id="c5"><label for="c5"><strong>[P3]</strong> 네이버 검색광고 3개 키 입력 → 🟢 연결됨</label></li>
+        <li><input type="checkbox" id="c6"><label for="c6"><strong>[P4]</strong> 쿠팡 Wing 오픈API 신청 제출</label></li>
+        <li><input type="checkbox" id="c7"><label for="c7"><strong>[P4]</strong> 카카오모먼트 2개 키 입력 → 🟢 연결됨</label></li>
+        <li><input type="checkbox" id="c8"><label for="c8">🎉 전체 6채널 상태 확인 (쿠팡은 승인 대기 가능)</label></li>
       </ul>
       <div class="info-box" style="margin-top:16px">
-        <strong>💡 저장 방식:</strong> 체크박스는 이 브라우저에만 저장됩니다. 다른 컴퓨터에서 열면 초기화되니 참고만 하세요.
+        <strong>💡 체크는 이 브라우저에만 저장됩니다.</strong> OneBoard의 연결 상태는 서버에 저장되니 다른 기기에서도 확인 가능해요.
       </div>
     </div>
   </section>
 
-  <!-- 질문/답변 받을 지점 -->
+  <!-- 문의 -->
   <div class="handoff-box">
-    <h3>❓ 답변받을 지점 — 시작 전 확인해주세요</h3>
-    <p>아래 3가지 중 궁금한 점이 있으면 <strong>작업 시작 전에</strong> 찰스에게 물어봐 주세요:</p>
-    <ul style="margin-left:20px;margin-top:8px;font-size:13px">
-      <li><strong>계정 접근 권한</strong> — 각 플랫폼(네이버/카페24/META/네이버광고/쿠팡/카카오)의 쥬얼아이스 운영 계정 로그인 정보 보유하고 계신가요?</li>
-      <li><strong>우선순위 변경 필요?</strong> — P1 스마트스토어 → P2 카페24 순서가 맞나요? 바꿀 필요 있으면 알려주세요.</li>
-      <li><strong>일정</strong> — <span style="background:#FEE2E2;padding:2px 6px;border-radius:4px;font-weight:700;color:#DC2626">4/29(수) 까지 전체 완료</span> 가능한가요? 어려우면 P4 후순위는 조정 가능.</li>
+    <h3>❓ 막혔을 때 · 문의</h3>
+    <p>Self-Service라 혼자 할 수 있게 만들었지만, 어디서 막히면 바로 찰스에게 연락주세요.</p>
+    <p><strong>가장 흔한 막힘:</strong></p>
+    <ul style="margin-left:20px;font-size:13px;line-height:1.8">
+      <li>🟢 스마트스토어 권한 체크 어디 있는지 — API 센터 → 앱 상세 → "권한 편집"</li>
+      <li>🛒 카페24 mall_id 모르겠음 — <code>jewelice.cafe24.com</code>이면 <code>jewelice</code></li>
+      <li>🔗 OAuth 인증 후 에러 페이지 — Redirect URI 불일치. 카페24 앱 설정에 정확히 <code>https://oneboard-server.onrender.com/api/admin/oauth/cafe24/callback</code></li>
+      <li>📘 META Long-Lived Token 만드는 곳 — Graph API Explorer → 토큰 교환 도구</li>
     </ul>
     <div class="contact">
-      <strong>📞 문의 채널:</strong><br>
-      • Gmail: thinkintoreal@gmail.com<br>
-      • 잔디: 찰스 DM<br>
-      • 긴급: 전화
-      <br><br>
-      <strong>🔐 키 전달 시 주의:</strong><br>
-      • Gmail 본문 또는 잔디 DM ✓<br>
-      • 카카오톡 · 공개 채팅 ✗<br>
-      • 문서 공유 드라이브 ✗ (링크로 열람 가능해지면 위험)
+      <strong>📞 문의:</strong> Gmail thinkintoreal@gmail.com · 잔디 DM · 긴급 전화
     </div>
   </div>
 
-  <!-- 참고 -->
-  <section>
-    <div class="section-header">
-      <h2>📚 참고 링크</h2>
-    </div>
-    <div class="panel">
-      <table>
-        <thead><tr><th>자료</th><th>URL</th></tr></thead>
-        <tbody>
-          <tr><td>OneBoard 실제 화면</td><td><a href="https://oneboard-kef0.onrender.com" target="_blank">oneboard-kef0.onrender.com</a></td></tr>
-          <tr><td>네이버 커머스 API 문서</td><td><a href="https://apicenter.commerce.naver.com/docs" target="_blank">apicenter.commerce.naver.com/docs</a></td></tr>
-          <tr><td>카페24 Developers 문서</td><td><a href="https://developers.cafe24.com/docs" target="_blank">developers.cafe24.com/docs</a></td></tr>
-          <tr><td>META Marketing API</td><td><a href="https://developers.facebook.com/docs/marketing-apis" target="_blank">developers.facebook.com/docs/marketing-apis</a></td></tr>
-          <tr><td>네이버 검색광고 API</td><td><a href="https://naver.github.io/searchad-apidoc/" target="_blank">naver.github.io/searchad-apidoc</a></td></tr>
-          <tr><td>쿠팡 Wing API</td><td><a href="https://developers.coupangcorp.com/hc/ko" target="_blank">developers.coupangcorp.com</a></td></tr>
-          <tr><td>카카오 모먼트 API</td><td><a href="https://kakaobusiness.github.io/restapi/docs/ko/moment/moment_overview.html" target="_blank">kakaobusiness.github.io/restapi</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
   <div class="footer">
-    OneBoard API 인수인계 문서 v1.0 · 배포 2026-04-24<br>
-    담당: 권수지 대리 · 문의: <a href="mailto:thinkintoreal@gmail.com">찰스</a><br>
-    🎯 쥬얼아이스 통합 운영 보드 프로젝트
+    OneBoard API 인수인계 v2 (Self-Service) · 2026-04-24 배포<br>
+    담당: 권수지 대리 · 문의: <a href="mailto:thinkintoreal@gmail.com">찰스</a>
   </div>
 
 </div>
 
 <script>
-// 체크리스트 localStorage 저장
 document.querySelectorAll('.checklist input[type=checkbox]').forEach(cb => {
-  const key = 'suji_api_' + cb.id;
+  const key = 'suji_api_v2_' + cb.id;
   if (localStorage.getItem(key) === '1') { cb.checked = true; cb.closest('li').classList.add('done'); }
   cb.addEventListener('change', () => {
     localStorage.setItem(key, cb.checked ? '1' : '0');
