@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>쥬얼아이스 와디즈 카카오 발송용 이미지 — 3개 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Pretendard:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+  :root{
+    --tiffany:#81D8D0;       /* Tiffany Blue */
+    --tiffany-deep:#0ABAB5;
+    --tiffany-pale:#E8F6F4;
+    --ink:#0A0A0A;
+    --paper:#FAFAF7;
+    --gold:#B89968;
+    --charcoal:#1a1a1a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased;}
+  body{
+    background:#E5E5E2;
+    font-family:'Pretendard Variable','Pretendard',-apple-system,sans-serif;
+    min-height:100vh;
+    padding:48px 24px 120px;
+  }
+  .page-header{
+    max-width:900px;margin:0 auto 48px;text-align:center;
+  }
+  .page-header h1{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;font-size:38px;letter-spacing:-0.01em;color:var(--ink);
+    margin-bottom:8px;
+  }
+  .page-header p{color:#666;font-size:14px;letter-spacing:0.02em;}
+  .page-header .meta{
+    display:inline-flex;gap:20px;margin-top:20px;font-size:12px;color:#888;
+    text-transform:uppercase;letter-spacing:0.15em;
+  }
+
+  .card{
+    max-width:900px;margin:0 auto 64px;
+    background:#fff;
+    border-radius:2px;
+    box-shadow:0 30px 80px -20px rgba(0,0,0,.12), 0 8px 24px -6px rgba(0,0,0,.06);
+    overflow:hidden;
+  }
+  .card-head{
+    padding:20px 32px;
+    border-bottom:1px solid #eee;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .card-head .label{
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-size:22px;color:var(--ink);
+  }
+  .card-head .tag{
+    font-size:10px;letter-spacing:0.25em;color:#888;
+    text-transform:uppercase;
+  }
+  .stage{
+    padding:40px;background:#F3F3F0;display:flex;justify-content:center;
+  }
+  /* ===== 시안 공통 800x600 캔버스 ===== */
+  .canvas{
+    width:800px;height:600px;
+    position:relative;overflow:hidden;
+    background:#fff;
+  }
+  .meta-row{
+    padding:20px 32px;display:flex;gap:16px;flex-wrap:wrap;
+    border-top:1px solid #eee;font-size:12px;color:#666;
+  }
+  .meta-row b{color:var(--ink);font-weight:600;}
+  .pick-btn{
+    display:block;width:100%;padding:18px;
+    background:var(--ink);color:#fff;border:none;cursor:pointer;
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;font-size:14px;
+    letter-spacing:0.1em;text-transform:uppercase;
+  }
+  .pick-btn:hover{background:var(--tiffany-deep);}
+
+  /* ============================================================
+     시안 A — TIFFANY EDITORIAL (티파니 민트 + 블랙 + 세리프)
+     좌측 카피 / 우측 얼음 포토 프레임
+     ============================================================ */
+  .a{
+    background:linear-gradient(to right, #fff 0%, #fff 45%, var(--tiffany-pale) 45%, var(--tiffany-pale) 100%);
+  }
+  .a .brand{
+    position:absolute;top:32px;left:36px;
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:13px;letter-spacing:0.35em;color:var(--ink);
+    text-transform:uppercase;
+  }
+  .a .brand::after{
+    content:"";display:block;width:28px;height:1px;background:var(--ink);
+    margin-top:8px;
+  }
+  .a .issue{
+    position:absolute;top:32px;right:36px;
+    font-family:'Inter',sans-serif;font-weight:300;
+    font-size:10px;letter-spacing:0.3em;color:#555;
+  }
+  .a .kv{
+    position:absolute;top:120px;left:36px;
+    max-width:310px;
+  }
+  .a .kv .eyebrow{
+    font-family:'Inter',sans-serif;font-weight:500;font-size:10px;
+    letter-spacing:0.3em;color:var(--tiffany-deep);margin-bottom:18px;
+    text-transform:uppercase;
+  }
+  .a .kv h1{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:52px;line-height:1.05;color:var(--ink);
+    letter-spacing:-0.02em;
+  }
+  .a .kv h1 em{
+    font-style:italic;color:var(--tiffany-deep);font-weight:500;
+  }
+  .a .kv .sub{
+    margin-top:22px;font-size:13px;line-height:1.7;color:#333;
+    font-weight:400;
+  }
+  .a .kv .sub b{color:var(--ink);font-weight:700;}
+  .a .photo{
+    position:absolute;top:60px;right:50px;
+    width:290px;height:400px;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(255,255,255,.7), transparent 60%),
+      linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+    border-radius:2px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.4);
+  }
+  .a .photo::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 50% 55%, rgba(129,216,208,.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 75%, rgba(255,255,255,.05), transparent 60%);
+  }
+  /* 얼음 구 비주얼 */
+  .a .ice{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-45%);
+    width:180px;height:180px;border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 30%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.3) 15%, transparent 35%),
+      radial-gradient(circle at 70% 70%, rgba(129,216,208,.25) 0%, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(200,230,230,.15) 0%, rgba(10,186,181,.08) 50%, transparent 80%);
+    box-shadow:
+      inset 0 0 60px rgba(255,255,255,.3),
+      inset -20px -30px 60px rgba(0,0,0,.2),
+      0 20px 40px rgba(129,216,208,.15);
+  }
+  .a .ice::after{
+    content:"";position:absolute;top:15%;left:20%;
+    width:40%;height:30%;border-radius:50%;
+    background:radial-gradient(ellipse, rgba(255,255,255,.6) 0%, transparent 70%);
+    filter:blur(8px);
+  }
+  .a .pedestal{
+    position:absolute;left:50%;bottom:30%;transform:translateX(-50%);
+    width:160px;height:18px;border-radius:50%;
+    background:linear-gradient(to bottom, rgba(255,255,255,.15), rgba(255,255,255,.05));
+    box-shadow:inset 0 2px 8px rgba(255,255,255,.2);
+  }
+  .a .photo-caption{
+    position:absolute;bottom:24px;left:24px;right:24px;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:11px;color:rgba(255,255,255,.7);letter-spacing:0.1em;
+    text-align:center;
+  }
+  .a .bottom{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:18px 36px;
+    background:var(--ink);color:#fff;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .a .bottom .promise{
+    display:flex;gap:28px;
+  }
+  .a .bottom .item{
+    display:flex;flex-direction:column;gap:3px;
+  }
+  .a .bottom .k{
+    font-family:'Inter',sans-serif;font-weight:300;
+    font-size:9px;letter-spacing:0.25em;color:var(--tiffany);
+    text-transform:uppercase;
+  }
+  .a .bottom .v{
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;
+    font-size:13px;color:#fff;letter-spacing:-0.01em;
+  }
+  .a .cta{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:16px;color:var(--tiffany);
+    display:flex;align-items:center;gap:8px;
+  }
+  .a .cta::after{content:"→";font-style:normal;font-size:18px;}
+
+  /* ============================================================
+     시안 B — MUSEUM BLACK (블랙 + 골드 포인트 + 임팩트 타이포)
+     중앙 얼음 / 좌우 여백 / 하단 프로미스 바
+     ============================================================ */
+  .b{background:#0A0A0A;color:#fff;}
+  .b::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(129,216,208,.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 20% 0%, rgba(184,153,104,.06), transparent 50%);
+  }
+  .b .top-bar{
+    position:absolute;top:0;left:0;right:0;
+    padding:20px 36px;
+    display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .b .brand{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:15px;letter-spacing:0.4em;
+  }
+  .b .chip{
+    padding:6px 14px;border:1px solid var(--tiffany);
+    font-family:'Inter',sans-serif;font-weight:500;
+    font-size:10px;letter-spacing:0.25em;color:var(--tiffany);
+    text-transform:uppercase;
+  }
+  .b .stage-box{
+    position:absolute;top:90px;left:50%;transform:translateX(-50%);
+    width:260px;height:260px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .b .stage-box::before{
+    content:"";position:absolute;inset:0;
+    border:1px solid rgba(129,216,208,.2);
+    border-radius:50%;
+    animation:pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(1);opacity:.3;}
+    50%{transform:scale(1.05);opacity:.15;}
+  }
+  .b .ice{
+    width:200px;height:200px;border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 28%, rgba(255,255,255,.95) 0%, rgba(255,255,255,.4) 15%, transparent 38%),
+      radial-gradient(circle at 65% 75%, rgba(129,216,208,.3) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(200,230,230,.2) 0%, rgba(10,186,181,.12) 55%, transparent 85%);
+    box-shadow:
+      inset 0 0 70px rgba(255,255,255,.35),
+      inset -25px -35px 70px rgba(10,40,40,.5),
+      0 30px 60px rgba(129,216,208,.25),
+      0 0 100px rgba(129,216,208,.15);
+    position:relative;
+  }
+  .b .ice::before{
+    content:"";position:absolute;top:12%;left:18%;
+    width:38%;height:28%;border-radius:50%;
+    background:radial-gradient(ellipse, rgba(255,255,255,.7) 0%, transparent 70%);
+    filter:blur(6px);
+  }
+  .b .ice::after{
+    content:"";position:absolute;bottom:15%;right:20%;
+    width:25%;height:15%;border-radius:50%;
+    background:radial-gradient(ellipse, rgba(129,216,208,.4) 0%, transparent 70%);
+    filter:blur(10px);
+  }
+  .b .number{
+    position:absolute;top:110px;left:40px;
+    font-family:'Playfair Display',serif;font-style:italic;
+    font-weight:400;font-size:88px;line-height:1;color:rgba(129,216,208,.9);
+    letter-spacing:-0.04em;
+  }
+  .b .number .pct{font-size:36px;font-weight:300;vertical-align:top;margin-left:2px;}
+  .b .number small{
+    display:block;font-family:'Inter',sans-serif;font-style:normal;
+    font-size:9px;letter-spacing:0.3em;color:rgba(255,255,255,.5);
+    margin-top:6px;font-weight:400;text-transform:uppercase;
+  }
+  .b .side{
+    position:absolute;top:180px;right:40px;max-width:170px;text-align:right;
+  }
+  .b .side h2{
+    font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+    font-size:22px;line-height:1.3;color:#fff;
+  }
+  .b .side p{
+    margin-top:14px;font-size:11px;line-height:1.7;color:rgba(255,255,255,.6);
+    letter-spacing:0.02em;
+  }
+  .b .headline{
+    position:absolute;bottom:130px;left:0;right:0;text-align:center;
+    padding:0 40px;
+  }
+  .b .headline h1{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:36px;line-height:1.2;color:#fff;letter-spacing:-0.015em;
+  }
+  .b .headline h1 em{
+    font-style:italic;color:var(--tiffany);font-weight:500;
+  }
+  .b .bottom{
+    position:absolute;bottom:0;left:0;right:0;
+    padding:20px 36px;
+    background:linear-gradient(to right,rgba(129,216,208,.08),rgba(184,153,104,.08));
+    border-top:1px solid rgba(129,216,208,.25);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .b .bottom .promise{display:flex;gap:36px;}
+  .b .bottom .item{display:flex;flex-direction:column;gap:4px;}
+  .b .bottom .k{
+    font-family:'Inter',sans-serif;font-weight:500;font-size:9px;
+    letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;
+  }
+  .b .bottom .v{
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;
+    font-size:12px;color:#fff;letter-spacing:-0.01em;
+  }
+  .b .cta{
+    display:flex;align-items:center;gap:10px;
+    padding:10px 20px;border:1px solid var(--tiffany);
+    font-family:'Inter',sans-serif;font-weight:500;font-size:11px;
+    letter-spacing:0.2em;color:var(--tiffany);
+    text-transform:uppercase;
+  }
+  .b .cta::after{content:"→";font-size:14px;}
+
+  /* ============================================================
+     시안 C — KINFOLK COVER (매거진 표지 / 화이트 프레임)
+     큰 얼음 포토 중심 / 절제된 타이포
+     ============================================================ */
+  .c{background:#FAFAF7;}
+  .c .frame{
+    position:absolute;inset:24px;
+    border:1px solid rgba(10,10,10,.08);
+  }
+  .c .masthead{
+    position:absolute;top:38px;left:0;right:0;text-align:center;
+  }
+  .c .masthead .mark{
+    font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
+    font-size:28px;color:var(--ink);letter-spacing:0.02em;
+  }
+  .c .masthead .mark b{font-weight:600;font-style:normal;}
+  .c .masthead .sub{
+    margin-top:4px;font-family:'Inter',sans-serif;font-weight:400;
+    font-size:9px;letter-spacing:0.4em;color:#999;text-transform:uppercase;
+  }
+  .c .hero{
+    position:absolute;top:95px;left:50%;transform:translateX(-50%);
+    width:320px;height:320px;
+    background:
+      radial-gradient(circle at 40% 30%, #ffffff 0%, #f0f5f5 40%, #D5E8E5 100%);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .c .hero::before{
+    content:"";position:absolute;inset:40px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 35% 28%, rgba(255,255,255,1) 0%, rgba(255,255,255,.5) 15%, transparent 35%),
+      radial-gradient(circle at 65% 70%, rgba(129,216,208,.25) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(200,230,230,.3) 0%, rgba(129,216,208,.12) 55%, transparent 85%);
+    box-shadow:
+      inset 0 0 60px rgba(255,255,255,.6),
+      inset -20px -30px 60px rgba(129,216,208,.2),
+      0 20px 50px rgba(129,216,208,.2);
+  }
+  .c .hero::after{
+    content:"";position:absolute;top:60px;left:65px;
+    width:100px;height:70px;border-radius:50%;
+    background:radial-gradient(ellipse, rgba(255,255,255,.85) 0%, transparent 70%);
+    filter:blur(4px);
+  }
+  .c .left-tag{
+    position:absolute;top:160px;left:60px;
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    font-family:'Inter',sans-serif;font-weight:400;font-size:9px;
+    letter-spacing:0.4em;color:#999;text-transform:uppercase;
+  }
+  .c .right-tag{
+    position:absolute;top:160px;right:60px;
+    writing-mode:vertical-rl;
+    font-family:'Inter',sans-serif;font-weight:400;font-size:9px;
+    letter-spacing:0.4em;color:#999;text-transform:uppercase;
+  }
+  .c .title{
+    position:absolute;bottom:160px;left:0;right:0;text-align:center;
+    padding:0 60px;
+  }
+  .c .title h1{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:44px;line-height:1.05;color:var(--ink);
+    letter-spacing:-0.02em;
+  }
+  .c .title h1 em{
+    font-style:italic;color:var(--tiffany-deep);font-weight:500;
+  }
+  .c .title .dash{
+    display:inline-block;width:40px;height:1px;background:var(--ink);
+    margin:18px 14px;vertical-align:middle;opacity:.5;
+  }
+  .c .title p{
+    display:inline-block;
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:14px;color:#555;letter-spacing:0.03em;
+  }
+  .c .bottom{
+    position:absolute;bottom:24px;left:24px;right:24px;
+    padding:18px 36px;
+    background:var(--ink);color:#fff;
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .c .bottom .promise{display:flex;gap:28px;}
+  .c .bottom .item{display:flex;flex-direction:column;gap:3px;}
+  .c .bottom .k{
+    font-family:'Inter',sans-serif;font-weight:300;font-size:9px;
+    letter-spacing:0.25em;color:var(--tiffany);text-transform:uppercase;
+  }
+  .c .bottom .v{
+    font-family:'Pretendard Variable',sans-serif;font-weight:600;
+    font-size:12px;color:#fff;letter-spacing:-0.01em;
+  }
+  .c .bottom .cta{
+    font-family:'Cormorant Garamond',serif;font-style:italic;
+    font-size:15px;color:var(--tiffany);
+  }
+  .c .bottom .cta::after{content:" →";font-style:normal;}
+
+  /* 플로팅 선택 요약 */
+  .summary{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+    background:rgba(10,10,10,.95);color:#fff;
+    padding:14px 28px;border-radius:999px;
+    font-size:13px;backdrop-filter:blur(10px);
+    display:flex;align-items:center;gap:16px;
+    box-shadow:0 20px 40px -10px rgba(0,0,0,.3);
+    z-index:100;
+  }
+  .summary b{color:var(--tiffany);}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Wadiz × Jewelice — Kakao Campaign</h1>
+  <p>카카오 친구톡 1.1만명 발송용 800×600 이미지 · 3개 시안</p>
+  <div class="meta">
+    <span>2026.04.24</span>
+    <span>Brand · Jewelice</span>
+    <span>Palette · Tiffany Mint Blue</span>
+  </div>
+</div>
+
+<!-- ============ 시안 A ============ -->
+<div class="card">
+  <div class="card-head">
+    <div class="label">Option A · <em>Tiffany Editorial</em></div>
+    <div class="tag">Split · Serif · Mint Blue</div>
+  </div>
+  <div class="stage">
+    <div class="canvas a">
+      <div class="brand">Jewelice</div>
+      <div class="issue">WADIZ × 2026 SUMMER</div>
+
+      <div class="kv">
+        <div class="eyebrow">Funding No. 336790</div>
+        <h1>46% <em>녹였습니다</em>.<br>아프리카엔<br><em>물</em>이 생깁니다.</h1>
+        <div class="sub">
+          투명한 얼음, 더 투명한 약속.<br>
+          <b>쥬얼아이스</b>가 와디즈에서 가장 뜨겁습니다.
+        </div>
+      </div>
+
+      <div class="photo">
+        <div class="ice"></div>
+        <div class="pedestal"></div>
+        <div class="photo-caption">The Clearest Ice, The Coldest Promise.</div>
+      </div>
+
+      <div class="bottom">
+        <div class="promise">
+          <div class="item">
+            <div class="k">Pledge 01</div>
+            <div class="v">매출 3% 아프리카 식수 기부</div>
+          </div>
+          <div class="item">
+            <div class="k">Pledge 02</div>
+            <div class="v">선착순 20명 텀블러 증정</div>
+          </div>
+        </div>
+        <div class="cta">지금 펀딩 참여</div>
+      </div>
+    </div>
+  </div>
+  <div class="meta-row">
+    <span><b>콘셉트</b> 티파니앤코 에디토리얼</span>
+    <span><b>타이포</b> Cormorant Garamond + Pretendard</span>
+    <span><b>팔레트</b> 민트블루 #81D8D0 + 잉크블랙</span>
+    <span><b>참고</b> Tiffany · Aesop · Kinfolk</span>
+  </div>
+</div>
+
+<!-- ============ 시안 B ============ -->
+<div class="card">
+  <div class="card-head">
+    <div class="label">Option B · <em>Museum Black</em></div>
+    <div class="tag">Luxe · Mint on Black · Gold</div>
+  </div>
+  <div class="stage">
+    <div class="canvas b">
+      <div class="top-bar">
+        <div class="brand">JEWELICE</div>
+        <div class="chip">D-Day · Wadiz 2026</div>
+      </div>
+
+      <div class="number">
+        46<span class="pct">%</span>
+        <small>Off · Best Set</small>
+      </div>
+
+      <div class="side">
+        <h2>The clearest<br>promise of<br><em>this summer.</em></h2>
+        <p>가격은 녹이고, 약속은 굳혔습니다. 얼음 한 잔이 누군가의 물 한 잔이 됩니다.</p>
+      </div>
+
+      <div class="stage-box">
+        <div class="ice"></div>
+      </div>
+
+      <div class="headline">
+        <h1>투명한 얼음, <em>더 투명한 약속.</em></h1>
+      </div>
+
+      <div class="bottom">
+        <div class="promise">
+          <div class="item">
+            <div class="k">3% Donation</div>
+            <div class="v">굿네이버스 아프리카 식수</div>
+          </div>
+          <div class="item">
+            <div class="k">20 Seats</div>
+            <div class="v">아블러 제로 텀블러 증정</div>
+          </div>
+        </div>
+        <div class="cta">Back Now</div>
+      </div>
+    </div>
+  </div>
+  <div class="meta-row">
+    <span><b>콘셉트</b> 프리미엄 블랙 뮤지엄</span>
+    <span><b>타이포</b> Playfair Display 이탤릭 + Inter</span>
+    <span><b>팔레트</b> 블랙 + 민트블루 + 골드(#B89968)</span>
+    <span><b>참고</b> Hendrick's · Absolut Elyx · Cocktail Kingdom</span>
+  </div>
+</div>
+
+<!-- ============ 시안 C ============ -->
+<div class="card">
+  <div class="card-head">
+    <div class="label">Option C · <em>Kinfolk Cover</em></div>
+    <div class="tag">Magazine · White · Serene</div>
+  </div>
+  <div class="stage">
+    <div class="canvas c">
+      <div class="frame"></div>
+      <div class="masthead">
+        <div class="mark"><b>JEWELICE</b> · Summer Issue</div>
+        <div class="sub">The Clearest Ice Journal — Vol. 1</div>
+      </div>
+      <div class="left-tag">Wadiz Funding · No. 336790</div>
+      <div class="right-tag">Since 2019 · Made in Korea</div>
+
+      <div class="hero"></div>
+
+      <div class="title">
+        <h1>46% <em>Off.</em><span class="dash"></span><em>3%</em> For Water.</h1>
+        <p>— 얼음이 녹는 속도로, 약속도 번집니다 —</p>
+      </div>
+
+      <div class="bottom">
+        <div class="promise">
+          <div class="item">
+            <div class="k">Pledge</div>
+            <div class="v">매출 3% 아프리카 식수 기부</div>
+          </div>
+          <div class="item">
+            <div class="k">Limited</div>
+            <div class="v">선착순 20명 텀블러 증정</div>
+          </div>
+        </div>
+        <div class="cta">View Project</div>
+      </div>
+    </div>
+  </div>
+  <div class="meta-row">
+    <span><b>콘셉트</b> Kinfolk 매거진 표지</span>
+    <span><b>타이포</b> Cormorant Garamond + Inter</span>
+    <span><b>팔레트</b> 페이퍼 화이트 + 민트 + 잉크</span>
+    <span><b>참고</b> Kinfolk · Aesop · 29CM</span>
+  </div>
+</div>
+
+<div class="summary">
+  <span>마음에 드는 시안을 골라주세요</span>
+  <b>A</b> · <b>B</b> · <b>C</b>
+</div>
+
+</body>
+</html>
