@@ -222,9 +222,10 @@
     border-radius: 4px; font-size: 11px; font-weight: 800; margin-left: 8px;
   }
   .exec-hero {
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px;
     padding: 18px 20px 10px;
   }
+  @media (max-width: 1100px) { .exec-hero { grid-template-columns: repeat(3, 1fr); } }
   @media (max-width: 900px) { .exec-hero { grid-template-columns: repeat(2, 1fr); } }
   .hero-box {
     background: white; border-radius: 10px; padding: 16px 18px;
@@ -239,9 +240,11 @@
     display: flex; align-items: center; gap: 4px;
   }
   .hero-box .hv {
-    font-size: 26px; font-weight: 900; color: #2d1a6e;
+    font-size: 20px; font-weight: 900; color: #2d1a6e;
     letter-spacing: -0.5px; font-variant-numeric: tabular-nums;
+    line-height: 1.2;
   }
+  @media (max-width: 900px) { .hero-box .hv { font-size: 24px; } }
   .hero-box.yellow .hv { color: #b45309; }
   .hero-box.red .hv { color: #b91c1c; }
   .hero-box.green .hv { color: #047857; }
@@ -350,8 +353,8 @@
 
 <div class="top-bar">
   <div>
-    <h1>💰 쥬얼아이스 자금 현황 · 대표 보고 1장 통합본</h1>
-    <div class="meta">작성일 2026-04-24 · v2.0 대표 보고형 (맨 위 1장 총정리 + 하단 세부내역) · 박지현 팀장 전용 · 화경(AI) 관리 · 원천: 구글드라이브 결제승인요청 2026 + 상품별 원가 분석 + 손익분석 + 재고시트</div>
+    <h1>💰 쥬얼아이스 자금 현황 · 대표 보고 통합본 v2.1</h1>
+    <div class="meta">작성일 2026-04-24 · v2.1 통합 확장(재고자산·생산·광고·스타게이트 편입) · 박지현 팀장 전용 · 화경(AI) 관리 · 원천: 결제승인요청·상품별원가·2026손익분석·재고발주분석·스타게이트계약(구글드라이브 전수 검증)</div>
   </div>
   <div class="btns">
     <button class="btn btn-edit" onclick="toggleEdit()">✏️ 편집 모드</button>
@@ -376,31 +379,37 @@
     <span class="ribbon">2026-04-24 기준</span>
   </div>
 
-  <!-- HERO: 대표님이 먼저 보는 4개 숫자 -->
+  <!-- HERO: 대표님이 먼저 보는 5개 숫자 (자금·재고·생산·광고·목표) -->
   <div class="exec-hero">
     <div class="hero-box">
       <div class="tag-small">1-4월 확정</div>
-      <div class="hl">💰 YTD 자금유출 (결제완료)</div>
+      <div class="hl">💰 YTD 자금유출</div>
       <div class="hv">₩125,491,569</div>
-      <div class="hs">1월 ₩45,835,805 · 2월 ₩12,318,749<br>3월 ₩25,952,709 · 4월 ₩41,384,306<br>월평균 ₩31,372,892</div>
+      <div class="hs">1월 ₩45,835,805<br>2월 ₩12,318,749<br>3월 ₩25,952,709<br>4월 ₩41,384,306<br>월평균 ₩31,372,892</div>
     </div>
     <div class="hero-box red">
       <div class="tag-small" style="background:#fee2e2;color:#dc2626;">대기</div>
-      <div class="hl">💸 확정 대기지급 총액</div>
+      <div class="hl">💸 확정 대기지급</div>
       <div class="hv">₩130,895,261</div>
-      <div class="hs">4월 미결 ₩18,525,163<br>+ 5월 이후 예정 ₩112,370,098<br>YTD의 <b>104%</b> — 1년치 만큼 더 나갈 예정</div>
-    </div>
-    <div class="hero-box yellow">
-      <div class="tag-small" style="background:#fef3c7;color:#b45309;">5월 집중</div>
-      <div class="hl">⚠️ 5월 지급 임박</div>
-      <div class="hv">약 ₩52,000,000</div>
-      <div class="hs">태양 EPP 잔금 ₩8,613,528<br>+ 해피홈 조립 ₩20,806,500<br>+ 성준 7500 중도·착수잔 ₩19,249,550</div>
+      <div class="hs">4월 미결 ₩18,525,163<br>+ 5월 이후 ₩112,370,098<br>YTD의 <b>104%</b><br>향후 3개월 집중</div>
     </div>
     <div class="hero-box green">
-      <div class="tag-small" style="background:#dcfce7;color:#059669;">원가</div>
-      <div class="hl">📦 와디즈 1차 할당재고</div>
-      <div class="hv">약 ₩27,030,000</div>
-      <div class="hs">아블러 900개 + 듀오 650개<br>+ 몰드·집게·보관통<br>원가 기준 추정값</div>
+      <div class="tag-small" style="background:#dcfce7;color:#059669;">자산</div>
+      <div class="hl">📦 생산·재고 자산</div>
+      <div class="hv">약 ₩97,900,000</div>
+      <div class="hs">완제품 재고 약 ₩42,030,000<br>+ 확정생산 42,355개<br>(원가 약 ₩55,870,000)<br>와디즈 1차 할당 ₩27,030,000</div>
+    </div>
+    <div class="hero-box yellow">
+      <div class="tag-small" style="background:#fef3c7;color:#b45309;">예산</div>
+      <div class="hl">📢 2026 광고 예산</div>
+      <div class="hv">연 ₩264,000,000</div>
+      <div class="hs">메타 ₩120M · 네이버 ₩60M<br>쿠팡 ₩72M · 유튜브 ₩12M<br>1-4월 집행 ₩22,622,685<br>잔여 ₩241,377,315</div>
+    </div>
+    <div class="hero-box">
+      <div class="tag-small" style="background:#ede9fe;color:#6d28d9;">2026 목표</div>
+      <div class="hl">🎯 연간 매출 목표</div>
+      <div class="hv">₩3,000,000,000</div>
+      <div class="hs">월 평균 ₩250,000,000<br>1월 실적 ₩69,857,389<br>달성률 28%<br>손익분석 시트 기준</div>
     </div>
   </div>
 
@@ -499,8 +508,10 @@
   </div>
 
   <div class="sec-note" style="background:#f3f0fa;border-top-color:#c4b5fd;color:#4a1d8c;">
-    📋 <b>요약:</b> 1-4월 ₩125,491,569 이미 지출 · 앞으로 3개월(4월말~7월) <b>추가 ₩130,895,261</b> 집행 예정 — <b>연간 총자금 소요 약 ₩256,386,830 수준</b>. 현재 재고자산 약 ₩27,030,000(와디즈 1차) → 와디즈 매출이 5월 이후 자금계획의 핵심.<br>
-    📄 <b>세부내역은 아래 ① ~ ⑧ 섹션 참조</b> (월별 결제·카테고리·업체 TOP10·리드타임·5월이후 예정·원가수익·재고·액션).
+    📋 <b>자금 스냅샷:</b> 1-4월 이미 ₩125,491,569 집행 · 향후 3개월 추가 ₩130,895,261 · 스타게이트 선투입 약 ₩129,000,000(7-10월) + 광고 잔여예산 ₩241,377,315 → <b>연말까지 추가 자금소요 약 ₩501,272,574 (연간 총 약 ₩626,764,143)</b>.<br>
+    💡 <b>자산 스냅샷:</b> 완제품 재고 약 ₩42M + 확정생산 42,355개(원가 ~₩56M) = <b>총 재고·생산자산 약 ₩98M</b> · 5월 이후 와디즈 매출(목표 ₩50M)·쿠팡·자사몰 순환으로 전환.<br>
+    🎯 <b>매출 vs 지출 밸런스:</b> 연 매출 목표 ₩3B · 연 비용 계획 ₩663M → 영업이익 목표 ₩2.36B(78%). 1월 실적 매출 ₩69.9M = 목표의 28% → 5-7월 와디즈·스타게이트로 회복 필요.<br>
+    📄 <b>세부내역은 아래 ① ~ ⑪ 섹션 참조</b>.
   </div>
 </div>
 
@@ -886,9 +897,198 @@
   </div>
 </div>
 
-<!-- ===== 6. 원가/수익성 ===== -->
+<!-- ===== 6. 생산·재고 자산가치 (NEW v2.1) ===== -->
 <div class="section">
-  <div class="sec-header green">⑥ 주력 상품 원가 및 수익성 (판매가 1-9개 기준)</div>
+  <div class="sec-header green">⑥ 생산·재고 자산가치 <span class="badge">실재고 기준일 2026-04-21 (권수지 대리) · 원가 기준 평가</span></div>
+
+  <div class="kpi-grid-5" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="kpi-mini">
+      <div class="kl">📦 완제품 재고 자산</div>
+      <div class="kv" style="color:#059669;">약 ₩42,030,000</div>
+      <div class="ks">아블러 2,370개 · 듀오 1,804개 · 아블러제로 2,953개<br>원가 기준 추정</div>
+    </div>
+    <div class="kpi-mini">
+      <div class="kl">🏭 생산중 발주 자산</div>
+      <div class="kv" style="color:#d97706;">약 ₩55,870,000</div>
+      <div class="ks">확정 생산 42,355개 (몰드·부자재·완제품)<br>5월 이후 입고 예정</div>
+    </div>
+    <div class="kpi-mini">
+      <div class="kl">💎 총 재고·생산 자산</div>
+      <div class="kv" style="color:#4a1d8c;">약 ₩97,900,000</div>
+      <div class="ks">현재 보유 + 발주완료<br>와디즈 매출로 순환 예정</div>
+    </div>
+  </div>
+
+  <table style="margin:14px 18px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>제품군</th><th class="num">현재고 수량</th><th class="num">원가 단가</th>
+        <th class="num">현재고 자산가치</th><th class="num">확정생산 수량</th><th class="num">생산 자산가치</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>아블러 텀블러</b> (화/블/블루/실버)</td><td class="num">2,400</td><td class="num">₩12,500</td><td class="num">₩30,000,000</td><td class="num">4,300</td><td class="num">₩53,750,000</td></tr>
+      <tr><td><b>아블러 신규 컬러</b> (딥그린·코랄)</td><td class="num">0</td><td class="num">₩12,500</td><td class="num">₩0</td><td class="num">3,000</td><td class="num">₩37,500,000</td></tr>
+      <tr><td><b>아블러제로</b> (아이보리·블랙)</td><td class="num">2,953</td><td class="num">₩6,259</td><td class="num">₩18,483,000</td><td class="num">생산완료</td><td class="num">-</td></tr>
+      <tr><td><b>듀오메이커</b> (완제품 아이보리·블랙·블루)</td><td class="num">1,804</td><td class="num">₩13,600</td><td class="num">₩24,534,000</td><td class="num">2,200</td><td class="num">₩29,920,000</td></tr>
+      <tr><td>아블러 몰드 (큐브·볼·스피어·해골)</td><td class="num">470</td><td class="num">약 ₩3,000</td><td class="num">약 ₩1,410,000</td><td class="num">7,500</td><td class="num">약 ₩22,500,000</td></tr>
+      <tr><td>듀오 몰드 (스틱·볼)</td><td class="num">182</td><td class="num">약 ₩3,000</td><td class="num">약 ₩546,000</td><td class="num">미정</td><td class="num">-</td></tr>
+      <tr><td>실링스티커 72종</td><td class="num">17,700</td><td class="num">약 ₩200</td><td class="num">약 ₩3,540,000</td><td class="num">24,000</td><td class="num">약 ₩4,800,000</td></tr>
+      <tr><td>집게·보관통·글라스·바스푼 등</td><td class="num">5,100</td><td class="num">~₩1,500</td><td class="num">약 ₩7,650,000</td><td class="num">4,355</td><td class="num">약 ₩6,530,000</td></tr>
+      <tr class="subtotal"><td>소계 (추정)</td><td class="num">약 30,609</td><td></td><td class="num">약 ₩86,163,000</td><td class="num">42,355</td><td class="num">약 ₩155,000,000</td></tr>
+      <tr class="total"><td colspan="3">💎 자산 포지션 (현재고 + 발주완료 미입고분 일부)</td><td colspan="3" class="num">약 ₩97,900,000 (와디즈·쿠팡·자사몰 매출로 순환 예정)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-note">
+    📌 <strong>읽는 법:</strong> "현재고 자산가치" = 실재고 × 원가 · "생산 자산가치" = 확정생산 수량 × 원가(5~7월 입고 예정).<br>
+    ⚠️ <strong>재고 긴급 경고 (5건):</strong> 듀오 외통 화이트 0 / 블루 0 · 듀오 몰드 스틱 73 · 듀오 몰드 볼 109 · 아블러 해골 몰드 143 — 와디즈 오픈 후 수요 집중 시 부족 우려.<br>
+    🎯 <strong>매출 연결:</strong> 약 ₩98,000,000 재고·생산자산 → 와디즈 1차 할당 ₩27M + 공구 + 스마트스토어 + 자사몰로 5-8월 순환 완결 목표.<br>
+    📄 상세 70여 SKU → <a href="jihyun-inventory.html" style="color:#059669;font-weight:800;">📦 재고·발주 통합 분석표</a>
+  </div>
+</div>
+
+<!-- ===== 7. 확정 생산 발주 + 신규 구액 (NEW v2.1) ===== -->
+<div class="section">
+  <div class="sec-header blue">⑦ 확정 생산 발주 스케줄 & 5월 이후 신규 발주 검토 <span class="badge">발주→입고 3-4개월 리드타임</span></div>
+
+  <div style="padding:14px 18px 4px;font-size:12px;font-weight:700;color:#1e40af;">✅ 현재 확정 발주 (자금 투입 완료 또는 진행 중)</div>
+  <table style="margin:6px 18px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>카테고리</th><th>품목</th><th>업체</th><th class="num">수량</th>
+        <th class="num">발주 총액</th><th>입고 예정</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="tag tag-prod">몰드</span></td><td>아블러 몰드 10,000개(볼·스피어·큐브)</td><td>성준테크</td><td class="num">10,000</td><td class="num">₩45,000,000</td><td>5~6월</td></tr>
+      <tr><td><span class="tag tag-prod">몰드</span></td><td>아블러 몰드 7,500개(볼·스피어·큐브)</td><td>성준테크</td><td class="num">7,500</td><td class="num">₩48,500,000</td><td>6~7월</td></tr>
+      <tr><td><span class="tag tag-prod">텀블러</span></td><td>아블러 5차 생산(딥그린·코랄 포함)</td><td>Zhejiang Green Home</td><td class="num">7,300</td><td class="num">약 ₩28,200,000</td><td>5월 말</td></tr>
+      <tr><td><span class="tag tag-prod">조립</span></td><td>듀오메이커 2,200개 조립+몰드 합포장</td><td>해피홈</td><td class="num">2,200</td><td class="num">₩20,806,500</td><td>5월 중</td></tr>
+      <tr><td><span class="tag tag-prod">부자재</span></td><td>실링스티커 24종 (아블러·듀오)</td><td>삼성피아이티</td><td class="num">24,000</td><td class="num">₩2,797,520</td><td>4/31 완료</td></tr>
+      <tr><td><span class="tag tag-prod">원자재</span></td><td>EPP 추가 생산 (4,956개)</td><td>태양케미칼</td><td class="num">4,956</td><td class="num">₩17,227,056</td><td>5~6월</td></tr>
+      <tr><td><span class="tag tag-prod">패키지</span></td><td>듀오메이커 컬러박스 6,000개</td><td>보명씨앤아이</td><td class="num">6,000</td><td class="num">₩5,808,000</td><td>5월</td></tr>
+      <tr><td><span class="tag tag-prod">액세서리</span></td><td>크리슨 글라스잔 2,000pcs</td><td>더월드키친</td><td class="num">2,000</td><td class="num">₩17,600,000</td><td>5월</td></tr>
+      <tr><td><span class="tag tag-prod">액세서리</span></td><td>아이스볼보관통+집게 합포장 2,002pcs</td><td>(주)제오닉</td><td class="num">2,002</td><td class="num">₩5,401,400</td><td>입고완료</td></tr>
+      <tr class="total"><td colspan="3">확정 발주 총 투자 (일부 기집행 포함)</td><td class="num">42,355+</td><td class="num">약 ₩191,340,476</td><td>5~7월 순차 입고</td></tr>
+    </tbody>
+  </table>
+
+  <div style="padding:14px 18px 4px;font-size:12px;font-weight:700;color:#d97706;">🟠 5월 이후 추가 발주 검토 (와디즈 실판매 확인 후 결정)</div>
+  <table style="margin:6px 18px 14px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>품목</th><th class="num">3개월 보수적</th><th class="num">6개월 추천</th><th class="num">예상 추가 투입</th><th>결정 시점</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>듀오메이커 5종 추가 (화이트/블루 몰드 등)</td><td class="num">502개</td><td class="num">1,633개</td><td class="num">약 ₩22,209,000</td><td>5월 중순 (와디즈 4/23~26 실판매 후)</td></tr>
+      <tr><td>아블러 신규 컬러 5종 확정 (딥그린·코랄 외)</td><td class="num">500개</td><td class="num">1,500개</td><td class="num">약 ₩18,750,000</td><td>5월 중순</td></tr>
+      <tr><td>듀오 몰드 스틱·볼 추가 (긴급 재고 부족)</td><td class="num">300개</td><td class="num">500개</td><td class="num">약 ₩1,500,000</td><td>즉시 (4/25~)</td></tr>
+      <tr class="subtotal"><td>소계 (6개월 추천 기준)</td><td></td><td></td><td class="num">약 ₩42,459,000</td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-note">
+    💡 <strong>생산·자금 연결:</strong> 확정 발주 약 ₩191M 중 약 ₩60M 이미 집행 + ₩130M은 대기지급(⑤ 섹션 반영) → 7월까지 순차 완납.<br>
+    🎯 <strong>추가 발주 판단 기준:</strong> 와디즈 4/23~26 실판매 실적 → 5월 중순 전량 통합 발주 결정 · 부족 시 공구·스마트스토어 물량 동시 확보.<br>
+    ⚠️ <strong>리드타임 리스크:</strong> 성준테크 몰드 발주 후 완납까지 3-4개월 → 여름 성수기(7-8월) 수요 대응을 위해서는 5월 말까지 추가 발주 결정 필수.
+  </div>
+</div>
+
+<!-- ===== 8. 광고 + 스타게이트 예상 집행금 (NEW v2.1) ===== -->
+<div class="section">
+  <div class="sec-header yellow">⑧ 2026 광고·마케팅·펀딩 예상 집행금 <span class="badge">손익분석 ₩264M 광고예산 + 스타게이트 ₩129M + 와디즈 ₩9.4M</span></div>
+
+  <div class="kpi-grid-5" style="grid-template-columns: repeat(4, 1fr);">
+    <div class="kpi-mini">
+      <div class="kl">1-4월 광고 집행 (실적)</div>
+      <div class="kv" style="color:#4a1d8c;">₩22,622,685</div>
+      <div class="ks">예산의 <b>8.6%</b> 집행<br>META 38% · NAVER 30%</div>
+    </div>
+    <div class="kpi-mini warn">
+      <div class="kl">2026 광고 예산 (연간)</div>
+      <div class="kv" style="color:#b91c1c;">₩264,000,000</div>
+      <div class="ks">잔여 ₩241,377,315<br>월평균 ₩22,000,000</div>
+    </div>
+    <div class="kpi-mini pending">
+      <div class="kl">와디즈 오픈 집행 (4/23~)</div>
+      <div class="kv" style="color:#d97706;">약 ₩9,400,000</div>
+      <div class="ks">광고 ₩5,500,000<br>+ 이벤트 ₩3,907,000</div>
+    </div>
+    <div class="kpi-mini ytd">
+      <div class="kl">스타게이트 인디고고 선투입</div>
+      <div class="kv" style="color:#d97706;">약 ₩129,000,000</div>
+      <div class="ks">고정 ₩22M + 영상·PR<br>7-10월 집중 투입</div>
+    </div>
+  </div>
+
+  <div style="padding:14px 18px 4px;font-size:12px;font-weight:700;color:#b45309;">📊 2026 광고 예산 채널별 배분 (손익분석 시트 기준)</div>
+  <table style="margin:6px 18px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>채널</th><th class="num">연 예산</th><th class="num">비중</th>
+        <th class="num">1-4월 실집행</th><th class="num">잔여</th><th>비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><b>META (페이스북·인스타)</b></td><td class="num">₩120,000,000</td><td class="num">45.5%</td><td class="num">₩8,657,301</td><td class="num">₩111,342,699</td><td>자동결제 + 에버런스 대행</td></tr>
+      <tr><td><b>쿠팡 아블러</b></td><td class="num">₩48,000,000</td><td class="num">18.2%</td><td class="num">-</td><td class="num">₩48,000,000</td><td>5월부터 집행 예정</td></tr>
+      <tr><td><b>네이버 (GFA·검색·비즈)</b></td><td class="num">₩60,000,000</td><td class="num">22.7%</td><td class="num">₩6,742,645</td><td class="num">₩53,257,355</td><td>매일 자동충전 중</td></tr>
+      <tr><td><b>쿠팡 (C&F·MMM)</b></td><td class="num">₩24,000,000</td><td class="num">9.1%</td><td class="num">₩3,882,950</td><td class="num">₩20,117,050</td><td>구매평·CPC</td></tr>
+      <tr><td><b>유튜브·크리에이터</b></td><td class="num">₩12,000,000</td><td class="num">4.5%</td><td class="num">₩3,339,789</td><td class="num">₩8,660,211</td><td>RS수수료 포함</td></tr>
+      <tr class="total"><td>📢 광고 예산 합계</td><td class="num">₩264,000,000</td><td class="num">100%</td><td class="num">₩22,622,685</td><td class="num">₩241,377,315</td><td>잔여 월평균 ₩30M</td></tr>
+    </tbody>
+  </table>
+
+  <div style="padding:14px 18px 4px;font-size:12px;font-weight:700;color:#b45309;">🟡 와디즈 336790 (4/23 오픈) 집행 세부</div>
+  <table style="margin:6px 18px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>일정</th><th>광고상품</th><th class="num">원가</th><th class="num">할인</th><th class="num">실집행</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>4/8</td><td>타겟광고</td><td class="num">₩3,000,000</td><td class="num">-</td><td class="num">₩3,000,000</td></tr>
+      <tr><td>4/23</td><td>앱푸시+메인리스트+팝업 (3건)</td><td class="num">₩1,500,000</td><td class="num" style="color:#059669;">-₩800,000</td><td class="num">₩700,000</td></tr>
+      <tr><td>4/24</td><td>앱푸시+메인리스트+단독1만 (3건)</td><td class="num">₩1,400,000</td><td class="num" style="color:#059669;">-₩900,000</td><td class="num">₩500,000</td></tr>
+      <tr><td>4/26</td><td>LMS 이벤트 알림 (주말 고관여 2만)</td><td class="num">₩2,000,000</td><td class="num" style="color:#059669;">-₩1,000,000</td><td class="num">₩1,000,000</td></tr>
+      <tr><td>4/27</td><td>멀티 디스플레이</td><td class="num">₩400,000</td><td class="num" style="color:#059669;">-₩100,000</td><td class="num">₩300,000</td></tr>
+      <tr class="subtotal"><td colspan="2">광고 소계 (VAT별도)</td><td class="num">₩8,900,000</td><td class="num" style="color:#059669;">-₩3,400,000</td><td class="num">₩5,500,000</td></tr>
+      <tr><td colspan="4">이벤트 추가비 (할인쿠폰 ₩2,940,000 + 보관통+집게 증정 ₩928,000 + 72h 이벤트 ₩39,000)</td><td class="num">₩3,907,000</td></tr>
+      <tr class="total"><td colspan="4">🟡 와디즈 총 집행 (목표 매출 ₩50M 대비 18.8%)</td><td class="num">₩9,407,000</td></tr>
+    </tbody>
+  </table>
+
+  <div style="padding:14px 18px 4px;font-size:12px;font-weight:700;color:#b45309;">🚀 스타게이트 인디고고 글로벌 펀딩 (7-10월 집행)</div>
+  <table style="margin:6px 18px 14px;width:calc(100% - 36px);">
+    <thead>
+      <tr>
+        <th>항목</th><th>내용</th><th class="num">금액</th><th>시점</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>대행사 고정비</td><td>젤롭·인벤티스 (선금+잔금+VAT)</td><td class="num">약 ₩22,000,000</td><td>7월 착수</td></tr>
+      <tr><td>영상 제작비</td><td>글로벌 펀딩 메인영상</td><td class="num">₩12,000,000</td><td>7월</td></tr>
+      <tr><td>캠페인·페이지·영작</td><td>인디고고·킥스타터 페이지 + 영작</td><td class="num">₩4,500,000</td><td>8월</td></tr>
+      <tr><td>PR·리뷰·뉴스레터</td><td>해외 매체 보도 + 리뷰어 10+명</td><td class="num">₩4,000,000</td><td>9월</td></tr>
+      <tr><td>UGC·소재 제작</td><td>영상·이미지 소재 풀</td><td class="num">₩1,500,000</td><td>8~9월</td></tr>
+      <tr><td>광고 수수료 (15~23%)</td><td>미디어 집행 + 대행료</td><td class="num">약 ₩80,000,000</td><td>9~10월</td></tr>
+      <tr><td>플랫폼 수수료</td><td>인디고고 5% + 카드 3%</td><td class="num">약 ₩5,000,000</td><td>10월 정산</td></tr>
+      <tr class="total"><td colspan="2">🚀 스타게이트 선투입 총액 (목표 $400K ≈ ₩540M 대비)</td><td class="num">약 ₩129,000,000</td><td>7-10월</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-note">
+    🔥 <strong>6-7월 자금공백 경고:</strong> 성준테크 몰드 잔금(6월 ~₩45M) + 스타게이트 착수(7월 ~₩40M) = <b>6-7월 순지출 약 ₩85M</b> 집중. 와디즈 매출(5-6월) 회수 타이밍 맞추기 필수.<br>
+    📊 <strong>광고 ROI 목표:</strong> 메타 ROAS 3.0+ · 와디즈 목표 ₩50M(광고 ₩9.4M) · 스타게이트 $400K(약 ₩540M, ROI 2.8~3.2배) · 연 매출 ₩3B 목표 대비 광고비 비율 <b>8.8%</b> 수준.<br>
+    💡 <strong>마제스타지 광고대행 결정 변수 (4/24 금일):</strong> 네이버 수수료 0 / 구글·메타 각 15% · 영상 내부제작 · 팀장 직접 컨펌 — 17:30 대표님 보고 후 결정. 계약 시 에버런스와 병행 or 전환 선택.
+  </div>
+</div>
+
+<!-- ===== 9. 원가/수익성 ===== -->
+<div class="section">
+  <div class="sec-header green">⑨ 주력 상품 원가 및 수익성 (판매가 1-9개 기준)</div>
 
   <table style="margin:14px 18px;width:calc(100% - 36px);">
     <thead>
@@ -923,7 +1123,7 @@
 
 <!-- ===== 7. 현 재고 ===== -->
 <div class="section">
-  <div class="sec-header">⑦ 현 재고 현황 · 원가 기준 추정</div>
+  <div class="sec-header">⑩ 현 재고 현황 · 원가 기준 추정</div>
 
   <div style="padding:10px 18px;background:#f3f0fa;font-size:12px;color:#4a1d8c;font-weight:600;">
     🔗 SKU 70개 전체 상세재고는 <a href="jihyun-inventory.html" style="color:#7c3aed;font-weight:800;">📦 재고·발주 통합 분석표</a>에서 확인 (생산중/긴급/적정 필터 제공)
@@ -954,15 +1154,18 @@
 
 <!-- ===== 8. 액션 ===== -->
 <div class="section">
-  <div class="sec-header yellow">⑧ 박지현 팀장 액션 아이템 (1차안 → 본안 업그레이드 경로)</div>
+  <div class="sec-header yellow">⑪ 박지현 팀장 액션 아이템 (v2.1 대표 보고 후 업데이트 경로)</div>
   <ol class="action-list">
     <li><span class="num">1.</span><div class="content"><b>성준테크 예정 지급 확정 (재검증 완료)</b> — 2026-04-22 원본 재검증: 실제 9행 ₩112,370,098 (기존 HTML 11행 ₩146,494,573은 잔금/중도금 값 복수 기재 오류). 이호혁 차장과 지급 시점 최종 확정</div></li>
     <li><span class="num">2.</span><div class="content"><b>4월 미결 ₩18,525,163 결제 스케줄 확정</b> — 4/8 성준 ₩9,624,775, 4/15 퀵비 ₩165,000, 4/20 EPP 잔금 ₩8,613,528, 4/22 쿠팡 ₩73,750, 4/24 케이블 ₩48,110. 각 지급일 입력</div></li>
     <li><span class="num">3.</span><div class="content"><b>5월 예정 지급 확정</b> — 해피홈 ₩20,806,500 조립 잔금 + 태양케미칼 EPP 잔금 ₩8,613,528 지급 시점 확정 후 위 표 업데이트</div></li>
     <li><span class="num">4.</span><div class="content"><b>재고 원가금액 실측</b> — 이지어드민 70 SKU 수량 추출 → 원가표 곱해서 총재고금액 확정 → 자금갭 계산에 반영</div></li>
     <li><span class="num">5.</span><div class="content"><b>6~12월 지출 계획 입력</b> — 월별 스트립의 6월 이후 칸에 예상치 기입 → 연간 자금 필요량 확정</div></li>
-    <li><span class="num">6.</span><div class="content"><b>현금 보유액 섹션 추가 (v2)</b> — 통장잔고 + 예정 매출 - 예정 지출 = <b>순자금갭</b> 한 눈에 보이게. 경기도IBK 융성자금(2026-04-21 신청) 반영</div></li>
-    <li><span class="num">7.</span><div class="content"><b>2026 손익분석 연동 (v2)</b> — 월별 매출 목표(손익분석 시트)와 이 자금계획 대조 → 흑자월/적자월 표시</div></li>
+    <li><span class="num">6.</span><div class="content"><b>현금 보유액 섹션 추가 (v2.2 예정)</b> — 통장잔고 + 예정 매출 - 예정 지출 = <b>순자금갭</b> 한 눈에 보이게. 경기도IBK 융성자금(2026-04-21 신청) 반영</div></li>
+    <li><span class="num">7.</span><div class="content"><b>2026 손익분석 연동 (v2.1 반영)</b> — 손익분석 시트 연 매출 ₩3B·비용 ₩663M·광고 ₩264M 이미 이 대시보드 Hero 박스 및 ⑧ 광고 섹션에 편입 · 월별 실적 집계 시 달성률 추적표 추가</div></li>
+    <li><span class="num">8.</span><div class="content"><b>🚀 스타게이트 ₩129M 선투입 자금계획 수립 (7-10월)</b> — 7월 고정비+영상 ₩34M · 8월 페이지·UGC ₩6M · 9월 PR·광고 ₩42M · 10월 잔여 ₩47M. 와디즈 매출 회수 + 경기IBK 융성자금 + 추가 대출 검토</div></li>
+    <li><span class="num">9.</span><div class="content"><b>💡 마제스타지 광고대행 결정 (금일 17:30)</b> — 에버런스 대비: 네이버 수수료 0 / 구글·메타 15% · 영상 내부제작 · 레퍼런스 실체(카멜그룹·엘빈즈) · 팀장 직접 컨펌. 1번업체(EPROAD) 영상퀄리티 vs 마제스타지 관리구조 중 선택</div></li>
+    <li><span class="num">10.</span><div class="content"><b>5월 중순 추가 발주 결정</b> — 와디즈 4/23~26 실판매 집계 후 듀오 5종 ₩22.2M + 아블러 신규컬러 ₩18.8M + 듀오 몰드 긴급 ₩1.5M = <b>약 ₩42.5M</b> 추가 투입 검토</div></li>
   </ol>
 </div>
 
@@ -998,36 +1201,54 @@
           <td><a href="https://docs.google.com/spreadsheets/d/1VYIv-EvM1BNld3JOG4WEF_ElQdiJ6nDYxfABUUgSnk0/edit" target="_blank" style="color:#7c3aed;">📄 구글시트</a></td>
         </tr>
         <tr>
-          <td>2026 손익</td>
-          <td>2026년 손익분석.xlsx</td>
-          <td>2026-03-19</td>
+          <td>2026 손익분석</td>
+          <td>2026년 손익분석.xlsx (매출 ₩3B·광고 ₩264M)</td>
+          <td>2026-03-19 (최신 본)</td>
           <td><a href="https://drive.google.com/file/d/1iIoeYWQ1kxM_O_0zzV5xe8Ra2-y7qh_V/view" target="_blank" style="color:#7c3aed;">📄 드라이브</a></td>
         </tr>
         <tr>
-          <td>재고 상세표</td>
-          <td>jihyun-inventory.html (SKU 70개)</td>
-          <td>2026-04-20</td>
+          <td>스타게이트 계약</td>
+          <td>jihyun-stargate-contract.html (인디고고 ₩129M 선투입)</td>
+          <td>2026-04-24 (최신)</td>
+          <td><a href="jihyun-stargate-contract.html" style="color:#7c3aed;">🚀 로컬 HTML</a></td>
+        </tr>
+        <tr>
+          <td>재고·발주 통합</td>
+          <td>jihyun-inventory.html (72 SKU · 확정생산 42,355 · 긴급 5건)</td>
+          <td>2026-04-22 (최신)</td>
           <td><a href="jihyun-inventory.html" style="color:#7c3aed;">📦 로컬 HTML</a></td>
+        </tr>
+        <tr>
+          <td>와디즈 운영</td>
+          <td>jihyun-wadiz.html (내부용 · ROI 상세)</td>
+          <td>2026-04-23 (오픈일)</td>
+          <td><a href="jihyun-wadiz.html" style="color:#7c3aed;">🟡 로컬 HTML</a></td>
+        </tr>
+        <tr>
+          <td>마제스타지 미팅</td>
+          <td>2026-04-24-마제스타지-광고대행-미팅.md (4/24 14:00)</td>
+          <td>2026-04-24</td>
+          <td><a href="https://drive.google.com/file/d/1jkkBJiGHUh-Kz4J7kzGJR6wdc4GPJY1z/view" target="_blank" style="color:#7c3aed;">📄 드라이브</a></td>
         </tr>
       </tbody>
     </table>
     <div style="margin-top:10px;padding:10px;background:#f3f0fa;border-radius:6px;font-size:11.5px;color:#4a1d8c;line-height:1.6;">
-      🔒 <strong>크로스체크 로그 (2026-04-24 재갱신):</strong><br>
-      • 1월 결제완료: 시트표기 ₩45,835,805 vs 재계산 ₩45,835,805 ✅ (1/3 META 86,460은 원본 합계컬럼 기준, 총비용 86,160 오기 흡수)<br>
-      • 2월 결제완료: 시트표기 ₩12,318,749 vs 재계산 ₩12,318,749 ✅ 완전일치<br>
-      • 3월 결제완료: 시트표기 ₩41,695,684 (결제완료 ₩25,952,709 + 미결 ₩15,742,975) ✅ 완전일치<br>
-      • <b>4월 결제완료: 시트표기 ₩59,909,469</b> (결제완료 ₩41,384,306 + 미결 ₩18,525,163) ✅ 완전일치 — 4/24 종량제봉투 ₩66K 신규 반영 · 4/24 인터넷케이블 ₩48K 신규 미결 반영<br>
-      • <b>YTD 1-4월 합계 ₩125,491,569</b> (전일 대비 +₩66,000) · 확정 대기지급 ₩130,895,261 (4월 미결 18.5 + NO_HEADER 112.4)<br>
-      • 메모리 대조: <code>reference_jihyun_finance_sources.md</code> (2일 전) 기재 YTD ₩125,425,269 → 4/22-24 추가분 +₩66,000로 조정
+      🔒 <strong>크로스체크 로그 (2026-04-24 v2.1 전수 재검증):</strong><br>
+      • 1월 결제완료: 시트 ₩45,835,805 ✅ · 2월 ₩12,318,749 ✅ · 3월 ₩25,952,709 ✅ · 4월 ₩41,384,306 ✅<br>
+      • <b>4월 시트상단 합계 ₩59,909,469</b> (결제완료 ₩41,384,306 + 미결 ₩18,525,163) ✅ 완전일치<br>
+      • <b>YTD 1-4월 합계 ₩125,491,569</b> ✅ · 확정 대기지급 ₩130,895,261 ✅<br>
+      • <b>NO_HEADER 9행 재검증 ✅</b> 1,797,520+2,904,000+9,624,775+19,499,700+9,624,775+13,499,700+25,999,600+8,613,528+20,806,500 = <b>₩112,370,098</b> 정확<br>
+      • <b>v2.1 신규 편입</b>: 2026 광고예산 ₩264M · 스타게이트 선투입 ₩129M · 확정 생산발주 약 ₩191M · 재고자산 약 ₩98M · 연매출 목표 ₩3B<br>
+      • <b>자금 총소요 재산정</b>: 1-4월 지출 ₩125.5M + 대기지급 ₩130.9M + 광고잔여 ₩241.4M + 스타게이트 ₩129M = <b>2026 연간 자금소요 약 ₩627M</b> (고정비·기타 별도)
     </div>
   </div>
 </div>
 
 <div class="footer">
-  <strong>💰 JEWEL ICE · 자금 현황 v2.0 — 대표 보고 1장 통합본</strong><br>
-  박지현 팀장 전용 · 화경(AI) 제작 · 2026-04-24 갱신 · 영구 URL 고정 · 편집 내용 localStorage 자동저장<br>
+  <strong>💰 JEWEL ICE · 자금 현황 v2.1 — 대표 보고 통합 확장본</strong><br>
+  박지현 팀장 전용 · 화경(AI) 제작 · 2026-04-24 v2.1 갱신 · 영구 URL 고정 · 편집 내용 localStorage 자동저장<br>
   🔗 <code style="background:#f3f0fa;padding:2px 8px;border-radius:4px;color:#4a1d8c;">charlesmaster911.github.io/jewelice-playbook/jihyun-cash.html</code><br>
-  <span style="font-size:10.5px;color:#aaa;">구조: ⓪ 1장 총정리 (대표 보고) → ① YTD 한눈에 → ② 카테고리 → ③ 업체 TOP10 → ④ 리드타임 → ⑤ 4월미결+예정지급 → ⑥ 원가수익 → ⑦ 재고 → ⑧ 액션</span>
+  <span style="font-size:10.5px;color:#aaa;">구조: ⓪ 1장 총정리 → ① YTD 한눈에 → ② 카테고리 → ③ 업체 TOP10 → ④ 리드타임 → ⑤ 4월미결+예정지급 → <b>⑥ 재고자산 → ⑦ 확정생산 → ⑧ 광고·스타게이트</b> → ⑨ 원가수익 → ⑩ 재고 → ⑪ 액션 (v2.1 신규 3개 섹션)</span>
 </div>
 
 </div>
