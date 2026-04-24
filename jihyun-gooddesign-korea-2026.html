@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 GOOD DESIGN KOREA 2026 출품 · 박지현 팀장</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Pretendard','Malgun Gothic',-apple-system,sans-serif; background: linear-gradient(135deg,#2d1a6e 0%,#4a1d8c 50%,#1a0a3e 100%); min-height:100vh; color:#fff; padding:20px 16px 60px; font-size:14px; line-height:1.7; }
+
+  .toolbar { position:sticky; top:0; z-index:100; margin:-20px -16px 20px; background:rgba(26,10,62,0.92); backdrop-filter:blur(12px); padding:12px 16px; border-bottom:1px solid rgba(255,255,255,0.1); display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; }
+  .toolbar .title { font-size:13px; font-weight:700; color:#ffd600; }
+  .ctrl-btn { padding:6px 14px; border-radius:8px; font-size:12px; font-weight:700; border:1px solid rgba(255,255,255,0.15); cursor:pointer; background:rgba(255,255,255,0.08); color:#fff; font-family:inherit; }
+  .ctrl-btn:hover { background:rgba(255,214,0,0.2); border-color:#ffd600; }
+  .ctrl-btn.primary { background:#ffd600; color:#1a0a3e; border-color:#ffd600; }
+  .ctrl-btn.red { background:rgba(192,57,43,0.3); border-color:#c0392b; }
+  .ctrl-btn.red.on { background:#c0392b; }
+  #saveStatus { font-size:11px; color:rgba(255,214,0,0.8); }
+
+  .wrap { max-width: 1100px; margin:0 auto; }
+  .nav-back { display:inline-block; margin-bottom:16px; padding:7px 16px; background:rgba(255,255,255,0.1); border-radius:20px; font-size:12px; color:#ffd600; font-weight:700; text-decoration:none; }
+
+  .hero { text-align:center; padding:10px 0 24px; }
+  .hero .badge { display:inline-block; padding:4px 12px; border-radius:20px; background:rgba(255,214,0,0.2); color:#ffd600; font-size:10.5px; font-weight:800; letter-spacing:2px; margin-bottom:10px; }
+  .hero h1 { font-size:28px; font-weight:800; letter-spacing:-0.5px; margin-bottom:6px; }
+  .hero h1 .accent { color:#ffd600; }
+  .hero p { font-size:13px; opacity:0.85; }
+
+  /* D-day 카운트다운 배너 */
+  .dday { background:linear-gradient(135deg,#ffd600 0%,#fbbf24 100%); border-radius:14px; padding:20px 24px; margin-bottom:20px; color:#1a0a3e; display:flex; align-items:center; gap:20px; flex-wrap:wrap; box-shadow:0 4px 16px rgba(255,214,0,0.35); }
+  .dday .big { font-size:44px; font-weight:900; line-height:1; letter-spacing:-2px; }
+  .dday .desc { flex:1; min-width:200px; }
+  .dday .desc .k { font-size:10.5px; font-weight:800; letter-spacing:2px; color:#7c2d12; margin-bottom:2px; }
+  .dday .desc .v { font-size:16px; font-weight:800; color:#451a03; margin-bottom:4px; }
+  .dday .desc .s { font-size:11.5px; color:#78350f; line-height:1.7; }
+
+  /* 핵심 수치 그리드 */
+  .mini-row { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-bottom:22px; }
+  @media (max-width:700px){ .mini-row{grid-template-columns:repeat(2,1fr);} }
+  .mini { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); border-radius:10px; padding:14px 16px; border-left:3px solid #ffd600; }
+  .mini .ml { font-size:10.5px; color:#ffd600; font-weight:700; letter-spacing:1px; margin-bottom:4px; }
+  .mini .mv { font-size:18px; font-weight:800; line-height:1.3; }
+  .mini .mv.sm { font-size:14px; }
+  .mini .ms { font-size:10.5px; opacity:0.7; margin-top:2px; }
+
+  /* 프로세스 타임라인 */
+  .timeline { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:20px 22px; margin-bottom:22px; }
+  .timeline h2 { font-size:13px; color:#ffd600; font-weight:800; letter-spacing:2px; margin-bottom:14px; }
+  .tl-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+  @media (max-width:800px){ .tl-grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:500px){ .tl-grid{grid-template-columns:repeat(2,1fr);} }
+  .tl-step { background:rgba(255,255,255,0.05); border-radius:10px; padding:12px; text-align:center; border-top:3px solid #7c3aed; }
+  .tl-step.now { border-top-color:#ffd600; background:rgba(255,214,0,0.15); }
+  .tl-step.done { border-top-color:#27ae60; opacity:0.75; }
+  .tl-step .tl-num { font-size:10px; color:#ffd600; font-weight:800; letter-spacing:1px; }
+  .tl-step .tl-date { font-size:11.5px; font-weight:800; margin-top:4px; }
+  .tl-step .tl-title { font-size:11.5px; margin-top:6px; line-height:1.4; opacity:0.9; }
+  .tl-step.now .tl-num { color:#7c2d12; }
+
+  /* 섹션 */
+  .section { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); border-radius:14px; padding:22px 24px; margin-bottom:18px; }
+  .section h2 { font-size:15px; font-weight:800; color:#ffd600; margin-bottom:14px; display:flex; align-items:center; gap:8px; }
+  .section h2::before { content:''; display:block; width:4px; height:18px; background:#ffd600; border-radius:2px; }
+  .section h3 { font-size:13px; color:#ffd600; font-weight:700; margin:18px 0 8px; }
+  .section h3:first-of-type { margin-top:4px; }
+
+  /* 테이블 */
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  table th,table td { padding:10px 12px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.08); vertical-align:top; }
+  table th { background:rgba(124,58,237,0.3); color:#ffd600; font-weight:700; font-size:11.5px; }
+  table tr:hover td { background:rgba(255,255,255,0.04); }
+  table td.num { text-align:right; font-variant-numeric:tabular-nums; font-weight:700; }
+  table td.center { text-align:center; }
+  table td .sub { font-size:10.5px; opacity:0.7; display:block; margin-top:2px; }
+
+  /* 체크리스트 */
+  .check-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+  @media (max-width:700px){ .check-grid{grid-template-columns:1fr;} }
+  .check-item { background:rgba(255,255,255,0.04); border-radius:8px; padding:10px 14px; display:flex; gap:10px; align-items:flex-start; border-left:3px solid rgba(255,255,255,0.15); font-size:12.5px; line-height:1.6; }
+  .check-item.done { border-left-color:#27ae60; opacity:0.7; }
+  .check-item.todo { border-left-color:#dc2626; }
+  .check-item.todo.hot { border-left-color:#ffd600; background:rgba(255,214,0,0.1); }
+  .check-item .ico { font-size:16px; flex-shrink:0; }
+  .check-item .lbl { font-size:10px; letter-spacing:1px; font-weight:800; opacity:0.8; }
+  .check-item.done .lbl { color:#86efac; }
+  .check-item.todo .lbl { color:#fca5a5; }
+  .check-item.todo.hot .lbl { color:#fde047; }
+  .check-item .bd { flex:1; }
+  .check-item .tt { font-size:12.5px; font-weight:700; margin-top:2px; }
+  .check-item .nt { font-size:10.5px; opacity:0.65; margin-top:2px; }
+
+  /* 하이라이트 노란 박스 (아이디어 누적용) */
+  .idea-box { background:rgba(255,214,0,0.12); border-left:5px solid #ffd600; border-radius:10px; padding:16px 20px; margin-bottom:18px; }
+  .idea-box .k { font-size:12px; color:#ffd600; font-weight:700; margin-bottom:8px; }
+  .idea-box .v { font-size:11.5px; color:rgba(255,255,255,0.85); line-height:1.9; }
+
+  /* 토스 박스 */
+  .toss-box { background:linear-gradient(135deg,rgba(124,58,237,0.3),rgba(255,214,0,0.15)); border:2px solid #ffd600; border-radius:14px; padding:22px 24px; margin-bottom:22px; }
+  .toss-box .h { font-size:14px; color:#ffd600; font-weight:800; letter-spacing:1px; margin-bottom:10px; }
+  .toss-box .sub { font-size:11.5px; opacity:0.8; margin-bottom:14px; }
+  .toss-box ol { padding-left:22px; font-size:12.5px; line-height:2; }
+  .toss-box ol li b { color:#ffd600; }
+
+  .file-list a { display:flex; align-items:center; gap:10px; padding:10px 14px; background:rgba(255,255,255,0.04); border-radius:8px; color:#fff; text-decoration:none; font-size:12.5px; margin-bottom:6px; border-left:3px solid #7c3aed; }
+  .file-list a:hover { background:rgba(255,214,0,0.1); border-left-color:#ffd600; }
+  .file-list a .ext { font-size:10px; padding:2px 7px; background:rgba(255,214,0,0.2); color:#ffd600; border-radius:10px; font-weight:700; }
+
+  [contenteditable="true"]:focus { outline:2px dashed #ffd600; background:rgba(255,214,0,0.08); }
+  [contenteditable="true"] { transition:background 0.15s; border-radius:4px; padding:1px 4px; }
+
+  .footer { text-align:center; margin-top:30px; padding:18px 0; font-size:11px; opacity:0.6; border-top:1px solid rgba(255,255,255,0.1); }
+  .footer strong { color:#ffd600; }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <div class="title">🏆 GOOD DESIGN KOREA 2026 · 아블러(ablr) 출품</div>
+  <div class="btns">
+    <span id="saveStatus"></span>
+    <button class="ctrl-btn red" id="editToggle">✏️ 편집 OFF</button>
+    <button class="ctrl-btn" onclick="resetData()">♻️ 초기화</button>
+    <button class="ctrl-btn primary" onclick="window.print()">🖨️ 인쇄</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<a class="nav-back" href="jihyun-hub.html">← 박지현 허브로</a>
+
+<div class="hero">
+  <div class="badge">제 42회 우수디자인상품선정</div>
+  <h1>🏆 <span class="accent">GOOD DESIGN KOREA</span> 2026 출품 준비</h1>
+  <p>아블러(ablr) 3in1 아이스메이커 텀블러 · (주)마스터마인딩그룹 · 얼리버드 접수</p>
+</div>
+
+<!-- D-DAY -->
+<div class="dday">
+  <div class="big" id="ddayNum">D-?</div>
+  <div class="desc">
+    <div class="k">KIDP 얼리버드 접수 시작</div>
+    <div class="v">2026년 5월 1일 (목) · kidp.or.kr 온라인 신청</div>
+    <div class="s">
+      다음 주 목요일 <b>5/1 00:00</b> 접수 오픈 → 즉시 온라인 신청서 작성·심사료 납부<br>
+      <b>담당 토스:</b> 권나경 과장 → 5/1 KIDP 홈페이지 접수 실행 + 심사료 77만원 결제
+    </div>
+  </div>
+</div>
+
+<!-- 핵심 수치 -->
+<div class="mini-row">
+  <div class="mini">
+    <div class="ml">심사료 (얼리버드)</div>
+    <div class="mv">770,000원</div>
+    <div class="ms">현물+서류 / VAT 포함</div>
+  </div>
+  <div class="mini">
+    <div class="ml">접수 첫날</div>
+    <div class="mv sm">2026.5.1 (목)</div>
+    <div class="ms">얼리버드 5/1~5/31</div>
+  </div>
+  <div class="mini">
+    <div class="ml">현물 제출일</div>
+    <div class="mv sm">2026.8.7 (수)</div>
+    <div class="ms">서울 aT센터</div>
+  </div>
+  <div class="mini">
+    <div class="ml">수상 발표</div>
+    <div class="mv sm">2026.10~11월</div>
+    <div class="ms">시상식 12월</div>
+  </div>
+</div>
+
+<!-- 전체 프로세스 타임라인 -->
+<div class="timeline">
+  <h2>📅 전체 프로세스 — GD Korea 2026 일정표</h2>
+  <div class="tl-grid">
+    <div class="tl-step now">
+      <div class="tl-num">STEP 1</div>
+      <div class="tl-date">5/1~5/31</div>
+      <div class="tl-title">⭐ 얼리버드 접수<br>(온라인 + 심사료)</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">STEP 2</div>
+      <div class="tl-date">6/1~6/30</div>
+      <div class="tl-title">정시 접수 (88만원)</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">STEP 3</div>
+      <div class="tl-date">8/7 (수)</div>
+      <div class="tl-title">현물 제출<br>aT센터</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">STEP 4</div>
+      <div class="tl-date">7~9월</div>
+      <div class="tl-title">선정 심사<br>(현물·서류)</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">STEP 5</div>
+      <div class="tl-date">10~11월</div>
+      <div class="tl-title">수상 심사<br>(국민참여·발표 PT)</div>
+    </div>
+    <div class="tl-step">
+      <div class="tl-num">STEP 6</div>
+      <div class="tl-date">12월</div>
+      <div class="tl-title">시상식<br>GD 마크 수령</div>
+    </div>
+  </div>
+</div>
+
+<!-- 찰스 대표님 아이디어 누적 박스 -->
+<div class="idea-box">
+  <div class="k">💡 찰스 대표님 방향·아이디어 누적 (삭제 없이 추가만)</div>
+  <div class="v" contenteditable="true" data-save="ideas">
+    <div>· 2026-04-24 — 5/1 얼리버드 첫날 접수로 심사료 11만원 절감 + 심사 우선권 확보</div>
+    <div>· 2026-04-24 — 제품디자인 + 사회문제해결 특별상(1인가구 + 그린디자인) 동시 신청</div>
+    <div>· 2026-04-24 — 권나경 과장에게 실무 토스 → 다음 주 목요일(5/1) 접수 마무리</div>
+    <div style="color:rgba(255,214,0,0.7);margin-top:6px;font-style:italic;">→ 다음 아이디어 대기 중</div>
+  </div>
+</div>
+
+<!-- 권나경 과장 토스 -->
+<div class="toss-box">
+  <div class="h">🤝 권나경 과장 토스 — 마무리 체크리스트</div>
+  <div class="sub">다음 주 목요일(5/1) KIDP 접수 완료를 위한 실행 과업. 현재 박지현 팀장 검토 완료 기준.</div>
+  <ol>
+    <li><b>5/1 (목) 09:00</b> — KIDP 홈페이지(kidp.or.kr) 로그인 → 우수디자인상품선정 온라인 신청서 작성</li>
+    <li><b>신청서 기본정보 입력</b> — (주)마스터마인딩그룹 / 장정훈 / 426-87-00479 / 제품명 "아블러 3in1 아이스메이커 텀블러" / 부문: 제품 디자인</li>
+    <li><b>특별상 체크</b> — 사회문제해결 디자인 특별상 (1인가구를 위한 디자인 + 그린디자인) 동시 신청 ✅</li>
+    <li><b>심사 유형 선택</b> — "현물+서류 심사 (기본 심사)" · 얼리버드 77만원</li>
+    <li><b>출품서류 업로드</b> — 구글드라이브 통합본 PDF 사용 (<i>GD_Korea_2026_아블러_완전통합본_v3_보강최종.pdf</i>)</li>
+    <li><b>심사료 납부</b> — 770,000원 (VAT 포함) / 법인카드 or 기업계좌 이체 / 세금계산서 필요 시 gd@kidp.or.kr 신청</li>
+    <li><b>접수 완료 확인 메일 보관</b> → 박지현 팀장 / 찰스 대표님 공유</li>
+    <li><b>미완료 보강 자료 일정 수립</b> — 흰 배경 제품 사진 재촬영 / 스펙시트 수치 확정 / 특허번호 조회 / 8월 초 현물 박스 포장</li>
+  </ol>
+</div>
+
+<!-- 준비 현황 -->
+<div class="section">
+  <h2>✅ 출품 서류 준비 현황 (2026-04-24 기준)</h2>
+  <p style="font-size:12px;opacity:0.8;margin-bottom:14px;">구글드라이브 통합본 기준 · 완료 16건 / 미완료 10건</p>
+
+  <h3>✅ 완료 16건 — 통합본 PDF에 포함됨</h3>
+  <div class="check-grid">
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">B-1/2 · 제품 사진</div><div class="tt">컬러 × 몰드 9종 (화이트/블루/실버 × 볼/스피어/큐브)</div><div class="nt">현재 611×408px → 고해상도 업컷 필요</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">B-6 · 3in1 구조 설명</div><div class="tt">인포그래픽 시각화 완성</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">B-7 · 브랜드 로고 가이드</div><div class="tt">ablr 로고 / 쥬얼아이스 / 컬러·최소크기 규격</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">A-2 · 제품 설명서 (국문)</div><div class="tt">초안 완성 (5섹션: 배경·특징·타겟·사회가치·실적)</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">A-3 · 제품 설명서 (영문)</div><div class="tt">Product Description Draft 완성</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">A-5 · 운영 채널 26개</div><div class="tt">자사몰·쿠팡·네이버·카카오·쇼피파이·아마존 등</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">C-2 · 연도별 판매실적</div><div class="tt">2021~2025 5년 누계 38.7억 / 2025년 12.56억 (YoY +54%)</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">C-3 · 고객 리뷰 10선</div><div class="tt">네이버·쿠팡·카카오·오늘의집·자사몰·와디즈</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">C-4 · 언론 보도 5건</div><div class="tt">머니투데이·유니콘팩토리·헤럴드경제·THE VC·와디즈</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">D-1 · 브랜드·기획 의도서</div><div class="tt">A-2 통합 국문 설명서에 포함</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">D-2 · 1인가구 타겟 자료</div><div class="tt">987만 가구(통계청 2024) / 홈바 트렌드 400% 성장</div></div></div>
+    <div class="check-item done"><span class="ico">✅</span><div class="bd"><div class="lbl">D-4 · 회사 소개·연혁</div><div class="tt">2016 창업 / 대표 장정훈 / Wadiz 10억 / 킥스타터 2.9억</div></div></div>
+  </div>
+
+  <h3 style="color:#fde047;">🔥 미완료 10건 — 5/1 접수 전후 마무리 필요</h3>
+  <div class="check-grid">
+    <div class="check-item todo hot"><span class="ico">🔥</span><div class="bd"><div class="lbl">최우선 · 5/1 즉시</div><div class="tt">A-1 · KIDP 온라인 신청서 작성</div><div class="nt">kidp.or.kr 로그인 → 출품 신청 양식 기입</div></div></div>
+    <div class="check-item todo hot"><span class="ico">🔥</span><div class="bd"><div class="lbl">최우선 · 5/1 즉시</div><div class="tt">심사료 770,000원 납부</div><div class="nt">카드/계좌이체/무통장 중 택1 · 세금계산서는 계좌이체·무통장만</div></div></div>
+    <div class="check-item todo hot"><span class="ico">🔥</span><div class="bd"><div class="lbl">최우선 · 5/1 즉시</div><div class="tt">A-4 · 사업자등록증 사본 PDF</div><div class="nt">홈택스 hometax.go.kr → 사업자등록증 출력 → PDF</div></div></div>
+    <div class="check-item todo"><span class="ico">📸</span><div class="bd"><div class="lbl">5월 중 (현물 제출 전)</div><div class="tt">흰 배경 고해상도 제품 사진 재촬영</div><div class="nt">3000px↑ / 9컷 (3컬러 × 3몰드) / RGB 255,255,255 배경</div></div></div>
+    <div class="check-item todo"><span class="ico">📸</span><div class="bd"><div class="lbl">5월 중</div><div class="tt">라이프스타일 사진 5장 촬영</div><div class="nt">홈바 / 위스키 / 하이볼 / 데스크 / 1인 홈바 야경</div></div></div>
+    <div class="check-item todo"><span class="ico">📦</span><div class="bd"><div class="lbl">6월 중</div><div class="tt">패키징 박스 촬영 (정면·측면·내용물 탑뷰·개봉)</div><div class="nt">박스 상태 점검 + ablr 로고·원산지 표기 확인</div></div></div>
+    <div class="check-item todo"><span class="ico">🔍</span><div class="bd"><div class="lbl">5월 초</div><div class="tt">특허·디자인 등록번호 조회</div><div class="nt">kipris.or.kr → '마스터마인딩그룹' or '장정훈' 검색 / 삼단방한 공법 특허</div></div></div>
+    <div class="check-item todo"><span class="ico">📝</span><div class="bd"><div class="lbl">5월 중</div><div class="tt">D-5 · 스펙시트 빈칸 채우기</div><div class="nt">소재(본체·몰드·뚜껑) / 치수(H×Ø) / 중량 / 용량 / 얼음 제조시간 / KC 인증번호</div></div></div>
+    <div class="check-item todo"><span class="ico">📊</span><div class="bd"><div class="lbl">5월 중</div><div class="tt">D-3 · 플라스틱 절감 수치 확정</div><div class="nt">누적 판매대수 × 연간 50봉지 × 5g 공식 적용</div></div></div>
+    <div class="check-item todo"><span class="ico">🚚</span><div class="bd"><div class="lbl">6월 중</div><div class="tt">C-5 · 해외 배송 실적 스크린샷</div><div class="nt">jewelice.kr 글로벌 배송 화면 (170개국) + 주요 해외 주문 내역</div></div></div>
+    <div class="check-item todo"><span class="ico">📦</span><div class="bd"><div class="lbl">8/1까지</div><div class="tt">E-1 · 아블러 3in1 현물 3개 확보</div><div class="nt">심사용 2 + 예비 1 · 패키징 포함 · 라벨·태그 점검</div></div></div>
+    <div class="check-item todo"><span class="ico">📄</span><div class="bd"><div class="lbl">8/5까지</div><div class="tt">E-4 · 브로셔 A4 10매 인쇄</div><div class="nt">5매 동봉 + 5매 여분 · 코팅 유광 · 컬러 양면</div></div></div>
+    <div class="check-item todo"><span class="ico">🏢</span><div class="bd"><div class="lbl">8/6까지</div><div class="tt">aT센터 현물 제출 방법 확정</div><div class="nt">직접 방문 vs 택배 · KIDP 강억모 팀장(031-780-2165) 문의</div></div></div>
+  </div>
+</div>
+
+<!-- 심사료 비교표 -->
+<div class="section">
+  <h2>💰 심사료 비교 (VAT 포함)</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%;">구분</th>
+        <th>얼리버드 (5/1~5/31)</th>
+        <th>정시 접수 (6/1~6/30)</th>
+        <th>추가 접수 (8/14~8/21)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>현물+서류 심사</b> (기본)</td>
+        <td style="color:#ffd600;font-weight:800;">770,000원 ⭐</td>
+        <td class="num">880,000원</td>
+        <td class="num">—</td>
+      </tr>
+      <tr>
+        <td>방문+서류 심사 (선택)</td>
+        <td class="num">1,210,000원</td>
+        <td class="num">1,320,000원</td>
+        <td class="num">—</td>
+      </tr>
+      <tr>
+        <td>수상(상격) 심사</td>
+        <td colspan="3" style="text-align:center;">770,000원 · 수상 후보자에 한함 (대상 심사)</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-size:11.5px;opacity:0.8;margin-top:12px;padding:10px 14px;background:rgba(39,174,96,0.15);border-radius:8px;border-left:3px solid #27ae60;">
+    💡 <b>얼리버드 선택 근거:</b> 정시 대비 11만원 절감 + 심사 우선 배정 + 현물 준비 기간 충분 (8/7까지)
+  </div>
+</div>
+
+<!-- 출품 제품 기본 정보 -->
+<div class="section">
+  <h2>📋 출품 기본 정보 (KIDP 온라인 신청서 입력용)</h2>
+  <table>
+    <tbody>
+      <tr><th>회사명</th><td>(주)마스터마인딩그룹</td></tr>
+      <tr><th>브랜드</th><td>ablr (아블러) / 쥬얼아이스</td></tr>
+      <tr><th>대표자</th><td>장정훈</td></tr>
+      <tr><th>사업자등록번호</th><td>426-87-00479</td></tr>
+      <tr><th>주소</th><td>13403 경기도 성남시 중원구 둔촌대로388번길 24, 우림라이온스밸리3차 13F 1305A</td></tr>
+      <tr><th>연락처</th><td>070-7152-0340</td></tr>
+      <tr><th>출품 제품명 (국문)</th><td>아블러 3in1 아이스메이커 텀블러 — 볼·스피어·큐브 투명얼음</td></tr>
+      <tr><th>출품 제품명 (영문)</th><td>ablr 3in1 Ice Maker Tumbler — Ball, Sphere & Cube Crystal Clear Ice</td></tr>
+      <tr><th>출품 부문</th><td>제품 디자인 (Product Design)</td></tr>
+      <tr><th>특별상 신청</th><td>✅ 사회문제해결 디자인 특별상 (① 1인가구를 위한 디자인 + ③ 그린디자인)</td></tr>
+      <tr><th>판매 채널</th><td>jewelice.kr · 네이버스마트스토어 · 쿠팡 · 해외 직배송 170개국</td></tr>
+      <tr><th>판매 시작일</th><td>2022년 (현 버전 출시 기준)</td></tr>
+      <tr><th>판매 가격</th><td>49,000원 (기본) · 63,000원 (+추가몰드) · 78,000원 (더블세트)</td></tr>
+      <tr><th>심사 유형</th><td>현물+서류 심사 (기본) · 얼리버드 770,000원</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 주요 실적 -->
+<div class="section">
+  <h2>📊 시장 검증 핵심 지표 (출품서류 반영)</h2>
+  <div class="mini-row">
+    <div class="mini"><div class="ml">5년 누적 매출</div><div class="mv">38.7억원</div><div class="ms">2021~2025</div></div>
+    <div class="mini"><div class="ml">2025년 매출</div><div class="mv">12.56억</div><div class="ms">YoY +54% 역대 최고</div></div>
+    <div class="mini"><div class="ml">국내 운영 채널</div><div class="mv">26개</div><div class="ms">A등급 12 · B등급 8</div></div>
+    <div class="mini"><div class="ml">해외 직배송</div><div class="mv">170개국</div><div class="ms">jewelice.kr 글로벌</div></div>
+    <div class="mini"><div class="ml">와디즈 누적</div><div class="mv">10억+</div><div class="ms">5차 펀딩 · 서포터픽 1위</div></div>
+    <div class="mini"><div class="ml">킥스타터</div><div class="mv">2.9억원</div><div class="ms">2023 미국 펀딩</div></div>
+    <div class="mini"><div class="ml">일본 마쿠아케</div><div class="mv">800%</div><div class="ms">목표 달성 / MEDIK 협의</div></div>
+    <div class="mini"><div class="ml">1인가구 시장</div><div class="mv">987만</div><div class="ms">통계청 2024 · 35.5%</div></div>
+  </div>
+</div>
+
+<!-- 담당자 연락처 -->
+<div class="section">
+  <h2>📞 KIDP 담당자 · 문의 채널</h2>
+  <table>
+    <tbody>
+      <tr><th style="width:30%;">우수디자인팀 팀장</th><td><b>강억모 팀장</b> · 031-780-2165</td></tr>
+      <tr><th>우수디자인팀 연구원</th><td>조은산 연구원 · 031-780-2162</td></tr>
+      <tr><th>전시사업실 실장</th><td>손성호 실장 · 031-780-2155</td></tr>
+      <tr><th>공식 이메일</th><td>gd@kidp.or.kr (세금계산서 발행 요청 포함)</td></tr>
+      <tr><th>공식 홈페이지</th><td><a href="https://www.kidp.or.kr" target="_blank" style="color:#ffd600;">www.kidp.or.kr</a> → 우수디자인상품선정</td></tr>
+      <tr><th>무통장 입금 계좌</th><td>기업은행 341-028815-04-217 · 예금주: 한국디자인진흥원 <br><span class="sub">※ 반드시 (주)마스터마인딩그룹 명의로 입금 — 개인명 입금 시 확인 안 됨</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 구글드라이브 참고 자료 -->
+<div class="section">
+  <h2>📂 구글드라이브 참고 자료 (박지현 팀장 > 07.지원사업)</h2>
+  <div class="file-list">
+    <a href="https://drive.google.com/drive/folders/1h96eusPKmTOqzmEsxFPdaLFwZfeKs7Cz" target="_blank">
+      <span>📁</span>
+      <span style="flex:1;"><b>박지현 팀장 루트 폴더</b> · 전체 지원사업 자료 트리</span>
+      <span class="ext">FOLDER</span>
+    </a>
+    <a href="https://drive.google.com/drive/folders/14T1Q1fm-UIFnrbJgHFHdDDHR9SMPZrvY" target="_blank">
+      <span>📁</span>
+      <span style="flex:1;"><b>07.지원사업</b> · GD Korea 2026 관련 서류 모음</span>
+      <span class="ext">FOLDER</span>
+    </a>
+    <a href="https://drive.google.com/file/d/12wAZzfVZQEUzuQvdB8dsDEGacy62OsZ3/view" target="_blank">
+      <span>⭐</span>
+      <span style="flex:1;"><b>GD_Korea_2026_아블러_완전통합본_v3_보강최종</b> · 출품 마스터 PDF (24페이지)</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1vnVLrErocZ-vBWM_aUPQ1UiP3C9e6oZS/view" target="_blank">
+      <span>📝</span>
+      <span style="flex:1;">GD_Korea_2026_아블러_출품서류_통합본 · 편집용</span>
+      <span class="ext">DOCX</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1I9LAI3BO3Nx7p_kjj2Y2O9ekWq17p2ei/view" target="_blank">
+      <span>📄</span>
+      <span style="flex:1;">260323 2026년 제42회 우수디자인상품선정 공고 · KIDP 원본</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a href="https://drive.google.com/file/d/1_5Cz7uhROSOJFfPD7uOfmT8bCIYPhZ1T/view" target="_blank">
+      <span>🏆</span>
+      <span style="flex:1;">2026 GOOD DESIGN KOREA Award Info · 심사 기준·절차 공식</span>
+      <span class="ext">PDF</span>
+    </a>
+    <a href="https://drive.google.com/file/d/161l2lV4vEzoB6m6UXbZ69AoItOnDcf8A/view" target="_blank">
+      <span>📘</span>
+      <span style="flex:1;">디자인 사업계획서 작성 지원 · 가이드북</span>
+      <span class="ext">PDF</span>
+    </a>
+  </div>
+</div>
+
+<!-- 선정 혜택 -->
+<div class="section">
+  <h2>🎁 GD 선정 혜택 (수상 시)</h2>
+  <div class="check-grid">
+    <div class="check-item done"><span class="ico">✨</span><div class="bd"><div class="lbl">인증 마크</div><div class="tt">대한민국 정부 인증 GD 마크 사용</div><div class="nt">제품 포장·설명서·홈페이지·마케팅 자료 전방위 활용</div></div></div>
+    <div class="check-item done"><span class="ico">🌏</span><div class="bd"><div class="lbl">해외 상호 인증</div><div class="tt">호주 Good Design Australia (GDA) 마크 사용 (조건부)</div><div class="nt">글로벌 시장 진입 신뢰도 확보</div></div></div>
+    <div class="check-item done"><span class="ico">📜</span><div class="bd"><div class="lbl">지식재산권</div><div class="tt">디자인등록출원 우선 심사</div></div></div>
+    <div class="check-item done"><span class="ico">🏛️</span><div class="bd"><div class="lbl">정부 가점</div><div class="tt">조달청 및 관계부처 지원사업 가점 부여</div></div></div>
+    <div class="check-item done"><span class="ico">🎬</span><div class="bd"><div class="lbl">전시·홍보</div><div class="tt">Design Korea 2026 시상식 전시 + 수상작 전시관 노출</div></div></div>
+    <div class="check-item done"><span class="ico">🏆</span><div class="bd"><div class="lbl">상위 수상</div><div class="tt">수상후보 80점 선정 시 대통령상·국무총리상·장관상 후보</div><div class="nt">발표심사(PT) 90% + 대국민참여심사 10%</div></div></div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>💎 JEWEL ICE × 박지현 팀장 × 권나경 과장</strong><br>
+  GD Korea 2026 출품 통합 대시보드 · 화경 관리 · URL 영구 고정 · 편집 가능<br>
+  담당: 박지현 팀장 (기획·검토) → 권나경 과장 (실무 접수)<br>
+  <span style="font-size:10px;opacity:0.6;">Last Updated: 2026-04-24 · Status: 접수 대기 (D-7)</span>
+</div>
+
+</div>
+
+<script>
+  // D-day 계산
+  (function(){
+    const t = new Date('2026-05-01T00:00:00+09:00');
+    const n = new Date();
+    const d = Math.ceil((t - n) / (1000*60*60*24));
+    const el = document.getElementById('ddayNum');
+    if (el) el.textContent = d > 0 ? 'D-' + d : (d === 0 ? 'D-DAY' : 'D+' + Math.abs(d));
+  })();
+
+  // 편집 모드 토글 + localStorage 저장
+  const KEY = 'gd-korea-2026-edits';
+  const saveStatus = document.getElementById('saveStatus');
+  const editBtn = document.getElementById('editToggle');
+  let editMode = false;
+
+  function loadData(){
+    try {
+      const d = JSON.parse(localStorage.getItem(KEY) || '{}');
+      document.querySelectorAll('[data-save]').forEach(el => {
+        const k = el.getAttribute('data-save');
+        if (d[k] !== undefined) el.innerHTML = d[k];
+      });
+      if (Object.keys(d).length) flash('📂 저장된 편집 불러옴');
+    } catch(e){}
+  }
+
+  function saveData(){
+    const d = {};
+    document.querySelectorAll('[data-save]').forEach(el => {
+      d[el.getAttribute('data-save')] = el.innerHTML;
+    });
+    localStorage.setItem(KEY, JSON.stringify(d));
+    flash('💾 저장됨');
+  }
+
+  function flash(msg){
+    saveStatus.textContent = msg;
+    setTimeout(() => { saveStatus.textContent = ''; }, 2500);
+  }
+
+  function resetData(){
+    if (confirm('편집 내용을 모두 초기화할까요? (브라우저 저장분만 삭제, 원본은 유지)')) {
+      localStorage.removeItem(KEY);
+      location.reload();
+    }
+  }
+
+  editBtn.addEventListener('click', () => {
+    editMode = !editMode;
+    document.querySelectorAll('[data-save]').forEach(el => {
+      el.setAttribute('contenteditable', editMode);
+    });
+    editBtn.textContent = editMode ? '💾 편집 ON (클릭=끄기)' : '✏️ 편집 OFF';
+    editBtn.classList.toggle('on', editMode);
+    if (!editMode) saveData();
+  });
+
+  document.addEventListener('input', (e) => {
+    if (e.target.hasAttribute('data-save')) {
+      clearTimeout(window._st);
+      window._st = setTimeout(saveData, 800);
+    }
+  });
+
+  loadData();
+</script>
+
+</body>
+</html>
