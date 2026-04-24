@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>쥬얼아이스 팀 공통 매뉴얼 v0.1</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Malgun Gothic', '맑은 고딕', 'Pretendard', -apple-system, sans-serif; background: #f0f2f5; color: #222; font-size: 14px; line-height: 1.65; }
+
+  .top-bar {
+    background: linear-gradient(135deg, #4a1d8c, #7c3aed);
+    color: white; padding: 22px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    flex-wrap: wrap; gap: 14px;
+  }
+  .top-bar h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.3px; }
+  .top-bar .sub { font-size: 12.5px; opacity: 0.9; margin-top: 5px; }
+  .top-bar .tag { display: inline-block; background: rgba(255,255,255,0.2); padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-left: 8px; }
+
+  .container { max-width: 980px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  .tabs {
+    display: flex; gap: 4px; background: white; border-radius: 10px 10px 0 0;
+    padding: 6px 6px 0 6px; border-bottom: 2px solid #7c3aed;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    position: sticky; top: 0; z-index: 50;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 11px 16px; cursor: pointer; font-size: 13px; font-weight: 700;
+    color: #666; border-radius: 8px 8px 0 0; transition: all 0.15s;
+    border: none; background: transparent; font-family: inherit; white-space: nowrap;
+  }
+  .tab:hover { background: #f7f3ff; color: #4a1d8c; }
+  .tab.active { background: linear-gradient(135deg, #4a1d8c, #7c3aed); color: white; }
+
+  .tab-panel { display: none; padding-top: 20px; }
+  .tab-panel.active { display: block; }
+
+  /* ========== ALF 자료집 전용 스타일 ========== */
+  .alf-hero {
+    background: linear-gradient(135deg, #d97706, #f4a261);
+    color: white;
+    padding: 22px 26px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 14px rgba(217,119,6,0.2);
+  }
+  .alf-hero .badge { display: inline-block; background: rgba(255,255,255,0.22); padding: 3px 10px; border-radius: 12px; font-size: 11px; margin-bottom: 8px; }
+  .alf-hero h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .alf-hero p { font-size: 13px; opacity: 0.95; }
+
+  .alf-guide {
+    background: white;
+    border-left: 5px solid #d97706;
+    padding: 14px 18px;
+    border-radius: 0 10px 10px 0;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .alf-guide h3 { font-size: 13px; color: #d97706; margin-bottom: 8px; }
+  .alf-guide ol { padding-left: 20px; font-size: 13px; margin: 0; }
+  .alf-guide ol li { margin-bottom: 4px; }
+
+  .alf-progress {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .alf-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .alf-progress-title { font-size: 13px; font-weight: 800; color: #4a1d8c; }
+  .alf-progress-count { font-size: 13px; color: #666; }
+  .alf-progress-count strong { color: #10b981; font-size: 16px; }
+  .alf-progress-bar { width: 100%; height: 9px; background: #f0f2f5; border-radius: 9px; overflow: hidden; }
+  .alf-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #06d6a0);
+    width: 0%;
+    transition: width 0.5s ease;
+    border-radius: 9px;
+  }
+  .alf-reset-btn {
+    padding: 3px 10px;
+    background: transparent;
+    border: 1px solid #9ca3af;
+    color: #6b7280;
+    border-radius: 12px;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: 8px;
+  }
+  .alf-reset-btn:hover { background: #6b7280; color: white; }
+
+  .alf-toc {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .alf-toc h3 { font-size: 13px; color: #4a1d8c; margin-bottom: 10px; }
+  .alf-toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 6px; }
+  .alf-toc-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 10px; background: #f7f3ff; border-radius: 6px;
+    text-decoration: none; color: #222; font-size: 12.5px;
+    position: relative;
+  }
+  .alf-toc-item:hover { background: #ede9fe; }
+  .alf-toc-num {
+    background: #7c3aed; color: white;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .alf-toc-item.done { background: #d1fae5; }
+  .alf-toc-item.done::after {
+    content: "✓"; position: absolute; right: 10px;
+    color: #10b981; font-weight: 700;
+  }
+  .alf-toc-item.done .alf-toc-num { background: #10b981; }
+
+  .alf-section {
+    background: white;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: all 0.4s;
+  }
+  .alf-section.done {
+    border: 2px solid #10b981;
+    background: linear-gradient(to bottom, #ffffff 0%, #f0fff8 100%);
+  }
+  .alf-section-title {
+    font-size: 15px; font-weight: 800; color: #4a1d8c;
+    margin-bottom: 12px; padding-bottom: 10px;
+    border-bottom: 2px solid #f0f2f5;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .alf-section-title .num {
+    background: #7c3aed; color: white;
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 800;
+  }
+  .alf-section.done .alf-section-title .num { background: #10b981; }
+  .alf-section.done .alf-section-title { color: #059669; }
+  .alf-section.done .alf-section-title::after {
+    content: " ✅ 등록 완료";
+    font-size: 12px; color: #10b981;
+    font-weight: 700; margin-left: 8px;
+  }
+  .alf-section-subtitle {
+    font-size: 11px; color: #6b7280;
+    font-weight: 400; margin-left: auto;
+  }
+
+  .alf-copy-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px; padding: 9px 12px;
+    background: linear-gradient(90deg, #fef3e2, #fff8ed);
+    border-radius: 6px; border: 1px dashed #f4a261;
+    transition: all 0.4s;
+  }
+  .alf-copy-bar.done {
+    background: linear-gradient(90deg, #d1fae5, #ecfdf5);
+    border: 1px solid #10b981;
+  }
+  .alf-copy-bar.done .info { color: #059669; font-weight: 700; }
+  .alf-copy-bar .info { font-size: 12px; color: #92571a; }
+  .alf-copy-btn {
+    padding: 6px 14px;
+    background: #d97706;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .alf-copy-btn:hover { background: #b85e04; }
+  .alf-copy-btn.copied {
+    background: #10b981;
+    transform: scale(1.05);
+    box-shadow: 0 0 0 4px rgba(16,185,129,0.2);
+  }
+
+  .alf-faq-item {
+    border: 1px solid #f0f2f5;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .alf-faq-q {
+    padding: 10px 14px;
+    background: #f7f3ff;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer;
+  }
+  .alf-faq-q:hover { background: #ede9fe; }
+  .alf-faq-num {
+    background: #7c3aed; color: white;
+    padding: 2px 8px; border-radius: 8px;
+    font-size: 11px; flex-shrink: 0;
+  }
+  .alf-faq-toggle { margin-left: auto; font-size: 13px; transition: transform 0.3s; }
+  .alf-faq-toggle.open { transform: rotate(180deg); }
+  .alf-faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s;
+    font-size: 13px; line-height: 1.65;
+  }
+  .alf-faq-a.open { max-height: 800px; padding: 12px 14px; }
+  .alf-faq-a strong { color: #d97706; }
+
+  .alf-tag-normal {
+    display: inline-block; padding: 2px 8px;
+    background: #d1fae5; color: #059669;
+    border-radius: 10px; font-size: 11px; font-weight: 700;
+  }
+  .alf-tag-fix {
+    display: inline-block; padding: 2px 8px;
+    background: #fee2e2; color: #dc2626;
+    border-radius: 10px; font-size: 11px; font-weight: 700;
+  }
+
+  .alf-step {
+    display: flex; gap: 10px; padding: 12px;
+    background: #f7f3ff; border-radius: 8px;
+    margin-bottom: 8px; align-items: flex-start;
+  }
+  .alf-step-num {
+    background: #7c3aed; color: white;
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; flex-shrink: 0; font-size: 12px;
+  }
+  .alf-step-content { flex: 1; font-size: 13px; }
+  .alf-step-content strong { color: #4a1d8c; }
+
+  .alf-insight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .alf-insight-card {
+    padding: 12px;
+    background: linear-gradient(135deg, #fff, #fafafa);
+    border-radius: 8px;
+    border-left: 4px solid #7c3aed;
+  }
+  .alf-insight-card h4 { font-size: 13px; margin-bottom: 4px; color: #4a1d8c; }
+  .alf-insight-card p { font-size: 12.5px; color: #4b5563; line-height: 1.55; }
+
+  .alf-trouble-card {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    background: #fff8ed;
+    border-left: 4px solid #f4a261;
+  }
+  .alf-trouble-card h4 { font-size: 13px; color: #b85e04; margin-bottom: 4px; }
+  .alf-trouble-card p { font-size: 12.5px; line-height: 1.55; }
+
+  .alf-box-info {
+    padding: 12px 14px;
+    background: #e0f2fe;
+    border-radius: 8px;
+    font-size: 12.5px;
+    margin-top: 10px;
+  }
+  .alf-box-warning {
+    padding: 12px 14px;
+    background: #fff3cd;
+    border-radius: 8px;
+    font-size: 12.5px;
+    margin-top: 10px;
+  }
+
+  .alf-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+  }
+  .alf-contact-item {
+    padding: 10px 12px;
+    background: #f7f3ff;
+    border-radius: 6px;
+    font-size: 12.5px;
+  }
+  .alf-contact-item strong { color: #4a1d8c; display: block; margin-bottom: 3px; }
+
+  .alf-warning-list { list-style: none; padding: 0; margin: 0; }
+  .alf-warning-list li {
+    padding: 7px 10px;
+    background: #f7f3ff;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    font-size: 12.5px;
+    display: flex; gap: 7px; align-items: flex-start;
+  }
+  .alf-warning-list li::before { content: "⚠️"; flex-shrink: 0; }
+  .alf-warning-list li.highlight { background: #fff3cd; border: 1px solid #ffd166; }
+  .alf-warning-list li.highlight::before { content: "⭐"; }
+
+  /* Toast */
+  .alf-toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-100px);
+    background: #10b981;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 8px 26px rgba(16,185,129,0.4);
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 9999;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .alf-toast.show { transform: translateX(-50%) translateY(0); }
+
+  .section { background: white; border-radius: 10px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+  .sec-header {
+    padding: 14px 20px; font-size: 14.5px; font-weight: 800;
+    display: flex; align-items: center; gap: 10px; color: white;
+    background: linear-gradient(135deg, #4a1d8c, #7c3aed);
+  }
+  .sec-header.yellow { background: linear-gradient(135deg, #d97706, #fbbf24); }
+  .sec-header.red { background: linear-gradient(135deg, #b91c1c, #dc2626); }
+  .sec-header.blue { background: linear-gradient(135deg, #1e40af, #2563eb); }
+  .sec-header.green { background: linear-gradient(135deg, #065f46, #10b981); }
+  .sec-header.gray { background: linear-gradient(135deg, #374151, #6b7280); }
+  .sec-header .badge {
+    background: rgba(255,255,255,0.25); padding: 2px 9px;
+    border-radius: 10px; font-size: 11px; font-weight: 700;
+  }
+  .sec-body { padding: 18px 22px; }
+  .sec-body h3 { font-size: 14px; color: #4a1d8c; font-weight: 800; margin: 14px 0 8px; }
+  .sec-body h3:first-child { margin-top: 0; }
+  .sec-body p { margin: 6px 0; }
+
+  .checklist { list-style: none; padding: 0; margin: 8px 0; }
+  .checklist li {
+    padding: 8px 12px 8px 34px; margin-bottom: 6px;
+    background: #faf7ff; border-left: 3px solid #7c3aed;
+    border-radius: 4px; font-size: 13px; position: relative;
+  }
+  .checklist li::before {
+    content: '☐'; position: absolute; left: 12px; top: 7px;
+    color: #7c3aed; font-weight: 700; font-size: 15px;
+  }
+  .checklist.yellow li { background: #fff9e6; border-left-color: #d97706; }
+  .checklist.yellow li::before { color: #d97706; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  th, td { padding: 10px 12px; border-bottom: 1px solid #eee; text-align: left; vertical-align: top; }
+  th { background: #f7f3ff; color: #4a1d8c; font-weight: 800; font-size: 12.5px; }
+  tr:last-child td { border-bottom: none; }
+
+  ul, ol { padding-left: 22px; margin: 6px 0; }
+  li { margin: 4px 0; }
+
+  .alert {
+    margin: 14px 0; padding: 12px 16px;
+    background: #fee2e2; border-left: 4px solid #dc2626;
+    border-radius: 6px; font-size: 13px; color: #7f1d1d;
+  }
+  .alert b { color: #991b1b; }
+  .alert.yellow { background: #fff9e6; border-left-color: #fbbf24; color: #7a5a0a; }
+  .alert.yellow b { color: #b45309; }
+  .alert.green { background: #d1fae5; border-left-color: #10b981; color: #064e3b; }
+  .alert.green b { color: #065f46; }
+
+  .golden-box {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #d97706; border-radius: 10px;
+    padding: 18px 22px; margin: 14px 0;
+  }
+  .golden-box .title {
+    font-size: 13px; font-weight: 800; color: #92400e;
+    letter-spacing: 1px; margin-bottom: 10px;
+  }
+  .golden-box ol { padding-left: 24px; }
+  .golden-box li { font-size: 15px; font-weight: 700; color: #451a03; margin: 6px 0; }
+
+  .flow {
+    display: flex; gap: 8px; padding: 14px 18px; flex-wrap: wrap;
+    background: #faf7ff; border-radius: 8px; margin: 10px 0;
+  }
+  .flow-step {
+    background: white; padding: 9px 14px; border-radius: 6px;
+    border: 1px solid #e0d5f5; font-size: 12.5px; font-weight: 700;
+    color: #4a1d8c;
+  }
+  .flow-arrow { color: #7c3aed; font-weight: 800; align-self: center; font-size: 16px; }
+
+  .branch-cards {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+    margin: 14px 0;
+  }
+  @media (max-width: 640px) { .branch-cards { grid-template-columns: 1fr; } }
+  .branch-card {
+    background: white; border: 2px solid #e5e7eb; border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .branch-card .tag {
+    display: inline-block; background: #7c3aed; color: white;
+    padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .branch-card.sales .tag { background: #6b7280; }
+  .branch-card.b2b .tag { background: #d97706; }
+  .branch-card.ceo .tag { background: #dc2626; }
+  .branch-card.existing .tag { background: #10b981; }
+  .branch-card h4 { font-size: 14px; color: #1f2937; margin-bottom: 6px; }
+  .branch-card p { font-size: 12.5px; color: #4b5563; margin: 4px 0; }
+  .branch-card .script {
+    background: #f9fafb; border-left: 3px solid #9ca3af;
+    padding: 8px 12px; margin-top: 8px; font-size: 12.5px;
+    font-style: italic; color: #374151; border-radius: 4px;
+  }
+
+  /* 제품 Quick Ref */
+  .big-choice {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 14px 0 20px;
+  }
+  @media (max-width: 640px) { .big-choice { grid-template-columns: 1fr; } }
+  .big-btn {
+    padding: 22px 20px; border-radius: 12px; text-align: center;
+    cursor: pointer; border: 3px solid transparent; transition: all 0.15s;
+    font-family: inherit;
+  }
+  .big-btn.ice {
+    background: linear-gradient(135deg, #dbeafe, #93c5fd);
+    border-color: #2563eb;
+  }
+  .big-btn.maker {
+    background: linear-gradient(135deg, #fef3c7, #fcd34d);
+    border-color: #d97706;
+  }
+  .big-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+  .big-btn .icon { font-size: 36px; display: block; margin-bottom: 6px; }
+  .big-btn .label { font-size: 17px; font-weight: 800; color: #1f2937; }
+  .big-btn .sub { font-size: 11.5px; color: #4b5563; margin-top: 4px; display: block; }
+
+  .product-card {
+    background: white; border: 1px solid #e5e7eb; border-radius: 10px;
+    padding: 14px 18px; margin-bottom: 10px;
+  }
+  .product-card .name { font-size: 14px; font-weight: 800; color: #4a1d8c; }
+  .product-card .price { font-size: 12.5px; color: #d97706; font-weight: 700; margin: 4px 0; }
+  .product-card .desc { font-size: 12.5px; color: #6b7280; }
+
+  /* 플로팅 */
+  .float-btn {
+    position: fixed; bottom: 20px; right: 20px; z-index: 100;
+    background: linear-gradient(135deg, #d97706, #fbbf24);
+    color: white; border: none; padding: 14px 20px; border-radius: 50px;
+    font-size: 13px; font-weight: 800; font-family: inherit;
+    box-shadow: 0 4px 14px rgba(217,119,6,0.4); cursor: pointer;
+  }
+  .float-btn:hover { transform: translateY(-2px); }
+
+  .footer {
+    margin-top: 30px; padding: 16px; text-align: center;
+    font-size: 11px; color: #888;
+  }
+  .footer b { color: #4a1d8c; }
+
+  /* FAQ 아코디언 */
+  .faq-cat { margin-bottom: 16px; }
+  .faq-cat-title {
+    font-size: 13px; font-weight: 800; letter-spacing: 1px;
+    color: #4a1d8c; padding: 8px 14px; background: #f7f3ff;
+    border-radius: 8px 8px 0 0; border-left: 4px solid #7c3aed;
+  }
+  .faq-item {
+    background: white; border: 1px solid #e5e7eb; border-top: none;
+    padding: 0;
+  }
+  .faq-item:last-child { border-radius: 0 0 8px 8px; }
+  .faq-item summary {
+    padding: 12px 16px; cursor: pointer; font-size: 13.5px;
+    font-weight: 700; color: #1f2937; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+'; color: #7c3aed; font-weight: 900; font-size: 18px;
+    transition: transform 0.2s;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item summary:hover { background: #faf7ff; }
+  .faq-item .answer {
+    padding: 4px 16px 14px 16px; font-size: 13px; line-height: 1.7;
+    color: #374151; border-top: 1px dashed #e5e7eb;
+    white-space: pre-line;
+  }
+  .faq-qnum {
+    display: inline-block; background: #7c3aed; color: white;
+    font-size: 11px; font-weight: 800; padding: 2px 8px;
+    border-radius: 10px; margin-right: 8px; min-width: 34px; text-align: center;
+  }
+
+  /* 정책 표 */
+  .policy-table th, .policy-table td { font-size: 13px; }
+  .policy-table .ok { color: #065f46; font-weight: 700; }
+  .policy-table .no { color: #991b1b; font-weight: 700; }
+
+  @media print {
+    .top-bar, .tabs, .float-btn { display: none !important; }
+    .tab-panel { display: block !important; page-break-after: always; padding-top: 20px; }
+    body { background: white; }
+    .faq-item[open] summary::after { content: ''; }
+    .faq-item { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div>
+    <h1>💎 쥬얼아이스 팀 공통 매뉴얼 <span class="tag">v0.1</span></h1>
+    <div class="sub">팀원이 판단 흔들리는 순간, 2클릭으로 정답을 찾는 곳</div>
+  </div>
+</div>
+
+<div class="container">
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('routine', this)">🌅 하루 루틴</button>
+  <button class="tab" onclick="showTab('phone', this)">📞 전화 응대</button>
+  <button class="tab" onclick="showTab('cs', this)">🎧 고객 CS</button>
+  <button class="tab" onclick="showTab('guest', this)">🤝 손님 접대</button>
+  <button class="tab" onclick="showTab('space', this)">🪑 책상·공간</button>
+  <button class="tab" onclick="showTab('emergency', this)">🚨 긴급 상황</button>
+  <button class="tab" onclick="showTab('product', this)">💎 제품 Quick Ref</button>
+  <button class="tab" onclick="showTab('alf', this)">🔥 ALF 자료집</button>
+</div>
+
+<!-- 탭 1. 하루 루틴 -->
+<div class="tab-panel active" id="routine">
+
+  <div class="section">
+    <div class="sec-header">🌅 출근 루틴 <span class="badge">09:00 ~ 09:10 · 10분 안에</span></div>
+    <div class="sec-body">
+      <ul class="checklist">
+        <li>자리 점검 — 책상·PC 전원·모니터 켜기</li>
+        <li>단체방 확인 — 잔디/카톡 전날 저녁~오늘 공지 읽기</li>
+        <li>오늘 일정 확인 — 본인 캘린더·팀 캘린더 훑기</li>
+        <li>긴급 공지 확인 — 생산·배송·거래처 이슈</li>
+        <li>업무 TOP3 적기 — 오늘 반드시 끝낼 일 3개</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header gray">🌙 퇴근 루틴 <span class="badge">18:00 직전 · 10분</span></div>
+    <div class="sec-body">
+      <ul class="checklist yellow">
+        <li>업무 일지 1줄 — 오늘 한 일·마무리 못한 일</li>
+        <li>내일 TOP3 적기 — 내일 아침 바로 시작할 수 있게</li>
+        <li>책상 정리 — 서류 파일링·쓰레기·컵</li>
+        <li>전원 OFF — 모니터·전기스탠드·콘센트 (PC는 운영 상황 따라)</li>
+        <li>퇴근 체크인 — 단체방에 퇴근 인사</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert yellow">
+    <b>원칙:</b> 출근 루틴 없이 업무 시작 금지. 퇴근 루틴 없이 나가지 않기. 10분씩, 하루 20분만 지켜도 다음날이 가볍다.
+  </div>
+
+</div>
+
+<!-- 탭 2. 전화 응대 ⭐ -->
+<div class="tab-panel" id="phone">
+
+  <div class="golden-box">
+    <div class="title">📞 황금 3문장 — 무조건 먼저 물어본다</div>
+    <ol>
+      <li>"실례지만 성함이 어떻게 되세요?"</li>
+      <li>"어느 회사·어디에서 연락 주셨나요?"</li>
+      <li>"어떤 일로 연락 주셨을까요?"</li>
+    </ol>
+  </div>
+
+  <div class="alert">
+    <b>⛔ 절대 금지:</b> 상대가 누구인지 · 왜 전화했는지 파악 못한 상태에서 <b>약속·일정 확정 금지</b>.
+    상대 정보를 메모지에 적은 뒤 대응한다.
+  </div>
+
+  <div class="section">
+    <div class="sec-header blue">🔀 전화 유형별 분기 — 황금 3문장 답변 듣고 판단</div>
+    <div class="sec-body">
+
+      <div class="branch-cards">
+
+        <div class="branch-card sales">
+          <span class="tag">유형 A · 세일즈</span>
+          <h4>광고·영업·마케팅 제안 전화</h4>
+          <p>신호: "마케팅 제안", "광고 대행", "홈페이지", "서버", "보험"</p>
+          <div class="script">"담당자가 자리에 없습니다. 제안서는 공식 메일로 보내주시면 검토 후 연락드리겠습니다."</div>
+          <p style="margin-top: 8px; color: #065f46;"><b>→ 약속 잡지 않고 이메일 유도, 담당자 전달 불필요.</b></p>
+        </div>
+
+        <div class="branch-card b2b">
+          <span class="tag">유형 B · B2B 문의</span>
+          <h4>업장·호텔·카페 등 사업자 문의</h4>
+          <p>신호: "바", "호텔", "레스토랑", "납품", "견적", "도매"</p>
+          <div class="alert yellow" style="margin: 8px 0;">
+            <b>⚠️ 필수 분기 질문:</b><br>
+            "얼음이 필요하신 건가요, 얼음 <b>제조기(메이커)</b>가 필요하신 건가요?"
+          </div>
+          <p><b>→</b> 용도·수량·지역·예산·납기 5가지 메모</p>
+          <p><b>→</b> <a href="#product" onclick="showTab('product', document.querySelectorAll('.tab')[5]); return false;" style="color:#7c3aed; font-weight:700;">💎 제품 Quick Ref 탭</a> 참조하여 대응 가능 여부 확인</p>
+          <div class="script">"확인해드리고 담당자가 1시간 안에 다시 연락드리겠습니다. 연락 가능한 번호·이메일 부탁드립니다."</div>
+        </div>
+
+        <div class="branch-card ceo">
+          <span class="tag">유형 C · 대표 찾음</span>
+          <h4>"대표님 계신가요?" 전화</h4>
+          <p>신호: "대표", "사장", "김진수"</p>
+          <p><b>→</b> 황금 3문장 먼저 확인 (누구·어디·왜). 파악 전 연결 불가.</p>
+          <div class="script">"대표님은 외부 미팅 중이십니다. 용건 전달해드리고 회신 일정 잡아드리겠습니다. 성함·연락처·용건 말씀해 주시겠어요?"</div>
+          <p style="margin-top: 8px; color: #7f1d1d;"><b>→ 상대·용건 파악 완료 후 찰스에게 텍스트로 전달. 직접 연결 원칙 금지.</b></p>
+        </div>
+
+        <div class="branch-card existing">
+          <span class="tag">유형 D · 기존 거래처</span>
+          <h4>이미 알려진 거래처·파트너</h4>
+          <p>신호: 상대가 본인·회사 먼저 밝힘, 이름이 거래처 리스트에 있음</p>
+          <p><b>→</b> 담당자 바로 연결 또는 메시지 받아 전달</p>
+          <div class="script">"네 안녕하세요 OO님! 담당자 연결해드릴게요 / 지금 자리에 없어서 메시지 남겨드릴게요."</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header green">📝 전화 메모 양식 — 전화 받을 때 항상 옆에</div>
+    <div class="sec-body">
+      <table>
+        <tr><th width="28%">항목</th><th>내용</th></tr>
+        <tr><td>① 시간</td><td>받은 시각</td></tr>
+        <tr><td>② 성함·직함</td><td>이름 + 직함</td></tr>
+        <tr><td>③ 회사·어디</td><td>회사명 또는 매장명</td></tr>
+        <tr><td>④ 연락처</td><td>전화번호 + 이메일</td></tr>
+        <tr><td>⑤ 용건</td><td>한 문장으로 요약</td></tr>
+        <tr><td>⑥ B2B면 <b>얼음/메이커</b></td><td>얼음 구매? 메이커 구매?</td></tr>
+        <tr><td>⑦ 다음 액션</td><td>누가·언제 회신</td></tr>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- 탭 3. 고객 CS ⭐ -->
+<div class="tab-panel" id="cs">
+
+  <div class="golden-box">
+    <div class="title">🎧 CS 황금 3원칙 — 고객 불만·문의 받으면 무조건</div>
+    <ol>
+      <li>먼저 사과·공감 — "불편을 드려 죄송합니다"</li>
+      <li>사실 확인 — 주문번호·수령일·증빙 사진</li>
+      <li>즉답 금지 — "확인 후 O시간 내 다시 연락드리겠습니다"</li>
+    </ol>
+  </div>
+
+  <div class="alert yellow">
+    <b>원칙:</b> 쥬얼아이스 CS는 <b>속도</b>보다 <b>정확성</b>. 잘못된 답변보다 "확인 후 회신"이 낫다. 단, 확인 후 <b>약속한 시간은 반드시 지킨다</b>.
+  </div>
+
+  <div class="section">
+    <div class="sec-header blue">🔀 문의 유형 4분기 — 키워드로 빠르게 판단</div>
+    <div class="sec-body">
+
+      <div class="branch-cards">
+
+        <div class="branch-card" style="border-color:#3b82f6;">
+          <span class="tag" style="background:#3b82f6;">유형 ① · 배송</span>
+          <h4>배송 지연·조회·오배송·분실</h4>
+          <p>신호: "배송", "언제 와요", "운송장", "도착 안함", "잘못 왔어요"</p>
+          <p><b>→</b> 주문번호 요청 → 이지어드민·운송장 조회 → 답변</p>
+          <div class="script">"불편을 드려 죄송합니다. 주문번호를 알려주시면 현재 배송 상황을 확인해드리겠습니다."</div>
+        </div>
+
+        <div class="branch-card" style="border-color:#dc2626;">
+          <span class="tag" style="background:#dc2626;">유형 ② · 불량·AS</span>
+          <h4>파손·작동 불량·투명도 저하·누수</h4>
+          <p>신호: "불량", "고장", "파손", "안 되요", "투명하지 않아요"</p>
+          <p><b>→</b> 수령 <b>7일 이내</b> 확인 → 사진 + 주문번호 → 팀장 보고 → 교환/환불</p>
+          <div class="script">"불편을 드려 정말 죄송합니다. 불량 부위 사진과 주문번호를 보내주시면 빠르게 처리해드리겠습니다."</div>
+        </div>
+
+        <div class="branch-card" style="border-color:#d97706;">
+          <span class="tag" style="background:#d97706;">유형 ③ · 환불·교환</span>
+          <h4>단순 변심·사이즈·색상 교환</h4>
+          <p>신호: "환불", "교환", "반품", "변심", "마음이 바뀌어서"</p>
+          <p><b>→</b> 수령 7일 이내 미사용 확인 → 왕복 배송비 안내</p>
+          <div class="script">"수령 후 7일 이내 미사용 제품은 반품/교환 가능합니다. 왕복 배송비는 고객 부담이며, 불량·오배송의 경우 무상입니다."</div>
+        </div>
+
+        <div class="branch-card" style="border-color:#10b981;">
+          <span class="tag" style="background:#10b981;">유형 ④ · 대량·각인·B2B 리드</span>
+          <h4>법인·대량·각인·선물</h4>
+          <p>신호: "대량", "법인", "각인", "단체", "선물", "10개 이상"</p>
+          <p><b>→</b> 수량·납기·연락처 5항목 수집 → 박지현 팀장 이관</p>
+          <div class="script">"수량·납기일·연락처를 남겨주시면 담당자가 맞춤 견적을 보내드리겠습니다. B2B 문의는 1시간 내 회신 원칙입니다."</div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header">📚 FAQ 20개 전문 — 고객 질문 사전 (답변 그대로 복사해 사용 가능)</div>
+    <div class="sec-body">
+      <p style="font-size:12.5px; color:#6b7280; margin-bottom:14px;">클릭하면 답변이 펼쳐집니다. 채널톡·전화·이메일 어디서든 그대로 복사해 사용할 수 있는 표준 답변입니다.</p>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">🧊 제품 (Q1~Q5)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q1</span>투명 얼음이 뭔가요? 일반 얼음이랑 뭐가 다른가요?</span></summary><div class="answer">일반 냉동고 얼음은 공기 방울과 불순물이 갇혀 불투명합니다. 쥬얼아이스는 방향성 냉각(Directional Freezing) 기술로 위에서 아래로만 얼음이 얼면서 공기와 불순물이 빠져나가, 크리스탈처럼 투명한 얼음이 만들어집니다. 더 느리게 녹고, 음료 희석이 적으며, 시각적으로 고급스럽습니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q2</span>쥬얼아이스 제품 종류가 뭐가 있나요?</span></summary><div class="answer">현재 4가지 라인업입니다.
+• 듀오메이커: 대형 큐브 2구, 위스키/하이볼용
+• 아블러(ablr): 원통형 얼음, 텀블러 맞춤 사이즈
+• 아블러 제로(ablr Zero): 아블러의 컴팩트 버전
+• 스피어메이커(Sphere Maker): 구형 얼음, 온더락 전용
+각 제품 상세는 공식 홈페이지에서 확인 가능합니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q3</span>어떤 물을 사용해야 하나요?</span></summary><div class="answer">정수된 물을 추천합니다. 수돗물도 사용 가능하지만 미네랄 함량이 높으면 약간의 흰색 띠가 생길 수 있습니다. 생수나 정수기 물이 가장 투명한 결과를 냅니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q4</span>얼음이 완성되는 데 얼마나 걸리나요?</span></summary><div class="answer">냉동고 온도(-18°C 기준)에서 약 18~24시간이 소요됩니다. 냉동고 온도가 낮을수록 빠르게 완성됩니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q5</span>가격이 얼마인가요?</span></summary><div class="answer">제품별 가격은 공식 스토어에서 확인해주세요. 세트 구성과 단품 구성에 따라 다르며, 현재 진행 중인 프로모션도 스토어에서 확인 가능합니다.</div></details>
+      </div>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">💳 가격·구매 (Q6~Q8)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q6</span>어디서 살 수 있나요?</span></summary><div class="answer">공식 홈페이지, 네이버 스마트스토어, 쿠팡, 29CM에서 구매 가능합니다. 공식 홈페이지가 가장 다양한 구성과 혜택을 제공합니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q7</span>할인 쿠폰이나 행사가 있나요?</span></summary><div class="answer">뉴스레터 구독 시 첫 구매 할인 코드를 드립니다. 블랙프라이데이, 설/추석 시즌에 정기 할인을 진행합니다. 채널톡으로 문의주시면 현재 진행 중인 혜택을 안내드립니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q8</span>배송은 얼마나 걸리나요?</span></summary><div class="answer">결제 완료 후 영업일 기준 1~3일 내 발송, 발송 후 1~2일 내 수령 가능합니다. 주문 폭주 시즌(명절, 블랙프라이데이 등)에는 3~5일 추가 소요될 수 있습니다.</div></details>
+      </div>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">🚚 배송 (Q9~Q11)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q9</span>배송이 늦어지고 있어요.</span></summary><div class="answer">불편을 드려 죄송합니다. 주문번호를 알려주시면 현재 배송 상황을 확인해드리겠습니다. 운송장 번호로 직접 조회도 가능합니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q10</span>도서 지역/제주도 배송 되나요?</span></summary><div class="answer">가능합니다. 단, 도서산간 지역은 추가 배송비가 발생할 수 있으며 배송 기간이 2~3일 추가될 수 있습니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q11</span>얼음을 어떻게 보관하나요?</span></summary><div class="answer">완성된 얼음은 밀폐 가능한 보관용기나 지퍼백에 담아 냉동 보관하세요. 냉동고 냄새 흡수를 방지하기 위해 밀봉 보관을 권장합니다. 쥬얼아이스 전용 보관통도 별도 판매합니다.</div></details>
+      </div>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">🧰 사용·관리 (Q12~Q14)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q12</span>전용 보관통도 판매하나요?</span></summary><div class="answer">네, 판매합니다. 얼음 크기에 맞춰 설계된 전용 보관통으로, 스토어에서 단품 또는 세트로 구매 가능합니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q13</span>얼음 사이즈가 어떻게 되나요?</span></summary><div class="answer">제품별 얼음 크기는 다음과 같습니다.
+• 듀오메이커: 약 5×5×5cm 대형 큐브
+• 아블러: 직경 약 5cm 원통형
+• 아블러 제로: 직경 약 4cm 원통형
+• 스피어메이커: 직경 약 6cm 구형</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q14</span>세척은 어떻게 하나요?</span></summary><div class="answer">식기세척기 사용 불가입니다. 미지근한 물과 중성세제로 손세척 후 자연 건조해주세요. 실리콘 소재이므로 강한 세제나 솔 사용 시 손상될 수 있습니다.</div></details>
+      </div>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">🎁 각인·선물 (Q15~Q16)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q15</span>레이저 각인 서비스가 있나요?</span></summary><div class="answer">네, 기업 선물·웨딩 답례품·개인 맞춤 선물용으로 레이저 각인 서비스를 제공합니다. 로고, 이름, 날짜, 메시지 각인 가능합니다. 수량과 디자인에 따라 견적이 달라지므로 채널톡으로 문의해주세요.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q16</span>법인/대량 구매 할인이 되나요?</span></summary><div class="answer">10개 이상 구매 시 별도 견적 가능합니다. 채널톡으로 수량과 납기일을 알려주시면 맞춤 견적을 보내드립니다.</div></details>
+      </div>
+
+      <div class="faq-cat">
+        <div class="faq-cat-title">🛠️ AS·불량 (Q17~Q20)</div>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q17</span>제품에 불량이 있어요. 어떻게 하나요?</span></summary><div class="answer">불편을 드려 정말 죄송합니다. 수령일로부터 7일 이내 불량 확인 시 무상 교환/환불이 가능합니다. 불량 부위 사진과 주문번호를 이 채팅으로 보내주시면 빠르게 처리해드리겠습니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q18</span>얼음이 투명하지 않게 만들어져요.</span></summary><div class="answer">몇 가지 원인이 있을 수 있습니다.
+1. 물 문제: 미네랄 함량 높은 물 → 정수 물로 교체
+2. 냉동 시간 부족: 18시간 미만 → 24시간 이상 냉동
+3. 냉동고 온도: -15°C보다 높으면 투명도 저하
+4. 미세 기포는 정상 범위 내입니다
+위 방법으로 해결 안 되시면 사진과 함께 문의해주세요.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q19</span>환불/교환 정책이 어떻게 되나요?</span></summary><div class="answer">수령 후 7일 이내 미사용 제품은 단순 변심으로도 반품/교환 가능합니다 (왕복 배송비 고객 부담). 불량/오배송의 경우 30일 이내, 무상 처리합니다. 사용 후 단순 변심은 불가합니다.</div></details>
+        <details class="faq-item"><summary><span><span class="faq-qnum">Q20</span>일반 얼음 틀이랑 뭐가 다른가요? 비싼 이유가 있나요?</span></summary><div class="answer">일반 실리콘 얼음 틀은 사방에서 동시에 어는 방식이라 불투명합니다. 쥬얼아이스는 단열 소재 외부 케이스가 측면과 바닥을 보호하여, 위에서만 얼음이 얼도록 설계되어 있습니다. 이 '방향성 냉각' 구조가 핵심 기술이며, 별도 전기나 기기 없이 가정용 냉동고만으로 바 수준의 투명 얼음을 만들 수 있는 이유입니다.</div></details>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header yellow">💰 환불·교환·AS 정책 요약표</div>
+    <div class="sec-body">
+      <table class="policy-table">
+        <tr><th>상황</th><th>기한</th><th>배송비</th><th>처리</th></tr>
+        <tr><td>불량·오배송</td><td>수령 후 30일 이내</td><td class="ok">무상</td><td>교환 또는 환불</td></tr>
+        <tr><td>단순 변심 (미사용)</td><td>수령 후 7일 이내</td><td class="no">왕복 고객 부담</td><td>반품·교환 가능</td></tr>
+        <tr><td>사용 후 단순 변심</td><td>-</td><td>-</td><td class="no">불가</td></tr>
+        <tr><td>투명도 저하</td><td>-</td><td>-</td><td>물·시간·온도 3단 체크 → 미해결 시 사진 접수</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header green">💬 채널톡 운영 원칙 (ALF 자동응답 체계)</div>
+    <div class="sec-body">
+      <h3>운영시간</h3>
+      <p>평일 <b>10:00 ~ 18:00</b>. 그 외 시간은 야간 자동응답 + ALF(AI) 1차 대응.</p>
+
+      <h3>5개 자동 워크플로우</h3>
+      <table>
+        <tr><th width="22%">워크플로우</th><th width="28%">트리거</th><th>대응</th></tr>
+        <tr><td><b>야간·주말</b></td><td>18시 이후·주말</td><td>"운영시간 안내 + AI 어시스턴트 먼저 질문" 자동 메시지</td></tr>
+        <tr><td><b>불량·AS 긴급</b></td><td>"불량·고장·파손·환불" 키워드</td><td>담당자 앱 푸시 즉시 + "사진·주문번호 요청" 자동 메시지</td></tr>
+        <tr><td><b>신규 대화</b></td><td>첫 메시지</td><td>인사 + "상담원 연결" 안내</td></tr>
+        <tr><td><b>배송 문의</b></td><td>"배송·언제 와요·운송장·도착" 키워드</td><td>운송장 조회 링크 + "주문번호 요청" 자동 메시지</td></tr>
+        <tr><td><b>대량·각인</b></td><td>"대량·법인·각인·단체·선물" 키워드</td><td>"수량·납기·연락처 3항목 요청" 자동 메시지 → 담당자 이관</td></tr>
+      </table>
+
+      <h3>상담원 연결 트리거</h3>
+      <ul>
+        <li>고객이 "상담원 연결" 입력</li>
+        <li>불량·AS 키워드 감지 시 자동</li>
+        <li>3회 이상 AI 답변에 만족 못한 경우</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header gray">🤝 B2B·대량 리드 → 박지현 팀장 이관 절차</div>
+    <div class="sec-body">
+      <p>CS 접수 단계에서 <b>5항목</b> 먼저 수집한 뒤 팀장에게 넘긴다. 현장에서 가격·납기 확정 금지.</p>
+      <div class="flow">
+        <div class="flow-step">① 용도</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">② 수량</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">③ 지역</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">④ 예산</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">⑤ 납기</div>
+      </div>
+      <h3>이관 기준</h3>
+      <ul>
+        <li>10개 이상 대량·법인·각인 문의 → 팀장 이관 (1차 가격 자율 -10% 권한)</li>
+        <li>1회 2천만 원 이상 단일 거래 가능성 → 찰스 INBOX 에스컬레이션</li>
+        <li>언론·미디어 문의 → 즉시 찰스 전달</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert green">
+    <b>CS 응대 태도 5원칙:</b>
+    ① 먼저 사과·공감 ② 진정성(마케팅 아닌 약속) ③ 투명성(확인한 사실만) ④ 고객 리스크 먼저 언급 ⑤ 모르면 솔직히 "확인 후 회신"
+  </div>
+
+</div>
+
+<!-- 탭 4. 손님 접대 -->
+<div class="tab-panel" id="guest">
+
+  <div class="section">
+    <div class="sec-header">🚪 도착 30분 전 — 준비</div>
+    <div class="sec-body">
+      <ul class="checklist">
+        <li>누가 오는가 확인 — 성함·회사·직함·미팅 목적</li>
+        <li>미팅 호스트 확인 — 찰스? 팀장? 누가 응대?</li>
+        <li>회의실 준비 — 책상 정리, 의자 수, 화이트보드·프로젝터</li>
+        <li>자료·명함 준비 — 제품 카탈로그, 샘플, 명함 지갑</li>
+        <li>차·다과 준비 — 커피·티·물, 인원수 ×1.5</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header blue">🤝 응대 5단계</div>
+    <div class="sec-body">
+      <div class="flow">
+        <div class="flow-step">① 맞이</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">② 안내</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">③ 차·다과</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">④ 자리 안내</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">⑤ 명함 교환</div>
+      </div>
+      <table style="margin-top: 12px;">
+        <tr><th width="22%">단계</th><th>행동</th></tr>
+        <tr><td><b>① 맞이</b></td><td>"안녕하세요, OO에서 오셨죠? 기다리고 있었습니다." — 먼저 이름 확인</td></tr>
+        <tr><td><b>② 안내</b></td><td>회의실까지 안내. 앞장서되 반걸음 앞. 엘리베이터는 손님 먼저.</td></tr>
+        <tr><td><b>③ 차·다과</b></td><td>"따뜻한 음료 / 시원한 음료 어떤 게 좋으세요?" — 선택권 주기</td></tr>
+        <tr><td><b>④ 자리</b></td><td>손님은 상석(출입문 반대·창밖 보이는 쪽). 호스트는 문쪽.</td></tr>
+        <tr><td><b>⑤ 명함</b></td><td>두 손으로, 이름 읽히는 방향으로. 받은 명함은 미팅 중 테이블 위에.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header green">📧 미팅 후 24시간 내</div>
+    <div class="sec-body">
+      <ul>
+        <li>회신 이메일: 미팅 요약 + 다음 액션 + 기한</li>
+        <li>주신 명함·자료 정리 → 거래처 DB 등록</li>
+        <li>약속한 자료·샘플 발송 일정 확정</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- 탭 4. 책상·공간 -->
+<div class="tab-panel" id="space">
+
+  <div class="section">
+    <div class="sec-header">🪑 개인 책상 5룰</div>
+    <div class="sec-body">
+      <ul class="checklist">
+        <li>퇴근 시 책상 위 빈 상태 — 서류·컵·개인물품 치우기</li>
+        <li>서류는 파일링 — 진행중/완료/폐기 3분류</li>
+        <li>전원 OFF — 모니터·스탠드·멀티탭 (운영 PC 제외)</li>
+        <li>쓰레기·음식물 — 당일 비우기, 냄새 나는 음식 금지</li>
+        <li>의자 — 책상 안쪽으로 밀어넣기</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header blue">🏢 공용 공간 5룰</div>
+    <div class="sec-body">
+      <ul class="checklist">
+        <li>회의실 — 사용 후 원상태 복구, 화이트보드 지우기, 쓰레기 치우기</li>
+        <li>탕비실 — 컵 씻기, 커피/티 리필 떨어지면 단체방 공유</li>
+        <li>택배 — 수령 즉시 담당자에게 알림, 본인 것 당일 수령</li>
+        <li>공용 PC·프린터 — 개인 파일 저장 금지, 프린트 후 바로 수거</li>
+        <li>냉장고 — 본인 음료·음식에 이름, 3일 이상 방치 금지</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert green">
+    <b>원칙:</b> 공용 공간은 "다음 사람이 쓸 수 있는 상태"로 둔다. 내가 쓰기 전 상태보다 더 깨끗하게.
+  </div>
+
+</div>
+
+<!-- 탭 5. 긴급 상황 -->
+<div class="tab-panel" id="emergency">
+
+  <div class="section">
+    <div class="sec-header red">🚨 연락 트리 — 무슨 일이든 아래 순서</div>
+    <div class="sec-body">
+      <div class="flow">
+        <div class="flow-step">① 직속 팀장</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">② 대표(찰스)</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">③ 단체방 공유</div>
+      </div>
+      <p style="margin-top: 10px; font-size: 12.5px; color: #6b7280;">기본 원칙: 혼자 판단해서 처리하지 않는다. 먼저 알린다.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header yellow">📦 택배·샘플 사고</div>
+    <div class="sec-body">
+      <ul>
+        <li>파손·분실 — 택배사 접수 번호 확보 → 팀장 보고 → 거래처에 선제 사과</li>
+        <li>오배송 — 회수 일정 확정 후 재발송</li>
+        <li>지연 — 지연 사유·새 도착일 먼저 거래처에 공유 (질문 받기 전에)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header red">😡 고객 컴플레인</div>
+    <div class="sec-body">
+      <ul>
+        <li>먼저 듣기 — 중간에 끊지 않기, 변명 금지</li>
+        <li>사실 확인 — 주문번호·수령일·증빙 사진</li>
+        <li>즉답 금지 — "확인 후 O시간 내 다시 연락드리겠습니다"</li>
+        <li>팀장·찰스 보고 후 대응 방침 확정 → 고객 회신</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header gray">💻 시스템 장애</div>
+    <div class="sec-body">
+      <ul>
+        <li>주문 시스템·스마트스토어·홈페이지 다운 — 찰스에게 즉시 알림</li>
+        <li>결제·배송 시스템 — 담당자 즉시 공유, 고객 문의 유예 안내</li>
+        <li>인터넷·네트워크 — 팀장 알리고 대기, 혼자 설정 건드리지 않기</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- 탭 6. 제품 Quick Ref ⭐ -->
+<div class="tab-panel" id="product">
+
+  <div class="alert yellow">
+    <b>💡 B2B 문의 받으면 가장 먼저:</b> 상대가 <b>얼음</b>이 필요한지, <b>얼음 제조기(메이커)</b>가 필요한지 확인한다. 완전히 다른 카테고리.
+  </div>
+
+  <div class="big-choice">
+    <button class="big-btn ice" onclick="document.getElementById('ice-section').scrollIntoView({behavior:'smooth'})">
+      <span class="icon">🧊</span>
+      <span class="label">얼음이 필요해요</span>
+      <span class="sub">완제품 얼음 구매 · 업장 납품</span>
+    </button>
+    <button class="big-btn maker" onclick="document.getElementById('maker-section').scrollIntoView({behavior:'smooth'})">
+      <span class="icon">⚙️</span>
+      <span class="label">얼음 제조기가 필요해요</span>
+      <span class="sub">메이커 · 틀 · 기계 구매</span>
+    </button>
+  </div>
+
+  <div class="section" id="ice-section">
+    <div class="sec-header blue">🧊 얼음 납품 (B2B 전용)</div>
+    <div class="sec-body">
+      <p><b>대응 방식:</b> 쥬얼아이스는 자체 생산 투명얼음 납품 가능. 단, 용도·수량·지역·납기에 따라 가능 여부 확인 필요.</p>
+      <h3>확인해야 할 5가지</h3>
+      <ol>
+        <li><b>용도</b> — 바/레스토랑/카페/호텔/이벤트</li>
+        <li><b>얼음 형태</b> — 구형(Sphere) / 큐브 / 다이아몬드 / 크러쉬</li>
+        <li><b>수량·빈도</b> — 월 O개 / 주 O회 납품</li>
+        <li><b>지역</b> — 배송 가능 권역 확인 필요</li>
+        <li><b>납기</b> — 정기? 일회성?</li>
+      </ol>
+      <div class="alert">
+        <b>즉답 금지:</b> 가격·수량·납기는 현장에서 답하지 말 것. "확인 후 담당자가 연락드리겠습니다"가 정답.
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="maker-section">
+    <div class="sec-header yellow">⚙️ 얼음 제조기 · 메이커 (주력 제품)</div>
+    <div class="sec-body">
+      <p style="margin-bottom: 12px;">쥬얼아이스 주력 제품 라인업입니다. 상세 SKU·가격은 <a href="jihyun-hub.html" target="_blank" style="color:#7c3aed; font-weight:700;">📊 사업자산 허브 · 상품리스트</a> 참조.</p>
+
+      <div class="product-card">
+        <div class="name">듀오메이커 (DUO MAKER)</div>
+        <div class="price">가정용 프리미엄 · 중가 대 (자세한 가격 허브 참조)</div>
+        <div class="desc">가정용 2구 투명얼음 제조기. 대표 주력 제품. 홈바·홈카페 타겟.</div>
+      </div>
+
+      <div class="product-card">
+        <div class="name">Sphere Maker</div>
+        <div class="price">업소·고급 가정용 (중~상)</div>
+        <div class="desc">구형 얼음 제조. 위스키·칵테일 바 전용 프리미엄 라인.</div>
+      </div>
+
+      <div class="product-card">
+        <div class="name">ablr / ablr Zero</div>
+        <div class="price">프리미엄 텀블러 일체형</div>
+        <div class="desc">텀블러 안에서 얼음이 만들어지는 일체형. 휴대성·선물용.</div>
+      </div>
+
+      <div class="product-card">
+        <div class="name">40MM 큐브 메이커</div>
+        <div class="price">출시 예정 (2026년 6월)</div>
+        <div class="desc">40mm 정방형 프리미엄 큐브. B2B 업장 타겟. 와디즈 런칭 예정.</div>
+      </div>
+
+      <div class="product-card">
+        <div class="name">미니 큐브 / 크리슨 글라스잔 등</div>
+        <div class="price">액세서리·부속 라인</div>
+        <div class="desc">보조 상품 라인. 전체 21종 SKU 목록은 허브에서 확인.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-header green">📞 문의 받았을 때 기본 스크립트</div>
+    <div class="sec-body">
+      <div class="alert green">
+        "네 쥬얼아이스입니다. <b>먼저 여쭤볼게요 — 얼음이 필요하신 건가요, 얼음 제조기가 필요하신 건가요?</b><br><br>
+        (확인 후) 용도·수량·예산·지역·일정 몇 가지 여쭤보고, 담당자가 확인해서 <b>1시간 안에</b> 다시 연락드리겠습니다.<br>
+        연락 가능한 번호·이메일 부탁드립니다."
+      </div>
+      <p style="font-size: 12.5px; color: #6b7280;"><b>핵심:</b> 현장에서 가격·납기 확정 금지. 담당자 회신 원칙. 메모 양식(탭 ② 전화 응대)에 빠짐없이 기록.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- 탭 8. 🔥 ALF 자료집 (채널톡 AI 등록용 실전 데이터) -->
+<div class="tab-panel" id="alf">
+
+  <div class="alf-hero">
+    <div class="badge">채널톡 ALF 등록용 · 실전 데이터</div>
+    <h2>🔥 채널톡 ALF 실전 자료집</h2>
+    <p>쥬얼아이스 3년치 실전 CS · 145건 트러블슈팅 · 5대 얼음 증상 스크립트 · 제품별 매뉴얼</p>
+  </div>
+
+  <div class="alf-guide">
+    <h3>📌 사용 방법</h3>
+    <ol>
+      <li>각 섹션 <strong>"전체 복사"</strong> 버튼 → 채널톡 ALF > 지식베이스 > 문서 추가에 붙여넣기</li>
+      <li>섹션별 <strong>별도 문서로 등록</strong> (ALF 검색 정확도 ↑)</li>
+      <li>복사 완료된 섹션은 <strong>녹색 체크 ✅</strong>로 표시 (브라우저 저장)</li>
+      <li>정책 수치(배송비 등)는 <strong>현재 기준 재확인</strong> 후 등록 (2021 기준값 포함)</li>
+    </ol>
+  </div>
+
+  <div class="alf-progress">
+    <div class="alf-progress-header">
+      <div class="alf-progress-title">📊 ALF 등록 진행 현황</div>
+      <div class="alf-progress-count">
+        <strong id="alfDoneCount">0</strong> / 9 섹션 완료
+        <button class="alf-reset-btn" onclick="resetAlfProgress()">초기화</button>
+      </div>
+    </div>
+    <div class="alf-progress-bar">
+      <div class="alf-progress-fill" id="alfProgressFill"></div>
+    </div>
+  </div>
+
+  <div class="alf-toc">
+    <h3>📑 목차</h3>
+    <div class="alf-toc-grid">
+      <a href="#alf-s1" class="alf-toc-item" data-parent="alf-s1"><span class="alf-toc-num">1</span>실전 FAQ 22개</a>
+      <a href="#alf-s2" class="alf-toc-item" data-parent="alf-s2"><span class="alf-toc-num">2</span>얼음 증상 5종</a>
+      <a href="#alf-s3" class="alf-toc-item" data-parent="alf-s3"><span class="alf-toc-num">3</span>트러블슈팅 인사이트</a>
+      <a href="#alf-s4" class="alf-toc-item" data-parent="alf-s4"><span class="alf-toc-num">4</span>듀오메이커 매뉴얼</a>
+      <a href="#alf-s5" class="alf-toc-item" data-parent="alf-s5"><span class="alf-toc-num">5</span>아블러 매뉴얼</a>
+      <a href="#alf-s6" class="alf-toc-item" data-parent="alf-s6"><span class="alf-toc-num">6</span>아블러 제로 스펙</a>
+      <a href="#alf-s7" class="alf-toc-item" data-parent="alf-s7"><span class="alf-toc-num">7</span>세척 가이드</a>
+      <a href="#alf-s8" class="alf-toc-item" data-parent="alf-s8"><span class="alf-toc-num">8</span>배송/AS/교환 정책</a>
+      <a href="#alf-s9" class="alf-toc-item" data-parent="alf-s9"><span class="alf-toc-num">9</span>회사 정보/연락처</a>
+    </div>
+  </div>
+
+  <!-- 섹션 1: FAQ 22 -->
+  <div class="alf-section" id="alf-s1">
+    <div class="alf-section-title">
+      <span class="num">1</span> 실전 FAQ 22개
+      <span class="alf-section-subtitle">2021 업무 인수인계 기준</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 ALF 지식베이스 "FAQ" 문서로 등록</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-faq22', 'alf-s1')">전체 복사</button>
+    </div>
+    <div id="alf-faq22">
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q1</span>메이커/몰드가 더럽게 왔어요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">물류 보관·운송 과정에서 <strong>정전기 때문에 주변 먼지가 달라붙은 것</strong>입니다. 사용 중이던 상품이 절대 아니며 <strong>물로 잘 세척해서 사용</strong>해주세요.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q2</span>어떤 물을 사용해야 하나요?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">수돗물로도 투명한 얼음이 만들어지지만 <strong>생수 추천</strong>. 물 종류/온도보다 <strong>냉동고 온도가 가장 중요</strong>합니다.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q3</span>불투명한 부분이 있어요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">너무 빠르게 얼어서 공기·불순물이 못 빠진 것. 체크: 공기 많이 들어가지 않게, <strong>손잡이 구멍이 차도록</strong> 충분히, 냉동고 온도 너무 낮지 않은지 확인.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q4</span>기름처럼 뜨는 부유물이 나와요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">실리콘 제작 과정의 <strong>이형제</strong>입니다. 인체 무해하지만 섭취는 권장 X. <strong>전자레인지 3~4분 가열 후 식히기</strong>로 제거 가능.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q5</span>화이트몰드에 검은 점이 있어요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">화이트·블랙 <strong>같은 금형 공용 생산</strong>으로 생길 수 있는 현상. 이물질 아님. 불편하시다면 <strong>새상품 교환</strong> 드립니다.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q6</span>물 끓여 얼렸는데 투명하지 않아요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">물 온도보다 <strong>냉동고 온도</strong>가 중요. 최고: <strong>미지근한 물 + 영하 14~18도 + 천천히 얼리기</strong>.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q7</span>몰드 사이즈?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">듀오메이커 얼음통: <strong>가로 18cm × 세로 15cm</strong> (휴지각의 3분의 2 정도).</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q8</span>몰드 냄새가 나요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">원재료 사출 시 잔향. <strong>세척 후 미온수 1시간 이상 담궈두기</strong> 추천. 실리콘은 <strong>식약처 인증 통과</strong>.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q9</span>잉여얼음 처리?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">메이커 안팎에 뜨거운 물 부으면 <strong>20분에 녹습니다</strong>. 카빙해서 활용.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q10</span>얼음 사이즈?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>65mm</strong> (검지 손가락보다 조금 작은 사이즈).</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q11</span>어울리는 음료 추천<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">• <strong>구형/스피어/큐브</strong> → 아이스 아메리카노·위스키·콜드브루·진·보드카<br>• <strong>다이아/하트</strong> → 칵테일 (꽃/허브 넣으면 ↑)<br>• <strong>해골</strong> → 진토닉·갓파더·파우스트</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q12</span>몰드가 안 빠져요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>물 듬뿍 + 실온 5~10분 두기</strong>.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q13</span>꽃 얼음 만드는 법<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">유튜브: https://www.youtube.com/watch?v=NKEiocI6vMs</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q14</span>얼음이 계속 깨져 나와요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>20시간 이상 얼리기</strong>. 12시간 이하면 밑 얼음이 충분히 안 얼어 깨집니다.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q15</span>음료에 넣자마자 깨져요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>천천히 음료/술을 부어주는 워밍</strong>을 해야 안 깨집니다.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q16</span>얼음 장기 보관법<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>종이 호일에 싸서 냉동 보관</strong>하면 오랜 기간 퀄리티 유지.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q17</span>식기세척기 가능한가요?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">• <strong>메이커 얼음통: 불가</strong> (모양 변형)<br>• <strong>실리콘 몰드: 가능</strong></div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q18</span>컵 추천<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">• 미니스피어5 → <strong>하이볼 잔</strong><br>• 일반 얼음(6~7cm) → <strong>입구 7cm 이상</strong><br>• 노징글래스·테이스팅 잔은 <strong>사용 불가</strong></div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q19</span>재입고 언제?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">확인 후 안내. <strong>카카오톡 플러스 친구로 채널 추가</strong>하시면 재입고 알림 발송.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q20</span>오배송/배송누락<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">죄송합니다. <strong>받으신 물품 사진을 찍어 보내주시면 당일 출고</strong>해드립니다.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q21</span>A/S 가능한가요?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>왕복 배송비는 구매자 부담</strong>, 제품 상태에 따라 <strong>실비청구</strong> 발생 가능.<br>입금 계좌: 207301-04-086853 국민은행 (예금주: (주)마스터마인딩그룹)</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q22</span>얼음에 기포가 생겨요<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">몰드를 빨리 넣거나 뜨거운 물 사용 시 기포 발생. <strong>일반 식수기 물로도 투명하게 얼려</strong>집니다. 몰드를 <strong>천천히</strong> 넣어주세요.</div></div>
+    </div>
+  </div>
+
+  <!-- 섹션 2: 얼음 증상 5종 -->
+  <div class="alf-section" id="alf-s2">
+    <div class="alf-section-title">
+      <span class="num">2</span> 얼음 증상 5종 대응
+      <span class="alf-section-subtitle">2025-02 운영 표준 스크립트</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 "얼음 투명도/형태" 문의 완전 가이드</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-sym5', 'alf-s2')">전체 복사</button>
+    </div>
+    <div id="alf-sym5">
+      <table>
+        <thead><tr><th>#</th><th>증상</th><th>구분</th><th>진단</th><th>고객 안내 스크립트</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>크리스탈 얼음볼</strong></td><td><span class="alf-tag-normal">정상</span></td><td>목표 결과물</td><td>"고객님은 프로 아이스 메이커입니다."</td></tr>
+          <tr><td>2</td><td><strong>미세기포</strong></td><td><span class="alf-tag-normal">정상</span></td><td>물 자체 요인</td><td>"상온 1~2분 후 자연 소실. 개선하시려면 사용하는 물을 변경해보세요."</td></tr>
+          <tr><td>3</td><td><strong>바닥면 잔공</strong></td><td><span class="alf-tag-normal">정상</span></td><td>자연 소실</td><td>"상온 1~2분 후 모두 자연적으로 사라져 크리스탈 얼음이 됩니다."</td></tr>
+          <tr><td>4</td><td><strong>큰 홈 발생</strong></td><td><span class="alf-tag-fix">보완</span></td><td>물 부족</td><td>"물이 부족합니다. MAX선까지 넣고 뚜껑을 지긋이 눌러주세요."</td></tr>
+          <tr><td>5</td><td><strong>방사선 형성</strong></td><td><span class="alf-tag-fix">보완</span></td><td>급속 냉동</td><td>"냉동고가 급속 냉동입니다. 냉동고 온도를 올려주세요."</td></tr>
+        </tbody>
+      </table>
+      <div class="alf-box-info">
+        <strong>💎 핵심 원칙</strong><br>
+        ① 정상 3증상 → 불량 아님을 안심시키고 상온 1~2분 방치 안내<br>
+        ② 보완 2증상 → 고객 환경 조정 가이드<br>
+        ③ "물 MAX선" + "냉동고 온도 올려주세요" = 해결 스크립트 두 축
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 3: 트러블슈팅 인사이트 -->
+  <div class="alf-section" id="alf-s3">
+    <div class="alf-section-title">
+      <span class="num">3</span> 트러블슈팅 실전 인사이트
+      <span class="alf-section-subtitle">145건 사례 기반 · 2021~2023</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 ALF 응대 메타데이터</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-trouble', 'alf-s3')">전체 복사</button>
+    </div>
+    <div id="alf-trouble">
+      <h3>📊 채널별 CS 접수 비중</h3>
+      <table>
+        <thead><tr><th>채널</th><th>건수</th><th>비중</th></tr></thead>
+        <tbody>
+          <tr><td><strong>카카오채널</strong></td><td>60</td><td>약 42% (압도적 1위)</td></tr>
+          <tr><td>전화/유선</td><td>20</td><td>14%</td></tr>
+          <tr><td>채널톡 (자사몰)</td><td>15</td><td>10%</td></tr>
+          <tr><td>네이버톡톡</td><td>12</td><td>8%</td></tr>
+          <tr><td>쿠팡·와디즈·기타</td><td>나머지</td><td>26%</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🔥 증상별 빈도 TOP 10</h3>
+      <table>
+        <thead><tr><th>순위</th><th>증상</th><th>건수</th><th>주 대응</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>제품 내용 상이 (스티커 오부착)</td><td>25</td><td>당일 맞교환</td></tr>
+          <tr><td>2</td><td>주문 실수·오배송·변심 교환</td><td>각 8</td><td>배송비 정책 안내</td></tr>
+          <tr><td>3</td><td><strong>EPP-물통 끼는 현상</strong></td><td>8</td><td>회수 → 교환</td></tr>
+          <tr><td>4</td><td>변심 반품·물통 파손</td><td>각 7</td><td>배송비 차감 후 환불</td></tr>
+          <tr><td>5</td><td>부유물(이형제)·EPP 떠있는 현상</td><td>각 3</td><td>FAQ Q4 안내 + 교환</td></tr>
+        </tbody>
+      </table>
+
+      <h3>💡 핵심 인사이트</h3>
+      <div class="alf-insight-grid">
+        <div class="alf-insight-card"><h4>1. 카카오가 CS의 42%</h4><p>카카오톡 1:1 응대 속도·품질이 전체 CS 품질의 핵심. 우선순위 배정 필요.</p></div>
+        <div class="alf-insight-card"><h4>2. EPP-물통 구조적 취약점</h4><p>끼는/뜨는/분리 합쳐 15건+. 제조 공정 QC 필요. CS는 즉각 맞교환.</p></div>
+        <div class="alf-insight-card"><h4>3. 스티커 오부착 19건 동일 패턴</h4><p>"스틱 블루 라벨 → 아이스볼 내용물" — 물류 특정 배치 전체 오부착.</p></div>
+        <div class="alf-insight-card"><h4>4. 화이트 케이스 스크레치 반복</h4><p>외관 QC 및 포장 방식 재검토. 대체 출고(블랙) 패턴 많음.</p></div>
+        <div class="alf-insight-card"><h4>5. 변심 교환 "큐브/스틱 → 아이스볼"</h4><p>구매 단계에서 아이스볼 디폴트 추천하면 CS 감축 가능.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 4: 듀오메이커 매뉴얼 -->
+  <div class="alf-section" id="alf-s4">
+    <div class="alf-section-title">
+      <span class="num">4</span> 듀오메이커 풀매뉴얼
+      <span class="alf-section-subtitle">7단계 · 도요타쯔우쇼판</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 듀오메이커 사용법 표준 답변</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-duo', 'alf-s4')">전체 복사</button>
+    </div>
+    <div id="alf-duo">
+      <div class="alf-step"><div class="alf-step-num">1</div><div class="alf-step-content"><strong>물 채우기</strong><br>미온수(35~40°C)/정수물을 <strong>Max라인</strong>까지. 물통 PP소재, 내열 125°C, 환경호르몬 無.</div></div>
+      <div class="alf-step"><div class="alf-step-num">2</div><div class="alf-step-content"><strong>몰드 결합</strong><br>넘친 물이 있으면 <strong>몰드 위 구멍으로 다시 채우기</strong>. 안 채우면 깨져 나옴.</div></div>
+      <div class="alf-step"><div class="alf-step-num">3</div><div class="alf-step-content"><strong>냉동 24H (스틱 36H)</strong><br><strong>영하 16~18°C 약냉</strong>일수록 투명도↑. <strong>냉매에서 최대한 먼 위치</strong>. 몰드 봉긋 솟아오르면 완성.</div></div>
+      <div class="alf-step"><div class="alf-step-num">4</div><div class="alf-step-content"><strong>물통 분리·몰드 꺼내기</strong></div></div>
+      <div class="alf-step"><div class="alf-step-num">5</div><div class="alf-step-content"><strong>얼음 분리</strong><br>몰드 윗부분 잡고 양쪽으로 벌리기.</div></div>
+      <div class="alf-step"><div class="alf-step-num">6</div><div class="alf-step-content"><strong>얼음 꼭지 정리</strong><br>과도나 포크로 잘라내기.</div></div>
+      <div class="alf-step"><div class="alf-step-num">7</div><div class="alf-step-content"><strong>물통 잔얼음 처리</strong><br>물통 뒤집고 <strong>바닥에 온수</strong>. 캐낸 얼음은 <strong>삼등분으로 쪼개 활용</strong>.</div></div>
+      <div class="alf-box-warning">
+        <strong>🧊 스틱 몰드 전용 팁</strong><br>
+        • 스틱은 <strong>36시간</strong> 권장<br>
+        • 냉매에서 가장 먼 곳<br>
+        • <strong>방한팩(보냉팩)으로 감싸</strong> 얼리면 투명도 ↑
+      </div>
+    </div>
+  </div>
+
+  <!-- 섹션 5: 아블러 -->
+  <div class="alf-section" id="alf-s5">
+    <div class="alf-section-title">
+      <span class="num">5</span> 아블러(ablr) 사용가이드
+      <span class="alf-section-subtitle">텀블러 + 뚜껑 + 몰드 / 6단계</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 "The art of clear ice perfected in a tumbler"</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-ablr', 'alf-s5')">전체 복사</button>
+    </div>
+    <div id="alf-ablr">
+      <div class="alf-step"><div class="alf-step-num">1</div><div class="alf-step-content"><strong>물 채우기</strong><br>상온(10~15°C) 물을 텀블러 <strong>굴곡면</strong>까지. 미지근한 물(35~40°C)이 투명도 ↑.</div></div>
+      <div class="alf-step"><div class="alf-step-num">2</div><div class="alf-step-content"><strong>몰드 결합</strong><br>넘치면 몰드 위 구멍에 물 더 채우기. 부족 상태로 얼리면 윗부분 비어짐.</div></div>
+      <div class="alf-step"><div class="alf-step-num">3</div><div class="alf-step-content"><strong>냉동 24H+</strong><br>영하 12°C 이상 약냉. <strong>차가운 바람 나오는 곳에서 최대한 멀리</strong>.</div></div>
+      <div class="alf-step"><div class="alf-step-num">4</div><div class="alf-step-content"><strong>몰드 분리</strong><br>완전 냉각 시 몰드가 <strong>0.5~1cm 봉긋</strong> 올라옴. 손잡이 당겨 분리.</div></div>
+      <div class="alf-step"><div class="alf-step-num">5</div><div class="alf-step-content"><strong>얼음 꺼내기</strong><br>몰드 양손에 쥐고 <strong>gently twist or flex</strong> (부드럽게 비틀거나 휘게).</div></div>
+      <div class="alf-step"><div class="alf-step-num">6</div><div class="alf-step-content"><strong>활용</strong><br>아이스음료·홈텐딩. <strong>텀블러 하단 잔얼음 위에 바로 음료 부어 얼음컵처럼 활용</strong>.</div></div>
+      <div class="alf-box-warning">
+        <strong>⭐ 최다 질문 포인트 (CS 1순위)</strong><br>
+        "얼리고 꺼낸 직후엔 <strong>상온에 5분간 방치</strong> 후 몰드를 꺼내주세요."
+      </div>
+
+      <h3>트러블슈팅 3종</h3>
+      <div class="alf-trouble-card"><h4>1. 크랙 (금이 가는 현상)</h4><p>원인: 온도차이. 해결: 음료 넣기 전 <strong>잔에 1분 칠링</strong>.</p></div>
+      <div class="alf-trouble-card"><h4>2. 성에 (하얀 성에 서림)</h4><p>원인: 공기 중 습도. 해결: 잠시 상온 또는 음료에 넣으면 <strong>바로 투명해짐</strong>.</p></div>
+      <div class="alf-trouble-card"><h4>3. 하얀 가루</h4><p>원인: 물 속 <strong>미네랄</strong>. 인체 무해, <strong>구연산으로 세척</strong>.</p></div>
+
+      <h3>주의사항 핵심</h3>
+      <ul class="alf-warning-list">
+        <li>중성세제 손세척, 철수세미·거친솔 금지</li>
+        <li>표백제·염소제·연마제 사용 금지</li>
+        <li>전자레인지·가스레인지·오븐 불가</li>
+        <li>미량의 기포·점·스크래치는 반품 사유 아님</li>
+        <li>유제품·과즙·염분 음식 장시간 보관 금지</li>
+        <li>밀폐형 아님 → 가방에 넣으면 샐 수 있음</li>
+        <li class="highlight"><strong>얼리고 꺼낸 직후엔 상온 5분 방치 후 몰드 꺼내기</strong></li>
+        <li>얼음 형태에 따라 뚜껑 체결 안 될 수 있음</li>
+        <li>바닥 하얀 물질은 무기질, 인체 무해. 구연산 세척 OK</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 섹션 6: 아블러 제로 -->
+  <div class="alf-section" id="alf-s6">
+    <div class="alf-section-title">
+      <span class="num">6</span> 아블러 제로 스펙
+      <span class="alf-section-subtitle">25-0717 · 420ml</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 아블러 제로 스펙 문의 표준 답변</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-ablrzero', 'alf-s6')">전체 복사</button>
+    </div>
+    <div id="alf-ablrzero">
+      <h3>제품 스펙</h3>
+      <table>
+        <tr><th>제품명</th><td>아블러 제로 텀블러 (Ablr Zero)</td></tr>
+        <tr><th>용량</th><td>420ml</td></tr>
+        <tr><th>무게</th><td>약 400g</td></tr>
+        <tr><th>크기</th><td>9.4cm × 16.1cm</td></tr>
+      </table>
+
+      <h3>재질</h3>
+      <table>
+        <tr><th>컵 본체 (외부)</th><td>폴리카보네이트</td></tr>
+        <tr><th>컵 본체 (내부)</th><td>고붕규산 유리</td></tr>
+        <tr><th>컵 입구</th><td>트라이탄 (PCT)</td></tr>
+        <tr><th>뚜껑 본체</th><td>폴리카보네이트 + 폴리프로필렌</td></tr>
+        <tr><th>스트랩</th><td>실리콘</td></tr>
+        <tr><th>빨대</th><td>폴리프로필렌 + 실리콘</td></tr>
+      </table>
+
+      <h3>FAQ 4문항</h3>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q</span>식기세척기 가능?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a"><strong>뚜껑 분리</strong> 후 사용.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q</span>강화유리 맞나요?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">내부는 <strong>고붕규산 유리</strong>. 충격에 약함, 떨어뜨리지 마세요.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q</span>전자레인지 가능?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">전자레인지 사용 <strong>불가</strong>.</div></div>
+      <div class="alf-faq-item"><div class="alf-faq-q" onclick="toggleAlfFaq(this)"><span class="alf-faq-num">Q</span>뜨거운 음료 가능?<span class="alf-faq-toggle">▼</span></div><div class="alf-faq-a">가능하나 <strong>표시 용량 초과 금지</strong>.</div></div>
+    </div>
+  </div>
+
+  <!-- 섹션 7: 세척 가이드 -->
+  <div class="alf-section" id="alf-s7">
+    <div class="alf-section-title">
+      <span class="num">7</span> 실리콘 몰드 세척 가이드
+      <span class="alf-section-subtitle">냄새 · 끈적임 · 살균</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 실리콘 관련 냄새·끈적임 문의 응대</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-cleaning', 'alf-s7')">전체 복사</button>
+    </div>
+    <div id="alf-cleaning">
+      <div class="alf-box-warning">
+        <strong>💎 기본 원칙:</strong> 한 방법으로 안 되면 <strong>시간차 두고 두 가지 방법 병행</strong>이 효과적.
+      </div>
+
+      <h3>1. 냄새 제거 6가지</h3>
+      <table>
+        <thead><tr><th>방법</th><th>시간/비율</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>① 쌀뜨물</td><td>4시간+</td><td>진할수록 좋음, 상온/미온수</td></tr>
+          <tr><td>② 설탕물</td><td>1:2, 4시간+</td><td>흐르는 물 세척</td></tr>
+          <tr><td>③ 소주물</td><td>1:1, 4시간+</td><td>흐르는 물 세척</td></tr>
+          <tr><td>④ 베이킹소다 열탕</td><td>1분</td><td>끈적임 제거 효과</td></tr>
+          <tr><td>⑤ 햇볕 건조</td><td>3~4시간</td><td>열탕 후 건조 ↑</td></tr>
+          <tr><td>⑥ 베이킹소다+구연산</td><td>1:1, 4시간+</td><td>3분 열탕도 가능</td></tr>
+        </tbody>
+      </table>
+
+      <h3>2. 끈적임 제거</h3>
+      <div class="alf-trouble-card"><h4>① 베이킹 소다 열탕</h4><p>냄비 반 채운 물에 베이킹소다 2큰술 → <strong>3분 열탕</strong> → 헹구기.</p></div>
+      <div class="alf-trouble-card"><h4>② 직접 도포</h4><p>실리콘에 뿌린 후 <strong>맨손으로 문지르기</strong>. Tip: 물 살짝 뿌리고 베이킹소다 흩뿌려 방치 후 문지르기.</p></div>
+
+      <h3>3. 살균 소독</h3>
+      <div class="alf-box-info"><strong>끓는 물에 30초 이내 열탕 소독</strong> 후 건조.</div>
+
+      <h3>CS 응대 요약</h3>
+      <table>
+        <thead><tr><th>증상</th><th>1순위</th><th>2순위</th></tr></thead>
+        <tbody>
+          <tr><td>고무/이형제 냄새</td><td>쌀뜨물 4시간</td><td>베이킹소다 열탕 1분</td></tr>
+          <tr><td>끈적임</td><td>베이킹소다 열탕 3분</td><td>직접 도포</td></tr>
+          <tr><td>일반 오염</td><td>베이킹소다 문지르기</td><td>햇볕 3~4시간</td></tr>
+          <tr><td>살균</td><td>끓는 물 30초</td><td>-</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 섹션 8: 배송/AS/교환 정책 -->
+  <div class="alf-section" id="alf-s8">
+    <div class="alf-section-title">
+      <span class="num">8</span> 배송·AS·교환 정책표
+      <span class="alf-section-subtitle">2021 기준 · 현재 기준 재확인 필요</span>
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">⚠️ 수치는 현재 기준 재확인 후 ALF 등록</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-policy', 'alf-s8')">전체 복사</button>
+    </div>
+    <div id="alf-policy">
+      <h3>배송 정책</h3>
+      <table>
+        <thead><tr><th>항목</th><th>기준</th></tr></thead>
+        <tbody>
+          <tr><td>주문 마감</td><td>어제 16:00~오늘 16:00 주문건 → 오늘 18:00 이후 당일 출고</td></tr>
+          <tr><td>평균 배송</td><td>영업일 기준 <strong>2일</strong></td></tr>
+          <tr><td>주말 주문</td><td>금요일 주문 → 월요일 18:00 이후 출고</td></tr>
+          <tr><td>수거 기사</td><td>17~18시 수거</td></tr>
+        </tbody>
+      </table>
+
+      <h3>교환/반품 배송비</h3>
+      <table>
+        <thead><tr><th>유형</th><th>배송비</th><th>절차</th></tr></thead>
+        <tbody>
+          <tr><td>단순변심 교환</td><td><strong>6,000원</strong> (왕복)</td><td>입금 확인 후 교환</td></tr>
+          <tr><td>단순변심 반품</td><td>왕복 배송비 차감 환불</td><td>자동 수거 또는 회수</td></tr>
+          <tr><td>제주도 교환</td><td><strong>12,000원</strong></td><td>도서산간 추가</td></tr>
+          <tr><td>스마트스토어 주문실수</td><td>7,000원</td><td>입금 확인 후 반품</td></tr>
+          <tr><td>자사몰 주문실수</td><td>6,000원</td><td>입금 확인 후 반품/교환</td></tr>
+          <tr><td>상품 불량·오배송</td><td><strong>무료</strong></td><td>당일 출고 가능</td></tr>
+        </tbody>
+      </table>
+
+      <h3>AS 배송비 (제품별)</h3>
+      <table>
+        <thead><tr><th>제품</th><th>배송비</th><th>처리</th></tr></thead>
+        <tbody>
+          <tr><td>싱글메이커 AS</td><td>6,000원</td><td>수거 → 본드 접착 → 건조 → 재발송</td></tr>
+          <tr><td>듀오메이커 AS</td><td>팀장 컴펌</td><td>입고 후 AS</td></tr>
+          <tr><td>물통 AS</td><td>4,000원</td><td>입금 확인 후 발송</td></tr>
+          <tr><td>몰드 파손 (사용 중)</td><td>3,000원</td><td>리퍼블리쉬 교환</td></tr>
+          <tr><td>몰드 파손 (사자마자)</td><td>무료</td><td>새 제품 교환</td></tr>
+          <tr><td>메이커 분리</td><td>무료 (전량 리콜)</td><td>검수 후 교환</td></tr>
+        </tbody>
+      </table>
+
+      <h3>환불/교환 기간</h3>
+      <table>
+        <thead><tr><th>유형</th><th>기간</th><th>조건</th></tr></thead>
+        <tbody>
+          <tr><td>단순 변심</td><td>수령 후 7일 이내</td><td>미사용, 왕복 배송비 고객</td></tr>
+          <tr><td>불량/오배송</td><td>30일 이내</td><td>무상 처리</td></tr>
+          <tr><td>사용 후 단순 변심</td><td>-</td><td>불가</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alf-box-warning"><strong>💳 입금 계좌 (공개용 법인계좌)</strong><br>국민은행 <strong>207301-04-086853</strong> / 예금주: (주)마스터마인딩그룹</div>
+      <div class="alf-box-info"><strong>📦 반품 주소</strong><br>경기도 성남시 중원구 둔촌대로 388번길 24 우림라이온밸리3차 1305A 쥬얼아이스</div>
+    </div>
+  </div>
+
+  <!-- 섹션 9: 회사 정보 -->
+  <div class="alf-section" id="alf-s9">
+    <div class="alf-section-title">
+      <span class="num">9</span> 회사 정보·연락처
+    </div>
+    <div class="alf-copy-bar">
+      <div class="info">💡 기본 연락처 문의 응대</div>
+      <button class="alf-copy-btn" onclick="copyAlfSection(event, 'alf-contact', 'alf-s9')">전체 복사</button>
+    </div>
+    <div id="alf-contact">
+      <h3>회사 소개</h3>
+      <div class="alf-box-info">
+        쥬얼아이스는 <strong>와디즈 누적 펀딩 2억 5천만 원</strong>을 달성한 투명얼음 전문 브랜드. <strong>데블스도어, 바차, 코어인터내셔날</strong> 등 프리미엄 바·카페에 납품 중. "보석 같은 얼음으로 일상을 특별하게".
+      </div>
+
+      <h3>연락처</h3>
+      <div class="alf-contact-grid">
+        <div class="alf-contact-item"><strong>전화</strong>070-7152-0340</div>
+        <div class="alf-contact-item"><strong>이메일</strong>jewelice99@gmail.com</div>
+        <div class="alf-contact-item"><strong>카카오톡</strong>쥬얼아이스 채널</div>
+        <div class="alf-contact-item"><strong>인스타그램</strong>공식 계정</div>
+      </div>
+
+      <h3>주소</h3>
+      <div class="alf-box-info">
+        경기도 성남시 중원구 둔촌대로 388번길 24<br>
+        (24 Dunchon-daero 388beon-gil, Jungwon-gu, Seongnam-si, Gyeonggi-do)
+      </div>
+
+      <h3>제품 라인업</h3>
+      <table>
+        <thead><tr><th>제품</th><th>특징</th><th>크기/시간</th></tr></thead>
+        <tbody>
+          <tr><td><strong>듀오메이커</strong></td><td>대형 큐브 2구 / 위스키·하이볼</td><td>65mm / 24H</td></tr>
+          <tr><td><strong>스틱 메이커</strong></td><td>스틱형 얼음</td><td>36H (방한팩 권장)</td></tr>
+          <tr><td><strong>아블러(ablr)</strong></td><td>3-in-1 텀블러</td><td>원통형 / 24H+</td></tr>
+          <tr><td><strong>아블러 제로</strong></td><td>컴팩트 텀블러</td><td>420ml, 9.4×16.1cm</td></tr>
+          <tr><td><strong>스피어메이커</strong></td><td>구형 얼음 / 온더락</td><td>직경 약 6cm</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</div> <!-- /container -->
+
+<div class="alf-toast" id="alfToast"><span id="alfToastMsg">✅ 복사됨!</span></div>
+
+<button class="float-btn" onclick="showTab('product', document.querySelectorAll('.tab')[5]); window.scrollTo({top:0, behavior:'smooth'});">💎 제품 Quick Ref</button>
+
+<div class="footer">
+  <b>쥬얼아이스 팀 공통 매뉴얼 v0.1</b> · 논의용 초안 · 의견·수정 요청 환영<br>
+  The Final Jewel of Every Drink
+</div>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+/* ===== ALF 자료집 전용 JS ===== */
+const ALF_STORAGE = 'alf-copy-progress-teammanual';
+const ALF_NAMES = {
+  'alf-s1': '실전 FAQ 22개',
+  'alf-s2': '얼음 증상 5종',
+  'alf-s3': '트러블슈팅 인사이트',
+  'alf-s4': '듀오메이커 매뉴얼',
+  'alf-s5': '아블러 매뉴얼',
+  'alf-s6': '아블러 제로 스펙',
+  'alf-s7': '세척 가이드',
+  'alf-s8': '배송/AS/교환 정책',
+  'alf-s9': '회사 정보/연락처'
+};
+
+function loadAlfDone() {
+  try { return JSON.parse(localStorage.getItem(ALF_STORAGE) || '[]'); } catch { return []; }
+}
+function saveAlfDone(arr) { localStorage.setItem(ALF_STORAGE, JSON.stringify(arr)); }
+
+function applyAlfDoneState() {
+  const done = loadAlfDone();
+  Object.keys(ALF_NAMES).forEach(parentId => {
+    const sec = document.getElementById(parentId);
+    const toc = document.querySelector(`.alf-toc-item[data-parent="${parentId}"]`);
+    const bar = sec?.querySelector('.alf-copy-bar');
+    const btn = bar?.querySelector('.alf-copy-btn');
+    if (done.includes(parentId)) {
+      sec?.classList.add('done');
+      toc?.classList.add('done');
+      bar?.classList.add('done');
+      if (btn) btn.textContent = '✓ 완료 (다시 복사)';
+    } else {
+      sec?.classList.remove('done');
+      toc?.classList.remove('done');
+      bar?.classList.remove('done');
+      if (btn) btn.textContent = '전체 복사';
+    }
+  });
+  const total = Object.keys(ALF_NAMES).length;
+  const cnt = done.length;
+  const cntEl = document.getElementById('alfDoneCount');
+  const fillEl = document.getElementById('alfProgressFill');
+  if (cntEl) cntEl.textContent = cnt;
+  if (fillEl) fillEl.style.width = (cnt / total * 100) + '%';
+}
+
+function markAlfDone(parentId) {
+  const done = loadAlfDone();
+  if (!done.includes(parentId)) done.push(parentId);
+  saveAlfDone(done);
+  applyAlfDoneState();
+}
+
+function resetAlfProgress() {
+  if (confirm('진행 상황을 모두 초기화할까요?')) {
+    localStorage.removeItem(ALF_STORAGE);
+    applyAlfDoneState();
+    showAlfToast('🔄 초기화되었습니다');
+  }
+}
+
+function showAlfToast(msg) {
+  const toast = document.getElementById('alfToast');
+  const msgEl = document.getElementById('alfToastMsg');
+  if (!toast || !msgEl) return;
+  msgEl.textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+function toggleAlfFaq(qEl) {
+  const toggle = qEl.querySelector('.alf-faq-toggle');
+  const answer = qEl.nextElementSibling;
+  toggle.classList.toggle('open');
+  answer.classList.toggle('open');
+}
+
+function copyAlfSection(ev, contentId, parentId) {
+  const el = document.getElementById(contentId);
+  if (!el) return;
+  const text = el.innerText.replace(/▼|▲/g, '').replace(/\n{3,}/g, '\n\n').trim();
+  const btn = ev.target;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ 복사됨!';
+    btn.classList.add('copied');
+    markAlfDone(parentId);
+    showAlfToast(`✅ "${ALF_NAMES[parentId]}" 복사 완료! ALF에 붙여넣으세요`);
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      applyAlfDoneState();
+    }, 1800);
+  }).catch(() => showAlfToast('❌ 복사 실패'));
+}
+
+document.addEventListener('DOMContentLoaded', applyAlfDoneState);
+</script>
+
+</body>
+</html>
