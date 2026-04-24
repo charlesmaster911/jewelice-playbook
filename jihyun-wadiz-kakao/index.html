@@ -83,31 +83,25 @@
   .shade{
     position:absolute;inset:0;
     background:
-      linear-gradient(180deg, rgba(0,0,0,.35) 0%, transparent 30%, transparent 55%, rgba(0,0,0,.7) 100%);
+      radial-gradient(ellipse at center, rgba(0,0,0,.38) 0%, rgba(0,0,0,.15) 55%, rgba(0,0,0,.45) 100%);
   }
 
   /* === 슬로건 === */
   .slogan{
-    position:absolute;left:50%;bottom:54px;transform:translateX(-50%);
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
     text-align:center;color:#fff;z-index:5;width:90%;
   }
   .slogan .kr{
-    font-family:'Noto Serif KR',serif;font-weight:400;
-    font-size:38px;letter-spacing:0.22em;
+    font-family:'Noto Serif KR',serif;font-weight:300;
+    font-size:52px;letter-spacing:0.28em;line-height:1.3;
     color:#fff;
-    text-shadow:0 2px 20px rgba(0,0,0,.5);
+    text-indent:0.28em;
+    text-shadow:0 2px 24px rgba(0,0,0,.55);
   }
-  .slogan .en{
-    margin-top:14px;
-    font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;
-    font-size:14px;letter-spacing:0.35em;
-    color:rgba(255,255,255,.75);
-    text-transform:uppercase;
-    display:flex;align-items:center;justify-content:center;gap:14px;
-  }
-  .slogan .en::before,.slogan .en::after{
-    content:"";display:inline-block;width:36px;height:1px;
-    background:rgba(255,255,255,.45);
+  .slogan .mark{
+    display:block;width:44px;height:1px;
+    background:rgba(255,255,255,.65);
+    margin:22px auto 0;
   }
 
   .card-foot{
@@ -157,7 +151,7 @@
       <div class="shade"></div>
       <div class="slogan">
         <div class="kr">음료의 마지막 보석</div>
-        <div class="en">The Last Jewel of Your Drink</div>
+        <span class="mark"></span>
       </div>
     </div>
     <div class="card-foot">
@@ -177,7 +171,7 @@
       <div class="shade"></div>
       <div class="slogan">
         <div class="kr">음료의 마지막 보석</div>
-        <div class="en">The Last Jewel of Your Drink</div>
+        <span class="mark"></span>
       </div>
     </div>
     <div class="card-foot">
@@ -197,7 +191,7 @@
       <div class="shade"></div>
       <div class="slogan">
         <div class="kr">음료의 마지막 보석</div>
-        <div class="en">The Last Jewel of Your Drink</div>
+        <span class="mark"></span>
       </div>
     </div>
     <div class="card-foot">
@@ -217,7 +211,7 @@
       <div class="shade"></div>
       <div class="slogan">
         <div class="kr">음료의 마지막 보석</div>
-        <div class="en">The Last Jewel of Your Drink</div>
+        <span class="mark"></span>
       </div>
     </div>
     <div class="card-foot">
