@@ -65,8 +65,9 @@
   .status-banner .txt .s-sub { font-size: 12px; color: #666; line-height: 1.6; }
 
   /* 프로세스 네비 */
-  .process-nav { background: white; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-  @media (max-width: 700px) { .process-nav { grid-template-columns: repeat(4, 1fr); } }
+  .process-nav { background: white; border-radius: 14px; padding: 14px 18px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; }
+  @media (max-width: 900px) { .process-nav { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 700px) { .process-nav { grid-template-columns: repeat(3, 1fr); } }
   .process-nav a { text-align: center; padding: 9px 4px; border-radius: 8px; text-decoration: none; font-size: 11px; font-weight: 700; color: #888; }
   .process-nav a:hover { background: #E8F7F6; color: #007C78; }
   .process-nav a .num { display: block; font-size: 15px; font-weight: 800; color: #0ABAB5; margin-bottom: 2px; }
@@ -196,6 +197,81 @@
   .final-box .f-cond { font-size: 13px; color: #555; line-height: 1.85; text-align: left; max-width: 620px; margin: 0 auto; }
   .final-box .f-cond b { color: #005552; }
 
+  /* 💰 자금 흐름 */
+  .cashflow-wrap {
+    background: linear-gradient(180deg, #fffbe6 0%, white 60%);
+    border-radius: 14px; padding: 22px 24px; margin: 14px 0;
+    border: 2px solid #ffd600;
+  }
+  .cashflow-wrap h3 {
+    font-size: 14px; font-weight: 800; color: #92400e;
+    margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+  }
+
+  .cf-totals { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  @media (max-width: 700px) { .cf-totals { grid-template-columns: 1fr; } }
+  .cf-total {
+    background: white; border-radius: 10px; padding: 16px;
+    text-align: center; border-top: 4px solid #dc2626;
+  }
+  .cf-total.in { border-top-color: #059669; }
+  .cf-total.net { border-top-color: #d97706; background: linear-gradient(180deg, #fef3c7, white); }
+  .cf-total .cft-l { font-size: 11px; color: #888; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px; }
+  .cf-total .cft-v { font-size: 24px; font-weight: 800; color: #dc2626; line-height: 1.2; }
+  .cf-total.in .cft-v { color: #059669; }
+  .cf-total.net .cft-v { color: #d97706; }
+  .cf-total .cft-s { font-size: 11px; color: #666; margin-top: 4px; }
+
+  .cf-flow {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cf-row {
+    display: grid; grid-template-columns: 100px 1fr 120px 120px;
+    gap: 10px; padding: 10px 14px; background: white; border-radius: 8px;
+    font-size: 12.5px; align-items: center;
+  }
+  @media (max-width: 700px) { .cf-row { grid-template-columns: 1fr; gap: 3px; } }
+  .cf-row.out { border-left: 4px solid #dc2626; }
+  .cf-row.in { border-left: 4px solid #059669; }
+  .cf-row.net { border-left: 4px solid #d97706; background: #fef3c7; font-weight: 700; }
+  .cf-row .cf-when { font-size: 11px; color: #007C78; font-weight: 700; }
+  .cf-row .cf-what { color: #333; line-height: 1.5; }
+  .cf-row .cf-what b { color: #005552; }
+  .cf-row .cf-amt { text-align: right; font-weight: 800; font-variant-numeric: tabular-nums; color: #dc2626; }
+  .cf-row.in .cf-amt { color: #059669; }
+  .cf-row.net .cf-amt { color: #d97706; font-size: 14px; }
+  .cf-row .cf-cum { text-align: right; font-size: 11px; color: #888; font-variant-numeric: tabular-nums; }
+
+  /* 📑 계약서 체크 박스 */
+  .contract-check {
+    background: white; border-radius: 14px; padding: 22px 24px;
+    margin-bottom: 18px; box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    border-left: 6px solid #0ABAB5;
+  }
+  .contract-check h3 { font-size: 15px; font-weight: 800; color: #005552; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .cc-item {
+    display: grid; grid-template-columns: 40px 1fr auto; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid #f3f3f3; align-items: center;
+  }
+  .cc-item:last-child { border-bottom: none; }
+  .cc-item .cc-icon {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; color: white;
+    background: #dc2626;
+  }
+  .cc-item.ok .cc-icon { background: #059669; }
+  .cc-item.pending .cc-icon { background: #d97706; }
+  .cc-item .cc-text { font-size: 13px; line-height: 1.6; color: #333; }
+  .cc-item .cc-text b { color: #005552; }
+  .cc-item .cc-status {
+    font-size: 10.5px; padding: 3px 9px; border-radius: 10px;
+    font-weight: 800; letter-spacing: 0.5px;
+  }
+  .cc-item.ok .cc-status { background: #dcfce7; color: #059669; }
+  .cc-item.pending .cc-status { background: #fef3c7; color: #b45309; }
+  .cc-item.fail .cc-status { background: #fee2e2; color: #dc2626; }
+
   /* 편집 */
   .editable { outline: none; border-radius: 3px; padding: 1px 3px; }
   body.edit-mode .editable { background: #fffde7; border-bottom: 1px dashed #d97706; cursor: text; }
@@ -264,13 +340,69 @@
 
 <!-- 프로세스 네비 -->
 <div class="process-nav">
+  <a href="#check"><span class="num">✓</span>계약 체크</a>
   <a href="#step1"><span class="num">1</span>계약 요약</a>
+  <a href="#cash"><span class="num">💰</span>자금 흐름</a>
   <a href="#step2"><span class="num">2</span>사업성</a>
   <a href="#step3"><span class="num">3</span>투트랙</a>
-  <a href="#step4"><span class="num">4</span>세트 구성</a>
+  <a href="#step4"><span class="num">4</span>세트</a>
   <a href="#step5"><span class="num">5</span>과거 교훈</a>
   <a href="#step6"><span class="num">6</span>협상</a>
-  <a href="#step7"><span class="num">7</span>결정</a>
+  <a href="#step7"><span class="num">🚀</span>액션</a>
+</div>
+
+<!-- 📑 계약서 검토 체크리스트 (서명 전) -->
+<div class="contract-check" id="check">
+  <h3>📑 서명 전 계약서 검토 체크리스트</h3>
+  <p style="font-size:12px;color:#666;margin-bottom:14px;line-height:1.7;">
+    아래 항목이 모두 ✓(초록) 되어야 대표님 서명 요청. <span style="color:#d97706;font-weight:700;">🟠 확인 중</span> 또는 <span style="color:#dc2626;font-weight:700;">🔴 미해결</span>이 있으면 서명 보류.
+  </p>
+
+  <div class="cc-item ok">
+    <div class="cc-icon">✓</div>
+    <div class="cc-text"><b>러닝개런티 7%</b> 산정 방식 — 인디맨드 제외 명확 (견적서 p.2 답변)</div>
+    <div class="cc-status">OK</div>
+  </div>
+  <div class="cc-item ok">
+    <div class="cc-icon">✓</div>
+    <div class="cc-text"><b>광고사 수수료 15~23%</b> (젤롭·인벤티스) — 견적서 명시</div>
+    <div class="cc-status">OK</div>
+  </div>
+  <div class="cc-item ok">
+    <div class="cc-icon">✓</div>
+    <div class="cc-text"><b>미국법인 대행 200만</b> 패키지 — 자체 보유 시 무료</div>
+    <div class="cc-status">OK</div>
+  </div>
+  <div class="cc-item pending">
+    <div class="cc-icon">!</div>
+    <div class="cc-text"><b>투트랙 조항 추가</b> — 인디고고(1차) + 킥스타터(2차) 각 러닝 산정 분리 명시 필요</div>
+    <div class="cc-status">확인 중</div>
+  </div>
+  <div class="cc-item pending">
+    <div class="cc-icon">!</div>
+    <div class="cc-text"><b>독점 조항 범위 축소</b> — "해외 크라우드펀딩 관련"으로 한정 협상</div>
+    <div class="cc-status">확인 중</div>
+  </div>
+  <div class="cc-item pending">
+    <div class="cc-icon">!</div>
+    <div class="cc-text"><b>심사 미통과 환불</b> — 양 플랫폼 모두 미승인 시 잔금 30% 환불</div>
+    <div class="cc-status">확인 중</div>
+  </div>
+  <div class="cc-item fail">
+    <div class="cc-icon">✗</div>
+    <div class="cc-text"><b>을측 대표명 확정</b> — 계약서 "정동우·최희진" vs 미팅록 "정동훈" 일치화</div>
+    <div class="cc-status">미해결</div>
+  </div>
+  <div class="cc-item fail">
+    <div class="cc-icon">✗</div>
+    <div class="cc-text"><b>갑측 정보 업데이트</b> — 장정훈 대표 · 박경열·박성열·박명훈·이호혁(퇴사자) 제거</div>
+    <div class="cc-status">미해결</div>
+  </div>
+  <div class="cc-item fail">
+    <div class="cc-icon">✗</div>
+    <div class="cc-text"><b>스피어 목업 반영</b> — 대표님 보유 스피어 목업 세트 구성 편입 확인</div>
+    <div class="cc-status">미해결</div>
+  </div>
 </div>
 
 <!-- STEP 1 -->
@@ -302,6 +434,160 @@
         <tr><td><b>지급</b></td><td>선금 12M + 잔금 10M(심사 통과 후) + 러닝 7%(종료 3주 내)</td></tr>
         <tr><td><b>관할</b></td><td>서울중앙지방법원</td></tr>
       </table>
+    </div>
+  </div>
+</div>
+
+<!-- 💰 자금 흐름 (핵심) -->
+<div class="step" id="cash">
+  <div class="step-head">
+    <div class="step-num">💰</div>
+    <div>
+      <div class="step-title">자금 흐름 — 얼마 넣어 얼마 받나</div>
+      <div class="step-sub">시나리오 B (투트랙 + 세트) · 합산 펀딩 $400K 기준 추정</div>
+    </div>
+  </div>
+  <div class="step-body">
+
+    <div class="cashflow-wrap">
+      <h3>📊 핵심 총액</h3>
+      <div class="cf-totals">
+        <div class="cf-total">
+          <div class="cft-l">실 투입 자금 (OUT)</div>
+          <div class="cft-v">₩108M</div>
+          <div class="cft-s">서명~런칭까지 우리가 넣는 돈</div>
+        </div>
+        <div class="cf-total in">
+          <div class="cft-l">펀딩 수금 (IN)</div>
+          <div class="cft-v">₩540M</div>
+          <div class="cft-s">플랫폼 수수료 차감 후</div>
+        </div>
+        <div class="cf-total net">
+          <div class="cft-l">⭐ 순이익 (NET)</div>
+          <div class="cft-v">₩324M</div>
+          <div class="cft-s">ROI 3.0x · 연말 회수</div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:800;color:#005552;margin:16px 0 10px;">📉 현금 OUT — 언제 얼마가 나가나</h3>
+    <div class="cf-flow">
+      <div class="cf-row out">
+        <div class="cf-when">4월 말</div>
+        <div class="cf-what"><b>계약 선금 (스타겟)</b><br>서명 직후 / 영상 기획·제작 착수</div>
+        <div class="cf-amt">-₩12M</div>
+        <div class="cf-cum">누적 ₩12M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">5월</div>
+        <div class="cf-what"><b>미국법인 설립</b> (스타겟 대행, 자체 보유 시 생략)</div>
+        <div class="cf-amt">-₩2.2M</div>
+        <div class="cf-cum">누적 ₩14.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">5~6월</div>
+        <div class="cf-what"><b>제품 생산</b> — 듀오메이커 + 몰드(스피어·큐브·기타) × 1,900세트</div>
+        <div class="cf-amt">-₩36M</div>
+        <div class="cf-cum">누적 ₩50.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">6월 말</div>
+        <div class="cf-what"><b>계약 잔금 (스타겟)</b><br>플랫폼 심사 최종 통과 후</div>
+        <div class="cf-amt">-₩10M</div>
+        <div class="cf-cum">누적 ₩60.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">7월 초</div>
+        <div class="cf-what"><b>인디고고 선납 광고비</b> (\$3,000) — 나머지는 인디고고 선투자 후 정산</div>
+        <div class="cf-amt">-₩4M</div>
+        <div class="cf-cum">누적 ₩64.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">7~8월</div>
+        <div class="cf-what"><b>1차 인디고고 SNS 광고비</b> (자체 추가 집행분)</div>
+        <div class="cf-amt">-₩10M</div>
+        <div class="cf-cum">누적 ₩74.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">8~9월</div>
+        <div class="cf-what"><b>2차 킥스타터 광고비</b> (Meta·구글 · 벤티스 후불 대출 검토)</div>
+        <div class="cf-amt">-₩12M</div>
+        <div class="cf-cum">누적 ₩86.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">9~10월</div>
+        <div class="cf-what"><b>해외 배송비·DHL·통관</b> (세트당 $15 × 1,900세트)</div>
+        <div class="cf-amt">-₩40M</div>
+        <div class="cf-cum">누적 ₩126.2M</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">10월</div>
+        <div class="cf-what"><b>부대 비용</b> (PSD 원본·UGC 추가·기타)</div>
+        <div class="cf-amt">-₩3M</div>
+        <div class="cf-cum">누적 ₩129.2M</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:800;color:#005552;margin:20px 0 10px;">📈 현금 IN — 언제 얼마가 들어오나</h3>
+    <div class="cf-flow">
+      <div class="cf-row in">
+        <div class="cf-when">8월 말</div>
+        <div class="cf-what"><b>1차 인디고고 정산</b> (플랫폼 수수료 5% + 카드 3% 차감 후)</div>
+        <div class="cf-amt">+₩243M</div>
+        <div class="cf-cum">\$200K 목표</div>
+      </div>
+      <div class="cf-row in">
+        <div class="cf-when">10월 말</div>
+        <div class="cf-what"><b>2차 킥스타터 정산</b> (플랫폼+카드 수수료 차감 후)</div>
+        <div class="cf-amt">+₩243M</div>
+        <div class="cf-cum">\$200K 목표</div>
+      </div>
+      <div class="cf-row in">
+        <div class="cf-when">11월~</div>
+        <div class="cf-what"><b>인디맨드 상시판매</b> 시작 (러닝 면제 · 월 매출 유입)</div>
+        <div class="cf-amt">+₩??M/월</div>
+        <div class="cf-cum">장기 자산</div>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:800;color:#005552;margin:20px 0 10px;">💸 정산 차감 (캠페인 종료 후)</h3>
+    <div class="cf-flow">
+      <div class="cf-row out">
+        <div class="cf-when">9월·11월</div>
+        <div class="cf-what"><b>스타겟 러닝개런티 7%</b> (캠페인 종료 3주 내 인보이스)</div>
+        <div class="cf-amt">-₩38M</div>
+        <div class="cf-cum">펀딩액 기준</div>
+      </div>
+      <div class="cf-row out">
+        <div class="cf-when">캠페인 중</div>
+        <div class="cf-what"><b>광고사 커넥팅 수수료 15~23%</b> (젤롭·인벤티스 집행 매출분)</div>
+        <div class="cf-amt">-₩45M</div>
+        <div class="cf-cum">추적 가능</div>
+      </div>
+      <div class="cf-row net">
+        <div class="cf-when">12월</div>
+        <div class="cf-what"><b>최종 순이익 정산 완료</b> — 총 OUT 대비 ROI 3.0x</div>
+        <div class="cf-amt">+₩324M</div>
+        <div class="cf-cum">⭐ 순이익</div>
+      </div>
+    </div>
+
+    <div class="verdict-bar hold" style="margin-top:18px;">
+      <span class="v-icon">⚠️</span>
+      <span><b>현금 흐름 주의:</b> 7월까지 우리가 ₩86M 선투입. 펀딩 정산은 8월 말 최초 입금. <b>7~8월 사이 약 3개월 현금 공백</b> → 자금현황에 반영 필수</span>
+    </div>
+
+    <span class="detail-toggle" onclick="toggleDetail('d-cash')">▼ 수치 가정·주의사항</span>
+    <div class="detail-content" id="d-cash">
+      <ul class="slist">
+        <li>펀딩 목표 합산 <b>\$400K</b> (인디 $200K + 킥 $200K) · 환율 1,350원 가정</li>
+        <li>세트 평균 단가 <b>$209</b> (스탠다드+프리미엄 믹스) · 1,900세트</li>
+        <li>제품 원가 세트당 <b>₩19K</b> (듀오메이커 13k + 몰드 2~3개 6k)</li>
+        <li>배송비 세트당 <b>$15 (DHL)</b> · 과거 15~20% 초과 적자 교훈 반영</li>
+        <li>미국법인은 대표님 자체 보유 시 생략 (-2.2M 절감)</li>
+        <li>광고비는 인디고고 후불·Meta 포함 덕분에 과거 대비 30% 절감</li>
+        <li>인건비는 회사 고정비에서 처리 (미포함)</li>
+      </ul>
     </div>
   </div>
 </div>
@@ -431,24 +717,28 @@
   </div>
   <div class="step-body">
     <p style="font-size:13px;color:#555;margin-bottom:14px;line-height:1.8;">
-      과거 와디즈 펀딩(아블러) 구성 참고: <b>볼·큐브·스피어(다이아)·해골</b> 4종 몰드 선택 · 컬러 4종 · 1/2/4개 리워드.
-      이번 북미 캠페인은 <b>듀오메이커 본체 + 여러 몰드</b>를 세트로 묶어 객단가↑ + 배송 회당 마진↑.
+      큐브에 집착 X — <b>새로 만들 몰드가 뭐가 되든 유연하게</b>. 대표님께서 <b style="color:#d97706;">스피어(구체) 목업을 이미 보유</b> 중 → 6월 출시 새 몰드로 <b>스피어 우선 검토</b>.
+      과거 와디즈(아블러)는 볼·큐브·스피어(다이아)·해골 4종 운영 경험 있음. 이번은 <b>듀오메이커 본체 + 몰드 2~3종 세트</b>로 객단가↑ + 배송 회당 마진↑.
     </p>
 
     <div class="mold-grid">
-      <div class="mold new"><div class="m-icon">🆕</div><div class="m-name">40mm 큐브</div><div class="m-sub">6월 출시 · 메인</div><div class="m-tag">NEW</div></div>
-      <div class="mold"><div class="m-icon">⚪</div><div class="m-name">볼 (구)</div><div class="m-sub">시그니처 · 위스키</div><div class="m-tag">기존</div></div>
-      <div class="mold"><div class="m-icon">💎</div><div class="m-name">스피어·다이아</div><div class="m-sub">하이볼 · 프리미엄</div><div class="m-tag">기존</div></div>
-      <div class="mold"><div class="m-icon">💀</div><div class="m-name">해골 (스컬)</div><div class="m-sub">컬렉터용 · 시그니처</div><div class="m-tag">기존</div></div>
+      <div class="mold new"><div class="m-icon">💎</div><div class="m-name">스피어 (구체)</div><div class="m-sub">대표님 <b>목업 보유</b> · 유력</div><div class="m-tag">NEW 1순위</div></div>
+      <div class="mold new"><div class="m-icon">🧊</div><div class="m-name">큐브 (40mm)</div><div class="m-sub">6월 출시 대안</div><div class="m-tag">NEW 2순위</div></div>
+      <div class="mold"><div class="m-icon">⚪</div><div class="m-name">볼</div><div class="m-sub">시그니처 · 위스키</div><div class="m-tag">기존</div></div>
+      <div class="mold"><div class="m-icon">💀</div><div class="m-name">해골 (스컬)</div><div class="m-sub">컬렉터용</div><div class="m-tag">기존</div></div>
+    </div>
+    <div class="verdict-bar hold" style="margin-top:10px;margin-bottom:14px;">
+      <span class="v-icon">💡</span>
+      <span><b>스피어 목업 장점:</b> 이미 실물 존재 → 촬영 즉시 가능 · 하이볼·프리미엄 감성과 시각적 임팩트 최상 · 영상 슬로모션 효과 극대화</span>
     </div>
 
-    <h3 style="font-size:13px;font-weight:800;color:#005552;margin:18px 0 10px;">💎 리워드 티어 제안 (해외 기준)</h3>
+    <h3 style="font-size:13px;font-weight:800;color:#005552;margin:18px 0 10px;">💎 리워드 티어 제안 (해외 기준 · 스피어 메인)</h3>
     <table>
       <tr><th>티어</th><th>구성</th><th>몰드 선택</th><th class="num">가격</th><th>배송/마진</th></tr>
-      <tr class="pick"><td><b>⭐ 프리미엄 세트</b></td><td>듀오메이커 1 + 몰드 3종</td><td>큐브 + 볼 + 스피어</td><td class="num">$299</td><td>배송비 분산 · 최고 마진</td></tr>
-      <tr><td>스탠다드 세트</td><td>듀오메이커 1 + 몰드 2종</td><td>큐브 + 1종 택</td><td class="num">$229</td><td>균형형</td></tr>
-      <tr><td>스타터</td><td>듀오메이커 1 + 몰드 1</td><td>큐브 or 볼</td><td class="num">$179</td><td>진입가 · 최소</td></tr>
-      <tr><td>컬렉터</td><td>듀오메이커 2 + 몰드 4종 전체</td><td>큐브+볼+스피어+해골</td><td class="num">$499</td><td>매니아 타겟</td></tr>
+      <tr class="pick"><td><b>⭐ 프리미엄 세트</b></td><td>듀오메이커 1 + 몰드 3종</td><td>스피어 + 볼 + 해골(or 큐브)</td><td class="num">$299</td><td>배송비 분산 · 최고 마진</td></tr>
+      <tr><td>스탠다드 세트</td><td>듀오메이커 1 + 몰드 2종</td><td>스피어 + 1종 택</td><td class="num">$229</td><td>균형형</td></tr>
+      <tr><td>스타터</td><td>듀오메이커 1 + 몰드 1</td><td>스피어 or 볼</td><td class="num">$179</td><td>진입가 · 최소</td></tr>
+      <tr><td>컬렉터</td><td>듀오메이커 2 + 몰드 4종 전체</td><td>스피어+볼+해골+큐브</td><td class="num">$499</td><td>매니아 타겟</td></tr>
     </table>
     <div class="verdict-bar ok" style="margin-top:14px;">
       <span class="v-icon">💡</span>
@@ -555,10 +845,11 @@
   <div class="f-decision editable" data-k="decision"><span class="cond">조건부 GO</span> · 투트랙 + 세트 구성</div>
   <div class="f-cond editable" data-k="decision_cond">
     아래 4가지가 충족되면 서명 · 안 되면 보류.<br><br>
-    <b>① 6월 중순 40mm 큐브 몰드 출시 확정</b> — 다양 몰드 조합의 핵심<br>
+    <b>① 신규 몰드(스피어 목업 우선, 큐브 대안) 6월 중순 출시 확정</b> — 대표님 스피어 목업 활용<br>
     <b>② 세트 구성·단가 $179 이상 확정</b> — 과거 적자 교훈(44,000원 실패) 재발 방지<br>
-    <b>③ 스타겟 새 계약서에 투트랙 명시 + 견적서 내용 편입</b><br>
-    <b>④ 대표님 미국법인 결정 + Meta 계정 보안 재설정</b>
+    <b>③ 스타겟 계약서에 투트랙 명시 + 견적서 내용 편입</b> — 체크리스트 🟠 3건 해결<br>
+    <b>④ 대표님 미국법인 결정 + 퇴사자 정보 제거 + Meta 보안</b> — 체크리스트 🔴 3건 해결<br>
+    <b>⑤ 7~8월 현금 공백 ₩86M 자금 준비 확인</b> — 펀딩 정산 전 선투입분
   </div>
 </div>
 
