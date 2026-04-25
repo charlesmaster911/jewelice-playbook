@@ -119,6 +119,58 @@
     color: #666;
     letter-spacing: 1px;
   }
+  .vote-summary {
+    background: linear-gradient(135deg, rgba(212,175,55,0.1), rgba(212,175,55,0.02));
+    border-top: 1px solid rgba(212,175,55,0.2);
+    padding: 18px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .vote-summary .left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .vote-summary .vote-count-big {
+    font-size: 32px;
+    font-weight: 200;
+    color: #d4af37;
+    letter-spacing: 1px;
+    font-variant-numeric: tabular-nums;
+  }
+  .vote-summary .vote-count-label {
+    font-size: 11px;
+    color: #888;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .vote-summary .pick-btn {
+    background: transparent;
+    color: #d4af37;
+    border: 1px solid #d4af37;
+    padding: 10px 22px;
+    border-radius: 100px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vote-summary .pick-btn:hover {
+    background: rgba(212,175,55,0.15);
+  }
+  .vote-summary .pick-btn.selected {
+    background: #d4af37;
+    color: #0a0a0a;
+    box-shadow: 0 0 16px rgba(212,175,55,0.3);
+  }
+  .vote-summary .pick-btn.selected:hover { background: #b8860b; }
   .concept-image {
     width: 100%;
     aspect-ratio: 3/2;
@@ -379,6 +431,15 @@
         <img src="B1_MODEL_COURT_MAP.png" alt="COURT MAP 착용샷" loading="lazy">
       </div>
     </div>
+    <div class="vote-summary">
+      <div class="left">
+        <span class="vote-count-big" id="count-B1">0</span>
+        <span class="vote-count-label">총 투표 수</span>
+      </div>
+      <button class="pick-btn" data-key="B1" onclick="selectChoice('B1')">
+        <span>이 디자인 선택</span>
+      </button>
+    </div>
     <div class="concept-meta">
       <div class="col">
         <h3>Design</h3>
@@ -409,7 +470,7 @@
         <h2>COURT TOPOGRAPHY</h2>
         <div class="tagline">"READ THE GAME."</div>
       </div>
-      <div class="right">3 COLORWAYS · BLACK NEON / ICE / CONCRETE</div>
+      <div class="right">3 COLORWAYS · CONCRETE GRAY (메인) / BLACK NEON / ICE WHITE</div>
     </div>
     <div class="lookbook-row">
       <div class="lookbook-board" onclick="openLightbox('B2_COURT_TOPOGRAPHY.png')">
@@ -419,10 +480,19 @@
         <img src="B2_MODEL_TOPOGRAPHY.png" alt="TOPOGRAPHY 착용샷" loading="lazy">
       </div>
     </div>
+    <div class="vote-summary">
+      <div class="left">
+        <span class="vote-count-big" id="count-B2">0</span>
+        <span class="vote-count-label">총 투표 수</span>
+      </div>
+      <button class="pick-btn" data-key="B2" onclick="selectChoice('B2')">
+        <span>이 디자인 선택</span>
+      </button>
+    </div>
     <div class="concept-meta">
       <div class="col">
         <h3>Design</h3>
-        <p>코트 도면을 등고선/히트맵으로 추상화. 랠리의 에너지 흐름을 시각화. 스포츠 데이터 무드의 미래적 라인워크.</p>
+        <p>콘크리트 그레이 헤더에 네온 그린 등고선/히트맵 추상화. 랠리의 에너지 흐름을 시각화. 스포츠 데이터 무드의 미래적 라인워크.</p>
       </div>
       <div class="col">
         <h3>Marketing Hook</h3>
@@ -430,12 +500,12 @@
       </div>
       <div class="col">
         <h3>Specs</h3>
-        <p>블랙 + 네온그린 (메인) / 아이스 화이트 / 콘크리트 그레이<br>승화 전사 + 네온 포일</p>
+        <p>콘크리트 그레이 + 네온그린 (메인) / 블랙 네온 / 아이스 화이트<br>승화 전사 + 네온 포일</p>
         <div class="colors">
-          <div class="color-chip" style="background:#000"></div>
+          <div class="color-chip" style="background:#7a7a7a"></div>
           <div class="color-chip" style="background:#39ff14"></div>
+          <div class="color-chip" style="background:#000"></div>
           <div class="color-chip" style="background:#f0f0f0"></div>
-          <div class="color-chip" style="background:#666"></div>
         </div>
       </div>
     </div>
@@ -458,6 +528,15 @@
       <div class="lookbook-model" onclick="openLightbox('C_MODEL_HEBE_GODDESS.png')">
         <img src="C_MODEL_HEBE_GODDESS.png" alt="HEBE GODDESS 착용샷" loading="lazy">
       </div>
+    </div>
+    <div class="vote-summary">
+      <div class="left">
+        <span class="vote-count-big" id="count-C">0</span>
+        <span class="vote-count-label">총 투표 수</span>
+      </div>
+      <button class="pick-btn" data-key="C" onclick="selectChoice('C')">
+        <span>이 디자인 선택</span>
+      </button>
     </div>
     <div class="concept-meta">
       <div class="col">
@@ -483,23 +562,13 @@
   </div>
 
   <div class="vote-section">
-    <h2>나의 선택</h2>
+    <h2>📊 실시간 집계</h2>
     <p>
-      마음에 드는 컨셉을 한 번 클릭해주세요. 다른 컨셉을 다시 누르면 선택이 바뀝니다.<br>
-      같은 컨셉을 한 번 더 누르면 선택이 해제됩니다.
+      각 디자인 카드에서 "이 디자인 선택" 버튼을 눌러주세요.<br>
+      한 사람당 한 번. 다시 누르면 해제, 다른 디자인을 누르면 선택이 변경됩니다.<br>
+      <span style="color:#888; font-size:12px;">실시간으로 13명 모두의 투표가 집계됩니다.</span>
     </p>
-    <div class="vote-buttons">
-      <button class="vote-btn" data-key="B1" onclick="selectChoice('B1')">
-        <span class="vote-mark"></span> B-1 COURT MAP
-      </button>
-      <button class="vote-btn" data-key="B2" onclick="selectChoice('B2')">
-        <span class="vote-mark"></span> B-2 TOPOGRAPHY
-      </button>
-      <button class="vote-btn" data-key="C" onclick="selectChoice('C')">
-        <span class="vote-mark"></span> C HEBE GODDESS
-      </button>
-    </div>
-    <div class="vote-status" id="voteStatus">아직 선택하지 않았습니다.</div>
+    <div id="totalVotes" style="margin-top:16px; color:#aaa; font-size:13px;">로딩 중...</div>
   </div>
 
   <div class="footer">
@@ -523,45 +592,105 @@
     if (e) e.stopPropagation();
     document.getElementById('lightbox').classList.remove('active');
   }
-  const CHOICE_KEY = 'heba_v4_my_choice';
-  const LABELS = {
-    'B1': 'B-1 COURT MAP',
-    'B2': 'B-2 TOPOGRAPHY',
-    'C': 'C HEBE GODDESS'
-  };
+  // ===== Supabase 실시간 투표 시스템 =====
+  const SUPABASE_URL = 'https://zxqwmpcirkmnwkywtiqs.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp4cXdtcGNpcmttbndreXd0aXFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwNDkyNTMsImV4cCI6MjA5MjYyNTI1M30.0SRfFlW_TVXhbcO-Amp-8Y5zWj1JjDeXEZ1tDQyWZsI';
+  const VOTER_KEY = 'heba_v5_voter_id';
+  const CHOICE_KEY = 'heba_v5_my_choice';
+  const LABELS = { 'B1': 'B-1 COURT MAP', 'B2': 'B-2 TOPOGRAPHY', 'C': 'C HEBE GODDESS' };
 
-  function renderChoice() {
-    const current = localStorage.getItem(CHOICE_KEY);
-    document.querySelectorAll('.vote-btn').forEach(btn => {
+  // voter_id 발급 (브라우저당 고유)
+  function getVoterId() {
+    let id = localStorage.getItem(VOTER_KEY);
+    if (!id) {
+      id = 'v_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 10);
+      localStorage.setItem(VOTER_KEY, id);
+    }
+    return id;
+  }
+
+  async function api(path, opts = {}) {
+    const headers = {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      ...(opts.headers || {})
+    };
+    const res = await fetch(SUPABASE_URL + '/rest/v1/' + path, { ...opts, headers });
+    if (!res.ok) throw new Error('API error: ' + res.status);
+    const text = await res.text();
+    return text ? JSON.parse(text) : null;
+  }
+
+  async function fetchCounts() {
+    const rows = await api('heba_votes?select=choice');
+    const counts = { B1: 0, B2: 0, C: 0 };
+    rows.forEach(r => { if (counts[r.choice] !== undefined) counts[r.choice]++; });
+    return { counts, total: rows.length };
+  }
+
+  function renderUI(counts, total, currentChoice) {
+    ['B1','B2','C'].forEach(k => {
+      const el = document.getElementById('count-' + k);
+      if (el) el.textContent = counts[k] || 0;
+    });
+    document.querySelectorAll('.pick-btn').forEach(btn => {
       const k = btn.dataset.key;
-      const mark = btn.querySelector('.vote-mark');
-      if (k === current) {
+      const span = btn.querySelector('span');
+      if (k === currentChoice) {
         btn.classList.add('selected');
-        mark.textContent = '✓';
+        span.textContent = '✓ 선택됨 (다시 누르면 해제)';
       } else {
         btn.classList.remove('selected');
-        mark.textContent = '';
+        span.textContent = '이 디자인 선택';
       }
     });
-    const status = document.getElementById('voteStatus');
-    if (current && LABELS[current]) {
-      status.innerHTML = '✓ <strong>' + LABELS[current] + '</strong> 선택됨';
-    } else {
-      status.textContent = '아직 선택하지 않았습니다.';
+    const totalEl = document.getElementById('totalVotes');
+    if (totalEl) {
+      const myChoiceTxt = currentChoice ? '내 선택: <strong style="color:#d4af37">' + LABELS[currentChoice] + '</strong>' : '내 선택: 없음';
+      totalEl.innerHTML = '총 ' + total + '명 투표 · ' + myChoiceTxt;
     }
   }
 
-  function selectChoice(k) {
+  async function refreshAll() {
+    try {
+      const { counts, total } = await fetchCounts();
+      const myChoice = localStorage.getItem(CHOICE_KEY) || null;
+      renderUI(counts, total, myChoice);
+    } catch (e) {
+      console.error(e);
+      const totalEl = document.getElementById('totalVotes');
+      if (totalEl) totalEl.textContent = '집계 로딩 실패. 새로고침 해보세요.';
+    }
+  }
+
+  async function selectChoice(k) {
+    const voterId = getVoterId();
     const current = localStorage.getItem(CHOICE_KEY);
-    if (current === k) {
-      localStorage.removeItem(CHOICE_KEY);
-    } else {
-      localStorage.setItem(CHOICE_KEY, k);
+    try {
+      if (current === k) {
+        // 같은 선택 → 해제 (delete)
+        await api('heba_votes?voter_id=eq.' + encodeURIComponent(voterId), { method: 'DELETE' });
+        localStorage.removeItem(CHOICE_KEY);
+      } else {
+        // 다른 선택 또는 신규 → upsert
+        await api('heba_votes', {
+          method: 'POST',
+          headers: { 'Prefer': 'resolution=merge-duplicates' },
+          body: JSON.stringify({ voter_id: voterId, choice: k, updated_at: new Date().toISOString() })
+        });
+        localStorage.setItem(CHOICE_KEY, k);
+      }
+      await refreshAll();
+    } catch (e) {
+      console.error(e);
+      alert('투표 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
     }
-    renderChoice();
   }
 
-  renderChoice();
+  // 초기 로드 + 30초마다 갱신
+  refreshAll();
+  setInterval(refreshAll, 30000);
 </script>
 </body>
 </html>
