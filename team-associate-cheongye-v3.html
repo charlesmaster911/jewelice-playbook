@@ -4,248 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex,nofollow">
-<title>대리 가이드 — 쥬얼아이스 운영 원리</title>
+<title>대리 업무 매뉴얼 — 쥬얼아이스</title>
 <style>
   :root{--purple:#7c3aed; --gold:#fbbf24; --bg:#0a0a0f; --card:#14141a;
     --line:#22222a; --text:#e8e8ee; --muted:#9ca3af; --accent:#a78bfa;}
   *{box-sizing:border-box; margin:0; padding:0; word-break:keep-all; -webkit-text-size-adjust:100%}
   body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",sans-serif;
     background:var(--bg); color:var(--text); line-height:1.7; min-height:100vh}
-  .hero{background:linear-gradient(135deg,#7c3aed 0%,#fbbf24 100%); padding:60px 24px; text-align:center}
-  .hero h1{font-size:clamp(28px,5vw,48px); font-weight:900; color:#fff; margin-bottom:12px; letter-spacing:-0.02em}
-  .hero .sub{font-size:clamp(14px,2.5vw,18px); color:rgba(255,255,255,0.95); font-weight:600}
-  .hero .tag{display:inline-block; margin-top:16px; padding:6px 14px; background:rgba(0,0,0,0.3); color:#fff; border-radius:20px; font-size:12px; font-weight:700; letter-spacing:0.1em}
-  .container{max-width:880px; margin:0 auto; padding:40px 24px 80px}
-  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:32px; margin-bottom:24px}
-  .card h2{font-size:24px; font-weight:800; margin-bottom:16px; color:var(--gold)}
-  .card h3{font-size:18px; font-weight:700; margin:24px 0 12px; color:var(--accent)}
-  .card .lead{font-size:18px; color:var(--text); padding:16px; background:rgba(124,58,237,0.1); border-left:4px solid var(--purple); border-radius:8px; margin-bottom:20px}
-  .layer{display:grid; grid-template-columns:80px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--line)}
-  .layer:last-child{border-bottom:none}
-  .layer .num{font-size:36px; font-weight:900; color:var(--gold); text-align:center; line-height:1}
-  .layer .name{font-size:18px; font-weight:800; color:var(--accent); margin-bottom:6px}
-  .layer .desc{color:var(--muted); font-size:14px; margin-bottom:10px}
-  .layer ul{list-style:none; padding-left:0}
-  .layer li{padding:6px 0 6px 20px; position:relative; font-size:15px}
-  .layer li::before{content:"▸"; position:absolute; left:0; color:var(--gold); font-weight:bold}
-  .highlight{background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:20px; margin:20px 0}
-  .highlight h3{color:var(--gold); margin-top:0}
-  .action-box{background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(251,191,36,0.15)); border-radius:12px; padding:24px; margin:20px 0}
-  .action-box h3{color:#fff; margin-top:0}
-  .checklist li{padding:10px 0 10px 32px; position:relative}
-  .checklist li::before{content:"☐"; position:absolute; left:0; color:var(--gold); font-size:20px; font-weight:bold}
-  .quote{font-style:italic; color:var(--accent); padding:16px 20px; border-left:3px solid var(--accent); margin:16px 0; font-size:15px}
-  .signature{margin-top:40px; padding-top:24px; border-top:2px solid var(--gold); text-align:center; color:var(--muted); font-size:14px}
-  .signature strong{color:var(--gold); font-size:16px}
-  table{width:100%; border-collapse:collapse; margin:16px 0}
-  th,td{padding:12px; text-align:left; border-bottom:1px solid var(--line); font-size:14px}
-  th{background:rgba(124,58,237,0.2); color:var(--accent); font-weight:700}
-  @media(max-width:640px){.container{padding:24px 16px 60px} .card{padding:24px 18px} .layer{grid-template-columns:48px 1fr; gap:12px} .layer .num{font-size:28px}}
+  .hero{background:linear-gradient(135deg,#7c3aed 0%,#fbbf24 100%); padding:48px 24px; text-align:center}
+  .hero h1{font-size:clamp(26px,5vw,42px); font-weight:900; color:#fff; margin-bottom:8px; letter-spacing:-0.02em}
+  .hero .sub{font-size:clamp(13px,2.2vw,16px); color:rgba(255,255,255,0.95); font-weight:600}
+  .container{max-width:760px; margin:0 auto; padding:32px 24px 60px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:28px; margin-bottom:20px}
+  .card h2{font-size:20px; font-weight:800; margin-bottom:14px; color:var(--gold)}
+  .card h3{font-size:16px; font-weight:700; margin:18px 0 10px; color:var(--accent)}
+  .card p{margin-bottom:10px; font-size:15px}
+  .lead{font-size:16px; padding:14px; background:rgba(124,58,237,0.1); border-left:3px solid var(--purple); border-radius:6px; margin-bottom:16px}
+  ol,ul{padding-left:0; list-style:none}
+  li{padding:8px 0 8px 24px; position:relative; font-size:15px}
+  li::before{content:"▸"; position:absolute; left:0; color:var(--gold); font-weight:bold}
+  .num-list li{counter-increment:n; padding-left:32px}
+  .num-list{counter-reset:n}
+  .num-list li::before{content:counter(n)"."; color:var(--gold); font-weight:bold; left:0; font-size:14px}
+  .check li{padding-left:28px}
+  .check li::before{content:"☐"; color:var(--gold); font-size:18px; left:0}
+  .tool{background:rgba(251,191,36,0.08); border:1px solid rgba(251,191,36,0.25); border-radius:10px; padding:16px; margin:12px 0}
+  .tool strong{color:var(--gold)}
+  .signature{margin-top:32px; padding-top:20px; border-top:1px solid var(--line); text-align:center; color:var(--muted); font-size:13px}
+  @media(max-width:640px){.container{padding:20px 14px 50px} .card{padding:20px 16px}}
 </style>
 </head>
 <body>
 
 <div class="hero">
-  <h1>대리의 자리</h1>
-  <div class="sub">쥬얼아이스 운영 원리 v1.0 (온 v1 적용) — 성장의 자리</div>
-  <div class="tag">JEWEL ICE OPERATING PRINCIPLE · 2026-04-26</div>
+  <h1>대리 업무 매뉴얼</h1>
+  <div class="sub">쥬얼아이스 · 일하는 방식과 점검표</div>
 </div>
 
 <div class="container">
 
   <div class="card">
     <div class="lead">
-      "대리님, 대리 자리는 <strong>'무한한 성장 가능성을 가진 자리'</strong>입니다.
-      여기서 어떤 패러다임을 박느냐가 앞으로의 5년·10년을 결정합니다.
-      이 문서는 그 시작점입니다."
-      <br><br>— 대표
-    </div>
-    <p style="color:var(--muted); font-size:14px">
-      Bob Proctor의 <em>Thinking Into Results</em> 12 레슨 기반 운영 원리. 대리 역할에 맞췄습니다. 10분이면 훑기 가능.
-    </p>
-  </div>
-
-  <div class="card">
-    <h2>왜 지금이 결정적 시기인가</h2>
-    <p>대리 자리는 회사에서 <strong>"패러다임이 가장 빠르게 바뀔 수 있는 시기"</strong>입니다. 더 위로 올라간 사람들은 이미 패러다임이 단단히 박혀 있어 바꾸기 어렵습니다. 대리는 아직 유연합니다.</p>
-    <p>Bob Proctor가 50년 연구로 도달한 결론 —</p>
-    <div class="quote">
-      "결과를 바꾸려면 행동이 아니라 패러다임을 바꿔야 한다.<br>
-      그리고 한 번에 1~2개 습관만 바꾸는 것이 가장 효과적이다." — Bob Proctor
-    </div>
-    <p>지금 1~2개 습관만 박아두면, 5년 뒤에는 같은 직급에서 누구도 따라올 수 없는 자리에 와 있게 됩니다.</p>
-  </div>
-
-  <div class="card">
-    <h2>쥬얼아이스 운영 원리 — 5층 구조</h2>
-
-    <div class="layer">
-      <div class="num">1</div>
-      <div>
-        <div class="name">기준층 — 변하지 않는 기준</div>
-        <div class="desc">변하지 않는 핵심. 기준은 변하지 않는다.</div>
-        <ul>
-          <li>나는 회사 사명·100억 목표에 종속된다</li>
-          <li>나는 동료·고객·파트너에게 손해를 끼치지 않는다</li>
-          <li>나는 좋은 follower가 되어 좋은 leader 자질을 키운다</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="layer">
-      <div class="num">2</div>
-      <div>
-        <div class="name">능력층 — 한계 0</div>
-        <div class="desc">한계는 0. 자기검열 차단.</div>
-        <p style="margin:8px 0; color:var(--muted); font-size:14px">"제가 아직 그건..." / "제가 잘 모르는데..." — 이 멘트가 입에서 자주 나오면 자기검열 신호.</p>
-        <p style="margin:12px 0; font-weight:700; color:var(--gold)">Higher Faculties — 인간 본래의 6가지 능력:</p>
-        <ul>
-          <li><strong>지각</strong>: 같은 것을 다른 각도로 보는 능력</li>
-          <li><strong>의지</strong>: 한 가지에 집중 (5분 응시 훈련)</li>
-          <li><strong>이성</strong>: 외부 부정 신호 거부</li>
-          <li><strong>상상</strong>: 가지지 못한 것 머리에 그리기 — 이게 시작점</li>
-          <li><strong>기억</strong>: 약한 게 아니라 약화됐을 뿐</li>
-          <li><strong>직관</strong>: 진동 감지</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="layer">
-      <div class="num">3</div>
-      <div>
-        <div class="name">성장층 — 성장의 구조 ⭐ 대리님 핵심</div>
-        <div class="desc">인간은 본래 수천 번 넘어져도 일어났다. 한계는 0이었다.</div>
-        <ul>
-          <li><strong>관찰</strong>: 지금 결과 직시 (평가 X, 직시만)</li>
-          <li><strong>원하기</strong>: 정말 원하는 것 (Type C — How는 묻지 않음)</li>
-          <li><strong>해보기</strong>: Am I willing? Am I able? — 두 질문만</li>
-          <li><strong>배우기</strong>: 작은 실패도 OK, 작은 성취도 기록</li>
-          <li><strong>자신감</strong>: 누적이 다음 시도의 연료</li>
-        </ul>
-        <div class="highlight">
-          <h3>⭐ 대리님 핵심 도구 — Worthy Ideal (Lesson 1)</h3>
-          <p><strong>목표 3종류:</strong></p>
-          <table>
-            <tr><th>종류</th><th>설명</th><th>판단</th></tr>
-            <tr><td>Type A</td><td>이미 할 줄 아는 것</td><td>여기 머무르면 성장 없음</td></tr>
-            <tr><td>Type B</td><td>할 수 있다고 생각하는 것</td><td>안전 영역</td></tr>
-            <tr><td><strong>Type C</strong></td><td><strong>정말 원하는 것 (Fantasy)</strong></td><td><strong>여기서만 성장 발생</strong></td></tr>
-          </table>
-          <p><strong>대리님이 가져갈 한 가지:</strong> 매주 Type C 목표 1개를 적어보세요. <strong>"어떻게"는 묻지 마세요.</strong> WHAT만 명확히. 어떻게는 우주가 알려줍니다.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="layer">
-      <div class="num">4</div>
-      <div>
-        <div class="name">연결층 — 마음 이해</div>
-        <div class="desc">결과 너머의 마음을 읽는다.</div>
-        <ul>
-          <li>나의 결과 = 나의 자기 이미지의 거울 (Lesson 6)</li>
-          <li>거울에 나타난 결과가 마음에 안 들면, 거울 닦지 말고 <strong>자기 이미지를 바꿔라</strong></li>
-          <li>동료의 진동을 느낄 줄 알아라</li>
-        </ul>
-        <div class="quote">
-          "외부에서 일어나는 모든 것은 내면에서 먼저 발원한다." — Sandra Gallagher
-        </div>
-      </div>
-    </div>
-
-    <div class="layer">
-      <div class="num">5</div>
-      <div>
-        <div class="name">실행층 — 운영체계</div>
-        <div class="desc">매일 1~2개 습관만 바꿔라.</div>
-        <p style="margin:12px 0; font-weight:700; color:var(--gold)">습관 교체 4단계 (Lesson 3):</p>
-        <ul>
-          <li>1. 결과를 적는다 (지금 받고 싶지 않은 결과)</li>
-          <li>2. NPA(비생산 행동) 적기 → <strong>물리적으로 찢기</strong></li>
-          <li>3. 받고 싶은 결과 적기</li>
-          <li>4. PA(생산 행동) 적기 → <strong>매일 시각화</strong></li>
-        </ul>
-        <p style="margin:12px 0; font-weight:700; color:var(--gold)">Three R's — 매일 5분:</p>
-        <ul>
-          <li>Review · Re-think · Rewrite</li>
-        </ul>
-      </div>
+      대리는 <strong>맡은 업무를 정확히 처리</strong>하고,
+      <strong>매일 한 가지씩 새로운 것을 배우며</strong>, 다음 직급을 준비합니다.
     </div>
   </div>
 
   <div class="card">
-    <h2>대리만의 강조점</h2>
-
-    <h3>1. Belief 점검 (Lesson 1)</h3>
-    <p>대리님이 가장 먼저 점검할 것은 <strong>"내가 이건 못 한다"</strong>고 믿는 것들의 목록입니다.</p>
-    <p>4가지 자문:</p>
-    <ul style="list-style:none; padding-left:0; margin:8px 0">
-      <li style="padding:6px 0 6px 24px; position:relative; font-size:15px">
-        <span style="position:absolute; left:0; color:var(--gold)">▸</span>
-        내 믿음에 충분한 근거가 있는가?
-      </li>
-      <li style="padding:6px 0 6px 24px; position:relative; font-size:15px">
-        <span style="position:absolute; left:0; color:var(--gold)">▸</span>
-        그 믿음은 어디서 왔나?
-      </li>
-      <li style="padding:6px 0 6px 24px; position:relative; font-size:15px">
-        <span style="position:absolute; left:0; color:var(--gold)">▸</span>
-        이 믿음을 바꾸면 내 삶이 좋아지나?
-      </li>
-      <li style="padding:6px 0 6px 24px; position:relative; font-size:15px">
-        <span style="position:absolute; left:0; color:var(--gold)">▸</span>
-        어떻게 믿음을 바꿀까?
-      </li>
-    </ul>
-
-    <h3>2. Habit Replacement — 한 번에 1~2개만 (Lesson 3)</h3>
-    <p>욕심내지 마세요. 한 번에 1~2개 습관만 바꿉니다.</p>
-    <p><strong>이번 주 시작할 1개:</strong> 매일 아침 출근 직전 5분, <strong>오늘의 Type C 목표 1줄</strong> 적기.</p>
-
-    <h3>3. Self-Image 투자 (Lesson 6)</h3>
-    <p>거울 닦지 말고 거울에 비치는 자기 이미지를 바꾸세요.</p>
-    <p>한 달 내 본인이 존경하는 사람 한 명을 떠올리고, 그 사람의 자질을 매일 5분씩 시각화로 자기에게 입힙니다. 한 달 후 결과가 다릅니다.</p>
-  </div>
-
-  <div class="action-box">
-    <h3>📌 이번 주 (4/27~5/3) 대리 실행 1개</h3>
-    <p style="margin-bottom:12px"><strong>한 번에 1개만 — 욕심내지 마세요:</strong></p>
-    <ul class="checklist">
-      <li>매일 아침 5분, <strong>오늘의 Type C 목표</strong> 한 줄 적기</li>
-      <li>이번 주 단 한 번이라도 "<strong>안 하던 것</strong>" 시도하기 (Terror Barrier 통과 첫 연습 — 작은 것이라도 OK)</li>
-      <li>금요일 15분, <strong>이번 주 Three R's</strong></li>
-      <li>주말 한 번, <strong>존경하는 사람 한 명 떠올리고 그 자질 시각화 5분</strong></li>
-    </ul>
-    <p style="margin-top:16px; font-size:14px; color:rgba(255,255,255,0.85)">
-      <em>5년 뒤의 대리님는 지금의 작은 1개에서 만들어집니다.</em>
-    </p>
+    <h2>일하는 방식 5가지</h2>
+    <ol class="num-list">
+      <li>매일 출근 직후 — 오늘 할 일 우선순위 정리 (3개 이내 추천)</li>
+      <li>매일 퇴근 직전 5분 — 한 일 · 미완료 · 내일 첫 1개 적기</li>
+      <li>모르는 게 나오면 — 30분 시도 후 그래도 막히면 즉시 팀장·과장에게 질문</li>
+      <li>매주 새로 배운 것 1개 기록 — 작은 것이라도 OK</li>
+      <li>실수했을 때 — 숨기지 말고 빨리 보고. 신뢰는 실수에서 만들어집니다</li>
+    </ol>
   </div>
 
   <div class="card">
-    <h2>9문 셀프 체크 — 매주 금요일 15분</h2>
-    <ul class="checklist">
-      <li><strong>① 핵심</strong> 이번 주 한 일을 한 문장으로?</li>
-      <li><strong>② 세 축</strong> 목적·환경·사람 셋 다 살아 있었나?</li>
-      <li><strong>③ 통합</strong> 분산된 일들이 하나로 합쳐졌나?</li>
-      <li><strong>④ 기준</strong> 우리 사명·가치를 잃지 않았나?</li>
-      <li><strong>⑤ 사람</strong> 결과가 실제 사람에게 닿았나?</li>
-      <li><strong>⑥ 다음</strong> 다음 주 첫 한 걸음 명확한가?</li>
-      <li><strong>⑦ 한계</strong> "제가 아직 그건..." 자기검열 멘트 있었나?</li>
-      <li><strong>⑧ 마음</strong> 동료·고객 마음을 읽었나?</li>
-      <li><strong>⑨ 실행</strong> (Praxis) 안다고만 했나, 실제 행동으로 통합했나?</li>
+    <h2>꼭 필요한 도구 2개</h2>
+
+    <div class="tool">
+      <h3>1) Type C 목표 — 정말 원하는 것 적기</h3>
+      <p>"내가 할 수 있는 것"이 아니라 <strong>"정말 원하는 것"</strong>을 적습니다.</p>
+      <p><strong>"어떻게"는 묻지 마세요. WHAT만 명확히.</strong> 어떻게는 시작하면 알게 됩니다.</p>
+      <p>지금 직급에서 가능한 것이 아니라 정말 가고 싶은 자리를 적어 보세요.</p>
+    </div>
+
+    <div class="tool">
+      <h3>2) 안다·한다 통합 (Praxis) — 한 번에 1개씩만</h3>
+      <p>아는 것이 행동이 되어야 변화가 일어납니다. 한 번에 여러 개 바꾸려 하면 다 무너집니다.</p>
+      <p><strong>이번 주 1개만 골라 매일 같은 시간에 반복</strong>해 보세요.</p>
+      <p>예: "매일 출근 후 5분, 오늘 할 일 정리" — 이 1개만 21일 박으면 습관이 됩니다.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>한계 안 긋는 자세</h2>
+    <p>"제가 아직 그건..." / "잘 모르는데..." 멘트가 입에서 자주 나오면 <strong>자기검열 신호</strong>입니다.</p>
+    <p>지금 모른다고 영원히 못 하는 게 아닙니다. 모르면 물어보고, 시도하고, 배웁니다.</p>
+    <p>대리 자리는 <strong>가장 빠르게 배울 수 있는 자리</strong>입니다. 한계를 미리 그어버리면 5년 뒤에도 같은 자리입니다.</p>
+  </div>
+
+  <div class="card">
+    <h2>매주 금요일 — 점검 5문</h2>
+    <ul class="check">
+      <li>이번 주 한 일을 한 문장으로 정리할 수 있나?</li>
+      <li>이번 주 새로 배운 것 1개가 있나?</li>
+      <li>약속한 일을 마감 안에 끝냈나?</li>
+      <li>"제가 아직..." 멘트로 미리 그어버린 게 없나?</li>
+      <li>다음 주 첫 한 걸음이 명확한가?</li>
     </ul>
   </div>
 
   <div class="card">
-    <h2>한 줄로 가져갈 것</h2>
-    <div class="lead" style="font-size:20px; text-align:center; padding:24px">
-      <strong>"인간은 본래 한계가 0.<br>나는 그것을 다시 가질 수 있다.<br>한 번에 1개씩, 매일."</strong>
-    </div>
+    <h2>막힐 때 — 신호 보내기</h2>
+    <ul>
+      <li><strong>일반 진행</strong> → CLAUDE.md 통해 자동 로그됨</li>
+      <li><strong>30분 이상 막힘</strong> → "블로커: ___" 형식으로 팀장·과장에게 질문</li>
+      <li><strong>실수 / 사고</strong> → 숨기지 말고 즉시 보고. 빨리 알면 빨리 수습됨</li>
+    </ul>
   </div>
 
   <div class="signature">
-    <strong>쥬얼아이스 운영 원리 v1.0 (온 v1 적용) — 대리 가이드</strong><br>
-    Bob Proctor 기반 | 2026-04-26<br>
-    <span style="font-size:12px; color:var(--purple)">기준은 변하지 않는다.— 도구는 변해도 본은 변하지 않는다.</span>
+    쥬얼아이스 · 대리 업무 매뉴얼 v1.0 · 2026-04-26
   </div>
 
 </div>
