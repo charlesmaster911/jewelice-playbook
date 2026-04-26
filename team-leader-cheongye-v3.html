@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>리더 가이드 — 쥬얼아이스 운영 원리</title>
+<style>
+  :root{
+    --purple:#7c3aed; --gold:#fbbf24; --bg:#0a0a0f; --card:#14141a;
+    --line:#22222a; --text:#e8e8ee; --muted:#9ca3af; --accent:#a78bfa;
+  }
+  *{box-sizing:border-box; margin:0; padding:0; word-break:keep-all; -webkit-text-size-adjust:100%}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Segoe UI",sans-serif;
+    background:var(--bg); color:var(--text); line-height:1.7; padding:0; min-height:100vh}
+  .hero{background:linear-gradient(135deg,#7c3aed 0%,#fbbf24 100%); padding:60px 24px; text-align:center}
+  .hero h1{font-size:clamp(28px,5vw,48px); font-weight:900; color:#fff; margin-bottom:12px; letter-spacing:-0.02em}
+  .hero .sub{font-size:clamp(14px,2.5vw,18px); color:rgba(255,255,255,0.95); font-weight:600}
+  .hero .tag{display:inline-block; margin-top:16px; padding:6px 14px; background:rgba(0,0,0,0.3); color:#fff; border-radius:20px; font-size:12px; font-weight:700; letter-spacing:0.1em}
+  .container{max-width:880px; margin:0 auto; padding:40px 24px 80px}
+  .card{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:32px; margin-bottom:24px}
+  .card h2{font-size:24px; font-weight:800; margin-bottom:16px; color:var(--gold)}
+  .card h3{font-size:18px; font-weight:700; margin:24px 0 12px; color:var(--accent)}
+  .card p{margin-bottom:14px; color:var(--text)}
+  .card .lead{font-size:18px; color:var(--text); padding:16px; background:rgba(124,58,237,0.1); border-left:4px solid var(--purple); border-radius:8px; margin-bottom:20px}
+  .layer{display:grid; grid-template-columns:80px 1fr; gap:16px; padding:20px 0; border-bottom:1px solid var(--line)}
+  .layer:last-child{border-bottom:none}
+  .layer .num{font-size:36px; font-weight:900; color:var(--gold); text-align:center; line-height:1}
+  .layer .name{font-size:18px; font-weight:800; color:var(--accent); margin-bottom:6px}
+  .layer .desc{color:var(--muted); font-size:14px; margin-bottom:10px}
+  .layer ul{list-style:none; padding-left:0}
+  .layer li{padding:6px 0 6px 20px; position:relative; font-size:15px}
+  .layer li::before{content:"▸"; position:absolute; left:0; color:var(--gold); font-weight:bold}
+  .highlight{background:rgba(251,191,36,0.15); border:1px solid rgba(251,191,36,0.3); border-radius:12px; padding:20px; margin:20px 0}
+  .highlight h3{color:var(--gold); margin-top:0}
+  .action-box{background:linear-gradient(135deg,rgba(124,58,237,0.2),rgba(251,191,36,0.15)); border-radius:12px; padding:24px; margin:20px 0}
+  .action-box h3{color:#fff; margin-top:0}
+  .checklist li{padding:10px 0 10px 32px; position:relative}
+  .checklist li::before{content:"☐"; position:absolute; left:0; color:var(--gold); font-size:20px; font-weight:bold}
+  .quote{font-style:italic; color:var(--accent); padding:16px 20px; border-left:3px solid var(--accent); margin:16px 0; font-size:15px}
+  .signature{margin-top:40px; padding-top:24px; border-top:2px solid var(--gold); text-align:center; color:var(--muted); font-size:14px}
+  .signature strong{color:var(--gold); font-size:16px}
+  table{width:100%; border-collapse:collapse; margin:16px 0}
+  th,td{padding:12px; text-align:left; border-bottom:1px solid var(--line); font-size:14px}
+  th{background:rgba(124,58,237,0.2); color:var(--accent); font-weight:700}
+  @media(max-width:640px){
+    .container{padding:24px 16px 60px}
+    .card{padding:24px 18px}
+    .layer{grid-template-columns:48px 1fr; gap:12px}
+    .layer .num{font-size:28px}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>팀장의 자리</h1>
+  <div class="sub">쥬얼아이스 운영 원리 v1.0 — 리더의 자리</div>
+  <div class="tag">JEWEL ICE OPERATING PRINCIPLE · 2026-04-26</div>
+</div>
+
+<div class="container">
+
+  <div class="card">
+    <div class="lead">
+      "팀장님, 우리 팀이 100억으로 가려면 팀원 한 명 한 명이 자기 한계를 깨야 합니다.
+      그 시작은 <strong>리더가 먼저 자기 한계를 깨는 모습</strong>입니다.
+      이 문서는 글로벌 베스트셀러의 운영 원리를 우리 회사에 맞춰 풀어낸 것입니다."
+      <br><br>— 대표
+    </div>
+    <p style="color:var(--muted); font-size:14px">
+      이 문서는 Bob Proctor의 <em>Thinking Into Results</em> 12 레슨 기반의 패러다임 변환 운영 원리를
+      팀장 (리더) 에 맞춰 풀어낸 것입니다 (리더의 자리). 10분이면 훑기 가능.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>왜 이게 필요한가</h2>
+    <p>지난 1년, 우리 팀은 <strong>"아는 것"</strong>은 충분했습니다. 그런데 <strong>"하는 것"</strong>이 안 따라갔습니다.</p>
+    <p>Bob Proctor가 50년 연구로 도달한 결론은 명확합니다 —
+    <strong>아는 것과 하는 것의 격차의 원인은 "패러다임"</strong>이고,
+    패러다임은 무의식에 박힌 습관 덩어리입니다.</p>
+    <div class="quote">
+      "결과를 바꾸려면 행동이 아니라 패러다임을 바꿔야 한다.<br>
+      행동만 바꾸면 일시적, 패러다임을 바꾸면 영구적이다." — Bob Proctor
+    </div>
+    <p>이 운영 원리는 패러다임 변환을 5층으로 정리한 체계입니다.</p>
+  </div>
+
+  <div class="card">
+    <h2>쥬얼아이스 운영 원리 — 5층 구조</h2>
+
+    <div class="layer">
+      <div class="num">1</div>
+      <div>
+        <div class="name">本 (본) — 종속의 자리</div>
+        <div class="desc">변하지 않는 핵심 가치. 用變不動本 — 도구는 바뀌어도 본은 안 바뀐다.</div>
+        <ul>
+          <li>나는 쥬얼아이스의 사명에 종속된다 (회사 100억, 정직한 프리미엄 얼음)</li>
+          <li>나는 동료·고객·파트너에게 손해를 끼치지 않는다</li>
+          <li>나는 회사 비전 안에서 일한다 (개인 영광 위 회사 미션)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="num">2</div>
+      <div>
+        <div class="name">能 (능) — 무한의 자리</div>
+        <div class="desc">자기 한계를 스스로 그리지 않는다. 한계는 0.</div>
+        <p style="color:var(--muted); font-size:14px; margin:8px 0">"이건 어려울 것 같아요" / "보통 이렇게 해요" — 이 멘트가 입에서 나오면 즉시 자기검열 신호.</p>
+        <p style="margin:12px 0; font-weight:700; color:var(--gold)">6가지 인간 본래 능력 (Higher Faculties):</p>
+        <ul>
+          <li><strong>지각 (Perception)</strong> — 같은 문제를 다른 각도에서 본다</li>
+          <li><strong>의지 (Will)</strong> — 한 가지에 집중. 5분 응시 훈련</li>
+          <li><strong>이성 (Reason)</strong> — 외부 부정 신호를 거부할 줄 안다</li>
+          <li><strong>상상 (Imagination)</strong> — 가지지 못한 것을 머릿속에 그릴 줄 안다</li>
+          <li><strong>기억 (Memory)</strong> — 약하지 않다. 약화된 것뿐. 재훈련 가능</li>
+          <li><strong>직관 (Intuition)</strong> — 동료·고객의 진동을 느낄 줄 안다</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="num">3</div>
+      <div>
+        <div class="name">成 (성) — 자라는 자리 (갓난아이 사이클)</div>
+        <div class="desc">매일·매주 새 것 시도. 실패 두려워하지 않기.</div>
+        <ul>
+          <li><strong>분별</strong> — 지금 무엇이 보이는가 (현재 결과 직시)</li>
+          <li><strong>욕구</strong> — 내가 못 하는 게 뭔가 (Type C 목표: 정말 원하는 것)</li>
+          <li><strong>시도</strong> — Am I willing? Am I able? 두 질문만 통과 ("어떻게"는 묻지 말 것)</li>
+          <li><strong>실패·성취</strong> — 작은 성공·작은 실패 모두 기록</li>
+          <li><strong>자기신뢰</strong> — 누적된 성취가 다음 시도의 연료</li>
+        </ul>
+        <div class="highlight">
+          <h3>⚠️ Terror Barrier (공포 장벽) — 미리 알림</h3>
+          <p>새로운 큰 도전 앞에서 99%가 후퇴합니다. 그 후퇴 신호는 <strong>"불안·걱정·두려움"</strong>입니다.</p>
+          <p style="margin-top:8px"><strong>핵심 진실:</strong> 그 공포는 후퇴 신호가 아니라 <span style="color:var(--gold); font-weight:bold">성장 신호</span>입니다.
+          공포가 오면 "아, 지금 큰 변화 직전이구나" 하고 통과하세요. 대표에게 "지금 공포 옵니다" 한마디만 던지면 같이 통과합니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="num">4</div>
+      <div>
+        <div class="name">通 (통) — 통하는 자리 (마음 이해)</div>
+        <div class="desc">결과만 보지 말고, 결과 뒤의 마음을 읽는다.</div>
+        <ul>
+          <li><strong>거울 원리</strong> — 팀의 외부 결과 = 팀의 내부 자기 이미지. 결과를 바꾸려면 자기상부터</li>
+          <li><strong>진동 감지</strong> — 팀원의 감정 상태를 느낀다. "지금 OO 어떤 상태인가?"</li>
+          <li><strong>태도 진단</strong> — Attitude = 생각 + 감정 + 행동의 합성. 부정 거부, 긍정 내재화</li>
+          <li><strong>인간 가운데</strong> — 모든 결과는 결국 사람에게 닿아야 한다. 인간 빠진 성과 = 미완성</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="layer">
+      <div class="num">5</div>
+      <div>
+        <div class="name">作 (작) — 작동의 자리 (운영체계)</div>
+        <div class="desc">Mastermind 원칙으로 일한다.</div>
+        <p style="margin:12px 0; font-weight:700; color:var(--gold)">Mastermind 7원칙 — 매 주간회의 시작 시 묵독:</p>
+        <ul>
+          <li><strong>I Release</strong> — 나를 팀에 풀어놓는다 (혼자가 아니다)</li>
+          <li><strong>I Believe</strong> — 우리의 합쳐진 지능이 내 개인 지능을 초월한다</li>
+          <li><strong>I Understand</strong> — 다른 사람 시선에서 내 문제를 본다</li>
+          <li><strong>I Decide</strong> — 욕구를 신뢰로 푼다</li>
+          <li><strong>I Forgive</strong> — 과거 실수를 청산한다</li>
+          <li><strong>I Ask</strong> — 진짜 원하는 것을 명시한다</li>
+          <li><strong>I Accept</strong> — 응답을 받아들인다</li>
+        </ul>
+        <p style="margin:12px 0; font-weight:700; color:var(--gold)">Three R's — 매주 금요일 15분:</p>
+        <ul>
+          <li><strong>Review</strong> — 이번 주 한 일 점검</li>
+          <li><strong>Re-think</strong> — 다음 주 행동 재정렬</li>
+          <li><strong>Rewrite</strong> — 목표를 다시 명문화 (이미지가 흐려졌나)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>팀장만의 강조점 — 리더의 자리</h2>
+    <p>이 운영 원리에서 팀장이 받는 가장 중요한 메시지는 <strong>Lesson 10 — Most Valuable Person</strong>입니다.</p>
+
+    <h3>리더가 가진 4가지</h3>
+    <table>
+      <tr><th>요소</th><th>의미</th></tr>
+      <tr><td><strong>Vision</strong></td><td>가는 방향이 분명. 계획은 바꿔도 목표는 안 바꾼다</td></tr>
+      <tr><td><strong>Attitude</strong></td><td>외부 상황과 무관하게 자기 태도를 유지</td></tr>
+      <tr><td><strong>Self-control</strong></td><td>자기에게 명령하고 자기가 따른다</td></tr>
+      <tr><td><strong>Originator + Subjective</strong></td><td>자기 생각을 originate하되, 동료의 좋은 아이디어엔 subjective(수용)</td></tr>
+    </table>
+
+    <div class="quote">
+      "좋은 follower가 좋은 leader가 된다.
+      좋은 follower가 한 번도 되어본 적 없는 사람은 영원히 효과적인 leader가 될 수 없다." — Bob Proctor
+    </div>
+
+    <p>팀장님은 이미 좋은 follower(회사 비전 받기) 자질을 갖췄습니다.
+    이제 v3.1에서 추가로 가져갈 것은 <strong>"팀원에게 동일한 Vision 받기 능력 전수"</strong>입니다.</p>
+  </div>
+
+  <div class="action-box">
+    <h3>📌 이번 주 (4/27~5/3) 팀장 실행 1개</h3>
+    <p style="margin-bottom:12px"><strong>Praxis 시동 — 이번 주 단 하나만:</strong></p>
+    <ul class="checklist">
+      <li>매일 아침 9:00, <strong>Type C 목표 1줄</strong> 적기 (오늘 정말 원하는 결과)</li>
+      <li>매일 저녁 18:00, <strong>오늘의 Three R's</strong> 5분 (Review·Re-think·Rewrite)</li>
+      <li>금요일 회의 시작 시 <strong>Mastermind 7원칙 묵독</strong></li>
+      <li>이번 주 단 한 명에게라도 "<strong>impression of increase</strong>" 남기기 (그 사람이 나를 만나면 증가한다는 인상)</li>
+    </ul>
+    <p style="margin-top:16px; font-size:14px; color:rgba(255,255,255,0.85)">
+      <em>이게 Praxis 시작입니다. 작은 반복이 패러다임을 바꿉니다.</em>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>9문 셀프 체크 — 매주 금요일 15분</h2>
+    <p style="color:var(--muted); margin-bottom:16px">자신에게 물어보세요. 2개 이상 흐리면 다음 주 재정렬.</p>
+    <ul class="checklist">
+      <li><strong>① 一</strong> 이번 주 한 일을 한 문장으로 압축할 수 있나?</li>
+      <li><strong>② 三</strong> 원리(왜) · 조건(어떻게) · 매개(누구에게) — 셋 다 살아 있었나?</li>
+      <li><strong>③ 合</strong> 분산된 일들이 결국 하나의 흐름으로 합쳐졌나?</li>
+      <li><strong>④ 本</strong> 우리 사명·가치를 잃지 않았나?</li>
+      <li><strong>⑤ 人</strong> 결과가 실제 사람(고객·동료)에게 닿았나?</li>
+      <li><strong>⑥ 次一</strong> 다음 주의 첫 한 걸음이 명확한가?</li>
+      <li><strong>⑦ 能</strong> 내가 스스로 한계를 그은 순간이 있었나? ("이건 어렵다") — 그건 자기검열</li>
+      <li><strong>⑧ 通</strong> 팀원·고객의 마음을 읽었나, 결과만 봤나?</li>
+      <li><strong>⑨ 積</strong> 말한 것을 실제로 행동으로 통합했나? (말로만 했나)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>한 줄로 가져갈 것</h2>
+    <div class="lead" style="font-size:20px; text-align:center; padding:24px">
+      <strong>"본은 묶고, 능은 6개로 풀고,<br>성은 갓난아이로 자라고,<br>통은 마음을 읽고,<br>작은 Mastermind로 일한다."</strong>
+    </div>
+    <p>팀장님이 이걸 몸에 익히면 팀 전체가 자동으로 따라옵니다. 리더의 자기상이 팀의 자기상이기 때문입니다.</p>
+  </div>
+
+  <div class="signature">
+    <strong>쥬얼아이스 운영 원리 v1.0 — 리더 가이드</strong><br>
+    Bob Proctor 기반 | 2026-04-26<br>
+    <span style="font-size:12px; color:var(--purple)">用變不動本 — 도구는 변해도 본은 변하지 않는다.</span>
+  </div>
+
+</div>
+
+</body>
+</html>
