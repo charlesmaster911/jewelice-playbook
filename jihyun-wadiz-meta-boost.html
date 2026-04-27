@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="와디즈 막바지 부스트 — 와디즈 프로 발송 메시지 + 메타광고 ROAS 검증 데이터">
+<meta property="og:title" content="와디즈 막바지 부스트 — 메타광고 활성화 요청">
+<meta property="og:description" content="자사 메타광고 ROAS 검증 데이터 + 푸시알림 + 인스타 피드 추가 요청">
+<title>와디즈 막바지 부스트 — 박지현 팀장 (2026-04-27)</title>
+<style>
+:root {
+  --bg: #0a0a14;
+  --s1: #14141f;
+  --s2: #1c1c2c;
+  --border: #2a2a40;
+  --purple: #7c3aed;
+  --purple-light: #a78bfa;
+  --yellow: #fbbf24;
+  --yellow-light: #fde68a;
+  --white: #eeeef8;
+  --gray: #8888a8;
+  --green: #34d399;
+  --red: #f87171;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  padding: 0;
+}
+
+.glow {
+  position: fixed;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 300px;
+  background: radial-gradient(ellipse, rgba(124,58,237,.15) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container { max-width: 980px; margin: 0 auto; padding: 40px 24px 80px; position: relative; z-index: 1; }
+
+.toolbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,20,.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; gap: 12px; align-items: center;
+  justify-content: space-between;
+  margin: -40px -24px 32px;
+}
+.toolbar-title { font-size: 12px; color: var(--gray); letter-spacing: 1px; }
+.toolbar-actions { display: flex; gap: 8px; }
+.btn {
+  background: var(--s2); border: 1px solid var(--border);
+  color: var(--white); padding: 6px 14px;
+  border-radius: 6px; font-size: 12px; cursor: pointer;
+  transition: all .2s;
+}
+.btn:hover { border-color: var(--purple); color: var(--purple-light); }
+.btn.active { background: var(--purple); border-color: var(--purple); }
+
+.eyebrow {
+  font-size: 11px; letter-spacing: 4px; color: var(--purple-light);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+h1 {
+  font-size: clamp(28px, 4vw, 40px); font-weight: 900;
+  letter-spacing: -1px; line-height: 1.2; margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--purple-light), var(--yellow));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { color: var(--gray); font-size: 15px; margin-bottom: 8px; }
+.meta-line { font-size: 12px; color: var(--gray); margin-bottom: 40px; }
+.meta-line strong { color: var(--yellow); }
+
+.section {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+.section-num {
+  display: inline-block;
+  font-size: 10px; letter-spacing: 3px; color: var(--purple-light);
+  background: rgba(124,58,237,.15); border: 1px solid rgba(124,58,237,.3);
+  padding: 4px 10px; border-radius: 20px;
+  margin-bottom: 12px;
+}
+h2 {
+  font-size: 22px; font-weight: 800;
+  margin-bottom: 8px; line-height: 1.3;
+}
+h2 .accent { color: var(--yellow); }
+.section-desc { color: var(--gray); font-size: 13px; margin-bottom: 20px; }
+
+table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px; margin: 12px 0;
+}
+th, td {
+  padding: 10px 12px; text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+th {
+  background: var(--s2); color: var(--purple-light);
+  font-size: 12px; letter-spacing: 0.5px; font-weight: 600;
+}
+td.num { text-align: right; font-variant-numeric: tabular-nums; }
+td.good { color: var(--green); font-weight: 600; }
+td.bad { color: var(--red); font-weight: 600; }
+tr:last-child td { border-bottom: none; }
+tfoot tr td {
+  background: rgba(124,58,237,.08);
+  font-weight: 700; border-top: 2px solid var(--purple);
+}
+
+.message-box {
+  background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(251,191,36,.05));
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  padding: 24px;
+  margin: 16px 0;
+  position: relative;
+  font-size: 14px; line-height: 1.8;
+  white-space: pre-wrap;
+}
+.message-box .copy-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--purple); color: white;
+  border: none; padding: 6px 12px; border-radius: 6px;
+  font-size: 11px; cursor: pointer;
+  transition: all .2s;
+}
+.message-box .copy-btn:hover { background: var(--yellow); color: var(--bg); }
+
+.callout {
+  background: rgba(251,191,36,.08);
+  border-left: 4px solid var(--yellow);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.callout strong { color: var(--yellow); }
+
+.callout.purple {
+  background: rgba(124,58,237,.08);
+  border-left-color: var(--purple);
+}
+.callout.purple strong { color: var(--purple-light); }
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.kpi-card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+.kpi-label { font-size: 11px; color: var(--gray); margin-bottom: 6px; letter-spacing: 1px; }
+.kpi-value { font-size: 24px; font-weight: 800; color: var(--yellow); margin-bottom: 4px; }
+.kpi-sub { font-size: 11px; color: var(--gray); }
+
+ul, ol { margin: 8px 0 8px 20px; }
+li { margin-bottom: 6px; font-size: 14px; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tag {
+  font-size: 11px; padding: 3px 10px; border-radius: 12px;
+  background: var(--s2); border: 1px solid var(--border); color: var(--gray);
+}
+.tag.purple { color: var(--purple-light); border-color: rgba(124,58,237,.4); }
+.tag.yellow { color: var(--yellow); border-color: rgba(251,191,36,.4); }
+
+.toc {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.toc-title {
+  font-size: 11px; letter-spacing: 3px; color: var(--gray);
+  margin-bottom: 12px;
+}
+.toc ul { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 24px; }
+.toc li { font-size: 13px; margin-bottom: 8px; break-inside: avoid; }
+.toc a { color: var(--white); text-decoration: none; }
+.toc a:hover { color: var(--yellow); }
+@media (max-width: 600px) { .toc ul { columns: 1; } }
+
+.budget-table th { color: var(--yellow); }
+
+[contenteditable="true"] {
+  background: rgba(251,191,36,.05);
+  outline: 1px dashed rgba(251,191,36,.3);
+  padding: 4px 6px; border-radius: 4px;
+}
+[contenteditable="true"]:focus { outline: 2px solid var(--yellow); background: rgba(251,191,36,.1); }
+
+.footer {
+  text-align: center; margin-top: 40px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--gray); letter-spacing: 1px;
+}
+
+@media print {
+  .toolbar { display: none; }
+  body { background: white; color: black; }
+  .section { background: white; border: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="toolbar">
+  <span class="toolbar-title">와디즈 막바지 부스트 · 박지현 팀장 · 2026-04-27</span>
+  <div class="toolbar-actions">
+    <button class="btn" id="editBtn" onclick="toggleEdit()">📝 편집</button>
+    <button class="btn" onclick="window.print()">🖨️ 인쇄</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="eyebrow">와디즈 막바지 부스트 · 박지현 팀장 → 와디즈 프로</div>
+  <h1>지금 메타광고로 와디즈 펀딩 끝판 부스트</h1>
+  <p class="subtitle">자사 메타광고 ROAS 검증 데이터 기반, 푸시알림 + 인스타 피드 광고 추가 요청서</p>
+  <p class="meta-line">작성: <strong>박지현 팀장</strong> · 작성일 2026-04-27 · 발송 대상: 와디즈 프로 담당자 · 캠페인: <strong>ABLR 와디즈 펀딩</strong> (4/23 오픈, 진행 중)</p>
+
+  <div class="toc">
+    <div class="toc-title">목차</div>
+    <ul>
+      <li>① <a href="#tldr">한 눈에 — 핵심 4가지</a></li>
+      <li>② <a href="#message">발송용 메시지 (복사용)</a></li>
+      <li>③ <a href="#data1">근거 ① 자사몰 메타광고 ROAS</a></li>
+      <li>④ <a href="#data2">근거 ② 와디즈 메타광고 ROAS</a></li>
+      <li>⑤ <a href="#push">추가 요청 ① 푸시알림</a></li>
+      <li>⑥ <a href="#meta">추가 요청 ② 인스타 피드 광고</a></li>
+      <li>⑦ <a href="#budget">예산 제안</a></li>
+      <li>⑧ <a href="#assets">바로 활용 가능한 보유 자산</a></li>
+    </ul>
+  </div>
+
+  <!-- ① TLDR -->
+  <div class="section" id="tldr">
+    <span class="section-num">SECTION 01</span>
+    <h2>한 눈에 — <span class="accent">핵심 4가지</span></h2>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">현재 효율 진단</div>
+        <div class="kpi-value">↓</div>
+        <div class="kpi-sub">와디즈 단독 부스트 한계</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">자사 메타광고 ROAS</div>
+        <div class="kpi-value" style="color:var(--green)">3.98</div>
+        <div class="kpi-sub">2026 1분기 검증치</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">과거 와디즈 메타 ROAS</div>
+        <div class="kpi-value" style="color:var(--green)">20.6×</div>
+        <div class="kpi-sub">ABLR 1차 펀딩 (2024)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">추가 요청 채널</div>
+        <div class="kpi-value" style="font-size:18px">푸시 + 인스타</div>
+        <div class="kpi-sub">D-Day 카운트 + 인플루언서</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>대표님 요청 핵심:</strong> 와디즈 단독 부스트가 정체된 상황. 과거 자사 메타광고 효율이 매우 좋았던 검증 데이터를 와디즈 프로에게 공유하고, <strong>① 카카오톡 푸시알림 발송 + ② 인스타그램 피드 메타광고</strong> 추가 집행을 요청해 막바지 부스트 진행.
+    </div>
+  </div>
+
+  <!-- ② 발송용 메시지 -->
+  <div class="section" id="message">
+    <span class="section-num">SECTION 02</span>
+    <h2>와디즈 프로 <span class="accent">발송용 메시지</span></h2>
+    <p class="section-desc">아래 박스 우측 상단 [복사] 버튼 → 카톡/메일 그대로 붙여넣기. 본문은 편집 모드에서 직접 수정 가능.</p>
+
+    <div class="message-box" id="msgBody">
+<button class="copy-btn" onclick="copyMessage()">📋 복사</button>
+<span contenteditable="false" id="msgContent">안녕하세요, 와디즈 ABLR 캠페인 담당 매니저님.
+쥬얼아이스 박지현 팀장입니다.
+
+현재 진행 중인 ABLR 펀딩 막바지 부스트 관련해서 한 가지 제안드리고자 연락드립니다.
+
+저희가 자체 운영 중인 메타광고에서 검증된 효율 데이터를 공유드리고, 이 인사이트를 활용해 와디즈 펀딩 막바지 부스트에 메타광고 + 푸시알림을 추가로 활성화해주실 수 있을지 검토 부탁드립니다.
+
+━━━━━━━━━━━━━━━━━
+■ 자사 메타광고 검증 데이터 (2026 1분기)
+━━━━━━━━━━━━━━━━━
+· 1월 매출 6,554만원 / 광고비 1,983만원 / ROAS 3.30
+· 2월 매출 6,288만원 / 광고비 1,403만원 / ROAS 4.48
+· 3월 매출 6,678만원 / 광고비 1,512만원 / ROAS 4.42
+· 1분기 통합 ROAS 3.98 (메타가 자사몰 전환 핵심 견인)
+
+■ 과거 와디즈 메타광고 효율 (ABLR 1차 펀딩, 2024)
+━━━━━━━━━━━━━━━━━
+· 메타광고 비용 159만원 → 매출 3,285만원
+· 펀딩 ROAS 약 20배 (와디즈 펀딩 특수 + 메타 시너지)
+
+━━━━━━━━━━━━━━━━━
+■ 추가 활성화 요청 (3가지)
+━━━━━━━━━━━━━━━━━
+
+① 카카오톡 알림 푸시 메시지 발송
+   - 펀딩 종료 D-7, D-3, D-1 시점에 알림 신청 고객 대상 푸시
+   - 메시지 톤은 "막바지 임박" + "혜택 마감" 강조
+   - 과거 차수(3~9차) 푸시 템플릿 보유 — 필요 시 공유 가능
+
+② 인스타그램 피드 메타광고 집행
+   - 형식: 라이프스타일 공감형 카드뉴스 + 릴스 (인플루언서 브랜디드 콘텐츠 톤)
+   - 타겟: 홈카페·홈바·위스키 관심사 2030
+   - 후킹 카피: "70시간 라이브 2.5억 매출" / "1차 펀딩 ROAS 20배" / "8,049개 진짜리뷰"
+   - 보유 소재: 인플루언서 협업 영상 (강민경·빠니보틀 자발 영상 활용 가능)
+
+③ 와디즈 자체 추천/메인 노출 강화
+   - 현재 노출 지면 추가 검토 (메인 신상품/마감 임박 코너)
+   - 가능한 노출 위치 회신 부탁드립니다
+
+━━━━━━━━━━━━━━━━━
+■ 예산 / 일정
+━━━━━━━━━━━━━━━━━
+· 추가 광고 예산: 일 30만원 × 7일 = 약 210만원 (조정 가능)
+· 푸시알림: 와디즈 정책 내 가능한 횟수만큼 우선 진행
+· 집행 시작 희망: 가능한 빠른 시일 내
+
+━━━━━━━━━━━━━━━━━
+■ 첨부 / 참고
+━━━━━━━━━━━━━━━━━
+· 자사 메타광고 소재 정리 시트 (8,049개 후기 카피 풀)
+· ABLR 인플루언서 브랜디드 콘텐츠 레퍼런스 (모슈·스탠리 톤)
+· 과거 와디즈 펀딩오픈알림 메시지 템플릿 (3차~9차)
+※ 모두 공유 드라이브 폴더에서 즉시 전달 가능
+
+━━━━━━━━━━━━━━━━━
+
+매니저님 검토 후 가능한 지원 범위와 예상 일정 회신 부탁드립니다.
+이번 차수에 다시 한 번 메타광고 임팩트를 만들어 보고자 합니다.
+
+감사합니다.
+박지현 드림
+
+쥬얼아이스 / 마스터마인딩그룹
+박지현 팀장</span>
+    </div>
+
+    <div class="callout purple">
+      <strong>발송 채널 우선순위:</strong> ① 카톡 (담당 매니저 즉시 회신) → ② 메일 (공식 기록 보존) → ③ 위 두 가지 함께 발송 권장. 견적 첨부 시 자사 매출 통합 시트 + 인플루언서 레퍼런스 PDF 같이 보내면 회신율 ↑.
+    </div>
+  </div>
+
+  <!-- ③ 자사 메타광고 ROAS -->
+  <div class="section" id="data1">
+    <span class="section-num">SECTION 03</span>
+    <h2>근거 ① <span class="accent">자사몰 메타광고 ROAS</span> (2026 1분기)</h2>
+    <p class="section-desc">출처: 쥬얼아이스 통합 매출 파일 (자사몰 + 카페24 + 스마트스토어 합산)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>월</th>
+          <th class="num">총 매출</th>
+          <th class="num">총 광고비</th>
+          <th class="num">광고비율</th>
+          <th class="num">ROAS</th>
+          <th>코멘트</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>2026.01</td>
+          <td class="num">65,544,657원</td>
+          <td class="num">19,831,348원</td>
+          <td class="num">30.3%</td>
+          <td class="num good">3.30</td>
+          <td>1월 신년 프로모션 + 메타 풀세트</td>
+        </tr>
+        <tr>
+          <td>2026.02</td>
+          <td class="num">62,880,423원</td>
+          <td class="num">14,037,849원</td>
+          <td class="num">22.3%</td>
+          <td class="num good">4.48</td>
+          <td>광고비 줄이고 효율 ↑ — <strong>최고 ROAS</strong></td>
+        </tr>
+        <tr>
+          <td>2026.03</td>
+          <td class="num">66,787,609원</td>
+          <td class="num">15,120,325원</td>
+          <td class="num">22.6%</td>
+          <td class="num good">4.42</td>
+          <td>안정적 효율 유지</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>1분기 합계</strong></td>
+          <td class="num"><strong>195,212,689원</strong></td>
+          <td class="num"><strong>49,347,824원</strong></td>
+          <td class="num"><strong>25.3%</strong></td>
+          <td class="num good"><strong>3.98</strong></td>
+          <td><strong>1분기 평균 ROAS 약 4배</strong></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="callout">
+      <strong>핵심 메시지:</strong> 자사 메타광고만으로 분기 약 2억 매출을 ROAS 4.0 수준으로 견인하고 있음. 와디즈 펀딩 트래픽이 더해지면 시너지 효과로 ROAS 더 상승 기대 가능.
+    </div>
+
+    <div class="tag-row">
+      <span class="tag purple">메타광고 단일 채널</span>
+      <span class="tag purple">자사몰 + 스마트스토어</span>
+      <span class="tag yellow">출처: 매출 통합 파일</span>
+    </div>
+  </div>
+
+  <!-- ④ 와디즈 메타광고 ROAS -->
+  <div class="section" id="data2">
+    <span class="section-num">SECTION 04</span>
+    <h2>근거 ② <span class="accent">와디즈 펀딩 메타광고 ROAS</span> (2024 ABLR 1차)</h2>
+    <p class="section-desc">출처: 와디즈_대중소세 시트 (1차 펀딩 비용/매출 분석)</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th class="num">금액</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>총 거래액 (펀딩 매출)</td>
+          <td class="num">32,857,000원</td>
+          <td>357명 / 1인당 약 92,036원</td>
+        </tr>
+        <tr>
+          <td>메타광고 비용</td>
+          <td class="num">1,593,066원</td>
+          <td>와디즈 메타 단독</td>
+        </tr>
+        <tr>
+          <td><strong>메타광고 단일 ROAS</strong></td>
+          <td class="num good"><strong>약 20.6배</strong></td>
+          <td>펀딩 특수 + 알림 신청 풀 효과</td>
+        </tr>
+        <tr>
+          <td>총 비용 (생산·광고·수수료 등)</td>
+          <td class="num">15,830,132원</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>이익액 (부가세 별도)</td>
+          <td class="num good">17,026,868원</td>
+          <td>이익률 52%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin-top:24px; margin-bottom:8px; font-size:15px; color:var(--purple-light)">와디즈 펀딩 차수별 매출 추이 (참고)</h3>
+    <table>
+      <thead>
+        <tr><th>차수</th><th class="num">펀딩액</th><th class="num">전차 대비</th><th>마감일</th><th>핵심 변화</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1차</td><td class="num">30,937,777원</td><td class="num">—</td><td>2019.09</td><td>최초 런칭</td></tr>
+        <tr><td>2차</td><td class="num">54,439,500원</td><td class="num good">+176%</td><td>2019.11</td><td>후기 추가, 카피 강화</td></tr>
+        <tr><td>4차</td><td class="num good">162,602,000원</td><td class="num good">+944%</td><td>2021.03</td><td>듀오 메인, 감성 카피, 남자의취미 영상</td></tr>
+        <tr><td>5차</td><td class="num">109,680,000원</td><td class="num">+67%</td><td>2021.08</td><td>—</td></tr>
+        <tr><td>6차</td><td class="num">66,599,000원</td><td class="num">—</td><td>2022.04</td><td>브라운, 국내 생산</td></tr>
+        <tr><td><strong>7차</strong></td><td class="num good"><strong>264,349,000원</strong></td><td class="num good"><strong>+397%</strong></td><td>2022.08</td><td><strong>스틱 신규 + 곡면형태 — 역대 최고</strong></td></tr>
+        <tr><td>8차</td><td class="num">103,092,000원</td><td class="num">—</td><td>2022.10</td><td>—</td></tr>
+        <tr><td>9차</td><td class="num">53,119,000원</td><td class="num">—</td><td>2023.02</td><td>—</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>패턴 분석:</strong> 4차(+944%), 7차(+397%) 메가 히트 차수 모두 <strong>① 콘텐츠 풀 갱신 + ② 메타광고 강화 + ③ 인플루언서 영상</strong>이 동시에 작동했을 때 발생. 이번 ABLR도 같은 공식 적용 가능.
+    </div>
+  </div>
+
+  <!-- ⑤ 푸시알림 -->
+  <div class="section" id="push">
+    <span class="section-num">SECTION 05</span>
+    <h2>추가 요청 ① <span class="accent">카카오톡 알림 푸시</span></h2>
+    <p class="section-desc">와디즈가 보유한 알림 신청 고객 풀 대상 D-Day 카운트 푸시</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>발송 시점</th>
+          <th>메시지 톤</th>
+          <th>예상 효과</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>D-7</strong></td>
+          <td>"마감 1주일 남았어요" + 베스트 리워드 강조</td>
+          <td>중간 부스트 1차</td>
+        </tr>
+        <tr>
+          <td><strong>D-3</strong></td>
+          <td>"지금 놓치면 안 되는 이유" + 후기 인용</td>
+          <td>중간 부스트 2차</td>
+        </tr>
+        <tr>
+          <td><strong>D-1</strong></td>
+          <td>"마지막 24시간" + 얼리버드 마감 강조</td>
+          <td>막판 스퍼트</td>
+        </tr>
+        <tr>
+          <td><strong>D-Day 오전</strong></td>
+          <td>"오늘 자정까지" + CTA 강하게</td>
+          <td>최종 클로징</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout purple">
+      <strong>보유 자산:</strong> 과거 3차~9차 펀딩 시점에 사용한 카카오톡 푸시 메시지 템플릿 (`와디즈펀딩오픈알림메시지.docx`) 보유 중. 와디즈 프로 매니저에게 즉시 공유 가능.
+    </div>
+
+    <h3 style="margin-top:20px; margin-bottom:8px; font-size:15px; color:var(--purple-light)">예시 메시지 (참고용)</h3>
+    <div class="message-box" style="font-size:13px">
+<span contenteditable="false">[ABLR 와디즈] D-3
+"투명 얼음 8만원짜리, 진짜 가치 있어요?"
+8,049개 진짜 후기가 답합니다.
+얼리버드 69,000원 → 마감 임박 ⏰
+👉 wdz.kr/ablr</span>
+    </div>
+  </div>
+
+  <!-- ⑥ 인스타 피드 광고 -->
+  <div class="section" id="meta">
+    <span class="section-num">SECTION 06</span>
+    <h2>추가 요청 ② <span class="accent">인스타그램 피드 메타광고</span></h2>
+    <p class="section-desc">와디즈 프로젝트 페이지 직접 유입 + 알림 신청 전환 유도</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>형식</th>
+          <th>컨셉</th>
+          <th>타겟</th>
+          <th>예산 비중</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>릴스 (라이프스타일)</strong></td>
+          <td>홈카페·홈바 일상 속 자연스러운 ABLR 노출 (모슈·스탠리 톤)</td>
+          <td>2030 홈카페·홈텐딩</td>
+          <td>40%</td>
+        </tr>
+        <tr>
+          <td><strong>릴스 (정보 전달)</strong></td>
+          <td>"투명 얼음 만드는 법" + 제품 특장점 직관 소개</td>
+          <td>위스키·하이볼 입문자</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td><strong>카드뉴스</strong></td>
+          <td>"왜 8만원짜리 얼음틀이 1만개 팔렸을까" 큐레이션 톤</td>
+          <td>홈인테리어·선물 검색층</td>
+          <td>20%</td>
+        </tr>
+        <tr>
+          <td><strong>이미지 단일</strong></td>
+          <td>리타겟팅 — 와디즈 페이지 방문자 / 알림 신청자</td>
+          <td>관심 표현 사용자</td>
+          <td>10%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>핵심 후킹 카피 (이미 검증된 자산):</strong>
+      <ul style="margin-top:8px">
+        <li>"70시간 라이브 쇼핑 동안 2억5천만원 매출의 화제의 그 아이스메이커"</li>
+        <li>"진짜리뷰 8,049개의 압도적 후기, 평균평점 4.9점"</li>
+        <li>"디아지오 크루 월드 클래스 바텐더 최원우도 쓰는"</li>
+        <li>"와디즈 펀딩 1일만에 18,090% 달성 / 자사몰 누적판매액 10억 돌파"</li>
+        <li>"유튜버 '남자의 취미' 추천, 누적 조회수 340만회"</li>
+      </ul>
+    </div>
+
+    <div class="callout purple">
+      <strong>보유 자산:</strong> 메타광고 외부광고 소재 정리 시트 (구글드라이브) — 카피·후킹 멘트·태그 풀 완비. 인플루언서 브랜디드 콘텐츠 레퍼런스 PPT 보유.
+    </div>
+  </div>
+
+  <!-- ⑦ 예산 -->
+  <div class="section" id="budget">
+    <span class="section-num">SECTION 07</span>
+    <h2>예산 <span class="accent">제안</span></h2>
+    <p class="section-desc">와디즈 막바지 7일 부스트 기준</p>
+
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th class="num">예산</th>
+          <th>비고</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>인스타 피드 메타광고 (7일)</td>
+          <td class="num">1,500,000원</td>
+          <td>일 약 21만원 — 와디즈 추천 ROAS 5배 가정 시 매출 750만원</td>
+        </tr>
+        <tr>
+          <td>카카오톡 푸시 (4회)</td>
+          <td class="num" contenteditable="true">와디즈 정책 견적</td>
+          <td>알림 신청 풀 기반 — 매니저 견적 회신 대기</td>
+        </tr>
+        <tr>
+          <td>인플루언서 콘텐츠 활용</td>
+          <td class="num">0원</td>
+          <td>강민경·빠니보틀 등 자발 영상 — 비용 X</td>
+        </tr>
+        <tr>
+          <td>소재 추가 제작 (필요 시)</td>
+          <td class="num" contenteditable="true">와디즈 견적</td>
+          <td>매니저 의견 반영</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>예상 추가 매출 (보수)</strong></td>
+          <td class="num good"><strong>1,500만원~3,000만원</strong></td>
+          <td>ROAS 3~5배 시나리오</td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="callout">
+      <strong>판단 기준:</strong> ROAS 3.0 이상 — 즉시 GO. ROAS 2.0~3.0 — 카피·타겟 재조정 후 재집행. ROAS 2.0 미만 — 푸시알림에 집중하고 메타는 일시 중단.
+    </div>
+  </div>
+
+  <!-- ⑧ 보유 자산 -->
+  <div class="section" id="assets">
+    <span class="section-num">SECTION 08</span>
+    <h2>바로 활용 가능한 <span class="accent">보유 자산</span></h2>
+    <p class="section-desc">와디즈 프로 매니저에게 즉시 전달 가능한 파일 리스트</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>자산</th>
+          <th>위치</th>
+          <th>용도</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>메타광고 외부광고 소재 정리 시트</td>
+          <td>구글드라이브 / 메타광고소재 폴더</td>
+          <td>카피·후킹 멘트·태그 풀</td>
+        </tr>
+        <tr>
+          <td>와디즈펀딩오픈알림메시지.docx</td>
+          <td>구글드라이브 / 와디즈 폴더</td>
+          <td>3~9차 푸시 템플릿</td>
+        </tr>
+        <tr>
+          <td>인플루언서 브랜디드 콘텐츠 레퍼런스 PPT</td>
+          <td>구글드라이브 / MAZE 폴더</td>
+          <td>릴스·카드뉴스 톤 가이드</td>
+        </tr>
+        <tr>
+          <td>ABLR B2B 상품제안서 PPT</td>
+          <td>구글드라이브 / 와디즈 폴더</td>
+          <td>제품 특장점·B2B 레퍼런스</td>
+        </tr>
+        <tr>
+          <td>강민경·빠니보틀 자발 영상</td>
+          <td>유튜브 / 인스타</td>
+          <td>인플루언서 콘텐츠 활용</td>
+        </tr>
+        <tr>
+          <td>매출 통합 파일 (1~3월 ROAS 검증)</td>
+          <td>구글드라이브 / 매출 통합 폴더</td>
+          <td>메타광고 효율 근거 자료</td>
+        </tr>
+        <tr>
+          <td>와디즈메타광고소재_20260423 폴더</td>
+          <td>구글드라이브 / SNS_광고영상_소재</td>
+          <td>이미 진행 중인 와디즈 광고 소재</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 노란 박스: 박지현 팀장 결정 포인트 -->
+  <div class="section" style="border-color: var(--yellow); background: rgba(251,191,36,.04)">
+    <span class="section-num" style="color: var(--yellow); background: rgba(251,191,36,.12); border-color: rgba(251,191,36,.4)">결정 포인트</span>
+    <h2>박지현 팀장 <span class="accent">최종 결정 사항</span></h2>
+    <p class="section-desc">메시지 발송 전 확인할 점 — 노란 박스 안 직접 답변 (편집 모드)</p>
+
+    <ul>
+      <li><strong>발송 채널:</strong> <span contenteditable="true">카톡 / 메일 / 둘 다 — 선택</span></li>
+      <li><strong>와디즈 매니저 이름·연락처:</strong> <span contenteditable="true">매니저 성함</span></li>
+      <li><strong>예산 상한:</strong> <span contenteditable="true">상한 금액 입력</span></li>
+      <li><strong>대표님 사전 보고 필요?</strong> <span contenteditable="true">예/아니오 + 보고 시점</span></li>
+      <li><strong>메시지 톤 변경 사항:</strong> <span contenteditable="true">수정 사항이 있다면</span></li>
+      <li><strong>발송 예정일:</strong> <span contenteditable="true">YYYY-MM-DD HH:MM</span></li>
+    </ul>
+  </div>
+
+  <div class="footer">
+    화경 작성 · 박지현 팀장 워크스페이스 · 2026-04-27<br>
+    영구 URL: charlesmaster911.github.io/jewelice-playbook/jihyun-wadiz-meta-boost.html · 같은 주소에 계속 업데이트
+  </div>
+</div>
+
+<script>
+let editMode = false;
+function toggleEdit() {
+  editMode = !editMode;
+  const btn = document.getElementById('editBtn');
+  const editables = document.querySelectorAll('[contenteditable]');
+  if (editMode) {
+    editables.forEach(el => el.setAttribute('contenteditable', 'true'));
+    document.getElementById('msgContent').setAttribute('contenteditable', 'true');
+    btn.textContent = '💾 저장';
+    btn.classList.add('active');
+  } else {
+    editables.forEach(el => el.setAttribute('contenteditable', 'false'));
+    document.getElementById('msgContent').setAttribute('contenteditable', 'false');
+    saveContent();
+    btn.textContent = '📝 편집';
+    btn.classList.remove('active');
+  }
+}
+
+function saveContent() {
+  const data = {};
+  document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+    data['edit_' + i] = el.innerHTML;
+  });
+  localStorage.setItem('jihyun_wadiz_boost_v1', JSON.stringify(data));
+}
+
+function loadContent() {
+  const raw = localStorage.getItem('jihyun_wadiz_boost_v1');
+  if (!raw) return;
+  try {
+    const data = JSON.parse(raw);
+    document.querySelectorAll('[contenteditable]').forEach((el, i) => {
+      if (data['edit_' + i]) el.innerHTML = data['edit_' + i];
+    });
+  } catch(e) {}
+}
+
+function copyMessage() {
+  const text = document.getElementById('msgContent').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = '✅ 복사됨';
+    setTimeout(() => btn.textContent = orig, 1800);
+  });
+}
+
+window.addEventListener('load', loadContent);
+</script>
+</body>
+</html>
