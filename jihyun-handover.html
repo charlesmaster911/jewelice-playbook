@@ -40,7 +40,7 @@ tr:hover td{background:#FAFAFA}
 .col-link a:hover{background:#7C3AED;color:#fff}
 .col-link .none{color:#9CA3AF;font-size:11px}
 input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+.summary{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-bottom:24px}
 .s-card{background:#fff;border-radius:12px;padding:16px;border:1px solid #EDE9FE;text-align:center}
 .s-card .n{font-size:26px;font-weight:900;background:linear-gradient(135deg,#7C3AED,#FDE047);-webkit-background-clip:text;background-clip:text;color:transparent}
 .s-card .l{font-size:11px;color:#6B7280;margin-top:4px;font-weight:700}
@@ -54,7 +54,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
 .foot{text-align:center;margin-top:32px;padding:24px;background:#1E1B4B;color:#A5B4FC;border-radius:12px;font-size:12px}
 .foot b{color:#FDE047}
 .edit-on [contenteditable=true]{outline:1.5px dashed #FDE047;background:#FFFBEB;padding:2px 4px;border-radius:3px}
-@media(max-width:760px){.summary{grid-template-columns:repeat(2,1fr)}.col-item{width:auto}.col-detail{display:none}.col-link{width:auto}}
+@media(max-width:760px){.summary{grid-template-columns:repeat(3,1fr)}.col-item{width:auto}.col-detail{display:none}.col-link{width:auto}}
 </style>
 </head>
 <body>
@@ -64,7 +64,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
   <div class="hero-in">
     <div class="crumb">JEWELICE · HANDOVER</div>
     <h1>박지현 팀장 인수인계서</h1>
-    <div class="sub">3개 핵심 파트(MD · B2B · 콘텐츠 마케팅) + 권나경 과장 별도 인수 항목. 자료는 모두 구글 드라이브 인수인계 폴더와 연결됩니다.</div>
+    <div class="sub">5개 핵심 파트(MD · B2B · 콘텐츠 마케팅 · 디자인 · 상품 개발) + 권나경 과장 별도 인수. 자료는 모두 구글 드라이브 인수인계 폴더와 연결됩니다.</div>
     <div class="meta">
       <span>📅 작성: 2026-04-27</span>
       <span>👤 박지현 팀장 → 후임</span>
@@ -85,9 +85,11 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
   </div>
 
   <div class="summary">
-    <div class="s-card"><div class="n" id="cnt-md">—</div><div class="l">MD 파트</div></div>
+    <div class="s-card"><div class="n" id="cnt-md">—</div><div class="l">MD</div></div>
     <div class="s-card"><div class="n" id="cnt-b2b">—</div><div class="l">B2B 영업</div></div>
     <div class="s-card"><div class="n" id="cnt-mkt">—</div><div class="l">콘텐츠 마케팅</div></div>
+    <div class="s-card"><div class="n" id="cnt-design">—</div><div class="l">디자인</div></div>
+    <div class="s-card"><div class="n" id="cnt-dev">—</div><div class="l">상품 개발</div></div>
     <div class="s-card"><div class="n" id="cnt-kng">—</div><div class="l">권나경 인수</div></div>
   </div>
 
@@ -241,36 +243,125 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
     </table>
   </div>
 
+  <!-- 디자인 파트 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="ic">🎨</span>
+      <span class="name">D. 디자인 파트</span>
+      <span class="who handover">후임 인계</span>
+    </div>
+    <table>
+      <thead><tr><th class="col-item">항목</th><th class="col-detail">상세 / 핸드오프 포인트</th><th class="col-link">자료</th><th class="col-chk">완료</th></tr></thead>
+      <tbody data-cat="design">
+        <tr>
+          <td contenteditable="true">홈페이지 리뉴얼</td>
+          <td contenteditable="true">자사몰 홈페이지 리뉴얼 진행 상태, 디자인 시안, 외주 거래처, 일정. 다음 단계 정의 필요.</td>
+          <td class="col-link"><a href="https://charlesmaster911.github.io/jewelice-playbook/jihyun-homepage-renewal.html" target="_blank">홈페이지 리뉴얼</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="d1"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">상세페이지 디자인</td>
+          <td contenteditable="true">SKU별 상세페이지 시안·확정본·수정 이력. 채널별(스마트스토어·자사몰·쿠팡·카카오·와디즈) 변형본.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1h96eusPKmTOqzmEsxFPdaLFwZfeKs7Cz" target="_blank">06.디자인</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="d2"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">썸네일 · 메인 비주얼</td>
+          <td contenteditable="true">채널별 썸네일 가이드, 메인 배너, 시즌별 비주얼 컨셉. 작업 거래처와 일정.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1h96eusPKmTOqzmEsxFPdaLFwZfeKs7Cz" target="_blank">06.디자인</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="d3"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">브랜드 아이덴티티 · 톤</td>
+          <td contenteditable="true">시그니처 컬러(퍼플+옐로우), 로고 사용 가이드, 브랜드 톤 자료.</td>
+          <td class="col-link"><a href="https://charlesmaster911.github.io/jewelice-playbook/jihyun-hub.html" target="_blank">38_브랜드톤</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="d4"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">디자인 외주 거래처</td>
+          <td contenteditable="true">상세페이지·썸네일·홈페이지 외주처 리스트, 단가, 작업 퀄리티 평가.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1mkxRQhgy1WtAgCCbEhVp3sC4DannhzPA" target="_blank">01.거래처정보</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="d5"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 상품 개발 파트 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="ic">🧊</span>
+      <span class="name">E. 상품 개발 파트</span>
+      <span class="who handover">후임 인계</span>
+    </div>
+    <table>
+      <thead><tr><th class="col-item">항목</th><th class="col-detail">상세 / 핸드오프 포인트</th><th class="col-link">자료</th><th class="col-chk">완료</th></tr></thead>
+      <tbody data-cat="dev">
+        <tr>
+          <td contenteditable="true">쇼핑백</td>
+          <td contenteditable="true">사이즈 시뮬레이션, 거래처, 발주 단가, 재고 현황. 다음 발주 시점 공유.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1xRfpSlp4tloyzhGqQpeTTV9lEhsp5bnv" target="_blank">쇼핑백 폴더</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="e1"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">더스트백</td>
+          <td contenteditable="true">규격, 거래처, 단가, 재고. 사용처(선물세트·B2B 동봉).</td>
+          <td class="col-link"><a href="https://drive.google.com/file/d/1ISGNTJCZGZGmpFQRarfI7hTeOE6auXKs/view" target="_blank">더스트백.png</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="e2"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">얼음집게 박스</td>
+          <td contenteditable="true">패키지 박스 규격(PDF), 거래처, 단가, 재고. 인쇄·납기 리드타임.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1ITK8MGO4wXN5nw8QYdawIF_wMwaQ9Um_" target="_blank">집게박스 폴더</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="e3"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">신규 컬러 개발</td>
+          <td contenteditable="true">신규 컬러 후보, 샘플 진척도, 거래처(생산·인쇄), 출시 일정. 시장 반응 데이터.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1ywYR07FdRcz5j-eWeL6vXgygKXA28QSZ" target="_blank">04.상품기획&시장조사</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="e4"></td>
+        </tr>
+        <tr>
+          <td contenteditable="true">기타 신규 SKU</td>
+          <td contenteditable="true">개발 진행 중인 신상품 후보, 샘플 단계, 출시 우선순위.</td>
+          <td class="col-link"><a href="https://drive.google.com/drive/folders/1ywYR07FdRcz5j-eWeL6vXgygKXA28QSZ" target="_blank">04.상품기획&시장조사</a></td>
+          <td class="col-chk"><input type="checkbox" data-k="e5"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   <!-- 권나경 과장 별도 인수 -->
   <div class="section">
     <div class="sec-head">
       <span class="ic">🛍️</span>
-      <span class="name">D. 권나경 과장 별도 인수 (패키징 자재)</span>
+      <span class="name">F. 권나경 과장 별도 인수 (패키징 자재 운영)</span>
       <span class="who handover">권나경 과장 인계</span>
     </div>
     <table>
       <thead><tr><th class="col-item">항목</th><th class="col-detail">상세 / 핸드오프 포인트</th><th class="col-link">자료</th><th class="col-chk">완료</th></tr></thead>
       <tbody data-cat="kng">
         <tr>
-          <td contenteditable="true">쇼핑백</td>
-          <td contenteditable="true">사이즈 시뮬레이션, 거래처, 발주 단가, 재고 현황. 다음 발주 시점 공유.</td>
+          <td contenteditable="true">쇼핑백 운영 (발주·재고)</td>
+          <td contenteditable="true">기존 발주 거래처·단가·재고. 발주 시점·수량 결정 권한 인계.</td>
           <td class="col-link"><a href="https://drive.google.com/drive/folders/1xRfpSlp4tloyzhGqQpeTTV9lEhsp5bnv" target="_blank">쇼핑백 폴더</a></td>
           <td class="col-chk"><input type="checkbox" data-k="k1"></td>
         </tr>
         <tr>
-          <td contenteditable="true">더스트백</td>
-          <td contenteditable="true">규격, 거래처, 단가, 재고. 사용처(선물세트·B2B 동봉).</td>
+          <td contenteditable="true">더스트백 운영 (발주·재고)</td>
+          <td contenteditable="true">기존 발주 거래처·단가·재고. 선물세트/B2B 동봉용 사용 흐름.</td>
           <td class="col-link"><a href="https://drive.google.com/file/d/1ISGNTJCZGZGmpFQRarfI7hTeOE6auXKs/view" target="_blank">더스트백.png</a></td>
           <td class="col-chk"><input type="checkbox" data-k="k2"></td>
         </tr>
         <tr>
-          <td contenteditable="true">얼음집게 박스</td>
-          <td contenteditable="true">패키지 박스 규격(PDF), 거래처, 단가, 재고. 인쇄·납기 리드타임.</td>
+          <td contenteditable="true">얼음집게 박스 운영</td>
+          <td contenteditable="true">기존 인쇄 거래처·단가·재고. 인쇄·납기 리드타임 관리.</td>
           <td class="col-link"><a href="https://drive.google.com/drive/folders/1ITK8MGO4wXN5nw8QYdawIF_wMwaQ9Um_" target="_blank">집게박스 폴더</a></td>
           <td class="col-chk"><input type="checkbox" data-k="k3"></td>
         </tr>
       </tbody>
     </table>
+    <div style="font-size:12px;color:#6B7280;margin-top:12px;padding:10px;background:#FEF3C7;border-radius:6px"><b>※ 상품 개발(E)과의 차이:</b> E는 신규 개발·기획·거래처 설정 (후임), F는 이미 확정된 자재의 발주·재고·운영 (권나경 과장).</div>
   </div>
 
   <!-- 권나경·권수지 현재 운영 (참고용) -->
@@ -293,7 +384,7 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
   <div class="section">
     <div class="sec-head">
       <span class="ic">📂</span>
-      <span class="name">E. 핵심 자료 — 구글 드라이브 폴더 직링크</span>
+      <span class="name">G. 핵심 자료 — 구글 드라이브 폴더 직링크</span>
       <span class="who share">참고용</span>
     </div>
     <table>
@@ -336,7 +427,7 @@ function saveState(){
   updateCounts();
 }
 function updateCounts(){
-  const map={md:'cnt-md',b2b:'cnt-b2b',mkt:'cnt-mkt',kng:'cnt-kng'};
+  const map={md:'cnt-md',b2b:'cnt-b2b',mkt:'cnt-mkt',design:'cnt-design',dev:'cnt-dev',kng:'cnt-kng'};
   Object.keys(map).forEach(cat=>{
     const tb=document.querySelector(`tbody[data-cat=${cat}]`); if(!tb) return;
     const total=tb.querySelectorAll('input[type=checkbox]').length;
