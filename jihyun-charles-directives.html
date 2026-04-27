@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>찰스 지시사항 · 박지현 팀장 · 쥬얼아이스</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #2d1a6e 0%, #4a1d8c 50%, #1a0a3e 100%);
+    min-height: 100vh; color: #fff; padding: 30px 16px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 100; margin: -30px -16px 20px;
+    background: rgba(26,10,62,0.92); backdrop-filter: blur(12px);
+    padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .toolbar .title { font-size: 13px; font-weight: 700; color: #ffd600; }
+  .toolbar .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ctrl-btn {
+    padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.15); cursor: pointer; transition: all 0.15s;
+    background: rgba(255,255,255,0.08); color: #fff;
+  }
+  .ctrl-btn:hover { background: rgba(255,214,0,0.2); border-color: #ffd600; }
+  .ctrl-btn.primary { background: #ffd600; color: #1a0a3e; border-color: #ffd600; }
+  .ctrl-btn.primary:hover { background: #ffdf4d; }
+  #saveStatus { font-size: 11px; color: rgba(255,214,0,0.8); }
+
+  .hero { text-align: center; padding: 10px 0 30px; }
+  .hero h1 {
+    font-size: 30px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px;
+  }
+  .hero h1 .accent { color: #ffd600; }
+  .hero p { font-size: 13px; opacity: 0.85; }
+  .hero .update { font-size: 11px; opacity: 0.6; margin-top: 6px; }
+  .hero .back {
+    display: inline-block; margin-top: 10px; padding: 6px 14px;
+    background: rgba(255,255,255,0.08); border-radius: 8px;
+    color: #ffd600; text-decoration: none; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,214,0,0.3);
+  }
+
+  .group-title {
+    font-size: 12px; letter-spacing: 2px; font-weight: 700;
+    color: #ffd600; text-transform: uppercase;
+    margin: 30px 0 14px; padding-left: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .group-title::before {
+    content: ''; display: block; width: 24px; height: 2px; background: #ffd600;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 20px;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: all 0.2s; position: relative; overflow: hidden; cursor: pointer;
+  }
+  .card:hover {
+    background: rgba(255,214,0,0.12); border-color: #ffd600;
+    transform: translateY(-3px); box-shadow: 0 10px 30px rgba(255,214,0,0.15);
+  }
+  .card-icon { font-size: 28px; margin-bottom: 4px; }
+  .card-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .card-desc { font-size: 11.5px; opacity: 0.8; line-height: 1.6; }
+  .card-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .tag {
+    font-size: 10px; padding: 2px 7px; border-radius: 10px;
+    background: rgba(255,214,0,0.2); color: #ffd600; font-weight: 600;
+  }
+  .tag.new { background: #27ae60; color: white; }
+  .tag.plan { background: #7c3aed; color: white; }
+
+  .section {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; margin-bottom: 14px; overflow: hidden;
+  }
+  .section summary {
+    cursor: pointer; padding: 16px 22px; font-size: 14px; font-weight: 700;
+    color: #ffd600; list-style: none; display: flex; align-items: center; gap: 10px;
+    background: rgba(124,58,237,0.15);
+  }
+  .section summary::-webkit-details-marker { display: none; }
+  .section summary::after {
+    content: '▼'; margin-left: auto; transition: transform 0.2s; font-size: 10px;
+  }
+  .section[open] summary::after { transform: rotate(180deg); }
+  .section summary:hover { background: rgba(124,58,237,0.25); }
+  .section-body { padding: 20px; }
+  .section-body h3 { font-size: 14px; color: #ffd600; margin: 16px 0 8px; letter-spacing: 0.5px; }
+  .section-body h3:first-child { margin-top: 0; }
+
+  table.dark {
+    width: 100%; border-collapse: collapse; font-size: 12px;
+    background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden;
+  }
+  table.dark th {
+    background: rgba(124,58,237,0.3); color: #ffd600; font-weight: 700;
+    padding: 8px; text-align: left; border: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px;
+  }
+  table.dark td {
+    padding: 7px 8px; border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.9); vertical-align: top;
+  }
+  table.dark tr:hover td { background: rgba(255,214,0,0.06); }
+  .highlight { background: rgba(255,214,0,0.1) !important; }
+
+  .sub-toggle { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .sub-toggle button {
+    padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255,214,0,0.3);
+    background: rgba(0,0,0,0.3); color: #fff; font-size: 11px; cursor: pointer;
+    font-weight: 600;
+  }
+  .sub-toggle button.active { background: #ffd600; color: #1a0a3e; border-color: #ffd600; }
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  .badge-inline {
+    display: inline-block; padding: 2px 8px; border-radius: 9999px;
+    font-size: 10px; font-weight: 700;
+  }
+  .badge-A { background: #27ae60; color: #fff; }
+  .badge-B { background: #2980b9; color: #fff; }
+  .badge-C { background: #7c3aed; color: #fff; }
+  .badge-new { background: #f39c12; color: #fff; }
+
+  .brand-chip {
+    display: inline-block; padding: 2px 8px; border-radius: 9999px;
+    font-size: 10px; font-weight: 700; margin-right: 4px;
+  }
+
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 18px; }
+  @media (max-width: 600px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-box {
+    background: rgba(255,214,0,0.08); border: 1px solid rgba(255,214,0,0.2);
+    border-radius: 10px; padding: 14px; text-align: center;
+  }
+  .kpi-num { font-size: 26px; font-weight: 900; color: #ffd600; line-height: 1; }
+  .kpi-lbl { font-size: 10px; opacity: 0.7; margin-top: 6px; }
+
+  .warn {
+    background: rgba(231,76,60,0.15); border-left: 4px solid #e74c3c;
+    padding: 10px 14px; border-radius: 6px; font-size: 11.5px; margin: 10px 0;
+    color: #ffcccc;
+  }
+  .info {
+    background: rgba(255,214,0,0.1); border-left: 4px solid #ffd600;
+    padding: 10px 14px; border-radius: 6px; font-size: 11.5px; margin: 10px 0;
+  }
+  code.path {
+    background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px;
+    font-size: 10.5px; font-family: Consolas, monospace; color: #ffd600;
+  }
+
+  [contenteditable="true"] {
+    background: rgba(255,214,0,0.08); outline: 2px dashed #ffd600;
+    outline-offset: 2px; border-radius: 4px;
+  }
+
+  .footer {
+    text-align: center; margin-top: 40px; padding: 20px 0;
+    font-size: 11px; opacity: 0.6; line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer strong { color: #ffd600; }
+  .quick-copy {
+    background: rgba(255,255,255,0.05); border-radius: 8px;
+    padding: 12px 14px; margin-top: 20px; font-size: 11px; opacity: 0.8;
+  }
+  .quick-copy code {
+    display: inline-block; background: rgba(255,214,0,0.15); padding: 2px 8px;
+    border-radius: 4px; color: #ffd600; font-family: Consolas, monospace; font-size: 10.5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<div class="toolbar">
+  <div class="title">🎁 찰스 지시사항 · 박지현 팀장</div>
+  <div class="btns">
+    <span id="saveStatus"></span>
+    <button class="ctrl-btn" onclick="copyShareUrl()">🔗 공유</button>
+    <button class="ctrl-btn" onclick="resetContent()">↺ 초기화</button>
+    <button class="ctrl-btn" onclick="toggleEdit()" id="editBtn">✎ 편집</button>
+    <button class="ctrl-btn primary" onclick="saveContent()">💾 저장</button>
+  </div>
+</div>
+
+<div id="content">
+
+<div class="hero">
+  <h1>🎁 찰스 지시사항 <span class="accent">개선사항</span></h1>
+  <p>대표(찰스)가 박지현 팀장에게 직접 인계한 두 캠페인 + 사업자산 심플버전 한 페이지 통합</p>
+  <div class="update">최초 발급: 2026-04-27 (월) · 화경 관리 · 살 붙여 누적 · 삭제 금지</div>
+  <a class="back" href="jihyun-hub.html">← 박지현 팀장 HUB로 돌아가기</a>
+</div>
+
+<!-- 캠페인 3장 카드 -->
+<div class="group-title">📌 인계 자료 3종 · 받자마자 실행</div>
+<div class="grid">
+  <a class="card" style="border:1px solid rgba(233,30,99,0.4);background:rgba(233,30,99,0.12);" onclick="openSec('sec-family')">
+    <div class="card-icon">🌷</div>
+    <div class="card-title">5월 가정의달</div>
+    <div class="card-desc">D2C 2억 + B2B 100통 · 카카오 1차 발송 5/1(금) ⭐ · 어버이날 본판 · 결정 4건</div>
+    <div class="card-tags"><span class="tag" style="background:#e91e63;color:white;">D-4</span><span class="tag new">최우선</span></div>
+  </a>
+  <a class="card" style="border:1px solid rgba(201,169,97,0.4);background:rgba(201,169,97,0.12);" onclick="openSec('sec-chuseok')">
+    <div class="card-icon">🌕</div>
+    <div class="card-title">추석·구정 B2B 선물세트 v1</div>
+    <div class="card-desc">SKU 3종 (29K/49K/99K) · 콜라보 10곳 · B2B 50곳 · 1차 발송 5/2(토) · 결정 7건</div>
+    <div class="card-tags"><span class="tag" style="background:#C9A961;color:#1a0a3e;">D-5 회의</span><span class="tag plan">PLAN</span></div>
+  </a>
+  <a class="card" style="border:1px solid rgba(124,58,237,0.4);background:rgba(124,58,237,0.12);" onclick="openSec('sec-simple')">
+    <div class="card-icon">📂</div>
+    <div class="card-title">사업자산 심플버전 5종</div>
+    <div class="card-desc">5분 입구 — 사업자산·마스터플랜·자금·통합·베리쉬 (원본 보존 + 경량 요약)</div>
+    <div class="card-tags"><span class="tag" style="background:#7c3aed;color:white;">SIMPLE</span></div>
+  </a>
+</div>
+
+<!-- 통합 캘린더 -->
+<div class="group-title">📅 통합 D-Day 캘린더 (4/27 → 9/25)</div>
+<details class="section" id="sec-calendar" open>
+  <summary>📅 두 캠페인 병행 일정 (15개 마일스톤)</summary>
+  <div class="section-body">
+    <table class="dark">
+      <thead>
+        <tr><th style="width:90px">날짜</th><th style="width:70px">D-Day</th><th style="width:120px">캠페인</th><th>주요 액션</th><th style="width:80px">담당</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td><b>4/27 (월)</b></td><td>D0</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>09:00 미팅 — 결정 4건 컨펌 → 오후 호텔 25통 발송 시작</td>
+          <td>박지현</td>
+        </tr>
+        <tr>
+          <td>4/28 (화)</td><td>D+1</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>인플 20명 + B2B 신규 15곳 + 콜라보 10곳 컨택 시작</td>
+          <td>권수지/조송희</td>
+        </tr>
+        <tr>
+          <td><b>4/29 (수)</b></td><td>D-5 추석</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>D-5 회의 — 슬로건 픽 + 콜라보 1순위 GO + First Wave 30곳 픽</td>
+          <td>박지현/대표</td>
+        </tr>
+        <tr>
+          <td>4/30 (목)</td><td>D-3 추석</td>
+          <td><span class="brand-chip" style="background:#7c3aed;color:white;">병행</span></td>
+          <td>가정의달 응답 회수 + 추석 마스터 빈칸 채우기 (단가율·콜라보 컨펌)</td>
+          <td>박지현</td>
+        </tr>
+        <tr style="background:rgba(255,214,0,0.12);">
+          <td><b>5/1 (금) ⭐</b></td><td>D-Day</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td><b>캠페인 전면 오픈 + 카카오 1차 발송 (11K)</b> · 광고 1,935만 분배 시작</td>
+          <td>전팀</td>
+        </tr>
+        <tr style="background:rgba(255,214,0,0.12);">
+          <td><b>5/2 (토) ⭐</b></td><td>D-Day</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td><b>추석 First Wave 30곳 발송</b> + 가정의달 응답 회수</td>
+          <td>박지현</td>
+        </tr>
+        <tr>
+          <td>5/2 ~ 5/8</td><td>D+1~7</td>
+          <td><span class="brand-chip" style="background:#7c3aed;color:white;">병행</span></td>
+          <td>가정의달 어버이날 본판 + 추석 1차 150곳 완료</td>
+          <td>전팀</td>
+        </tr>
+        <tr>
+          <td><b>5/8 (목)</b></td><td>어버이날</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td><b>어버이날 본판 피크</b> · CRM 자동화 풀가동 · 광고 ROAS 점검</td>
+          <td>조송희</td>
+        </tr>
+        <tr>
+          <td>5/11 (월)</td><td>D-Day</td>
+          <td><span class="brand-chip" style="background:#27ae60;color:white;">와디즈</span></td>
+          <td><b>와디즈 #336790 마감 12:00</b> · 목표 ₩50M (잔여 ₩34M)</td>
+          <td>박지현</td>
+        </tr>
+        <tr>
+          <td>5/15 (목)</td><td>D+13</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>추석 미팅 일정 조율 시작 (1차 150곳 응답 정리)</td>
+          <td>박지현</td>
+        </tr>
+        <tr>
+          <td>5월 중순~말</td><td>—</td>
+          <td><span class="brand-chip" style="background:#7c3aed;color:white;">병행</span></td>
+          <td>가정의달 마감 정리 → 여름 선진입 + 추석 거래처 미팅</td>
+          <td>전팀</td>
+        </tr>
+        <tr>
+          <td><b>6월</b></td><td>—</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>추석 사전예약 오픈 + 듀오 40MM 큐브 출시 (2026.06)</td>
+          <td>박지현</td>
+        </tr>
+        <tr>
+          <td>7~8월</td><td>—</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>추석 본발주 진행 (사전예약 → 본주문 전환)</td>
+          <td>박지현/이호혁</td>
+        </tr>
+        <tr>
+          <td>9/16 ~ 9/22</td><td>출고주간</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>추석 선물세트 일제 출고 (3PL 풀가동)</td>
+          <td>이호혁</td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.18);">
+          <td><b>9/25 (목)</b></td><td>추석</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td><b>2026 추석 D-Day</b> · 캠페인 종결 → 결산 → 구정(2027.02) 준비</td>
+          <td>전팀</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info">⭐ = 두 캠페인 D-Day가 겹치는 5/1~5/2가 가장 중요. 그 다음 5/8 어버이날 · 5/11 와디즈 마감.</div>
+  </div>
+</details>
+
+<!-- 5월 가정의달 -->
+<div class="group-title">🌷 5월 가정의달 — D2C 2억 + B2B 100통</div>
+<details class="section" id="sec-family">
+  <summary>🌷 5월 가정의달 운영팩 (받자마자 실행)</summary>
+  <div class="section-body">
+    <div class="warn">📂 폴더: <code class="path">F:/0 팀원별 업무/박지현 팀장/찰스 제안/5월 가정의달/</code> · 메인: <b>2026-05-가정의달-실행팩.html</b> (브라우저 더블클릭, 13섹션 카드)</div>
+
+    <div class="sub-toggle">
+      <button class="active" onclick="subPanel(this,'fam-overview')">개요·KPI</button>
+      <button onclick="subPanel(this,'fam-files')">파일 5종</button>
+      <button onclick="subPanel(this,'fam-30min')">첫 30분 동선</button>
+      <button onclick="subPanel(this,'fam-decide')">결정 자리 4건</button>
+    </div>
+
+    <div class="sub-panel active" data-sub="fam-overview">
+      <h3>핵심 KPI</h3>
+      <div class="kpi-row">
+        <div class="kpi-box"><div class="kpi-num">2억</div><div class="kpi-lbl">D2C 매출 목표</div></div>
+        <div class="kpi-box"><div class="kpi-num">100통</div><div class="kpi-lbl">B2B 양트랙 발송</div></div>
+        <div class="kpi-box"><div class="kpi-num">11K</div><div class="kpi-lbl">카카오 1차 (5/1)</div></div>
+        <div class="kpi-box"><div class="kpi-num">1,935만</div><div class="kpi-lbl">광고 분배</div></div>
+      </div>
+
+      <h3>D2C 채널 5축 (2억 분해)</h3>
+      <table class="dark">
+        <thead><tr><th>채널</th><th>역할</th><th>운영</th></tr></thead>
+        <tbody>
+          <tr><td>자사몰 (카페24)</td><td>본판 랜딩 · 5% 행사</td><td>랜딩 3종 · 어버이날 본판</td></tr>
+          <tr><td>스마트스토어</td><td>볼륨 · 검색 유입</td><td>광고 + 리뷰 + 검색 최적화</td></tr>
+          <tr><td>카카오 선물·톡스토어</td><td>선물 수요 · 메시지 발송</td><td>5/1(금) 11K 1차 → 5/4(월) 10시 2차 권장</td></tr>
+          <tr><td>쿠팡 (한반도키친)</td><td>볼륨 · 즉시 배송</td><td>로켓 · 광고</td></tr>
+          <tr><td>네이버페이 + 콜라보</td><td>인플 20명 매칭</td><td>4/28부터 컨택</td></tr>
+        </tbody>
+      </table>
+
+      <h3>B2B 양트랙 100통</h3>
+      <table class="dark">
+        <thead><tr><th>트랙</th><th>대상</th><th>방식</th></tr></thead>
+        <tbody>
+          <tr><td>기존 거래처</td><td>4섹터 (호텔·로펌·금융·대기업)</td><td>가정의달 답례 제안</td></tr>
+          <tr><td>신규 33곳</td><td>B2B 신규 15곳 + 인플 20명 + 콜라보 10곳</td><td>4/28부터 컨택</td></tr>
+        </tbody>
+      </table>
+
+      <h3>캠페인 3페이즈</h3>
+      <table class="dark">
+        <thead><tr><th>페이즈</th><th>시기</th><th>핵심</th></tr></thead>
+        <tbody>
+          <tr><td>① 어버이날 본판</td><td>5/1 ~ 5/8</td><td>전면 오픈 → 카카오 1차 → 광고 풀가동 → 어버이날 피크</td></tr>
+          <tr><td>② 마감</td><td>5/9 ~ 5/15</td><td>응답 회수 · CRM 마지막 푸시 · ROAS 점검</td></tr>
+          <tr><td>③ 여름 선진입</td><td>5/16 ~ 5월 말</td><td>홈바·홈카페 시즌 진입 · 추석 거래처 병행</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="fam-files">
+      <h3>파일 5종 (받자마자 이 순서)</h3>
+      <table class="dark">
+        <thead><tr><th>순위</th><th>파일</th><th>언제 보나</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td>⭐ 1</td><td><b>2026-05-가정의달-실행팩.html</b></td><td>받자마자 — 13섹션 (4축·일별액션·B2B카피·카카오시퀀스·광고운영·CS매크로·결재라인·일일보고·비상매크로·결정자리 4건)</td></tr>
+          <tr><td>2</td><td>2026-05-MAY-FAMILY-MASTER-PLAN.html</td><td>큰 그림 — 10섹션 마스터 기획서 (D2C 5축·3페이즈·B2B 4섹터·인플 20명·광고 1,935만)</td></tr>
+          <tr><td>3</td><td>2026-05-FAMILY-D2C-PLAN.md</td><td>D2C 콘텐츠 20편·CRM 자동화·랜딩 3종·광고 10종 디테일</td></tr>
+          <tr><td>4</td><td>2026-05-FAMILY-B2B-PLAN.md</td><td>B2B 100곳 리스트·자동 분기 트리·6갈래 응답 매뉴얼</td></tr>
+          <tr><td>5</td><td>2026-05-FAMILY-PARTNER-CREATIVE-50.md</td><td>인플 20명·B2B 신규 15곳·콜라보 10곳 명단 (4/28~)</td></tr>
+          <tr><td>참고</td><td>2026-05-family-month-market.md</td><td>시장 사이즈·정관장 64% 회피·CPC +30~80% 외부 데이터 (출처 23)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="fam-30min">
+      <h3>받자마자 첫 30분 동선</h3>
+      <table class="dark">
+        <thead><tr><th>시간</th><th>액션</th></tr></thead>
+        <tbody>
+          <tr><td><b>0~10분</b></td><td>실행팩 13섹션 목차 + "박지현 4축" + "이번주 일별 액션" 훑기</td></tr>
+          <tr><td><b>10~20분</b></td><td>"찰스 결정 자리 4건" (마지막 13번) 확인 → 09:00 박지현 미팅에서 컨펌</td></tr>
+          <tr><td><b>20~30분</b></td><td>B2B 카피 (5번) + 카카오 시퀀스 (6번) 훑고 권수지 대리에게 5/1 발송 준비 시작 지시</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="fam-decide">
+      <h3>결정 자리 4건 (실행팩 13번 섹션)</h3>
+      <div class="info">실행팩 마지막 13번 섹션에서 직접 확인 후 09:00 미팅에서 컨펌. 컨펌 즉시 5/1 오픈 가능.</div>
+      <table class="dark">
+        <thead><tr><th>#</th><th>항목</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>광고 1,935만 분배 비율 컨펌</td><td>메타·구글·네이버·카카오</td></tr>
+          <tr><td>2</td><td>카카오 1차 발송 (5/1) 카피 최종</td><td>11,471 명 대상 · 5/4(월) 10시 2차 권장</td></tr>
+          <tr><td>3</td><td>B2B 양트랙 100곳 발송 우선순위</td><td>호텔·로펌·금융·대기업 4섹터</td></tr>
+          <tr><td>4</td><td>인플 20명 매칭 — Top 5 우선 컨택 GO</td><td>4/28(화)부터</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- 추석 -->
+<div class="group-title">🌕 추석·구정 B2B 선물세트 v1</div>
+<details class="section" id="sec-chuseok">
+  <summary>🌕 2026 추석 (D-Day 9/25) · 1차 발송 5/2 → 본발주 7~8월</summary>
+  <div class="section-body">
+    <div class="warn">📂 폴더: <code class="path">F:/0 팀원별 업무/박지현 팀장/찰스 제안/2026-05-추석-제안서-기획안/</code> · 메인: <b>01-발송용-마스터/JEWELICE-CHUSEOK-2026-MASTER.html</b> (티파니 톤 #0ABAB5/#C9A961/#F5F0E8 · contenteditable)</div>
+
+    <div class="sub-toggle">
+      <button class="active" onclick="subPanel(this,'chs-decide-done')">확정 4건</button>
+      <button onclick="subPanel(this,'chs-sku')">SKU 3종</button>
+      <button onclick="subPanel(this,'chs-collab')">콜라보 10곳</button>
+      <button onclick="subPanel(this,'chs-b2b')">B2B 50곳</button>
+      <button onclick="subPanel(this,'chs-decide-todo')">회의 결정 7건</button>
+      <button onclick="subPanel(this,'chs-files')">파일 4단계</button>
+    </div>
+
+    <div class="sub-panel active" data-sub="chs-decide-done">
+      <h3>대표 확정 4건 (이미 결정됨)</h3>
+      <table class="dark">
+        <thead><tr><th>#</th><th>항목</th><th>결정</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>선물세트 구성품</td><td>듀오메이커 · 아블러 · 아블러 제로 · 듀오 40MM 큐브(2026.06 신제품) · <b>박지현 팀장 제작 선물 포장</b></td></tr>
+          <tr><td>2</td><td>B2G 트랙</td><td>보류 (B2B 집중)</td></tr>
+          <tr><td>3</td><td>콜라보 동봉</td><td>술 OK + F&amp;B 창의적 (대체커피 Sanss 등)</td></tr>
+          <tr><td>4</td><td>발송 타임라인</td><td>5/2 1차 발송 — 반드시 5월 안</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="chs-sku">
+      <h3>SKU 3종 확정</h3>
+      <table class="dark">
+        <thead><tr><th>가격</th><th>구성</th><th>타겟</th></tr></thead>
+        <tbody>
+          <tr><td><b>29,000원</b></td><td>아블러 제로 + 박지현 포장</td><td>B2C·법인 대량 살포용</td></tr>
+          <tr><td><b>49,000원</b></td><td>아블러 + 40MM 큐브 트레이/샘플 + 콜라보 동봉 + 박지현 포장</td><td>거래처 답례·홈바 선물</td></tr>
+          <tr class="highlight"><td><b>99,000원</b></td><td>듀오메이커 또는 듀오 40MM 큐브 본품 + 아블러 + 콜라보 동봉 + 박지현 포장</td><td><b>신제품 데뷔 SKU — "국내 최초 도입 업장" 훅</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="chs-collab">
+      <h3>콜라보 후보 10곳 (49K·99K 옵션)</h3>
+      <table class="dark">
+        <thead><tr><th>카테고리</th><th>후보</th><th>우선순위</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td>술 (전통주)</td><td><b>화요 25° / 원소주 스피릿</b></td><td><span class="badge-inline badge-A">1순위</span></td></tr>
+          <tr class="highlight"><td>술 (위스키)</td><td>발렌타인 / 조니워커 미니어처</td><td><span class="badge-inline badge-A">1순위</span></td></tr>
+          <tr><td>술 (탁주·과실주)</td><td>복순도가 / 댄싱사이더</td><td><span class="badge-inline badge-B">2순위</span></td></tr>
+          <tr class="highlight"><td>대체커피</td><td><b>Sanss(산스)</b></td><td><span class="badge-inline badge-A">1순위</span></td></tr>
+          <tr><td>프리미엄 티</td><td>오설록 / TWG</td><td><span class="badge-inline badge-B">2순위</span></td></tr>
+          <tr><td>디저트</td><td>노티드 쿠폰 / 프리미엄 초콜릿</td><td><span class="badge-inline badge-B">2순위</span></td></tr>
+          <tr><td>믹서</td><td>슈웹스 토닉워터·진저비어 미니</td><td><span class="badge-inline badge-C">3순위</span></td></tr>
+          <tr><td>시럽</td><td>모닌 50ml 미니</td><td><span class="badge-inline badge-C">3순위</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="chs-b2b">
+      <h3>B2B 타겟 50곳 섹터 배분</h3>
+      <table class="dark">
+        <thead><tr><th>섹터</th><th>곳수</th><th>대표 거래처/타겟</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td><b>기존 장비 거래처</b></td><td>7곳</td><td>데블스도어·바차·제이코스·코어인터내셔날·와배송·Bar 81 시그니엘·해슬리 나인브릿지 (관계 레버리지 1순위)</td></tr>
+          <tr><td>호텔 인사팀</td><td>10곳</td><td>—</td></tr>
+          <tr><td>로펌</td><td>7곳</td><td>김앤장·광장·태평양 등</td></tr>
+          <tr><td>금융사 PB</td><td>8곳</td><td>미래에셋·삼성증권·신한PWM 등</td></tr>
+          <tr><td>대기업 인사팀</td><td>8곳</td><td>카카오·네이버·현대차·LG 등</td></tr>
+          <tr><td>F&amp;B 체인 본사</td><td>5곳</td><td>GFFG·SPC·더본코리아 등</td></tr>
+        </tbody>
+      </table>
+      <div class="info">상세 명단: 03-1차본-참고/charles-chuseok-b2b-b2g-v1.html 섹션 2 참조</div>
+    </div>
+
+    <div class="sub-panel" data-sub="chs-decide-todo">
+      <h3>4/29(수) D-5 회의에서 결정할 7건</h3>
+      <table class="dark">
+        <thead><tr><th>#</th><th>항목</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>마스터 HTML 슬로건 1개 픽 — 3안 중 (또는 Hero "투명한 얼음 한 알이 선물의 격을 바꿉니다")</td></tr>
+          <tr><td>2</td><td>볼륨 단가표 할인율 — 50/100/300/500세트별</td></tr>
+          <tr class="highlight"><td>3</td><td><b>콜라보 1순위 컨택 GO</b> — 화요·원소주·Sanss 5/2 전 컨택 시작할지</td></tr>
+          <tr><td>4</td><td>40MM 큐브 "2026.06 출시 예정" 외부 메일 노출 OK? (생산 일정 확인)</td></tr>
+          <tr><td>5</td><td>샘플 무료 발송 오퍼 범위 (몇 곳까지)</td></tr>
+          <tr><td>6</td><td>박지현 포장 최종본 vs SUB-D 무드보드 3안 충돌 시 우선순위</td></tr>
+          <tr class="highlight"><td>7</td><td><b>5/2 First Wave 30곳 픽</b> (150곳 중)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="sub-panel" data-sub="chs-files">
+      <h3>회의 시 읽는 순서 (4단계)</h3>
+      <table class="dark">
+        <thead><tr><th>단계</th><th>폴더 / 파일</th><th>용도</th></tr></thead>
+        <tbody>
+          <tr class="highlight"><td><b>1단계 (10분)</b></td><td><b>01-발송용-마스터/JEWELICE-CHUSEOK-2026-MASTER.html</b></td><td>거래처 이메일 발송용 통합 1장 · 박지현 티파니 톤 적용 · 빈칸 contenteditable</td></tr>
+          <tr><td>2단계</td><td>02-기획-원본/CHUSEOK-GIFT-V1-MASTER.md</td><td>마스터 기획 문서 (전략·타임라인·콜라보 카테고리)</td></tr>
+          <tr><td>2단계</td><td>02-기획-원본/giftset-chuseok-v1.html</td><td>마케팅·디자인 v1.5 (무드보드 3안·카피 4종·콜라보 후보 10곳)</td></tr>
+          <tr><td>2단계</td><td>02-기획-원본/chuseok-cold-email-v1.md</td><td>콜드 이메일 2종 (단독 / 콜라보 옵션)</td></tr>
+          <tr><td>3단계 (선택)</td><td>03-1차본-참고/charles-chuseok-b2b-b2g-v1.html</td><td>B2B 50곳 실명 리스트 + 1p/5p 제안서 골격 + 수익 시뮬</td></tr>
+          <tr><td>3단계 (선택)</td><td>03-1차본-참고/charles-chuseok-giftset-v1.html</td><td>마케팅 1차 구버전 (참고용)</td></tr>
+          <tr><td>4단계</td><td>04-AI-Studio-배너자료/ (30종)</td><td>박지현 AI Studio 추석 배너·이미지 → 패키지·SNS·이메일 비주얼 소재</td></tr>
+        </tbody>
+      </table>
+
+      <h3>주요 D-Day</h3>
+      <table class="dark">
+        <thead><tr><th>D-Day</th><th>날짜</th><th>액션</th></tr></thead>
+        <tbody>
+          <tr><td>D-5</td><td>4/29 (수)</td><td>회의 + 라프 중간 정리</td></tr>
+          <tr><td>D-3</td><td>5/1 (금)</td><td>빈칸 채우기 · 최종본 확정</td></tr>
+          <tr class="highlight"><td><b>D-Day</b></td><td>5/2 (토)</td><td><b>B2B First Wave 30곳 발송</b></td></tr>
+          <tr><td>D+5</td><td>5/8 (목)</td><td>1차 발송 150곳 완료</td></tr>
+          <tr><td>D+13</td><td>5/15 (목)</td><td>미팅 일정 조율 시작</td></tr>
+          <tr><td>+146일</td><td>9/25 (목)</td><td>2026 추석 D-Day</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</details>
+
+<!-- 심플버전 -->
+<div class="group-title">📂 사업자산 심플버전 5종 (5분 입구)</div>
+<details class="section" id="sec-simple">
+  <summary>📂 풍부한 원본 보존 + 5분 안에 입구 찾는 경량 요약</summary>
+  <div class="section-body">
+    <div class="info">📂 폴더: <code class="path">F:/0 팀원별 업무/박지현 팀장/찰스개선 심플/</code> · index.html 또는 각 파일 직접 열기 · 풀 자료는 박지현 HUB의 "🎯 사업자산 4대 자산" 섹션</div>
+
+    <h3>5개 요약 페이지</h3>
+    <table class="dark">
+      <thead><tr><th>#</th><th>파일</th><th>원본 대비</th><th>무엇을 보는가</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><b>01_사업자산-요약.html</b></td><td>100KB → ~6KB</td><td>채널 61개 · SKU 21종 · 가격 7단계 · 목표 10억 입구</td></tr>
+        <tr><td>2</td><td><b>02_마스터플랜-요약.html</b></td><td>65KB → ~6KB</td><td>2026 KPI · 월별 매출 비중 · H1/H2 전략</td></tr>
+        <tr><td>3</td><td><b>03_자금현황-요약.html</b></td><td>43KB → ~6KB</td><td>1~4월 결제 ₩125.4M · 5월 임박 ₩78.2M</td></tr>
+        <tr><td>4</td><td><b>04_통합문서-요약.html</b></td><td>31KB → ~5KB</td><td>박지현 팀장 역할 · 루틴 · 권한 · SOP 6개</td></tr>
+        <tr><td>5</td><td><b>05_베리쉬-단일.html</b></td><td>(3개 통합)</td><td>베리쉬 1,000개 의사결정 + 견적서 한 페이지</td></tr>
+      </tbody>
+    </table>
+
+    <h3>핵심 원칙</h3>
+    <table class="dark">
+      <tbody>
+        <tr><th style="width:140px">원본 보존</th><td>기존 파일은 위치·이름 그대로. 삭제·수정 일체 없음</td></tr>
+        <tr><th>링크 연결</th><td>각 요약 페이지 안에 원본 보기 버튼 → 깊이 파야 할 때 바로 이동</td></tr>
+        <tr><th>민감 정보 제외</th><td>채널 ID/PW 61개는 심플버전에서 완전 제외 (박지현 HUB의 PW토글로 확인)</td></tr>
+        <tr><th>한 화면 = 5분</th><td>어느 페이지든 스크롤 5번 안에 핵심 파악</td></tr>
+      </tbody>
+    </table>
+
+    <h3>⚠ 발견된 불일치 (박지현 팀장 컨펌 필요)</h3>
+    <div class="warn">
+      <b>사업자산 통합본:</b> 2025 목표 <b>10억</b> &nbsp;|&nbsp; <b>2026 마스터플랜:</b> 2026 목표 <b>30억</b><br>
+      → 어느 쪽이 최신·확정인지 컨펌 필요
+    </div>
+  </div>
+</details>
+
+<!-- 결정 대기 -->
+<div class="group-title">⚠️ 결정 대기 통합 — 11건</div>
+<details class="section" id="sec-pending" open>
+  <summary>⚠️ 가정의달 4건 + 추석 7건 + 심플버전 1건 = 총 12건 (4/27 미팅 + 4/29 D-5 회의)</summary>
+  <div class="section-body">
+    <table class="dark">
+      <thead><tr><th style="width:90px">시점</th><th style="width:110px">캠페인</th><th>결정 항목</th><th style="width:90px">상태</th></tr></thead>
+      <tbody>
+        <tr style="background:rgba(233,30,99,0.12);">
+          <td><b>4/27 (월) 09:00</b></td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>① 광고 1,935만 분배 비율 컨펌</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(233,30,99,0.12);">
+          <td>4/27 (월) 09:00</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>② 카카오 1차 발송 (5/1) 카피 최종</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(233,30,99,0.12);">
+          <td>4/27 (월) 09:00</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>③ B2B 양트랙 100곳 발송 우선순위</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(233,30,99,0.12);">
+          <td>4/27 (월) 09:00</td>
+          <td><span class="brand-chip" style="background:#e91e63;color:white;">가정의달</span></td>
+          <td>④ 인플 20명 매칭 — Top 5 우선 컨택 GO</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.12);">
+          <td><b>4/29 (수) D-5</b></td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>① 마스터 HTML 슬로건 1개 픽 (3안 중)</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.12);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>② 볼륨 단가표 할인율 (50/100/300/500세트)</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.18);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td><b>③ 콜라보 1순위 컨택 GO (화요·원소주·Sanss)</b></td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.12);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>④ 40MM 큐브 "2026.06 출시 예정" 외부 메일 노출 OK?</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.12);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>⑤ 샘플 무료 발송 오퍼 범위 (몇 곳까지)</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.12);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td>⑥ 박지현 포장 최종본 vs SUB-D 무드보드 3안 우선순위</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(201,169,97,0.18);">
+          <td>4/29 (수) D-5</td>
+          <td><span class="brand-chip" style="background:#C9A961;color:#1a0a3e;">추석</span></td>
+          <td><b>⑦ 5/2 First Wave 30곳 픽 (150곳 중)</b></td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+        <tr style="background:rgba(124,58,237,0.12);">
+          <td>상시</td>
+          <td><span class="brand-chip" style="background:#7c3aed;color:white;">심플버전</span></td>
+          <td>매출 목표 통일 — 2025 10억 vs 2026 30억 어느 쪽이 최신·확정?</td>
+          <td><span class="badge-inline badge-new">대기</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="info">결정 즉시 이 표의 상태를 "✅ 확정"으로 바꾸고 결정 내용을 옆 칸에 추가 (편집 모드 ON 후).</div>
+  </div>
+</details>
+
+<!-- 운영 원칙 -->
+<div style="background:rgba(124,58,237,0.12);border-left:4px solid #7c3aed;border-radius:8px;padding:14px 18px;margin:14px 0 24px;font-size:12px;line-height:1.8;">
+  <b style="color:#ffd600;">⚙️ 찰스 지시사항 운영 원칙</b><br>
+  · 모든 자료는 <b>대표 검수 후 발급</b> — 박지현은 받자마자 실행 단계로 진입<br>
+  · 결정 자리는 각 폴더 README 또는 실행팩 마지막 섹션에 정리됨<br>
+  · 수정·질문은 <b>잔디로 직접 대표</b>에게<br>
+  · 외부 발송물(이메일·DM·콜드콜)은 <b>박지현 검수 후 발송</b> · 100세트+/300세트+/단가 협상은 대표 사인<br>
+  · 새 캠페인 폴더가 추가되면 잔디로 안내 → 이 페이지에 살 붙여 누적 (삭제 금지)
+</div>
+
+<div class="quick-copy">
+  🔗 <strong>이 페이지 영구 주소</strong>: <code>charlesmaster911.github.io/jewelice-playbook/jihyun-charles-directives.html</code><br>
+  새 찰스 지시사항이 발급되면 같은 주소에 살만 붙여 누적 (덮어쓰기 업데이트)
+</div>
+
+<div class="footer">
+  <strong>🎁 찰스 지시사항 · 박지현 팀장 전용</strong><br>
+  화경 관리 · URL 영구 고정 · 살 붙여 누적 · 삭제 금지<br>
+  문제 있으면 화경한테 말씀하세요
+</div>
+
+</div><!-- /#content -->
+
+</div>
+
+<script>
+const KEY='jihyun_charles_directives_v1';
+function openSec(id){
+  const el=document.getElementById(id);
+  if(el){ el.open=true; el.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function subPanel(btn,key){
+  const parent=btn.closest('.section-body');
+  parent.querySelectorAll('.sub-toggle button').forEach(b=>b.classList.remove('active'));
+  parent.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  parent.querySelector('[data-sub="'+key+'"]').classList.add('active');
+}
+function loadContent(){
+  const saved=localStorage.getItem(KEY);
+  if(saved){
+    try{
+      const data=JSON.parse(saved);
+      if(data.html)document.getElementById('content').innerHTML=data.html;
+      if(data.ts)document.getElementById('saveStatus').textContent='저장 '+new Date(data.ts).toLocaleString('ko-KR');
+    }catch(e){}
+  }
+}
+function saveContent(){
+  try{
+    const data={html:document.getElementById('content').innerHTML,ts:Date.now()};
+    localStorage.setItem(KEY,JSON.stringify(data));
+    document.getElementById('saveStatus').textContent='✓ 저장됨 '+new Date().toLocaleTimeString('ko-KR');
+  }catch(e){document.getElementById('saveStatus').textContent='⚠ 저장 실패';}
+}
+function toggleEdit(){
+  const el=document.getElementById('content');
+  const btn=document.getElementById('editBtn');
+  const now=el.contentEditable==='true';
+  el.contentEditable=now?'false':'true';
+  btn.textContent=now?'✎ 편집':'✎ 편집중...';
+  btn.style.background=now?'rgba(255,255,255,0.08)':'#c0392b';
+  document.getElementById('saveStatus').textContent=now?'편집 모드 OFF':'편집 모드 ON';
+  if(!now)el.focus();
+}
+function resetContent(){
+  if(confirm('편집한 내용을 모두 원본으로 되돌립니다. 계속?')){
+    localStorage.removeItem(KEY);
+    location.reload();
+  }
+}
+function copyShareUrl(){
+  const url='https://charlesmaster911.github.io/jewelice-playbook/jihyun-charles-directives.html';
+  navigator.clipboard.writeText(url).then(()=>{
+    document.getElementById('saveStatus').textContent='🔗 주소 복사됨';
+  }).catch(()=>{prompt('이 주소를 복사하세요:',url);});
+}
+loadContent();
+window.addEventListener('beforeunload',()=>{
+  if(document.getElementById('content').contentEditable==='true')saveContent();
+});
+</script>
+</body>
+</html>
