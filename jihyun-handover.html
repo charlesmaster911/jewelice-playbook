@@ -69,9 +69,10 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
   <div class="hero-in">
     <div class="crumb">JEWELICE · HANDOVER</div>
     <h1>박지현 팀장 인수인계서</h1>
-    <div class="sub">5개 핵심 파트(MD · B2B · 콘텐츠 마케팅 · 디자인 · 상품 개발). 각 항목별 진행 주체(박지현 / 권나경 진행중) 표기. 자료는 모두 구글 드라이브 인수인계 폴더와 연결됩니다.</div>
+    <div class="sub">5개 핵심 파트(MD · B2B · 콘텐츠 마케팅 · 디자인 · 상품 개발) + <b style="color:#FDE047">A-1. 채널별 사방넷 진행 현황</b> + <b style="color:#FDE047">B-1. B2B 선물세트 상세 인수인계</b> 포함. 각 항목별 진행 주체 표기. 자료는 모두 구글 드라이브 인수인계 폴더와 연결됩니다.</div>
     <div class="meta">
       <span>📅 작성: 2026-04-27</span>
+      <span>🔄 갱신: 2026-04-28 (사방넷·선물세트 추가)</span>
       <span>👤 박지현 팀장 → 후임</span>
       <span>📂 자료 위치: Google Drive · 박지현 인수인계</span>
     </div>
@@ -89,9 +90,11 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
     <b>⚠ 인계 상태 체크박스</b>는 자동 저장됩니다 (브라우저 localStorage). 항목 옆 ✓ 표시로 인계 완료 여부를 후임자와 함께 추적하세요.
   </div>
 
-  <div class="summary">
+  <div class="summary" style="grid-template-columns:repeat(7,1fr)">
     <div class="s-card"><div class="n" id="cnt-md">—</div><div class="l">MD</div></div>
+    <div class="s-card" style="border-color:#FDE047;background:#FFFBEB"><div class="n" id="cnt-sabang">—</div><div class="l">사방넷</div></div>
     <div class="s-card"><div class="n" id="cnt-b2b">—</div><div class="l">B2B 영업</div></div>
+    <div class="s-card" style="border-color:#FDE047;background:#FFFBEB"><div class="n" id="cnt-giftset">—</div><div class="l">선물세트</div></div>
     <div class="s-card"><div class="n" id="cnt-mkt">—</div><div class="l">콘텐츠 마케팅</div></div>
     <div class="s-card"><div class="n" id="cnt-design">—</div><div class="l">디자인</div></div>
     <div class="s-card"><div class="n" id="cnt-dev">—</div><div class="l">상품 개발</div></div>
@@ -188,6 +191,63 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
     </table>
   </div>
 
+  <!-- A-1. 채널별 사방넷 진행 현황 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="ic">🌐</span>
+      <span class="name">A-1. 채널별 사방넷 진행 현황</span>
+      <span class="who handover">후임 인계</span>
+    </div>
+    <div style="background:#F3E8FF;border-left:4px solid #7C3AED;padding:12px 16px;border-radius:8px;margin-bottom:14px;font-size:12.5px;color:#5B21B6;line-height:1.6">
+      <b>📦 사방넷 마스터 계정:</b> jewelice99 / 비밀번호는 <span style="background:#1F2937;color:#FDE047;padding:2px 8px;border-radius:4px;font-size:11px">별도 보안파일</span> 참조 — 마스터마인딩그룹 통합관리<br>
+      <b>👤 박지현 ID:</b> jewelice_lucy · <b>이호혁:</b> jewelice_denny · <b>권나경:</b> jewelice_bon2 · <b>조송희:</b> jewelice_kathy<br>
+      <b>📊 운영 채널 합계:</b> A등급 9개 + B등급 12개 + 신규 추진 15개 + 보류·검토·글로벌 7개 + 운영중단 18개 = 총 61개 매핑됨
+    </div>
+    <table>
+      <thead><tr>
+        <th style="width:18%">채널</th>
+        <th style="width:7%">등급</th>
+        <th style="width:11%">사방넷</th>
+        <th style="width:10%">진행 단계</th>
+        <th>코멘트 / 핸드오프 포인트 (편집 가능)</th>
+        <th class="col-chk">완료</th>
+      </tr></thead>
+      <tbody data-cat="sabang">
+        <tr><td class="col-item">카페24 (자사몰)</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#E5E7EB;color:#374151;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">사방넷 외</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">자사몰 메인. 사방넷과 별도 운영, 카페24 어드민 직접 관리. 발주는 동일 3PL→CJ대한통운. ID: nemochip · 행사수수료 5%.</td><td class="col-chk"><input type="checkbox" data-k="s1"></td></tr>
+        <tr><td class="col-item">유튜브 쇼핑</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#E5E7EB;color:#374151;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">자사몰 연결</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">카페24 자사몰 연동. 유튜브 채널 내 쇼핑 탭 노출. 사방넷 외.</td><td class="col-chk"><input type="checkbox" data-k="s2"></td></tr>
+        <tr><td class="col-item">네이버 스마트스토어</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 풀연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 메인</span></td><td contenteditable="true">사방넷 핵심 채널. 자동수집·자동송장 정상 작동. 수수료 2%+행사 5%. 판매자ID: jewelice99@gmail.com. <b>2024년 누적 26.3만(3%) → 2025년 목표 3억(30%)</b>.</td><td class="col-chk"><input type="checkbox" data-k="s3"></td></tr>
+        <tr><td class="col-item">네이버페이</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">스마트스토어와 결합 운영. ID: nemochip2 · 수수료 2%+행사 5%.</td><td class="col-chk"><input type="checkbox" data-k="s4"></td></tr>
+        <tr><td class="col-item">카카오 파트너센터/페이</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">기본 3.3%+노출 3.3%, 톡딜 10%. ID: jewelice99@daum.net. 톡스토어와 같은 계정으로 통합 관리.</td><td class="col-chk"><input type="checkbox" data-k="s5"></td></tr>
+        <tr><td class="col-item">카카오 선물하기/톡스토어</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">선물세트·톡딜 운영. 가정의달·추석 시즌 핵심. 2025 목표 1억(10%).</td><td class="col-chk"><input type="checkbox" data-k="s6"></td></tr>
+        <tr><td class="col-item">와디즈 (펀딩)</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">사방넷 외</span></td><td><span style="color:#F59E0B;font-weight:800;font-size:11px">● 캠페인 진행</span></td><td contenteditable="true">펀딩 캠페인 → 종료 후 발송. 사방넷 외 별도 처리. 펀딩메이트: 알렌미디어. ID: jewelice99@gmail.com. 와디즈 X 줄리앗 1차 → 2차 최종(0327) 진행 중.</td><td class="col-chk"><input type="checkbox" data-k="s7"></td></tr>
+        <tr><td class="col-item">쿠팡 (한반도키친)</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 풀연동</span></td><td><span style="color:#7C3AED;font-weight:800;font-size:11px">● 메인 매출</span></td><td contenteditable="true"><b>2024년 매출 1위 (511만/58%)</b>. 사방넷 자동수집·자동송장 정상. 수수료 35%. ID: hanbandokitchen. 2025년 목표 2억(20%).</td><td class="col-chk"><input type="checkbox" data-k="s8"></td></tr>
+        <tr><td class="col-item">쿠팡 (씨앤에프)</td><td><span class="tag tag-jh">A</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 서브</span></td><td contenteditable="true">씨앤에프 트레이딩 사업자 계정 (620-38-00938). 일부 SKU 분산 운영. ID: nemochip · 수수료 35%.</td><td class="col-chk"><input type="checkbox" data-k="s9"></td></tr>
+        <tr><td class="col-item">SSG</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">전자계약 완료. ID: 24778914. <b>2024년 31.4만(4%)</b>. 2025 목표 7천만(7%).</td><td class="col-chk"><input type="checkbox" data-k="s10"></td></tr>
+        <tr><td class="col-item">롯데ON</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">수수료 15%+행사 15%. ID: jewelice99. <b>2024년 56.4만(6%)</b>. 2025 목표 5천만(5%).</td><td class="col-chk"><input type="checkbox" data-k="s11"></td></tr>
+        <tr><td class="col-item">이베이 (마스터)</td><td><span class="tag tag-new">B</span></td><td><span style="background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">사방넷 외</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 글로벌</span></td><td contenteditable="true">글로벌 셀링. 사방넷 외 별도 운영. ID: nemochip99.</td><td class="col-chk"><input type="checkbox" data-k="s12"></td></tr>
+        <tr><td class="col-item">지마켓 (서브)</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">수수료 13%. ID: nemochip. <b>2024년 15.4만(2%)</b>.</td><td class="col-chk"><input type="checkbox" data-k="s13"></td></tr>
+        <tr><td class="col-item">지마켓 (메인) / 옥션</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">통합 메인 계정. ID: nemochip99 (지마켓+옥션 동일). 수수료 13%.</td><td class="col-chk"><input type="checkbox" data-k="s14"></td></tr>
+        <tr><td class="col-item">11번가</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">수수료 13%. ID: hanbandokitchen. <b>2024년 4.7만(1%)</b>. 2025 목표 1천만(1%).</td><td class="col-chk"><input type="checkbox" data-k="s15"></td></tr>
+        <tr><td class="col-item">오아시스</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">수수료 8%. ID: jewelice99. 신선·프리미엄 채널 톤앤매너 매칭.</td><td class="col-chk"><input type="checkbox" data-k="s16"></td></tr>
+        <tr><td class="col-item">오늘의집</td><td><span class="tag tag-new">B</span></td><td><span style="background:#D1FAE5;color:#065F46;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">✅ 연동</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">수수료 8%. ID: jewelice99@gmail.com. 라이프스타일 매칭 ↑ (홈바·홈카페 컨셉).</td><td class="col-chk"><input type="checkbox" data-k="s17"></td></tr>
+        <tr><td class="col-item">토스</td><td><span class="tag tag-new">B</span></td><td><span style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">🔧 검토</span></td><td><span style="color:#F59E0B;font-weight:800;font-size:11px">● 입점</span></td><td contenteditable="true">토스 쇼핑 입점. 사방넷 연동 추가 검토 필요. ID: jewelice99@gmail.com.</td><td class="col-chk"><input type="checkbox" data-k="s18"></td></tr>
+        <tr><td class="col-item">올웨이즈 / 고려기프트</td><td><span class="tag tag-new">B</span></td><td><span style="background:#FEE2E2;color:#991B1B;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">사방넷 외</span></td><td><span style="color:#10B981;font-weight:800;font-size:11px">● 운영중</span></td><td contenteditable="true">올웨이즈는 앱 전용 어드민. 고려기프트는 판촉 시장 별도 운영. 둘 다 사방넷 외.</td><td class="col-chk"><input type="checkbox" data-k="s19"></td></tr>
+        <tr style="background:#FFFBEB"><td class="col-item">🆕 신규 추진 15개</td><td>—</td><td><span style="background:#FEF3C7;color:#92400E;font-size:10px;font-weight:800;padding:3px 8px;border-radius:9999px">🔧 입점</span></td><td><span style="color:#F59E0B;font-weight:800;font-size:11px">● 작업중</span></td><td contenteditable="true">마켓컬리·GS(1055784)·CJ(576570)·갤러리아몰·그립·리멤버선물하기·신세계TV쇼핑·SK스토아·T딜·HyundaiShop·올리브영·지그재그·코오롱·에이블리·무신사. 종합몰(GS·CJ·갤러리아) 수수료 25~30%+행사 8~15%. <b>각 채널별 입점 → 상품등록 → 사방넷 매핑 → 정산 4단계 진행 중.</b></td><td class="col-chk"><input type="checkbox" data-k="s20"></td></tr>
+        <tr style="background:#F9FAFB"><td class="col-item">⏸️ 보류·검토 5개</td><td>—</td><td>—</td><td><span style="color:#6B7280;font-weight:800;font-size:11px">● 보류</span></td><td contenteditable="true">Hmall·더현대닷컴(보류) / 공영홈쇼핑·NS·홈앤쇼핑(검토). 종합몰이라 입점 심사 시간 김. 실제 매출 기여 검증 필요.</td><td class="col-chk"><input type="checkbox" data-k="s21"></td></tr>
+        <tr style="background:#FEF2F2"><td class="col-item">❌ 운영 중단 18개</td><td>—</td><td>—</td><td><span style="color:#EF4444;font-weight:800;font-size:11px">● 중단</span></td><td contenteditable="true">인터파크·AK·닥터다이어리·국민클럽·군복지몰·PX몰·에이블리(구)·허닭·제이슨딜·핑크다이어리·W컨셉·떠리몰·이유몰·카카오메이커스·홈플러스·롯데마트·아이스크림미디어·이케이. 사방넷 매핑 끊고 정리 완료.</td><td class="col-chk"><input type="checkbox" data-k="s22"></td></tr>
+      </tbody>
+    </table>
+    <div style="background:#FEF3C7;border-left:4px solid #FBBF24;padding:12px 16px;border-radius:8px;margin-top:14px;font-size:12px;color:#78350F;line-height:1.7">
+      <b>⚠️ 후임자 사방넷 체크포인트 (꼭 읽기)</b><br>
+      ① <b>마스터 계정 = jewelice99 / 비번 = 별도 보안파일</b> — ★마스터마인딩 사업팀_거래처정보 엑셀 또는 채널정보 허브에서 확인. 공개 인수인계서에 비밀번호 노출 금지.<br>
+      ② <b>박지현 ID(jewelice_lucy)는 전 채널 권한 보유</b> → 후임자는 마스터 계정에서 신규 사용자 발급받아 시작 (박지현 ID 그대로 쓰지 말 것, 권한 분리 위함).<br>
+      ③ <b>자사몰 3종(카페24·유튜브쇼핑·와디즈)은 사방넷 외 별도 운영</b> — 사방넷에서 검색해도 주문 안 보임. 카페24/와디즈는 각 어드민 직접 접속.<br>
+      ④ <b>쿠팡 한반도키친 = 메인 매출 (58%)</b>. 자동수집·자동송장 무조건 모니터링. 일 1회 이상 사방넷 들어가서 미발송·취소·CS 확인.<br>
+      ⑤ <b>신규 채널 진행 단계 = 입점 → 상품등록 → 사방넷 매핑 → 정산테스트 4단계</b>. 어디까지 진행됐는지 채널별로 본인이 직접 추적해야 함 (위 표에 코멘트 추가).<br>
+      ⑥ <b>이지어드민 / 판판대로 / 사람인 / 잡코리아</b> = 사방넷과 별도 ID 체계 (triplehhh·jewelice99). 인수인계 폴더 1번 자료 참조.
+    </div>
+  </div>
+
   <!-- B2B 영업 파트 -->
   <div class="section">
     <div class="sec-head">
@@ -256,6 +316,107 @@ input[type=checkbox]{width:18px;height:18px;accent-color:#7C3AED;cursor:pointer}
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <!-- B-1. B2B 선물세트 상세 인수인계 -->
+  <div class="section">
+    <div class="sec-head">
+      <span class="ic">🎁</span>
+      <span class="name">B-1. B2B 선물세트 상세 인수인계</span>
+      <span class="who handover">후임 인계 (필독)</span>
+    </div>
+    <div style="background:#F3E8FF;border-left:4px solid #7C3AED;padding:14px 18px;border-radius:8px;margin-bottom:16px;font-size:12.5px;color:#5B21B6;line-height:1.7">
+      <b>🎯 세트 구성 원칙 (절대 어기지 말 것)</b><br>
+      ① <b>본체 + 글라스잔 조합</b> — 듀오메이커 / 아블러 3in1 / 아블러제로(텀블러) × 크리슨 하이볼잔 / 언더락잔.<br>
+      ② <b>추가몰드(미니큐브·해골 등)는 잔과 세트 결합 불가</b> — 본체 구매자 업셀링 단품으로만 운영.<br>
+      ③ <b>글라스잔 단품 마진 낮음</b> (원가 8,800 / 판매 19,000) → 반드시 본체 세트에 묶어 결합 판매.<br>
+      ④ <b>크리슨 하이볼잔·언더락잔만 세트 구성 가능</b> — 다른 잔 임의 결합 금지.
+    </div>
+
+    <div style="font-size:13px;font-weight:800;color:#1F2937;margin-bottom:8px;padding:6px 10px;background:#FDE047;border-radius:6px;display:inline-block">📦 12안 세트 라인업 (4 카테고리 × 3안)</div>
+    <table>
+      <thead><tr>
+        <th style="width:14%">카테고리</th>
+        <th style="width:7%">안</th>
+        <th style="width:24%">구성</th>
+        <th>컨셉 / 추천 타겟</th>
+        <th style="width:10%">B2C가</th>
+        <th style="width:10%">B2B가</th>
+        <th class="col-chk">완료</th>
+      </tr></thead>
+      <tbody data-cat="giftset">
+        <tr><td rowspan="3" style="background:#F3E8FF;color:#5B21B6;font-weight:900;vertical-align:middle">🥃 싱글세트<br><span style="font-size:11px;font-weight:700">19,802~21,782원</span></td><td>안1</td><td contenteditable="true">듀오메이커 + 하이볼잔 1</td><td contenteditable="true">하이볼/위스키 입문 선물. 혼자 즐기는 홈바</td><td>21,782</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g1"></td></tr>
+        <tr><td>안2</td><td contenteditable="true">듀오메이커 + 언더락잔 1</td><td contenteditable="true">위스키 온더락 전용. 묵직한 잔 선호 타겟</td><td>21,782</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g2"></td></tr>
+        <tr><td>안3</td><td contenteditable="true">아블러제로 + 하이볼잔 1</td><td contenteditable="true">쇠맛 없는 텀블러+잔. 직장인·선물용</td><td>15,059</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g3"></td></tr>
+
+        <tr><td rowspan="3" style="background:#FEF3C7;color:#92400E;font-weight:900;vertical-align:middle">🏠 집들이세트<br><span style="font-size:11px;font-weight:700">27,802~30,582원</span></td><td>안1</td><td contenteditable="true">듀오메이커 + 하이볼잔 2</td><td contenteditable="true">2인 세트. <b>커플·집들이·결혼 선물 ⭐ B2B 추천</b></td><td>30,582</td><td contenteditable="true">99,000</td><td class="col-chk"><input type="checkbox" data-k="g4"></td></tr>
+        <tr><td>안2</td><td contenteditable="true">아블러 3in1 + 하이볼잔 2</td><td contenteditable="true">투명얼음 텀블러+잔 2. 라이프스타일 선물</td><td>29,532</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g5"></td></tr>
+        <tr><td>안3</td><td contenteditable="true">듀오메이커 + 하이볼잔 1 + 언더락잔 1</td><td contenteditable="true">하이볼+온더락 각 1. 다양하게 즐기는 2인 세트</td><td>30,582</td><td contenteditable="true">88,000</td><td class="col-chk"><input type="checkbox" data-k="g6"></td></tr>
+
+        <tr><td rowspan="3" style="background:#DBEAFE;color:#1E40AF;font-weight:900;vertical-align:middle">🍸 홈바세트<br><span style="font-size:11px;font-weight:700">28,930~38,027원</span></td><td>안1</td><td contenteditable="true">듀오메이커 + 하이볼잔 2 + 집게</td><td contenteditable="true">홈바 기본 완성. 하이볼 전용</td><td>31,823</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g7"></td></tr>
+        <tr><td>안2</td><td contenteditable="true">아블러 3in1 + 하이볼 2 + 언더락 2</td><td contenteditable="true"><b>투명얼음 텀블러+잔 4. 파티·모임용 ⭐ B2B 추천</b></td><td>47,132</td><td contenteditable="true">149,000</td><td class="col-chk"><input type="checkbox" data-k="g8"></td></tr>
+        <tr><td>안3</td><td contenteditable="true">듀오메이커 + 하이볼 2 + 집게 + 지거</td><td contenteditable="true">위스키 홈바 풀세트. 바텐더 감성</td><td>38,027</td><td contenteditable="true">149,000</td><td class="col-chk"><input type="checkbox" data-k="g9"></td></tr>
+
+        <tr><td rowspan="3" style="background:#FCE7F3;color:#9D174D;font-weight:900;vertical-align:middle">💎 프리미엄<br><span style="font-size:11px;font-weight:700">36,841~64,219원</span></td><td>안1</td><td contenteditable="true">듀오메이커 + 아블러제로 + 잔 2종</td><td contenteditable="true"><b>본체 2 + 텀블러 + 하이볼 + 언더락. 최고급 홈바 선물 ⭐ VIP</b></td><td>36,841</td><td contenteditable="true">185,000</td><td class="col-chk"><input type="checkbox" data-k="g10"></td></tr>
+        <tr><td>안2</td><td contenteditable="true">아블러 더블세트 + 하이볼잔 2</td><td contenteditable="true">보관통+집게 증정 아블러 세트+잔 2. <b>B2B 기본 선물 ⭐</b></td><td>56,737</td><td contenteditable="true">—</td><td class="col-chk"><input type="checkbox" data-k="g11"></td></tr>
+        <tr><td>안3</td><td contenteditable="true">듀오메이커 더블세트 + 잔 4</td><td contenteditable="true">더블세트+하이볼 2+언더락 2. <b>기업 VIP 선물 ⭐⭐</b></td><td>64,219</td><td contenteditable="true">199,000</td><td class="col-chk"><input type="checkbox" data-k="g12"></td></tr>
+      </tbody>
+    </table>
+
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px">
+      <div style="background:#F3E8FF;border-left:4px solid #7C3AED;padding:14px 16px;border-radius:8px">
+        <div style="font-size:13px;font-weight:900;color:#5B21B6;margin-bottom:8px">⭐ B2B 우선 추천 5종 (후임자 컷)</div>
+        <ul style="font-size:12.5px;color:#4B5563;list-style:none;line-height:1.8">
+          <li>🥇 <b>프리미엄 안3</b> (199,000원) — 기업 VIP·임원 선물</li>
+          <li>🥈 <b>프리미엄 안1</b> (185,000원) — VIP 풀세트</li>
+          <li>🥉 <b>홈바세트 안2</b> (149,000원) — 모임·파티·연말 단체</li>
+          <li>4️⃣ <b>집들이 안1</b> (99,000원) — 결혼·이사·집들이</li>
+          <li>5️⃣ <b>집들이 안3</b> (88,000원) — 다양한 잔 조합</li>
+        </ul>
+      </div>
+      <div style="background:#FEF3C7;border-left:4px solid #FBBF24;padding:14px 16px;border-radius:8px">
+        <div style="font-size:13px;font-weight:900;color:#92400E;margin-bottom:8px">📅 B2B 시즌 운영 캘린더</div>
+        <ul style="font-size:12.5px;color:#78350F;list-style:none;line-height:1.8">
+          <li>🌸 <b>가정의달 (4/27~5/8 발송)</b> — 5월 가정의달 B2B 플랜 진행 中</li>
+          <li>🍂 <b>추석 (5월 전 v1)</b> — 시장 사이즈·SKU 3종·물류 캐파 v1 작성</li>
+          <li>🎄 <b>연말 (12월 12% 비중)</b> — VIP/임원 선물 프리미엄 안3 집중</li>
+          <li>💍 <b>결혼·이사 시즌 (3·4·9·10월)</b> — 집들이 세트 푸시</li>
+          <li>🎉 <b>기업 행사·송년회 (11~12월)</b> — 홈바세트 안2 단체 견적</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:2px solid #7C3AED;padding:16px 18px;border-radius:10px;margin-top:18px">
+      <div style="font-size:14px;font-weight:900;color:#5B21B6;margin-bottom:10px">🤝 진행 중인 B2B 거래처 / 채널</div>
+      <table style="font-size:12.5px">
+        <thead><tr style="background:#F3E8FF">
+          <th style="color:#5B21B6">구분</th>
+          <th style="color:#5B21B6;width:25%">거래처 / 채널</th>
+          <th style="color:#5B21B6;width:14%">제안서</th>
+          <th style="color:#5B21B6">상태 / 코멘트 (편집 가능)</th>
+        </tr></thead>
+        <tbody>
+          <tr><td><b>성사 파트너 (5)</b></td><td contenteditable="true">데블스도어 · 제이코스 · 바차 · 코어인터내셔날 · 와배송</td><td>—</td><td contenteditable="true">레퍼런스 보유. 신규 제안 시 "유사 업장 도입" 사례로 활용. 듀오메이커·아블러 본체 거래 중심.</td></tr>
+          <tr><td><b>아블러 B2B</b></td><td contenteditable="true">업체 리스트 (0331) — 컨택·메일초안 보유</td><td><a href="https://drive.google.com/file/d/1zIDwGVXS1WMfkyFmqJYItQtsPmG7-aUS/view" target="_blank" style="color:#7C3AED">📄 PDF</a></td><td contenteditable="true">아블러 b2b제안서_compressed_1 (0309 통합본). 업체별 메일 양식·초안 정리. 1+1 톡딜제안서 별도 운영.</td></tr>
+          <tr><td><b>듀오메이커 카페 B2B</b></td><td contenteditable="true">카페 채널 — 이호혁 ver 제안서</td><td><a href="https://drive.google.com/file/d/1cqDEgx6Yn09ZHrBbTQLgEn7pwUsPY1PO/view" target="_blank" style="color:#7C3AED">📄 PDF</a> · <a href="https://drive.google.com/file/d/1O4WfA9UQkDi0vJyFNdGjgnBqIWy6aLm5/view" target="_blank" style="color:#7C3AED">📊 PPTX</a></td><td contenteditable="true">카페 채널 듀오메이커 본체 단품 영업. 카페배포 리스트(0317)와 결합 운영. <b>이호혁 차장 인계 자료 베이스.</b></td></tr>
+          <tr><td><b>거래처 마스터</b></td><td contenteditable="true">B2B 100 입점관리 시트</td><td>—</td><td contenteditable="true">B2B_100_입점관리_쥬얼아이스.xlsx (04.상품기획&amp;시장조사 폴더). 전체 거래처 진행 단계·견적·계약·정산 마스터.</td></tr>
+          <tr><td><b>가정의달 B2B</b></td><td contenteditable="true">2026-05-FAMILY-B2B-PLAN.md (찰스 제안)</td><td>—</td><td contenteditable="true">5월 가정의달 B2B 플랜. 박지현 팀장 폴더 \찰스 제안\5월 가정의달\ 위치. <b>4/27~4/30 발송, 5월 진행 본격화 중.</b></td></tr>
+          <tr style="background:#FEF2F2"><td><b>⏸️ 보류</b></td><td contenteditable="true">스타겟 (해외 크라우드펀딩)</td><td>—</td><td contenteditable="true"><b>2026-04-27부터 보류 결정.</b> 러닝개런티 7%. B2B·국내·와디즈·홈페이지 4트랙 집중 위해 잠시 중단. "재개" 명시 전까지 신규 작업 X.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div style="background:#FEF3C7;border-left:4px solid #FBBF24;padding:14px 18px;border-radius:8px;margin-top:14px;font-size:12.5px;color:#78350F;line-height:1.7">
+      <b>⚠️ 후임자 B2B 선물세트 핵심 인계 포인트</b><br>
+      ① <b>가격 협상 — 정가 유지 원칙</b>. 볼륨 할인만 허용 (50개 이상부터 단계별). 단품 디스카운트 절대 금지.<br>
+      ② <b>샘플 발송 → 소량 발주 → 정기 계약 3단계</b>. 미팅 후 24시간 이내 요약 메일 발송 필수.<br>
+      ③ <b>최소 발주량</b> — 듀오메이커 기준 10개 이상. 그 이하는 자사몰·스마트스토어 유도.<br>
+      ④ <b>결제 조건</b> — 선불 또는 월 정산. 후불 외상 절대 금지.<br>
+      ⑤ <b>대표 승인 필요</b> — 가격 협상 최종선·광고 예산 상한 초과·신규 계약. 30분 이상 막히면 "블로커: ___ 왜냐하면 ___" 한 줄로 대표 보고.<br>
+      ⑥ <b>레퍼런스 워딩</b> — "데블스도어·제이코스·바차·코어인터내셔날·와배송 도입 중" 한 줄을 모든 신규 제안서 첫 페이지에 박아둘 것.<br>
+      ⑦ <b>제안서 템플릿 5종 (자료 폴더 위 표 참조)</b> — 신규 거래처는 업장 종류별로 (카페·바·호텔·레스토랑·기업) 골라서 사용.<br>
+      ⑧ <b>박지현 핵심 진행 상태</b> — 가정의달 B2B 플랜 v1 작성 완료, 추석 v1 작성 중. 후임자는 <b>가정의달 5월 발송 마무리 + 추석 v2 작성</b>이 첫 미션.
+    </div>
   </div>
 
   <!-- 콘텐츠 마케팅 파트 -->
@@ -497,7 +658,7 @@ function saveState(){
   updateCounts();
 }
 function updateCounts(){
-  const map={md:'cnt-md',b2b:'cnt-b2b',mkt:'cnt-mkt',design:'cnt-design',dev:'cnt-dev'};
+  const map={md:'cnt-md',sabang:'cnt-sabang',b2b:'cnt-b2b',giftset:'cnt-giftset',mkt:'cnt-mkt',design:'cnt-design',dev:'cnt-dev'};
   Object.keys(map).forEach(cat=>{
     const tb=document.querySelector(`tbody[data-cat=${cat}]`); if(!tb) return;
     const total=tb.querySelectorAll('input[type=checkbox]').length;
