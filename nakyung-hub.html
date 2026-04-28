@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>권나경 과장 허브 · 쥬얼아이스</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Malgun Gothic', '맑은 고딕', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #2d1a6e 0%, #4a1d8c 50%, #1a0a3e 100%);
+    min-height: 100vh; color: #fff; padding: 30px 16px;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 100; margin: -30px -16px 20px;
+    background: rgba(26,10,62,0.92); backdrop-filter: blur(12px);
+    padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    flex-wrap: wrap;
+  }
+  .toolbar .title { font-size: 13px; font-weight: 700; color: #ffd600; }
+  .toolbar .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ctrl-btn {
+    padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 700;
+    border: 1px solid rgba(255,255,255,0.15); cursor: pointer; transition: all 0.15s;
+    background: rgba(255,255,255,0.08); color: #fff;
+  }
+  .ctrl-btn:hover { background: rgba(255,214,0,0.2); border-color: #ffd600; }
+  .ctrl-btn.primary { background: #ffd600; color: #1a0a3e; border-color: #ffd600; }
+  .ctrl-btn.primary:hover { background: #ffdf4d; }
+  #saveStatus { font-size: 11px; color: rgba(255,214,0,0.8); }
+
+  .hero { text-align: center; padding: 10px 0 30px; }
+  .hero h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+  .hero h1 .accent { color: #ffd600; }
+  .hero p { font-size: 13px; opacity: 0.85; }
+  .hero .update { font-size: 11px; opacity: 0.6; margin-top: 6px; }
+
+  .group-title {
+    font-size: 12px; letter-spacing: 2px; font-weight: 700;
+    color: #ffd600; text-transform: uppercase;
+    margin: 30px 0 14px; padding-left: 4px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .group-title::before {
+    content: ''; display: block; width: 24px; height: 2px; background: #ffd600;
+  }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .grid, .grid-4, .grid-2 { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .grid, .grid-4, .grid-2 { grid-template-columns: 1fr; } }
+
+  .card {
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 20px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: all 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .card.asset {
+    border: 1px solid rgba(255,214,0,0.25);
+    background: rgba(124,58,237,0.15);
+  }
+  .card.asset::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, #ffd600, #7c3aed); opacity: 1;
+  }
+  .card-icon { font-size: 28px; margin-bottom: 4px; }
+  .card-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .card-desc { font-size: 11.5px; opacity: 0.78; line-height: 1.6; }
+  .card-num {
+    font-size: 22px; font-weight: 800; color: #ffd600; margin-top: 4px;
+  }
+
+  .info-card {
+    background: rgba(124,58,237,0.20);
+    border: 1px solid rgba(255,214,0,0.3);
+    border-radius: 14px; padding: 22px;
+    margin-bottom: 14px;
+  }
+  .info-card h2 {
+    font-size: 18px; color: #ffd600; margin-bottom: 12px; letter-spacing: -0.3px;
+  }
+  .info-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    font-size: 13px;
+  }
+  @media (max-width: 700px) { .info-grid { grid-template-columns: repeat(2, 1fr); } }
+  .info-grid .lbl { font-size: 10px; opacity: 0.6; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+  .info-grid .val { font-weight: 700; }
+
+  /* 책임 4축 */
+  .duty-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .duty-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 500px) { .duty-grid { grid-template-columns: 1fr; } }
+  .duty-item {
+    background: rgba(255,214,0,0.08); border-left: 3px solid #ffd600;
+    padding: 14px 16px; border-radius: 8px;
+  }
+  .duty-item .num { font-size: 11px; color: #ffd600; font-weight: 800; letter-spacing: 1px; }
+  .duty-item .ttl { font-size: 14px; font-weight: 700; margin: 4px 0 6px; }
+  .duty-item .desc { font-size: 11.5px; opacity: 0.78; line-height: 1.55; }
+
+  /* 매일 루틴 */
+  .routine-box {
+    background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 18px;
+  }
+  .routine-row {
+    display: flex; gap: 14px; padding: 10px 0;
+    border-bottom: 1px dashed rgba(255,255,255,0.08);
+    font-size: 13px;
+  }
+  .routine-row:last-child { border-bottom: none; }
+  .routine-time {
+    flex: 0 0 80px; font-weight: 800; color: #ffd600; font-family: Consolas, monospace;
+  }
+  .routine-task { flex: 1; }
+  .routine-tool { flex: 0 0 180px; font-size: 11px; opacity: 0.65; }
+
+  /* 섹션 컨테이너 */
+  .section {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; margin-bottom: 14px; overflow: hidden;
+  }
+  .section summary {
+    cursor: pointer; padding: 16px 22px; font-size: 14px; font-weight: 700;
+    color: #ffd600; list-style: none; display: flex; align-items: center; gap: 10px;
+    background: rgba(124,58,237,0.15);
+  }
+  .section summary::-webkit-details-marker { display: none; }
+  .section summary::after {
+    content: '▼'; margin-left: auto; transition: transform 0.2s; font-size: 10px;
+  }
+  .section[open] summary::after { transform: rotate(180deg); }
+  .section summary:hover { background: rgba(124,58,237,0.25); }
+  .section-body { padding: 20px; }
+  .section-body h3 { font-size: 14px; color: #ffd600; margin: 18px 0 8px; letter-spacing: 0.3px; }
+  .section-body h3:first-child { margin-top: 0; }
+  .section-body h4 { font-size: 12px; color: #fbbf24; margin: 12px 0 6px; opacity: 0.9; }
+
+  /* 테이블 */
+  table.dark {
+    width: 100%; border-collapse: collapse; font-size: 11.5px;
+    background: rgba(0,0,0,0.2); border-radius: 8px; overflow: hidden;
+  }
+  table.dark th {
+    background: rgba(124,58,237,0.3); color: #ffd600; font-weight: 700;
+    padding: 8px; text-align: left; border: 1px solid rgba(255,255,255,0.08);
+    font-size: 11px;
+  }
+  table.dark td {
+    padding: 7px 8px; border: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.92); vertical-align: top;
+  }
+  table.dark tr:hover td { background: rgba(255,214,0,0.06); }
+  .num-r { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .num-pos { color: #6ee7b7; }
+  .num-neg { color: #fca5a5; }
+
+  /* 상태 배지 */
+  .badge {
+    display: inline-block; padding: 2px 8px; border-radius: 9999px;
+    font-size: 10px; font-weight: 700; margin-right: 4px;
+  }
+  .b-urgent { background: #c0392b; color: #fff; }
+  .b-shortage { background: #f39c12; color: #fff; }
+  .b-ok { background: #27ae60; color: #fff; }
+  .b-progress { background: #2980b9; color: #fff; }
+  .b-wait { background: #7f8c8d; color: #fff; }
+  .b-cn { background: #e74c3c; color: #fff; }
+  .b-kr { background: #27ae60; color: #fff; }
+  .b-active { background: #ffd600; color: #1a0a3e; }
+  .b-influencer { background: #7c3aed; color: #fff; }
+  .b-mediator { background: #d946ef; color: #fff; }
+  .b-sponsor { background: #fbbf24; color: #1a0a3e; }
+
+  .alert-box {
+    background: rgba(192,57,43,0.18); border-left: 3px solid #c0392b;
+    padding: 12px 14px; border-radius: 6px; font-size: 12px;
+    line-height: 1.55; margin: 10px 0;
+  }
+  .yellow-box {
+    background: rgba(255,214,0,0.10); border-left: 3px solid #ffd600;
+    padding: 12px 14px; border-radius: 6px; font-size: 12px;
+    line-height: 1.6; margin: 10px 0;
+  }
+  .yellow-box strong { color: #ffd600; }
+
+  .footer {
+    text-align: center; margin-top: 40px; padding: 20px 0;
+    font-size: 11px; opacity: 0.6; line-height: 1.8;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .footer strong { color: #ffd600; }
+
+  /* 흐름도 */
+  .flow {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .flow-step {
+    flex: 1; min-width: 140px;
+    background: rgba(124,58,237,0.18); border: 1px solid rgba(255,214,0,0.2);
+    border-radius: 8px; padding: 12px;
+    font-size: 11.5px;
+  }
+  .flow-step .step-num {
+    font-size: 10px; color: #ffd600; font-weight: 800; letter-spacing: 1px;
+  }
+  .flow-step .step-ttl { font-size: 13px; font-weight: 700; margin: 4px 0 6px; }
+  .flow-step .step-desc { font-size: 11px; opacity: 0.75; line-height: 1.5; }
+
+  [contenteditable="true"]:focus {
+    outline: 2px dashed #ffd600; outline-offset: 2px; background: rgba(255,214,0,0.05);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="toolbar">
+    <div class="title">💎 권나경 과장 HUB · v1.0 · 쥬얼아이스</div>
+    <div class="btns">
+      <button class="ctrl-btn" onclick="toggleEdit()" id="editBtn">편집</button>
+      <button class="ctrl-btn primary" onclick="saveAll()">저장</button>
+      <button class="ctrl-btn" onclick="resetAll()">초기화</button>
+      <span id="saveStatus"></span>
+    </div>
+  </div>
+
+  <div class="hero">
+    <h1>💎 <span class="accent">권나경 과장</span> HUB</h1>
+    <p>MD 운영 · 공동구매 · 제품 소싱·무역 · 생산 발주 — 한눈에 보기</p>
+    <div class="update">업데이트: 2026-04-28 · 화경 작성 · 박지현 팀장 검수용</div>
+  </div>
+
+  <!-- 담당자 정보 -->
+  <div class="info-card">
+    <h2>👤 담당자 정보</h2>
+    <div class="info-grid">
+      <div><div class="lbl">이름</div><div class="val">권나경</div></div>
+      <div><div class="lbl">직책</div><div class="val">과장 / MD 운영팀</div></div>
+      <div><div class="lbl">휴대폰</div><div class="val">010-4133-5844</div></div>
+      <div><div class="lbl">이메일</div><div class="val">bona@jewelice.kr</div></div>
+      <div><div class="lbl">네이트온</div><div class="val">bknk32@nate.com</div></div>
+      <div><div class="lbl">보고 라인</div><div class="val">권나경 → 박지현 팀장 → 대표</div></div>
+      <div><div class="lbl">팀 정의</div><div class="val">전략을 실행으로 연결</div></div>
+      <div><div class="lbl">함께 일하는 팀</div><div class="val">박지현·이호혁·조송희·권수지</div></div>
+    </div>
+  </div>
+
+  <!-- 책임 4축 -->
+  <div class="group-title">책임 4축</div>
+  <div class="duty-grid">
+    <div class="duty-item">
+      <div class="num">① MD 채널 운영</div>
+      <div class="ttl">상품 등록·행사·쿠폰</div>
+      <div class="desc">자사몰·쿠팡·스마트스토어·카카오 — 상품등록 / 상세페이지 기획 / 행사·쿠폰 세팅 / SCM 코드 정리</div>
+    </div>
+    <div class="duty-item">
+      <div class="num">② 공동구매 운영</div>
+      <div class="ttl">인플루언서·중계사 협업</div>
+      <div class="desc">인플루언서 섭외 / 공구 제안서 / 캠페인 세팅 / 정산·성과 리포트 / 중계사 커뮤니케이션</div>
+    </div>
+    <div class="duty-item">
+      <div class="num">③ 제품 소싱·무역</div>
+      <div class="ttl">중국 1688/알리바바·통관</div>
+      <div class="desc">신규 제품 소싱 / 견적·샘플 / PI·발주서 / 한글표시사항 / 인보이스·통관 / 식품검사</div>
+    </div>
+    <div class="duty-item">
+      <div class="num">④ 생산 발주 관리</div>
+      <div class="ttl">얼음통·몰드·패키지</div>
+      <div class="desc">생산처 발주서 / 납기 관리 / 착수금·잔금 결제 / 입고·검수 / 부자재 발주 (스티커·박스)</div>
+    </div>
+  </div>
+
+  <!-- 4대 자산 -->
+  <div class="group-title">4대 업무 자산</div>
+  <div class="grid-4">
+    <div class="card asset">
+      <div class="card-icon">🛒</div>
+      <div class="card-title">공동구매 진행건</div>
+      <div class="card-desc">4월 인플루언서 공구 3건 + 대연파트너스</div>
+      <div class="card-num">예상 507~705만원</div>
+    </div>
+    <div class="card asset">
+      <div class="card-icon">🏭</div>
+      <div class="card-title">생산 거래처</div>
+      <div class="card-desc">국내 9개 + 중국 2개 + 3PL/택배</div>
+      <div class="card-num">총 13곳</div>
+    </div>
+    <div class="card asset">
+      <div class="card-icon">🎬</div>
+      <div class="card-title">인플루언서·후원기관</div>
+      <div class="card-desc">유튜버 11명 + 공구 중계사 2 + 기관 3</div>
+      <div class="card-num">16명</div>
+    </div>
+    <div class="card asset">
+      <div class="card-icon">📦</div>
+      <div class="card-title">진행중 발주</div>
+      <div class="card-desc">성준테크 4/30 납품 (몰드 7,500EA)</div>
+      <div class="card-num">4,432만원</div>
+    </div>
+  </div>
+
+  <!-- 매일 루틴 -->
+  <div class="group-title">매일·주기 루틴</div>
+  <div class="routine-box">
+    <div class="routine-row">
+      <div class="routine-time">매일 09:00</div>
+      <div class="routine-task"><strong>플랫폼 점검</strong> — 자사몰·쿠팡·스마트스토어·카카오 선물하기 판매현황</div>
+      <div class="routine-tool">각 플랫폼 관리자 / 30분</div>
+    </div>
+    <div class="routine-row">
+      <div class="routine-time">매일 10:00</div>
+      <div class="routine-task"><strong>리뷰·댓글 관리</strong> — 고객 리뷰 답변, 민감 리뷰 빠른 응대</div>
+      <div class="routine-tool">각 플랫폼 관리자 / 30분</div>
+    </div>
+    <div class="routine-row">
+      <div class="routine-time">매일 상시</div>
+      <div class="routine-task"><strong>인플루언서 캠페인</strong> — 진행중 공구 모니터링·구매평·리뷰콘텐츠 수집</div>
+      <div class="routine-tool">인플루언서 플랫폼·메일 / 1시간</div>
+    </div>
+    <div class="routine-row">
+      <div class="routine-time">주 2~3회</div>
+      <div class="routine-task"><strong>제품 소싱</strong> — 신규 상품 발굴 (1688·알리바바·트렌드 리서치)</div>
+      <div class="routine-tool">알리바바·1688 / 1~2시간</div>
+    </div>
+    <div class="routine-row">
+      <div class="routine-time">발생시</div>
+      <div class="routine-task"><strong>무역 업무</strong> — 중국 수입통관·공급사 커뮤니케이션 (위챗·메일)</div>
+      <div class="routine-tool">관세청 유니패스 / 1~2시간</div>
+    </div>
+    <div class="routine-row">
+      <div class="routine-time">프로젝트성</div>
+      <div class="routine-task"><strong>상세페이지 리뉴얼</strong> — 스크립트 작성·디자이너 전달·수정 피드백</div>
+      <div class="routine-tool">Figma·구글독스 / 1~2시간</div>
+    </div>
+  </div>
+
+  <!-- 1. 진행중 공동구매 -->
+  <details class="section" open>
+    <summary>🛒 1. 진행중 공동구매 캠페인 (4월)</summary>
+    <div class="section-body">
+
+      <h3>📊 아블러제로 인플루언서 공구 — 4월 통합 마스터 플랜</h3>
+      <div class="yellow-box">
+        <strong>벤치마킹:</strong> 쎄씨주부 공구 실적 / 전환율 0.5%~1.4% (카테고리 적합도 차등)
+        · <strong>컬러 선호도:</strong> 아이보리 67% : 블랙 33% (2:1)
+        · <strong>판매 조건:</strong> 공구가 24,900원 / 인플루언서 수수료 20% / 고정 광고비 20만원
+      </div>
+
+      <table class="dark">
+        <thead>
+          <tr>
+            <th>크리에이터</th>
+            <th>판매 기간</th>
+            <th>예상 판매</th>
+            <th>컬러 (Iv:Bk)</th>
+            <th class="num-r">예상 매출</th>
+            <th class="num-r">예상 정산(Net)</th>
+            <th>상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>보니의 참쉬운 레시피</strong></td>
+            <td>4/27 ~ 5/04</td>
+            <td>125 ~ 160개</td>
+            <td>107 : 53</td>
+            <td class="num-r">311 ~ 398만원</td>
+            <td class="num-r num-pos">229 ~ 298만원</td>
+            <td><span class="badge b-active">오픈 임박</span></td>
+          </tr>
+          <tr>
+            <td><strong>아들속에 살아남기</strong></td>
+            <td>4/21 ~ 4/28</td>
+            <td>95 ~ 130개</td>
+            <td>87 : 43</td>
+            <td class="num-r">236 ~ 323만원</td>
+            <td class="num-r num-pos">169 ~ 238만원</td>
+            <td><span class="badge b-progress">진행중</span></td>
+          </tr>
+          <tr>
+            <td><strong>블러썸</strong></td>
+            <td>4/20 ~ 4/27</td>
+            <td>65 ~ 95개</td>
+            <td>64 : 31</td>
+            <td class="num-r">161 ~ 236만원</td>
+            <td class="num-r num-pos">109 ~ 169만원</td>
+            <td><span class="badge b-progress">마감 임박</span></td>
+          </tr>
+          <tr style="background: rgba(255,214,0,0.08); font-weight: 700;">
+            <td>합계</td>
+            <td>—</td>
+            <td>285 ~ 385개</td>
+            <td>258 : 127</td>
+            <td class="num-r">708 ~ 957만원</td>
+            <td class="num-r num-pos">507 ~ 705만원</td>
+            <td>—</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert-box">
+        <strong>⚠️ 컬러 재고 운영 전략</strong><br>
+        · 아이보리: 조기 품절 가능성 → <strong>최소 260개 이상</strong> 가용 재고 선확보 필요<br>
+        · 블랙: 약 130개 내외 — 위스키 페어링 소구가 강한 <strong>'보니의 참쉬운 레시피'</strong> 채널 오픈 시점 집중 노출
+      </div>
+
+      <h3>💼 대연파트너스 공구 (벤더형)</h3>
+      <table class="dark">
+        <thead>
+          <tr><th>항목</th><th class="num-r">금액(원)</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>판매가 (VAT포함)</td><td class="num-r">24,900</td><td>아블러제로 단품</td></tr>
+          <tr><td>제품 원가</td><td class="num-r">6,259</td><td>매입 세액공제</td></tr>
+          <tr><td>배송비</td><td class="num-r">3,000</td><td>매입 세액공제</td></tr>
+          <tr><td>벤더 수수료 (30%)</td><td class="num-r">7,470</td><td>매입 세액공제</td></tr>
+          <tr><td>PG 수수료 (3.3%)</td><td class="num-r">822</td><td>매입 세액공제</td></tr>
+          <tr><td>비용 합계</td><td class="num-r">17,551</td><td>—</td></tr>
+          <tr style="background: rgba(255,214,0,0.10); font-weight: 700;">
+            <td>최종 수익 (개당)</td><td class="num-r num-pos">7,349</td><td>실질 영업이익</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>📈 판매 수량별 수익 시뮬레이션</h4>
+      <table class="dark">
+        <thead><tr><th>판매 수량</th><th class="num-r">총 매출</th><th class="num-r">총 비용</th><th class="num-r">예상 순이익</th></tr></thead>
+        <tbody>
+          <tr><td>100개</td><td class="num-r">249만원</td><td class="num-r">175.5만원</td><td class="num-r num-pos">약 67만원</td></tr>
+          <tr><td>300개 (평균)</td><td class="num-r">747만원</td><td class="num-r">526.5만원</td><td class="num-r num-pos">약 200만원</td></tr>
+          <tr><td>500개 (상단)</td><td class="num-r">1,245만원</td><td class="num-r">877.5만원</td><td class="num-r num-pos">약 334만원</td></tr>
+          <tr><td>1,000개 (대형)</td><td class="num-r">2,490만원</td><td class="num-r">1,755만원</td><td class="num-r num-pos">약 668만원</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🎁 세트 구매 프로모션 (객단가 확대)</h3>
+      <div class="yellow-box">
+        <strong>2세트:</strong> 3,000원 할인 (46,800원) · 개당 마진 6,681원 동일<br>
+        <strong>3세트:</strong> 6,000원 할인 (68,700원) · 개당 마진 6,681원 동일<br>
+        <strong>전략:</strong> 물류 절감분(배송비 리베이트)을 즉시 고객 할인으로 전환 → 마진 안정화 + 객단가 ↑
+      </div>
+
+      <h3>📚 운영중 공동구매 채널 이력</h3>
+      <table class="dark">
+        <thead><tr><th>채널</th><th>유형</th><th>상태</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>맘스홀릭베이비</td><td>커뮤니티 공구</td><td><span class="badge b-progress">진행 이력</span></td><td>공구 제안서 등록</td></tr>
+          <tr><td>미즈넷</td><td>커뮤니티 공구</td><td><span class="badge b-progress">진행 이력</span></td><td>2026-02 활성</td></tr>
+          <tr><td>대연파트너스</td><td>벤더형</td><td><span class="badge b-active">진행중</span></td><td>아블러제로</td></tr>
+          <tr><td>인플루언서 직(보니/아들/블러썸)</td><td>크리에이터 공구</td><td><span class="badge b-active">진행중</span></td><td>4월 캠페인</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- 2. 공동구매 중계사·인플루언서 -->
+  <details class="section">
+    <summary>🎬 2. 공동구매 중계사·유튜브 크리에이터·후원기관</summary>
+    <div class="section-body">
+
+      <h3>🤝 공동구매 중계사</h3>
+      <table class="dark">
+        <thead><tr><th>구분</th><th>업체명</th><th>담당자</th><th>직책</th><th>연락처</th><th>이메일</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-mediator">중계</span></td>
+            <td>우하컴퍼니</td>
+            <td>우석준</td>
+            <td>대표</td>
+            <td>010-7577-7225</td>
+            <td>woohacompany@gmail.com</td>
+            <td>인스타그램 공구 중계 — 기획/운영/총괄</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-mediator">직영</span></td>
+            <td>비즈브릭스</td>
+            <td>김희철</td>
+            <td>이사</td>
+            <td>010-9668-9667</td>
+            <td>slayers0128@naver.com</td>
+            <td>인스타그램 공구 중계 — 영업운영실장</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>🎥 유튜브 크리에이터 (위스키·전통주·요리·칵테일 11명)</h3>
+      <table class="dark">
+        <thead><tr><th>채널</th><th>대표/PD</th><th>직책</th><th>연락처</th><th>이메일</th><th>카테고리</th></tr></thead>
+        <tbody>
+          <tr><td><strong>생명의물 위스키를 즐겁게</strong></td><td>박진수</td><td>대표/총괄</td><td>010-5272-7059</td><td>parkpoq7@gmail.com</td><td>위스키 리뷰</td></tr>
+          <tr><td>생명의물 위스키를 즐겁게</td><td>오민우</td><td>마스터/크리에이터</td><td>010-8181-1411</td><td>parkpoq7@gmail.com</td><td>MC/미누바 마스터</td></tr>
+          <tr><td><strong>술익는집</strong></td><td>이찬주</td><td>대표/총괄</td><td>010-8963-2059</td><td>soolhcontact@gmail.com</td><td>전통주 리뷰</td></tr>
+          <tr><td><strong>은수저</strong></td><td>허철</td><td>CYP 컨텐츠 이사</td><td>010-4236-7774</td><td>me@cyp.kr</td><td>요리 리뷰</td></tr>
+          <tr><td><strong>어쿠스틱드링크</strong></td><td>김정규</td><td>대표/총괄</td><td>010-9277-6862</td><td>acousticdrinker@gmail.com</td><td>칵테일 리뷰</td></tr>
+          <tr><td><strong>위안의시간</strong></td><td>현영민</td><td>대표/총괄</td><td>010-9978-7100</td><td>upinsidetime@gmail.com</td><td>위스키 리뷰</td></tr>
+          <tr><td><strong>한잔하는MJ</strong></td><td>전명진</td><td>대표/총괄</td><td>010-9094-0003</td><td>planetmj9@gmail.com</td><td>위스키 리뷰</td></tr>
+          <tr><td><strong>빛나는요술티비</strong></td><td>김빛나</td><td>대표/총괄</td><td>010-8570-5231</td><td>beitna108@naver.com</td><td>위스키 리뷰</td></tr>
+          <tr><td><strong>술주하</strong></td><td>황부영</td><td>크리에이터/매니저</td><td>010-7582-5601</td><td>calorina00@naver.com</td><td>위스키 리뷰</td></tr>
+          <tr><td><strong>미스터위스키</strong></td><td>박제영</td><td>마스터/총괄</td><td>010-8896-5357</td><td>—</td><td>위스키 리뷰</td></tr>
+          <tr><td><strong>아밥남</strong></td><td>진태두</td><td>매니저/총괄</td><td>010-9050-3512</td><td>—</td><td>요리 리뷰</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🏆 후원 기관</h3>
+      <table class="dark">
+        <thead><tr><th>기관명</th><th>담당자</th><th>직책</th><th>연락처</th><th>후원금</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-sponsor">후원</span> 베버리지마스터협회</td><td>이석현</td><td>협회장</td><td>010-5329-2992</td><td>1,100,000원/年 (VAT별도)</td></tr>
+          <tr><td><span class="badge b-sponsor">후원</span> 한국음료강사협의회</td><td>전재구</td><td>회장</td><td>010-4530-7109</td><td>—</td></tr>
+          <tr><td><span class="badge b-sponsor">후원</span> 홈바리스타클럽</td><td>김유한</td><td>카페매니저</td><td>010-4217-0777</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🎨 콘텐츠·영상·디자인 협력사 (제작 외주)</h3>
+      <table class="dark">
+        <thead><tr><th>분류</th><th>업체명</th><th>담당자</th><th>역할</th><th>연락처</th><th>이메일</th></tr></thead>
+        <tbody>
+          <tr><td>숏폼 컨텐츠</td><td>쿠디 (계약종료)</td><td>광후 대표</td><td>총괄/기획/크리에이터</td><td>010-9991-4662</td><td>uijk7051408@gmail.com</td></tr>
+          <tr><td>영상제작</td><td>이재현 (프리랜서)</td><td>이재현</td><td>콘티/촬영/편집</td><td>010-2494-6348</td><td>—</td></tr>
+          <tr><td>2D 디자인</td><td>프리랜서 남예원</td><td>남예원</td><td>웹디자인/인쇄물</td><td>010-3465-6639</td><td>hi0602199@gmail.com</td></tr>
+          <tr><td>와디즈 펀딩 메이트</td><td>알렌미디어</td><td>홍정우 대표</td><td>총괄</td><td>010-5508-3235</td><td>allenmedia.master@gmail.com</td></tr>
+          <tr><td>CM송 제작</td><td>케이준 (김경준)</td><td>김경준 PD</td><td>총괄/제작</td><td>010-3295-1081</td><td>bspsd@naver.com</td></tr>
+          <tr><td>3D 입체디자인</td><td>디자인36.5</td><td>강순구 대표</td><td>총괄</td><td>010-8253-2403</td><td>365design@naver.com</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- 3. 생산 거래처 -->
+  <details class="section">
+    <summary>🏭 3. 생산 거래처 (국내·해외·부자재·물류)</summary>
+    <div class="section-body">
+
+      <h3>🇰🇷 국내 — 아블러 (몰드 사출)</h3>
+      <table class="dark">
+        <thead><tr><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>이메일</th><th>조건·MOQ</th><th>결제</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-kr">국내</span> <strong>성준테크/세진정밀</strong></td>
+            <td>김희진</td><td>주임</td>
+            <td>010-9902-5930</td>
+            <td>sejin5930@hanmail.net</td>
+            <td>MOQ 1천개 / 일 최대 64ea(8 cavity 1벌) — 아이스볼 128/스틱 128(2벌)</td>
+            <td>착수 50% / 납품 후 15일 잔금</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px; opacity:0.65; margin-top:6px;">주소: 서울시 중량구 신내역로 111 SKV1 A동 519~522호</p>
+
+      <h3>🇨🇳 해외 — 아블러 텀블러·아블러제로</h3>
+      <table class="dark">
+        <thead><tr><th>제품</th><th>업체</th><th>담당자</th><th>연락처</th><th>이메일/위챗</th><th>MOQ</th><th>결제·리드타임</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge b-cn">중국</span> <strong>아블러 텀블러</strong></td>
+            <td>Zhejiang Green Home Industry & Trade</td>
+            <td>Ellie Sheng</td>
+            <td>+86 17758087527</td>
+            <td>elliesheng@greenhomewares.cn</td>
+            <td>컬러별 1천개 / 컬러배합 2천개</td>
+            <td>착수 30% / BL 발급 전 70% / 리드타임 45일</td>
+          </tr>
+          <tr>
+            <td><span class="badge b-cn">중국</span> <strong>아블러제로</strong></td>
+            <td>Shanghai ForeverGold Industrial</td>
+            <td>Aron</td>
+            <td>86-21-64486703</td>
+            <td>위챗: ufococo</td>
+            <td>컬러별 1천개</td>
+            <td>착수 30% / BL 발급 전 70% / 리드타임 45일</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="yellow-box">
+        <strong>알리바바 계정:</strong> nemochip@gmail.com / PW: Dean@911 (둘 다 PW숨김 토글로 보호)
+      </div>
+
+      <h3>🇰🇷 듀오메이커 — 메이커/TPE/EPP/인쇄</h3>
+      <table class="dark">
+        <thead><tr><th>역할</th><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>이메일</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>몰드사출·조립·합포장</td><td><strong>해피홈</strong></td><td>허현구</td><td>대표</td><td>010-8873-4536</td><td>user1552@daum.net</td><td>케이스·물통·조립 임가공</td></tr>
+          <tr><td>(납품 담당)</td><td>해피홈</td><td>허현미</td><td>전무</td><td>010-9334-4536</td><td>—</td><td>—</td></tr>
+          <tr><td>방한재 EPP 생산</td><td><strong>태양케미컬</strong></td><td>한영현</td><td>이사</td><td>010-4599-1234</td><td>bhj9396@suninchem.co.kr</td><td>MOQ 1만개 / 리드타임 4주</td></tr>
+          <tr><td>(납품)</td><td>태양케미컬</td><td>강경남</td><td>부장</td><td>010-3855-6436</td><td>—</td><td>—</td></tr>
+          <tr><td>(회계·정산)</td><td>태양케미컬</td><td>방현정</td><td>차장</td><td>010-7296-9396</td><td>—</td><td>—</td></tr>
+          <tr><td>메이커 인쇄(배면·측면)</td><td><strong>진명인쇄</strong></td><td>장효동</td><td>대표</td><td>010-9141-9793</td><td>pupu2852@naver.com</td><td>6천개내외 영업일 5일</td></tr>
+          <tr><td>실링스티커·메뉴얼</td><td><strong>삼성피아이티</strong></td><td>홍영호</td><td>대표</td><td>010-4283-4008</td><td>ssprt@korea.com</td><td>광주시 회덕길 / FAX 031-798-8706</td></tr>
+          <tr><td>(회계·정산)</td><td>삼성피아이티</td><td>김가희</td><td>대리</td><td>031-768-4008</td><td>—</td><td>—</td></tr>
+          <tr><td>컬러박스·기프트박스·패키지</td><td><strong>보명씨앤아이</strong></td><td>정태욱</td><td>대표</td><td>010-9010-4545</td><td>bmcni@naver.com</td><td>MOQ 1만개 / 영업일 10일</td></tr>
+          <tr><td>(디자인 작업)</td><td>보명씨앤아이</td><td>윤원섭</td><td>실장</td><td>010-3436-4026</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📦 부자재·소모품</h3>
+      <table class="dark">
+        <thead><tr><th>품목</th><th>업체</th><th>담당자</th><th>연락처</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>글라스 (온더락·하이볼)</td><td>노빌코리아</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>PE봉투·택배박스</td><td>박스몰</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>박스 테이프 (브랜드로고)</td><td>삼성테이프</td><td>정철운 이사</td><td>010-9921-2217</td><td>4천개↑ 영업일 10~14일</td></tr>
+          <tr><td>아이스몰드 레이저 각인·후가공</td><td>상상이상 인쇄</td><td>안명수 대표</td><td>010-5860-3323</td><td>MOQ 10개(7,000원) / 50개(6,000원) / 3~5일</td></tr>
+          <tr><td>스틱얼음 보관통</td><td>세기프라텍</td><td>문지완 부장</td><td>010-8784-5537</td><td>리드타임 편차 큼 (2주~2달)</td></tr>
+          <tr><td>아이스볼(범용) 보관통</td><td>프라피아</td><td>김병수 차장</td><td>010-5415-2810</td><td>리드타임 3주</td></tr>
+          <tr><td>적재박스</td><td>박스코리아</td><td>—</td><td>010-8837-5878</td><td>—</td></tr>
+          <tr><td>명함·리플렛</td><td>우리명함</td><td>오진구 대표</td><td>010-3346-7158</td><td>wricd@naver.com</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🚚 물류·3PL·택배</h3>
+      <table class="dark">
+        <thead><tr><th>구분</th><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>주소·이메일</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-active">3PL</span></td><td>피플스토리</td><td>김명훈</td><td>대표</td><td>010-3927-2631</td><td>경기 양주시 / pps@ppslogis.com</td></tr>
+          <tr><td>자사 출고</td><td>CJ대한통운</td><td>임성희</td><td>실장</td><td>010-3215-5243</td><td>070-7766-0000</td></tr>
+          <tr><td>(기사)</td><td>CJ대한통운</td><td>이광배</td><td>기사</td><td>010-4223-4034</td><td>kwangbae.lee@cj.net</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- 4. 진행중 발주·생산 -->
+  <details class="section">
+    <summary>📦 4. 진행중 발주·생산일정·재고 현황</summary>
+    <div class="section-body">
+
+      <h3>📋 진행중 발주서 — 260319 성준테크 (몰드)</h3>
+      <table class="dark">
+        <thead><tr><th>No</th><th>제품명</th><th>컬러</th><th>금형</th><th class="num-r">수량</th><th class="num-r">비율</th><th class="num-r">공급가(VAT별도)</th><th class="num-r">총액</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>볼</td><td>화이트</td><td>볼&스피어</td><td class="num-r">2,750</td><td class="num-r">37%</td><td class="num-r">5,909</td><td class="num-r">16,249,750</td></tr>
+          <tr><td>2</td><td>스피어다이아</td><td>화이트</td><td>볼&스피어</td><td class="num-r">2,750</td><td class="num-r">37%</td><td class="num-r">5,909</td><td class="num-r">16,249,750</td></tr>
+          <tr><td>3</td><td>큐브</td><td>화이트</td><td>큐브</td><td class="num-r">2,000</td><td class="num-r">27%</td><td class="num-r">5,909</td><td class="num-r">11,818,000</td></tr>
+          <tr style="background: rgba(255,214,0,0.10); font-weight: 700;">
+            <td colspan="4">합계</td><td class="num-r">7,500</td><td class="num-r">100%</td><td class="num-r">생산가</td><td class="num-r">44,317,500</td>
+          </tr>
+          <tr><td colspan="7">부가세 (10%)</td><td class="num-r">4,431,750</td></tr>
+          <tr style="background: rgba(255,214,0,0.18); font-weight: 800;">
+            <td colspan="7">총액 [생산가 + 부가세]</td><td class="num-r">48,749,250</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="yellow-box">
+        <strong>📅 일정:</strong> 발주 2026-03-19 / <strong>납품 예정 2026-04-30</strong><br>
+        <strong>💰 결제 조건:</strong> 착수금 30% (14,624,775원) / 1차 잔금 30% 납품후 7일내 / 2차 잔금 40% 익월 10일까지<br>
+        <strong>👤 담당:</strong> 마스터마인딩 이호혁 차장 (070-7152-0340)
+      </div>
+
+      <h3>🚨 생산 긴급 SKU — 2026-04-21 기준</h3>
+      <p style="font-size:11px; opacity:0.7; margin-bottom:8px;">총 SKU 72개 / 생산필요 12개 / 부족수량 2,661개 / 권장생산 2,661개 / 확정생산 42,355개</p>
+
+      <table class="dark">
+        <thead>
+          <tr><th>구분</th><th>제품</th><th>옵션</th><th>생산처</th><th class="num-r">현재고</th><th class="num-r">안전재고</th><th class="num-r">부족</th><th class="num-r">확정생산</th><th>상태</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>본품</td><td>아블러</td><td>해골/실리콘</td><td>성준테크</td><td class="num-r">143</td><td class="num-r">200</td><td class="num-r num-neg">57</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>본품</td><td>듀오메이커</td><td>스틱/TPE</td><td>해피홈</td><td class="num-r">73</td><td class="num-r">200</td><td class="num-r num-neg">127</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>본품</td><td>듀오메이커</td><td>볼/TPE</td><td>해피홈</td><td class="num-r">109</td><td class="num-r">200</td><td class="num-r num-neg">91</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>본품</td><td>듀오메이커 외통</td><td>화이트</td><td>해피홈</td><td class="num-r">0</td><td class="num-r">200</td><td class="num-r num-neg">200</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>본품</td><td>듀오메이커 외통</td><td>블루</td><td>해피홈</td><td class="num-r">0</td><td class="num-r">200</td><td class="num-r num-neg">200</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>본품</td><td>듀오메이커 물통</td><td>화이트(내통)</td><td>해피홈</td><td class="num-r">137</td><td class="num-r">200</td><td class="num-r num-neg">63</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>완제품</td><td>아블러 볼</td><td>화이트</td><td>중국발주</td><td class="num-r">92</td><td class="num-r">200</td><td class="num-r num-neg">108</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>완제품</td><td>아블러 볼</td><td>블랙</td><td>중국발주</td><td class="num-r">61</td><td class="num-r">200</td><td class="num-r num-neg">139</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>완제품</td><td>아블러 볼</td><td>블루</td><td>중국발주</td><td class="num-r">75</td><td class="num-r">200</td><td class="num-r num-neg">125</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>완제품</td><td>아블러 볼</td><td>실버</td><td>중국발주</td><td class="num-r">94</td><td class="num-r">200</td><td class="num-r num-neg">106</td><td class="num-r">—</td><td><span class="badge b-urgent">긴급</span></td></tr>
+          <tr><td>완제품</td><td>아블러 큐브</td><td>화이트</td><td>중국발주</td><td class="num-r">12</td><td class="num-r">200</td><td class="num-r num-neg">188</td><td class="num-r num-pos">200</td><td><span class="badge b-progress">생산중</span></td></tr>
+          <tr><td>완제품</td><td>아블러 큐브</td><td>블랙</td><td>중국발주</td><td class="num-r">0</td><td class="num-r">200</td><td class="num-r num-neg">200</td><td class="num-r num-pos">355</td><td><span class="badge b-progress">생산중</span></td></tr>
+          <tr><td>완제품</td><td>아블러 큐브</td><td>실버</td><td>중국발주</td><td class="num-r">21</td><td class="num-r">200</td><td class="num-r num-neg">179</td><td class="num-r num-pos">100</td><td><span class="badge b-shortage">부족</span></td></tr>
+          <tr><td>완제품</td><td>듀오메이커 스틱</td><td>블루</td><td>해피홈</td><td class="num-r">77</td><td class="num-r">200</td><td class="num-r num-neg">123</td><td class="num-r num-pos">100</td><td><span class="badge b-shortage">부족</span></td></tr>
+        </tbody>
+      </table>
+
+      <h4>📊 생산처 MOQ 코드</h4>
+      <table class="dark">
+        <thead><tr><th>코드</th><th>MOQ</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td>A</td><td>500개</td><td>—</td></tr>
+          <tr><td>B</td><td>2,000개</td><td>—</td></tr>
+          <tr><td>C</td><td>1,000개</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- 5. 소싱·무역 업무 흐름 -->
+  <details class="section">
+    <summary>🌏 5. 제품 소싱·무역 업무 흐름</summary>
+    <div class="section-body">
+
+      <h3>🔍 소싱 단계 (1~5일)</h3>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num">STEP 01</div>
+          <div class="step-ttl">제품 조사·서칭</div>
+          <div class="step-desc">오너 지시 또는 자율 카테고리<br>→ AI 중국어 키워드 추천<br>→ 1688/Alibaba 검색</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 02</div>
+          <div class="step-ttl">샘플 구매</div>
+          <div class="step-desc">AliExpress·Temu 우선<br>→ 없으면 1688 셀러 직접<br>→ 배대지 신청 (오프로)</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 03</div>
+          <div class="step-ttl">샘플 테스트</div>
+          <div class="step-desc">외관·성능 품질 테스트<br>→ 내부 기준 판단<br>→ 소싱 가능성 결정</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 04</div>
+          <div class="step-ttl">견적 산출</div>
+          <div class="step-desc">기나글로벌 포워더 견적 (2~3일)<br>또는 AI 간이 견적<br>→ 단가·MOQ·운송·관세·FTA</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 05</div>
+          <div class="step-ttl">시장 경쟁력 조사</div>
+          <div class="step-desc">쿠팡·네이버·스마트스토어<br>→ 가격·배송·리뷰<br>→ 발주 결정</div>
+        </div>
+      </div>
+
+      <h3>📦 무역 단계 (45~60일)</h3>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num">발주 전</div>
+          <div class="step-ttl">PI·계약</div>
+          <div class="step-desc">해외제조업소 등록<br>→ 영문라이센스 / FTA 동의<br>→ PO·PI·착수금 30%</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">발주 후</div>
+          <div class="step-ttl">생산·검수</div>
+          <div class="step-desc">한글표시사항 스티커 검수<br>→ 인보이스/패킹리스트 매칭<br>→ FTA 넘버 확인</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">선적</div>
+          <div class="step-ttl">BL·CO 수령</div>
+          <div class="step-desc">잔금 70% 송금<br>→ BL 수령 / FTA 증명서<br>→ CTN·CBM 확인</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">통관</div>
+          <div class="step-ttl">식검·수입통관</div>
+          <div class="step-desc">서류식검 또는 정밀식검 (2주)<br>→ 통관 / 비용 납부<br>→ 수입부가세·통관·검역</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">입고</div>
+          <div class="step-ttl">3PL 입고</div>
+          <div class="step-desc">피플스토리 입고지시<br>→ 수량·SKU·예정일 전달<br>→ 포워더 정산</div>
+        </div>
+      </div>
+
+      <h3>📚 소싱 자료 (구글드라이브)</h3>
+      <table class="dark">
+        <thead><tr><th>자료명</th><th>용도</th><th>위치</th></tr></thead>
+        <tbody>
+          <tr><td><strong>제품 소싱 시장조사 (1688/알리바바)</strong></td><td>소싱업무 메뉴얼·소싱제안 리스트·아이템별 견적</td><td>구글드라이브</td></tr>
+          <tr><td>권나경-업무매뉴얼 시트</td><td>소싱·무역 체크리스트 (총 22항목)</td><td>구글드라이브</td></tr>
+          <tr><td>한국무역협회 KITA</td><td>FTA 증명서·통관 자료</td><td>구글드라이브</td></tr>
+          <tr><td>씨앤에프 / 마스터마인딩 제품소싱</td><td>법인별 소싱 분리</td><td>구글드라이브</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🛠️ 사용 시스템·플랫폼</h3>
+      <table class="dark">
+        <thead><tr><th>구분</th><th>플랫폼</th><th>용도</th></tr></thead>
+        <tbody>
+          <tr><td>소싱</td><td>1688 / Alibaba</td><td>중국 도매 검색·견적·셀러 직접 협상</td></tr>
+          <tr><td>샘플</td><td>AliExpress / Temu</td><td>샘플 빠른 구매 (3~7일)</td></tr>
+          <tr><td>샘플</td><td>오프로 (배대지)</td><td>1688 → 한국 배대지 (7~10일)</td></tr>
+          <tr><td>포워더</td><td>기나글로벌</td><td>견적·통관·핸들링</td></tr>
+          <tr><td>통관</td><td>관세청 유니패스</td><td>BL 조회·통관 진행</td></tr>
+          <tr><td>식검</td><td>수입식품정보마루</td><td>해외 제조업소 등록·조회</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- 6. 권나경 업무 매뉴얼 체크리스트 -->
+  <details class="section">
+    <summary>✅ 6. 업무 체크리스트 (소싱·무역 22항목)</summary>
+    <div class="section-body">
+
+      <h3>🛒 소싱 단계</h3>
+      <table class="dark">
+        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
+        <tbody>
+          <tr><td>제품정보 확인</td><td>MOQ 체크 완료</td><td>—</td></tr>
+          <tr><td>제품정보 확인</td><td>커스텀 여부 확인</td><td>—</td></tr>
+          <tr><td>견적 수령</td><td>단가 수령</td><td>—</td></tr>
+          <tr><td>견적 수령</td><td>배송비/통관 예상견적 수령 (기나글로벌)</td><td>—</td></tr>
+          <tr><td>내부 컨펌</td><td>대표님 견적 컨펌</td><td>—</td></tr>
+          <tr><td>샘플 수령</td><td>배대지(오프로) 샘플 수령 확인</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📦 무역 — 발주 전</h3>
+      <table class="dark">
+        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
+        <tbody>
+          <tr><td>발주 전</td><td>해외 제조업소 등록 여부 확인</td><td>—</td></tr>
+          <tr><td>발주 전</td><td>영문라이센스 요청 (필요시)</td><td>—</td></tr>
+          <tr><td>발주 전</td><td>FTA 증명서 발급 동의</td><td>—</td></tr>
+          <tr><td>발주 전</td><td>커스텀 논의 및 발주서 작성</td><td>—</td></tr>
+          <tr><td>발주 전</td><td>PI 요청 및 착수금/잔금조건 체크</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📦 무역 — 발주 후</h3>
+      <table class="dark">
+        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
+        <tbody>
+          <tr><td>발주 후</td><td>한글표시사항 스티커 시안 검수</td><td>—</td></tr>
+          <tr><td>발주 후</td><td>예외서류 (무납증명서 등) 체크</td><td>—</td></tr>
+          <tr><td>발주 후</td><td>인보이스/패킹리스트 제품명 매칭 확인</td><td>—</td></tr>
+          <tr><td>발주 후</td><td>인보이스 넘버 - FTA 넘버 매칭 확인</td><td>—</td></tr>
+          <tr><td>발주 후</td><td>카툰박스에 서류 부착 완료</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🚢 무역 — 선적·발송 후</h3>
+      <table class="dark">
+        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
+        <tbody>
+          <tr><td>선적 후</td><td>BL 수령 및 확인</td><td>—</td></tr>
+          <tr><td>선적 후</td><td>FTA 증명서 최종 요청 및 체크</td><td>—</td></tr>
+          <tr><td>발송 후</td><td>서류식검 / 정밀식검 진행</td><td>—</td></tr>
+          <tr><td>발송 후</td><td>통관 완료 및 비용 납부</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="yellow-box">
+        <strong>✨ 정리 포인트</strong><br>
+        · <strong>소싱:</strong> 제품 사전 준비(견적·컨펌·샘플) 까지 담당<br>
+        · <strong>무역:</strong> 계약 ~ 수입통관 완료까지 담당<br>
+        · 각 단계별 <strong>문서 검수·매칭 체크</strong> 매우 중요 — 누락 시 통관지연·추가비용 발생
+      </div>
+    </div>
+  </details>
+
+  <!-- 7. 박지현 팀장과의 협업 -->
+  <details class="section">
+    <summary>🤝 7. 박지현 팀장과의 협업·보고 라인</summary>
+    <div class="section-body">
+
+      <h3>📌 박지현 팀장 책임 4축</h3>
+      <table class="dark">
+        <thead><tr><th>축</th><th>박지현 팀장</th><th>권나경 과장 연결점</th></tr></thead>
+        <tbody>
+          <tr><td>① 사방넷·입점몰 운영</td><td>스마트스토어·자사몰·쿠팡·카카오 주문·재고 동기화</td><td>상품 등록·행사·쿠폰 세팅 실행</td></tr>
+          <tr><td>② 시즌 기획</td><td>가정의달(4/27~4/30 발송) · 추석</td><td>인플루언서·공동구매 기획 실행</td></tr>
+          <tr><td>③ 와디즈 캠페인</td><td>펀딩·리워드·CS·다음 캠페인</td><td>리워드 상품 등록 / 발송 후 리뷰 관리</td></tr>
+          <tr><td>④ 광고 운영</td><td>메타·구글·네이버 ROAS</td><td>인플루언서 캠페인 성과 정리·광고비 정산</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🔁 보고 라인</h3>
+      <div class="yellow-box">
+        <strong>일반 진행</strong> → 매일 logs 기록 (자동 적재)<br>
+        <strong>팀장 결정 필요</strong> → 박지현 팀장에게 전달 → MISSION/HUB.md 등록<br>
+        <strong>대표 결정 필요</strong> → 박지현 팀장 → 대표<br>
+        <strong>외부 발송</strong> → MISSION/INBOX.md 승인 후<br>
+        <strong>확정 결정</strong> → MISSION/DECISIONS.md
+      </div>
+
+      <h3>⏰ 매일 09:00 박지현 팀장 우선순위 3개에 권나경 과장이 대응</h3>
+      <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
+        <li>전날 매출·주문·ROAS 확인 → MD 운영 우선순위 도출</li>
+        <li>인플루언서 캠페인 진행상황 → 박지현 팀장에 한 줄 보고</li>
+        <li>생산·발주 이슈 → 즉시 박지현 팀장 공유 (납기 지연·재고 부족)</li>
+      </ul>
+
+      <h3>📅 매주 금요일 17:00 주간 정리</h3>
+      <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
+        <li>이번 주 공동구매 매출·정산 정리</li>
+        <li>4대 책임 축 진척 한 줄씩</li>
+        <li>지연 항목 다음 주 이관</li>
+        <li>다음 주 우선순위 5개 박지현 팀장과 확정</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 8. 빠른 참조 -->
+  <details class="section">
+    <summary>⚡ 8. 빠른 참조 (자주 쓰는 정보)</summary>
+    <div class="section-body">
+
+      <h3>🔥 긴급 연락처 TOP 5</h3>
+      <table class="dark">
+        <thead><tr><th>구분</th><th>업체·채널</th><th>담당자</th><th>연락처</th></tr></thead>
+        <tbody>
+          <tr><td>3PL 입출고</td><td>피플스토리</td><td>김명훈 대표</td><td>010-3927-2631</td></tr>
+          <tr><td>국내 몰드 생산</td><td>성준테크</td><td>김희진 주임</td><td>010-9902-5930</td></tr>
+          <tr><td>듀오메이커 조립</td><td>해피홈</td><td>허현구 대표</td><td>010-8873-4536</td></tr>
+          <tr><td>택배 출고</td><td>CJ대한통운</td><td>임성희 실장</td><td>010-3215-5243</td></tr>
+          <tr><td>공구 중계</td><td>우하컴퍼니</td><td>우석준 대표</td><td>010-7577-7225</td></tr>
+        </tbody>
+      </table>
+
+      <h3>💼 회사 기본 정보</h3>
+      <table class="dark">
+        <thead><tr><th>구분</th><th>법인 (㈜마스터마인딩그룹)</th><th>일반 (씨앤에프 트레이딩)</th></tr></thead>
+        <tbody>
+          <tr><td>대표</td><td>장정훈</td><td>장정훈</td></tr>
+          <tr><td>사업자등록</td><td>426-87-00479</td><td>620-38-00938</td></tr>
+          <tr><td>대표번호</td><td>070-7152-0340</td><td>070-7152-0340</td></tr>
+          <tr><td>이메일</td><td>jewelice@jewelice.kr</td><td>jewelice@jewelice.kr</td></tr>
+          <tr><td>택배사</td><td>CJ대한통운</td><td>CJ대한통운</td></tr>
+          <tr><td>출고지</td><td colspan="2">경기도 양주시 은현면 화합로1169번길 72-54 (피플스토리)</td></tr>
+        </tbody>
+      </table>
+
+      <h3>👥 함께 일하는 팀</h3>
+      <table class="dark">
+        <thead><tr><th>이름</th><th>직급/부서</th><th>휴대폰</th><th>이메일</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td>장정훈</td><td>대표</td><td>010-3167-0961</td><td>thinkintoreal@gmail.com</td><td>최종 결정</td></tr>
+          <tr style="background: rgba(255,214,0,0.08);"><td><strong>박지현</strong></td><td>팀장 / 사업본부</td><td>010-9942-7171</td><td>lucy@jewelice.kr</td><td>사업 총괄·직속 상사</td></tr>
+          <tr><td>이호혁</td><td>차장 / 경영관리·SCM</td><td>010-5000-8761</td><td>denny@jewelice.kr</td><td>발주 담당자</td></tr>
+          <tr style="background: rgba(124,58,237,0.18);"><td><strong>권나경</strong></td><td>과장 / MD 운영</td><td>010-4133-5844</td><td>bona@jewelice.kr</td><td><strong>본인</strong></td></tr>
+          <tr><td>조송희</td><td>대리 / 콘텐츠 광고</td><td>010-7471-4479</td><td>kathy@jewelice.kr</td><td>마케팅 협업</td></tr>
+          <tr><td>권수지</td><td>대리 / 고객지원</td><td>010-9545-1147</td><td>—</td><td>CS·생산일정표 관리</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📁 자주 쓰는 폴더 (구글드라이브)</h3>
+      <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
+        <li><strong>권나경 과장 메인 폴더</strong> — 개인 업무 자료</li>
+        <li><strong>◎공동구매◎</strong> — 모든 공구 자료 통합</li>
+        <li><strong>10. 공동구매</strong> — 신규 공구 진행 폴더</li>
+        <li><strong>맘스홀릭베이비 / 미즈넷 공동구매</strong> — 채널별 진행 이력</li>
+        <li><strong>2 제품소싱 / 002 제품소싱</strong> — 마스터마인딩·씨앤에프 분리</li>
+        <li><strong>아이스볼 얼음통 / 인플루언서 마케팅 영상</strong> — 자재·콘텐츠 자산</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    🔗 이 허브 주소: <strong>charlesmaster911.github.io/jewelice-playbook/nakyung-hub.html</strong><br>
+    북마크 하나로 권나경 과장 업무 전체 접근 · 주소 영구 고정<br><br>
+    💎 JEWEL ICE × 권나경 과장<br>
+    MD 운영 · 공동구매 · 소싱·무역 · 생산 발주 통합 허브<br>
+    화경 작성 · 박지현 팀장 검수 · v1.0
+  </div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'nakyung_hub_v1';
+
+  function toggleEdit() {
+    const body = document.body;
+    const editing = body.dataset.editing === 'true';
+    if (editing) {
+      body.dataset.editing = 'false';
+      document.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+      document.getElementById('editBtn').textContent = '편집';
+    } else {
+      body.dataset.editing = 'true';
+      document.querySelectorAll('td, th, .info-grid .val, h3, h4, p, .step-desc, .duty-item .desc').forEach(el => {
+        el.setAttribute('contenteditable', 'true');
+      });
+      document.getElementById('editBtn').textContent = '편집중';
+    }
+  }
+
+  function saveAll() {
+    const html = document.querySelector('.wrap').innerHTML;
+    try {
+      localStorage.setItem(STORAGE_KEY, html);
+      const status = document.getElementById('saveStatus');
+      status.textContent = '✓ 저장됨 ' + new Date().toLocaleTimeString();
+      setTimeout(() => status.textContent = '', 3000);
+    } catch (e) {
+      alert('저장 실패: ' + e.message);
+    }
+  }
+
+  function resetAll() {
+    if (confirm('편집 내용을 모두 초기화합니다. 계속하시겠습니까?')) {
+      localStorage.removeItem(STORAGE_KEY);
+      location.reload();
+    }
+  }
+
+  // 로드 시 저장된 내용 복구
+  window.addEventListener('DOMContentLoaded', () => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        document.querySelector('.wrap').innerHTML = saved;
+      } catch (e) {
+        console.warn('Restore failed', e);
+      }
+    }
+  });
+</script>
+</body>
+</html>
