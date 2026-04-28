@@ -107,6 +107,16 @@
   .duty-item .ttl { font-size: 14px; font-weight: 700; margin: 4px 0 6px; }
   .duty-item .desc { font-size: 11.5px; opacity: 0.78; line-height: 1.55; }
 
+  /* KPI 박스 */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 10px 0 18px; }
+  @media (max-width: 600px) { .kpi-row { grid-template-columns: repeat(2, 1fr); } }
+  .kpi-box {
+    background: rgba(255,214,0,0.08); border: 1px solid rgba(255,214,0,0.2);
+    border-radius: 10px; padding: 14px; text-align: center;
+  }
+  .kpi-num { font-size: 24px; font-weight: 900; color: #ffd600; line-height: 1; }
+  .kpi-lbl { font-size: 10px; opacity: 0.7; margin-top: 6px; }
+
   /* 매일 루틴 */
   .routine-box {
     background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);
@@ -181,6 +191,9 @@
   .b-influencer { background: #7c3aed; color: #fff; }
   .b-mediator { background: #d946ef; color: #fff; }
   .b-sponsor { background: #fbbf24; color: #1a0a3e; }
+  .b-platform { background: #14b8a6; color: #fff; }
+  .b-mom { background: #ec4899; color: #fff; }
+  .b-success { background: #10b981; color: #fff; }
 
   .alert-box {
     background: rgba(192,57,43,0.18); border-left: 3px solid #c0392b;
@@ -193,6 +206,12 @@
     line-height: 1.6; margin: 10px 0;
   }
   .yellow-box strong { color: #ffd600; }
+  .green-box {
+    background: rgba(39,174,96,0.10); border-left: 3px solid #27ae60;
+    padding: 12px 14px; border-radius: 6px; font-size: 12px;
+    line-height: 1.6; margin: 10px 0;
+  }
+  .green-box strong { color: #6ee7b7; }
 
   .footer {
     text-align: center; margin-top: 40px; padding: 20px 0;
@@ -221,13 +240,20 @@
   [contenteditable="true"]:focus {
     outline: 2px dashed #ffd600; outline-offset: 2px; background: rgba(255,214,0,0.05);
   }
+
+  .platform-card {
+    background: rgba(20,184,166,0.10); border: 1px solid rgba(20,184,166,0.3);
+    border-radius: 10px; padding: 16px; margin-bottom: 10px;
+  }
+  .platform-card .pf-name { font-size: 14px; color: #5eead4; font-weight: 800; }
+  .platform-card .pf-meta { font-size: 11px; opacity: 0.7; margin: 4px 0 8px; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="toolbar">
-    <div class="title">💎 권나경 과장 HUB · v1.0 · 쥬얼아이스</div>
+    <div class="title">💎 권나경 과장 HUB · v1.1 · 쥬얼아이스</div>
     <div class="btns">
       <button class="ctrl-btn" onclick="toggleEdit()" id="editBtn">편집</button>
       <button class="ctrl-btn primary" onclick="saveAll()">저장</button>
@@ -238,8 +264,8 @@
 
   <div class="hero">
     <h1>💎 <span class="accent">권나경 과장</span> HUB</h1>
-    <p>MD 운영 · 공동구매 · 제품 소싱·무역 · 생산 발주 — 한눈에 보기</p>
-    <div class="update">업데이트: 2026-04-28 · 화경 작성 · 박지현 팀장 검수용</div>
+    <p>MD 운영 · 공동구매 · 제품 소싱·무역 · 생산 발주 — 한눈에 보고 진행</p>
+    <div class="update">업데이트: 2026-04-28 v1.1 (공동구매 플랫폼·이전 성과 통합) · 화경 작성 · 박지현 팀장 검수용</div>
   </div>
 
   <!-- 담당자 정보 -->
@@ -267,8 +293,8 @@
     </div>
     <div class="duty-item">
       <div class="num">② 공동구매 운영</div>
-      <div class="ttl">인플루언서·중계사 협업</div>
-      <div class="desc">인플루언서 섭외 / 공구 제안서 / 캠페인 세팅 / 정산·성과 리포트 / 중계사 커뮤니케이션</div>
+      <div class="ttl">플랫폼·인플루언서·중계사</div>
+      <div class="desc">맘카페·미즈넷 등 폐쇄몰 + 인플루언서 직접 + 중계사(우하·비즈브릭스) — 섭외·계약·세팅·정산·성과리포트</div>
     </div>
     <div class="duty-item">
       <div class="num">③ 제품 소싱·무역</div>
@@ -287,28 +313,37 @@
   <div class="grid-4">
     <div class="card asset">
       <div class="card-icon">🛒</div>
-      <div class="card-title">공동구매 진행건</div>
-      <div class="card-desc">4월 인플루언서 공구 3건 + 대연파트너스</div>
+      <div class="card-title">진행중 공동구매</div>
+      <div class="card-desc">인플루언서 3건 + 대연파트너스 진행중</div>
       <div class="card-num">예상 507~705만원</div>
     </div>
     <div class="card asset">
-      <div class="card-icon">🏭</div>
-      <div class="card-title">생산 거래처</div>
-      <div class="card-desc">국내 9개 + 중국 2개 + 3PL/택배</div>
-      <div class="card-num">총 13곳</div>
+      <div class="card-icon">📊</div>
+      <div class="card-title">이전 공구 성과</div>
+      <div class="card-desc">쎄씨주부 4월 1주 단독 매출 + 미즈넷 7일</div>
+      <div class="card-num">검증된 트랙</div>
     </div>
     <div class="card asset">
       <div class="card-icon">🎬</div>
-      <div class="card-title">인플루언서·후원기관</div>
-      <div class="card-desc">유튜버 11명 + 공구 중계사 2 + 기관 3</div>
-      <div class="card-num">16명</div>
+      <div class="card-title">인플루언서 풀</div>
+      <div class="card-desc">유튜버 11 + 인스타 리빙 100+ + 공구중계 2</div>
+      <div class="card-num">120명+</div>
     </div>
     <div class="card asset">
-      <div class="card-icon">📦</div>
-      <div class="card-title">진행중 발주</div>
-      <div class="card-desc">성준테크 4/30 납품 (몰드 7,500EA)</div>
+      <div class="card-icon">🏭</div>
+      <div class="card-title">생산·발주</div>
+      <div class="card-desc">국내 9 + 중국 2 + 3PL · 성준테크 4/30 납품</div>
       <div class="card-num">4,432만원</div>
     </div>
+  </div>
+
+  <!-- 핵심 KPI 한눈에 -->
+  <div class="group-title">📊 권나경 과장 KPI 대시보드 (실시간)</div>
+  <div class="kpi-row">
+    <div class="kpi-box"><div class="kpi-num">4건</div><div class="kpi-lbl">진행중 공구 캠페인</div></div>
+    <div class="kpi-box"><div class="kpi-num">285~385</div><div class="kpi-lbl">4월 예상 판매량(개)</div></div>
+    <div class="kpi-box"><div class="kpi-num">14건</div><div class="kpi-lbl">긴급 생산 SKU</div></div>
+    <div class="kpi-box"><div class="kpi-num">7,500EA</div><div class="kpi-lbl">진행중 발주 (성준테크 4/30)</div></div>
   </div>
 
   <!-- 매일 루틴 -->
@@ -416,7 +451,7 @@
         · 블랙: 약 130개 내외 — 위스키 페어링 소구가 강한 <strong>'보니의 참쉬운 레시피'</strong> 채널 오픈 시점 집중 노출
       </div>
 
-      <h3>💼 대연파트너스 공구 (벤더형)</h3>
+      <h3>💼 대연파트너스 공구 (벤더형) — 진행중</h3>
       <table class="dark">
         <thead>
           <tr><th>항목</th><th class="num-r">금액(원)</th><th>비고</th></tr>
@@ -451,73 +486,357 @@
         <strong>3세트:</strong> 6,000원 할인 (68,700원) · 개당 마진 6,681원 동일<br>
         <strong>전략:</strong> 물류 절감분(배송비 리베이트)을 즉시 고객 할인으로 전환 → 마진 안정화 + 객단가 ↑
       </div>
-
-      <h3>📚 운영중 공동구매 채널 이력</h3>
-      <table class="dark">
-        <thead><tr><th>채널</th><th>유형</th><th>상태</th><th>비고</th></tr></thead>
-        <tbody>
-          <tr><td>맘스홀릭베이비</td><td>커뮤니티 공구</td><td><span class="badge b-progress">진행 이력</span></td><td>공구 제안서 등록</td></tr>
-          <tr><td>미즈넷</td><td>커뮤니티 공구</td><td><span class="badge b-progress">진행 이력</span></td><td>2026-02 활성</td></tr>
-          <tr><td>대연파트너스</td><td>벤더형</td><td><span class="badge b-active">진행중</span></td><td>아블러제로</td></tr>
-          <tr><td>인플루언서 직(보니/아들/블러썸)</td><td>크리에이터 공구</td><td><span class="badge b-active">진행중</span></td><td>4월 캠페인</td></tr>
-        </tbody>
-      </table>
     </div>
   </details>
 
-  <!-- 2. 공동구매 중계사·인플루언서 -->
-  <details class="section">
-    <summary>🎬 2. 공동구매 중계사·유튜브 크리에이터·후원기관</summary>
+  <!-- 2. 이전 공동구매 성과 -->
+  <details class="section" open>
+    <summary>📈 2. 이전 공동구매 협업 성과 (벤치마크 데이터)</summary>
     <div class="section-body">
 
-      <h3>🤝 공동구매 중계사</h3>
+      <h3>🏆 쎄씨주부의 소꿉놀이터 (Ceci Jubu) — 4월 1주 단독 진행</h3>
+      <div class="green-box">
+        <strong>핵심 벤치마크</strong> — 모든 4월 인플루언서 공구 성과 예측의 기준점이 된 캠페인. 팔로워 4만 / 아블러제로 단독.
+      </div>
       <table class="dark">
-        <thead><tr><th>구분</th><th>업체명</th><th>담당자</th><th>직책</th><th>연락처</th><th>이메일</th><th>비고</th></tr></thead>
+        <thead>
+          <tr><th>지표</th><th>실적</th><th>비고</th></tr>
+        </thead>
         <tbody>
-          <tr>
-            <td><span class="badge b-mediator">중계</span></td>
-            <td>우하컴퍼니</td>
-            <td>우석준</td>
-            <td>대표</td>
-            <td>010-7577-7225</td>
-            <td>woohacompany@gmail.com</td>
-            <td>인스타그램 공구 중계 — 기획/운영/총괄</td>
-          </tr>
-          <tr>
-            <td><span class="badge b-mediator">직영</span></td>
-            <td>비즈브릭스</td>
-            <td>김희철</td>
-            <td>이사</td>
-            <td>010-9668-9667</td>
-            <td>slayers0128@naver.com</td>
-            <td>인스타그램 공구 중계 — 영업운영실장</td>
-          </tr>
+          <tr><td>판매기간</td><td>2026-04-01 ~ 04-08 (8일)</td><td>네이버 인사이트 주문정보 기반</td></tr>
+          <tr><td>제품</td><td>아블러제로 단품</td><td>아이보리/블랙 옵션</td></tr>
+          <tr><td>단가</td><td>24,900원 (옵션) + 20,000원(추가 구매 시 할인)</td><td>—</td></tr>
+          <tr><td>수수료</td><td>15%</td><td>대연파트너스 30%보다 우호적 조건</td></tr>
+          <tr><td><strong>전환율</strong></td><td><strong>0.5% ~ 1.4%</strong></td><td>팬 수 대비 카테고리 적합도</td></tr>
+          <tr><td><strong>컬러 선호</strong></td><td><strong>아이보리 67% : 블랙 33%</strong></td><td>모든 후속 공구 재고 전략의 근거</td></tr>
+          <tr><td>객단가 패턴</td><td>단품 + 추가 구매 옵션 동시 구매 다수</td><td>2세트/3세트 프로모션 효과 입증</td></tr>
+          <tr><td>활용</td><td>4월 인플루언서 공구 마스터플랜 수식</td><td>예상 정산 507~705만원 산출 근거</td></tr>
         </tbody>
       </table>
 
-      <h3>🎥 유튜브 크리에이터 (위스키·전통주·요리·칵테일 11명)</h3>
+      <h3>🍼 미즈넷 공동구매 — 2025-09-25 ~ 10-01 (7일간)</h3>
       <table class="dark">
-        <thead><tr><th>채널</th><th>대표/PD</th><th>직책</th><th>연락처</th><th>이메일</th><th>카테고리</th></tr></thead>
+        <thead><tr><th>항목</th><th>실적·조건</th></tr></thead>
         <tbody>
-          <tr><td><strong>생명의물 위스키를 즐겁게</strong></td><td>박진수</td><td>대표/총괄</td><td>010-5272-7059</td><td>parkpoq7@gmail.com</td><td>위스키 리뷰</td></tr>
-          <tr><td>생명의물 위스키를 즐겁게</td><td>오민우</td><td>마스터/크리에이터</td><td>010-8181-1411</td><td>parkpoq7@gmail.com</td><td>MC/미누바 마스터</td></tr>
-          <tr><td><strong>술익는집</strong></td><td>이찬주</td><td>대표/총괄</td><td>010-8963-2059</td><td>soolhcontact@gmail.com</td><td>전통주 리뷰</td></tr>
-          <tr><td><strong>은수저</strong></td><td>허철</td><td>CYP 컨텐츠 이사</td><td>010-4236-7774</td><td>me@cyp.kr</td><td>요리 리뷰</td></tr>
-          <tr><td><strong>어쿠스틱드링크</strong></td><td>김정규</td><td>대표/총괄</td><td>010-9277-6862</td><td>acousticdrinker@gmail.com</td><td>칵테일 리뷰</td></tr>
-          <tr><td><strong>위안의시간</strong></td><td>현영민</td><td>대표/총괄</td><td>010-9978-7100</td><td>upinsidetime@gmail.com</td><td>위스키 리뷰</td></tr>
-          <tr><td><strong>한잔하는MJ</strong></td><td>전명진</td><td>대표/총괄</td><td>010-9094-0003</td><td>planetmj9@gmail.com</td><td>위스키 리뷰</td></tr>
-          <tr><td><strong>빛나는요술티비</strong></td><td>김빛나</td><td>대표/총괄</td><td>010-8570-5231</td><td>beitna108@naver.com</td><td>위스키 리뷰</td></tr>
-          <tr><td><strong>술주하</strong></td><td>황부영</td><td>크리에이터/매니저</td><td>010-7582-5601</td><td>calorina00@naver.com</td><td>위스키 리뷰</td></tr>
-          <tr><td><strong>미스터위스키</strong></td><td>박제영</td><td>마스터/총괄</td><td>010-8896-5357</td><td>—</td><td>위스키 리뷰</td></tr>
-          <tr><td><strong>아밥남</strong></td><td>진태두</td><td>매니저/총괄</td><td>010-9050-3512</td><td>—</td><td>요리 리뷰</td></tr>
+          <tr><td>플랫폼</td><td>네이버 카페 미즈넷 (231,809명, 임신·육아)</td></tr>
+          <tr><td>제품</td><td>아블러제로 (블랙/아이보리)</td></tr>
+          <tr><td>가격</td><td>정가 49,000원 → 공구가 <strong>29,000원 (41% 할인)</strong></td></tr>
+          <tr><td>수수료/광고비</td><td>판매수수료 0% / 공지글·배너·쪽지 발송 패키지 <strong>15만원 (VAT별도)</strong></td></tr>
+          <tr><td>운영방식</td><td>업체 직접 글작성 — 공지글 + 배너 + 전체쪽지</td></tr>
+          <tr><td>병행</td><td>체험단 함께 진행 시 45만원 (단독 40만원, 20명 기준)</td></tr>
+          <tr><td>성과</td><td>📝 카페 후기 + 블로그 + 인스타 후기 다수 확보 (20개 이상 링크)</td></tr>
+          <tr><td>키 셀링포인트</td><td>"안 깨지는 유리텀블러 / 미세플라스틱 0% / 보로실리케이트"</td></tr>
         </tbody>
       </table>
+
+      <h3>🏠 맘스홀릭베이비 공동구매 — 운영 이력</h3>
+      <table class="dark">
+        <thead><tr><th>항목</th><th>조건·비고</th></tr></thead>
+        <tbody>
+          <tr><td>플랫폼</td><td>네이버 카페 맘스홀릭베이비 — <strong>회원 338만명, 일 100만 방문, 가족·육아 1위</strong></td></tr>
+          <tr><td>회원 구성</td><td>여성 98.2% / 20~30대 87.9%</td></tr>
+          <tr><td>담당자</td><td>김민정 실장 — 010-7147-4266 / Bella_6@naver.com</td></tr>
+          <tr><td>광고 A형</td><td>110만원(VAT포함) / 수수료 0% / 전체공지 1일 보장</td></tr>
+          <tr><td>광고 B형</td><td>55만원(VAT포함) / 수수료 15% / 광고노출 보장</td></tr>
+          <tr><td>일반 공구</td><td>광고비 없음 / 수수료 20% / 자체 폐쇄몰(바이파인) 입점</td></tr>
+          <tr><td>판매 할인율</td><td>온라인 최저가 대비 평균 10~30% 추가 할인</td></tr>
+          <tr><td>정산</td><td>익월 10일 정산서 / 익월 15일 정산금 입금</td></tr>
+        </tbody>
+      </table>
+
+      <h3>🥃 생명의물 위스키를 즐겁게 — 구독자 한정 공구 (2025-06)</h3>
+      <table class="dark">
+        <thead><tr><th>항목</th><th>실적</th></tr></thead>
+        <tbody>
+          <tr><td>채널</td><td>유튜브 위스키 리뷰 채널 (박진수·오민우)</td></tr>
+          <tr><td>제품</td><td>아블러 (위스키 페어링)</td></tr>
+          <tr><td>가격</td><td>구독자 한정 39,000원</td></tr>
+          <tr><td>형태</td><td>SPIRIT WATER OF LIFE 한정 구성 / 한정수량</td></tr>
+          <tr><td>의의</td><td>위스키 카테고리 첫 인플루언서 공구 — 후속 11명 섭외 기반</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📋 25년 진행 이력 (인플루언서 섭외)</h3>
+      <table class="dark">
+        <thead><tr><th>일자</th><th>업체/채널</th><th>담당자</th><th>제품</th><th>결과</th></tr></thead>
+        <tbody>
+          <tr><td>2025-04-17</td><td>맘편한</td><td>이주희 대표 / 010-2525-0316</td><td>아블러</td><td><span class="badge b-wait">5월 재제안 보류</span> 일본 유통 + 공구</td></tr>
+          <tr><td>2025-05-07</td><td>광고하새</td><td>허진성 대표 / 010-6854-4990</td><td>아블러42</td><td><span class="badge b-success">미팅 완료·25% 수수료</span> 채널 취합</td></tr>
+          <tr><td>2025-06</td><td>주락이월드 (14F)</td><td>MBC 14층 일사에프</td><td>—</td><td><span class="badge b-wait">CANCEL</span></td></tr>
+          <tr><td>2026-01-13</td><td>홈텐딩백과·띠동갑바텐더</td><td>16.6만 / htdcouple@gmail.com</td><td>아블러 브랜디드</td><td>롱폼 500만원 견적 회신</td></tr>
+          <tr><td>2026-01-29</td><td>나삐 nabbi_whisky</td><td>8.3만</td><td>아블러 위스키</td><td><span class="badge b-success">계약서 전달·100만원 협의</span></td></tr>
+          <tr><td>2026-03-31</td><td>제이파이</td><td>23만명</td><td>아블러 릴스</td><td>500만원 광고 제안 수신</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📊 핵심 학습 (모든 후속 공구의 운영 원칙)</h3>
+      <div class="yellow-box">
+        ① <strong>전환율 가중치:</strong> 팬 수 × 0.5%~1.4% (카테고리 적합도)<br>
+        ② <strong>컬러 비율:</strong> 아이보리 67% : 블랙 33% — 재고 2:1로 선확보<br>
+        ③ <strong>마진 고정:</strong> 2/3세트 프로모션은 배송비 리베이트로 마진 유지하면서 객단가 확대<br>
+        ④ <strong>채널별 수수료 구조:</strong> 인스타 인플루언서 20% · 대연파트너스 30% · 미즈넷 0%(광고비 15만원) · 맘스홀릭 15~20%<br>
+        ⑤ <strong>위스키 페어링 채널:</strong> 블랙 컬러 강세 — '보니의 참쉬운 레시피' 같은 위스키·홈술 채널 오픈 시 집중 노출
+      </div>
+    </div>
+  </details>
+
+  <!-- 3. 공동구매 플랫폼 마스터 -->
+  <details class="section" open>
+    <summary>🌐 3. 공동구매 플랫폼·서치·관리 마스터</summary>
+    <div class="section-body">
+
+      <h3>🛍️ 핵심 운영 플랫폼 — 5대 트랙</h3>
+
+      <div class="platform-card">
+        <div class="pf-name">① 네이버 맘카페 폐쇄몰 공구</div>
+        <div class="pf-meta">대규모 회원 보유 / 임신·육아·리빙 타겟 / 광고형 + 일반공구형 병행 운영</div>
+        <table class="dark">
+          <thead><tr><th>카페명</th><th>회원수</th><th>카테고리</th><th>비고</th><th>URL</th></tr></thead>
+          <tbody>
+            <tr><td><strong>맘스홀릭베이비</strong> <span class="badge b-mom">진행이력</span></td><td>2,875,800</td><td>육아</td><td>김민정 실장 010-7147-4266 / 광고 110만원·일반 20%</td><td>cafe.naver.com/imsanbu</td></tr>
+            <tr><td><strong>레몬테라스</strong></td><td>2,997,472</td><td>인테리어/여성</td><td>리빙 1위급</td><td>cafe.naver.com/remonterrace</td></tr>
+            <tr><td><strong>파우더룸</strong></td><td>1,931,669</td><td>화장품</td><td>—</td><td>cafe.naver.com/cosmania</td></tr>
+            <tr><td><strong>여우야</strong></td><td>1,040,361</td><td>뷰티</td><td>—</td><td>cafe.naver.com/feko</td></tr>
+            <tr><td><strong>몰테일</strong></td><td>695,211</td><td>해외직구</td><td>—</td><td>cafe.naver.com/malltail</td></tr>
+            <tr><td><strong>지후맘 임산부모여라</strong></td><td>474,741</td><td>임신·육아</td><td>—</td><td>cafe.naver.com/1msanbu</td></tr>
+            <tr><td><strong>아이러브맘</strong></td><td>449,760</td><td>육아</td><td>—</td><td>cafe.naver.com/15668981</td></tr>
+            <tr><td><strong>패밀리세일</strong></td><td>436,896</td><td>쇼핑</td><td>공구 친화</td><td>cafe.naver.com/famsale</td></tr>
+            <tr><td><strong>쇼핑지름신</strong></td><td>412,299</td><td>쇼핑</td><td>공구 친화</td><td>cafe.naver.com/shopjirmsin</td></tr>
+            <tr><td><strong>강남엄마vs목동엄마</strong></td><td>357,451</td><td>자녀 교육</td><td>—</td><td>cafe.naver.com/gangmok</td></tr>
+            <tr><td><strong>예쁜카페 예카</strong></td><td>323,619</td><td>인테리어/요리/식기</td><td>공구·체험단</td><td>cafe.naver.com/mjann</td></tr>
+            <tr><td><strong>부경맘</strong></td><td>279,308</td><td>임신·육아</td><td>지역(부산·경남)</td><td>cafe.naver.com/pusanmom</td></tr>
+            <tr><td><strong>동탄맘들모여라</strong></td><td>255,549</td><td>육아</td><td>지역(동탄)</td><td>cafe.naver.com/dongtanmom</td></tr>
+            <tr><td><strong>수원맘모여라</strong></td><td>264,962</td><td>육아</td><td>공구·체험단</td><td>cafe.naver.com/byungs94</td></tr>
+            <tr><td><strong>미즈넷</strong> <span class="badge b-mom">진행이력</span></td><td>231,809</td><td>임신·육아 (구 지후맘)</td><td>광고 15만원 + 0% 수수료 / 7일</td><td>cafe.naver.com/miznett</td></tr>
+            <tr><td><strong>대구365</strong></td><td>232,233</td><td>지역 육아</td><td>공구·체험단</td><td>cafe.naver.com/dgmom365</td></tr>
+            <tr><td><strong>맘스공구</strong></td><td>103,468</td><td>임신·육아</td><td>공구 전문</td><td>cafe.naver.com/maple7story3</td></tr>
+            <tr><td><strong>리뷰카페</strong></td><td>90,495</td><td>임신·육아</td><td>공구·체험단</td><td>cafe.naver.com/taisca</td></tr>
+            <tr><td><strong>꿈녀</strong></td><td>100,800</td><td>뷰티</td><td>공구·체험단</td><td>cafe.naver.com/bornnborn</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:11px; opacity:0.7; margin-top:8px;">📁 전체 105개 카페 리스트 — Drive: ★카페배포 리스트.xlsx (회원수 1만~300만)</p>
+      </div>
+
+      <div class="platform-card">
+        <div class="pf-name">② 인스타그램 공구 중계사</div>
+        <div class="pf-meta">중계사가 인플루언서 풀 보유 / 직접 제안 없이 매칭 의뢰</div>
+        <table class="dark">
+          <thead><tr><th>구분</th><th>업체</th><th>담당자</th><th>연락처</th><th>이메일</th><th>특징</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="badge b-mediator">중계</span></td>
+              <td><strong>우하컴퍼니</strong></td>
+              <td>우석준 대표</td>
+              <td>010-7577-7225</td>
+              <td>woohacompany@gmail.com</td>
+              <td>인스타그램 공구 중계 / 기획·운영·총괄</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-mediator">직영</span></td>
+              <td><strong>비즈브릭스</strong></td>
+              <td>김희철 이사</td>
+              <td>010-9668-9667</td>
+              <td>slayers0128@naver.com</td>
+              <td>인스타 공구 중계 / 영업운영실장</td>
+            </tr>
+            <tr>
+              <td><span class="badge b-mediator">중계</span></td>
+              <td>대연파트너스 <span class="badge b-progress">진행중</span></td>
+              <td>—</td>
+              <td>—</td>
+              <td>—</td>
+              <td>벤더형 30% / 아블러제로 단품 24,900원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="platform-card">
+        <div class="pf-name">③ 인플루언서 직접 섭외 (자체 풀)</div>
+        <div class="pf-meta">richard@jewelice.kr 메일 + 공식 인스타 DM 회신 / 박지현 팀장 직속 운영</div>
+        <table class="dark">
+          <thead><tr><th>채널 유형</th><th>인원·규모</th><th>발굴 기준</th></tr></thead>
+          <tbody>
+            <tr><td>유튜브 위스키·요리·전통주</td><td>11명 (2.95만~56.7만)</td><td>위스키·홈술·홈카페·캠핑·살림템 / 팔로워 3,000+</td></tr>
+            <tr><td>인스타 리빙 (마스터 리스트)</td><td>100+명 (전체 105개 카테고리)</td><td>리빙·맛집·식품·요리·육아·뷰티·살림</td></tr>
+            <tr><td>인스타 리빙 분석본</td><td>20명 (이미 분석 완료)</td><td>최근 텀블러 진행 이력 + 좋아요·댓글 통계</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin-top:14px;">🎯 발굴 기준 (정량)</h4>
+        <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
+          <li>플랫폼: <strong>인스타·유튜브·틱톡</strong> / 팔로워 <strong>3,000명 이상</strong></li>
+          <li>콘텐츠 경험: 상품 리뷰 / 공구 진행 이력</li>
+          <li>관심사: 뷰티·홈카페·하이볼·캠핑·살림템</li>
+          <li>해시태그 검색: <code>#공동구매 #하이볼 #얼음틀 #캠핑템 #홈카페 #텀블러추천</code></li>
+        </ul>
+
+        <h4>✉️ 표준 DM 템플릿</h4>
+        <div class="yellow-box" style="font-size:11.5px;">
+          안녕하세요! 아블러 & 쥬얼아이스 브랜드 담당자입니다.<br>
+          SNS 활동 잘 보고 있습니다.<br><br>
+          투명한 아이스볼+텀블러 제품을 활용해 함께 공동구매 또는 콘텐츠 협업을 제안드리고 싶습니다.<br>
+          간단한 소개 자료 보내드릴게요. 관심 있으시면 편하게 DM 주세요!<br>
+          감사합니다.
+        </div>
+
+        <h4>📩 표준 이메일 템플릿</h4>
+        <div class="yellow-box" style="font-size:11.5px;">
+          제목: [협업 제안] 아블러/쥬얼아이스 인플루언서 공동구매 제안드립니다.<br><br>
+          안녕하세요. 아이스 전문 브랜드 아블러/쥬얼아이스에서 인플루언서 협업 제안을 드립니다.<br>
+          귀하의 콘텐츠를 인상 깊게 보았고, 투명한 얼음 제품과 텀블러 세트를 활용한 공동구매/리뷰 콘텐츠 협업이 가능하신지 문의드립니다.<br>
+          간단한 소개자료(PDF)도 첨부드립니다. 관심 있으시면 답변 부탁드립니다.<br>
+          감사합니다.<br>
+          담당자: ○○○ 연락처: ○○○
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="pf-name">④ 폐쇄몰·B2B 공구 (자체 운영)</div>
+        <div class="pf-meta">자사몰 폐쇄 페이지 / 미공개 가격 / 카카오 알림톡 발송</div>
+        <table class="dark">
+          <thead><tr><th>플랫폼</th><th>유형</th><th>특징</th></tr></thead>
+          <tbody>
+            <tr><td>자사몰 (jewelice.kr)</td><td>폐쇄 URL</td><td>회원 한정·구독자 한정</td></tr>
+            <tr><td>카카오 톡딜·선물하기</td><td>오픈마켓 폐쇄</td><td>1+1 / 39,000원 등 — 박지현 팀장 협업</td></tr>
+            <tr><td>와디즈 펀딩</td><td>크라우드 펀딩</td><td>리워드형 — 박지현 팀장 주관</td></tr>
+            <tr><td>그립 라이브</td><td>라이브 커머스</td><td>실시간 판매</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="platform-card">
+        <div class="pf-name">⑤ 마이크로 인플루언서·체험단</div>
+        <div class="pf-meta">마케팅 보조 트랙 / 후기 콘텐츠 자산화</div>
+        <table class="dark">
+          <thead><tr><th>플랫폼</th><th>비용</th><th>운영 방식</th></tr></thead>
+          <tbody>
+            <tr><td>미즈넷 체험단</td><td>40만원 (20명 기준, VAT별도)</td><td>7일 / 카페·블로그·인스타 후기</td></tr>
+            <tr><td>리뷰플레이스·알파리뷰</td><td>건당 별도</td><td>박경열 이사 라인 (병행)</td></tr>
+            <tr><td>네이버 카페 체험단</td><td>카페별 상이</td><td>카페공지+개별 SNS 스크랩</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>🔍 인플루언서 서치 SOP — 권나경 과장 표준 절차</h3>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="step-num">STEP 01</div>
+          <div class="step-ttl">발굴</div>
+          <div class="step-desc">해시태그 검색 (#공동구매·#하이볼·#홈카페) → 팔로워·반응성 체크 → 마스터 리스트 등록</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 02</div>
+          <div class="step-ttl">DM/메일 발송</div>
+          <div class="step-desc">richard@jewelice.kr → 회사 소개·제안서 PDF → 응답 대기 (3~7일)</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 03</div>
+          <div class="step-ttl">단가·일정 협의</div>
+          <div class="step-desc">수수료(15~20%) + 광고비 + 기간 → 박지현 팀장 컨펌</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 04</div>
+          <div class="step-ttl">계약서 발송</div>
+          <div class="step-desc">표준 캠페인 계약서 (12조항) → 양사 직인 → 샘플 발송</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 05</div>
+          <div class="step-ttl">진행·모니터링</div>
+          <div class="step-desc">콘텐츠 업로드 → 일별 판매·리뷰 체크 → 컬러별 재고 알림</div>
+        </div>
+        <div class="flow-step">
+          <div class="step-num">STEP 06</div>
+          <div class="step-ttl">정산·리포트</div>
+          <div class="step-desc">마감 후 15일내 거래명세서 → 익월 15일 정산 → 박지현 팀장 성과 리포트</div>
+        </div>
+      </div>
+
+      <h3>📋 표준 캠페인 계약서 (요약 12조)</h3>
+      <table class="dark">
+        <thead><tr><th>조항</th><th>핵심 내용</th></tr></thead>
+        <tbody>
+          <tr><td>제1조 목적</td><td>인플루언서 SNS 홍보를 통한 온라인 판매</td></tr>
+          <tr><td>제2조 계약기간</td><td>1년 자동연장 / 30일 전 해지 가능</td></tr>
+          <tr><td>제3조 캠페인 진행</td><td>기획·홍보·판매·배송·정산 5단계 / 배송 D+2 영업일</td></tr>
+          <tr><td>제4조 정산</td><td>수수료 공제 / 마감 후 15일내 명세서 / 마감일 1~15일 → 익월 15일 / 16~말일 → 익월 말일 입금</td></tr>
+          <tr><td>제5조 준수사항</td><td>인플루언서 직접 컨택 금지 / 브랜드 훼손 금지</td></tr>
+          <tr><td>제6조 클레임</td><td>"갑(브랜드)" 직접 처리 / 환불·교환 비용 부담</td></tr>
+          <tr><td>제7조 해지</td><td>파산·해산·영업정지 등 7개 사유</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px; opacity:0.65; margin-top:6px;">📁 원본: Drive/공구 캠페인 계약서_이커머스용자.docx</p>
+    </div>
+  </details>
+
+  <!-- 4. 인플루언서 마스터 -->
+  <details class="section">
+    <summary>🎬 4. 인플루언서 마스터 (유튜버 11명 + 인스타 분석 + 후원기관)</summary>
+    <div class="section-body">
+
+      <h3>🎥 유튜브 크리에이터 11명 (이미 컨택·관계 구축)</h3>
+      <table class="dark">
+        <thead><tr><th>채널</th><th>구독자</th><th>대표/PD</th><th>연락처</th><th>이메일</th><th>카테고리</th></tr></thead>
+        <tbody>
+          <tr><td><strong>생명의물 위스키를 즐겁게</strong></td><td>—</td><td>박진수 대표</td><td>010-5272-7059</td><td>parkpoq7@gmail.com</td><td>위스키 (공구 진행 이력)</td></tr>
+          <tr><td>생명의물 (마스터)</td><td>—</td><td>오민우</td><td>010-8181-1411</td><td>parkpoq7@gmail.com</td><td>MC/미누바</td></tr>
+          <tr><td><strong>술익는집</strong></td><td>—</td><td>이찬주 대표</td><td>010-8963-2059</td><td>soolhcontact@gmail.com</td><td>전통주</td></tr>
+          <tr><td><strong>은수저</strong></td><td>—</td><td>허철 이사</td><td>010-4236-7774</td><td>me@cyp.kr</td><td>요리</td></tr>
+          <tr><td><strong>어쿠스틱드링크</strong></td><td>—</td><td>김정규 대표</td><td>010-9277-6862</td><td>acousticdrinker@gmail.com</td><td>칵테일</td></tr>
+          <tr><td><strong>위안의시간</strong></td><td>—</td><td>현영민 대표</td><td>010-9978-7100</td><td>upinsidetime@gmail.com</td><td>위스키</td></tr>
+          <tr><td><strong>한잔하는MJ</strong></td><td>—</td><td>전명진 대표</td><td>010-9094-0003</td><td>planetmj9@gmail.com</td><td>위스키</td></tr>
+          <tr><td><strong>빛나는요술티비</strong></td><td>—</td><td>김빛나 대표</td><td>010-8570-5231</td><td>beitna108@naver.com</td><td>위스키</td></tr>
+          <tr><td><strong>술주하</strong></td><td>—</td><td>황부영</td><td>010-7582-5601</td><td>calorina00@naver.com</td><td>위스키</td></tr>
+          <tr><td><strong>미스터위스키</strong></td><td>—</td><td>박제영</td><td>010-8896-5357</td><td>—</td><td>위스키</td></tr>
+          <tr><td><strong>아밥남</strong></td><td>—</td><td>진태두 매니저</td><td>010-9050-3512</td><td>—</td><td>요리</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📨 25~26년 미응답·재제안 후보 (대형 채널)</h3>
+      <table class="dark">
+        <thead><tr><th>채널</th><th>구독자</th><th>견적·제안 수신 내역</th><th>이메일</th></tr></thead>
+        <tbody>
+          <tr><td>홈텐딩백과·띠동갑바텐더</td><td>16.6만</td><td>롱폼 500만원 / 보수 30만 / 일반 276만 / 긍정 1,473만</td><td>htdcouple@gmail.com</td></tr>
+          <tr><td>전용하 (먹방+위스키)</td><td>17.7만</td><td>인스타 릴스 1,700만 / 유튜브 쇼츠 1,300만 / 미러링 할인 2,000만</td><td>dydgk654@naver.com</td></tr>
+          <tr><td>제이파이</td><td>23만</td><td>주류 외 광고 500만원 (릴스 광고)</td><td>—</td></tr>
+          <tr><td>비밀이야 bimirya</td><td>56.7만</td><td>먹방 — 협의중</td><td>bimiryabdr@naver.com</td></tr>
+          <tr><td>주류학개론</td><td>37.8만</td><td>아블러 공구 제안 발송 / 응답 대기</td><td>drunkenman@tmcentkorea.co.kr</td></tr>
+          <tr><td>남자의 취미</td><td>28.1만</td><td>아블러 공구 제안 발송 / 응답 대기</td><td>mansshobby@gmail.com</td></tr>
+          <tr><td>나삐 nabbi_whisky</td><td>8.3만</td><td>릴스1+스토리3+인포크링크 / <strong>100만원 협의 완료</strong> / 1/29 계약서 전달</td><td>—</td></tr>
+          <tr><td>빵준서</td><td>15.2만</td><td>아블러 공구 제안 발송</td><td>awesomebreadmedia@gmail.com</td></tr>
+          <tr><td>사군카페인</td><td>25.2만</td><td>아블러 공구 제안 발송</td><td>saga1994@naver.com</td></tr>
+          <tr><td>술덕후</td><td>19.1만</td><td>아블러 공구 제안 발송</td><td>namsu297@naver.com</td></tr>
+        </tbody>
+      </table>
+
+      <h3>📷 인스타그램 리빙 분석 완료 (재섭외 후보 20명)</h3>
+      <table class="dark">
+        <thead><tr><th>계정</th><th>이름</th><th>팔로워</th><th>좋아요·반응</th><th>텀블러 진행 이력</th><th>비고</th></tr></thead>
+        <tbody>
+          <tr><td><code>hommongmong</code></td><td>홈멍멍 최혜미</td><td>105.8만</td><td>120~1.8만</td><td>모슈 텀블러 3회 (2025-10)</td><td>—</td></tr>
+          <tr><td><code>salimpop_official</code></td><td>살림팝</td><td>73.8만</td><td>70~4,000</td><td>없음 (음식 위주)</td><td>—</td></tr>
+          <tr><td><code>de_elisa_shop</code></td><td>드엘리사</td><td>70만</td><td>50~2,700</td><td>하이드로플라스크 3회 (2025-11)</td><td>—</td></tr>
+          <tr><td><code>petitbonbon_wondermom</code></td><td>봉봉</td><td>19만</td><td>50~300</td><td>없음 (키친 도구)</td><td>kkakk@rnshop.biz</td></tr>
+          <tr><td><code>kim.zumma</code></td><td>킴줌마 김애정</td><td>25.4만</td><td>70~1.9만</td><td>워키 티타늄 (2025-04)</td><td>—</td></tr>
+          <tr><td><code>salda_hi</code></td><td>살다SALDA</td><td>23.6만</td><td>30~300</td><td>테이크아웃잔 텀블러 (2025-04)</td><td>—</td></tr>
+          <tr><td><code>hayoon2906</code></td><td>임하윤</td><td>22.3만</td><td>1~2,000</td><td>없음</td><td>—</td></tr>
+          <tr><td><code>hyoil.kim1</code></td><td>베리소현</td><td>20.3만</td><td>300~2,600</td><td>없음 (다양 카테고리)</td><td>—</td></tr>
+          <tr><td><code>eileen7897</code></td><td>스윗린</td><td>21.6만</td><td>800~2,000</td><td>무선 텀블렌더 (2025-04)</td><td>tibi0201@hanmail.net</td></tr>
+          <tr><td><code>natakrong</code></td><td>나타크롱</td><td>26만</td><td>2,000 균일</td><td>하이드로플라스크 (2025-08)</td><td>—</td></tr>
+          <tr><td><code>ran.gogo2018</code></td><td>세상다가진엄마</td><td>24.4만</td><td>1,300 균일</td><td>없음 (대형 브랜드)</td><td>—</td></tr>
+          <tr><td><code>frau.heo</code></td><td>프라우허</td><td>53.1만</td><td>400~3,000</td><td>—</td><td>frauheo.official@gmail.com</td></tr>
+          <tr><td><code>chocobi8011</code></td><td>밍</td><td>12.2만</td><td>400~1,000</td><td>하이드로플라스크 스트로우 (2025-06)</td><td>—</td></tr>
+          <tr><td><code>stinahs</code></td><td>스티나</td><td>21.1만</td><td>2,000 균일</td><td>공구 텀 김</td><td>chris1280@naver.com</td></tr>
+          <tr><td><code>ohhappy_hannah</code></td><td>송송이</td><td>21.7만</td><td>1,000~2,000</td><td>다양 공구</td><td>myrte79@naver.com</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size:11px; opacity:0.65; margin-top:6px;">📁 마스터 리스트 105+ 명 — Drive: (리빙) 인스타그램 인플루언서 리스트_251102.xlsx</p>
 
       <h3>🏆 후원 기관</h3>
       <table class="dark">
         <thead><tr><th>기관명</th><th>담당자</th><th>직책</th><th>연락처</th><th>후원금</th></tr></thead>
         <tbody>
-          <tr><td><span class="badge b-sponsor">후원</span> 베버리지마스터협회</td><td>이석현</td><td>협회장</td><td>010-5329-2992</td><td>1,100,000원/年 (VAT별도)</td></tr>
+          <tr><td><span class="badge b-sponsor">후원</span> 베버리지마스터협회</td><td>이석현</td><td>협회장</td><td>010-5329-2992</td><td>1,100,000원/年</td></tr>
           <tr><td><span class="badge b-sponsor">후원</span> 한국음료강사협의회</td><td>전재구</td><td>회장</td><td>010-4530-7109</td><td>—</td></tr>
           <tr><td><span class="badge b-sponsor">후원</span> 홈바리스타클럽</td><td>김유한</td><td>카페매니저</td><td>010-4217-0777</td><td>—</td></tr>
         </tbody>
@@ -527,20 +846,20 @@
       <table class="dark">
         <thead><tr><th>분류</th><th>업체명</th><th>담당자</th><th>역할</th><th>연락처</th><th>이메일</th></tr></thead>
         <tbody>
-          <tr><td>숏폼 컨텐츠</td><td>쿠디 (계약종료)</td><td>광후 대표</td><td>총괄/기획/크리에이터</td><td>010-9991-4662</td><td>uijk7051408@gmail.com</td></tr>
+          <tr><td>숏폼 컨텐츠</td><td>쿠디 (계약종료)</td><td>광후 대표</td><td>총괄/기획</td><td>010-9991-4662</td><td>uijk7051408@gmail.com</td></tr>
           <tr><td>영상제작</td><td>이재현 (프리랜서)</td><td>이재현</td><td>콘티/촬영/편집</td><td>010-2494-6348</td><td>—</td></tr>
           <tr><td>2D 디자인</td><td>프리랜서 남예원</td><td>남예원</td><td>웹디자인/인쇄물</td><td>010-3465-6639</td><td>hi0602199@gmail.com</td></tr>
           <tr><td>와디즈 펀딩 메이트</td><td>알렌미디어</td><td>홍정우 대표</td><td>총괄</td><td>010-5508-3235</td><td>allenmedia.master@gmail.com</td></tr>
-          <tr><td>CM송 제작</td><td>케이준 (김경준)</td><td>김경준 PD</td><td>총괄/제작</td><td>010-3295-1081</td><td>bspsd@naver.com</td></tr>
+          <tr><td>CM송 제작</td><td>케이준</td><td>김경준 PD</td><td>총괄/제작</td><td>010-3295-1081</td><td>bspsd@naver.com</td></tr>
           <tr><td>3D 입체디자인</td><td>디자인36.5</td><td>강순구 대표</td><td>총괄</td><td>010-8253-2403</td><td>365design@naver.com</td></tr>
         </tbody>
       </table>
     </div>
   </details>
 
-  <!-- 3. 생산 거래처 -->
+  <!-- 5. 생산 거래처 -->
   <details class="section">
-    <summary>🏭 3. 생산 거래처 (국내·해외·부자재·물류)</summary>
+    <summary>🏭 5. 생산 거래처 (국내·해외·부자재·물류)</summary>
     <div class="section-body">
 
       <h3>🇰🇷 국내 — 아블러 (몰드 사출)</h3>
@@ -584,23 +903,23 @@
         </tbody>
       </table>
       <div class="yellow-box">
-        <strong>알리바바 계정:</strong> nemochip@gmail.com / PW: Dean@911 (둘 다 PW숨김 토글로 보호)
+        <strong>알리바바 계정:</strong> nemochip@gmail.com / PW: Dean@911
       </div>
 
       <h3>🇰🇷 듀오메이커 — 메이커/TPE/EPP/인쇄</h3>
       <table class="dark">
         <thead><tr><th>역할</th><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>이메일</th><th>비고</th></tr></thead>
         <tbody>
-          <tr><td>몰드사출·조립·합포장</td><td><strong>해피홈</strong></td><td>허현구</td><td>대표</td><td>010-8873-4536</td><td>user1552@daum.net</td><td>케이스·물통·조립 임가공</td></tr>
+          <tr><td>몰드사출·조립·합포장</td><td><strong>해피홈</strong></td><td>허현구</td><td>대표</td><td>010-8873-4536</td><td>user1552@daum.net</td><td>케이스·물통·조립</td></tr>
           <tr><td>(납품 담당)</td><td>해피홈</td><td>허현미</td><td>전무</td><td>010-9334-4536</td><td>—</td><td>—</td></tr>
-          <tr><td>방한재 EPP 생산</td><td><strong>태양케미컬</strong></td><td>한영현</td><td>이사</td><td>010-4599-1234</td><td>bhj9396@suninchem.co.kr</td><td>MOQ 1만개 / 리드타임 4주</td></tr>
+          <tr><td>방한재 EPP 생산</td><td><strong>태양케미컬</strong></td><td>한영현</td><td>이사</td><td>010-4599-1234</td><td>bhj9396@suninchem.co.kr</td><td>MOQ 1만개 / 4주</td></tr>
           <tr><td>(납품)</td><td>태양케미컬</td><td>강경남</td><td>부장</td><td>010-3855-6436</td><td>—</td><td>—</td></tr>
           <tr><td>(회계·정산)</td><td>태양케미컬</td><td>방현정</td><td>차장</td><td>010-7296-9396</td><td>—</td><td>—</td></tr>
-          <tr><td>메이커 인쇄(배면·측면)</td><td><strong>진명인쇄</strong></td><td>장효동</td><td>대표</td><td>010-9141-9793</td><td>pupu2852@naver.com</td><td>6천개내외 영업일 5일</td></tr>
-          <tr><td>실링스티커·메뉴얼</td><td><strong>삼성피아이티</strong></td><td>홍영호</td><td>대표</td><td>010-4283-4008</td><td>ssprt@korea.com</td><td>광주시 회덕길 / FAX 031-798-8706</td></tr>
+          <tr><td>메이커 인쇄</td><td><strong>진명인쇄</strong></td><td>장효동</td><td>대표</td><td>010-9141-9793</td><td>pupu2852@naver.com</td><td>6천개 5일</td></tr>
+          <tr><td>실링스티커·메뉴얼</td><td><strong>삼성피아이티</strong></td><td>홍영호</td><td>대표</td><td>010-4283-4008</td><td>ssprt@korea.com</td><td>광주시 / FAX 031-798-8706</td></tr>
           <tr><td>(회계·정산)</td><td>삼성피아이티</td><td>김가희</td><td>대리</td><td>031-768-4008</td><td>—</td><td>—</td></tr>
-          <tr><td>컬러박스·기프트박스·패키지</td><td><strong>보명씨앤아이</strong></td><td>정태욱</td><td>대표</td><td>010-9010-4545</td><td>bmcni@naver.com</td><td>MOQ 1만개 / 영업일 10일</td></tr>
-          <tr><td>(디자인 작업)</td><td>보명씨앤아이</td><td>윤원섭</td><td>실장</td><td>010-3436-4026</td><td>—</td><td>—</td></tr>
+          <tr><td>컬러박스·패키지</td><td><strong>보명씨앤아이</strong></td><td>정태욱</td><td>대표</td><td>010-9010-4545</td><td>bmcni@naver.com</td><td>MOQ 1만개 / 10일</td></tr>
+          <tr><td>(디자인)</td><td>보명씨앤아이</td><td>윤원섭</td><td>실장</td><td>010-3436-4026</td><td>—</td><td>—</td></tr>
         </tbody>
       </table>
 
@@ -611,8 +930,8 @@
           <tr><td>글라스 (온더락·하이볼)</td><td>노빌코리아</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>PE봉투·택배박스</td><td>박스몰</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>박스 테이프 (브랜드로고)</td><td>삼성테이프</td><td>정철운 이사</td><td>010-9921-2217</td><td>4천개↑ 영업일 10~14일</td></tr>
-          <tr><td>아이스몰드 레이저 각인·후가공</td><td>상상이상 인쇄</td><td>안명수 대표</td><td>010-5860-3323</td><td>MOQ 10개(7,000원) / 50개(6,000원) / 3~5일</td></tr>
-          <tr><td>스틱얼음 보관통</td><td>세기프라텍</td><td>문지완 부장</td><td>010-8784-5537</td><td>리드타임 편차 큼 (2주~2달)</td></tr>
+          <tr><td>레이저 각인·후가공</td><td>상상이상 인쇄</td><td>안명수 대표</td><td>010-5860-3323</td><td>MOQ 10개(7,000원) / 50개(6,000원)</td></tr>
+          <tr><td>스틱얼음 보관통</td><td>세기프라텍</td><td>문지완 부장</td><td>010-8784-5537</td><td>리드타임 2주~2달</td></tr>
           <tr><td>아이스볼(범용) 보관통</td><td>프라피아</td><td>김병수 차장</td><td>010-5415-2810</td><td>리드타임 3주</td></tr>
           <tr><td>적재박스</td><td>박스코리아</td><td>—</td><td>010-8837-5878</td><td>—</td></tr>
           <tr><td>명함·리플렛</td><td>우리명함</td><td>오진구 대표</td><td>010-3346-7158</td><td>wricd@naver.com</td></tr>
@@ -621,19 +940,19 @@
 
       <h3>🚚 물류·3PL·택배</h3>
       <table class="dark">
-        <thead><tr><th>구분</th><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>주소·이메일</th></tr></thead>
+        <thead><tr><th>구분</th><th>업체</th><th>담당자</th><th>직책</th><th>연락처</th><th>비고</th></tr></thead>
         <tbody>
-          <tr><td><span class="badge b-active">3PL</span></td><td>피플스토리</td><td>김명훈</td><td>대표</td><td>010-3927-2631</td><td>경기 양주시 / pps@ppslogis.com</td></tr>
-          <tr><td>자사 출고</td><td>CJ대한통운</td><td>임성희</td><td>실장</td><td>010-3215-5243</td><td>070-7766-0000</td></tr>
+          <tr><td><span class="badge b-active">3PL</span></td><td>피플스토리</td><td>김명훈 대표</td><td>대표</td><td>010-3927-2631</td><td>경기 양주시 / pps@ppslogis.com</td></tr>
+          <tr><td>자사 출고</td><td>CJ대한통운</td><td>임성희 실장</td><td>실장</td><td>010-3215-5243</td><td>070-7766-0000</td></tr>
           <tr><td>(기사)</td><td>CJ대한통운</td><td>이광배</td><td>기사</td><td>010-4223-4034</td><td>kwangbae.lee@cj.net</td></tr>
         </tbody>
       </table>
     </div>
   </details>
 
-  <!-- 4. 진행중 발주·생산 -->
+  <!-- 6. 진행중 발주·생산 -->
   <details class="section">
-    <summary>📦 4. 진행중 발주·생산일정·재고 현황</summary>
+    <summary>📦 6. 진행중 발주·생산일정·재고 현황</summary>
     <div class="section-body">
 
       <h3>📋 진행중 발주서 — 260319 성준테크 (몰드)</h3>
@@ -683,22 +1002,12 @@
           <tr><td>완제품</td><td>듀오메이커 스틱</td><td>블루</td><td>해피홈</td><td class="num-r">77</td><td class="num-r">200</td><td class="num-r num-neg">123</td><td class="num-r num-pos">100</td><td><span class="badge b-shortage">부족</span></td></tr>
         </tbody>
       </table>
-
-      <h4>📊 생산처 MOQ 코드</h4>
-      <table class="dark">
-        <thead><tr><th>코드</th><th>MOQ</th><th>비고</th></tr></thead>
-        <tbody>
-          <tr><td>A</td><td>500개</td><td>—</td></tr>
-          <tr><td>B</td><td>2,000개</td><td>—</td></tr>
-          <tr><td>C</td><td>1,000개</td><td>—</td></tr>
-        </tbody>
-      </table>
     </div>
   </details>
 
-  <!-- 5. 소싱·무역 업무 흐름 -->
+  <!-- 7. 소싱·무역 업무 흐름 -->
   <details class="section">
-    <summary>🌏 5. 제품 소싱·무역 업무 흐름</summary>
+    <summary>🌏 7. 제품 소싱·무역 업무 흐름</summary>
     <div class="section-body">
 
       <h3>🔍 소싱 단계 (1~5일)</h3>
@@ -735,7 +1044,7 @@
         <div class="flow-step">
           <div class="step-num">발주 전</div>
           <div class="step-ttl">PI·계약</div>
-          <div class="step-desc">해외제조업소 등록<br>→ 영문라이센스 / FTA 동의<br>→ PO·PI·착수금 30%</div>
+          <div class="step-desc">해외제조업소 등록<br>→ 영문라이센스 / FTA<br>→ PO·PI·착수금 30%</div>
         </div>
         <div class="flow-step">
           <div class="step-num">발주 후</div>
@@ -750,7 +1059,7 @@
         <div class="flow-step">
           <div class="step-num">통관</div>
           <div class="step-ttl">식검·수입통관</div>
-          <div class="step-desc">서류식검 또는 정밀식검 (2주)<br>→ 통관 / 비용 납부<br>→ 수입부가세·통관·검역</div>
+          <div class="step-desc">서류식검 또는 정밀식검 (2주)<br>→ 통관 / 비용 납부</div>
         </div>
         <div class="flow-step">
           <div class="step-num">입고</div>
@@ -758,17 +1067,6 @@
           <div class="step-desc">피플스토리 입고지시<br>→ 수량·SKU·예정일 전달<br>→ 포워더 정산</div>
         </div>
       </div>
-
-      <h3>📚 소싱 자료 (구글드라이브)</h3>
-      <table class="dark">
-        <thead><tr><th>자료명</th><th>용도</th><th>위치</th></tr></thead>
-        <tbody>
-          <tr><td><strong>제품 소싱 시장조사 (1688/알리바바)</strong></td><td>소싱업무 메뉴얼·소싱제안 리스트·아이템별 견적</td><td>구글드라이브</td></tr>
-          <tr><td>권나경-업무매뉴얼 시트</td><td>소싱·무역 체크리스트 (총 22항목)</td><td>구글드라이브</td></tr>
-          <tr><td>한국무역협회 KITA</td><td>FTA 증명서·통관 자료</td><td>구글드라이브</td></tr>
-          <tr><td>씨앤에프 / 마스터마인딩 제품소싱</td><td>법인별 소싱 분리</td><td>구글드라이브</td></tr>
-        </tbody>
-      </table>
 
       <h3>🛠️ 사용 시스템·플랫폼</h3>
       <table class="dark">
@@ -785,83 +1083,10 @@
     </div>
   </details>
 
-  <!-- 6. 권나경 업무 매뉴얼 체크리스트 -->
+  <!-- 8. 박지현 팀장 협업 -->
   <details class="section">
-    <summary>✅ 6. 업무 체크리스트 (소싱·무역 22항목)</summary>
+    <summary>🤝 8. 박지현 팀장 협업·보고 라인·빠른 참조</summary>
     <div class="section-body">
-
-      <h3>🛒 소싱 단계</h3>
-      <table class="dark">
-        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
-        <tbody>
-          <tr><td>제품정보 확인</td><td>MOQ 체크 완료</td><td>—</td></tr>
-          <tr><td>제품정보 확인</td><td>커스텀 여부 확인</td><td>—</td></tr>
-          <tr><td>견적 수령</td><td>단가 수령</td><td>—</td></tr>
-          <tr><td>견적 수령</td><td>배송비/통관 예상견적 수령 (기나글로벌)</td><td>—</td></tr>
-          <tr><td>내부 컨펌</td><td>대표님 견적 컨펌</td><td>—</td></tr>
-          <tr><td>샘플 수령</td><td>배대지(오프로) 샘플 수령 확인</td><td>—</td></tr>
-        </tbody>
-      </table>
-
-      <h3>📦 무역 — 발주 전</h3>
-      <table class="dark">
-        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
-        <tbody>
-          <tr><td>발주 전</td><td>해외 제조업소 등록 여부 확인</td><td>—</td></tr>
-          <tr><td>발주 전</td><td>영문라이센스 요청 (필요시)</td><td>—</td></tr>
-          <tr><td>발주 전</td><td>FTA 증명서 발급 동의</td><td>—</td></tr>
-          <tr><td>발주 전</td><td>커스텀 논의 및 발주서 작성</td><td>—</td></tr>
-          <tr><td>발주 전</td><td>PI 요청 및 착수금/잔금조건 체크</td><td>—</td></tr>
-        </tbody>
-      </table>
-
-      <h3>📦 무역 — 발주 후</h3>
-      <table class="dark">
-        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
-        <tbody>
-          <tr><td>발주 후</td><td>한글표시사항 스티커 시안 검수</td><td>—</td></tr>
-          <tr><td>발주 후</td><td>예외서류 (무납증명서 등) 체크</td><td>—</td></tr>
-          <tr><td>발주 후</td><td>인보이스/패킹리스트 제품명 매칭 확인</td><td>—</td></tr>
-          <tr><td>발주 후</td><td>인보이스 넘버 - FTA 넘버 매칭 확인</td><td>—</td></tr>
-          <tr><td>발주 후</td><td>카툰박스에 서류 부착 완료</td><td>—</td></tr>
-        </tbody>
-      </table>
-
-      <h3>🚢 무역 — 선적·발송 후</h3>
-      <table class="dark">
-        <thead><tr><th>단계</th><th>체크사항</th><th>완료</th></tr></thead>
-        <tbody>
-          <tr><td>선적 후</td><td>BL 수령 및 확인</td><td>—</td></tr>
-          <tr><td>선적 후</td><td>FTA 증명서 최종 요청 및 체크</td><td>—</td></tr>
-          <tr><td>발송 후</td><td>서류식검 / 정밀식검 진행</td><td>—</td></tr>
-          <tr><td>발송 후</td><td>통관 완료 및 비용 납부</td><td>—</td></tr>
-        </tbody>
-      </table>
-
-      <div class="yellow-box">
-        <strong>✨ 정리 포인트</strong><br>
-        · <strong>소싱:</strong> 제품 사전 준비(견적·컨펌·샘플) 까지 담당<br>
-        · <strong>무역:</strong> 계약 ~ 수입통관 완료까지 담당<br>
-        · 각 단계별 <strong>문서 검수·매칭 체크</strong> 매우 중요 — 누락 시 통관지연·추가비용 발생
-      </div>
-    </div>
-  </details>
-
-  <!-- 7. 박지현 팀장과의 협업 -->
-  <details class="section">
-    <summary>🤝 7. 박지현 팀장과의 협업·보고 라인</summary>
-    <div class="section-body">
-
-      <h3>📌 박지현 팀장 책임 4축</h3>
-      <table class="dark">
-        <thead><tr><th>축</th><th>박지현 팀장</th><th>권나경 과장 연결점</th></tr></thead>
-        <tbody>
-          <tr><td>① 사방넷·입점몰 운영</td><td>스마트스토어·자사몰·쿠팡·카카오 주문·재고 동기화</td><td>상품 등록·행사·쿠폰 세팅 실행</td></tr>
-          <tr><td>② 시즌 기획</td><td>가정의달(4/27~4/30 발송) · 추석</td><td>인플루언서·공동구매 기획 실행</td></tr>
-          <tr><td>③ 와디즈 캠페인</td><td>펀딩·리워드·CS·다음 캠페인</td><td>리워드 상품 등록 / 발송 후 리뷰 관리</td></tr>
-          <tr><td>④ 광고 운영</td><td>메타·구글·네이버 ROAS</td><td>인플루언서 캠페인 성과 정리·광고비 정산</td></tr>
-        </tbody>
-      </table>
 
       <h3>🔁 보고 라인</h3>
       <div class="yellow-box">
@@ -872,29 +1097,7 @@
         <strong>확정 결정</strong> → MISSION/DECISIONS.md
       </div>
 
-      <h3>⏰ 매일 09:00 박지현 팀장 우선순위 3개에 권나경 과장이 대응</h3>
-      <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
-        <li>전날 매출·주문·ROAS 확인 → MD 운영 우선순위 도출</li>
-        <li>인플루언서 캠페인 진행상황 → 박지현 팀장에 한 줄 보고</li>
-        <li>생산·발주 이슈 → 즉시 박지현 팀장 공유 (납기 지연·재고 부족)</li>
-      </ul>
-
-      <h3>📅 매주 금요일 17:00 주간 정리</h3>
-      <ul style="font-size: 12px; line-height: 1.9; padding-left: 20px;">
-        <li>이번 주 공동구매 매출·정산 정리</li>
-        <li>4대 책임 축 진척 한 줄씩</li>
-        <li>지연 항목 다음 주 이관</li>
-        <li>다음 주 우선순위 5개 박지현 팀장과 확정</li>
-      </ul>
-    </div>
-  </details>
-
-  <!-- 8. 빠른 참조 -->
-  <details class="section">
-    <summary>⚡ 8. 빠른 참조 (자주 쓰는 정보)</summary>
-    <div class="section-body">
-
-      <h3>🔥 긴급 연락처 TOP 5</h3>
+      <h3>🔥 긴급 연락처 TOP 7</h3>
       <table class="dark">
         <thead><tr><th>구분</th><th>업체·채널</th><th>담당자</th><th>연락처</th></tr></thead>
         <tbody>
@@ -903,19 +1106,8 @@
           <tr><td>듀오메이커 조립</td><td>해피홈</td><td>허현구 대표</td><td>010-8873-4536</td></tr>
           <tr><td>택배 출고</td><td>CJ대한통운</td><td>임성희 실장</td><td>010-3215-5243</td></tr>
           <tr><td>공구 중계</td><td>우하컴퍼니</td><td>우석준 대표</td><td>010-7577-7225</td></tr>
-        </tbody>
-      </table>
-
-      <h3>💼 회사 기본 정보</h3>
-      <table class="dark">
-        <thead><tr><th>구분</th><th>법인 (㈜마스터마인딩그룹)</th><th>일반 (씨앤에프 트레이딩)</th></tr></thead>
-        <tbody>
-          <tr><td>대표</td><td>장정훈</td><td>장정훈</td></tr>
-          <tr><td>사업자등록</td><td>426-87-00479</td><td>620-38-00938</td></tr>
-          <tr><td>대표번호</td><td>070-7152-0340</td><td>070-7152-0340</td></tr>
-          <tr><td>이메일</td><td>jewelice@jewelice.kr</td><td>jewelice@jewelice.kr</td></tr>
-          <tr><td>택배사</td><td>CJ대한통운</td><td>CJ대한통운</td></tr>
-          <tr><td>출고지</td><td colspan="2">경기도 양주시 은현면 화합로1169번길 72-54 (피플스토리)</td></tr>
+          <tr><td>맘스홀릭 공구</td><td>맘스홀릭베이비</td><td>김민정 실장</td><td>010-7147-4266</td></tr>
+          <tr><td>발주 담당 (사내)</td><td>마스터마인딩</td><td>이호혁 차장</td><td>010-5000-8761</td></tr>
         </tbody>
       </table>
 
@@ -925,7 +1117,7 @@
         <tbody>
           <tr><td>장정훈</td><td>대표</td><td>010-3167-0961</td><td>thinkintoreal@gmail.com</td><td>최종 결정</td></tr>
           <tr style="background: rgba(255,214,0,0.08);"><td><strong>박지현</strong></td><td>팀장 / 사업본부</td><td>010-9942-7171</td><td>lucy@jewelice.kr</td><td>사업 총괄·직속 상사</td></tr>
-          <tr><td>이호혁</td><td>차장 / 경영관리·SCM</td><td>010-5000-8761</td><td>denny@jewelice.kr</td><td>발주 담당자</td></tr>
+          <tr><td>이호혁</td><td>차장 / 경영관리·SCM</td><td>010-5000-8761</td><td>denny@jewelice.kr</td><td>발주 담당</td></tr>
           <tr style="background: rgba(124,58,237,0.18);"><td><strong>권나경</strong></td><td>과장 / MD 운영</td><td>010-4133-5844</td><td>bona@jewelice.kr</td><td><strong>본인</strong></td></tr>
           <tr><td>조송희</td><td>대리 / 콘텐츠 광고</td><td>010-7471-4479</td><td>kathy@jewelice.kr</td><td>마케팅 협업</td></tr>
           <tr><td>권수지</td><td>대리 / 고객지원</td><td>010-9545-1147</td><td>—</td><td>CS·생산일정표 관리</td></tr>
@@ -937,9 +1129,12 @@
         <li><strong>권나경 과장 메인 폴더</strong> — 개인 업무 자료</li>
         <li><strong>◎공동구매◎</strong> — 모든 공구 자료 통합</li>
         <li><strong>10. 공동구매</strong> — 신규 공구 진행 폴더</li>
-        <li><strong>맘스홀릭베이비 / 미즈넷 공동구매</strong> — 채널별 진행 이력</li>
+        <li><strong>맘스홀릭베이비 공동구매</strong> / <strong>미즈넷공동구매</strong> / <strong>미즈넷맘카페</strong> / <strong>쎄씨주부의 소꿉놀이터</strong></li>
+        <li><strong>인플루언서 협업_인스타그램_유튜브</strong> — 발굴·섭외 진행 시트</li>
+        <li><strong>인플루언서 리스트</strong> — 105+ 인스타 마스터 리스트</li>
         <li><strong>2 제품소싱 / 002 제품소싱</strong> — 마스터마인딩·씨앤에프 분리</li>
         <li><strong>아이스볼 얼음통 / 인플루언서 마케팅 영상</strong> — 자재·콘텐츠 자산</li>
+        <li><strong>한국무역협회 KITA</strong> — FTA·통관 자료</li>
       </ul>
     </div>
   </details>
@@ -947,10 +1142,10 @@
   <!-- 푸터 -->
   <div class="footer">
     🔗 이 허브 주소: <strong>charlesmaster911.github.io/jewelice-playbook/nakyung-hub.html</strong><br>
-    북마크 하나로 권나경 과장 업무 전체 접근 · 주소 영구 고정<br><br>
+    북마크 하나로 권나경 과장 업무 전체 접근 · 주소 영구 고정 · 수시 업데이트<br><br>
     💎 JEWEL ICE × 권나경 과장<br>
-    MD 운영 · 공동구매 · 소싱·무역 · 생산 발주 통합 허브<br>
-    화경 작성 · 박지현 팀장 검수 · v1.0
+    MD 운영 · 공동구매 (이전 성과 + 진행중 + 플랫폼 통합) · 소싱·무역 · 생산 발주<br>
+    화경 작성 · 박지현 팀장 검수 · v1.1 (2026-04-28)
   </div>
 
 </div>
@@ -993,7 +1188,6 @@
     }
   }
 
-  // 로드 시 저장된 내용 복구
   window.addEventListener('DOMContentLoaded', () => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
