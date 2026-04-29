@@ -155,6 +155,152 @@
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   .hidden { display: none !important; }
+
+  /* 이력서 섹션 */
+  .resume {
+    background: white;
+    border-radius: 14px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .resume[open] { box-shadow: 0 6px 18px rgba(30,58,95,0.1); }
+  .resume summary {
+    padding: 16px 22px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1e3a5f;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    user-select: none;
+    list-style: none;
+    background: linear-gradient(135deg, #f0f7fc 0%, #e8f1f8 100%);
+    border-left: 4px solid #2d5a8e;
+  }
+  .resume summary::-webkit-details-marker { display: none; }
+  .resume summary::after {
+    content: '▼';
+    margin-left: auto;
+    font-size: 11px;
+    transition: 0.2s;
+    color: #6b7280;
+  }
+  .resume[open] summary::after { transform: rotate(180deg); }
+  .resume .resume-body {
+    padding: 22px 26px;
+    font-size: 13px;
+    line-height: 1.75;
+    color: #2d3748;
+  }
+  .resume .resume-body h4 {
+    font-size: 14px;
+    font-weight: 800;
+    color: #1e3a5f;
+    margin: 18px 0 8px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #e8f1f8;
+    letter-spacing: -0.3px;
+  }
+  .resume .resume-body h4:first-child { margin-top: 0; }
+  .resume .resume-body .info-table {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 6px 16px;
+    font-size: 13px;
+    margin-bottom: 14px;
+  }
+  .resume .resume-body .info-table .lbl { color: #6b7280; font-weight: 600; }
+  .resume .resume-body .info-table .val { color: #1a2940; font-weight: 600; }
+  .resume .resume-body .career-item {
+    border-left: 2px solid #cbd5e1;
+    padding: 8px 14px 8px 16px;
+    margin-bottom: 12px;
+    margin-left: 4px;
+  }
+  .resume .resume-body .career-item.short { border-left-color: #f59e0b; }
+  .resume .resume-body .career-item.flag { border-left-color: #dc2626; }
+  .resume .resume-body .career-item.now { border-left-color: #10b981; background: #f0fdf4; }
+  .resume .resume-body .career-item .period {
+    font-size: 11.5px;
+    color: #6b7280;
+    font-weight: 600;
+  }
+  .resume .resume-body .career-item .company {
+    font-size: 14px;
+    font-weight: 700;
+    color: #1a2940;
+    margin: 2px 0;
+  }
+  .resume .resume-body .career-item .duration {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+  .resume .resume-body .career-item.short .duration { background: #fef3c7; color: #92400e; }
+  .resume .resume-body .career-item.flag .duration { background: #fee2e2; color: #991b1b; }
+  .resume .resume-body .career-item.now .duration { background: #10b981; color: white; }
+  .resume .resume-body .career-item.ok .duration { background: #d1fae5; color: #065f46; }
+  .resume .resume-body .career-item .role {
+    font-size: 12px;
+    color: #4b5563;
+    margin-top: 4px;
+    line-height: 1.6;
+  }
+  .resume .resume-body .career-item .reason {
+    font-size: 11px;
+    color: #92400e;
+    margin-top: 4px;
+    font-style: italic;
+  }
+  .resume .resume-body .career-item .achieve {
+    font-size: 11.5px;
+    color: #065f46;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .resume .resume-body .skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+  .resume .resume-body .skill-pills span {
+    background: #f0f7fc;
+    color: #1e3a5f;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 600;
+  }
+  .resume.a summary { border-left-color: #dc2626; background: linear-gradient(135deg, #fef2f2, #fee2e2); color: #991b1b; }
+  .resume.b summary { border-left-color: #059669; background: linear-gradient(135deg, #ecfdf5, #d1fae5); color: #065f46; }
+
+  .red-flag-box {
+    background: #fef2f2;
+    border-left: 3px solid #dc2626;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #991b1b;
+    line-height: 1.6;
+  }
+  .green-box {
+    background: #ecfdf5;
+    border-left: 3px solid #059669;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #065f46;
+    line-height: 1.6;
+  }
+  .red-flag-box strong, .green-box strong { display: block; margin-bottom: 3px; }
 </style>
 </head>
 <body>
@@ -220,6 +366,92 @@
         <div class="grade" id="grade-a">-</div>
       </div>
     </div>
+
+    <details class="resume a">
+      <summary>📄 이찬수 이력서 — 클릭해서 펼치기</summary>
+      <div class="resume-body">
+        <h4>👤 기본 정보</h4>
+        <div class="info-table">
+          <div class="lbl">이름</div><div class="val">이찬수 (남, 1981년생, 만 44세)</div>
+          <div class="lbl">거주지</div><div class="val">경기 의정부시 서을로</div>
+          <div class="lbl">연락처</div><div class="val">010-2713-7002 · alvon8@naver.com</div>
+          <div class="lbl">총 경력</div><div class="val">21년 (영업/MD)</div>
+          <div class="lbl">희망 연봉</div><div class="val">6,200만원</div>
+          <div class="lbl">학력</div><div class="val">극동대학교 (4년) · 컨벤션 전공</div>
+        </div>
+
+        <h4>🛠 보유 스킬</h4>
+        <div class="skill-pills">
+          <span>Programming</span><span>Tool</span><span>OA</span><span>시장조사</span>
+          <span>상품기획</span><span>상점관리</span><span>마케팅</span>
+          <span>Adobe Photoshop</span><span>Microsoft Excel</span><span>소셜네트워크</span>
+        </div>
+
+        <h4>🏢 자격증</h4>
+        <div class="info-table">
+          <div class="lbl">2009.09</div><div class="val">SCJP (Sun Certified Java Programmer)</div>
+          <div class="lbl">기타</div><div class="val">정보처리기능사·1종보통운전면허·컴퓨터활용능력 등</div>
+        </div>
+
+        <h4>📅 경력 타임라인 (최근 7건 / 총 17건)</h4>
+
+        <div class="career-item flag">
+          <div class="period">2023.08 ~ 2025.01</div>
+          <div class="company">(주)빈티 — 영업부 차장 <span class="duration">1년 5개월</span></div>
+          <div class="role">영업부 내 이커머스사업부 총괄. 신규 SKU 단위 전건 구매 (구매부 사이즈/상하의 ERP, 제품 분석, 동작 시스템 세팅). 이커머스 전체 자사몰 수출/통계 기획. 군매·기획·상품·발주·가격·주문·출하·회계 전반.</div>
+          <div class="achieve">연봉 6,200만원</div>
+        </div>
+
+        <div class="career-item flag">
+          <div class="period">2022.08 ~ 2023.03</div>
+          <div class="company">비고치 — 이커머스 사원 <span class="duration">8개월</span></div>
+          <div class="role">글로벌 사업부 총괄 업무. 글로벌 시장 신규 (대주마트), 외국기업, 신상이/기.</div>
+          <div class="reason">⚠ 차장 → 사원 다운그레이드 (사유 불명)</div>
+        </div>
+
+        <div class="career-item ok">
+          <div class="period">2019.10 ~ 2022.06</div>
+          <div class="company">명진사이언 — 영업/디자인 차/팀대리 <span class="duration">2년 9개월</span></div>
+          <div class="role">전 SKU 단위 전건 구매. 자체몰 운영. 채널: CAFE24·스마트스토어·1, MALL 1·CD 1·플로 N. 구매·기획·MD 업무. 신규 신제품 매출 600 SKU → 4500개 (커뮤뉴얼 단가 1억 → 신규 2년 18% 30%, ROAS 약 90,000원 대비). 외화 9억 (RIC 9100/PG 1만 N).</div>
+        </div>
+
+        <div class="career-item short">
+          <div class="period">2019.01 ~ 2019.07</div>
+          <div class="company">프리랜서 — 자영업/소상공 <span class="duration">7개월</span></div>
+          <div class="role">CAFE24 기반 쇼핑몰 운영</div>
+        </div>
+
+        <div class="career-item short">
+          <div class="period">2018.10 ~ 2019.01</div>
+          <div class="company">(주)시즌코퍼레이션 — 운영기획 차장 <span class="duration">3개월</span></div>
+          <div class="role">SKU 단위 전건 구매·기획·운영 (반품 포함)</div>
+        </div>
+
+        <div class="career-item flag">
+          <div class="period">2017.01 ~ 2018.09</div>
+          <div class="company">코코 — 운영기획 차/잘대리 <span class="duration">1년 8개월</span></div>
+          <div class="role">기획·운영·MD</div>
+        </div>
+
+        <div class="career-item ok">
+          <div class="period">2011.12 ~ 2017.06</div>
+          <div class="company">자영업 — 카페·소상공 <span class="duration">5년 6개월</span></div>
+          <div class="role">자영업·소상공 운영</div>
+        </div>
+
+        <p style="font-size:12px; color:#9ca3af; margin-top:8px;">… 그 외 6건 더 (2001~2011)</p>
+
+        <div class="red-flag-box">
+          <strong>🚩 적신호 (반드시 검증)</strong>
+          ① 17건 이력 중 1년 미만 재직 다수 ② 차장↔사원 직급 다운 ③ 2024.12 퇴사 후 4개월 공백 ④ 의정부→성남 90분 통근 ⑤ 희망 6,200만원 (12억 매출 부담)
+        </div>
+
+        <div class="green-box">
+          <strong>👍 강점</strong>
+          21년 경력 / SCJP 자격증 (IT 이해도) / 이커머스·글로벌·MD·구매·기획 전 영역 / 영업맨 인맥 자산 가능성
+        </div>
+      </div>
+    </details>
 
     <div class="section-title"><span class="ico">🚩</span>리스크 검증 (필수 4)<span class="count">가중 ×2</span></div>
 
@@ -356,6 +588,109 @@
         <div class="grade" id="grade-b">-</div>
       </div>
     </div>
+
+    <details class="resume b">
+      <summary>📄 표소예 이력서 — 클릭해서 펼치기</summary>
+      <div class="resume-body">
+        <h4>👤 기본 정보</h4>
+        <div class="info-table">
+          <div class="lbl">이름</div><div class="val">표소예 (여, 1988년생, 만 38세)</div>
+          <div class="lbl">거주지</div><div class="val">경기 화성시 동탄영천로 (18463)</div>
+          <div class="lbl">연락처</div><div class="val">010-3663-3354 · yss6863@naver.com</div>
+          <div class="lbl">총 경력</div><div class="val">8년 8개월 (온라인MD 외길)</div>
+          <div class="lbl">직전 연봉</div><div class="val">5,320만원 (재직중)</div>
+          <div class="lbl">학력</div><div class="val">청주대학교 (4년) · 패션디자인과 (2007.03~2016.02)</div>
+        </div>
+
+        <h4>🛠 보유 스킬</h4>
+        <div class="skill-pills">
+          <span>Adobe Photoshop</span><span>Adobe Illustrator</span>
+          <span>디자인</span><span>기획</span><span>마케팅</span><span>영업</span>
+        </div>
+
+        <h4>📝 간략 소개</h4>
+        <div style="background:#f8fafc; padding:12px 16px; border-radius:8px; font-size:12.5px; line-height:1.7;">
+          1. 연간 영업 기획, 채널별 운영 전략 수립 외 온라인MD 업무 수행<br>
+          (담당 채널: 자사몰·스마트스토어·백화점몰·오픈마켓·종합몰·쿠팡/로켓배송 등)<br>
+          2. 네이버 쇼핑라이브, CJ온스타일, 티몬 티비온 모바일 라이브 방송 기획<br>
+          3. 브랜드 상품 관리 (생산·마케팅·판매 등 운영 관련 전반)<br>
+          4. 프로모션 기획 및 실행 (신제품 출시·시즌별·채널별 전략 운영)<br>
+          5. 온라인 채널 확장 경험 및 데이터 기반 성과 개선
+        </div>
+
+        <h4>📅 경력 타임라인 (7건)</h4>
+
+        <div class="career-item now">
+          <div class="period">2023.06 ~ 재직중</div>
+          <div class="company">비공개 (광학필름·모바일 액세서리 제조사) — 사업전략실 대리/파트장 <span class="duration">1년 11개월</span></div>
+          <div class="role">B2C 브랜드 상품 기획 (모바일 액세서리). 자사몰/외부몰 상세페이지 기획. 일본 런칭 프로젝트 16종 디자인 콘셉트. 부자재 직접 소싱·핸드메이드 제작.</div>
+          <div class="achieve">⚡ 현재 안정 재직 중 · 연봉 5,320만원</div>
+        </div>
+
+        <div class="career-item ok">
+          <div class="period">2022.02 ~ 2023.06</div>
+          <div class="company">비공개 (건강기능식품·화장품) — 컨슈머사업부 과장/팀원 <span class="duration">1년 5개월</span></div>
+          <div class="role">기능성/더마 코스메틱 온라인 채널 운영. 자사몰/외부몰 상품 운영, 제품 리뉴얼, 상세페이지 기획, 광고 운영 (SNS/GFA/SA).</div>
+          <div class="achieve">🏆 전년 대비 누적 매출 400% 성장 기여</div>
+          <div class="reason">퇴사: 스카우트 제안</div>
+        </div>
+
+        <div class="career-item short">
+          <div class="period">2021.07 ~ 2021.12</div>
+          <div class="company">비공개 (화장품사업부) — 대리 <span class="duration">6개월</span></div>
+          <div class="role">코스메틱 온라인 채널 운영. 자사몰/스마트스토어 프로모션. 네이버 쇼핑라이브 기획·진행.</div>
+          <div class="reason">퇴사: 상장(IPO) 후 사업전략 변경</div>
+        </div>
+
+        <div class="career-item ok">
+          <div class="period">2020.02 ~ 2021.06</div>
+          <div class="company">비공개 (유아용품 수입·유통) — 유아사업부 대리/팀원 <span class="duration">1년 5개월</span></div>
+          <div class="role">자사몰·외부몰 운영. 라이브커머스 (네이버·CJ온스타일). 디지털 마케팅 (GFA·SA). 웹 콘텐츠·디자인 실무 병행. 연 40회+ 프로모션 운영.</div>
+          <div class="achieve">🏆 쿠팡 골드박스 3회 연속 완판 · ROAS 500% → 1200% 개선</div>
+          <div class="reason">퇴사: 사업부 해체 및 조직 개편</div>
+        </div>
+
+        <div class="career-item ok">
+          <div class="period">2019.01 ~ 2020.01</div>
+          <div class="company">비공개 (매트리스·가구) — 온라인사업부 대리/팀원 <span class="duration">1년 1개월</span></div>
+          <div class="role">자사몰·백화점몰 온라인 판매 운영. 상세페이지·콘텐츠 개선. CS 관리·운영 개선.</div>
+          <div class="reason">퇴사: 경영악화</div>
+        </div>
+
+        <div class="career-item short">
+          <div class="period">2018.03 ~ 2018.12</div>
+          <div class="company">비공개 (생활용품) — 브랜드영업팀 주임 <span class="duration">10개월</span></div>
+          <div class="role">생활용품(아기물티슈·샴푸·치약) 온라인 채널 운영. 티몬 티비온 모바일 라이브 방송 기획.</div>
+          <div class="reason">퇴사: 프로젝트 종료</div>
+        </div>
+
+        <div class="career-item short">
+          <div class="period">2017.07 ~ 2017.12</div>
+          <div class="company">비공개 (메이크업 색조화장품) — 사원/팀원 <span class="duration">6개월</span></div>
+          <div class="role">자사몰·오픈마켓 운영 지원. 말레이시아 수출 지원. 프로모션 기획 보조.</div>
+          <div class="reason">퇴사: 프로젝트 종료</div>
+        </div>
+
+        <h4>💪 자기소개서 강점</h4>
+        <div style="background:#f8fafc; padding:12px 16px; border-radius:8px; font-size:12.5px; line-height:1.7;">
+          <strong>1) 온라인 채널 운영·영업</strong> — 자사몰·스마트스토어·오픈마켓·종합몰. 라이브커머스(네이버·CJ·티몬·쿠팡) 풀스펙. 외부 플랫폼 MD 커뮤니케이션·행사 구좌 협의.<br><br>
+          <strong>2) 온라인 마케팅·프로모션 기획</strong> — 단계별 마케팅 집행·예산 운영. 상세페이지 카피 개선. CRM 프로모션. DA·SA·리타겟팅 퍼포먼스 마케팅.<br><br>
+          <strong>3) 제품 기획·런칭</strong> — 제품 리뉴얼·신규 기획. 제조사 커뮤니케이션. 키비주얼·디자인 방향성 제시.
+        </div>
+
+        <p style="font-size:12px; color:#dc2626; margin-top:10px; font-weight:600;">⚠️ "지원동기" 항목 비어 있음 → 인터뷰에서 직접 확인 필요</p>
+
+        <div class="red-flag-box">
+          <strong>🚩 검증 필요</strong>
+          ① 7개 회사 평균 1년 3개월 (단, 모두 외부 사유) ② 자기소개서 지원동기 비어있음 ③ 1년 11개월 재직 중 이직 동기
+        </div>
+
+        <div class="green-box">
+          <strong>👍 강점 (압도적)</strong>
+          온라인MD 외길 8년 8개월 / 라이브커머스 풀스펙 / 디자인+MD 동시 / 매출 400%·ROAS 1200%·쿠팡 골드박스 3연속 (모두 숫자로 증명) / 동탄→성남 30~45분 / 38세 골든존
+        </div>
+      </div>
+    </details>
 
     <div class="section-title"><span class="ico">⭐</span>진정성·이직동기 (필수 4)<span class="count">가중 ×2</span></div>
 
