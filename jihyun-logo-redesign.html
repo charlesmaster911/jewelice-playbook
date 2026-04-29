@@ -9,15 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cormorant+SC:wght@400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Italiana&family=Marcellus&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0d0d0d;
+    --mint:#3dc2bb;
+    --mint-deep:#2ba8a2;
     --paper:#f5f3ee;
     --paper-2:#ebe7df;
-    --gold:#a98e5b;
-    --silver:#9aa0a6;
-    --tiffany:#0abab5;
-    --ice:#7ed5d0;
     --line:#d8d4ca;
     --muted:#7a766f;
+    --ink:#0d0d0d;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{background:var(--paper);color:var(--ink);font-family:'Inter','Pretendard',sans-serif;-webkit-font-smoothing:antialiased}
@@ -33,7 +31,7 @@
   }
   header .eyebrow{
     font-family:'Cormorant SC',serif;
-    font-size:13px;letter-spacing:.4em;color:var(--muted);margin-bottom:18px;
+    font-size:13px;letter-spacing:.4em;color:var(--mint);margin-bottom:18px;
   }
   header h1{
     font-family:'Cormorant Garamond',serif;
@@ -46,13 +44,13 @@
     display:flex;justify-content:center;gap:10px;margin-top:22px;flex-wrap:wrap;
   }
   .btn{
-    border:1px solid var(--ink);background:transparent;color:var(--ink);
+    border:1px solid var(--mint);background:transparent;color:var(--mint);
     padding:10px 18px;font-family:'Cormorant SC',serif;font-size:12px;letter-spacing:.25em;
     cursor:pointer;transition:.2s;
   }
-  .btn:hover{background:var(--ink);color:var(--paper)}
-  .btn.dark{background:var(--ink);color:var(--paper)}
-  .btn.dark:hover{background:transparent;color:var(--ink)}
+  .btn:hover{background:var(--mint);color:#fff}
+  .btn.dark{background:var(--mint);color:#fff}
+  .btn.dark:hover{background:var(--mint-deep);color:#fff;border-color:var(--mint-deep)}
 
   /* Grid */
   .grid{
@@ -69,7 +67,7 @@
     position:relative;
     transition:.25s;
   }
-  .card:hover{box-shadow:0 18px 44px rgba(20,20,20,.06);border-color:#bfb9ac}
+  .card:hover{box-shadow:0 18px 44px rgba(61,194,187,.12);border-color:var(--mint)}
   .card .num{
     position:absolute;top:18px;left:24px;
     font-family:'Cormorant SC',serif;
@@ -78,23 +76,35 @@
   .card .pick{
     position:absolute;top:14px;right:18px;
     border:1px solid var(--line);background:#fff;padding:6px 12px;
-    font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.3em;cursor:pointer;
+    font-family:'Cormorant SC',serif;font-size:10px;letter-spacing:.3em;cursor:pointer;color:var(--ink);
   }
-  .card .pick.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .card .pick.on{background:var(--mint);color:#fff;border-color:var(--mint)}
 
   .stage{
     min-height:280px;
     display:flex;align-items:center;justify-content:center;
     padding:32px 12px;
-    background:linear-gradient(180deg,#fff 0%,#fafaf6 100%);
+    background:linear-gradient(180deg,#fff 0%,#f6fdfc 100%);
     border:1px solid var(--paper-2);
     margin-bottom:24px;
   }
-  .stage.dark{background:linear-gradient(180deg,#111 0%,#000 100%);border-color:#222}
-  .stage.dark *{color:#f5f3ee !important}
-  .stage.dark .ic-stroke{stroke:#f5f3ee !important}
-  .stage.dark .ic-fill{fill:#f5f3ee !important}
-  .stage.dark .divider{background:#f5f3ee !important}
+  .stage.dark{background:linear-gradient(180deg,#0a1f1e 0%,#000 100%);border-color:#0f2b29}
+  .stage.dark .v1 .word,
+  .stage.dark .v2 .word,
+  .stage.dark .v3 .right .word,
+  .stage.dark .v4 .word,
+  .stage.dark .v5 .word,
+  .stage.dark .v6 .word{color:var(--mint) !important}
+  .stage.dark .v1 .tag,
+  .stage.dark .v5 .bottom,
+  .stage.dark .v6 .word b{color:#fff !important}
+  .stage.dark .v1 .rule,
+  .stage.dark .v3 .divider,
+  .stage.dark .v5 .ornaments .line{background:var(--mint) !important}
+  .stage.dark .v4 .seal{border-color:var(--mint) !important}
+  .stage.dark .v4 .seal::before,
+  .stage.dark .v4 .seal::after{background:var(--mint) !important}
+  .stage.dark .v4 .seal .j{color:var(--mint) !important}
 
   .meta{
     display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
@@ -110,124 +120,125 @@
   .meta .toggle{
     font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:.25em;
     border:1px solid var(--line);background:#fff;padding:8px 12px;cursor:pointer;
-    white-space:nowrap;
+    white-space:nowrap;color:var(--ink);
   }
-  .meta .toggle:hover{border-color:var(--ink)}
+  .meta .toggle:hover{border-color:var(--mint);color:var(--mint)}
 
-  /* === Logo Variants === */
+  /* === 기존 심볼 (변경 금지) — 모든 시안 공통 === */
+  .ic-symbol{display:inline-block;vertical-align:middle}
 
-  /* V1 — Pure Wordmark (Tiffany 정공법) */
+  /* === Logo Variants (민트 통일) === */
+
+  /* V1 — Pure Wordmark */
   .v1{text-align:center}
   .v1 .word{
     font-family:'Cormorant Garamond',serif;
     font-weight:500;font-size:64px;letter-spacing:.32em;
-    text-transform:uppercase;color:var(--ink);
-    padding-left:.32em; /* 좌우 자간 보정 */
+    text-transform:uppercase;color:var(--mint);
+    padding-left:.32em;
   }
   .v1 .rule{
-    width:88px;height:1px;background:var(--ink);margin:18px auto 14px;
+    width:88px;height:1px;background:var(--mint);margin:18px auto 14px;
   }
   .v1 .tag{
     font-family:'Cormorant SC',serif;
-    font-size:12px;letter-spacing:.55em;color:var(--ink);
+    font-size:12px;letter-spacing:.55em;color:var(--mint);
     padding-left:.55em;
   }
 
-  /* V2 — Diamond Crest Above + Wordmark */
+  /* V2 — Symbol Above + Wordmark */
   .v2{text-align:center}
-  .v2 svg{display:block;margin:0 auto 18px}
+  .v2 .ic-symbol{margin:0 auto 18px;display:block}
   .v2 .word{
     font-family:'Cinzel',serif;
     font-weight:500;font-size:38px;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--ink);
+    text-transform:uppercase;color:var(--mint);
     padding-left:.42em;
   }
   .v2 .tag{
-    font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:.5em;color:var(--muted);
+    font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:.5em;color:var(--mint);
     margin-top:14px;padding-top:12px;
     position:relative;display:inline-block;padding-left:.5em;
   }
   .v2 .tag::before{
     content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-    width:34px;height:1px;background:var(--ink);
+    width:34px;height:1px;background:var(--mint);
   }
 
-  /* V3 — Vertical Divider Mark|Word (안정감 ↑) */
+  /* V3 — Vertical Divider Symbol|Word */
   .v3{display:flex;align-items:center;justify-content:center;gap:28px}
-  .v3 svg{flex-shrink:0}
-  .v3 .divider{width:1px;height:62px;background:var(--ink)}
+  .v3 .ic-symbol{flex-shrink:0}
+  .v3 .divider{width:1px;height:62px;background:var(--mint)}
+  .v3 .right{text-align:left}
   .v3 .right .word{
     font-family:'Cormorant Garamond',serif;
     font-weight:600;font-size:42px;letter-spacing:.18em;
-    text-transform:uppercase;color:var(--ink);line-height:1;
+    text-transform:uppercase;color:var(--mint);line-height:1;
   }
   .v3 .right .tag{
-    font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.4em;color:var(--muted);
-    margin-top:8px;padding-left:.4em;
+    font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.4em;color:var(--mint);
+    margin-top:8px;padding-left:.4em;opacity:.85;
   }
 
   /* V4 — Monogram Seal */
   .v4{text-align:center}
   .v4 .seal{
-    width:130px;height:130px;border:1.5px solid var(--ink);border-radius:50%;
+    width:130px;height:130px;border:1.5px solid var(--mint);border-radius:50%;
     display:flex;align-items:center;justify-content:center;margin:0 auto 22px;
     position:relative;
   }
   .v4 .seal::before, .v4 .seal::after{
-    content:"";position:absolute;width:6px;height:6px;background:var(--ink);border-radius:50%;
+    content:"";position:absolute;width:6px;height:6px;background:var(--mint);border-radius:50%;
     top:50%;transform:translateY(-50%);
   }
   .v4 .seal::before{left:-3px} .v4 .seal::after{right:-3px}
-  .v4 .seal .j{
-    font-family:'Italiana',serif;font-size:84px;line-height:1;
-    color:var(--ink);
-  }
+  .v4 .seal .ic-symbol{width:74px;height:74px}
   .v4 .word{
     font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;
-    letter-spacing:.36em;text-transform:uppercase;padding-left:.36em;
+    letter-spacing:.36em;text-transform:uppercase;padding-left:.36em;color:var(--mint);
   }
   .v4 .est{
     font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.4em;
-    color:var(--muted);margin-top:10px;padding-left:.4em;
+    color:var(--mint);margin-top:10px;padding-left:.4em;opacity:.85;
   }
 
-  /* V5 — Stamped Badge (E S T D / SEOUL) */
+  /* V5 — Stamped Badge */
   .v5{text-align:center;position:relative}
   .v5 .top{
     font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.55em;
-    color:var(--muted);margin-bottom:14px;padding-left:.55em;
+    color:var(--mint);margin-bottom:14px;padding-left:.55em;opacity:.85;
   }
   .v5 .word{
     font-family:'Marcellus',serif;font-size:50px;letter-spacing:.22em;
-    text-transform:uppercase;color:var(--ink);
+    text-transform:uppercase;color:var(--mint);
     padding-left:.22em;
   }
   .v5 .ornaments{
     display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 14px;
   }
-  .v5 .ornaments .line{width:64px;height:1px;background:var(--ink)}
-  .v5 .ornaments svg{flex-shrink:0}
+  .v5 .ornaments .line{width:64px;height:1px;background:var(--mint)}
+  .v5 .ornaments .ic-symbol{width:18px;height:18px}
   .v5 .bottom{
     font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.55em;
-    color:var(--ink);padding-left:.55em;
+    color:var(--mint);padding-left:.55em;
   }
 
-  /* V6 — Minimal Modern (가는 산세리프 + 다이아 한 점) */
+  /* V6 — Minimal Modern */
   .v6{text-align:center}
-  .v6 .icon{margin:0 auto 22px;display:block}
+  .v6 .ic-symbol{margin:0 auto 22px;display:block;width:22px;height:22px}
   .v6 .word{
     font-family:'Inter',sans-serif;font-weight:300;font-size:48px;letter-spacing:.42em;
-    text-transform:uppercase;color:var(--ink);padding-left:.42em;
+    text-transform:uppercase;color:var(--mint);padding-left:.42em;
   }
-  .v6 .word b{font-weight:500}
+  .v6 .word b{font-weight:500;color:var(--mint-deep)}
   .v6 .tag{
     font-family:'Inter',sans-serif;font-weight:300;font-size:11px;letter-spacing:.6em;
-    color:var(--muted);margin-top:16px;padding-left:.6em;text-transform:uppercase;
+    color:var(--mint);margin-top:16px;padding-left:.6em;text-transform:uppercase;opacity:.85;
   }
 
   /* Reference current */
   .ref{
-    background:#fff;border:1px dashed var(--line);padding:24px;text-align:center;
+    background:#fff;border:1px dashed var(--mint);padding:24px;text-align:center;
     margin-bottom:48px;
   }
   .ref h4{
@@ -236,7 +247,7 @@
   }
   .ref .old{
     display:inline-flex;align-items:center;gap:14px;
-    color:#3dc2bb;font-family:Arial,sans-serif;font-weight:600;font-size:34px;
+    color:var(--mint);font-family:Arial,sans-serif;font-weight:600;font-size:34px;
   }
   .ref .old span{font-size:12px;font-weight:400;letter-spacing:.1em;display:block;margin-top:4px}
 
@@ -246,7 +257,7 @@
   }
   .notes h2{
     font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;
-    letter-spacing:.04em;margin-bottom:18px;
+    letter-spacing:.04em;margin-bottom:18px;color:var(--mint);
   }
   .notes table{width:100%;border-collapse:collapse;font-size:13.5px}
   .notes th,.notes td{
@@ -257,7 +268,7 @@
     font-family:'Cormorant SC',serif;font-size:11px;letter-spacing:.3em;
     color:var(--muted);font-weight:500;background:var(--paper);
   }
-  .notes td.font{font-family:'Cormorant Garamond',serif;font-weight:600}
+  .notes td.font{font-family:'Cormorant Garamond',serif;font-weight:600;color:var(--mint)}
   .notes td b{color:var(--ink)}
 
   /* Footer */
@@ -265,9 +276,9 @@
     margin-top:80px;padding-top:24px;border-top:1px solid var(--line);
     text-align:center;color:var(--muted);font-size:12px;letter-spacing:.2em;
   }
-  footer span{font-family:'Cormorant SC',serif}
+  footer span{font-family:'Cormorant SC',serif;color:var(--mint)}
 
-  [contenteditable="true"]{outline:1px dashed var(--gold);outline-offset:4px;background:rgba(169,142,91,.06)}
+  [contenteditable="true"]{outline:1px dashed var(--mint);outline-offset:4px;background:rgba(61,194,187,.08)}
 </style>
 </head>
 <body>
@@ -276,7 +287,7 @@
 <header>
   <div class="eyebrow">JEWELICE — LOGO REDESIGN</div>
   <h1>로고 리디자인 시안 6종</h1>
-  <p>Tiffany &amp; Co. 감성 — 세리프 · 정중앙 · 안정감 · 여백의 절제</p>
+  <p>Tiffany &amp; Co. 감성 — 세리프 · 정중앙 · 안정감 · <strong style="color:var(--mint)">기존 민트 심볼 유지</strong></p>
   <div class="tools">
     <button class="btn" id="editBtn">편집 모드</button>
     <button class="btn" id="darkBtn">블랙 미리보기</button>
@@ -284,11 +295,22 @@
   </div>
 </header>
 
+<!-- SVG 심볼 정의 (기존 그대로) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="jewelice-symbol" viewBox="0 0 40 40">
+      <polygon points="20,4 36,16 20,36 4,16" fill="#3dc2bb" stroke="#3dc2bb"/>
+      <polyline points="4,16 20,20 36,16" fill="none" stroke="#fff" stroke-width="1"/>
+      <line x1="20" y1="20" x2="20" y2="36" stroke="#fff" stroke-width="1"/>
+    </symbol>
+  </defs>
+</svg>
+
 <!-- 현재 로고 참고 -->
 <div class="ref">
-  <h4>현재 로고 (참고)</h4>
+  <h4>현재 로고 (참고 — 심볼 그대로 유지)</h4>
   <div class="old">
-    <svg width="38" height="38" viewBox="0 0 40 40"><polygon points="20,4 36,16 20,36 4,16" fill="#3dc2bb" stroke="#3dc2bb"/><polyline points="4,16 20,20 36,16" fill="none" stroke="#fff" stroke-width="1"/><line x1="20" y1="20" x2="20" y2="36" stroke="#fff" stroke-width="1"/></svg>
+    <svg class="ic-symbol" width="38" height="38"><use href="#jewelice-symbol"/></svg>
     <div>jewelice<span>Brilliant moment</span></div>
   </div>
 </div>
@@ -321,20 +343,15 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v2">
-        <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
-          <path d="M28 6 L48 22 L28 50 L8 22 Z" stroke="currentColor" stroke-width="1.2" class="ic-stroke"/>
-          <path d="M8 22 L28 26 L48 22" stroke="currentColor" stroke-width="0.8" class="ic-stroke"/>
-          <path d="M18 14 L28 26 L38 14" stroke="currentColor" stroke-width="0.8" class="ic-stroke"/>
-          <path d="M28 26 L28 50" stroke="currentColor" stroke-width="0.8" class="ic-stroke"/>
-        </svg>
+        <svg class="ic-symbol" width="56" height="56"><use href="#jewelice-symbol"/></svg>
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="tag" contenteditable="false">BRILLIANT MOMENT</div>
       </div>
     </div>
     <div class="meta">
       <div>
-        <h3>II. Diamond Crest</h3>
-        <div class="desc">상단 크레스트(다이아) + Cinzel 세리프. 주얼리 브랜드 정통 구성. 명함·박스에 강함.</div>
+        <h3>II. Symbol Above</h3>
+        <div class="desc">상단 기존 심볼 + Cinzel 세리프. 주얼리 브랜드 정통 구성. 명함·박스에 강함.</div>
       </div>
       <button class="toggle">DARK</button>
     </div>
@@ -346,12 +363,7 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v3">
-        <svg width="44" height="58" viewBox="0 0 44 58" fill="none">
-          <path d="M22 4 L40 22 L22 54 L4 22 Z" stroke="currentColor" stroke-width="1.2" class="ic-stroke"/>
-          <path d="M4 22 L22 26 L40 22" stroke="currentColor" stroke-width="0.7" class="ic-stroke"/>
-          <path d="M14 13 L22 26 L30 13" stroke="currentColor" stroke-width="0.7" class="ic-stroke"/>
-          <path d="M22 26 L22 54" stroke="currentColor" stroke-width="0.7" class="ic-stroke"/>
-        </svg>
+        <svg class="ic-symbol" width="58" height="58"><use href="#jewelice-symbol"/></svg>
         <div class="divider"></div>
         <div class="right">
           <div class="word" contenteditable="false">JEWELICE</div>
@@ -362,7 +374,7 @@
     <div class="meta">
       <div>
         <h3>III. Vertical Divider</h3>
-        <div class="desc">아이콘 | 워드마크 가로 정렬. 가장 안정감 ↑. 헤더·간판·SNS 프로필에 최적.</div>
+        <div class="desc">기존 심볼 | 워드마크 가로 정렬. 가장 안정감 ↑. 헤더·간판·SNS 프로필에 최적.</div>
       </div>
       <button class="toggle">DARK</button>
     </div>
@@ -375,7 +387,7 @@
     <div class="stage">
       <div class="v4">
         <div class="seal">
-          <div class="j">J</div>
+          <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
         </div>
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="est" contenteditable="false">EST. 2024 · SEOUL</div>
@@ -384,7 +396,7 @@
     <div class="meta">
       <div>
         <h3>IV. Monogram Seal</h3>
-        <div class="desc">원형 인장 + Italiana 모노그램. 와디즈·선물세트·왁스씰 패키지에 격조 부여.</div>
+        <div class="desc">원형 인장 + 기존 심볼 중앙 배치. 와디즈·선물세트·왁스씰 패키지에 격조 부여.</div>
       </div>
       <button class="toggle">DARK</button>
     </div>
@@ -400,7 +412,7 @@
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="ornaments">
           <div class="line"></div>
-          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 L13 7 L7 13 L1 7 Z" fill="currentColor" class="ic-fill"/></svg>
+          <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
           <div class="line"></div>
         </div>
         <div class="bottom" contenteditable="false">SEOUL · BRILLIANT MOMENT</div>
@@ -409,7 +421,7 @@
     <div class="meta">
       <div>
         <h3>V. Stamped Badge</h3>
-        <div class="desc">상하 텍스트 + 중앙 워드마크 + 장식. 와인·위스키 라벨 풍의 클래식 배지.</div>
+        <div class="desc">상하 텍스트 + 중앙 워드마크 + 심볼 장식. 와인·위스키 라벨 풍의 클래식 배지.</div>
       </div>
       <button class="toggle">DARK</button>
     </div>
@@ -421,7 +433,7 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v6">
-        <svg class="icon" width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 L13 7 L7 13 L1 7 Z" fill="currentColor" class="ic-fill"/></svg>
+        <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
         <div class="word" contenteditable="false">JEWEL<b>ICE</b></div>
         <div class="tag" contenteditable="false">Brilliant Moment</div>
       </div>
@@ -429,7 +441,7 @@
     <div class="meta">
       <div>
         <h3>VI. Minimal Modern</h3>
-        <div class="desc">가는 산세리프 + 한 점 다이아. 디지털 친화적 (앱 아이콘·웹 헤더). 미니멀 라인.</div>
+        <div class="desc">기존 심볼 작게 + 가는 산세리프. 디지털 친화적(앱 아이콘·웹 헤더). 미니멀 라인.</div>
       </div>
       <button class="toggle">DARK</button>
     </div>
@@ -439,7 +451,7 @@
 
 <!-- 디자인 노트 -->
 <div class="notes">
-  <h2>디자인 노트 — Tiffany & Co. 감성 적용 요소</h2>
+  <h2>디자인 노트 — Tiffany & Co. 감성 + 민트 통일</h2>
   <table>
     <tr>
       <th width="22%">요소</th><th width="33%">티파니 원칙</th><th>쥬얼아이스 적용</th>
@@ -461,23 +473,23 @@
     </tr>
     <tr>
       <td class="font">색</td>
-      <td>Tiffany Blue + 블랙 + 화이트 (3색 원칙)</td>
-      <td>아이보리(#f5f3ee) + 잉크블랙(#0d0d0d). 민트는 <b>장식</b>이 아닌 <b>제품</b>으로</td>
+      <td>Tiffany Blue (단일 시그니처 컬러)</td>
+      <td>쥬얼아이스 민트 <b>#3dc2bb</b> 통일. 워드마크·태그라인·선·심볼 모두 한 색</td>
     </tr>
     <tr>
       <td class="font">상징</td>
       <td>심볼 절제 — 글자가 곧 브랜드</td>
-      <td>다이아 라인 1개. 면(fill) 아닌 선(stroke)으로 가볍게</td>
+      <td><b>기존 민트 다이아 심볼 그대로 유지</b>. 새로 만들지 않음</td>
     </tr>
     <tr>
       <td class="font">태그라인</td>
       <td>전부 대문자 + 넓은 자간</td>
-      <td>BRILLIANT MOMENT — Cormorant SC, .5em 자간</td>
+      <td>BRILLIANT MOMENT — Cormorant SC, .5em 자간, 민트</td>
     </tr>
     <tr>
       <td class="font">선(rule)</td>
       <td>워드마크와 태그라인 사이 가는 선 1개</td>
-      <td>V1·V2·V5에 적용. 시선을 잡아주는 정박지</td>
+      <td>V1·V2·V5에 적용. 민트 가는 선이 시선을 잡아주는 정박지</td>
     </tr>
   </table>
 </div>
@@ -489,7 +501,6 @@
 </div>
 
 <script>
-  // PICK 저장
   document.querySelectorAll('.pick').forEach((btn,i)=>{
     const key='jewelice_logo_pick_'+i;
     if(localStorage.getItem(key)==='1'){btn.classList.add('on');btn.textContent='PICKED ✓'}
@@ -502,7 +513,6 @@
     });
   });
 
-  // DARK 토글 (개별 카드)
   document.querySelectorAll('.toggle').forEach((btn,i)=>{
     const key='jewelice_logo_dark_'+i;
     const stage=btn.closest('.card').querySelector('.stage');
@@ -515,7 +525,6 @@
     });
   });
 
-  // 전체 DARK
   document.getElementById('darkBtn').addEventListener('click',()=>{
     const allDark=[...document.querySelectorAll('.stage')].every(s=>s.classList.contains('dark'));
     document.querySelectorAll('.stage').forEach((s,i)=>{
@@ -526,7 +535,6 @@
     document.querySelectorAll('.toggle').forEach(b=>b.textContent=allDark?'DARK':'LIGHT');
   });
 
-  // 편집 모드
   let editing=false;
   document.getElementById('editBtn').addEventListener('click',()=>{
     editing=!editing;
@@ -540,13 +548,11 @@
       });
     }
   });
-  // 저장된 텍스트 로드
   document.querySelectorAll('[contenteditable]').forEach((el,i)=>{
     const k='jewelice_logo_text_'+i;
     const s=localStorage.getItem(k);if(s)el.textContent=s;
   });
 
-  // 초기화
   document.getElementById('resetBtn').addEventListener('click',()=>{
     if(!confirm('편집 내용·선택·다크모드 모두 초기화할까요?'))return;
     Object.keys(localStorage).filter(k=>k.startsWith('jewelice_logo_')).forEach(k=>localStorage.removeItem(k));
