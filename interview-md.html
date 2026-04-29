@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>온라인MD 면접 점수판</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: 'Pretendard', sans-serif; background: #f4f5f7; color: #1a2940; padding: 28px 16px; min-height: 100vh; }
+  .wrap { max-width: 1100px; margin: 0 auto; }
+
+  .header { background: linear-gradient(135deg, #1e3a5f, #2d5a8e); color: white; padding: 28px 32px; border-radius: 16px; margin-bottom: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  .header h1 { font-size: 26px; font-weight: 900; letter-spacing: -1px; }
+  .header .meta { font-size: 13px; color: #a8d4f0; margin-top: 4px; }
+  .header-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .header-btn { background: rgba(255,255,255,0.15); color: white; border: 1.5px solid rgba(255,255,255,0.3); padding: 9px 16px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.18s; }
+  .header-btn:hover { background: rgba(255,255,255,0.25); }
+
+  /* 첫 방문 안내 */
+  .first-visit {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border: 2px solid #fbbf24;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .first-visit.hide { display: none; }
+  .first-visit .ico { font-size: 24px; }
+  .first-visit .text { flex: 1; font-size: 13.5px; line-height: 1.7; color: #78350f; }
+  .first-visit .text strong { color: #92400e; }
+  .first-visit button { background: #f59e0b; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; font-size: 13px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tab { flex: 1; background: white; border: 2px solid transparent; padding: 18px 24px; border-radius: 14px; cursor: pointer; text-align: left; transition: 0.2s; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .tab:hover { transform: translateY(-2px); }
+  .tab.active.a { border-color: #dc2626; background: #fef2f2; }
+  .tab.active.b { border-color: #059669; background: #ecfdf5; }
+  .tab .tab-name { font-size: 18px; font-weight: 800; letter-spacing: -0.5px; }
+  .tab .tab-info { font-size: 12px; color: #6b7280; margin-top: 4px; }
+  .tab .tab-time { font-size: 12px; font-weight: 700; margin-top: 6px; }
+  .tab .tab-time.a { color: #dc2626; }
+  .tab .tab-time.b { color: #059669; }
+  .tab .tab-score { float: right; font-size: 14px; font-weight: 900; background: #1e3a5f; color: white; padding: 4px 12px; border-radius: 100px; }
+
+  .candidate-header { background: white; border-radius: 16px; padding: 22px 28px; margin-bottom: 14px; display: grid; grid-template-columns: 1fr auto; gap: 18px; align-items: center; }
+  .candidate-header.a { border-left: 4px solid #dc2626; }
+  .candidate-header.b { border-left: 4px solid #059669; }
+  .candidate-header h2 { font-size: 22px; font-weight: 800; letter-spacing: -0.5px; }
+  .candidate-header h2 .editable {
+    background: transparent;
+    border: 1.5px dashed #cbd5e1;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 22px;
+    font-weight: 800;
+    font-family: inherit;
+    color: inherit;
+    width: 280px;
+    max-width: 100%;
+  }
+  .candidate-header h2 .editable:focus { outline: none; border-color: #2d5a8e; border-style: solid; }
+  .candidate-header .meta-grid { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; font-size: 12.5px; color: #4b5563; }
+  .candidate-header .meta-grid .meta-input {
+    background: #f3f4f6;
+    border: 1.5px dashed transparent;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 12.5px;
+    color: #4b5563;
+    min-width: 100px;
+    transition: 0.15s;
+  }
+  .candidate-header .meta-grid .meta-input:hover { border-color: #cbd5e1; }
+  .candidate-header .meta-grid .meta-input:focus { outline: none; border-color: #2d5a8e; background: white; }
+  .candidate-header .total { text-align: center; padding: 14px 22px; background: linear-gradient(135deg, #1e3a5f, #2d5a8e); color: white; border-radius: 12px; min-width: 150px; }
+  .candidate-header .total .num { font-size: 32px; font-weight: 900; line-height: 1; letter-spacing: -1px; }
+  .candidate-header .total .out { font-size: 12px; opacity: 0.7; margin-top: 4px; }
+  .candidate-header .total .grade { font-size: 11px; margin-top: 6px; padding: 3px 10px; background: rgba(255,255,255,0.2); border-radius: 100px; font-weight: 700; }
+
+  .q-card { background: white; border-radius: 14px; padding: 20px 24px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-left: 4px solid #2d5a8e; }
+  .q-card.must { border-left-color: #dc2626; background: #fef9f8; }
+  .q-card.bonus { border-left-color: #059669; background: #f7fdf9; }
+
+  .q-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; margin-bottom: 10px; }
+  .q-num { background: #1e3a5f; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800; flex-shrink: 0; }
+  .q-card.must .q-num { background: #dc2626; }
+  .q-card.bonus .q-num { background: #059669; }
+
+  .q-title { flex: 1; font-size: 15px; font-weight: 700; color: #1a2940; line-height: 1.5; }
+  .q-tag { font-size: 10px; padding: 4px 10px; border-radius: 100px; font-weight: 800; letter-spacing: 0.5px; white-space: nowrap; }
+  .tag-must { background: #fee2e2; color: #991b1b; }
+  .tag-imp { background: #dbeafe; color: #1e40af; }
+  .tag-bonus { background: #d1fae5; color: #065f46; }
+
+  .q-why { font-size: 12.5px; color: #6b7280; line-height: 1.6; padding-left: 42px; margin-bottom: 12px; }
+  .q-target { font-size: 12px; color: #4b5563; padding-left: 42px; margin-bottom: 14px; font-style: italic; }
+  .q-target strong { font-style: normal; color: #1e3a5f; font-weight: 700; }
+
+  .score-input { display: flex; gap: 8px; padding-left: 42px; flex-wrap: wrap; align-items: center; }
+  .score-btn { width: 46px; height: 46px; border: 2px solid #e5e7eb; background: white; border-radius: 10px; font-size: 15px; font-weight: 800; cursor: pointer; transition: 0.15s; color: #6b7280; font-family: inherit; }
+  .score-btn:hover { border-color: #2d5a8e; transform: translateY(-2px); }
+  .score-btn.selected { background: linear-gradient(135deg, #1e3a5f, #2d5a8e); color: white; border-color: #1e3a5f; box-shadow: 0 4px 12px rgba(30, 58, 95, 0.3); }
+  .score-btn.s1.selected { background: linear-gradient(135deg, #b91c1c, #ef4444); border-color: #b91c1c; }
+  .score-btn.s2.selected { background: linear-gradient(135deg, #c2410c, #f97316); border-color: #c2410c; }
+  .score-btn.s3.selected { background: linear-gradient(135deg, #b45309, #f59e0b); border-color: #b45309; }
+  .score-btn.s4.selected { background: linear-gradient(135deg, #15803d, #22c55e); border-color: #15803d; }
+  .score-btn.s5.selected { background: linear-gradient(135deg, #047857, #059669); border-color: #047857; }
+  .score-label { font-size: 11px; color: #9ca3af; margin-left: 12px; font-weight: 600; }
+
+  .memo-input { width: calc(100% - 42px); margin-top: 10px; margin-left: 42px; padding: 10px 14px; border: 1.5px solid #e5e7eb; border-radius: 10px; font-size: 13px; font-family: inherit; resize: vertical; min-height: 50px; }
+  .memo-input:focus { outline: none; border-color: #2d5a8e; }
+
+  .section-title { margin: 22px 0 12px; padding-left: 4px; font-size: 15px; font-weight: 800; color: #1e3a5f; letter-spacing: -0.3px; display: flex; align-items: center; gap: 8px; }
+  .section-title .ico { font-size: 18px; }
+  .section-title .count { font-size: 11px; background: #f3f4f6; color: #6b7280; padding: 3px 9px; border-radius: 100px; font-weight: 700; }
+
+  .final-decision { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 16px; padding: 24px 28px; margin-top: 22px; }
+  .final-decision h2 { font-size: 18px; font-weight: 800; color: #78350f; margin-bottom: 14px; }
+  .decision-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+  .dec-btn { padding: 14px 12px; border: 2px solid #e5e7eb; background: white; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; font-family: inherit; transition: 0.15s; color: #4b5563; }
+  .dec-btn:hover { transform: translateY(-2px); }
+  .dec-btn.selected.hire { background: #059669; color: white; border-color: #059669; }
+  .dec-btn.selected.maybe { background: #f59e0b; color: white; border-color: #f59e0b; }
+  .dec-btn.selected.hold { background: #6b7280; color: white; border-color: #6b7280; }
+  .dec-btn.selected.pass { background: #dc2626; color: white; border-color: #dc2626; }
+
+  .salary-row { display: grid; grid-template-columns: 200px 1fr; gap: 14px; margin-bottom: 10px; align-items: center; }
+  .salary-row label { font-size: 13px; font-weight: 700; color: #78350f; }
+  .salary-row input { padding: 10px 14px; border: 1.5px solid #fed7aa; border-radius: 8px; font-size: 13px; font-family: inherit; background: white; }
+
+  .compare-section { background: white; border-radius: 16px; padding: 24px 28px; margin-top: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+  .compare-section h2 { font-size: 18px; font-weight: 800; margin-bottom: 14px; color: #1e3a5f; }
+  .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .compare-card { padding: 18px 20px; border-radius: 12px; }
+  .compare-card.a { background: #fef2f2; }
+  .compare-card.b { background: #ecfdf5; }
+  .compare-card .name { font-size: 15px; font-weight: 800; margin-bottom: 8px; }
+  .compare-card .name.a { color: #991b1b; }
+  .compare-card .name.b { color: #065f46; }
+  .compare-card .big { font-size: 38px; font-weight: 900; line-height: 1; letter-spacing: -1.5px; }
+  .compare-card .big.a { color: #dc2626; }
+  .compare-card .big.b { color: #059669; }
+  .compare-card .desc { font-size: 12px; color: #6b7280; margin-top: 8px; }
+
+  @media print { body { background: white; padding: 0; } .header-actions, .tabs, .first-visit { display: none; } .q-card { page-break-inside: avoid; box-shadow: none; border: 1px solid #ddd; } .candidate { page-break-after: always; } }
+
+  .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px); background: #059669; color: white; padding: 12px 24px; border-radius: 100px; font-weight: 700; font-size: 13px; transition: 0.3s; z-index: 1000; }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="header">
+    <div>
+      <h1>📋 온라인MD 면접 점수판</h1>
+      <div class="meta">2026-04-28 화 · 입력 자동 저장 (이 기기에만) · 인쇄·내보내기 가능</div>
+    </div>
+    <div class="header-actions">
+      <button class="header-btn" onclick="window.print()">🖨️ 인쇄</button>
+      <button class="header-btn" onclick="exportData()">💾 내보내기</button>
+      <button class="header-btn" onclick="resetCurrent()">🗑️ 현재 후보자 초기화</button>
+    </div>
+  </div>
+
+  <!-- 첫 방문 안내 -->
+  <div class="first-visit" id="firstVisit">
+    <div class="ico">👋</div>
+    <div class="text">
+      <strong>처음이라면:</strong> 후보자 헤더의 점선 테두리 입력칸을 클릭해서 <strong>이름·전화·이메일</strong>을 입력하세요.
+      입력값은 이 브라우저에만 저장되며 서버에 올라가지 않습니다 (개인정보 보호).
+      한 번 입력하면 다음에 같은 기기에서 이 페이지를 열 때 자동으로 복원됩니다.
+    </div>
+    <button onclick="hideFirstVisit()">알겠습니다</button>
+  </div>
+
+  <!-- 탭 -->
+  <div class="tabs">
+    <div class="tab a active" id="tab-a" onclick="switchTab('a')">
+      <div>
+        <div class="tab-name"><span id="tab-name-a">후보자 A</span> <span class="tab-score" id="score-pill-a">0</span></div>
+        <div class="tab-info" id="tab-info-a">메타 정보</div>
+        <div class="tab-time a">📅 오늘 19:30 (확정)</div>
+      </div>
+    </div>
+    <div class="tab b" id="tab-b" onclick="switchTab('b')">
+      <div>
+        <div class="tab-name"><span id="tab-name-b">후보자 B</span> <span class="tab-score" id="score-pill-b">0</span></div>
+        <div class="tab-info" id="tab-info-b">메타 정보</div>
+        <div class="tab-time b">📅 일정 조율중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 후보자 A (오늘 19:30) -->
+  <div class="candidate" id="candidate-a">
+    <div class="candidate-header a">
+      <div>
+        <h2>👤 <input class="editable" data-pii="a-name" placeholder="후보자 A 이름"></h2>
+        <div class="meta-grid">
+          <input class="meta-input" data-pii="a-info" placeholder="남/여 · 나이 · 경력년수 · 거주지">
+          <input class="meta-input" data-pii="a-salary" placeholder="희망 연봉">
+          <input class="meta-input" data-pii="a-phone" placeholder="📞 전화번호">
+          <input class="meta-input" data-pii="a-email" placeholder="📧 이메일" style="min-width: 180px;">
+        </div>
+      </div>
+      <div class="total">
+        <div class="num" id="total-num-a">0</div>
+        <div class="out">/ 60</div>
+        <div class="grade" id="grade-a">-</div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="ico">🚩</span>리스크 검증 (필수 4)<span class="count">가중 ×2</span></div>
+
+    <div class="q-card must">
+      <div class="q-head">
+        <div class="q-num">1</div>
+        <div class="q-title">최근 직장 퇴사 사유 + 공백 기간 동안 무엇을?</div>
+        <span class="q-tag tag-must">필수</span>
+      </div>
+      <div class="q-why">의도된 휴식인지, 다음 자리 못 찾은 건지 명확해야. 흐리면 큰 적신호.</div>
+      <div class="q-target">합격 기준: <strong>구체적·자기 성찰 있는 답변 + 다음 직장에선 어떻게 다를 것인가</strong></div>
+      <div class="score-input" data-q="a-q1" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=흐림 ··· 5=명쾌</span>
+      </div>
+      <textarea class="memo-input" data-memo="a-q1" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head">
+        <div class="q-num">2</div>
+        <div class="q-title">단기재직 직장 — 직급 다운그레이드 또는 짧게 그만둔 이유?</div>
+        <span class="q-tag tag-must">필수</span>
+      </div>
+      <div class="q-why">합리적 설명 없으면 적신호. 외부 사유(외국계 본사 룰·신산업 도전 등) 명확해야.</div>
+      <div class="q-target">합격 기준: <strong>합리적 사유 + 본인이 자발적으로 선택한 결정</strong></div>
+      <div class="score-input" data-q="a-q2" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=의심 ··· 5=합리적</span>
+      </div>
+      <textarea class="memo-input" data-memo="a-q2" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head">
+        <div class="q-num">3</div>
+        <div class="q-title">통근 거리 (편도 90분) — 1년 이상 가능한가? 이사 의향?</div>
+        <span class="q-tag tag-must">필수</span>
+      </div>
+      <div class="q-why">통근 거리는 1년 안에 그만두는 1순위 사유. 이사·통근 수단 구체 계획 있는지.</div>
+      <div class="q-target">합격 기준: <strong>이사 계획 또는 차/대중교통 구체 + 6개월 이상 지속 의지</strong></div>
+      <div class="score-input" data-q="a-q3" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=불가능 ··· 5=확실</span>
+      </div>
+      <textarea class="memo-input" data-memo="a-q3" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head">
+        <div class="q-num">4</div>
+        <div class="q-title">희망 연봉 — 5,000~5,500 협상 가능? 근거는?</div>
+        <span class="q-tag tag-must">필수</span>
+      </div>
+      <div class="q-why">매출 12억·4명 팀에 6,000+ 부담. 본인 받아본 최고인지, 협상 시작점인지.</div>
+      <div class="q-target">합격 기준: <strong>5,500 이하 합의 가능 + 성과급 인센티브 수용</strong></div>
+      <div class="score-input" data-q="a-q4" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=완강 ··· 5=유연</span>
+      </div>
+      <textarea class="memo-input" data-memo="a-q4" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="section-title"><span class="ico">💪</span>역량·핏 검증 (4)<span class="count">가중 ×1</span></div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">5</div><div class="q-title">21년 동안 본인이 만든 가장 큰 매출·성장 사례 1개?</div><span class="q-tag tag-imp">역량</span></div>
+      <div class="q-why">21년 경력의 정량 성과. 추상적 답변(노력·열정)만 나오면 실력 의심.</div>
+      <div class="q-target">합격 기준: <strong>구체적 숫자 + 본인 기여분 + 외부 환경 분리 설명</strong></div>
+      <div class="score-input" data-q="a-q5" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="a-q5" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">6</div><div class="q-title">잦은 이직 패턴 — 본인이 보는 시각은?</div><span class="q-tag tag-imp">역량</span></div>
+      <div class="q-why">자기 인식 검증. "회사가 이상해서"만 답하면 위험. "내가 이래서"가 섞여야 자기성찰.</div>
+      <div class="q-target">합격 기준: <strong>본인 책임 인정 + 다음 직장에서 다르게 할 점 명확</strong></div>
+      <div class="score-input" data-q="a-q6" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="a-q6" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">7</div><div class="q-title">차장급 → 4명 팀에서 직접 엑셀·전화·발주 다 OK?</div><span class="q-tag tag-imp">역량</span></div>
+      <div class="q-why">큰 회사 차장(관리)과 작은 팀 차장(실무+관리) 다름. 손 움직이는 일에 거부감 있는지.</div>
+      <div class="q-target">합격 기준: <strong>"당연히 직접 합니다" 즉답 + 구체 사례 제시</strong></div>
+      <div class="score-input" data-q="a-q7" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="a-q7" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">8</div><div class="q-title">B2B(프리미엄 바·호텔) 즉시 가능한 네트워크 자산?</div><span class="q-tag tag-imp">역량</span></div>
+      <div class="q-why">21년 영업맨 핵심 자산은 인맥. F&B·호텔·바 라인업 가지고 있는지, 백지 상태인지.</div>
+      <div class="q-target">합격 기준: <strong>구체적 업장명·담당자 레벨 언급 + 즉시 영업 가능</strong></div>
+      <div class="score-input" data-q="a-q8" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="a-q8" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="final-decision">
+      <h2>🎯 최종 결정 (후보자 A)</h2>
+      <div class="decision-buttons" data-cand="a">
+        <button class="dec-btn hire" data-v="hire">✅ 채용</button>
+        <button class="dec-btn maybe" data-v="maybe">🟡 1주 보류</button>
+        <button class="dec-btn hold" data-v="hold">⏸️ 후보자 B 결과 보고</button>
+        <button class="dec-btn pass" data-v="pass">❌ 마감</button>
+      </div>
+      <div class="salary-row"><label>제시 가능 연봉:</label><input type="text" data-memo="a-salary-offer" placeholder="예: 5,200만원 + 성과급 10%"></div>
+      <div class="salary-row"><label>총평·핵심 인상:</label><input type="text" data-memo="a-summary" placeholder="한 문장으로..."></div>
+    </div>
+  </div>
+
+  <!-- 후보자 B -->
+  <div class="candidate hidden" id="candidate-b">
+    <div class="candidate-header b">
+      <div>
+        <h2>👤 <input class="editable" data-pii="b-name" placeholder="후보자 B 이름"></h2>
+        <div class="meta-grid">
+          <input class="meta-input" data-pii="b-info" placeholder="남/여 · 나이 · 경력년수 · 거주지">
+          <input class="meta-input" data-pii="b-salary" placeholder="직전 연봉">
+          <input class="meta-input" data-pii="b-phone" placeholder="📞 전화번호">
+          <input class="meta-input" data-pii="b-email" placeholder="📧 이메일" style="min-width: 180px;">
+        </div>
+      </div>
+      <div class="total">
+        <div class="num" id="total-num-b">0</div>
+        <div class="out">/ 60</div>
+        <div class="grade" id="grade-b">-</div>
+      </div>
+    </div>
+
+    <div class="section-title"><span class="ico">⭐</span>진정성·이직동기 (필수 4)<span class="count">가중 ×2</span></div>
+
+    <div class="q-card must">
+      <div class="q-head"><div class="q-num">1</div><div class="q-title">현재 재직중인데 이직 동기는?</div><span class="q-tag tag-must">필수</span></div>
+      <div class="q-why">잘 가고 있는 사람이 왜 옮기는지. 우리 회사도 1년 안에 안 떠날 사람인지.</div>
+      <div class="q-target">합격 기준: <strong>현 직장 한계 + 우리 회사에서 얻고 싶은 것 명확</strong></div>
+      <div class="score-input" data-q="b-q1" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=흐림 ··· 5=명확</span>
+      </div>
+      <textarea class="memo-input" data-memo="b-q1" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head"><div class="q-num">2</div><div class="q-title">우리 회사(쥬얼아이스) 알고 있었나? 끌린 이유?</div><span class="q-tag tag-must">필수</span></div>
+      <div class="q-why">자기소개서 "지원동기" 비어있는 게 유일한 적신호. 이 답변이 핵심.</div>
+      <div class="q-target">합격 기준: <strong>인스타·자사몰 본 흔적 + 구체적 호감 포인트 1개 이상</strong></div>
+      <div class="score-input" data-q="b-q2" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=백지 ··· 5=깊은 이해</span>
+      </div>
+      <textarea class="memo-input" data-memo="b-q2" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head"><div class="q-num">3</div><div class="q-title">통근 — 어떻게 다닐 계획?</div><span class="q-tag tag-must">필수</span></div>
+      <div class="q-why">차로 30~45분 가능 범위지만 러시아워·근무시간 고려. 1년 후 변동 가능성 체크.</div>
+      <div class="q-target">합격 기준: <strong>차/대중교통 구체적 + 1년 이상 안정 의지</strong></div>
+      <div class="score-input" data-q="b-q3" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=불안 ··· 5=확실</span>
+      </div>
+      <textarea class="memo-input" data-memo="b-q3" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card must">
+      <div class="q-head"><div class="q-num">4</div><div class="q-title">5,500~5,800 협상 가능? (성과급 옵션 포함)</div><span class="q-tag tag-must">필수</span></div>
+      <div class="q-why">실력 대비 적정 연봉. 약간 인상 + 성과급으로 동기 부여 가능 여부.</div>
+      <div class="q-target">합격 기준: <strong>5,500 이상 + 성과급 수용 또는 5,800 한 번에</strong></div>
+      <div class="score-input" data-q="b-q4" data-weight="2">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+        <span class="score-label">1=완강 ··· 5=유연</span>
+      </div>
+      <textarea class="memo-input" data-memo="b-q4" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="section-title"><span class="ico">🏆</span>성과 검증 (4)<span class="count">가중 ×1</span></div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">5</div><div class="q-title">매출 400% 성장 — 본인 기여분 vs 외부 환경 분리해서 설명?</div><span class="q-tag tag-imp">성과</span></div>
+      <div class="q-why">코로나 호황·런칭 효과인지, 본인 기획·운영의 결과인지. 인터뷰 핵심 검증.</div>
+      <div class="q-target">합격 기준: <strong>구체적 액션 3개 + 각 액션의 임팩트 정량 설명</strong></div>
+      <div class="score-input" data-q="b-q5" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="b-q5" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card">
+      <div class="q-head"><div class="q-num">6</div><div class="q-title">ROAS 500% → 1200% 개선 — 결정적 액션은?</div><span class="q-tag tag-imp">성과</span></div>
+      <div class="q-why">디지털 광고 실력 검증. 키워드·입찰·소재 중 무엇이 임팩트였는지 구체.</div>
+      <div class="q-target">합격 기준: <strong>구체적 광고 플랫폼 + 액션 + 결과 데이터</strong></div>
+      <div class="score-input" data-q="b-q6" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="b-q6" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card bonus">
+      <div class="q-head"><div class="q-num">7</div><div class="q-title">우리 회사 인스타·자사몰 본 적 있다면, 무엇을 어떻게 개선?</div><span class="q-tag tag-bonus">보너스</span></div>
+      <div class="q-why">실력 + 진정성 동시 검증. 자신있게 답하면 즉시 채용 결정 가능.</div>
+      <div class="q-target">합격 기준: <strong>구체적 페이지·콘텐츠 언급 + 개선안 3개 이상</strong></div>
+      <div class="score-input" data-q="b-q7" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="b-q7" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="q-card bonus">
+      <div class="q-head"><div class="q-num">8</div><div class="q-title">4명 작은 팀 — 디자인·MD·CS·발주 전부 직접 OK?</div><span class="q-tag tag-bonus">보너스</span></div>
+      <div class="q-why">대리/파트장이 작은 팀 손 움직이기 거부감 없는지. 포토샵 가능하니 핏 좋음.</div>
+      <div class="q-target">합격 기준: <strong>"오히려 좋다" 톤 + 본인 강점으로 연결</strong></div>
+      <div class="score-input" data-q="b-q8" data-weight="1">
+        <button class="score-btn s1" data-v="1">1</button><button class="score-btn s2" data-v="2">2</button><button class="score-btn s3" data-v="3">3</button><button class="score-btn s4" data-v="4">4</button><button class="score-btn s5" data-v="5">5</button>
+      </div>
+      <textarea class="memo-input" data-memo="b-q8" placeholder="답변 메모..."></textarea>
+    </div>
+
+    <div class="final-decision">
+      <h2>🎯 최종 결정 (후보자 B)</h2>
+      <div class="decision-buttons" data-cand="b">
+        <button class="dec-btn hire" data-v="hire">✅ 채용 (즉시 제안)</button>
+        <button class="dec-btn maybe" data-v="maybe">🟡 1주 보류</button>
+        <button class="dec-btn hold" data-v="hold">⏸️ 검토중</button>
+        <button class="dec-btn pass" data-v="pass">❌ 마감</button>
+      </div>
+      <div class="salary-row"><label>제시 가능 연봉:</label><input type="text" data-memo="b-salary-offer" placeholder="예: 5,800만원 + 성과급"></div>
+      <div class="salary-row"><label>총평·핵심 인상:</label><input type="text" data-memo="b-summary" placeholder="한 문장으로..."></div>
+    </div>
+  </div>
+
+  <!-- 비교 -->
+  <div class="compare-section">
+    <h2>⚔️ 두 후보 점수 비교 (실시간)</h2>
+    <div class="compare-grid">
+      <div class="compare-card a">
+        <div class="name a" id="compare-name-a">후보자 A</div>
+        <div class="big a" id="compare-a">0</div>
+        <div class="desc">/ 60점 — 19:30 면접</div>
+      </div>
+      <div class="compare-card b">
+        <div class="name b" id="compare-name-b">후보자 B</div>
+        <div class="big b" id="compare-b">0</div>
+        <div class="desc">/ 60점 — 일정 조율중</div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 14px 18px; background: #f8fafc; border-radius: 10px; font-size: 13px; color: #4b5563; line-height: 1.7;">
+      💡 <strong>판단 기준:</strong>
+      <strong style="color:#059669;">45+점 = 즉시 채용</strong> ·
+      <strong style="color:#f59e0b;">35~44점 = 보류·재검토</strong> ·
+      <strong style="color:#dc2626;">35점 미만 = 마감</strong>.
+      필수 4개 중 1개라도 1~2점이면 점수 무관하게 마감 권장.
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:24px; color:#6b7280; font-size:12px;">
+    天啓 × 쥬얼아이스 · 면접 점수판 · 2026-04-28
+  </p>
+
+</div>
+
+<div class="toast" id="toast">✓ 저장됨</div>
+
+<script>
+const STORAGE_KEY = 'jewelice-interview-md-2026';
+const VISIT_KEY = 'jewelice-interview-md-visited';
+
+function loadState() {
+  try {
+    const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    document.querySelectorAll('.score-input').forEach(input => {
+      const v = data[input.dataset.q];
+      if (v) {
+        const btn = input.querySelector(`[data-v="${v}"]`);
+        if (btn) btn.classList.add('selected');
+      }
+    });
+    document.querySelectorAll('[data-memo], [data-pii]').forEach(el => {
+      const k = el.dataset.memo || el.dataset.pii;
+      if (data[k]) el.value = data[k];
+    });
+    document.querySelectorAll('.decision-buttons').forEach(grp => {
+      const v = data[`${grp.dataset.cand}-decision`];
+      if (v) {
+        const btn = grp.querySelector(`[data-v="${v}"]`);
+        if (btn) btn.classList.add('selected');
+      }
+    });
+    updateAllScores();
+    updateNames();
+
+    if (localStorage.getItem(VISIT_KEY)) {
+      document.getElementById('firstVisit').classList.add('hide');
+    }
+  } catch (e) {}
+}
+
+function save(key, val) {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  data[key] = val;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  showToast();
+}
+
+function hideFirstVisit() {
+  document.getElementById('firstVisit').classList.add('hide');
+  localStorage.setItem(VISIT_KEY, '1');
+}
+
+document.querySelectorAll('.score-input').forEach(input => {
+  input.querySelectorAll('.score-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      input.querySelectorAll('.score-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      save(input.dataset.q, btn.dataset.v);
+      updateAllScores();
+    });
+  });
+});
+
+document.querySelectorAll('[data-memo], [data-pii]').forEach(el => {
+  el.addEventListener('input', () => {
+    save(el.dataset.memo || el.dataset.pii, el.value);
+    if (el.dataset.pii) updateNames();
+  });
+});
+
+document.querySelectorAll('.decision-buttons').forEach(grp => {
+  grp.querySelectorAll('.dec-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      grp.querySelectorAll('.dec-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      save(`${grp.dataset.cand}-decision`, btn.dataset.v);
+    });
+  });
+});
+
+function calculateScore(prefix) {
+  let total = 0;
+  document.querySelectorAll(`.score-input[data-q^="${prefix}-"]`).forEach(input => {
+    const selected = input.querySelector('.score-btn.selected');
+    if (selected) total += parseInt(selected.dataset.v) * parseInt(input.dataset.weight || 1);
+  });
+  return total;
+}
+
+function gradeText(s) {
+  if (s >= 50) return '⭐ A — 즉시 채용';
+  if (s >= 45) return '🌟 B+ — 채용 권장';
+  if (s >= 40) return '🟢 B — 채용 가능';
+  if (s >= 35) return '🟡 C — 재검토';
+  if (s >= 25) return '🟠 D — 보류';
+  if (s > 0) return '🔴 E — 마감';
+  return '-';
+}
+
+function updateAllScores() {
+  const a = calculateScore('a'), b = calculateScore('b');
+  document.getElementById('total-num-a').textContent = a;
+  document.getElementById('total-num-b').textContent = b;
+  document.getElementById('score-pill-a').textContent = a;
+  document.getElementById('score-pill-b').textContent = b;
+  document.getElementById('compare-a').textContent = a;
+  document.getElementById('compare-b').textContent = b;
+  document.getElementById('grade-a').textContent = gradeText(a);
+  document.getElementById('grade-b').textContent = gradeText(b);
+}
+
+function updateNames() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const aName = data['a-name'] || '후보자 A';
+  const bName = data['b-name'] || '후보자 B';
+  const aInfo = data['a-info'] || '메타 정보';
+  const bInfo = data['b-info'] || '메타 정보';
+  document.getElementById('tab-name-a').textContent = aName;
+  document.getElementById('tab-name-b').textContent = bName;
+  document.getElementById('tab-info-a').textContent = aInfo;
+  document.getElementById('tab-info-b').textContent = bInfo;
+  document.getElementById('compare-name-a').textContent = aName;
+  document.getElementById('compare-name-b').textContent = bName;
+}
+
+function switchTab(c) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`tab-${c}`).classList.add('active');
+  document.querySelectorAll('.candidate').forEach(d => d.classList.add('hidden'));
+  document.getElementById(`candidate-${c}`).classList.remove('hidden');
+}
+
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  clearTimeout(window._toastT);
+  window._toastT = setTimeout(() => t.classList.remove('show'), 1200);
+}
+
+function exportData() {
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `면접점수_${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function resetCurrent() {
+  const active = document.querySelector('.tab.active').id.replace('tab-', '');
+  if (!confirm(`${active === 'a' ? '후보자 A' : '후보자 B'} 점수·메모 전부 초기화할까요?`)) return;
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  Object.keys(data).forEach(k => {
+    if (k.startsWith(`${active}-`)) delete data[k];
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  location.reload();
+}
+
+loadState();
+</script>
+
+</body>
+</html>
