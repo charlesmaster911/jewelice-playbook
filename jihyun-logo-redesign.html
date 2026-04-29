@@ -88,23 +88,28 @@
     border:1px solid var(--paper-2);
     margin-bottom:24px;
   }
-  .stage.dark{background:linear-gradient(180deg,#0a1f1e 0%,#000 100%);border-color:#0f2b29}
+  .stage.dark{background:linear-gradient(180deg,#3dc2bb 0%,#2ba8a2 100%);border-color:#2ba8a2}
   .stage.dark .v1 .word,
   .stage.dark .v2 .word,
   .stage.dark .v3 .right .word,
   .stage.dark .v4 .word,
   .stage.dark .v5 .word,
-  .stage.dark .v6 .word{color:var(--mint) !important}
+  .stage.dark .v6 .word{color:#ffffff !important}
   .stage.dark .v1 .tag,
+  .stage.dark .v2 .tag,
+  .stage.dark .v3 .right .tag,
+  .stage.dark .v4 .est,
+  .stage.dark .v5 .top,
   .stage.dark .v5 .bottom,
-  .stage.dark .v6 .word b{color:#fff !important}
+  .stage.dark .v6 .tag,
+  .stage.dark .v6 .word b{color:#ffffff !important}
   .stage.dark .v1 .rule,
   .stage.dark .v3 .divider,
-  .stage.dark .v5 .ornaments .line{background:var(--mint) !important}
-  .stage.dark .v4 .seal{border-color:var(--mint) !important}
+  .stage.dark .v5 .ornaments .line{background:#ffffff !important}
+  .stage.dark .v2 .tag::before{background:#ffffff !important}
+  .stage.dark .v4 .seal{border-color:#ffffff !important}
   .stage.dark .v4 .seal::before,
-  .stage.dark .v4 .seal::after{background:var(--mint) !important}
-  .stage.dark .v4 .seal .j{color:var(--mint) !important}
+  .stage.dark .v4 .seal::after{background:#ffffff !important}
 
   .meta{
     display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
@@ -192,7 +197,7 @@
     top:50%;transform:translateY(-50%);
   }
   .v4 .seal::before{left:-3px} .v4 .seal::after{right:-3px}
-  .v4 .seal .ic-symbol{width:74px;height:74px}
+  .v4 .seal .ic-symbol{width:78px;height:70px}
   .v4 .word{
     font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;
     letter-spacing:.36em;text-transform:uppercase;padding-left:.36em;color:var(--mint);
@@ -217,7 +222,7 @@
     display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0 14px;
   }
   .v5 .ornaments .line{width:64px;height:1px;background:var(--mint)}
-  .v5 .ornaments .ic-symbol{width:18px;height:18px}
+  .v5 .ornaments .ic-symbol{width:22px;height:20px}
   .v5 .bottom{
     font-family:'Cormorant SC',serif;font-size:10.5px;letter-spacing:.55em;
     color:var(--mint);padding-left:.55em;
@@ -225,7 +230,7 @@
 
   /* V6 — Minimal Modern */
   .v6{text-align:center}
-  .v6 .ic-symbol{margin:0 auto 22px;display:block;width:22px;height:22px}
+  .v6 .ic-symbol{margin:0 auto 22px;display:block;width:24px;height:22px}
   .v6 .word{
     font-family:'Inter',sans-serif;font-weight:300;font-size:48px;letter-spacing:.42em;
     text-transform:uppercase;color:var(--mint);padding-left:.42em;
@@ -290,18 +295,37 @@
   <p>Tiffany &amp; Co. 감성 — 세리프 · 정중앙 · 안정감 · <strong style="color:var(--mint)">기존 민트 심볼 유지</strong></p>
   <div class="tools">
     <button class="btn" id="editBtn">편집 모드</button>
-    <button class="btn" id="darkBtn">블랙 미리보기</button>
+    <button class="btn" id="darkBtn">민트 배경 보기</button>
     <button class="btn dark" id="resetBtn">초기화</button>
   </div>
 </header>
 
-<!-- SVG 심볼 정의 (기존 그대로) -->
+<!-- SVG 심볼 정의 (기존 로고 정확히 카피 — 브릴리언트 컷 다이아몬드) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
-    <symbol id="jewelice-symbol" viewBox="0 0 40 40">
-      <polygon points="20,4 36,16 20,36 4,16" fill="#3dc2bb" stroke="#3dc2bb"/>
-      <polyline points="4,16 20,20 36,16" fill="none" stroke="#fff" stroke-width="1"/>
-      <line x1="20" y1="20" x2="20" y2="36" stroke="#fff" stroke-width="1"/>
+    <!-- 라이트 배경용 (민트 stroke) -->
+    <symbol id="jewelice-symbol" viewBox="0 0 100 90">
+      <g fill="none" stroke="#3dc2bb" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <!-- 외곽: table 윗변 → 우상crown → 우girdle → pavilion 끝 → 좌girdle → 좌상crown → close -->
+        <path d="M 30 8 L 70 8 L 92 32 L 50 86 L 8 32 Z"/>
+        <!-- girdle 가로선 (다이아 허리) -->
+        <path d="M 8 32 L 92 32"/>
+        <!-- crown 안쪽 facet — table 양 끝에서 girdle 중앙점으로 V자 -->
+        <path d="M 30 8 L 50 32"/>
+        <path d="M 70 8 L 50 32"/>
+        <!-- pavilion 중앙 세로선 (다이아 안쪽 깊이) -->
+        <path d="M 50 32 L 50 86"/>
+      </g>
+    </symbol>
+    <!-- 민트 배경용 (화이트 stroke) -->
+    <symbol id="jewelice-symbol-white" viewBox="0 0 100 90">
+      <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M 30 8 L 70 8 L 92 32 L 50 86 L 8 32 Z"/>
+        <path d="M 8 32 L 92 32"/>
+        <path d="M 30 8 L 50 32"/>
+        <path d="M 70 8 L 50 32"/>
+        <path d="M 50 32 L 50 86"/>
+      </g>
     </symbol>
   </defs>
 </svg>
@@ -310,8 +334,8 @@
 <div class="ref">
   <h4>현재 로고 (참고 — 심볼 그대로 유지)</h4>
   <div class="old">
-    <svg class="ic-symbol" width="38" height="38"><use href="#jewelice-symbol"/></svg>
-    <div>jewelice<span>Brilliant moment</span></div>
+    <svg class="ic-symbol" width="44" height="40" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
+    <div>jewelice<span>PREMIUM CUSTOM ICE</span></div>
   </div>
 </div>
 
@@ -343,7 +367,7 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v2">
-        <svg class="ic-symbol" width="56" height="56"><use href="#jewelice-symbol"/></svg>
+        <svg class="ic-symbol" width="62" height="56" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="tag" contenteditable="false">BRILLIANT MOMENT</div>
       </div>
@@ -363,7 +387,7 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v3">
-        <svg class="ic-symbol" width="58" height="58"><use href="#jewelice-symbol"/></svg>
+        <svg class="ic-symbol" width="64" height="58" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
         <div class="divider"></div>
         <div class="right">
           <div class="word" contenteditable="false">JEWELICE</div>
@@ -387,7 +411,7 @@
     <div class="stage">
       <div class="v4">
         <div class="seal">
-          <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
+          <svg class="ic-symbol" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
         </div>
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="est" contenteditable="false">EST. 2024 · SEOUL</div>
@@ -412,7 +436,7 @@
         <div class="word" contenteditable="false">JEWELICE</div>
         <div class="ornaments">
           <div class="line"></div>
-          <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
+          <svg class="ic-symbol" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
           <div class="line"></div>
         </div>
         <div class="bottom" contenteditable="false">SEOUL · BRILLIANT MOMENT</div>
@@ -433,7 +457,7 @@
     <button class="pick">PICK</button>
     <div class="stage">
       <div class="v6">
-        <svg class="ic-symbol"><use href="#jewelice-symbol"/></svg>
+        <svg class="ic-symbol" viewBox="0 0 100 90"><use href="#jewelice-symbol"/></svg>
         <div class="word" contenteditable="false">JEWEL<b>ICE</b></div>
         <div class="tag" contenteditable="false">Brilliant Moment</div>
       </div>
@@ -513,16 +537,27 @@
     });
   });
 
+  // 심볼 색 교체 (라이트=민트 / 다크(민트배경)=화이트)
+  function syncSymbol(stage){
+    const dark=stage.classList.contains('dark');
+    stage.querySelectorAll('.ic-symbol use').forEach(u=>{
+      u.setAttribute('href', dark ? '#jewelice-symbol-white' : '#jewelice-symbol');
+    });
+  }
+
   document.querySelectorAll('.toggle').forEach((btn,i)=>{
     const key='jewelice_logo_dark_'+i;
     const stage=btn.closest('.card').querySelector('.stage');
-    if(localStorage.getItem(key)==='1'){stage.classList.add('dark');btn.textContent='LIGHT'}
+    if(localStorage.getItem(key)==='1'){stage.classList.add('dark');btn.textContent='MINT OFF'}
+    syncSymbol(stage);
     btn.addEventListener('click',()=>{
       stage.classList.toggle('dark');
       const on=stage.classList.contains('dark');
-      btn.textContent=on?'LIGHT':'DARK';
+      btn.textContent=on?'MINT OFF':'MINT BG';
       localStorage.setItem(key,on?'1':'0');
+      syncSymbol(stage);
     });
+    if(!stage.classList.contains('dark')) btn.textContent='MINT BG';
   });
 
   document.getElementById('darkBtn').addEventListener('click',()=>{
@@ -531,8 +566,9 @@
       const k='jewelice_logo_dark_'+i;
       if(allDark){s.classList.remove('dark');localStorage.setItem(k,'0')}
       else{s.classList.add('dark');localStorage.setItem(k,'1')}
+      syncSymbol(s);
     });
-    document.querySelectorAll('.toggle').forEach(b=>b.textContent=allDark?'DARK':'LIGHT');
+    document.querySelectorAll('.toggle').forEach(b=>b.textContent=allDark?'MINT BG':'MINT OFF');
   });
 
   let editing=false;
