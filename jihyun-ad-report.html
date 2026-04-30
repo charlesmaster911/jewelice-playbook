@@ -460,82 +460,145 @@
     <div class="section">
       <div class="section-title">⓪-2. 시각화 — 그래프로 한눈에</div>
 
-      <!-- 그래프 1: 일간 ROAS 추이 -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 4월 일간 ROAS 추이 — 변동성 안정화 흐름</h4>
+      <!-- 그래프 1: 일간 광고비 vs 매출 (절대값 비교) -->
+      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 4월 일간 광고비 vs 매출 — 광고비는 안정, 매출 자연 변동</h4>
+      <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 12px; color: #4c1d95; line-height: 1.6;">
+        💡 <strong>읽는 법:</strong> 회색 영역 = 일간 광고비(약 10~20만원, 거의 일정) / 보라 라인 = 일간 매출.
+        매출은 요일·이벤트·계절성으로 자연 변동하지만, <strong>광고비 대비 항상 3~10배 매출이 유지</strong>되어 ROAS 안정권 확보.
+      </div>
       <div style="background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
-        <svg viewBox="0 0 920 280" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Background grid -->
+        <svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
           <defs>
-            <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.3"/>
+            <linearGradient id="salesGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.25"/>
               <stop offset="100%" stop-color="#7c3aed" stop-opacity="0"/>
             </linearGradient>
+            <pattern id="adPattern" patternUnits="userSpaceOnUse" width="6" height="6">
+              <rect width="6" height="6" fill="#9ca3af" fill-opacity="0.6"/>
+              <line x1="0" y1="0" x2="6" y2="6" stroke="#6b7280" stroke-width="0.5"/>
+            </pattern>
           </defs>
-          <!-- Y axis grid lines -->
+
+          <!-- Y axis grid -->
           <g stroke="#e5e7eb" stroke-width="1">
-            <line x1="50" y1="40" x2="900" y2="40"/>
-            <line x1="50" y1="90" x2="900" y2="90"/>
-            <line x1="50" y1="140" x2="900" y2="140"/>
-            <line x1="50" y1="190" x2="900" y2="190"/>
-            <line x1="50" y1="240" x2="900" y2="240"/>
+            <line x1="60" y1="30" x2="900" y2="30"/>
+            <line x1="60" y1="65" x2="900" y2="65"/>
+            <line x1="60" y1="100" x2="900" y2="100"/>
+            <line x1="60" y1="135" x2="900" y2="135"/>
+            <line x1="60" y1="170" x2="900" y2="170"/>
+            <line x1="60" y1="205" x2="900" y2="205"/>
+            <line x1="60" y1="240" x2="900" y2="240"/>
           </g>
-          <!-- Y axis labels -->
+
+          <!-- Y axis labels (단위: 만원) -->
           <g font-size="10" fill="#6b7280" text-anchor="end">
-            <text x="45" y="44">1000%</text>
-            <text x="45" y="94">750%</text>
-            <text x="45" y="144">500%</text>
-            <text x="45" y="194">250%</text>
-            <text x="45" y="244">0%</text>
+            <text x="55" y="34">120만</text>
+            <text x="55" y="69">100만</text>
+            <text x="55" y="104">80만</text>
+            <text x="55" y="139">60만</text>
+            <text x="55" y="174">40만</text>
+            <text x="55" y="209">20만</text>
+            <text x="55" y="244">0</text>
           </g>
-          <!-- Target line (300%) -->
-          <line x1="50" y1="180" x2="900" y2="180" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 4"/>
-          <text x="900" y="176" font-size="10" fill="#92400e" text-anchor="end" font-weight="700">목표 300%</text>
 
-          <!-- Area under line -->
-          <path d="M 65,40 L 95,145 L 125,131 L 155,138 L 185,70 L 215,143 L 245,131 L 275,193 L 305,168 L 335,173 L 365,192 L 395,209 L 425,180 L 455,181 L 485,107 L 515,168 L 545,213 L 575,207 L 605,180 L 635,172 L 665,203 L 695,158 L 725,175 L 755,157 L 785,214 L 815,179 L 845,133 L 875,187 L 900,192 L 900,240 L 65,240 Z" fill="url(#lineGrad)"/>
+          <!-- 광고비 영역 (회색 베이스라인) -->
+          <path d="M 65,222 L 95,217 L 124,218 L 154,214 L 184,218 L 213,219 L 243,214 L 273,217 L 303,214 L 332,210 L 362,211 L 392,209 L 422,210 L 451,209 L 481,209 L 511,209 L 541,211 L 570,210 L 600,210 L 630,209 L 660,210 L 689,210 L 719,209 L 749,210 L 779,209 L 808,208 L 838,210 L 868,205 L 898,206 L 898,240 L 65,240 Z"
+                fill="url(#adPattern)" stroke="#6b7280" stroke-width="1.5"/>
+          <text x="475" y="234" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700" style="paint-order: stroke; stroke: white; stroke-width: 3px;">광고비 (10~20만원, 거의 일정)</text>
 
-          <!-- Line path -->
-          <path d="M 65,40 L 95,145 L 125,131 L 155,138 L 185,70 L 215,143 L 245,131 L 275,193 L 305,168 L 335,173 L 365,192 L 395,209 L 425,180 L 455,181 L 485,107 L 515,168 L 545,213 L 575,207 L 605,180 L 635,172 L 665,203 L 695,158 L 725,175 L 755,157 L 785,214 L 815,179 L 845,133 L 875,187 L 900,192" stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+          <!-- 매출 영역 -->
+          <path d="M 65,62 L 95,131 L 124,121 L 154,108 L 184,49 L 213,139 L 243,100 L 273,185 L 303,146 L 332,139 L 362,169 L 392,192 L 422,149 L 451,148 L 481,34 L 511,129 L 541,201 L 570,190 L 600,150 L 630,133 L 660,183 L 689,118 L 719,140 L 749,114 L 779,200 L 808,143 L 838,78 L 868,148 L 898,158 L 898,240 L 65,240 Z"
+                fill="url(#salesGrad)"/>
 
-          <!-- Data points -->
+          <!-- 매출 라인 -->
+          <path d="M 65,62 L 95,131 L 124,121 L 154,108 L 184,49 L 213,139 L 243,100 L 273,185 L 303,146 L 332,139 L 362,169 L 392,192 L 422,149 L 451,148 L 481,34 L 511,129 L 541,201 L 570,190 L 600,150 L 630,133 L 660,183 L 689,118 L 719,140 L 749,114 L 779,200 L 808,143 L 838,78 L 868,148 L 898,158"
+                stroke="#7c3aed" stroke-width="2.5" fill="none"/>
+
+          <!-- 매출 데이터 포인트 -->
           <g fill="#7c3aed">
-            <circle cx="65" cy="40" r="3"/><circle cx="95" cy="145" r="3"/><circle cx="125" cy="131" r="3"/><circle cx="155" cy="138" r="3"/><circle cx="185" cy="70" r="3"/>
-            <circle cx="215" cy="143" r="3"/><circle cx="245" cy="131" r="3"/><circle cx="275" cy="193" r="3"/><circle cx="305" cy="168" r="3"/><circle cx="335" cy="173" r="3"/>
-            <circle cx="365" cy="192" r="3"/><circle cx="395" cy="209" r="3"/><circle cx="425" cy="180" r="3"/><circle cx="455" cy="181" r="3"/><circle cx="485" cy="107" r="3"/>
-            <circle cx="515" cy="168" r="3"/><circle cx="545" cy="213" r="3"/><circle cx="575" cy="207" r="3"/><circle cx="605" cy="180" r="3"/><circle cx="635" cy="172" r="3"/>
-            <circle cx="665" cy="203" r="3"/><circle cx="695" cy="158" r="3"/><circle cx="725" cy="175" r="3"/><circle cx="755" cy="157" r="3"/><circle cx="785" cy="214" r="3"/>
-            <circle cx="815" cy="179" r="3"/><circle cx="845" cy="133" r="3"/><circle cx="875" cy="187" r="3"/><circle cx="900" cy="192" r="3"/>
+            <circle cx="65" cy="62" r="3"/><circle cx="95" cy="131" r="3"/><circle cx="124" cy="121" r="3"/><circle cx="154" cy="108" r="3"/><circle cx="184" cy="49" r="3"/>
+            <circle cx="213" cy="139" r="3"/><circle cx="243" cy="100" r="3"/><circle cx="273" cy="185" r="3"/><circle cx="303" cy="146" r="3"/><circle cx="332" cy="139" r="3"/>
+            <circle cx="362" cy="169" r="3"/><circle cx="392" cy="192" r="3"/><circle cx="422" cy="149" r="3"/><circle cx="451" cy="148" r="3"/><circle cx="481" cy="34" r="3"/>
+            <circle cx="511" cy="129" r="3"/><circle cx="541" cy="201" r="3"/><circle cx="570" cy="190" r="3"/><circle cx="600" cy="150" r="3"/><circle cx="630" cy="133" r="3"/>
+            <circle cx="660" cy="183" r="3"/><circle cx="689" cy="118" r="3"/><circle cx="719" cy="140" r="3"/><circle cx="749" cy="114" r="3"/><circle cx="779" cy="200" r="3"/>
+            <circle cx="808" cy="143" r="3"/><circle cx="838" cy="78" r="3"/><circle cx="868" cy="148" r="3"/><circle cx="898" cy="158" r="3"/>
           </g>
 
-          <!-- Highlight peaks -->
-          <circle cx="65" cy="40" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
-          <text x="65" y="32" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">998%</text>
+          <!-- Peak 강조: 4/15 117만 -->
+          <circle cx="481" cy="34" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
+          <text x="481" y="22" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">117만 (4/15)</text>
 
-          <circle cx="845" cy="133" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
-          <text x="845" y="125" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">535%</text>
+          <!-- Peak 강조: 4/27 92.5만 -->
+          <circle cx="838" cy="78" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
+          <text x="838" y="66" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">92.5만 (4/27)</text>
 
-          <circle cx="785" cy="214" r="6" fill="#dc2626" stroke="white" stroke-width="1.5"/>
-          <text x="785" y="234" font-size="10" fill="#dc2626" text-anchor="middle" font-weight="700">128%</text>
+          <!-- 평균 매출선 -->
+          <line x1="60" y1="139" x2="900" y2="139" stroke="#059669" stroke-width="1.5" stroke-dasharray="5 3"/>
+          <text x="900" y="135" font-size="10" fill="#059669" text-anchor="end" font-weight="700">일평균 매출 약 57.6만원</text>
 
           <!-- X axis labels -->
           <g font-size="9" fill="#6b7280" text-anchor="middle">
             <text x="65" y="260">4/1</text>
-            <text x="185" y="260">4/5</text>
-            <text x="305" y="260">4/9</text>
-            <text x="425" y="260">4/13</text>
-            <text x="545" y="260">4/17</text>
-            <text x="665" y="260">4/21</text>
-            <text x="785" y="260">4/25</text>
-            <text x="900" y="260">4/29</text>
+            <text x="184" y="260">4/5</text>
+            <text x="303" y="260">4/9</text>
+            <text x="422" y="260">4/13</text>
+            <text x="541" y="260">4/17</text>
+            <text x="660" y="260">4/21</text>
+            <text x="779" y="260">4/25</text>
+            <text x="898" y="260">4/29</text>
           </g>
 
-          <!-- Phase labels -->
-          <rect x="60" y="265" width="350" height="14" fill="#fee2e2" rx="3"/>
-          <text x="235" y="275" font-size="10" fill="#991b1b" text-anchor="middle" font-weight="700">분석 전 — 변동폭 864%p (134~998%)</text>
-          <rect x="420" y="265" width="480" height="14" fill="#dcfce7" rx="3"/>
-          <text x="660" y="275" font-size="10" fill="#166534" text-anchor="middle" font-weight="700">분석/조정 후 — 변동폭 295%p (240~535%) 안정화</text>
+          <!-- 범례 -->
+          <g transform="translate(60, 280)">
+            <rect x="0" y="0" width="14" height="14" fill="url(#adPattern)" stroke="#6b7280" stroke-width="1"/>
+            <text x="20" y="11" font-size="11" fill="#1d1d1f" font-weight="600">광고비 (안정)</text>
+
+            <line x1="170" y1="7" x2="195" y2="7" stroke="#7c3aed" stroke-width="2.5"/>
+            <circle cx="182" cy="7" r="3" fill="#7c3aed"/>
+            <text x="200" y="11" font-size="11" fill="#1d1d1f" font-weight="600">매출 (자연 변동)</text>
+
+            <line x1="345" y1="7" x2="370" y2="7" stroke="#059669" stroke-width="1.5" stroke-dasharray="5 3"/>
+            <text x="375" y="11" font-size="11" fill="#1d1d1f" font-weight="600">일평균 매출선</text>
+
+            <circle cx="500" cy="7" r="5" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1"/>
+            <text x="510" y="11" font-size="11" fill="#1d1d1f" font-weight="600">매출 강세일</text>
+          </g>
+
+          <!-- 핵심 메시지 박스 -->
+          <g transform="translate(60, 302)">
+            <rect x="0" y="0" width="840" height="14" fill="#dcfce7" rx="3"/>
+            <text x="420" y="11" font-size="10" fill="#166534" text-anchor="middle" font-weight="700">광고비 약 17만/일 일정 → 매출 평균 57.6만/일 (광고비의 약 3.4배) → 4월 누적 ROAS 369.31% 안정 확보</text>
+          </g>
         </svg>
-        <p style="font-size: 11px; color: #6b7280; margin-top: 8px; text-align: center;">📈 보라색 라인 = 일간 ROAS / 노란 점선 = 목표 300% / 빨간점 = 최저(4/25 128%) / 노란점 = 강세일</p>
+        <p style="font-size: 11px; color: #6b7280; margin-top: 10px; text-align: center;">
+          📊 회색 영역(광고비)이 일정한데 보라 라인(매출)이 위로 들쑥날쑥 = 광고 운영은 안정, 매출 변동은 자연 요인(요일·이벤트·계절)
+        </p>
+      </div>
+
+      <!-- 광고비 / 매출 절대값 핵심 사례 -->
+      <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #fbbf24; padding: 14px 18px; border-radius: 10px; margin-bottom: 16px;">
+        <h4 style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">▸ ROAS 300% = 어떤 의미인가</h4>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 12px;">
+          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="color: #6b7280; font-size: 11px;">소규모 사례</div>
+            <div style="font-weight: 700; margin: 4px 0;">광고 5만원<br>→ 매출 15만원</div>
+            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 300%</div>
+          </div>
+          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center; border: 2px solid #fbbf24;">
+            <div style="color: #92400e; font-size: 11px; font-weight: 700;">⭐ 4월 평균 (실측)</div>
+            <div style="font-weight: 700; margin: 4px 0;">광고 17만원<br>→ 매출 57.6만원</div>
+            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 약 339%</div>
+          </div>
+          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
+            <div style="color: #6b7280; font-size: 11px;">대규모 사례</div>
+            <div style="font-weight: 700; margin: 4px 0;">광고 50만원<br>→ 매출 150만원</div>
+            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 300%</div>
+          </div>
+        </div>
+        <p style="font-size: 11px; color: #92400e; margin-top: 10px; line-height: 1.6;">
+          ROAS는 비율이라 어떤 규모든 같은 % 가능. <strong>핵심은 절대값으로 광고비가 안정적이고 매출이 그 3배 이상 꾸준히 발생</strong>한다는 점.
+          4월은 <strong>광고비 451만원 → 매출 1,669만원 (약 3.7배)</strong>으로 안정권 진입.
+        </p>
       </div>
 
       <!-- 그래프 2: 매체별 ROAS 비교 -->
@@ -639,6 +702,60 @@
         <span><span style="display:inline-block; width:12px; height:12px; background:#dc2626; border-radius:2px; vertical-align:middle;"></span> GFA</span>
         <span><span style="display:inline-block; width:12px; height:12px; background:#fbbf24; border-radius:2px; vertical-align:middle;"></span> GFA NDA</span>
       </div>
+    </div>
+
+    <!-- 0-3. 매체별 기능 가이드 (NEW) -->
+    <div class="section">
+      <div class="section-title">⓪-3. 매체별 기능 — 한 줄 설명</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 18%;">매체</th>
+            <th style="width: 20%;">노출 위치</th>
+            <th style="width: 32%;">기능 / 역할</th>
+            <th style="width: 30%;">주 타겟</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Naver 쇼핑검색</strong></td>
+            <td>네이버 쇼핑 검색결과 상단</td>
+            <td>상품 검색 시 노출되는 쇼핑 광고</td>
+            <td>구매 의도 높은 고객 (즉시 전환)</td>
+          </tr>
+          <tr>
+            <td><strong>Naver 파워링크</strong></td>
+            <td>네이버 통합검색 상단</td>
+            <td>키워드 기반 텍스트 광고</td>
+            <td>정보 탐색 ~ 구매 검토 단계</td>
+          </tr>
+          <tr>
+            <td><strong>Naver 브랜드검색</strong></td>
+            <td>브랜드명 검색 시 최상단</td>
+            <td>브랜드 인지·선점 / 경쟁사 차단</td>
+            <td>브랜드 인지 고객 (재방문·신뢰)</td>
+          </tr>
+          <tr>
+            <td><strong>ADvoost 쇼핑</strong></td>
+            <td>외부 제휴 매체</td>
+            <td>네이버 외부 쇼핑광고 보조 (DA 네트워크)</td>
+            <td>쇼핑 관심 일반 고객</td>
+          </tr>
+          <tr>
+            <td><strong>Naver GFA</strong></td>
+            <td>네이버 메인·블로그·카페 등</td>
+            <td>디스플레이 배너 광고 (이미지·영상)</td>
+            <td>인지도 확대 / 리타겟팅</td>
+          </tr>
+          <tr>
+            <td><strong>Naver GFA NDA</strong></td>
+            <td>신규 디스플레이 지면</td>
+            <td>GFA 신규 캠페인 형태 (네이티브·신규 타겟)</td>
+            <td>새 잠재고객 발굴</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="source">※ 매체별 특성에 맞게 효자 매체(쇼검·파워링크)는 즉시 전환, 인지 매체(GFA)는 장기 효과를 분리 평가 필요</p>
     </div>
 
     <!-- 1. 종합 수치 -->
