@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>박지현 팀장 — 2개월 성과 정리 (2026.03~04)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard','Malgun Gothic',-apple-system,sans-serif;background:#FAFAFA;color:#1F2937;line-height:1.6}
+.bar{height:6px;background:linear-gradient(90deg,#7C3AED 0%,#A78BFA 55%,#FDE047 100%)}
+.hero{background:linear-gradient(135deg,#7C3AED 0%,#5B21B6 50%,#1E1B4B 100%);color:#fff;padding:48px 28px}
+.hero-in{max-width:1240px;margin:0 auto}
+.crumb{font-size:12px;letter-spacing:.4em;color:#FDE047;font-weight:700;margin-bottom:10px}
+.hero h1{font-size:40px;font-weight:900;margin-bottom:10px;letter-spacing:-.5px}
+.hero .sub{font-size:15px;color:#E9D5FF;max-width:820px;line-height:1.6}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.meta span{background:rgba(255,255,255,.12);border:1px solid rgba(253,224,71,.4);padding:5px 12px;border-radius:9999px;font-size:12px;font-weight:700}
+.actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.actions button{background:#FDE047;color:#1E1B4B;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:800;border:none;cursor:pointer}
+.actions .ghost{background:transparent;color:#FDE047;border:1.5px solid #FDE047}
+.actions .pdf{background:#fff;color:#7C3AED;border:1.5px solid #fff}
+.container{max-width:1240px;margin:0 auto;padding:32px 28px 64px}
+
+.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px}
+.s-card{background:#fff;border-radius:14px;padding:20px;border:1px solid #EDE9FE;box-shadow:0 2px 12px rgba(124,58,237,.06)}
+.s-card .n{font-size:32px;font-weight:900;background:linear-gradient(135deg,#7C3AED,#FDE047);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
+.s-card .l{font-size:13px;color:#6B7280;margin-top:6px;font-weight:700}
+.s-card .d{font-size:12px;color:#9CA3AF;margin-top:4px}
+
+.notice{background:#FEF3C7;border-left:4px solid #FDE047;padding:14px 18px;border-radius:8px;margin-bottom:24px;font-size:13px;color:#78350F}
+.notice b{color:#92400E}
+
+.toc{background:#fff;border-radius:14px;padding:20px 24px;margin-bottom:24px;border:1px solid #EDE9FE;box-shadow:0 2px 12px rgba(124,58,237,.06)}
+.toc h3{font-size:14px;color:#7C3AED;font-weight:900;margin-bottom:12px;letter-spacing:.05em}
+.toc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 18px}
+.toc a{display:flex;gap:10px;align-items:center;padding:6px 0;color:#374151;text-decoration:none;font-size:13px;font-weight:600;border-bottom:1px dashed #F3F4F6}
+.toc a:hover{color:#7C3AED}
+.toc a .num{font-weight:900;color:#7C3AED;min-width:28px;font-size:12px;background:#F3E8FF;padding:2px 6px;border-radius:6px;text-align:center}
+
+.section{background:#fff;border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 2px 12px rgba(124,58,237,.06);border:1px solid #EDE9FE;page-break-inside:avoid}
+.sec-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:2px solid #F3E8FF;flex-wrap:wrap}
+.sec-head .num{font-size:28px;font-weight:900;color:#7C3AED;min-width:42px}
+.sec-head .name{font-size:19px;font-weight:900;color:#1F2937;flex:1;min-width:260px}
+.sec-head .who{font-size:11px;background:linear-gradient(135deg,#7C3AED,#A78BFA);color:#fff;padding:5px 12px;border-radius:9999px;font-weight:800}
+.sec-head .who.partial{background:linear-gradient(135deg,#FDE047,#FBBF24);color:#78350F}
+.sec-head .who.plan{background:#E5E7EB;color:#374151}
+
+.row{display:grid;grid-template-columns:130px 1fr;gap:14px;padding:10px 0;border-bottom:1px dashed #F3F4F6;font-size:13.5px}
+.row:last-child{border-bottom:none}
+.row .label{font-weight:800;color:#7C3AED;font-size:12px;letter-spacing:.02em}
+.row .val{color:#374151}
+.row .val ul{padding-left:18px;margin-top:4px}
+.row .val li{padding:2px 0}
+.row .val b{color:#1F2937}
+
+.before-after{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.before,.after{padding:12px 14px;border-radius:8px;font-size:13px}
+.before{background:#FEF2F2;border:1px solid #FECACA;color:#7F1D1D}
+.after{background:#F0FDF4;border:1px solid #BBF7D0;color:#14532D}
+.before b,.after b{display:block;font-size:11px;letter-spacing:.05em;margin-bottom:6px}
+.before b{color:#991B1B}
+.after b{color:#166534}
+
+.evidence{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:8px;padding:10px 12px;margin-top:8px;font-size:12px;color:#4B5563}
+.evidence b{color:#1F2937;display:block;margin-bottom:4px}
+.evidence span{display:inline-block;margin-right:6px;margin-top:3px;background:#fff;border:1px solid #E5E7EB;padding:3px 8px;border-radius:6px;font-size:11px}
+
+.next{background:linear-gradient(135deg,#FFFBEB,#FEF3C7);border:1px solid #FDE047;border-radius:8px;padding:10px 14px;margin-top:8px;font-size:13px;color:#78350F}
+.next b{color:#92400E}
+
+.cluster{background:linear-gradient(135deg,#F3E8FF,#EDE9FE);border:1px solid #C4B5FD;border-radius:14px;padding:20px;margin-bottom:18px}
+.cluster .h{font-size:13px;color:#5B21B6;font-weight:900;letter-spacing:.1em;margin-bottom:6px}
+.cluster .t{font-size:18px;color:#1E1B4B;font-weight:900;margin-bottom:8px}
+.cluster .d{font-size:13px;color:#4C1D95}
+
+.footer-summary{background:linear-gradient(135deg,#1E1B4B,#312E81);color:#fff;padding:28px;border-radius:14px;margin-top:24px}
+.footer-summary h3{font-size:18px;color:#FDE047;margin-bottom:14px;font-weight:900}
+.footer-summary .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.footer-summary .item{background:rgba(253,224,71,.08);border:1px solid rgba(253,224,71,.3);padding:14px;border-radius:10px}
+.footer-summary .item b{color:#FDE047;display:block;font-size:12px;margin-bottom:6px;letter-spacing:.05em}
+.footer-summary .item p{color:#E9D5FF;font-size:13px;line-height:1.6}
+
+.foot{text-align:center;margin-top:24px;padding:20px;color:#6B7280;font-size:12px}
+.foot b{color:#7C3AED}
+
+.edit-on [contenteditable=true]{outline:1.5px dashed #FDE047;background:#FFFBEB;padding:2px 4px;border-radius:3px}
+
+@media(max-width:760px){
+  .summary{grid-template-columns:repeat(2,1fr)}
+  .row{grid-template-columns:1fr}
+  .before-after{grid-template-columns:1fr}
+  .footer-summary .grid3{grid-template-columns:1fr}
+  .toc-grid{grid-template-columns:1fr}
+}
+
+@media print{
+  body{background:#fff}
+  .bar{display:none}
+  .hero{background:linear-gradient(135deg,#7C3AED,#5B21B6) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:24px}
+  .hero h1{font-size:24px}
+  .hero .sub{font-size:12px}
+  .actions{display:none}
+  .container{padding:16px}
+  .section,.cluster,.s-card,.toc,.footer-summary{box-shadow:none;page-break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .summary{grid-template-columns:repeat(4,1fr)}
+  .footer-summary{background:#1E1B4B !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .before,.after,.next,.evidence,.cluster{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  a{color:#7C3AED;text-decoration:none}
+  .toc a{font-size:11px}
+}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="crumb">JEWELICE · TEAM LEADER · 2 MONTH RESULTS</div>
+    <h1>박지현 팀장 — 2개월 성과 정리</h1>
+    <div class="sub">2026년 3월~4월. 부임 후 60일간 14개 축에서 정리·정립·확장한 결과를 한 페이지에 모았습니다. 운영 기반(사방넷·생산·물류) → 채널 전략 → 회사 전체 정비 → B2B·해외 방향까지.</div>
+    <div class="meta">
+      <span>📅 2026-03-03 ~ 2026-04-30</span>
+      <span>👤 박지현 팀장 → 대표 보고용</span>
+      <span>🎯 14개 축 / 운영·전략·비전</span>
+    </div>
+    <div class="actions">
+      <button class="pdf" onclick="window.print()">📄 PDF로 저장 (Ctrl+P → PDF)</button>
+      <button class="ghost" onclick="toggleEdit()">✏️ 편집모드</button>
+      <button class="ghost" onclick="copyURL()">🔗 URL 복사</button>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <div class="notice">
+    <b>📌 이 페이지의 의미</b> — "운영의 기반을 만들고, 채널을 정리하고, 회사 전체 그림을 그렸다." 14개 축 모두 0에서 1을 만든 것이 핵심. 모든 항목은 근거 자료 + 다음 단계까지 함께 표기.
+  </div>
+
+  <!-- 핵심 메시지 -->
+  <div style="background:linear-gradient(135deg,#FDE047,#FBBF24);color:#1E1B4B;padding:28px 32px;border-radius:14px;margin-bottom:20px;box-shadow:0 4px 16px rgba(251,191,36,.25)">
+    <div style="font-size:11px;font-weight:900;letter-spacing:.2em;color:#7C3AED;margin-bottom:10px">CORE MESSAGE</div>
+    <div style="font-size:24px;font-weight:900;line-height:1.4">매출은 그대로 — <span style="color:#7C3AED">사람과 채널은 정리</span>.<br>운영은 안정권으로 들어왔다.</div>
+    <div style="font-size:14px;color:#5B21B6;margin-top:12px;font-weight:700;line-height:1.6">내실과 실리를 챙기면서 전체 프로세스와 운영 방향을 바꾼 결과<br>— 같은 매출을 더 적은 인력·더 적은 채널로 만들어내는 구조 —</div>
+  </div>
+
+  <!-- 효율성 시각화 박스 -->
+  <div style="background:#fff;border:2px solid #7C3AED;border-radius:14px;padding:24px 28px;margin-bottom:24px;box-shadow:0 4px 16px rgba(124,58,237,.1)">
+    <div style="font-size:12px;font-weight:900;letter-spacing:.2em;color:#7C3AED;margin-bottom:14px">⚖️ 2개월 BEFORE → AFTER</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+      <div style="background:#F3E8FF;padding:18px;border-radius:10px;text-align:center">
+        <div style="font-size:11px;color:#5B21B6;font-weight:800;margin-bottom:8px">전체 매출</div>
+        <div style="font-size:32px;font-weight:900;color:#7C3AED;line-height:1">→ 유지</div>
+        <div style="font-size:11px;color:#6B7280;margin-top:6px;font-weight:600">떨어지지 않음</div>
+      </div>
+      <div style="background:#FEF2F2;padding:18px;border-radius:10px;text-align:center">
+        <div style="font-size:11px;color:#991B1B;font-weight:800;margin-bottom:8px">인력</div>
+        <div style="font-size:32px;font-weight:900;color:#DC2626;line-height:1">↓ 다이어트</div>
+        <div style="font-size:11px;color:#6B7280;margin-top:6px;font-weight:600">박경열·박성열·박명훈(전)·이호혁 정리<br>+ 백승아·박명훈(신) 핀포인트 합류</div>
+      </div>
+      <div style="background:#FEF2F2;padding:18px;border-radius:10px;text-align:center">
+        <div style="font-size:11px;color:#991B1B;font-weight:800;margin-bottom:8px">채널</div>
+        <div style="font-size:32px;font-weight:900;color:#DC2626;line-height:1">↓ 집중</div>
+        <div style="font-size:11px;color:#6B7280;margin-top:6px;font-weight:600">25개 → A급 5개에 힘<br>나머지는 B/C로 정리</div>
+      </div>
+    </div>
+    <div style="margin-top:18px;padding:14px 18px;background:linear-gradient(135deg,#F0FDF4,#ECFDF5);border:1px solid #BBF7D0;border-radius:10px;color:#14532D;font-size:14px;font-weight:700;text-align:center;line-height:1.6">
+      ✅ 결과: <b style="color:#166534">같은 매출을 더 적은 자원으로</b> 만들어내는 구조 = <b style="color:#166534">실리적 운영 안정권 진입</b>
+    </div>
+  </div>
+
+  <!-- 매출 섹션 -->
+  <div class="section" style="background:linear-gradient(135deg,#fff,#FAFAFF);border:2px solid #7C3AED">
+    <div class="sec-head">
+      <span class="num">💰</span>
+      <span class="name">전체 매출 — 결과 지표</span>
+      <span class="who">매월 갱신</span>
+    </div>
+    <div style="font-size:12px;color:#7C3AED;font-weight:700;background:#F3E8FF;padding:8px 12px;border-radius:6px;margin-bottom:12px">
+      ⓘ 매출 수치는 박지현 팀장이 편집 모드에서 직접 입력하세요. 브라우저에 저장되며 공유 시 다시 입력 필요 (보안: 공개 URL이라 하드코딩 금지)
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:13.5px">
+      <thead>
+        <tr style="background:#F3E8FF;color:#5B21B6">
+          <th style="text-align:left;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800">구분</th>
+          <th style="text-align:right;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800">2026년 1월</th>
+          <th style="text-align:right;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800">2026년 2월</th>
+          <th style="text-align:right;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800">2026년 3월 (부임)</th>
+          <th style="text-align:right;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800">2026년 4월</th>
+          <th style="text-align:right;padding:10px 12px;border-bottom:2px solid #C4B5FD;font-weight:800;color:#7C3AED">2개월 합계 / 추세</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #EDE9FE;font-weight:700">전체 매출</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">— 입력 —</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">— 입력 —</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">— 입력 —</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">— 입력 —</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;font-weight:800;color:#7C3AED">— 입력 —</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #EDE9FE;font-weight:700">B2C (자사몰+입점몰)</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;font-weight:700;color:#7C3AED">—</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #EDE9FE;font-weight:700">B2B</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;font-weight:700;color:#7C3AED">—</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid #EDE9FE;font-weight:700">와디즈 펀딩</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #EDE9FE;text-align:right;font-weight:700;color:#7C3AED">—</td>
+        </tr>
+        <tr style="background:#FFFBEB">
+          <td style="padding:10px 12px;border-bottom:1px solid #FDE047;font-weight:800">광고 ROAS</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #FDE047;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #FDE047;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #FDE047;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #FDE047;text-align:right;color:#9CA3AF">—</td>
+          <td contenteditable="true" style="padding:10px 12px;border-bottom:1px solid #FDE047;text-align:right;font-weight:800;color:#92400E">목표 3.0+</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row" style="margin-top:16px"><div class="label">박지현 팀장 코멘트</div><div class="val" contenteditable="true">매출은 결과 지표 — 이 2개월 동안 한 일은 그 결과가 <b>지속 가능하게 따라오도록</b> 운영 방향을 바꾼 것. 단기 매출보다 내실과 실리를 우선했고, 그 기반 위에서 5월부터 매출 가속이 시작될 구조를 만듦.</div></div>
+    <div class="evidence">
+      <b>매출 원천 자료</b>
+      <span>📊 !최종! 쥬얼아이스 매출 통합 파일_2026.xlsx</span>
+      <span>📊 2026_쥬얼아이스 업체별 매출 보고서.xlsx</span>
+      <span>📊 (주)마스터마인딩그룹 매출_2026.xlsx</span>
+      <span>📊 2026년 손익분석.xlsx</span>
+    </div>
+    <div class="next"><b>매출 운영 원칙</b> 매월 25일 결산 → 4대 레버(B2C·B2B·광고·신규채널) 진척률 → 다음 달 광고 예산 결정</div>
+  </div>
+
+  <div class="summary">
+    <div class="s-card"><div class="n">14</div><div class="l">정리·정립한 축</div><div class="d">운영·채널·회사정비·비전</div></div>
+    <div class="s-card"><div class="n">25+</div><div class="l">관리 채널 폴더</div><div class="d">스마트스토어~CJ온스타일</div></div>
+    <div class="s-card"><div class="n">100</div><div class="l">B2B 타겟 업장</div><div class="d">프리미엄 핏 우선</div></div>
+    <div class="s-card"><div class="n">3</div><div class="l">시즌 캠페인</div><div class="d">와디즈·가정의달·추석</div></div>
+  </div>
+
+  <!-- 목차 -->
+  <div class="toc">
+    <h3>📑 14개 성과 축 — 목차</h3>
+    <div class="toc-grid">
+      <a href="#s1"><span class="num">01</span> 사방넷 도입</a>
+      <a href="#s2"><span class="num">02</span> 생산 발주 프로세스 정립</a>
+      <a href="#s3"><span class="num">03</span> 물류 실재고 정리</a>
+      <a href="#s4"><span class="num">04</span> 재고·발주 긴급도 분류 리뉴얼</a>
+      <a href="#s5"><span class="num">05</span> 채널 ABC 등급 + 주력 채널</a>
+      <a href="#s6"><span class="num">06</span> 채널 확대 입점 인프라</a>
+      <a href="#s7"><span class="num">07</span> 거래처·채널 정리 통합</a>
+      <a href="#s8"><span class="num">08</span> 팀원 업무 파악 + R&amp;R 정립</a>
+      <a href="#s9"><span class="num">09</span> 사무실 공간 정리</a>
+      <a href="#s10"><span class="num">10</span> 자사몰 리뉴얼 계획</a>
+      <a href="#s11"><span class="num">11</span> 박스·쇼핑백·더스트백 재구성</a>
+      <a href="#s12"><span class="num">12</span> B2B 방향성 정립</a>
+      <a href="#s13"><span class="num">13</span> 해외 채널 제안 (엔드값)</a>
+      <a href="#s14"><span class="num">14</span> 회사 전체 그림 + 비전 제시</a>
+    </div>
+  </div>
+
+  <!-- 클러스터 1: 운영 기반 -->
+  <div class="cluster">
+    <div class="h">CLUSTER A · 운영 기반</div>
+    <div class="t">사방넷 · 생산 · 물류 · 발주 — 0에서 1을 만든 인프라</div>
+    <div class="d">흩어진 어드민·수기 발주·장부와 다른 실재고 — 이 3개를 정리해서 회사가 굴러가는 기반을 만들었음</div>
+  </div>
+
+  <!-- 1. 사방넷 도입 -->
+  <div class="section" id="s1">
+    <div class="sec-head">
+      <span class="num">01</span>
+      <span class="name">사방넷 도입 — 통합 ERP 운영 기반 마련</span>
+      <span class="who">완료</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">여러 입점몰을 흩어진 어드민이 아닌 사방넷 한 곳에서 주문·재고·상품을 통합 관리하는 체계로 전환.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>사방넷 파트너허브 가이드 v1.0 확보 + 실제 운영 매뉴얼 사내 보유</li>
+      <li>상품목록·상품조회수정 마스터 파일 정리 완료</li>
+      <li>입점몰 전반에 사방넷 연동 작업 진입 (스마트스토어·자사몰·쿠팡 우선)</li>
+    </ul></div></div>
+    <div class="before-after">
+      <div class="before"><b>BEFORE (3월 초)</b>채널마다 어드민 따로 들어가 주문 확인, 재고 수기 동기화. 누락·중복 위험</div>
+      <div class="after"><b>AFTER (4월 말)</b>사방넷 1곳에서 주문·재고 조회. 채널 추가 시 연결만 하면 즉시 운영</div>
+    </div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📂 03.사방넷/</span>
+      <span>📊 사방넷상품조회수정_다운로드.xlsx</span>
+      <span>📊 상품목록.xlsx</span>
+      <span>📄 파트너허브 이용 가이드 v1.0</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 사방넷 자동 동기화 루틴 + 권나경 과장 단독 운영 가능 수준까지 인계</div>
+  </div>
+
+  <!-- 2. 생산 발주 프로세스 -->
+  <div class="section" id="s2">
+    <div class="sec-head">
+      <span class="num">02</span>
+      <span class="name">생산 발주 프로세스 정립 — 표준 양식 확정</span>
+      <span class="who">완료</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">생산일정·발주·입고·재고 사이클을 한 양식에 묶어, 누가 보아도 같은 기준으로 발주 가능하게 정립.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>마스터마인딩그룹 생산일정표 2026 표준 양식 v1 확정</li>
+      <li>SKU별 발주 시점·안전재고 기준 시트 가동 (가격관리표 v4 연계)</li>
+      <li>2026-04-20 재고발주분석 1차 리포트 생산 (HTML + 엑셀 + 크로스체크)</li>
+    </ul></div></div>
+    <div class="before-after">
+      <div class="before"><b>BEFORE</b>생산팀·MD 각자 다른 양식. 발주 시점이 사람 기억에 의존</div>
+      <div class="after"><b>AFTER</b>표준 양식 1개. 발주 트리거(안전재고)가 시트에서 자동 표기</div>
+    </div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📊 양식_(주)마스터마인딩그룹_생산일정표_2026.xlsx</span>
+      <span>📊 가격관리표 v4 (원가·가격·마진)</span>
+      <span>📄 2026-04-20 재고발주분석 보고서 3종</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 권수지 대리에게 발주 처리 100% 이관 + 박지현은 월 1회 점검만</div>
+  </div>
+
+  <!-- 3. 물류 실재고 정리 -->
+  <div class="section" id="s3">
+    <div class="sec-head">
+      <span class="num">03</span>
+      <span class="name">물류 실재고 정리 — 장부 ≠ 실재고 차이 제거</span>
+      <span class="who">완료</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">장부상 재고와 물류센터 실재고를 4월 한 차례 전수 크로스체크하여 일치시킴.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>2026-04-20 기준 재고발주분석 + 크로스체크 통합 파일 완성</li>
+      <li>SKU별 차이값 표기 + 원인(샘플 출고·증정·파손) 분류 완료</li>
+      <li>이후 발주 의사결정의 기준 데이터셋 확보</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📄 2026-04-20_재고발주분석.html</span>
+      <span>📊 2026-04-20_재고발주분석_최종.xlsx</span>
+      <span>📊 크로스체크_통합.xlsx</span>
+      <span>🌐 jihyun-inventory.html</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 월 1회 정기 실재고 점검 루틴화 (매월 25일)</div>
+  </div>
+
+  <!-- 4. 재고/발주 긴급도 분류 리뉴얼 -->
+  <div class="section" id="s4">
+    <div class="sec-head">
+      <span class="num">04</span>
+      <span class="name">재고·발주 긴급도 분류 리뉴얼 — 우선순위 자동화</span>
+      <span class="who partial">진행중</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">"재고 부족 = 모두 똑같이 급함" 인식을 깨고, <b>긴급도 4단계</b>로 분류해 발주 의사결정을 자동화.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li><b>🔴 즉시(D+0~3)</b> — 안전재고 미만·결품 임박 SKU. 그날 바로 발주</li>
+      <li><b>🟡 우선(D+4~10)</b> — 회전 빠른 메인 SKU. 주 단위 발주</li>
+      <li><b>🟢 정기(D+11~30)</b> — 회전 보통 SKU. 월 단위 발주</li>
+      <li><b>⚪ 보류</b> — 시즌 종료·신상 대기 SKU</li>
+      <li>이 분류를 시트에 자동 색칠되도록 양식 리뉴얼 진입</li>
+    </ul></div></div>
+    <div class="before-after">
+      <div class="before"><b>BEFORE</b>"부족함" 한 가지 신호 → 매번 사람이 판단 → 과발주·결품 반복</div>
+      <div class="after"><b>AFTER</b>긴급도 색깔로 즉시 식별 → 대리·과장 레벨에서 처리 가능</div>
+    </div>
+    <div class="next"><b>다음 단계</b> 5월 안에 시트 v2 확정 → 권수지 대리에게 운영 이관</div>
+  </div>
+
+  <!-- 클러스터 2: 채널 전략 -->
+  <div class="cluster">
+    <div class="h">CLUSTER B · 채널 전략</div>
+    <div class="t">25+ 채널 ABC 등급 · 주력 정립 · 거래처 통합</div>
+    <div class="d">마구잡이 입점이 아니라, 어디에 힘을 쓸지 명확하게 정함</div>
+  </div>
+
+  <!-- 5. 채널 ABC 등급 -->
+  <div class="section" id="s5">
+    <div class="sec-head">
+      <span class="num">05</span>
+      <span class="name">채널 ABC 등급 + 주력 채널 정립</span>
+      <span class="who partial">진행중 (1차 완료)</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">25+ 입점 후보 채널을 매출 기여도·핏·운영비용 기준으로 A/B/C 등급 분류, 주력은 A에 집중.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li><b>A급 (주력)</b> — 자사몰 · 스마트스토어 · 쿠팡 · 와디즈 · 카카오</li>
+      <li><b>B급 (기회 채널)</b> — 마켓컬리 · 오아시스 · SSG · 토스 · 그립</li>
+      <li><b>C급 (테스트/저비용 유지)</b> — CJ온스타일 · HyundaiShop · SK스토아 · 갤러리아 · 올리브영 · 신세계TV쇼핑 · 무신사 · 에이블리 · 오늘의집 · 올웨이즈 · 지그재그 · 롯데ON · GS · 리멤버 선물하기 · T딜</li>
+      <li>가격관리표 v4에 채널별 정합성 가격 정리 완료</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📂 02.입점몰관리/ (25개 채널 폴더)</span>
+      <span>📊 가격관리표 v4</span>
+      <span>📊 jewelice_action_plan.gsheet</span>
+    </div>
+    <div class="next"><b>다음 단계</b> A급 5개 채널 운영 KPI(전환율·재구매율) 월 단위 모니터링 시작</div>
+  </div>
+
+  <!-- 6. 채널 확대 입점 -->
+  <div class="section" id="s6">
+    <div class="sec-head">
+      <span class="num">06</span>
+      <span class="name">채널 확대 입점 — 25+ 채널 인프라 구축</span>
+      <span class="who partial">진행중</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">앞으로 입점할 모든 채널의 폴더·자료·프로세스를 미리 준비. 입점 결정 시 즉시 가동 가능 상태.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>25개 채널 폴더 구조 표준화 (입점 전 자료 준비 완료)</li>
+      <li>현재 운영 중: 자사몰·스마트스토어·쿠팡·와디즈·카카오</li>
+      <li>입점 진행 중: 우선순위 B급 채널 4곳 (영업 진행)</li>
+      <li>쿠팡 미팅 일정 추진 중 (현재 회신 대기)</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📂 02.입점몰관리/</span>
+      <span>📊 B2B_100_입점관리_쥬얼아이스.xlsx</span>
+    </div>
+    <div class="next"><b>다음 단계</b> Q2 안에 B급 중 2개 채널 입점 가동 + ROI 검증</div>
+  </div>
+
+  <!-- 7. 거래처·채널 정리 통합 -->
+  <div class="section" id="s7">
+    <div class="sec-head">
+      <span class="num">07</span>
+      <span class="name">거래처·채널 정리 통합 — 누가 누구와 어떻게 거래하는가</span>
+      <span class="who partial">진행중</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">분산된 거래처 정보(공급처·외주·물류·디자인·광고)와 채널 운영 정보를 1개 통합 시트로 묶기.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>01.거래처정보 폴더 정비 — 공급처 단가·납기·결제조건 카드화</li>
+      <li>2026 통합 리포트 + 쥬얼아이스 통합운영관리 파일 운영</li>
+      <li>마스터마인딩그룹 내부 계정관리 v202604 — 거래처별 정산 흐름 가시화</li>
+      <li>자매 브랜드 헤바(heba-club) 거래처도 함께 정리</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📂 01.거래처정보/</span>
+      <span>📊 마스터마인딩그룹 내부 계정관리_202604.xlsx</span>
+      <span>📊 2026 통합 리포트.xlsx</span>
+      <span>📊 쥬얼아이스_통합운영관리_2026.xlsx</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 거래처별 결제 주기·세금계산서 발행일 자동 알림 시스템화</div>
+  </div>
+
+  <!-- 클러스터 3: 회사 정비 -->
+  <div class="cluster">
+    <div class="h">CLUSTER C · 회사 정비</div>
+    <div class="t">팀원 R&amp;R · 사무실 공간 · 운영 매뉴얼화</div>
+    <div class="d">사람과 공간을 정리해, 박지현 팀장 1인 의존도를 낮추는 작업</div>
+  </div>
+
+  <!-- 8. 팀원 R&R -->
+  <div class="section" id="s8">
+    <div class="sec-head">
+      <span class="num">08</span>
+      <span class="name">팀원 업무 파악 + R&amp;R 정립</span>
+      <span class="who partial">진행중</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">전 팀원이 무슨 일을 하는지 파악 + 5개 핵심 파트(MD·B2B·마케팅·디자인·상품개발)별 R&amp;R 재배치.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li><b>박지현 팀장</b> — MD 총괄 · B2B 영업 총괄 · 시즌 기획</li>
+      <li><b>권나경 과장</b> — 채널 운영 · 사방넷 · 5월 행사 세팅</li>
+      <li><b>권수지 대리</b> — 생산·물류 일정 관리 · 발주 처리</li>
+      <li><b>박명훈 (4/22 입사)</b> — 콘텐츠 마케터 · 광고 소재 분석 · 3개월 기획안</li>
+      <li><b>백승아 (신규 입사)</b> — 경영지원</li>
+      <li>퇴사자 인수인계 정리: 박경열·박성열·박명훈(전)·이호혁</li>
+      <li>인수인계서 5파트 표준 양식 확정 + 후임자 체크리스트 제공</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>🌐 박지현_인수인계서.html</span>
+      <span>📂 08.인사채용/</span>
+      <span>📂 팀관리/팀원피드백.md · 팀원현황.md</span>
+      <span>📂 인사지원 클로드코드 1차 필터/</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 5월 중 박명훈 3개월 콘텐츠 기획안 확정 + 백승아 경영지원 R&R 명세화</div>
+  </div>
+
+  <!-- 9. 사무실 공간 정리 -->
+  <div class="section" id="s9">
+    <div class="sec-head">
+      <span class="num">09</span>
+      <span class="name">실제 사무실 공간 정리</span>
+      <span class="who partial">진행중</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">"문서·샘플·재고·집기"가 섞여있던 사무실 공간을 기능별로 분리해 동선과 보관 효율 개선.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>샘플·증정·파손 SKU 분리 보관 (실재고 차이 원인 추적과 연동)</li>
+      <li>거래처 견적서·계약서·세금계산서 보관 위치 표준화</li>
+      <li>회의 공간 + 영상·사진 촬영 공간 분리</li>
+      <li>내부 냉동고 3대 활용 — 보관 냉동고 렌탈비 제외 가능 (원가 정리에 반영)</li>
+    </ul></div></div>
+    <div class="next"><b>다음 단계</b> 사무실 레이아웃 도면화 + 신규 입사자 동선 가이드</div>
+  </div>
+
+  <!-- 클러스터 4: 제품·고객 -->
+  <div class="cluster">
+    <div class="h">CLUSTER D · 제품·고객 접점</div>
+    <div class="t">자사몰 · 패키지 · 시즌 캠페인</div>
+    <div class="d">고객이 실제로 만나는 표면을 다시 짠다</div>
+  </div>
+
+  <!-- 10. 자사몰 리뉴얼 -->
+  <div class="section" id="s10">
+    <div class="sec-head">
+      <span class="num">10</span>
+      <span class="name">자사몰 리뉴얼 계획 수립</span>
+      <span class="who plan">기획 단계</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">자사몰 전환율을 3% → 5%로 끌어올리기 위한 리뉴얼 방향·우선순위 확정.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>자사몰 리뉴얼 기획 페이지 작성 (jihyun-homepage-renewal.html)</li>
+      <li>현재 자사몰 약점 진단 + 개선 방향 도출</li>
+      <li>리뉴얼 핵심: 첫 화면 비주얼 · 제품 스토리텔링 · 결제 동선 단축</li>
+      <li>로고 리디자인 검토 동시 진행</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>🌐 jihyun-homepage-renewal.html</span>
+      <span>🌐 jewelice-logo-redesign.html</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 외주 디자이너 후보 3곳 비교 → 견적 → 5월 중 착수</div>
+  </div>
+
+  <!-- 11. 박스/쇼핑백/더스트백 -->
+  <div class="section" id="s11">
+    <div class="sec-head">
+      <span class="num">11</span>
+      <span class="name">박스 패키지 제안 + 쇼핑백·더스트백 재구성</span>
+      <span class="who partial">제안 단계</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">기존 패키지 단가가 B2B 마진을 압박하는 문제 해결을 위해 대체안 제안 + 시뮬레이션.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>쇼핑백 사이즈 시뮬레이션 페이지 제작 (사이즈별 단가·물류비 비교)</li>
+      <li>더스트백 대체 소재·공급처 후보 리스트업</li>
+      <li>베리쉬 각인얼음 1000개 견적 의사결정 페이지 (대형 발주 패키지 검토)</li>
+      <li>쇼핑백·더스트백 재견적 진행 (4/29 회의 의제)</li>
+      <li>선물세트 라인 — 시즌별 패키지 SKU 정리</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>🌐 쇼핑백-사이즈-시뮬레이션.html</span>
+      <span>🌐 베리쉬_각인얼음_1000개_의사결정.html</span>
+      <span>🌐 jihyun-berish-quote.html</span>
+      <span>🌐 jihyun-giftset.html</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 5월 중 신규 단가 확정 → B2B 마진율 재계산 → 가격관리표 v5 업데이트</div>
+  </div>
+
+  <!-- 클러스터 5: 비전·확장 -->
+  <div class="cluster">
+    <div class="h">CLUSTER E · 비전·확장</div>
+    <div class="t">B2B · 해외 · 회사 전체 그림</div>
+    <div class="d">"지금 무엇을 하느냐"를 넘어 "어디로 가느냐"를 그렸음</div>
+  </div>
+
+  <!-- 12. B2B 방향성 -->
+  <div class="section" id="s12">
+    <div class="sec-head">
+      <span class="num">12</span>
+      <span class="name">B2B 방향성 정립 — 프리미엄 업장 우선</span>
+      <span class="who partial">방향성 확정</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">B2B는 "양"이 아니라 "핏". 프리미엄 바·호텔·카페·골프장 100곳을 타겟팅한 영업 인프라 구축.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>B2B 100 입점관리 마스터 시트 (영업 파이프라인 가시화)</li>
+      <li>아블러 상품소개서 v.03 (B2B 표준 영업 자료) 제작</li>
+      <li>레퍼런스 확보: <b>데블스도어 · 제이코스 · 바차 · 코어인터내셔날 · 와배송</b></li>
+      <li>B2B 손익 시뮬레이션 진입 (4/29 회의 — 단가 × 발주량 × 마진율)</li>
+      <li>5대 협업사 평가 기준 명문화: 같이 성장할 에너지 · 적극성 · 디테일 · 진심도 · 가치 이해도</li>
+    </ul></div></div>
+    <div class="before-after">
+      <div class="before"><b>BEFORE</b>"아무 업장이나 가격만 맞으면 OK" 식 접근</div>
+      <div class="after"><b>AFTER</b>"프리미엄 포지셔닝 + 월 듀오메이커 10개 이상" 기준 명확</div>
+    </div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📊 B2B_100_입점관리_쥬얼아이스.xlsx</span>
+      <span>📄 아블러 상품소개서 v.03.pdf</span>
+      <span>🌐 박지현 인수인계서 — B2B 영업 파트</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 쇼핑백·더스트백 재견적 → B2B 마진율 재검증 → 신규 영업 5곳 어프로치</div>
+  </div>
+
+  <!-- 13. 해외 채널 제안 -->
+  <div class="section" id="s13">
+    <div class="sec-head">
+      <span class="num">13</span>
+      <span class="name">해외 채널 제안 (엔드값) — 글로벌 확장 시나리오</span>
+      <span class="who plan">제안 단계</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">국내 D2C 안정화 이후의 "엔드값"으로 해외 채널을 미리 제안 — 와디즈 펀딩이 첫 검증 도구.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li>스타겟(StarGate) 해외 크라우드 펀딩 올인원 견적서·계약서 검토 (러닝 개런티 7%)</li>
+      <li>2026-04-27 보류 결정 — 국내 4트랙(B2B·국내·와디즈·홈페이지) 집중 위해 일시 정지</li>
+      <li>해외 채널 후보군 정리: 아마존·라쿠텐·큐텐 · 동남아 마켓플레이스</li>
+      <li>해외 진입 전제조건: 사방넷 안정화 → 자사몰 리뉴얼 → 영문 상품소개서</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📄 2026 주얼아이스 X 스타겟 해외 크라우드 펀딩 견적서.pdf</span>
+      <span>📄 2026 주얼아이스 X 스타겟 해외 크라우드 펀딩 계약서.pdf</span>
+      <span>🌐 jihyun-stargate-contract.html</span>
+    </div>
+    <div class="next"><b>다음 단계</b> Q3 진입 전 해외 시장 1차 리서치 + 영문 자료 표준화</div>
+  </div>
+
+  <!-- 14. 회사 전체 그림 -->
+  <div class="section" id="s14">
+    <div class="sec-head">
+      <span class="num">14</span>
+      <span class="name">회사 전체 그림 + 비전 제시 — 마스터플랜 수립</span>
+      <span class="who">완료</span>
+    </div>
+    <div class="row"><div class="label">한 줄</div><div class="val" contenteditable="true">D2C 40억 목표를 향한 3개월 단위 실행 계획 + 회사 전반 프로세스 도식 + 비전·KPI·예산 통합 뷰.</div></div>
+    <div class="row"><div class="label">결과</div><div class="val" contenteditable="true"><ul>
+      <li><b>3개월 실행 계획안</b> — (주)마스터마인딩그룹 (박지현팀장 작성, 2026-03-03)</li>
+      <li><b>jewelice 액션 플랜</b> — 사업 액션 마스터 시트 (월·분기 KPI 정렬)</li>
+      <li><b>2026년 3월 리뷰 및 추진과제</b> — 월간 KPI 리뷰 체계 정착</li>
+      <li><b>쥬얼아이스 통합운영관리 2026</b> — 매출·생산·재고·B2B 통합 뷰</li>
+      <li><b>주문 → 발송 → CS → 정산 흐름 도식</b> — 병목 지점 표기 (4/29 회의)</li>
+      <li><b>핵심 KPI</b> — 월 주문 5월 3,000건 → 12월 30,000건 / ROAS 3.0+ / 자사몰 전환 3→5% / 재구매 25%+</li>
+      <li><b>광고 운영 체계</b> — 메타·구글·네이버 ROAS 일일 점검 정착</li>
+      <li><b>시즌 캠페인 3건</b> — 와디즈 · 가정의달(4/27~) · 추석 v1 (5월 중)</li>
+      <li><b>GD Korea 2026 출품</b> — 브랜드 가치 인증 트랙 동시 진행</li>
+    </ul></div></div>
+    <div class="evidence">
+      <b>근거 자료</b>
+      <span>📊 (주)마스터마인딩그룹 3개월 실행 계획안.xlsx</span>
+      <span>📊 jewelice_action_plan.gsheet</span>
+      <span>📊 2026년 3월 리뷰 및 추진과제.gsheet</span>
+      <span>📊 쥬얼아이스_통합운영관리_2026.xlsx</span>
+      <span>🌐 jihyun-plan.html</span>
+      <span>🌐 jihyun-ad-report.html</span>
+      <span>🌐 jihyun-gooddesign-korea-2026.html</span>
+    </div>
+    <div class="next"><b>다음 단계</b> 매월 25일 KPI 결산 → 다음 달 광고 예산·입점 확장 결정 루틴</div>
+  </div>
+
+  <!-- 종합 요약 -->
+  <div class="footer-summary">
+    <h3>🎯 2개월 종합 — 한눈에</h3>
+    <div class="grid3">
+      <div class="item">
+        <b>운영 기반 (4축)</b>
+        <p>사방넷 도입 · 생산발주 표준화 · 물류 실재고 정리 · 발주 긴급도 분류 — 0에서 1을 만든 운영 인프라</p>
+      </div>
+      <div class="item">
+        <b>채널·거래처 (3축)</b>
+        <p>25개 채널 ABC 등급 · 입점 인프라 · 거래처 통합 — 어디에 힘을 쓸지 명확화</p>
+      </div>
+      <div class="item">
+        <b>회사 정비 (2축)</b>
+        <p>팀원 5파트 R&R + 신규 2명 온보딩 · 사무실 공간 분리 — 1인 의존도 ↓</p>
+      </div>
+      <div class="item">
+        <b>제품·고객 (2축)</b>
+        <p>자사몰 리뉴얼 기획 · 박스/쇼핑백/더스트백 재구성 — 고객 접점 재설계</p>
+      </div>
+      <div class="item">
+        <b>비전·확장 (3축)</b>
+        <p>B2B 프리미엄 100 · 해외 엔드값 시나리오 · 회사 전체 마스터플랜 — 다음 분기 실행 채비</p>
+      </div>
+      <div class="item">
+        <b>한 줄 요약</b>
+        <p style="color:#FDE047;font-weight:800;font-size:14px">"매출은 그대로 — 사람과 채널은 정리. 운영은 안정권으로."<br><span style="color:#E9D5FF;font-size:12px;font-weight:600">내실과 실리를 챙기면서 전체 운영 방향을 바꾼 2개월</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>박지현 팀장</b> · 2026-03-03 ~ 2026-04-30 · <b>화경</b>이 정리<br>
+    영구 URL: <code>https://charlesmaster911.github.io/jewelice-playbook/jihyun-2month-results.html</code><br>
+    PDF로 저장하려면 상단 <b>[📄 PDF로 저장]</b> 버튼 클릭 → "PDF로 저장" 선택
+  </div>
+
+</div>
+
+<script>
+function toggleEdit(){
+  document.body.classList.toggle('edit-on');
+  const on = document.body.classList.contains('edit-on');
+  document.querySelectorAll('[contenteditable]').forEach(el=>{
+    el.setAttribute('contenteditable', on ? 'true' : 'false');
+  });
+  if(!on) saveEdits();
+}
+function saveEdits(){
+  const data = {};
+  document.querySelectorAll('[contenteditable]').forEach((el,i)=>{ data['e'+i] = el.innerHTML; });
+  localStorage.setItem('jihyun-2month-results', JSON.stringify(data));
+}
+function loadEdits(){
+  const raw = localStorage.getItem('jihyun-2month-results');
+  if(!raw) return;
+  const data = JSON.parse(raw);
+  document.querySelectorAll('[contenteditable]').forEach((el,i)=>{
+    if(data['e'+i]!==undefined) el.innerHTML = data['e'+i];
+  });
+}
+function copyURL(){
+  const url='https://charlesmaster911.github.io/jewelice-playbook/jihyun-2month-results.html';
+  navigator.clipboard.writeText(url).then(()=>alert('URL 복사됨:\n'+url));
+}
+loadEdits();
+document.querySelectorAll('[contenteditable]').forEach(el=>el.setAttribute('contenteditable','false'));
+</script>
+</body>
+</html>
