@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가정의 달 연휴 광고비 운영안 — 박지현 팀장 → 대표 보고</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #f5f5f7; }
+  body {
+    font-family: 'Pretendard', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: #1d1d1f;
+    line-height: 1.55;
+    padding: 14px 10px 40px;
+    font-size: 13.5px;
+  }
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 6px 28px rgba(0,0,0,0.08);
+    overflow: hidden;
+  }
+  .action-bar {
+    position: sticky;
+    top: 8px;
+    z-index: 100;
+    display: flex;
+    gap: 6px;
+    justify-content: flex-end;
+    max-width: 1100px;
+    margin: 0 auto 8px;
+  }
+  .btn {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 7px 14px;
+    font-size: 12.5px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    color: #1d1d1f;
+  }
+  .btn-primary { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border: none; }
+  .btn-yellow { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1d1d1f; border: none; }
+
+  .header {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    color: white;
+    padding: 18px 26px;
+    border-bottom: 4px solid #fbbf24;
+    position: relative;
+  }
+  .header h1 { font-size: 20px; font-weight: 800; margin-bottom: 6px; letter-spacing: -0.5px; }
+  .header .meta { font-size: 12px; opacity: 0.95; }
+  .badge {
+    display: inline-block;
+    background: #fbbf24;
+    color: #1d1d1f;
+    font-size: 10.5px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-left: 8px;
+  }
+
+  .page { padding: 18px 26px; }
+  .section { margin-bottom: 18px; }
+  .section-title {
+    font-size: 14.5px;
+    font-weight: 800;
+    color: #5b21b6;
+    margin-bottom: 8px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #fbbf24;
+  }
+
+  /* 핵심 메시지 */
+  .verdict {
+    background: linear-gradient(135deg, #fef3c7, #fde68a);
+    border-left: 5px solid #7c3aed;
+    padding: 12px 18px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 13.5px;
+    line-height: 1.7;
+  }
+  .verdict strong { color: #5b21b6; }
+  .verdict .v-title { font-size: 14px; font-weight: 800; color: #7c2d12; margin-bottom: 6px; }
+
+  /* KPI */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .kpi {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-left: 3px solid #7c3aed;
+    padding: 10px 14px;
+    border-radius: 8px;
+  }
+  .kpi.gold {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    border-left-color: #fbbf24;
+  }
+  .kpi .label { font-size: 11px; color: #6b7280; font-weight: 700; }
+  .kpi .value { font-size: 17px; font-weight: 800; color: #1d1d1f; margin-top: 2px; }
+  .kpi.gold .value { color: #92400e; }
+  .kpi .sub { font-size: 10.5px; color: #9ca3af; margin-top: 1px; }
+
+  /* 표 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  th {
+    background: #f3e8ff;
+    color: #5b21b6;
+    padding: 7px 8px;
+    text-align: left;
+    font-weight: 800;
+    border-bottom: 2px solid #7c3aed;
+    font-size: 11.5px;
+  }
+  td {
+    padding: 7px 8px;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: top;
+  }
+  tr.highlight { background: #fef3c7; }
+  tr.danger { background: #fee2e2; }
+  tr.success { background: #dcfce7; }
+
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+  .num.up { color: #059669; }
+  .num.down { color: #dc2626; }
+  .num.same { color: #6b7280; }
+
+  /* 채널 카드 */
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .channel {
+    border: 2px solid;
+    border-radius: 10px;
+    padding: 12px 14px;
+    position: relative;
+  }
+  .channel.coupang { border-color: #fbbf24; background: linear-gradient(180deg, #fef3c7 0%, #fffdf7 30%); }
+  .channel.naver { border-color: #16a34a; background: linear-gradient(180deg, #dcfce7 0%, #f7fdf9 30%); }
+  .channel.meta { border-color: #2563eb; background: linear-gradient(180deg, #dbeafe 0%, #f7faff 30%); }
+  .channel.kakao { border-color: #f59e0b; background: linear-gradient(180deg, #fef3c7 0%, #fffdf7 30%); }
+  .channel h3 {
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .channel.coupang h3 { color: #92400e; }
+  .channel.naver h3 { color: #166534; }
+  .channel.meta h3 { color: #1e40af; }
+  .channel.kakao h3 { color: #92400e; }
+  .channel .priority {
+    background: #1d1d1f;
+    color: #fbbf24;
+    font-size: 9.5px;
+    padding: 1.5px 7px;
+    border-radius: 8px;
+    font-weight: 800;
+  }
+  .channel .data-row {
+    background: rgba(255,255,255,0.85);
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-top: 6px;
+    font-size: 11.5px;
+    line-height: 1.55;
+  }
+  .channel .data-row b { font-size: 11.5px; color: #1d1d1f; }
+  .channel ul { margin-left: 16px; margin-top: 5px; }
+  .channel li { font-size: 11.5px; line-height: 1.55; margin-bottom: 1px; }
+
+  /* 결정/회신 박스 */
+  .decision-box {
+    background: #fffbeb;
+    border: 2px dashed #fbbf24;
+    border-radius: 10px;
+    padding: 12px 16px;
+  }
+  .decision-box h4 { font-size: 12px; color: #92400e; margin-bottom: 6px; font-weight: 800; }
+  .decision-box [contenteditable] {
+    background: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    min-height: 28px;
+    font-size: 12px;
+    border: 1px solid #fde68a;
+    display: block;
+    margin-bottom: 8px;
+    outline: none;
+  }
+  .decision-box [contenteditable]:focus { border-color: #fbbf24; box-shadow: 0 0 0 3px rgba(251,191,36,0.2); }
+
+  .ceo-msg {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    padding: 14px 18px;
+    border-radius: 10px;
+    border-left: 5px solid #fbbf24;
+    font-size: 13.5px;
+    font-weight: 600;
+    line-height: 1.7;
+  }
+  .ceo-msg strong { color: #92400e; font-weight: 800; }
+
+  .return-box {
+    background: #1d1d1f;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-size: 12.5px;
+  }
+  .return-box h4 { color: #fbbf24; font-size: 11px; margin-bottom: 6px; letter-spacing: 1.5px; }
+  .return-box ol { margin-left: 18px; }
+  .return-box li { margin-bottom: 3px; }
+
+  .calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .cal-day {
+    background: #f9fafb;
+    border-radius: 6px;
+    padding: 6px 4px;
+    text-align: center;
+    font-size: 10.5px;
+    border: 1px solid #e5e7eb;
+  }
+  .cal-day .d { font-size: 13px; font-weight: 800; color: #1d1d1f; }
+  .cal-day .t { font-size: 9.5px; color: #6b7280; margin-top: 1px; }
+  .cal-day.holiday { background: linear-gradient(135deg, #fef3c7, #fde68a); border-color: #fbbf24; }
+  .cal-day.holiday .d { color: #92400e; }
+  .cal-day.holiday .t { color: #b45309; font-weight: 700; }
+  .cal-day.weekend { background: #f3f4f6; }
+  .cal-day.peak { background: linear-gradient(135deg, #fee2e2, #fecaca); border-color: #dc2626; }
+  .cal-day.peak .d { color: #991b1b; }
+  .cal-day.peak .t { color: #b91c1c; font-weight: 700; }
+
+  .footer {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 11px;
+    padding: 10px;
+    border-top: 1px solid #e5e7eb;
+  }
+  .toast {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1d1d1f;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 24px;
+    font-size: 12.5px;
+    z-index: 9999;
+    transition: transform 0.3s;
+    font-weight: 700;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  .source { font-size: 10.5px; color: #6b7280; margin-top: 4px; font-style: italic; }
+  .badge-rec {
+    display: inline-block;
+    background: #dc2626;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+  .badge-keep {
+    display: inline-block;
+    background: #2563eb;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+  .badge-cut {
+    display: inline-block;
+    background: #6b7280;
+    color: white;
+    font-size: 9.5px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-left: 4px;
+  }
+
+  @media print {
+    @page { size: A4; margin: 8mm; }
+    body { background: white; padding: 0; font-size: 10pt; }
+    .container { box-shadow: none; border-radius: 0; max-width: 100%; }
+    .action-bar, .toast { display: none !important; }
+    .channel, .verdict, .ceo-msg, .return-box, .kpi, .kpi.gold {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    .channel-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="action-bar">
+  <button class="btn btn-primary" onclick="window.print()">🖨️ 프린트 / PDF</button>
+  <button class="btn btn-yellow" onclick="copyLink()">🔗 링크 복사</button>
+  <button class="btn" onclick="shareEmail()">📧 메일 공유</button>
+</div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>가정의 달 연휴 광고비 운영안 <span class="badge">2026.05</span></h1>
+    <div class="meta">박지현 팀장 → 대표 보고용 · 작성: 화경 · 2026-04-30 · 출처: 4월 광고 실측 + 메타 30일 분석 + 쿠팡/시즌 트렌드 서치</div>
+  </div>
+
+  <div class="page">
+
+    <!-- 1. 핵심 결론 -->
+    <div class="section">
+      <div class="verdict">
+        <div class="v-title">🏆 결론 — 대표님 직감 맞음. <span style="color:#dc2626;">쿠팡 신규 진입 + 네이버 쇼검 추가 증액</span> 동시 추진</div>
+        <strong>① 쿠팡</strong>은 현재 광고 운영이 사실상 미흡(로켓그로스 발주만 진행) → <strong>가정의 달 Big Sale 트래픽 + 즉시 배송 강점 + 선물 수요</strong>가 겹치는 5월에 신규/증액이 가장 큰 기회.<br>
+        <strong>② 네이버</strong>는 4월 ROAS 369% 달성한 효자 — 옵션 B(GFA→쇼검 이전) 유지하며 연휴 주간 쇼검 추가 증액.<br>
+        <strong>③ 메타</strong>는 듀오 출혈(CPA 11.3만)만 차단하고 아블러 제로(CPA 2.6만)에 예산 이전.<br>
+        <strong>④ 추가 광고비 약 280만원</strong>으로 연휴~5월말까지 매출 +1,000만원 회수 시나리오.
+      </div>
+    </div>
+
+    <!-- 2. KPI -->
+    <div class="section">
+      <div class="section-title">① 출발선 — 4월 실측 + 5월 목표</div>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="label">4월 광고비 (네이버)</div>
+          <div class="value">451만원</div>
+          <div class="sub">일평균 약 17만</div>
+        </div>
+        <div class="kpi">
+          <div class="label">4월 매출 (네이버 광고)</div>
+          <div class="value">1,669만원</div>
+          <div class="sub">ROAS 369% · 목표 300% 돌파</div>
+        </div>
+        <div class="kpi gold">
+          <div class="label">5월 목표 광고비 (전 채널)</div>
+          <div class="value">730만원</div>
+          <div class="sub">+280만 (4월 대비 +62%)</div>
+        </div>
+        <div class="kpi gold">
+          <div class="label">5월 목표 매출</div>
+          <div class="value">2,770만원</div>
+          <div class="sub">ROAS 380% · +1,100만</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. 5월 캘린더 -->
+    <div class="section">
+      <div class="section-title">② 2026년 5월 가정의 달 캘린더 — 광고 강세 구간</div>
+      <div class="calendar">
+        <div class="cal-day"><div class="d">일</div></div>
+        <div class="cal-day"><div class="d">월</div></div>
+        <div class="cal-day"><div class="d">화</div></div>
+        <div class="cal-day"><div class="d">수</div></div>
+        <div class="cal-day"><div class="d">목</div></div>
+        <div class="cal-day"><div class="d">금</div></div>
+        <div class="cal-day"><div class="d">토</div></div>
+
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day"></div>
+        <div class="cal-day weekend"><div class="d">1</div><div class="t">근로자의날</div></div>
+        <div class="cal-day weekend"><div class="d">2</div><div class="t">선물 검색↑</div></div>
+
+        <div class="cal-day weekend"><div class="d">3</div><div class="t">선물 구매 피크</div></div>
+        <div class="cal-day"><div class="d">4</div><div class="t">광고 풀가동</div></div>
+        <div class="cal-day peak"><div class="d">5</div><div class="t">어린이날 ★</div></div>
+        <div class="cal-day"><div class="d">6</div><div class="t">선물 후속</div></div>
+        <div class="cal-day"><div class="d">7</div><div class="t">어버이날 D-1</div></div>
+        <div class="cal-day peak"><div class="d">8</div><div class="t">어버이날 ★</div></div>
+        <div class="cal-day weekend"><div class="d">9</div></div>
+
+        <div class="cal-day weekend"><div class="d">10</div></div>
+        <div class="cal-day"><div class="d">11</div></div>
+        <div class="cal-day"><div class="d">12</div></div>
+        <div class="cal-day"><div class="d">13</div></div>
+        <div class="cal-day"><div class="d">14</div><div class="t">성년의날</div></div>
+        <div class="cal-day holiday"><div class="d">15</div><div class="t">스승의날</div></div>
+        <div class="cal-day weekend"><div class="d">16</div></div>
+
+        <div class="cal-day weekend"><div class="d">17</div></div>
+        <div class="cal-day"><div class="d">18</div></div>
+        <div class="cal-day"><div class="d">19</div></div>
+        <div class="cal-day"><div class="d">20</div></div>
+        <div class="cal-day"><div class="d">21</div></div>
+        <div class="cal-day"><div class="d">22</div></div>
+        <div class="cal-day weekend"><div class="d">23</div></div>
+
+        <div class="cal-day holiday"><div class="d">24</div><div class="t">부처님오신날</div></div>
+        <div class="cal-day weekend"><div class="d">25</div><div class="t">대체공휴일</div></div>
+        <div class="cal-day"><div class="d">26</div></div>
+        <div class="cal-day"><div class="d">27</div></div>
+        <div class="cal-day"><div class="d">28</div></div>
+        <div class="cal-day"><div class="d">29</div></div>
+        <div class="cal-day weekend"><div class="d">30</div></div>
+
+        <div class="cal-day weekend"><div class="d">31</div></div>
+      </div>
+      <p class="source">★ 최대 광고 풀가동 구간: 5/3(토) ~ 5/8(금) 6일 — 어린이날·어버이날 골든 윈도우. 5/24(일)+5/25(월) 부처님오신날 대체공휴일 2차 광고 강화.</p>
+    </div>
+
+    <!-- 4. 채널별 운영안 -->
+    <div class="section">
+      <div class="section-title">③ 채널별 5월 운영안 — 우선순위 순</div>
+      <div class="channel-grid">
+
+        <!-- 쿠팡 - 1순위 -->
+        <div class="channel coupang">
+          <h3>🥇 쿠팡 <span class="priority">1순위 · 신규 증액</span><span class="badge-rec">대표님 직감</span></h3>
+          <div class="data-row">
+            <b>현재 상황</b> — 로켓그로스 발주만 진행, 광고는 사실상 미운영. 가정의 달 Big Sale(쿠팡 자체 5/7까지) 트래픽 폭증 구간.
+          </div>
+          <div class="data-row">
+            <b>왜 지금 쿠팡인가</b><br>
+            ① 즉시 배송 = 어린이날·어버이날 직전 구매(D-2~D-1) 구매층 독점<br>
+            ② 30,000개 상품 가정의 달 기획전 → 쿠팡 자체 트래픽 ↑<br>
+            ③ 듀오메이커·아블러 = "가족이 함께 즐기는 홈카페" 컨셉 매칭<br>
+            ④ 신규 진입 시 노출 부스트(쿠팡 알고리즘 학습 가속)
+          </div>
+          <div class="data-row">
+            <b>실행안</b><br>
+            • <b>5/1~5/8 연휴 8일</b>: 일 5만원 (검색광고 매출최적화 + 로켓그로스 광고)<br>
+            • <b>5/9~5/31 평소 23일</b>: 일 3만원 (효율 검증 후)<br>
+            • <b>월 합계 약 109만원</b> (8일×5만 + 23일×3만)<br>
+            • 목표 ROAS 시즌 350~500% / 평소 300%+<br>
+            • 핵심 키워드: <b>어린이날선물·어버이날선물·홈카페·위스키볼·아이스메이커</b>
+          </div>
+          <div class="data-row">
+            <b>리스크 + 대응</b> — 쿠팡 검색광고는 학습 1주 필요 → 5/1 시작 권장(연휴 첫날 학습 완료). ROAS 너무 높게 설정 시 노출 차단됨 → 시작 ROAS는 300%로 설정, 1주 후 상향.
+          </div>
+        </div>
+
+        <!-- 네이버 - 2순위 -->
+        <div class="channel naver">
+          <h3>🥈 네이버 <span class="priority">2순위 · 효자 증액</span><span class="badge-keep">옵션 B 유지</span></h3>
+          <div class="data-row">
+            <b>현재 상황</b> — 4월 ROAS 369%, 옵션 B(GFA 3만→쇼검 이전) 진행 중. 쇼핑검색 316% / 파워링크 321% / GFA NDA 367% 모두 효자.
+          </div>
+          <div class="data-row">
+            <b>실행안 (4월 17만/일 기준)</b><br>
+            • <b>5/3~5/8 풀가동 6일</b>: 일 25만 (쇼검 +5만, 파워링크 +2만, NDA +1만)<br>
+            • <b>5/24~5/25 2일</b>: 일 22만 (부처님오신날)<br>
+            • <b>5월 평소 23일</b>: 일 17만 (옵션 B 그대로)<br>
+            • <b>월 합계 약 590만원</b> (4월 451만 +139만 / +31%)<br>
+            • 목표 ROAS 380%+
+          </div>
+          <div class="data-row">
+            <b>매체별 연휴 분배 (일 25만 기준)</b><br>
+            • 쇼핑검색 11만 (효자 · ROAS 316%)<br>
+            • 파워링크 8만 (안정 · ROAS 321%)<br>
+            • GFA NDA 3만 (신규 디스플 · ROAS 367%)<br>
+            • 일반 GFA 0~1만 (재설계 후 점진 복귀)<br>
+            • <b>브랜드검색·ADvoost 5월 도입 검토</b>
+          </div>
+          <div class="data-row">
+            <b>키워드 추가 (가정의 달)</b> — 어린이날선물·어버이날선물추천·가족선물·홈바·홈카페 + 듀오메이커·아블러 브랜드 키워드 분리 유지.
+          </div>
+        </div>
+
+        <!-- 메타 - 3순위 -->
+        <div class="channel meta">
+          <h3>🥉 메타(IG/FB) <span class="priority">3순위 · 정리+증액</span><span class="badge-cut">듀오 차단</span></h3>
+          <div class="data-row">
+            <b>현재 상황</b> — 30일 광고비 208만, 구매 70건. <b>듀오 CPA 11.3만(출혈) · 아블러 제로 CPA 2.6만(효자)</b>. 전체 CTR 3.71%로 평균(1~2%) 대비 2배.
+          </div>
+          <div class="data-row">
+            <b>실행안</b><br>
+            • <b>듀오 캠페인 일시 중단</b> (소재 교체 후 5/15 재개) — 절감 약 23만<br>
+            • <b>아블러 제로 증액</b>: 일 4.4만 → 일 6만 (연휴 6일 +9.6만)<br>
+            • <b>아블러(활동 중) 소재 추가 테스트</b> CPC 424원 저렴<br>
+            • 비활성 캠페인 5개 정리 (계정 가독성)<br>
+            • <b>월 합계 약 220만원</b> (4월 208만 +12만)
+          </div>
+          <div class="data-row">
+            <b>소재 방향 (가정의 달)</b><br>
+            • 첫 3초 후킹: "어버이날·어린이날 우리집 분위기 뒤집을 그것"<br>
+            • 사용 장면: 가족이 함께 / 아빠 위스키 / 아이 빙수 / 엄마 커피<br>
+            • 1차 타겟: 30~40대 여성 (선물 구매 결정자) · 리타겟 우선<br>
+            • CTA: 5/8 도착 가능 / 무료배송 강조
+          </div>
+        </div>
+
+        <!-- 카카오 - 검토만 -->
+        <div class="channel kakao">
+          <h3>🍯 카카오 <span class="priority">검토 · 5월 미진입</span><span class="badge-cut">후순위</span></h3>
+          <div class="data-row">
+            <b>현재 상황</b> — 미운영. 마제스타지 견적 비즈보드 500만원/회 · 최소 200만원/회.
+          </div>
+          <div class="data-row">
+            <b>판단</b><br>
+            ① 가정의 달 광고 단가 일반보다 1.5~2배 상승 (시즌 경쟁 과열)<br>
+            ② 쥬얼아이스 제품군은 카카오톡 즉흥 구매보다 <b>네이버 검색 → 쿠팡 빠른배송</b>이 더 적합<br>
+            ③ <b>5월 진입은 비효율</b>. 6~7월 여름 시즌(빙수·홈바) 진입 권장
+          </div>
+          <div class="data-row">
+            <b>대안</b> — 카카오 채널톡 친구 대상 무료 메시지로 가정의 달 쿠폰 발송 (광고비 0).
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 5. 채널별 합계표 -->
+    <div class="section">
+      <div class="section-title">④ 5월 광고비 재배분안 — 한눈에</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:14%">채널</th>
+            <th style="width:14%; text-align:right">4월 실측</th>
+            <th style="width:14%; text-align:right">5월 제안</th>
+            <th style="width:10%; text-align:right">증감</th>
+            <th style="width:14%; text-align:right">목표 ROAS</th>
+            <th style="width:34%">핵심 변화</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td><b>🥇 쿠팡</b></td>
+            <td class="num same">~0</td>
+            <td class="num up">109만</td>
+            <td class="num up">+109만</td>
+            <td class="num">350%+</td>
+            <td>신규 진입 · 검색광고 + 로켓그로스 광고 · 연휴 8일 일5만 / 평소 일3만</td>
+          </tr>
+          <tr class="success">
+            <td><b>🥈 네이버</b></td>
+            <td class="num">451만</td>
+            <td class="num up">590만</td>
+            <td class="num up">+139만</td>
+            <td class="num">380%+</td>
+            <td>옵션 B 유지 · 연휴 6일 일25만(쇼검 +5만) · 평소 일17만</td>
+          </tr>
+          <tr>
+            <td><b>🥉 메타</b></td>
+            <td class="num">208만</td>
+            <td class="num up">220만</td>
+            <td class="num up">+12만</td>
+            <td class="num">300%+</td>
+            <td>듀오 일시중단(-23만) → 아블러제로 증액(+35만) · 소재 교체</td>
+          </tr>
+          <tr>
+            <td>🍯 카카오</td>
+            <td class="num same">0</td>
+            <td class="num same">0</td>
+            <td class="num same">-</td>
+            <td class="num">-</td>
+            <td>5월 진입 X · 6~7월 여름 시즌 진입 검토 (소재 미리 준비)</td>
+          </tr>
+          <tr style="background:#1d1d1f; color:white;">
+            <td style="color:#fbbf24;"><b>총계</b></td>
+            <td class="num" style="color:white;">659만</td>
+            <td class="num up" style="color:#fde68a;">919만</td>
+            <td class="num up" style="color:#fde68a;">+260만</td>
+            <td class="num" style="color:#fde68a;">평균 380%</td>
+            <td style="color:#e5e7eb;">매출 목표 약 3,490만 (4월 대비 +1,820만 / +109%)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="source">※ 4월 메타 208만은 30일 기준 추정 / 네이버 451만은 4월 1~30일 실측 / 쿠팡은 광고 실집행 사실상 0 / 5월 매출 목표는 ROAS 380%× 광고비.</p>
+    </div>
+
+    <!-- 6. 주차별 액션 -->
+    <div class="section">
+      <div class="section-title">⑤ 주차별 액션 플랜</div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:10%">주차</th>
+            <th style="width:30%">주요 일정</th>
+            <th style="width:30%">광고 액션</th>
+            <th style="width:30%">점검 포인트</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#fef3c7;">
+            <td><b>5/1주<br>(5/1~5/3)</b></td>
+            <td>근로자의날(금)·선물 검색 시작</td>
+            <td>쿠팡 광고 세팅·론칭 · 메타 듀오 일시중단 · 네이버 옵션 B 정상화</td>
+            <td>쿠팡 일 5만 도달율 · 검색광고 학습 진행도</td>
+          </tr>
+          <tr class="danger">
+            <td><b>5/2주<br>(5/4~5/10)</b></td>
+            <td><b>5/5 어린이날 · 5/8 어버이날</b></td>
+            <td><b>전 채널 풀가동</b> · 네이버 쇼검 +5만/일 · 쿠팡 일5만 · 메타 아블러제로 +1.6만/일</td>
+            <td>일별 매출 추이 · 채널별 ROAS · 재고 부족 SKU 즉시 차단</td>
+          </tr>
+          <tr>
+            <td><b>5/3주<br>(5/11~5/17)</b></td>
+            <td>스승의날(금) · 1차 결산</td>
+            <td>연휴 결과 검증 · 쿠팡 효율 좋으면 일3만→4만 상향 · 메타 듀오 신소재 5/15 재론칭</td>
+            <td>연휴 ROAS 평균 380% 달성 여부 · 쿠팡 학습 완료 · 메타 듀오 CPA 회복</td>
+          </tr>
+          <tr>
+            <td><b>5/4주<br>(5/18~5/24)</b></td>
+            <td>5/24 부처님오신날 · 2차 광고</td>
+            <td>주말+공휴일 광고 상향 (네이버 일22만 · 쿠팡 일4만)</td>
+            <td>월 누적 매출 · 상반기 셀러그루스 추세</td>
+          </tr>
+          <tr>
+            <td><b>5/5주<br>(5/25~5/31)</b></td>
+            <td>대체공휴일(월) · 5월 결산</td>
+            <td>월 누적 ROAS·매체별 분배 확정 · 6월 플랜 준비 (여름·카카오 진입 검토)</td>
+            <td>5월 ROAS 380%+ 달성 / 6월 광고비 안 건의</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. 결정/회신 -->
+    <div class="section">
+      <div class="section-title">⑥ 대표 결정 / 회신 자리 (직접 작성)</div>
+      <div class="decision-box">
+        <h4>① 쿠팡 신규 광고 (월 109만) — 승인?</h4>
+        <span contenteditable="true" data-key="d1">예: 승인 / 일 5만으로 5/1 시작 후 1주 결과 보고</span>
+        <h4>② 네이버 연휴 증액 (월 590만, +139만) — 승인?</h4>
+        <span contenteditable="true" data-key="d2">예: 승인 / 옵션 B 유지하며 5/3~5/8 쇼검 +5만 추가</span>
+        <h4>③ 메타 듀오 일시중단 + 아블러제로 증액 — 승인?</h4>
+        <span contenteditable="true" data-key="d3">예: 승인 / 5/15 듀오 신소재 재론칭 시 별도 보고</span>
+        <h4>④ 카카오 5월 미진입 + 6~7월 검토 — 승인?</h4>
+        <span contenteditable="true" data-key="d4">예: 승인 / 6월 여름 시즌 카카오 비즈보드 견적 다시 받아 보고</span>
+        <h4>⑤ 추가 메모 (대표님 자유 코멘트)</h4>
+        <span contenteditable="true" data-key="d5">예: 쿠팡 진입 시 듀오메이커보다 아블러제로 우선 / 가격 정찰제 유지</span>
+      </div>
+    </div>
+
+    <!-- 8. 대표 보고 한 줄 -->
+    <div class="section">
+      <div class="section-title">⑦ 대표 보고 한 줄</div>
+      <div class="ceo-msg">
+        "대표님 직감대로 <strong>쿠팡 신규 진입(월 109만)</strong>이 가정의 달 최대 기회입니다. 동시에 <strong>네이버 연휴 풀가동(+139만)</strong>·<strong>메타 듀오 출혈 차단</strong>으로 정리하면, 5월 광고비 +260만으로 매출 목표 <strong>3,490만 (4월 대비 +109%)</strong> 추진 가능합니다."
+      </div>
+    </div>
+
+    <!-- 9. 귀환 -->
+    <div class="return-box">
+      <h4>귀환 — 천계 공식</h4>
+      <ol>
+        <li><strong>중심:</strong> "가정의 달은 쿠팡 + 네이버 두 축 — 메타는 정리 / 카카오는 후일"</li>
+        <li><strong>다음 질문:</strong> 쿠팡 1주 학습 후 ROAS 350% 안 나오면 재배분 룰은?</li>
+        <li><strong>실행 한 점:</strong> 오늘 안에 ① 대표님 결정 받고 ② 쿠팡 광고 캠페인 5/1 론칭 세팅 시작 ③ 프로그레스미디어에 5/3~5/8 쇼검 +5만 회신</li>
+      </ol>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    화경 × 박지현 팀장 · 쥬얼아이스 운영 원리 v1.0 · 2026.04.30 작성<br>
+    영구 URL: <code>https://charlesmaster911.github.io/jewelice-playbook/jihyun-holiday-ad-plan.html</code>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  document.querySelectorAll('[contenteditable]').forEach(el => {
+    const key = 'jihyun-holiday-' + el.dataset.key;
+    const saved = localStorage.getItem(key);
+    if (saved) el.textContent = saved;
+    el.addEventListener('input', () => localStorage.setItem(key, el.textContent));
+  });
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+  function copyLink() {
+    const url = 'https://charlesmaster911.github.io/jewelice-playbook/jihyun-holiday-ad-plan.html';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(() => showToast('✅ 영구 URL 복사됨'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = url; document.body.appendChild(ta); ta.select();
+      document.execCommand('copy'); document.body.removeChild(ta);
+      showToast('✅ 영구 URL 복사됨');
+    }
+  }
+  function shareEmail() {
+    const subject = encodeURIComponent('[쥬얼아이스] 가정의 달 연휴 광고비 운영안 — 박지현 → 대표 보고');
+    const body = encodeURIComponent(
+      '대표님,\n\n' +
+      '지시 주신 가정의 달 연휴 광고비 운영안 정리해 보고드립니다.\n\n' +
+      '■ 핵심 결론\n' +
+      '① 쿠팡 신규 진입 (월 109만) — 대표님 직감 맞음\n' +
+      '② 네이버 연휴 증액 (월 590만, +139만)\n' +
+      '③ 메타 듀오 출혈 차단 + 아블러제로 증액\n' +
+      '④ 카카오 5월 미진입, 6~7월 검토\n\n' +
+      '■ 5월 광고비 합계: 919만 (4월 659만 +260만)\n' +
+      '■ 5월 매출 목표: 3,490만 (4월 대비 +109%)\n\n' +
+      '상세: https://charlesmaster911.github.io/jewelice-playbook/jihyun-holiday-ad-plan.html\n\n' +
+      '— 박지현 팀장'
+    );
+    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>
