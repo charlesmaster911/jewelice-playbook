@@ -125,6 +125,12 @@
     position:relative;width:100%;aspect-ratio:800/320;border-radius:10px;
     overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 4px 14px rgba(0,0,0,.08)
   }
+  .banner-img.hero{aspect-ratio:1376/768}
+  .banner-img.hero .banner-copy h3{font-size:64px;line-height:1.18}
+  .banner-img.hero .banner-copy .sub{font-size:20px}
+  .banner-img.hero .banner-copy .ribbon{font-size:15px;padding:6px 18px}
+  .banner-img.hero .banner-copy .period{font-size:17px;padding:9px 22px;margin-top:18px}
+  .banner-img.hero .banner-copy{max-width:65%}
   .banner-img img{
     position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block
   }
@@ -347,13 +353,35 @@
 
     <!-- 4. 배너 (연출 이미지 베이스) -->
     <div class="section">
-      <div class="section-title">④ 배너 이미지 — 가로 800px · 제품 연출컷 + 카피</div>
+      <div class="section-title">④ 배너 이미지 — 메인 1376×768 + 상세 800×320</div>
 
-      <!-- A안 — 듀오메이커 연출 -->
+      <!-- HERO — 메인 배너 1376 × 768 -->
       <div class="banner-wrap">
         <div class="banner-meta">
-          <div class="banner-title">A안 · 메인 추천 (듀오메이커 홈바 연출컷)</div>
-          <div class="banner-spec">800 × 320 px · 카피 톤 좌측 정렬 / 우측 제품 노출</div>
+          <div class="banner-title">★ 메인 배너 (홈/메인 페이지) — 듀오메이커 홈바 연출</div>
+          <div class="banner-spec">1376 × 768 px · 와이드 메인 노출용</div>
+        </div>
+        <div class="banner-img hero" data-img="img-family-month/scene-A.jpg" data-overlay="purple">
+          <img src="img-family-month/scene-A.jpg" alt="듀오메이커 홈바 연출">
+          <div class="overlay-shade"></div>
+          <div class="banner-copy hero">
+            <span class="ribbon">FAMILY MONTH 2026</span>
+            <h3>가정의 달,<br>마음까지 <span class="accent">빛나도록</span></h3>
+            <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게</div>
+            <div class="sub">쥬얼아이스 전 제품 감사 프로모션</div>
+            <div class="period">2026.5.1(목) ~ 5.8(목) 8일 한정</div>
+          </div>
+        </div>
+        <div class="download-row">
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-A.jpg','HERO','jewelice-family-month-MAIN-1376x768.png',1376,768)">PNG 다운로드 (1376×768)</button>
+        </div>
+      </div>
+
+      <!-- A안 800×320 — 듀오메이커 연출 -->
+      <div class="banner-wrap">
+        <div class="banner-meta">
+          <div class="banner-title">A안 · 800×320 (듀오메이커 홈바 · 시그니처 톤)</div>
+          <div class="banner-spec">800 × 320 px · 상세페이지 상단 / 자사몰·스마트스토어</div>
         </div>
         <div class="banner-img" data-img="img-family-month/scene-A.jpg" data-overlay="purple">
           <img src="img-family-month/scene-A.jpg" alt="듀오메이커 연출">
@@ -367,156 +395,112 @@
           </div>
         </div>
         <div class="download-row">
-          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-A.jpg','A','jewelice-family-month-A.png')">PNG 다운로드 (800×320)</button>
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-A.jpg','A','jewelice-family-month-A-800x320.png',800,320)">PNG 다운로드 (800×320)</button>
         </div>
       </div>
 
-      <!-- B안 — 에이블러 연출 -->
+      <!-- B안 800×320 — 에이블러 연출 -->
       <div class="banner-wrap">
         <div class="banner-meta">
-          <div class="banner-title">B안 · 에이블러 연출컷 (프리미엄 톤)</div>
-          <div class="banner-spec">800 × 320 px · 좌측 카피 / 우측 제품 노출</div>
+          <div class="banner-title">B안 · 800×320 (에이블러 · 프리미엄 톤)</div>
+          <div class="banner-spec">800 × 320 px · 상세페이지 상단 / 제품 클로즈업</div>
         </div>
         <div class="banner-img" data-img="img-family-month/scene-B.jpg" data-overlay="ice">
           <img src="img-family-month/scene-B.jpg" alt="에이블러 연출">
           <div class="overlay-shade"></div>
           <div class="banner-copy">
-            <span class="ribbon">★ 가정의 달 감사 프로모션</span>
-            <h3>5월의 한 잔,<br>가장 깨끗한 <span class="accent">감사</span></h3>
-            <div class="sub">어버이날 D-Day까지 · 자사몰 · 스마트스토어</div>
-            <div class="sub">쥬얼아이스 전 제품 감사 할인</div>
-            <div class="period">5.1(목) ~ 5.8(목) 8일</div>
+            <span class="ribbon">FAMILY MONTH 2026</span>
+            <h3>가정의 달,<br>마음까지 <span class="accent">빛나도록</span></h3>
+            <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게</div>
+            <div class="sub">쥬얼아이스 전 제품 감사 프로모션</div>
+            <div class="period">2026.5.1(목) ~ 5.8(목) 8일 한정</div>
           </div>
         </div>
         <div class="download-row">
-          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-B.jpg','B','jewelice-family-month-B.png')">PNG 다운로드 (800×320)</button>
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-B.jpg','B','jewelice-family-month-B-800x320.png',800,320)">PNG 다운로드 (800×320)</button>
         </div>
       </div>
 
-      <!-- C안 — 에이블러 제로 따뜻한 연출 -->
+      <!-- C안 800×320 — 에이블러 제로 -->
       <div class="banner-wrap">
         <div class="banner-meta">
-          <div class="banner-title">C안 · 에이블러 제로 (따뜻한 가족 감성)</div>
-          <div class="banner-spec">800 × 320 px · 좌측 카피 / 우측 연출 노출</div>
+          <div class="banner-title">C안 · 800×320 (에이블러 제로 · 따뜻한 톤)</div>
+          <div class="banner-spec">800 × 320 px · SNS · 블로그 · 기획전</div>
         </div>
         <div class="banner-img" data-img="img-family-month/scene-C.jpg" data-overlay="warm">
           <img src="img-family-month/scene-C.jpg" alt="에이블러 제로 연출">
           <div class="overlay-shade"></div>
           <div class="banner-copy">
-            <span class="ribbon dark">THANK YOU · MAY</span>
-            <h3>감사합니다,<br>5월의 <span class="accent">한 잔</span>으로</h3>
-            <div class="sub">올해 단 8일 · 쥬얼아이스 전 제품 감사 프로모션</div>
-            <div class="sub">자사몰 · 네이버 스마트스토어</div>
-            <div class="period">5.1(목) ~ 5.8(목)</div>
+            <span class="ribbon dark">FAMILY MONTH 2026</span>
+            <h3>가정의 달,<br>마음까지 <span class="accent">빛나도록</span></h3>
+            <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게</div>
+            <div class="sub">쥬얼아이스 전 제품 감사 프로모션</div>
+            <div class="period">2026.5.1(목) ~ 5.8(목) 8일 한정</div>
           </div>
         </div>
         <div class="download-row">
-          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-C.jpg','C','jewelice-family-month-C.png')">PNG 다운로드 (800×320)</button>
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-C.jpg','C','jewelice-family-month-C-800x320.png',800,320)">PNG 다운로드 (800×320)</button>
         </div>
       </div>
 
       <div class="note">
         <strong>사용법:</strong>
         <ul style="margin-top:6px;padding-left:18px">
-          <li>A안 = 자사몰·스마트스토어 <strong>메인 페이지 상단</strong> (홈바 연출 — 가족 모임 톤)</li>
-          <li>B안 = <strong>상세페이지 상단</strong> (제품 클로즈업 — 신뢰감)</li>
-          <li>C안 = <strong>SNS·블로그·기획전</strong> (따뜻한 라이프 컷)</li>
-          <li>PNG 다운로드 = 자사몰·스마트스토어 어드민에 바로 업로드 가능 (800×320)</li>
-          <li>다른 비율(1920×600 / 1080×1080 / 9:16) 필요하면 말씀하세요 — 같은 연출컷으로 재구성</li>
+          <li><strong>메인 1376×768</strong> = 자사몰·스마트스토어 <strong>홈/메인 페이지</strong> 와이드 노출용</li>
+          <li><strong>800×320 (A·B·C)</strong> = <strong>상세페이지 상단</strong> · 같은 카피 / 다른 연출 톤 3종 중 선택</li>
+          <li>모든 배너 카피 통일: "FAMILY MONTH 2026 / 가정의 달, 마음까지 빛나도록 / 1년에 한 번, 감사의 마음을 가장 투명하게 / 쥬얼아이스 전 제품 감사 프로모션 / 2026.5.1~5.8"</li>
+          <li>PNG 다운로드 후 어드민 업로드 → 권수지 대리님 적용</li>
         </ul>
       </div>
     </div>
 
-    <!-- 5. 광고 키워드 -->
+    <!-- 5. 광고 키워드 — 네이버 광고만 -->
     <div class="section">
-      <div class="section-title">⑤ 광고 키워드 — 쿠팡 증액 · 네이버 키워드만</div>
+      <div class="section-title">⑤ 광고 키워드 — 네이버 광고에 추가 (키워드만 운영)</div>
 
-      <div class="keyword-grid">
-
-        <div class="keyword-box coupang">
-          <h4>🛒 쿠팡 광고 <span class="budget" style="background:#a7f3d0;color:#065f46">박지현 팀장 처리 완료</span></h4>
-          <div style="font-size:11.5px;color:#9a3412;margin-bottom:10px;font-weight:700">
-            일예산 +50,000원 증액 + 키워드 추가 반영 완료 · ROAS 3.0 미만 24h 지속 시 키워드 컷
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:8px">[★ 핵심 어버이날]</div>
-          <div class="kw-tags">
-            <span class="kw hot">어버이날 선물</span>
-            <span class="kw hot">어버이날 선물세트</span>
-            <span class="kw hot">부모님 선물</span>
-            <span class="kw hot">효도선물</span>
-            <span class="kw">어버이날 한정</span>
-            <span class="kw">부모님 생신선물</span>
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:10px">[+ 신규 추가]</div>
-          <div class="kw-tags">
-            <span class="kw new">어버이날 술선물</span>
-            <span class="kw new">위스키 선물세트</span>
-            <span class="kw new">홈바 선물</span>
-            <span class="kw new">50대 부모님 선물</span>
-            <span class="kw new">60대 부모님 선물</span>
-            <span class="kw new">카네이션 선물세트</span>
-            <span class="kw new">스승의날 선물</span>
-            <span class="kw new">부부의날 선물</span>
-            <span class="kw new">가정의달 선물</span>
-            <span class="kw new">5월 가족모임</span>
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:10px">[기존 유지]</div>
-          <div class="kw-tags">
-            <span class="kw">투명얼음</span>
-            <span class="kw">큐브얼음</span>
-            <span class="kw">위스키얼음</span>
-            <span class="kw">홈바</span>
-          </div>
+      <div class="keyword-box" style="max-width:100%">
+        <h4>🟢 네이버 광고 <span class="budget" style="background:#a7f3d0;color:#065f46">키워드 추가만 · 예산 동결</span></h4>
+        <div style="font-size:11.5px;color:#5b21b6;margin-bottom:10px;font-weight:700">
+          쿠팡은 박지현 팀장 처리 완료 · 네이버는 아래 키워드만 추가해서 5/1 ~ 5/8 운영 · 5/8 어버이날 직전 D-2 증액 여부 재판단
         </div>
 
-        <div class="keyword-box">
-          <h4>🟢 네이버 광고 <span class="budget" style="background:#a7f3d0;color:#065f46">키워드 추가만 (예산 동결)</span></h4>
-          <div style="font-size:11.5px;color:#5b21b6;margin-bottom:10px;font-weight:700">
-            성과 1주 모니터링 → 5/8 어버이날 직전 D-2 증액 여부 재판단
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:8px">[★ 가정의달 메인]</div>
-          <div class="kw-tags">
-            <span class="kw hot">가정의달 선물</span>
-            <span class="kw hot">어버이날 선물세트</span>
-            <span class="kw hot">부모님께 드릴 선물</span>
-            <span class="kw hot">효도선물 추천</span>
-            <span class="kw">스승의날 선물</span>
-            <span class="kw">부부의날 선물</span>
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[+ 신규 추가]</div>
-          <div class="kw-tags">
-            <span class="kw new">5월 선물 추천</span>
-            <span class="kw new">어버이날 위스키</span>
-            <span class="kw new">홈파티 얼음</span>
-            <span class="kw new">투명얼음 선물</span>
-            <span class="kw new">프리미엄 얼음</span>
-            <span class="kw new">위스키 온더락</span>
-            <span class="kw new">카네이션과 함께</span>
-            <span class="kw new">가족모임 선물</span>
-            <span class="kw new">부모님 술선물</span>
-            <span class="kw new">감사선물세트</span>
-          </div>
-
-          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[기존 유지]</div>
-          <div class="kw-tags">
-            <span class="kw">쥬얼아이스</span>
-            <span class="kw">투명얼음</span>
-            <span class="kw">큐브얼음</span>
-            <span class="kw">위스키얼음</span>
-          </div>
+        <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:8px">[★ 가정의달 메인]</div>
+        <div class="kw-tags">
+          <span class="kw hot">가정의달 선물</span>
+          <span class="kw hot">어버이날 선물세트</span>
+          <span class="kw hot">부모님께 드릴 선물</span>
+          <span class="kw hot">효도선물 추천</span>
+          <span class="kw">스승의날 선물</span>
+          <span class="kw">부부의날 선물</span>
         </div>
 
+        <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[+ 신규 추가]</div>
+        <div class="kw-tags">
+          <span class="kw new">5월 선물 추천</span>
+          <span class="kw new">어버이날 위스키</span>
+          <span class="kw new">홈파티 얼음</span>
+          <span class="kw new">투명얼음 선물</span>
+          <span class="kw new">프리미엄 얼음</span>
+          <span class="kw new">위스키 온더락</span>
+          <span class="kw new">카네이션과 함께</span>
+          <span class="kw new">가족모임 선물</span>
+          <span class="kw new">부모님 술선물</span>
+          <span class="kw new">감사선물세트</span>
+        </div>
+
+        <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[기존 유지]</div>
+        <div class="kw-tags">
+          <span class="kw">쥬얼아이스</span>
+          <span class="kw">투명얼음</span>
+          <span class="kw">큐브얼음</span>
+          <span class="kw">위스키얼음</span>
+        </div>
       </div>
 
       <div class="note">
         <strong>운영 룰:</strong>
         <ul style="margin-top:6px;padding-left:18px">
-          <li><strong>매일 09:00</strong> ROAS 점검 — 키워드별 ROAS 2.0 미만 24h 지속 시 입찰가 -20% 또는 정지</li>
+          <li><strong>매일 09:00</strong> 네이버 광고 ROAS 점검 — 키워드별 ROAS 2.0 미만 24h 지속 시 입찰가 -20% 또는 정지</li>
           <li><strong>5/5 ~ 5/8</strong> 어버이날 D-3 ~ D-Day 핵심 키워드 입찰가 +30% 자동 상향</li>
           <li><strong>5/9(금)</strong> 캠페인 종료 다음날 결산 → 키워드별 ROAS·전환수 정리</li>
         </ul>
@@ -575,38 +559,34 @@
     a.href = url; a.download = filename; document.body.appendChild(a); a.click();
     document.body.removeChild(a); URL.revokeObjectURL(url);
   }
-  // 안별 카피 정의
+  // 통일 카피 (모든 안 동일)
+  const UNIFIED = {
+    ribbon: 'FAMILY MONTH 2026',
+    line1: '가정의 달,', line2a:'마음까지 ', accent:'빛나도록',
+    sub1: '1년에 한 번, 감사의 마음을 가장 투명하게',
+    sub2: '쥬얼아이스 전 제품 감사 프로모션',
+    period: '2026.5.1(목) ~ 5.8(목) 8일 한정'
+  };
   const COPY = {
-    A: {
-      ribbon: 'FAMILY MONTH 2026', ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
-      line1: '가정의 달,', line2a:'마음까지 ', accent:'빛나도록',
-      sub1: '1년에 한 번, 감사의 마음을 가장 투명하게',
-      sub2: '쥬얼아이스 전 제품 감사 프로모션',
-      period: '2026.5.1(목) ~ 5.8(목) 8일 한정',
-      shade: 'linear-gradient(90deg,rgba(30,27,75,0.78) 0%,rgba(30,27,75,0.55) 45%,rgba(30,27,75,0.10) 100%)',
-      shadeStops: [['rgba(30,27,75,0.78)',0],['rgba(30,27,75,0.55)',0.45],['rgba(30,27,75,0.10)',1]]
-    },
-    B: {
-      ribbon: '★ 가정의 달 감사 프로모션', ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
-      line1: '5월의 한 잔,', line2a:'가장 깨끗한 ', accent:'감사',
-      sub1: '어버이날 D-Day까지 · 자사몰 · 스마트스토어',
-      sub2: '쥬얼아이스 전 제품 감사 할인',
-      period: '5.1(목) ~ 5.8(목) 8일',
-      shadeStops: [['rgba(12,30,62,0.78)',0],['rgba(30,58,138,0.5)',0.45],['rgba(59,130,246,0.05)',1]]
-    },
-    C: {
-      ribbon: 'THANK YOU · MAY', ribbonBg:'#1d1d1f', ribbonFg:'#fbbf24',
-      line1: '감사합니다,', line2a:'5월의 ', accent:'한 잔', line2b:'으로',
-      sub1: '올해 단 8일 · 쥬얼아이스 전 제품 감사 프로모션',
-      sub2: '자사몰 · 네이버 스마트스토어',
-      period: '5.1(목) ~ 5.8(목)',
-      shadeStops: [['rgba(124,45,18,0.75)',0],['rgba(194,65,12,0.5)',0.45],['rgba(245,158,11,0.10)',1]]
-    }
+    HERO: { ...UNIFIED, ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
+      shadeStops: [['rgba(30,27,75,0.80)',0],['rgba(30,27,75,0.55)',0.45],['rgba(30,27,75,0.08)',1]] },
+    A: { ...UNIFIED, ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
+      shadeStops: [['rgba(30,27,75,0.78)',0],['rgba(30,27,75,0.55)',0.45],['rgba(30,27,75,0.10)',1]] },
+    B: { ...UNIFIED, ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
+      shadeStops: [['rgba(12,30,62,0.78)',0],['rgba(30,58,138,0.5)',0.45],['rgba(59,130,246,0.05)',1]] },
+    C: { ...UNIFIED, ribbonBg:'#1d1d1f', ribbonFg:'#fbbf24',
+      shadeStops: [['rgba(124,45,18,0.75)',0],['rgba(194,65,12,0.5)',0.45],['rgba(245,158,11,0.10)',1]] }
   };
 
-  function downloadComposed(imgPath, key, filename){
-    const W = 800, H = 320;
+  function downloadComposed(imgPath, key, filename, w, h){
+    const W = w || 800, H = h || 320;
     const c = COPY[key];
+    const isHero = (key === 'HERO');
+    const f1 = isHero ? 76 : 38;
+    const f2 = isHero ? 22 : 14;
+    const fr = isHero ? 17 : 13;
+    const fp = isHero ? 18 : 12;
+    const padX = isHero ? 80 : 48;
     const img = new Image();
     img.crossOrigin = 'anonymous';
     img.onload = function(){
@@ -623,55 +603,59 @@
       c.shadeStops.forEach(([col,stop]) => g.addColorStop(stop, col));
       ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
 
+      // 좌표 (높이 비례)
+      const yCenter = H/2;
+      const lineGap = f1 * 1.18;
+      const yL1 = yCenter - lineGap*0.55;
+      const yL2 = yCenter + lineGap*0.45;
+      const ySub1 = yL2 + f2*2.3;
+      const ySub2 = ySub1 + f2*1.6;
+      const yPeriod = ySub2 + f2*1.8;
+      const yRibbon = yL1 - f1*1.0;
+
       // 3. 리본
-      ctx.font = 'bold 13px Pretendard, "Noto Sans KR", sans-serif';
+      ctx.font = `bold ${fr}px Pretendard, "Noto Sans KR", sans-serif`;
       const ribbonText = c.ribbon;
-      const rw = ctx.measureText(ribbonText).width + 28;
-      const rx = 48, ry = 38, rh = 28;
+      const rw = ctx.measureText(ribbonText).width + (isHero?40:28);
+      const rh = isHero ? 38 : 28;
       ctx.fillStyle = c.ribbonBg;
-      roundRect(ctx, rx, ry, rw, rh, 14); ctx.fill();
+      roundRect(ctx, padX, yRibbon-rh, rw, rh, rh/2); ctx.fill();
       ctx.fillStyle = c.ribbonFg;
       ctx.textBaseline = 'middle';
-      ctx.fillText(ribbonText, rx+14, ry+rh/2+1);
+      ctx.fillText(ribbonText, padX+(isHero?20:14), yRibbon-rh/2+1);
 
       // 4. 메인 카피 (2줄)
-      ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 2;
+      ctx.shadowColor = 'rgba(0,0,0,0.55)'; ctx.shadowBlur = isHero?22:14; ctx.shadowOffsetY = 2;
       ctx.fillStyle = '#ffffff';
-      ctx.font = '900 38px Pretendard, "Noto Sans KR", sans-serif';
+      ctx.font = `900 ${f1}px Pretendard, "Noto Sans KR", sans-serif`;
       ctx.textBaseline = 'alphabetic';
-      ctx.fillText(c.line1, 48, 130);
-      // 두 번째 줄: line2a + accent + line2b(있을 시)
-      let x = 48, y = 178;
+      ctx.fillText(c.line1, padX, yL1);
+      let x = padX;
       ctx.fillStyle = '#ffffff';
-      ctx.fillText(c.line2a, x, y);
+      ctx.fillText(c.line2a, x, yL2);
       x += ctx.measureText(c.line2a).width;
       ctx.fillStyle = '#fbbf24';
-      ctx.fillText(c.accent, x, y);
-      if(c.line2b){
-        x += ctx.measureText(c.accent).width;
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText(c.line2b, x, y);
-      }
+      ctx.fillText(c.accent, x, yL2);
 
       // 5. 서브
-      ctx.shadowBlur = 8;
+      ctx.shadowBlur = isHero?12:8;
       ctx.fillStyle = 'rgba(255,255,255,0.95)';
-      ctx.font = '600 14px Pretendard, "Noto Sans KR", sans-serif';
-      ctx.fillText(c.sub1, 48, 215);
-      ctx.fillText(c.sub2, 48, 238);
+      ctx.font = `600 ${f2}px Pretendard, "Noto Sans KR", sans-serif`;
+      ctx.fillText(c.sub1, padX, ySub1);
+      ctx.fillText(c.sub2, padX, ySub2);
 
       // 6. 기간 캡슐
       ctx.shadowBlur = 0;
-      ctx.font = 'bold 12px Pretendard, "Noto Sans KR", sans-serif';
-      const pw = ctx.measureText(c.period).width + 28;
-      const px = 48, py = 262, ph = 28;
+      ctx.font = `bold ${fp}px Pretendard, "Noto Sans KR", sans-serif`;
+      const pw = ctx.measureText(c.period).width + (isHero?40:28);
+      const ph = isHero ? 38 : 28;
       ctx.fillStyle = 'rgba(251,191,36,0.18)';
-      roundRect(ctx, px, py, pw, ph, 14); ctx.fill();
+      roundRect(ctx, padX, yPeriod-ph/2, pw, ph, ph/2); ctx.fill();
       ctx.strokeStyle = 'rgba(251,191,36,0.7)'; ctx.lineWidth = 1.2;
-      roundRect(ctx, px, py, pw, ph, 14); ctx.stroke();
+      roundRect(ctx, padX, yPeriod-ph/2, pw, ph, ph/2); ctx.stroke();
       ctx.fillStyle = '#fbbf24';
       ctx.textBaseline = 'middle';
-      ctx.fillText(c.period, px+14, py+ph/2+1);
+      ctx.fillText(c.period, padX+(isHero?20:14), yPeriod+1);
 
       // 7. 다운로드
       canvas.toBlob(function(b){
