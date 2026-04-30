@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>가정의 달 감사 프로모션 — 자사몰·스마트스토어·광고 통합 기획안 | 박지현 팀장</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#f5f5f7}
+  body{
+    font-family:'Pretendard','Noto Sans KR',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    color:#1d1d1f;line-height:1.6;padding:14px 10px 60px;font-size:13.5px
+  }
+  .container{
+    max-width:1140px;margin:0 auto;background:#fff;border-radius:14px;
+    box-shadow:0 6px 28px rgba(0,0,0,.08);overflow:hidden
+  }
+  .action-bar{
+    position:sticky;top:8px;z-index:100;display:flex;gap:6px;
+    justify-content:flex-end;max-width:1140px;margin:0 auto 8px
+  }
+  .btn{
+    background:#fff;border:1px solid #e5e7eb;border-radius:6px;
+    padding:7px 14px;font-size:12.5px;font-weight:700;cursor:pointer;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);color:#1d1d1f
+  }
+  .btn-primary{background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);color:#fff;border:none}
+  .btn-yellow{background:linear-gradient(135deg,#fbbf24 0%,#f59e0b 100%);color:#1d1d1f;border:none}
+
+  .header{
+    background:linear-gradient(135deg,#7c3aed 0%,#a855f7 100%);
+    color:#fff;padding:22px 28px;border-bottom:4px solid #fbbf24;position:relative
+  }
+  .header h1{font-size:22px;font-weight:800;margin-bottom:6px;letter-spacing:-.5px}
+  .header .meta{font-size:12px;opacity:.95}
+  .badge{
+    display:inline-block;background:#fbbf24;color:#1d1d1f;
+    font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:12px;margin-left:8px
+  }
+
+  .page{padding:22px 28px}
+  .section{margin-bottom:22px}
+  .section-title{
+    font-size:15px;font-weight:800;color:#5b21b6;margin-bottom:10px;
+    padding-bottom:6px;border-bottom:2px solid #fbbf24
+  }
+
+  .verdict{
+    background:linear-gradient(135deg,#fef3c7,#fde68a);
+    border-left:5px solid #7c3aed;padding:14px 20px;border-radius:10px;
+    margin-bottom:14px;font-size:13.5px;line-height:1.7
+  }
+  .verdict strong{color:#5b21b6}
+  .verdict .v-title{font-size:14px;font-weight:800;color:#7c2d12;margin-bottom:6px}
+
+  /* 메인 카피 카드 */
+  .copy-hero{
+    background:linear-gradient(135deg,#1e1b4b 0%,#4c1d95 50%,#7c3aed 100%);
+    color:#fff;padding:34px 28px;border-radius:14px;text-align:center;
+    border:2px solid #fbbf24;position:relative;overflow:hidden;margin-bottom:14px
+  }
+  .copy-hero::before{
+    content:'';position:absolute;top:-40px;right:-40px;width:160px;height:160px;
+    background:radial-gradient(circle,rgba(251,191,36,.35) 0%,transparent 70%);border-radius:50%
+  }
+  .copy-hero .label{
+    font-size:11px;letter-spacing:.35em;color:#fbbf24;font-weight:800;margin-bottom:12px
+  }
+  .copy-hero h2{
+    font-size:32px;font-weight:900;letter-spacing:-1px;margin-bottom:10px;line-height:1.25
+  }
+  .copy-hero h2 .accent{color:#fbbf24}
+  .copy-hero .sub{font-size:14.5px;opacity:.92;font-weight:600;letter-spacing:.5px}
+  .copy-hero .period{
+    display:inline-block;margin-top:14px;background:rgba(251,191,36,.18);
+    border:1px solid rgba(251,191,36,.5);padding:6px 16px;border-radius:9999px;
+    font-size:12px;font-weight:700;color:#fbbf24
+  }
+
+  .copy-options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px}
+  .copy-card{
+    background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:14px;
+    transition:all .15s;cursor:pointer
+  }
+  .copy-card:hover{border-color:#7c3aed;box-shadow:0 4px 14px rgba(124,58,237,.18)}
+  .copy-card.recommend{border-color:#7c3aed;background:linear-gradient(135deg,#faf5ff,#fff)}
+  .copy-card .tag{
+    display:inline-block;font-size:10px;font-weight:800;letter-spacing:.5px;
+    color:#5b21b6;background:#ede9fe;padding:2px 8px;border-radius:8px;margin-bottom:8px
+  }
+  .copy-card.recommend .tag{background:#fbbf24;color:#1d1d1f}
+  .copy-card .main{font-size:15px;font-weight:800;color:#1d1d1f;margin-bottom:4px;line-height:1.35}
+  .copy-card .sub{font-size:11.5px;color:#6b7280;line-height:1.5}
+
+  /* 표 */
+  table{width:100%;border-collapse:collapse;font-size:12.5px;margin-bottom:8px}
+  th{
+    background:linear-gradient(135deg,#5b21b6,#7c3aed);color:#fff;
+    padding:9px 10px;text-align:left;font-weight:700;font-size:12px
+  }
+  td{padding:9px 10px;border-bottom:1px solid #e5e7eb;vertical-align:top}
+  tr:nth-child(even) td{background:#fafafa}
+  td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+  td.center{text-align:center}
+  .pill{
+    display:inline-block;font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:8px
+  }
+  .pill-purple{background:#ede9fe;color:#5b21b6}
+  .pill-yellow{background:#fef3c7;color:#92400e}
+  .pill-green{background:#dcfce7;color:#166534}
+  .pill-red{background:#fee2e2;color:#991b1b}
+
+  /* 배너 컨테이너 */
+  .banner-wrap{
+    background:#fff;border:1.5px solid #e5e7eb;border-radius:12px;padding:14px;
+    margin-bottom:14px
+  }
+  .banner-wrap .banner-meta{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-bottom:10px;flex-wrap:wrap;gap:8px
+  }
+  .banner-wrap .banner-title{font-size:13px;font-weight:800;color:#5b21b6}
+  .banner-wrap .banner-spec{font-size:11px;color:#6b7280;font-weight:600}
+  .banner-img{
+    position:relative;width:100%;aspect-ratio:800/320;border-radius:10px;
+    overflow:hidden;border:1px solid #e5e7eb;box-shadow:0 4px 14px rgba(0,0,0,.08)
+  }
+  .banner-img img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block
+  }
+  .banner-img .overlay-shade{
+    position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(30,27,75,.78) 0%,rgba(30,27,75,.55) 45%,rgba(30,27,75,.10) 100%)
+  }
+  .banner-img[data-overlay="ice"] .overlay-shade{
+    background:linear-gradient(90deg,rgba(12,30,62,.78) 0%,rgba(30,58,138,.5) 45%,rgba(59,130,246,.05) 100%)
+  }
+  .banner-img[data-overlay="warm"] .overlay-shade{
+    background:linear-gradient(90deg,rgba(124,45,18,.75) 0%,rgba(194,65,12,.5) 45%,rgba(245,158,11,.10) 100%)
+  }
+  .banner-img .banner-copy{
+    position:absolute;left:6%;top:50%;transform:translateY(-50%);
+    color:#fff;max-width:62%;z-index:2
+  }
+  .banner-img .banner-copy .ribbon{
+    display:inline-block;background:#fbbf24;color:#1d1d1f;
+    font-size:11px;font-weight:800;letter-spacing:1.5px;
+    padding:4px 12px;border-radius:9999px;margin-bottom:10px
+  }
+  .banner-img .banner-copy .ribbon.dark{background:#1d1d1f;color:#fbbf24}
+  .banner-img .banner-copy h3{
+    font-size:32px;font-weight:900;letter-spacing:-1px;line-height:1.22;margin-bottom:8px;
+    text-shadow:0 2px 14px rgba(0,0,0,.5)
+  }
+  .banner-img .banner-copy h3 .accent{color:#fbbf24}
+  .banner-img .banner-copy .sub{
+    font-size:13px;font-weight:600;opacity:.95;line-height:1.5;
+    text-shadow:0 1px 8px rgba(0,0,0,.55)
+  }
+  .banner-img .banner-copy .period{
+    display:inline-block;margin-top:10px;background:rgba(251,191,36,.18);
+    border:1px solid rgba(251,191,36,.6);padding:5px 14px;border-radius:9999px;
+    font-size:12px;font-weight:700;color:#fbbf24
+  }
+  .download-row{display:flex;gap:6px;justify-content:flex-end;margin-top:10px;flex-wrap:wrap}
+  .dl-btn{
+    background:#7c3aed;color:#fff;border:none;border-radius:6px;
+    padding:7px 14px;font-size:11.5px;font-weight:700;cursor:pointer
+  }
+  .dl-btn.png{background:#fbbf24;color:#1d1d1f}
+  @media(max-width:560px){
+    .banner-img .banner-copy h3{font-size:22px}
+    .banner-img .banner-copy{max-width:75%}
+  }
+
+  /* 키워드 */
+  .keyword-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .keyword-box{
+    background:#faf5ff;border:1px solid #ddd6fe;border-radius:10px;padding:14px 16px
+  }
+  .keyword-box.coupang{background:#fff7ed;border-color:#fed7aa}
+  .keyword-box h4{font-size:13px;font-weight:800;margin-bottom:10px;color:#5b21b6;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .keyword-box.coupang h4{color:#9a3412}
+  .keyword-box .budget{
+    display:inline-block;background:#fbbf24;color:#1d1d1f;
+    font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:8px
+  }
+  .kw-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+  .kw{
+    display:inline-block;background:#fff;border:1px solid #e5e7eb;border-radius:6px;
+    padding:4px 9px;font-size:11.5px;color:#1d1d1f;font-weight:600
+  }
+  .kw.hot{background:#fef3c7;border-color:#fbbf24;color:#92400e;font-weight:800}
+  .kw.new{background:#ede9fe;border-color:#a78bfa;color:#5b21b6;font-weight:800}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .info-card{
+    background:#faf5ff;border:1px solid #ddd6fe;border-radius:10px;padding:12px 14px
+  }
+  .info-card .label{font-size:10.5px;font-weight:800;color:#5b21b6;letter-spacing:.5px;margin-bottom:4px}
+  .info-card .val{font-size:14px;font-weight:800;color:#1d1d1f}
+
+  .note{
+    background:#fef3c7;border-left:4px solid #f59e0b;padding:10px 14px;
+    border-radius:8px;font-size:12px;line-height:1.7;margin-top:10px
+  }
+  .note strong{color:#92400e}
+
+  ul{padding-left:18px}
+  li{margin-bottom:4px;font-size:12.5px;line-height:1.6}
+
+  @media(max-width:768px){
+    .copy-options{grid-template-columns:1fr}
+    .keyword-grid{grid-template-columns:1fr}
+    .grid-2{grid-template-columns:1fr}
+    .copy-hero h2{font-size:24px}
+  }
+
+  [contenteditable="true"]{
+    outline:2px dashed #7c3aed;outline-offset:2px;background:#faf5ff;border-radius:4px
+  }
+</style>
+</head>
+<body>
+
+<div class="action-bar">
+  <button class="btn" onclick="toggleEdit()">✏️ 편집</button>
+  <button class="btn btn-yellow" onclick="window.print()">🖨️ 인쇄</button>
+  <button class="btn btn-primary" onclick="copyURL()">🔗 URL 복사</button>
+</div>
+
+<div class="container">
+
+  <div class="header">
+    <h1>가정의 달 감사 프로모션 — 통합 기획안 <span class="badge">2026 · 5/1 ~ 5/8</span></h1>
+    <div class="meta">자사몰 + 네이버 스마트스토어 전 제품 할인 · 쿠팡 일예산 +5만원 · 네이버 키워드 추가 · 박지현 팀장 → 대표</div>
+  </div>
+
+  <div class="page">
+
+    <!-- 1. 핵심 -->
+    <div class="section">
+      <div class="section-title">① 한 줄 결론</div>
+      <div class="verdict">
+        <div class="v-title">5/1(목) ~ 5/8(목) · 자사몰 + 네이버 스마트스토어 전 제품 감사 할인</div>
+        <strong>"가정의 달, 마음까지 빛나도록"</strong> — 어버이날 D-Day까지 8일간.
+        쿠팡 광고 일예산 <strong>+5만원</strong>(어버이날 키워드 풀가동), 네이버 광고는 <strong>키워드만 추가</strong>(예산 동결, 성과 보고 증액 판단).
+      </div>
+    </div>
+
+    <!-- 2. 메인/서브 타이틀 -->
+    <div class="section">
+      <div class="section-title">② 메인 타이틀 · 서브 타이틀</div>
+
+      <div class="copy-hero">
+        <div class="label">★ 메인 추천안 ★</div>
+        <h2>가정의 달, <span class="accent">마음까지 빛나도록</span></h2>
+        <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게</div>
+        <div class="sub" style="margin-top:6px;font-size:13px">쥬얼아이스 전 제품 감사 프로모션</div>
+        <div class="period">2026.5.1(목) ~ 5.8(목) · 어버이날까지 8일 한정</div>
+      </div>
+
+      <div class="copy-options">
+        <div class="copy-card recommend">
+          <span class="tag">A안 · 감성형 (추천)</span>
+          <div class="main">가정의 달, 마음까지 빛나도록</div>
+          <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게<br>쥬얼아이스 전 제품 감사 프로모션</div>
+        </div>
+        <div class="copy-card">
+          <span class="tag">B안 · 직관형</span>
+          <div class="main">5월, 가족에게 가장 빛나는 한 잔</div>
+          <div class="sub">어버이날까지 8일<br>전 제품 감사 할인</div>
+        </div>
+        <div class="copy-card">
+          <span class="tag">C안 · 임팩트형</span>
+          <div class="main">감사합니다, 5월의 한 잔으로</div>
+          <div class="sub">올해 단 8일 · 전 제품 감사 프로모션<br>5.1 ~ 5.8</div>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>선택 가이드:</strong> 자사몰·스마트스토어 메인 배너는 <strong>A안</strong>(감성·브랜드 톤),
+        쿠팡 검색 광고 카피는 <strong>B안</strong>(전환 우선), SNS 자막은 <strong>C안</strong>(짧고 강함).
+      </div>
+    </div>
+
+    <!-- 3. 진행 범위 -->
+    <div class="section">
+      <div class="section-title">③ 진행 범위 — 박지현 팀장 지시 그대로</div>
+      <table>
+        <thead>
+          <tr><th>채널</th><th>적용</th><th>기간</th><th>비고</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="pill pill-purple">자사몰</span></td>
+            <td><strong>전 제품 할인</strong> + 메인/상세페이지 배너</td>
+            <td>5/1 00:00 ~ 5/8 23:59</td>
+            <td>박지현 팀장 직접 세팅</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-purple">네이버 스마트스토어</span></td>
+            <td><strong>전 제품 할인</strong> + 메인/상세페이지 배너</td>
+            <td>5/1 00:00 ~ 5/8 23:59</td>
+            <td>박지현 팀장 직접 세팅</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-yellow">쿠팡 광고</span></td>
+            <td>일예산 <strong>+50,000원 증액</strong> · 키워드 추가</td>
+            <td>5/1 ~ 5/8</td>
+            <td>증액 이미 처리</td>
+          </tr>
+          <tr>
+            <td><span class="pill pill-yellow">네이버 광고</span></td>
+            <td><strong>키워드만 추가</strong> (예산 동결)</td>
+            <td>5/1 ~ 5/8</td>
+            <td>성과 보고 증액 재판단</td>
+          </tr>
+          <tr style="opacity:.5">
+            <td>그 외</td>
+            <td colspan="3">이번 차수 진행 안 함 — 추후 별도 기획</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 4. 배너 (연출 이미지 베이스) -->
+    <div class="section">
+      <div class="section-title">④ 배너 이미지 — 가로 800px · 제품 연출컷 + 카피</div>
+
+      <!-- A안 — 듀오메이커 연출 -->
+      <div class="banner-wrap">
+        <div class="banner-meta">
+          <div class="banner-title">A안 · 메인 추천 (듀오메이커 홈바 연출컷)</div>
+          <div class="banner-spec">800 × 320 px · 카피 톤 좌측 정렬 / 우측 제품 노출</div>
+        </div>
+        <div class="banner-img" data-img="img-family-month/scene-A.jpg" data-overlay="purple">
+          <img src="img-family-month/scene-A.jpg" alt="듀오메이커 연출">
+          <div class="overlay-shade"></div>
+          <div class="banner-copy">
+            <span class="ribbon">FAMILY MONTH 2026</span>
+            <h3>가정의 달,<br>마음까지 <span class="accent">빛나도록</span></h3>
+            <div class="sub">1년에 한 번, 감사의 마음을 가장 투명하게</div>
+            <div class="sub">쥬얼아이스 전 제품 감사 프로모션</div>
+            <div class="period">2026.5.1(목) ~ 5.8(목) 8일 한정</div>
+          </div>
+        </div>
+        <div class="download-row">
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-A.jpg','A','jewelice-family-month-A.png')">PNG 다운로드 (800×320)</button>
+        </div>
+      </div>
+
+      <!-- B안 — 에이블러 연출 -->
+      <div class="banner-wrap">
+        <div class="banner-meta">
+          <div class="banner-title">B안 · 에이블러 연출컷 (프리미엄 톤)</div>
+          <div class="banner-spec">800 × 320 px · 좌측 카피 / 우측 제품 노출</div>
+        </div>
+        <div class="banner-img" data-img="img-family-month/scene-B.jpg" data-overlay="ice">
+          <img src="img-family-month/scene-B.jpg" alt="에이블러 연출">
+          <div class="overlay-shade"></div>
+          <div class="banner-copy">
+            <span class="ribbon">★ 가정의 달 감사 프로모션</span>
+            <h3>5월의 한 잔,<br>가장 깨끗한 <span class="accent">감사</span></h3>
+            <div class="sub">어버이날 D-Day까지 · 자사몰 · 스마트스토어</div>
+            <div class="sub">쥬얼아이스 전 제품 감사 할인</div>
+            <div class="period">5.1(목) ~ 5.8(목) 8일</div>
+          </div>
+        </div>
+        <div class="download-row">
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-B.jpg','B','jewelice-family-month-B.png')">PNG 다운로드 (800×320)</button>
+        </div>
+      </div>
+
+      <!-- C안 — 에이블러 제로 따뜻한 연출 -->
+      <div class="banner-wrap">
+        <div class="banner-meta">
+          <div class="banner-title">C안 · 에이블러 제로 (따뜻한 가족 감성)</div>
+          <div class="banner-spec">800 × 320 px · 좌측 카피 / 우측 연출 노출</div>
+        </div>
+        <div class="banner-img" data-img="img-family-month/scene-C.jpg" data-overlay="warm">
+          <img src="img-family-month/scene-C.jpg" alt="에이블러 제로 연출">
+          <div class="overlay-shade"></div>
+          <div class="banner-copy">
+            <span class="ribbon dark">THANK YOU · MAY</span>
+            <h3>감사합니다,<br>5월의 <span class="accent">한 잔</span>으로</h3>
+            <div class="sub">올해 단 8일 · 쥬얼아이스 전 제품 감사 프로모션</div>
+            <div class="sub">자사몰 · 네이버 스마트스토어</div>
+            <div class="period">5.1(목) ~ 5.8(목)</div>
+          </div>
+        </div>
+        <div class="download-row">
+          <button class="dl-btn png" onclick="downloadComposed('img-family-month/scene-C.jpg','C','jewelice-family-month-C.png')">PNG 다운로드 (800×320)</button>
+        </div>
+      </div>
+
+      <div class="note">
+        <strong>사용법:</strong>
+        <ul style="margin-top:6px;padding-left:18px">
+          <li>A안 = 자사몰·스마트스토어 <strong>메인 페이지 상단</strong> (홈바 연출 — 가족 모임 톤)</li>
+          <li>B안 = <strong>상세페이지 상단</strong> (제품 클로즈업 — 신뢰감)</li>
+          <li>C안 = <strong>SNS·블로그·기획전</strong> (따뜻한 라이프 컷)</li>
+          <li>PNG 다운로드 = 자사몰·스마트스토어 어드민에 바로 업로드 가능 (800×320)</li>
+          <li>다른 비율(1920×600 / 1080×1080 / 9:16) 필요하면 말씀하세요 — 같은 연출컷으로 재구성</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 5. 광고 키워드 -->
+    <div class="section">
+      <div class="section-title">⑤ 광고 키워드 — 쿠팡 증액 · 네이버 키워드만</div>
+
+      <div class="keyword-grid">
+
+        <div class="keyword-box coupang">
+          <h4>🛒 쿠팡 광고 <span class="budget">일예산 +50,000원 증액 (완료)</span></h4>
+          <div style="font-size:11.5px;color:#9a3412;margin-bottom:10px;font-weight:700">
+            가정의달 핵심 키워드 풀가동 · ROAS 3.0 미만 24h 지속 시 키워드 컷
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:8px">[★ 핵심 어버이날]</div>
+          <div class="kw-tags">
+            <span class="kw hot">어버이날 선물</span>
+            <span class="kw hot">어버이날 선물세트</span>
+            <span class="kw hot">부모님 선물</span>
+            <span class="kw hot">효도선물</span>
+            <span class="kw">어버이날 한정</span>
+            <span class="kw">부모님 생신선물</span>
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:10px">[+ 신규 추가]</div>
+          <div class="kw-tags">
+            <span class="kw new">어버이날 술선물</span>
+            <span class="kw new">위스키 선물세트</span>
+            <span class="kw new">홈바 선물</span>
+            <span class="kw new">50대 부모님 선물</span>
+            <span class="kw new">60대 부모님 선물</span>
+            <span class="kw new">카네이션 선물세트</span>
+            <span class="kw new">스승의날 선물</span>
+            <span class="kw new">부부의날 선물</span>
+            <span class="kw new">가정의달 선물</span>
+            <span class="kw new">5월 가족모임</span>
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#9a3412;margin-top:10px">[기존 유지]</div>
+          <div class="kw-tags">
+            <span class="kw">투명얼음</span>
+            <span class="kw">큐브얼음</span>
+            <span class="kw">위스키얼음</span>
+            <span class="kw">홈바</span>
+          </div>
+        </div>
+
+        <div class="keyword-box">
+          <h4>🟢 네이버 광고 <span class="budget" style="background:#a7f3d0;color:#065f46">키워드 추가만 (예산 동결)</span></h4>
+          <div style="font-size:11.5px;color:#5b21b6;margin-bottom:10px;font-weight:700">
+            성과 1주 모니터링 → 5/8 어버이날 직전 D-2 증액 여부 재판단
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:8px">[★ 가정의달 메인]</div>
+          <div class="kw-tags">
+            <span class="kw hot">가정의달 선물</span>
+            <span class="kw hot">어버이날 선물세트</span>
+            <span class="kw hot">부모님께 드릴 선물</span>
+            <span class="kw hot">효도선물 추천</span>
+            <span class="kw">스승의날 선물</span>
+            <span class="kw">부부의날 선물</span>
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[+ 신규 추가]</div>
+          <div class="kw-tags">
+            <span class="kw new">5월 선물 추천</span>
+            <span class="kw new">어버이날 위스키</span>
+            <span class="kw new">홈파티 얼음</span>
+            <span class="kw new">투명얼음 선물</span>
+            <span class="kw new">프리미엄 얼음</span>
+            <span class="kw new">위스키 온더락</span>
+            <span class="kw new">카네이션과 함께</span>
+            <span class="kw new">가족모임 선물</span>
+            <span class="kw new">부모님 술선물</span>
+            <span class="kw new">감사선물세트</span>
+          </div>
+
+          <div style="font-size:11.5px;font-weight:800;color:#5b21b6;margin-top:10px">[기존 유지]</div>
+          <div class="kw-tags">
+            <span class="kw">쥬얼아이스</span>
+            <span class="kw">투명얼음</span>
+            <span class="kw">큐브얼음</span>
+            <span class="kw">위스키얼음</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="note">
+        <strong>운영 룰:</strong>
+        <ul style="margin-top:6px;padding-left:18px">
+          <li><strong>매일 09:00</strong> ROAS 점검 — 키워드별 ROAS 2.0 미만 24h 지속 시 입찰가 -20% 또는 정지</li>
+          <li><strong>5/5 ~ 5/8</strong> 어버이날 D-3 ~ D-Day 핵심 키워드 입찰가 +30% 자동 상향</li>
+          <li><strong>5/9(금)</strong> 캠페인 종료 다음날 결산 → 키워드별 ROAS·전환수 정리</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. 실행 체크리스트 -->
+    <div class="section">
+      <div class="section-title">⑥ 실행 체크리스트 — 8일</div>
+      <table>
+        <thead>
+          <tr><th>일정</th><th>액션</th><th>담당</th><th>상태</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>4/30 (오늘)</td>
+            <td>① 메인 카피 확정 · ② 배너 다운로드(SVG/PNG) · ③ 자사몰·스마트스토어 할인 세팅 · ④ 광고 키워드 입력</td>
+            <td>박지현 팀장</td>
+            <td><span class="pill pill-yellow">진행 중</span></td>
+          </tr>
+          <tr>
+            <td>5/1 00:00</td>
+            <td>자사몰·스마트스토어 배너 게시 + 전 제품 할인 자동 적용</td>
+            <td>박지현 팀장</td>
+            <td><span class="pill pill-purple">대기</span></td>
+          </tr>
+          <tr>
+            <td>5/3 18:00</td>
+            <td>D+2 ROAS 1차 점검 → 저성과 키워드 컷 / 고성과 입찰 +20%</td>
+            <td>박지현 팀장</td>
+            <td><span class="pill pill-purple">대기</span></td>
+          </tr>
+          <tr>
+            <td>5/5 ~ 5/8</td>
+            <td>어버이날 D-3 ~ D-Day 핵심 키워드 입찰 +30%</td>
+            <td>박지현 팀장</td>
+            <td><span class="pill pill-purple">대기</span></td>
+          </tr>
+          <tr>
+            <td>5/8 23:59</td>
+            <td>캠페인 종료 · 배너 자동 내림 · 할인 자동 종료</td>
+            <td>시스템 자동</td>
+            <td><span class="pill pill-purple">대기</span></td>
+          </tr>
+          <tr>
+            <td>5/9 17:00</td>
+            <td>전체 결산 보고 → 추석(9월) 학습 데이터 정리</td>
+            <td>박지현 팀장 → 대표</td>
+            <td><span class="pill pill-purple">대기</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 7. 귀환 -->
+    <div class="section">
+      <div class="section-title">⑦ 귀환 — 한 줄 / 다음 질문 / 실행 한 점</div>
+      <div class="grid-2">
+        <div class="info-card">
+          <div class="label">① 중심 한 문장</div>
+          <div class="val" style="font-size:13.5px;line-height:1.6">
+            "가정의 달, 마음까지 빛나도록" — 5/1~5/8 자사몰·스마트스토어 전 제품 감사 할인 + 쿠팡 일예산 +5만원 + 네이버 키워드 추가
+          </div>
+        </div>
+        <div class="info-card">
+          <div class="label">② 다음 질문 한 개</div>
+          <div class="val" style="font-size:13.5px;line-height:1.6">
+            5/3 D+2 ROAS 1차 점검 결과로 네이버 광고 일예산도 따라 증액할 것인가, 키워드만 유지할 것인가?
+          </div>
+        </div>
+      </div>
+      <div class="info-card" style="background:#fef3c7;border-color:#fbbf24;margin-top:10px">
+        <div class="label" style="color:#92400e">③ 실행 한 점 (지금 바로)</div>
+        <div class="val" style="font-size:13.5px;line-height:1.6">
+          ① A안 메인 카피 승인 → ② 배너 PNG 3종 다운로드 → ③ 자사몰·스마트스토어 어드민에 업로드 + 전 제품 할인 세팅 (오늘 안)
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function toggleEdit(){
+    const eds = document.querySelectorAll('h1, h2, h3, h4, p, td, .sub, .main, .val, li');
+    const on = eds[0]?.getAttribute('contenteditable') === 'true';
+    eds.forEach(el => el.setAttribute('contenteditable', on ? 'false' : 'true'));
+    if(!on){
+      try{
+        const saved = localStorage.getItem('jihyun-family-month-promo');
+        if(saved && confirm('저장된 편집 내용이 있습니다. 불러올까요?')){
+          document.querySelector('.container').innerHTML = saved;
+        }
+      }catch(e){}
+    }else{
+      try{
+        localStorage.setItem('jihyun-family-month-promo', document.querySelector('.container').innerHTML);
+        alert('편집 내용이 브라우저에 저장되었습니다.');
+      }catch(e){alert('저장 실패: '+e.message)}
+    }
+  }
+  function copyURL(){
+    const u = location.href;
+    navigator.clipboard.writeText(u).then(()=>alert('URL 복사 완료\n'+u));
+  }
+  function downloadSVG(id, filename){
+    const svg = document.getElementById(id);
+    const data = new XMLSerializer().serializeToString(svg);
+    const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+data], {type:'image/svg+xml;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = filename; document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+  }
+  // 안별 카피 정의
+  const COPY = {
+    A: {
+      ribbon: 'FAMILY MONTH 2026', ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
+      line1: '가정의 달,', line2a:'마음까지 ', accent:'빛나도록',
+      sub1: '1년에 한 번, 감사의 마음을 가장 투명하게',
+      sub2: '쥬얼아이스 전 제품 감사 프로모션',
+      period: '2026.5.1(목) ~ 5.8(목) 8일 한정',
+      shade: 'linear-gradient(90deg,rgba(30,27,75,0.78) 0%,rgba(30,27,75,0.55) 45%,rgba(30,27,75,0.10) 100%)',
+      shadeStops: [['rgba(30,27,75,0.78)',0],['rgba(30,27,75,0.55)',0.45],['rgba(30,27,75,0.10)',1]]
+    },
+    B: {
+      ribbon: '★ 가정의 달 감사 프로모션', ribbonBg:'#fbbf24', ribbonFg:'#1d1d1f',
+      line1: '5월의 한 잔,', line2a:'가장 깨끗한 ', accent:'감사',
+      sub1: '어버이날 D-Day까지 · 자사몰 · 스마트스토어',
+      sub2: '쥬얼아이스 전 제품 감사 할인',
+      period: '5.1(목) ~ 5.8(목) 8일',
+      shadeStops: [['rgba(12,30,62,0.78)',0],['rgba(30,58,138,0.5)',0.45],['rgba(59,130,246,0.05)',1]]
+    },
+    C: {
+      ribbon: 'THANK YOU · MAY', ribbonBg:'#1d1d1f', ribbonFg:'#fbbf24',
+      line1: '감사합니다,', line2a:'5월의 ', accent:'한 잔', line2b:'으로',
+      sub1: '올해 단 8일 · 쥬얼아이스 전 제품 감사 프로모션',
+      sub2: '자사몰 · 네이버 스마트스토어',
+      period: '5.1(목) ~ 5.8(목)',
+      shadeStops: [['rgba(124,45,18,0.75)',0],['rgba(194,65,12,0.5)',0.45],['rgba(245,158,11,0.10)',1]]
+    }
+  };
+
+  function downloadComposed(imgPath, key, filename){
+    const W = 800, H = 320;
+    const c = COPY[key];
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = function(){
+      const canvas = document.createElement('canvas');
+      canvas.width = W; canvas.height = H;
+      const ctx = canvas.getContext('2d');
+      // 1. 배경 사진 cover 그리기
+      const ratio = Math.max(W/img.naturalWidth, H/img.naturalHeight);
+      const dw = img.naturalWidth*ratio, dh = img.naturalHeight*ratio;
+      const dx = (W-dw)/2, dy = (H-dh)/2;
+      ctx.drawImage(img, dx, dy, dw, dh);
+      // 2. 좌측 어둠 그라디언트
+      const g = ctx.createLinearGradient(0,0,W,0);
+      c.shadeStops.forEach(([col,stop]) => g.addColorStop(stop, col));
+      ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+
+      // 3. 리본
+      ctx.font = 'bold 13px Pretendard, "Noto Sans KR", sans-serif';
+      const ribbonText = c.ribbon;
+      const rw = ctx.measureText(ribbonText).width + 28;
+      const rx = 48, ry = 38, rh = 28;
+      ctx.fillStyle = c.ribbonBg;
+      roundRect(ctx, rx, ry, rw, rh, 14); ctx.fill();
+      ctx.fillStyle = c.ribbonFg;
+      ctx.textBaseline = 'middle';
+      ctx.fillText(ribbonText, rx+14, ry+rh/2+1);
+
+      // 4. 메인 카피 (2줄)
+      ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 14; ctx.shadowOffsetY = 2;
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 38px Pretendard, "Noto Sans KR", sans-serif';
+      ctx.textBaseline = 'alphabetic';
+      ctx.fillText(c.line1, 48, 130);
+      // 두 번째 줄: line2a + accent + line2b(있을 시)
+      let x = 48, y = 178;
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText(c.line2a, x, y);
+      x += ctx.measureText(c.line2a).width;
+      ctx.fillStyle = '#fbbf24';
+      ctx.fillText(c.accent, x, y);
+      if(c.line2b){
+        x += ctx.measureText(c.accent).width;
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText(c.line2b, x, y);
+      }
+
+      // 5. 서브
+      ctx.shadowBlur = 8;
+      ctx.fillStyle = 'rgba(255,255,255,0.95)';
+      ctx.font = '600 14px Pretendard, "Noto Sans KR", sans-serif';
+      ctx.fillText(c.sub1, 48, 215);
+      ctx.fillText(c.sub2, 48, 238);
+
+      // 6. 기간 캡슐
+      ctx.shadowBlur = 0;
+      ctx.font = 'bold 12px Pretendard, "Noto Sans KR", sans-serif';
+      const pw = ctx.measureText(c.period).width + 28;
+      const px = 48, py = 262, ph = 28;
+      ctx.fillStyle = 'rgba(251,191,36,0.18)';
+      roundRect(ctx, px, py, pw, ph, 14); ctx.fill();
+      ctx.strokeStyle = 'rgba(251,191,36,0.7)'; ctx.lineWidth = 1.2;
+      roundRect(ctx, px, py, pw, ph, 14); ctx.stroke();
+      ctx.fillStyle = '#fbbf24';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(c.period, px+14, py+ph/2+1);
+
+      // 7. 다운로드
+      canvas.toBlob(function(b){
+        const u = URL.createObjectURL(b);
+        const a = document.createElement('a');
+        a.href = u; a.download = filename; document.body.appendChild(a); a.click();
+        document.body.removeChild(a); URL.revokeObjectURL(u);
+      }, 'image/png', 0.95);
+    };
+    img.onerror = function(){
+      alert('이미지 로드 실패. 페이지를 새로고침 후 다시 시도해주세요.\n(GitHub Pages 배포 후엔 정상 동작)');
+    };
+    img.src = imgPath;
+  }
+  function roundRect(ctx,x,y,w,h,r){
+    ctx.beginPath();
+    ctx.moveTo(x+r,y);
+    ctx.lineTo(x+w-r,y); ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+    ctx.lineTo(x+w,y+h-r); ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+    ctx.lineTo(x+r,y+h); ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+    ctx.lineTo(x,y+r); ctx.quadraticCurveTo(x,y,x+r,y);
+    ctx.closePath();
+  }
+</script>
+</body>
+</html>
