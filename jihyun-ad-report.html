@@ -10,113 +10,132 @@
     font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     background: #f5f5f7;
     color: #1d1d1f;
-    line-height: 1.5;
-    padding: 24px 16px;
+    line-height: 1.45;
+    padding: 16px 12px;
+    font-size: 13px;
   }
   .container {
     max-width: 1100px;
     margin: 0 auto;
     background: white;
-    border-radius: 16px;
+    border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.06);
     overflow: hidden;
   }
   .header {
     background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
     color: white;
-    padding: 28px 32px;
+    padding: 16px 24px;
     position: relative;
+    border-bottom: 3px solid #fbbf24;
   }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: #fbbf24;
-  }
-  .header h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; }
-  .header .meta { font-size: 13px; opacity: 0.9; }
+  .header h1 { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .header .meta { font-size: 11px; opacity: 0.9; }
   .badge {
     display: inline-block;
     background: #fbbf24;
     color: #1d1d1f;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
-    padding: 3px 10px;
+    padding: 2px 8px;
     border-radius: 10px;
-    margin-left: 8px;
-    letter-spacing: 0.5px;
+    margin-left: 6px;
   }
-  .content { padding: 28px 32px; }
-  .section { margin-bottom: 28px; }
+  .page { padding: 16px 24px; }
+  .section { margin-bottom: 14px; }
   .section-title {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 700;
     color: #7c3aed;
-    margin-bottom: 12px;
-    padding-bottom: 6px;
+    margin-bottom: 8px;
+    padding-bottom: 4px;
     border-bottom: 2px solid #fbbf24;
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
   .kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-bottom: 16px;
+    gap: 8px;
+    margin-bottom: 10px;
   }
   .kpi {
     background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
-    border-left: 4px solid #7c3aed;
-    padding: 16px 18px;
-    border-radius: 8px;
+    border-left: 3px solid #7c3aed;
+    padding: 10px 14px;
+    border-radius: 6px;
   }
-  .kpi .label { font-size: 12px; color: #6b7280; font-weight: 600; margin-bottom: 4px; }
-  .kpi .value { font-size: 22px; font-weight: 800; color: #1d1d1f; }
-  .kpi .sub { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+  .kpi .label { font-size: 11px; color: #6b7280; font-weight: 600; }
+  .kpi .value { font-size: 18px; font-weight: 800; color: #1d1d1f; }
+  .kpi .sub { font-size: 10px; color: #9ca3af; }
   .kpi.highlight {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border-left-color: #fbbf24;
   }
   .kpi.highlight .value { color: #92400e; }
+
   table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 13px;
+    font-size: 11.5px;
   }
   th {
     background: #f3f4f6;
-    padding: 10px 12px;
+    padding: 6px 8px;
     text-align: left;
     font-weight: 700;
     color: #374151;
     border-bottom: 2px solid #7c3aed;
-    font-size: 12px;
+    font-size: 11px;
   }
   td {
-    padding: 10px 12px;
+    padding: 6px 8px;
     border-bottom: 1px solid #e5e7eb;
   }
-  tr:hover td { background: #faf5ff; }
   .roas-good { color: #059669; font-weight: 700; }
   .roas-bad { color: #dc2626; font-weight: 700; }
   .roas-mid { color: #d97706; font-weight: 700; }
-  .proposal-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
+
+  .key-msg {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
     margin-bottom: 12px;
+    font-size: 12px;
+    line-height: 1.6;
   }
+  .key-msg strong { color: #fbbf24; }
+
+  .roas-cases {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .roas-case {
+    background: white;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid #fde68a;
+    font-size: 11px;
+  }
+  .roas-case.featured { border: 2px solid #fbbf24; background: #fef3c7; }
+  .roas-case .case-label { color: #6b7280; font-size: 10px; }
+  .roas-case.featured .case-label { color: #92400e; font-weight: 700; }
+  .roas-case .case-val { font-weight: 700; margin: 2px 0; font-size: 12px; }
+  .roas-case .case-roas { color: #059669; font-size: 11px; font-weight: 700; }
+
+  .proposal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .proposal {
     background: #f9fafb;
     border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 16px;
+    border-radius: 8px;
+    padding: 10px 12px;
     position: relative;
+    font-size: 11.5px;
   }
+  .proposal h4 { font-size: 12px; margin-bottom: 4px; }
+  .proposal p { font-size: 11px; color: #4b5563; margin-bottom: 2px; line-height: 1.5; }
   .proposal.recommend {
     background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
     border: 2px solid #fbbf24;
@@ -124,154 +143,150 @@
   .proposal.recommend::before {
     content: '추천';
     position: absolute;
-    top: -8px;
-    right: 12px;
+    top: -7px;
+    right: 10px;
     background: #fbbf24;
     color: #1d1d1f;
-    padding: 2px 10px;
-    border-radius: 10px;
-    font-size: 10px;
+    padding: 1px 8px;
+    border-radius: 8px;
+    font-size: 9px;
     font-weight: 700;
   }
-  .proposal h4 { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #1d1d1f; }
-  .proposal p { font-size: 12px; color: #4b5563; margin-bottom: 4px; }
   .review-box {
     background: linear-gradient(135deg, #faf5ff 0%, #ede9fe 100%);
-    border-left: 4px solid #7c3aed;
-    padding: 14px 18px;
-    border-radius: 8px;
-    margin-top: 12px;
+    border-left: 3px solid #7c3aed;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin-top: 8px;
+    font-size: 11.5px;
   }
-  .review-box h4 { font-size: 13px; color: #7c3aed; margin-bottom: 6px; }
-  .review-box p { font-size: 13px; color: #1d1d1f; }
+  .review-box h4 { font-size: 11px; color: #7c3aed; margin-bottom: 3px; }
   .decision-box {
     background: #fffbeb;
     border: 2px dashed #fbbf24;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-top: 12px;
+    border-radius: 8px;
+    padding: 10px 12px;
   }
-  .decision-box h4 { font-size: 13px; color: #92400e; margin-bottom: 8px; font-weight: 700; }
+  .decision-box h4 { font-size: 11px; color: #92400e; margin-bottom: 4px; font-weight: 700; }
   .decision-box [contenteditable] {
     background: white;
-    padding: 8px 10px;
-    border-radius: 6px;
-    min-height: 28px;
-    font-size: 13px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    min-height: 22px;
+    font-size: 11.5px;
     border: 1px solid #fde68a;
     display: block;
+    margin-bottom: 6px;
   }
-  .decision-box [contenteditable]:focus { outline: 2px solid #fbbf24; }
+  .ceo-msg {
+    background: #fef3c7;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border-left: 4px solid #fbbf24;
+    font-size: 12.5px;
+    font-weight: 600;
+  }
   .return-box {
     background: #1d1d1f;
     color: white;
-    padding: 16px 20px;
-    border-radius: 10px;
-    margin-top: 8px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 11.5px;
   }
-  .return-box h4 { color: #fbbf24; font-size: 12px; margin-bottom: 8px; letter-spacing: 1px; }
-  .return-box ol { margin-left: 18px; font-size: 13px; }
-  .return-box li { margin-bottom: 4px; }
+  .return-box h4 { color: #fbbf24; font-size: 10px; margin-bottom: 4px; letter-spacing: 1px; }
+  .return-box ol { margin-left: 16px; }
+  .return-box li { margin-bottom: 2px; }
+  .source { font-size: 10px; color: #6b7280; margin-top: 3px; font-style: italic; }
   .footer {
     text-align: center;
     color: #9ca3af;
-    font-size: 11px;
-    padding: 16px;
+    font-size: 10px;
+    padding: 8px;
     border-top: 1px solid #e5e7eb;
   }
-  .source {
-    font-size: 11px;
-    color: #6b7280;
-    margin-top: 4px;
-    font-style: italic;
+
+  .page-break {
+    page-break-before: always;
+    border-top: 2px dashed #e5e7eb;
+    margin-top: 16px;
+    padding-top: 16px;
+    position: relative;
   }
-  @media (max-width: 768px) {
-    .kpi-grid { grid-template-columns: 1fr; }
-    .proposal-grid { grid-template-columns: 1fr; }
+  .page-break::before {
+    content: '— page 2 —';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    padding: 0 12px;
+    color: #9ca3af;
+    font-size: 10px;
   }
+
   .action-bar {
     position: sticky;
-    top: 16px;
+    top: 12px;
     z-index: 100;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     justify-content: flex-end;
     max-width: 1100px;
-    margin: 0 auto 12px;
-    padding: 0 4px;
+    margin: 0 auto 8px;
   }
   .btn {
     background: white;
     border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    padding: 8px 14px;
-    font-size: 13px;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 12px;
     font-weight: 600;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    transition: all 0.15s;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     color: #1d1d1f;
   }
-  .btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-  .btn-primary {
-    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
-    color: white;
-    border: none;
-  }
-  .btn-yellow {
-    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-    color: #1d1d1f;
-    border: none;
-  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; border: none; }
+  .btn-yellow { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: #1d1d1f; border: none; }
   .toast {
     position: fixed;
-    bottom: 24px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%) translateY(100px);
     background: #1d1d1f;
     color: white;
-    padding: 12px 24px;
-    border-radius: 24px;
-    font-size: 13px;
-    font-weight: 600;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 12px;
     z-index: 9999;
-    transition: transform 0.3s ease;
-    pointer-events: none;
+    transition: transform 0.3s;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
   @media print {
-    @page { size: A4; margin: 12mm; }
-    body { background: white; padding: 0; font-size: 11pt; }
+    @page { size: A4; margin: 8mm; }
+    body { background: white; padding: 0; font-size: 10pt; }
     .container { box-shadow: none; border-radius: 0; max-width: 100%; }
-    .header { padding: 16px 20px; }
-    .header h1 { font-size: 18pt; }
-    .content { padding: 16px 20px; }
-    .section { margin-bottom: 14px; page-break-inside: avoid; }
-    .section-title { font-size: 12pt; }
-    .kpi .value { font-size: 16pt; }
-    table { font-size: 10pt; }
-    th, td { padding: 6px 8px; }
-    .action-bar, .footer script, .toast { display: none !important; }
-    .footer { font-size: 9pt; padding: 8px; }
-    .return-box { background: #f3f4f6 !important; color: #1d1d1f !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .return-box h4 { color: #92400e !important; }
-    .header { background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .kpi, .proposal, .review-box, .decision-box, [style*="background"] { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .action-bar, .toast { display: none !important; }
+    .page { padding: 8px 14px; }
+    .page-break { page-break-before: always; border-top: none; margin-top: 0; padding-top: 0; }
+    .page-break::before { display: none; }
+    .header, .key-msg, .kpi, .kpi.highlight, .return-box, .ceo-msg, .roas-case, .roas-case.featured, .proposal, .proposal.recommend, .review-box, .decision-box {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
     [contenteditable] { border: 1px solid #d1d5db !important; }
+    table { font-size: 9.5pt; }
+    th, td { padding: 4px 6px; }
+    .section { margin-bottom: 8px; }
   }
 </style>
 </head>
 <body>
 
 <div class="action-bar">
-  <button class="btn btn-primary" onclick="window.print()">🖨️ 프린트 / PDF 저장</button>
+  <button class="btn btn-primary" onclick="window.print()">🖨️ 프린트 / PDF (2장)</button>
   <button class="btn btn-yellow" onclick="copyLink()">🔗 링크 복사</button>
-  <button class="btn" onclick="shareKakao()">💬 카카오톡 공유</button>
   <button class="btn" onclick="shareEmail()">📧 메일 공유</button>
 </div>
 
@@ -279,195 +294,42 @@
 
   <div class="header">
     <h1>4월 광고 운영 보고서 <span class="badge">2026.04.30</span></h1>
-    <div class="meta">박지현 팀장 → 대표 보고용 · 작성: 화경 · 데이터: 프로그레스미디어 + 일간 매체보고서</div>
+    <div class="meta">박지현 팀장 → 대표 보고용 · 작성: 화경 · 출처: 프로그레스미디어 + 일간 매체보고서</div>
   </div>
 
-  <div class="content">
+  <!-- ============== PAGE 1 ============== -->
+  <div class="page">
 
-    <!-- 핵심 메시지 (최상단 한 줄) -->
-    <div style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%); color: white; padding: 18px 22px; border-radius: 12px; margin-bottom: 22px; box-shadow: 0 4px 12px rgba(124,58,237,0.2);">
-      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-        <span style="background: #fbbf24; color: #1d1d1f; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 10px;">핵심 변화</span>
-        <span style="font-size: 14px; font-weight: 700;">같은 광고비로 더 많은 매출 — 비효율 분산을 효율 집중으로 정리</span>
-      </div>
-      <p style="font-size: 13px; line-height: 1.7; opacity: 0.95;">
-        기존 검색광고 등은 <strong style="color: #fbbf24;">매체별 성과와 무관하게 같은 예산을 분산 집행</strong>하던 비효율 구조였음.
-        4월에 매체별 ROAS·전환율 데이터를 기반으로 <strong style="color: #fbbf24;">출혈 매체는 줄이고, 효자 매체는 키우는 방향</strong>으로 전체 정리.
-        그 결과 <strong style="color: #fbbf24;">동일 광고비 수준에서 ROAS 369.31% 달성</strong>(목표 300% 돌파).
-      </p>
+    <!-- 핵심 메시지 -->
+    <div class="key-msg">
+      <strong>📌 핵심 변화</strong> — 같은 광고비로 더 많은 매출. 비효율 분산 → 효율 집중으로 정리.<br>
+      그동안 매체별 성과와 무관하게 균등 분산하던 구조에서, 매체별 ROAS 분석으로 <strong>출혈 매체 축소·효자 매체 집중</strong>으로 재배치 → 4월 ROAS <strong>369.31% (목표 300% 돌파)</strong>.
     </div>
 
-    <!-- 0. 효율 개선 스토리 (NEW) -->
-    <div class="section">
-      <div class="section-title">⓪ 광고 운영 효율화 — Before / After</div>
-      <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #fbbf24; padding: 16px 20px; border-radius: 10px; margin-bottom: 12px;">
-        <p style="font-size: 14px; font-weight: 700; color: #92400e; margin-bottom: 8px;">"같은 돈으로 더 많은 매출" — 박지현 팀장 정리 성과</p>
-        <p style="font-size: 13px; color: #1d1d1f; line-height: 1.7;">
-          기존 검색광고 등은 <strong>동일 예산으로 비효율 분산 운영</strong>되고 있었음.
-          <strong>매체별 전환율·ROAS 분석 → 출혈 매체 정리 → 효자 매체 집중</strong>으로 재배치 완료.
-          그 결과 4월 ROAS <strong>369.31%</strong>로 목표(300%) 안정 돌파.
-        </p>
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="label">4월 광고비</div>
+        <div class="value">4,519,786원</div>
+        <div class="sub">일평균 약 17만원</div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>Before (정리 전)</th>
-            <th>After (4월, 정리 후)</th>
-            <th>변화</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>예산 배분</strong></td>
-            <td>매체별 균등 분산 / 출혈 매체 방치</td>
-            <td>전환 매체 집중 / 출혈 매체 축소</td>
-            <td class="roas-good">효율 우선 ✓</td>
-          </tr>
-          <tr>
-            <td><strong>전환 추적</strong></td>
-            <td>매체별 ROAS 비교 안 됨</td>
-            <td>일간·매체별 ROAS 모니터링</td>
-            <td class="roas-good">데이터 기반 ✓</td>
-          </tr>
-          <tr>
-            <td><strong>4월 ROAS</strong></td>
-            <td>(기존 운영 시 — 목표 미달 추정)</td>
-            <td><strong style="color:#059669">369.31%</strong></td>
-            <td class="roas-good">목표 300% 돌파</td>
-          </tr>
-          <tr>
-            <td><strong>의사결정</strong></td>
-            <td>관성 운영 / 매체 변경 어려움</td>
-            <td>주간 단위 리밸런싱 가능</td>
-            <td class="roas-good">민첩성 확보 ✓</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="source">※ 상세 비교는 구글 스프레드시트 일별종합광고보고 시트에서 확인 가능</p>
+      <div class="kpi">
+        <div class="label">4월 매출</div>
+        <div class="value">16,692,400원</div>
+        <div class="sub">일평균 약 57.6만원</div>
+      </div>
+      <div class="kpi highlight">
+        <div class="label">4월 ROAS</div>
+        <div class="value">369.31%</div>
+        <div class="sub">목표 300% 돌파 ✓ / 광고비의 약 3.7배</div>
+      </div>
     </div>
 
-    <!-- 0-1. 네이버 데이터 분석 전후 비교 (NEW) -->
+    <!-- 광고비/매출 절대값 그래프 -->
     <div class="section">
-      <div class="section-title">⓪-1. 네이버 데이터 분석 — Before / After 정량 비교</div>
-
-      <!-- 매체별 전후 비교 -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 매체별 ROAS 분석 결과</h4>
-      <table style="margin-bottom: 16px;">
-        <thead>
-          <tr>
-            <th>매체</th>
-            <th>분석 전 (체감 운영)</th>
-            <th>분석 후 (정량 ROAS)</th>
-            <th>결정</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Naver 쇼핑검색</strong></td>
-            <td>"그냥 효자라더라" — 정량 미확인</td>
-            <td class="roas-good">약 316% 안정 확인</td>
-            <td>핵심 매체 / <strong>증액</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Naver 파워링크</strong></td>
-            <td>관성 운영 (오래된 매체)</td>
-            <td class="roas-good">약 321% 안정 확인</td>
-            <td>유지</td>
-          </tr>
-          <tr>
-            <td><strong>Naver GFA</strong></td>
-            <td>"디스플레이 효과 있을 것" 가정</td>
-            <td class="roas-bad">약 81% — <strong>출혈 확인</strong></td>
-            <td>축소 → 쇼검으로 이전</td>
-          </tr>
-          <tr>
-            <td><strong>Naver GFA NDA</strong></td>
-            <td>운영 가치 불명확</td>
-            <td class="roas-mid">약 367% — 가능성 발견</td>
-            <td>4/28 증액 후 모니터링</td>
-          </tr>
-          <tr>
-            <td><strong>Naver 브랜드검색</strong></td>
-            <td>검토 안 됨</td>
-            <td>미운영 (검토 대상)</td>
-            <td>5월 검토</td>
-          </tr>
-          <tr>
-            <td><strong>ADvoost 쇼핑</strong></td>
-            <td>전환 일부 발생만 인지</td>
-            <td>전환 기여 확인</td>
-            <td>비중 확대 검토</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- 전체 운영 지표 전후 -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 전체 광고 운영 지표</h4>
-      <table style="margin-bottom: 12px;">
-        <thead>
-          <tr>
-            <th>지표</th>
-            <th>분석 전 (관성 운영)</th>
-            <th>분석 후 (4월 정리 결과)</th>
-            <th>변화</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>예산 배분 방식</strong></td>
-            <td>매체별 균등 분산 — 성과 무관</td>
-            <td>매체별 ROAS 기준 차등 배분</td>
-            <td class="roas-good">데이터 기반 ✓</td>
-          </tr>
-          <tr>
-            <td><strong>일간 ROAS 변동폭</strong></td>
-            <td>134% ~ 998% (격차 864%p)</td>
-            <td>240% ~ 535% (격차 295%p)</td>
-            <td class="roas-good">변동성 ↓ 안정화</td>
-          </tr>
-          <tr>
-            <td><strong>4월 누적 ROAS</strong></td>
-            <td>(기존 방식 유지 시 목표 미달 추정)</td>
-            <td><strong style="color:#059669; font-size:14px">369.31%</strong></td>
-            <td class="roas-good">목표 300% 돌파</td>
-          </tr>
-          <tr>
-            <td><strong>출혈 매체 인지</strong></td>
-            <td>없음 — 모두 효과 있다고 가정</td>
-            <td>GFA 81% 출혈 확인 → 정리</td>
-            <td class="roas-good">손실 차단 ✓</td>
-          </tr>
-          <tr>
-            <td><strong>의사결정 주기</strong></td>
-            <td>월/분기 단위 / 변경 어려움</td>
-            <td>일·주 단위 리밸런싱 가능</td>
-            <td class="roas-good">민첩성 확보 ✓</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%); border-left: 4px solid #059669; padding: 12px 16px; border-radius: 8px; margin-top: 12px;">
-        <p style="font-size: 13px; color: #064e3b; line-height: 1.7;">
-          <strong>분석 결론:</strong> 같은 광고비 안에서도 매체별 효율은 <strong>최저 81% ~ 최고 367%로 약 4.5배 차이</strong>.
-          그동안 이 차이를 모르고 균등 분산하던 구조에서, 정량 데이터 기반으로 효자 매체에 집중하는 구조로 전환.
-        </p>
-      </div>
-      <p class="source">※ 분석 데이터: 일간 매체별 광고보고서 (2026-03-31 ~ 2026-04-29) + 프로그레스미디어 일별종합광고보고 시트</p>
-    </div>
-
-    <!-- 0-2. 시각화 그래프 (NEW) -->
-    <div class="section">
-      <div class="section-title">⓪-2. 시각화 — 그래프로 한눈에</div>
-
-      <!-- 그래프 1: 일간 광고비 vs 매출 (절대값 비교) -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 4월 일간 광고비 vs 매출 — 광고비는 안정, 매출 자연 변동</h4>
-      <div style="background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%); border: 1px solid #e5e7eb; border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 12px; color: #4c1d95; line-height: 1.6;">
-        💡 <strong>읽는 법:</strong> 회색 영역 = 일간 광고비(약 10~20만원, 거의 일정) / 보라 라인 = 일간 매출.
-        매출은 요일·이벤트·계절성으로 자연 변동하지만, <strong>광고비 대비 항상 3~10배 매출이 유지</strong>되어 ROAS 안정권 확보.
-      </div>
-      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
-        <svg viewBox="0 0 960 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+      <div class="section-title">① 일간 광고비 vs 매출 (절대값) — 광고비 안정, 매출 자연 변동</div>
+      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 8px;">
+        <svg viewBox="0 0 960 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
           <defs>
             <linearGradient id="salesGrad" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.25"/>
@@ -478,401 +340,277 @@
               <line x1="0" y1="0" x2="6" y2="6" stroke="#6b7280" stroke-width="0.5"/>
             </pattern>
           </defs>
-
-          <!-- Y axis grid -->
           <g stroke="#e5e7eb" stroke-width="1">
-            <line x1="60" y1="30" x2="900" y2="30"/>
-            <line x1="60" y1="65" x2="900" y2="65"/>
+            <line x1="60" y1="20" x2="900" y2="20"/>
+            <line x1="60" y1="60" x2="900" y2="60"/>
             <line x1="60" y1="100" x2="900" y2="100"/>
-            <line x1="60" y1="135" x2="900" y2="135"/>
-            <line x1="60" y1="170" x2="900" y2="170"/>
-            <line x1="60" y1="205" x2="900" y2="205"/>
-            <line x1="60" y1="240" x2="900" y2="240"/>
+            <line x1="60" y1="140" x2="900" y2="140"/>
+            <line x1="60" y1="180" x2="900" y2="180"/>
           </g>
-
-          <!-- Y axis labels (단위: 만원) -->
-          <g font-size="10" fill="#6b7280" text-anchor="end">
-            <text x="55" y="34">120만</text>
-            <text x="55" y="69">100만</text>
-            <text x="55" y="104">80만</text>
-            <text x="55" y="139">60만</text>
-            <text x="55" y="174">40만</text>
-            <text x="55" y="209">20만</text>
-            <text x="55" y="244">0</text>
+          <g font-size="9" fill="#6b7280" text-anchor="end">
+            <text x="55" y="24">120만</text>
+            <text x="55" y="64">90만</text>
+            <text x="55" y="104">60만</text>
+            <text x="55" y="144">30만</text>
+            <text x="55" y="184">0</text>
           </g>
-
-          <!-- 광고비 영역 (회색 베이스라인) -->
-          <path d="M 65,222 L 95,217 L 124,218 L 154,214 L 184,218 L 213,219 L 243,214 L 273,217 L 303,214 L 332,210 L 362,211 L 392,209 L 422,210 L 451,209 L 481,209 L 511,209 L 541,211 L 570,210 L 600,210 L 630,209 L 660,210 L 689,210 L 719,209 L 749,210 L 779,209 L 808,208 L 838,210 L 868,205 L 898,206 L 898,240 L 65,240 Z"
-                fill="url(#adPattern)" stroke="#6b7280" stroke-width="1.5"/>
-          <text x="475" y="234" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700" style="paint-order: stroke; stroke: white; stroke-width: 3px;">광고비 (10~20만원, 거의 일정)</text>
-
-          <!-- 매출 영역 -->
-          <path d="M 65,62 L 95,131 L 124,121 L 154,108 L 184,49 L 213,139 L 243,100 L 273,185 L 303,146 L 332,139 L 362,169 L 392,192 L 422,149 L 451,148 L 481,34 L 511,129 L 541,201 L 570,190 L 600,150 L 630,133 L 660,183 L 689,118 L 719,140 L 749,114 L 779,200 L 808,143 L 838,78 L 868,148 L 898,158 L 898,240 L 65,240 Z"
-                fill="url(#salesGrad)"/>
-
-          <!-- 매출 라인 -->
-          <path d="M 65,62 L 95,131 L 124,121 L 154,108 L 184,49 L 213,139 L 243,100 L 273,185 L 303,146 L 332,139 L 362,169 L 392,192 L 422,149 L 451,148 L 481,34 L 511,129 L 541,201 L 570,190 L 600,150 L 630,133 L 660,183 L 689,118 L 719,140 L 749,114 L 779,200 L 808,143 L 838,78 L 868,148 L 898,158"
-                stroke="#7c3aed" stroke-width="2.5" fill="none"/>
-
-          <!-- 매출 데이터 포인트 -->
-          <g fill="#7c3aed">
-            <circle cx="65" cy="62" r="3"/><circle cx="95" cy="131" r="3"/><circle cx="124" cy="121" r="3"/><circle cx="154" cy="108" r="3"/><circle cx="184" cy="49" r="3"/>
-            <circle cx="213" cy="139" r="3"/><circle cx="243" cy="100" r="3"/><circle cx="273" cy="185" r="3"/><circle cx="303" cy="146" r="3"/><circle cx="332" cy="139" r="3"/>
-            <circle cx="362" cy="169" r="3"/><circle cx="392" cy="192" r="3"/><circle cx="422" cy="149" r="3"/><circle cx="451" cy="148" r="3"/><circle cx="481" cy="34" r="3"/>
-            <circle cx="511" cy="129" r="3"/><circle cx="541" cy="201" r="3"/><circle cx="570" cy="190" r="3"/><circle cx="600" cy="150" r="3"/><circle cx="630" cy="133" r="3"/>
-            <circle cx="660" cy="183" r="3"/><circle cx="689" cy="118" r="3"/><circle cx="719" cy="140" r="3"/><circle cx="749" cy="114" r="3"/><circle cx="779" cy="200" r="3"/>
-            <circle cx="808" cy="143" r="3"/><circle cx="838" cy="78" r="3"/><circle cx="868" cy="148" r="3"/><circle cx="898" cy="158" r="3"/>
+          <!-- 광고비 영역 (10~20만 = y 175~158 부근) -->
+          <path d="M 65,166 L 95,162 L 124,163 L 154,160 L 184,163 L 213,164 L 243,160 L 273,162 L 303,160 L 332,157 L 362,157 L 392,156 L 422,156 L 451,156 L 481,156 L 511,156 L 541,158 L 570,157 L 600,157 L 630,156 L 660,157 L 689,157 L 719,156 L 749,157 L 779,156 L 808,156 L 838,157 L 868,154 L 898,154 L 898,180 L 65,180 Z" fill="url(#adPattern)" stroke="#6b7280" stroke-width="1"/>
+          <!-- 매출 라인 (max 1.2M) -->
+          <path d="M 65,44 L 95,97 L 124,89 L 154,79 L 184,34 L 213,103 L 243,75 L 273,138 L 303,109 L 332,103 L 362,126 L 392,143 L 422,111 L 451,110 L 481,23 L 511,95 L 541,151 L 570,141 L 600,111 L 630,98 L 660,136 L 689,87 L 719,103 L 749,84 L 779,150 L 808,106 L 838,57 L 868,110 L 898,118 L 898,180 L 65,180 Z" fill="url(#salesGrad)"/>
+          <path d="M 65,44 L 95,97 L 124,89 L 154,79 L 184,34 L 213,103 L 243,75 L 273,138 L 303,109 L 332,103 L 362,126 L 392,143 L 422,111 L 451,110 L 481,23 L 511,95 L 541,151 L 570,141 L 600,111 L 630,98 L 660,136 L 689,87 L 719,103 L 749,84 L 779,150 L 808,106 L 838,57 L 868,110 L 898,118" stroke="#7c3aed" stroke-width="2" fill="none"/>
+          <!-- 평균선 -->
+          <line x1="60" y1="103" x2="900" y2="103" stroke="#059669" stroke-width="1.2" stroke-dasharray="5 3"/>
+          <text x="900" y="100" font-size="9" fill="#059669" text-anchor="end" font-weight="700">매출 평균 57.6만</text>
+          <!-- Peak -->
+          <circle cx="481" cy="23" r="5" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1"/>
+          <text x="481" y="14" font-size="9" fill="#1d1d1f" text-anchor="middle" font-weight="700">117만(4/15)</text>
+          <circle cx="838" cy="57" r="5" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1"/>
+          <text x="838" y="48" font-size="9" fill="#1d1d1f" text-anchor="middle" font-weight="700">92.5만(4/27)</text>
+          <!-- X labels -->
+          <g font-size="8" fill="#6b7280" text-anchor="middle">
+            <text x="65" y="195">4/1</text><text x="184" y="195">4/5</text><text x="303" y="195">4/9</text><text x="422" y="195">4/13</text>
+            <text x="541" y="195">4/17</text><text x="660" y="195">4/21</text><text x="779" y="195">4/25</text><text x="898" y="195">4/29</text>
           </g>
-
-          <!-- Peak 강조: 4/15 117만 -->
-          <circle cx="481" cy="34" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
-          <text x="481" y="22" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">117만 (4/15)</text>
-
-          <!-- Peak 강조: 4/27 92.5만 -->
-          <circle cx="838" cy="78" r="6" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1.5"/>
-          <text x="838" y="66" font-size="10" fill="#1d1d1f" text-anchor="middle" font-weight="700">92.5만 (4/27)</text>
-
-          <!-- 평균 매출선 -->
-          <line x1="60" y1="139" x2="900" y2="139" stroke="#059669" stroke-width="1.5" stroke-dasharray="5 3"/>
-          <text x="900" y="135" font-size="10" fill="#059669" text-anchor="end" font-weight="700">일평균 매출 약 57.6만원</text>
-
-          <!-- X axis labels -->
-          <g font-size="9" fill="#6b7280" text-anchor="middle">
-            <text x="65" y="260">4/1</text>
-            <text x="184" y="260">4/5</text>
-            <text x="303" y="260">4/9</text>
-            <text x="422" y="260">4/13</text>
-            <text x="541" y="260">4/17</text>
-            <text x="660" y="260">4/21</text>
-            <text x="779" y="260">4/25</text>
-            <text x="898" y="260">4/29</text>
-          </g>
-
           <!-- 범례 -->
-          <g transform="translate(60, 280)">
-            <rect x="0" y="0" width="14" height="14" fill="url(#adPattern)" stroke="#6b7280" stroke-width="1"/>
-            <text x="20" y="11" font-size="11" fill="#1d1d1f" font-weight="600">광고비 (안정)</text>
-
-            <line x1="170" y1="7" x2="195" y2="7" stroke="#7c3aed" stroke-width="2.5"/>
-            <circle cx="182" cy="7" r="3" fill="#7c3aed"/>
-            <text x="200" y="11" font-size="11" fill="#1d1d1f" font-weight="600">매출 (자연 변동)</text>
-
-            <line x1="345" y1="7" x2="370" y2="7" stroke="#059669" stroke-width="1.5" stroke-dasharray="5 3"/>
-            <text x="375" y="11" font-size="11" fill="#1d1d1f" font-weight="600">일평균 매출선</text>
-
-            <circle cx="500" cy="7" r="5" fill="#fbbf24" stroke="#1d1d1f" stroke-width="1"/>
-            <text x="510" y="11" font-size="11" fill="#1d1d1f" font-weight="600">매출 강세일</text>
+          <g transform="translate(60, 210)">
+            <rect x="0" y="0" width="12" height="12" fill="url(#adPattern)" stroke="#6b7280" stroke-width="1"/>
+            <text x="16" y="10" font-size="10" fill="#1d1d1f" font-weight="600">광고비(약 17만/일 일정)</text>
+            <line x1="200" y1="6" x2="220" y2="6" stroke="#7c3aed" stroke-width="2"/>
+            <circle cx="210" cy="6" r="2.5" fill="#7c3aed"/>
+            <text x="225" y="10" font-size="10" fill="#1d1d1f" font-weight="600">매출(자연 변동)</text>
+            <line x1="370" y1="6" x2="390" y2="6" stroke="#059669" stroke-width="1.2" stroke-dasharray="4 2"/>
+            <text x="395" y="10" font-size="10" fill="#1d1d1f" font-weight="600">평균선</text>
+            <circle cx="465" cy="6" r="4" fill="#fbbf24" stroke="#1d1d1f" stroke-width="0.8"/>
+            <text x="473" y="10" font-size="10" fill="#1d1d1f" font-weight="600">강세일</text>
           </g>
-
-          <!-- 핵심 메시지 박스 -->
-          <g transform="translate(60, 302)">
-            <rect x="0" y="0" width="840" height="14" fill="#dcfce7" rx="3"/>
-            <text x="420" y="11" font-size="10" fill="#166534" text-anchor="middle" font-weight="700">광고비 약 17만/일 일정 → 매출 평균 57.6만/일 (광고비의 약 3.4배) → 4월 누적 ROAS 369.31% 안정 확보</text>
-          </g>
+          <!-- 핵심 박스 -->
+          <rect x="60" y="225" width="840" height="14" fill="#dcfce7" rx="3"/>
+          <text x="480" y="235" font-size="9" fill="#166534" text-anchor="middle" font-weight="700">광고비 안정·매출 평균 광고비의 3.7배 → ROAS 변동성은 자연 요인, 운영은 안정권 진입</text>
         </svg>
-        <p style="font-size: 11px; color: #6b7280; margin-top: 10px; text-align: center;">
-          📊 회색 영역(광고비)이 일정한데 보라 라인(매출)이 위로 들쑥날쑥 = 광고 운영은 안정, 매출 변동은 자연 요인(요일·이벤트·계절)
-        </p>
       </div>
 
-      <!-- 광고비 / 매출 절대값 핵심 사례 -->
-      <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #fbbf24; padding: 14px 18px; border-radius: 10px; margin-bottom: 16px;">
-        <h4 style="font-size: 13px; font-weight: 700; color: #92400e; margin-bottom: 8px;">▸ ROAS 300% = 어떤 의미인가</h4>
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; font-size: 12px;">
-          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
-            <div style="color: #6b7280; font-size: 11px;">소규모 사례</div>
-            <div style="font-weight: 700; margin: 4px 0;">광고 5만원<br>→ 매출 15만원</div>
-            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 300%</div>
-          </div>
-          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center; border: 2px solid #fbbf24;">
-            <div style="color: #92400e; font-size: 11px; font-weight: 700;">⭐ 4월 평균 (실측)</div>
-            <div style="font-weight: 700; margin: 4px 0;">광고 17만원<br>→ 매출 57.6만원</div>
-            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 약 339%</div>
-          </div>
-          <div style="background: white; padding: 10px; border-radius: 6px; text-align: center;">
-            <div style="color: #6b7280; font-size: 11px;">대규모 사례</div>
-            <div style="font-weight: 700; margin: 4px 0;">광고 50만원<br>→ 매출 150만원</div>
-            <div style="color: #059669; font-size: 11px; font-weight: 700;">ROAS 300%</div>
-          </div>
+      <!-- ROAS 의미 박스 -->
+      <div class="roas-cases">
+        <div class="roas-case">
+          <div class="case-label">소규모</div>
+          <div class="case-val">광고 5만 → 매출 15만</div>
+          <div class="case-roas">ROAS 300%</div>
         </div>
-        <p style="font-size: 11px; color: #92400e; margin-top: 10px; line-height: 1.6;">
-          ROAS는 비율이라 어떤 규모든 같은 % 가능. <strong>핵심은 절대값으로 광고비가 안정적이고 매출이 그 3배 이상 꾸준히 발생</strong>한다는 점.
-          4월은 <strong>광고비 451만원 → 매출 1,669만원 (약 3.7배)</strong>으로 안정권 진입.
-        </p>
-      </div>
-
-      <!-- 그래프 2: 매체별 ROAS 비교 -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 매체별 ROAS 비교 — 최저 81% vs 최고 367% (약 4.5배 차이)</h4>
-      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin-bottom: 16px;">
-        <svg viewBox="0 0 920 320" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
-          <!-- Y axis grid -->
-          <g stroke="#e5e7eb" stroke-width="1">
-            <line x1="120" y1="40" x2="900" y2="40"/>
-            <line x1="120" y1="100" x2="900" y2="100"/>
-            <line x1="120" y1="160" x2="900" y2="160"/>
-            <line x1="120" y1="220" x2="900" y2="220"/>
-            <line x1="120" y1="280" x2="900" y2="280"/>
-          </g>
-          <!-- Y axis labels -->
-          <g font-size="10" fill="#6b7280" text-anchor="end">
-            <text x="115" y="44">400%</text>
-            <text x="115" y="104">300%</text>
-            <text x="115" y="164">200%</text>
-            <text x="115" y="224">100%</text>
-            <text x="115" y="284">0%</text>
-          </g>
-          <!-- Target line -->
-          <line x1="120" y1="100" x2="900" y2="100" stroke="#fbbf24" stroke-width="2" stroke-dasharray="4 4"/>
-          <text x="900" y="96" font-size="10" fill="#92400e" text-anchor="end" font-weight="700">목표 300%</text>
-
-          <!-- Bars: ROAS values 316, 321, 81, 367 -->
-          <!-- 쇼핑검색 316% -->
-          <rect x="170" y="90.4" width="120" height="189.6" fill="#7c3aed" rx="4"/>
-          <text x="230" y="84" font-size="13" fill="#1d1d1f" text-anchor="middle" font-weight="700">316%</text>
-          <text x="230" y="300" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700">쇼핑검색</text>
-          <text x="230" y="313" font-size="9" fill="#059669" text-anchor="middle" font-weight="700">✓ 효자</text>
-
-          <!-- 파워링크 321% -->
-          <rect x="320" y="87.4" width="120" height="192.6" fill="#a855f7" rx="4"/>
-          <text x="380" y="81" font-size="13" fill="#1d1d1f" text-anchor="middle" font-weight="700">321%</text>
-          <text x="380" y="300" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700">파워링크</text>
-          <text x="380" y="313" font-size="9" fill="#059669" text-anchor="middle" font-weight="700">✓ 안정</text>
-
-          <!-- GFA 81% -->
-          <rect x="470" y="231.4" width="120" height="48.6" fill="#dc2626" rx="4"/>
-          <text x="530" y="225" font-size="13" fill="#dc2626" text-anchor="middle" font-weight="700">81%</text>
-          <text x="530" y="300" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700">GFA</text>
-          <text x="530" y="313" font-size="9" fill="#dc2626" text-anchor="middle" font-weight="700">⚠ 출혈</text>
-
-          <!-- GFA NDA 367% -->
-          <rect x="620" y="59.8" width="120" height="220.2" fill="#fbbf24" rx="4"/>
-          <text x="680" y="53" font-size="13" fill="#1d1d1f" text-anchor="middle" font-weight="700">367%</text>
-          <text x="680" y="300" font-size="11" fill="#1d1d1f" text-anchor="middle" font-weight="700">GFA NDA</text>
-          <text x="680" y="313" font-size="9" fill="#92400e" text-anchor="middle" font-weight="700">★ 신규 발견</text>
-
-          <!-- Average line at 369.31% -->
-          <line x1="120" y1="64.4" x2="900" y2="64.4" stroke="#059669" stroke-width="2" stroke-dasharray="6 3"/>
-          <text x="900" y="60" font-size="10" fill="#059669" text-anchor="end" font-weight="700">전체 ROAS 369.31%</text>
-
-          <!-- Arrow: GFA → 쇼검 -->
-          <path d="M 530 240 Q 380 270 230 200" stroke="#059669" stroke-width="2" fill="none" marker-end="url(#arrowhead)" stroke-dasharray="6 3"/>
-          <defs>
-            <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-              <polygon points="0 0, 10 3.5, 0 7" fill="#059669"/>
-            </marker>
-          </defs>
-          <text x="380" y="265" font-size="11" fill="#059669" text-anchor="middle" font-weight="700">예산 이전 (3만/일)</text>
-        </svg>
-        <p style="font-size: 11px; color: #6b7280; margin-top: 8px; text-align: center;">📊 매체별 ROAS / 노란 점선 = 목표 / 초록 점선 = 전체 평균 369.31% / GFA → 쇼검 예산 이전 추천</p>
-      </div>
-
-      <!-- 그래프 3: 광고비 분배 변화 (도넛 비교) -->
-      <h4 style="font-size: 13px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px;">▸ 예산 분배 — 분석 전(균등) vs 분석 후(효율 집중)</h4>
-      <div style="background: white; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
-        <div style="text-align: center;">
-          <div style="font-size: 12px; font-weight: 700; color: #991b1b; margin-bottom: 8px;">Before (분석 전)</div>
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 200px;">
-            <!-- 균등 분산 - 4매체 25%씩 -->
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#7c3aed" stroke-width="40" stroke-dasharray="110 330"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#a855f7" stroke-width="40" stroke-dasharray="110 330" stroke-dashoffset="-110"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#dc2626" stroke-width="40" stroke-dasharray="110 330" stroke-dashoffset="-220"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#fbbf24" stroke-width="40" stroke-dasharray="110 330" stroke-dashoffset="-330"/>
-            <text x="100" y="95" font-size="14" fill="#991b1b" text-anchor="middle" font-weight="700">균등</text>
-            <text x="100" y="112" font-size="10" fill="#991b1b" text-anchor="middle">분산</text>
-          </svg>
-          <div style="font-size: 10px; color: #991b1b; margin-top: 4px; font-weight: 600;">⚠ 효율 무관 균등 배분</div>
+        <div class="roas-case featured">
+          <div class="case-label">⭐ 4월 실측</div>
+          <div class="case-val">광고 17만 → 매출 57.6만</div>
+          <div class="case-roas">ROAS 약 339%</div>
         </div>
-        <div style="text-align: center;">
-          <div style="font-size: 12px; font-weight: 700; color: #166534; margin-bottom: 8px;">After (분석 후)</div>
-          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width: 100%; max-width: 200px;">
-            <!-- 쇼검 39% / 파워링크 39% / GFA 13% / NDA 9% -->
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#7c3aed" stroke-width="40" stroke-dasharray="172 268"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#a855f7" stroke-width="40" stroke-dasharray="172 268" stroke-dashoffset="-172"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#dc2626" stroke-width="40" stroke-dasharray="57 383" stroke-dashoffset="-344"/>
-            <circle cx="100" cy="100" r="70" fill="none" stroke="#fbbf24" stroke-width="40" stroke-dasharray="40 400" stroke-dashoffset="-401"/>
-            <text x="100" y="95" font-size="14" fill="#166534" text-anchor="middle" font-weight="700">효자</text>
-            <text x="100" y="112" font-size="10" fill="#166534" text-anchor="middle">집중</text>
-          </svg>
-          <div style="font-size: 10px; color: #166534; margin-top: 4px; font-weight: 600;">✓ ROAS 기반 차등 배분</div>
+        <div class="roas-case">
+          <div class="case-label">대규모</div>
+          <div class="case-val">광고 50만 → 매출 150만</div>
+          <div class="case-roas">ROAS 300%</div>
         </div>
-      </div>
-      <div style="display: flex; justify-content: center; gap: 16px; margin-top: 12px; flex-wrap: wrap; font-size: 11px;">
-        <span><span style="display:inline-block; width:12px; height:12px; background:#7c3aed; border-radius:2px; vertical-align:middle;"></span> 쇼핑검색</span>
-        <span><span style="display:inline-block; width:12px; height:12px; background:#a855f7; border-radius:2px; vertical-align:middle;"></span> 파워링크</span>
-        <span><span style="display:inline-block; width:12px; height:12px; background:#dc2626; border-radius:2px; vertical-align:middle;"></span> GFA</span>
-        <span><span style="display:inline-block; width:12px; height:12px; background:#fbbf24; border-radius:2px; vertical-align:middle;"></span> GFA NDA</span>
       </div>
     </div>
 
-    <!-- 0-3. 매체별 기능 가이드 (NEW) -->
+    <!-- 매체별 효율 + 기능 통합 표 -->
     <div class="section">
-      <div class="section-title">⓪-3. 매체별 기능 — 한 줄 설명</div>
+      <div class="section-title">② 매체별 효율 + 기능 통합 분석</div>
       <table>
         <thead>
           <tr>
-            <th style="width: 18%;">매체</th>
-            <th style="width: 20%;">노출 위치</th>
-            <th style="width: 32%;">기능 / 역할</th>
-            <th style="width: 30%;">주 타겟</th>
+            <th style="width:14%">매체</th>
+            <th style="width:24%">기능 / 노출 위치</th>
+            <th style="width:11%; text-align:right">광고비</th>
+            <th style="width:11%; text-align:right">매출</th>
+            <th style="width:10%; text-align:right">ROAS</th>
+            <th style="width:30%">평가 / 결정</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td><strong>Naver 쇼핑검색</strong></td>
-            <td>네이버 쇼핑 검색결과 상단</td>
-            <td>상품 검색 시 노출되는 쇼핑 광고</td>
-            <td>구매 의도 높은 고객 (즉시 전환)</td>
+            <td><strong>쇼핑검색</strong></td>
+            <td>쇼핑 검색결과 상단 / 구매 의도 고객</td>
+            <td style="text-align:right">약 175만</td>
+            <td style="text-align:right">약 554만</td>
+            <td style="text-align:right" class="roas-good">316%</td>
+            <td>핵심 효자 / <strong>증액 권장</strong></td>
           </tr>
           <tr>
-            <td><strong>Naver 파워링크</strong></td>
-            <td>네이버 통합검색 상단</td>
-            <td>키워드 기반 텍스트 광고</td>
-            <td>정보 탐색 ~ 구매 검토 단계</td>
+            <td><strong>파워링크</strong></td>
+            <td>네이버 통합검색 상단 / 키워드 텍스트</td>
+            <td style="text-align:right">약 177만</td>
+            <td style="text-align:right">약 569만</td>
+            <td style="text-align:right" class="roas-good">321%</td>
+            <td>안정 / 유지</td>
           </tr>
           <tr>
-            <td><strong>Naver 브랜드검색</strong></td>
-            <td>브랜드명 검색 시 최상단</td>
-            <td>브랜드 인지·선점 / 경쟁사 차단</td>
-            <td>브랜드 인지 고객 (재방문·신뢰)</td>
+            <td><strong>GFA</strong></td>
+            <td>네이버 디스플레이 배너 / 인지·리타겟</td>
+            <td style="text-align:right">약 59만</td>
+            <td style="text-align:right">약 48만</td>
+            <td style="text-align:right" class="roas-bad">81%</td>
+            <td>⚠️ 출혈 / <strong>예산 이전</strong></td>
           </tr>
           <tr>
-            <td><strong>ADvoost 쇼핑</strong></td>
-            <td>외부 제휴 매체</td>
-            <td>네이버 외부 쇼핑광고 보조 (DA 네트워크)</td>
-            <td>쇼핑 관심 일반 고객</td>
+            <td><strong>GFA NDA</strong></td>
+            <td>신규 디스플레이 / 새 잠재고객 발굴</td>
+            <td style="text-align:right">약 11만</td>
+            <td style="text-align:right">약 40.5만</td>
+            <td style="text-align:right" class="roas-mid">367%</td>
+            <td>4/28 증액 후 모니터링</td>
           </tr>
           <tr>
-            <td><strong>Naver GFA</strong></td>
-            <td>네이버 메인·블로그·카페 등</td>
-            <td>디스플레이 배너 광고 (이미지·영상)</td>
-            <td>인지도 확대 / 리타겟팅</td>
+            <td>브랜드검색</td>
+            <td>브랜드명 검색 상단 / 인지·선점</td>
+            <td style="text-align:right">-</td>
+            <td style="text-align:right">-</td>
+            <td style="text-align:right">-</td>
+            <td>5월 검토</td>
           </tr>
           <tr>
-            <td><strong>Naver GFA NDA</strong></td>
-            <td>신규 디스플레이 지면</td>
-            <td>GFA 신규 캠페인 형태 (네이티브·신규 타겟)</td>
-            <td>새 잠재고객 발굴</td>
+            <td>ADvoost 쇼핑</td>
+            <td>외부 제휴 매체 / 보조 쇼핑광고</td>
+            <td style="text-align:right">-</td>
+            <td style="text-align:right">-</td>
+            <td style="text-align:right">-</td>
+            <td>비중 확대 검토</td>
           </tr>
         </tbody>
       </table>
-      <p class="source">※ 매체별 특성에 맞게 효자 매체(쇼검·파워링크)는 즉시 전환, 인지 매체(GFA)는 장기 효과를 분리 평가 필요</p>
+      <p class="source">※ 매체별 효율 격차 최저 81% ~ 최고 367% (약 4.5배). 출혈 매체 축소·효자 매체 집중이 정리 핵심.</p>
     </div>
 
-    <!-- 1. 종합 수치 -->
+  </div>
+
+  <!-- ============== PAGE 2 ============== -->
+  <div class="page page-break">
+
+    <!-- 매체별 ROAS + 예산 분배 -->
     <div class="section">
-      <div class="section-title">① 4월 종합 수치 (전일까지)</div>
-      <div class="kpi-grid">
-        <div class="kpi">
-          <div class="label">광고비</div>
-          <div class="value">4,519,786원</div>
+      <div class="section-title">③ 매체별 ROAS 시각화 + 예산 분배 변화</div>
+      <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 12px;">
+        <!-- 막대 그래프 -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; font-weight: 700; margin-bottom: 4px;">매체별 ROAS (목표 300% 기준)</div>
+          <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto;">
+            <g stroke="#e5e7eb" stroke-width="1">
+              <line x1="60" y1="20" x2="470" y2="20"/>
+              <line x1="60" y1="65" x2="470" y2="65"/>
+              <line x1="60" y1="110" x2="470" y2="110"/>
+              <line x1="60" y1="155" x2="470" y2="155"/>
+              <line x1="60" y1="200" x2="470" y2="200"/>
+            </g>
+            <g font-size="9" fill="#6b7280" text-anchor="end">
+              <text x="55" y="24">400%</text>
+              <text x="55" y="69">300%</text>
+              <text x="55" y="114">200%</text>
+              <text x="55" y="159">100%</text>
+              <text x="55" y="204">0%</text>
+            </g>
+            <line x1="60" y1="65" x2="470" y2="65" stroke="#fbbf24" stroke-width="1.5" stroke-dasharray="4 3"/>
+            <text x="470" y="62" font-size="9" fill="#92400e" text-anchor="end" font-weight="700">목표 300%</text>
+            <!-- 쇼핑검색 316% -->
+            <rect x="80" y="57.8" width="70" height="142.2" fill="#7c3aed" rx="3"/>
+            <text x="115" y="51" font-size="11" font-weight="700" text-anchor="middle">316%</text>
+            <text x="115" y="216" font-size="10" text-anchor="middle" font-weight="700">쇼핑검색</text>
+            <!-- 파워링크 321% -->
+            <rect x="170" y="55.55" width="70" height="144.45" fill="#a855f7" rx="3"/>
+            <text x="205" y="49" font-size="11" font-weight="700" text-anchor="middle">321%</text>
+            <text x="205" y="216" font-size="10" text-anchor="middle" font-weight="700">파워링크</text>
+            <!-- GFA 81% -->
+            <rect x="260" y="163.55" width="70" height="36.45" fill="#dc2626" rx="3"/>
+            <text x="295" y="158" font-size="11" font-weight="700" fill="#dc2626" text-anchor="middle">81%</text>
+            <text x="295" y="216" font-size="10" text-anchor="middle" font-weight="700">GFA</text>
+            <text x="295" y="227" font-size="9" fill="#dc2626" text-anchor="middle" font-weight="700">⚠ 출혈</text>
+            <!-- GFA NDA 367% -->
+            <rect x="350" y="34.85" width="70" height="165.15" fill="#fbbf24" rx="3"/>
+            <text x="385" y="28" font-size="11" font-weight="700" text-anchor="middle">367%</text>
+            <text x="385" y="216" font-size="10" text-anchor="middle" font-weight="700">GFA NDA</text>
+            <!-- 화살표 GFA → 쇼검 -->
+            <path d="M 295 175 Q 200 195 115 165" stroke="#059669" stroke-width="1.5" fill="none" marker-end="url(#ah)" stroke-dasharray="4 2"/>
+            <defs>
+              <marker id="ah" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                <polygon points="0 0, 8 3, 0 6" fill="#059669"/>
+              </marker>
+            </defs>
+            <text x="200" y="190" font-size="9" fill="#059669" text-anchor="middle" font-weight="700">예산 이전 3만/일</text>
+          </svg>
         </div>
-        <div class="kpi">
-          <div class="label">매출</div>
-          <div class="value">16,692,400원</div>
-        </div>
-        <div class="kpi highlight">
-          <div class="label">ROAS</div>
-          <div class="value">369.31%</div>
-          <div class="sub">목표 300% 달성 ✓</div>
+
+        <!-- 도넛 비교 -->
+        <div style="background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px;">
+          <div style="font-size: 11px; font-weight: 700; margin-bottom: 4px;">예산 분배 변화</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; text-align: center;">
+            <div>
+              <div style="font-size: 10px; font-weight: 700; color: #991b1b;">Before</div>
+              <svg viewBox="0 0 120 120" style="width: 100%; max-width: 100px;">
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#7c3aed" stroke-width="22" stroke-dasharray="63 188"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#a855f7" stroke-width="22" stroke-dasharray="63 188" stroke-dashoffset="-63"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#dc2626" stroke-width="22" stroke-dasharray="63 188" stroke-dashoffset="-126"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#fbbf24" stroke-width="22" stroke-dasharray="63 188" stroke-dashoffset="-189"/>
+                <text x="60" y="64" font-size="11" fill="#991b1b" text-anchor="middle" font-weight="700">균등</text>
+              </svg>
+              <div style="font-size: 9px; color: #991b1b; font-weight: 600;">⚠ 효율 무관 분산</div>
+            </div>
+            <div>
+              <div style="font-size: 10px; font-weight: 700; color: #166534;">After</div>
+              <svg viewBox="0 0 120 120" style="width: 100%; max-width: 100px;">
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#7c3aed" stroke-width="22" stroke-dasharray="98 153"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#a855f7" stroke-width="22" stroke-dasharray="98 153" stroke-dashoffset="-98"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#dc2626" stroke-width="22" stroke-dasharray="33 218" stroke-dashoffset="-196"/>
+                <circle cx="60" cy="60" r="40" fill="none" stroke="#fbbf24" stroke-width="22" stroke-dasharray="22 229" stroke-dashoffset="-229"/>
+                <text x="60" y="64" font-size="11" fill="#166534" text-anchor="middle" font-weight="700">집중</text>
+              </svg>
+              <div style="font-size: 9px; color: #166534; font-weight: 600;">✓ ROAS 차등</div>
+            </div>
+          </div>
+          <div style="font-size: 9px; text-align: center; margin-top: 4px; line-height: 1.5;">
+            <span><span style="display:inline-block;width:8px;height:8px;background:#7c3aed;"></span>쇼검 </span>
+            <span><span style="display:inline-block;width:8px;height:8px;background:#a855f7;"></span>파워 </span>
+            <span><span style="display:inline-block;width:8px;height:8px;background:#dc2626;"></span>GFA </span>
+            <span><span style="display:inline-block;width:8px;height:8px;background:#fbbf24;"></span>NDA</span>
+          </div>
         </div>
       </div>
-      <p class="source">※ 출처: 프로그레스미디어 유승민 담당자 (4/30 09:25 보고)</p>
     </div>
 
-    <!-- 2. 매체별 효율 -->
+    <!-- 대행사 제안 + 추천 -->
     <div class="section">
-      <div class="section-title">② 매체별 효율 (4월 일간 데이터 추정)</div>
-      <table>
-        <thead>
-          <tr>
-            <th>매체</th>
-            <th style="text-align:right">광고비</th>
-            <th style="text-align:right">매출</th>
-            <th style="text-align:right">ROAS</th>
-            <th>평가</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Naver 쇼핑검색</strong></td>
-            <td style="text-align:right">약 1,750천</td>
-            <td style="text-align:right">약 5,540천</td>
-            <td style="text-align:right" class="roas-good">약 316%</td>
-            <td>핵심 효자, 안정 / <strong>증액 권장</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Naver 파워링크</strong></td>
-            <td style="text-align:right">약 1,772천</td>
-            <td style="text-align:right">약 5,690천</td>
-            <td style="text-align:right" class="roas-good">약 321%</td>
-            <td>안정 운영 유지</td>
-          </tr>
-          <tr>
-            <td><strong>Naver GFA</strong></td>
-            <td style="text-align:right">약 590천</td>
-            <td style="text-align:right">약 480천</td>
-            <td style="text-align:right" class="roas-bad">약 81%</td>
-            <td>⚠️ 출혈 / <strong>예산 이전 대상</strong></td>
-          </tr>
-          <tr>
-            <td><strong>Naver GFA NDA</strong></td>
-            <td style="text-align:right">약 110천</td>
-            <td style="text-align:right">약 405천</td>
-            <td style="text-align:right" class="roas-mid">약 367%</td>
-            <td>4/28부터 광고비 5배↑ 모니터링</td>
-          </tr>
-          <tr>
-            <td>Naver 브랜드검색 / ADvoost</td>
-            <td style="text-align:right">-</td>
-            <td style="text-align:right">-</td>
-            <td style="text-align:right">-</td>
-            <td>현재 미운영 (애드부스트는 전환 일부 발생 보고)</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="source">※ 일간 매체보고서 기반 합산 추정. 정확한 매체별 합계는 대행사 일별종합광고보고 시트 확인.</p>
-    </div>
-
-    <!-- 3. 대행사 제안 -->
-    <div class="section">
-      <div class="section-title">③ 대행사(프로그레스미디어) 제안</div>
+      <div class="section-title">④ 대행사(프로그레스미디어) 제안 + 화경 검토</div>
       <div class="proposal-grid">
         <div class="proposal">
           <h4>옵션 A · 쇼검 예산 증액</h4>
           <p>• 전체 광고 예산 ↑</p>
-          <p>• 쇼핑검색 + 애드부스트 영역에서 전환 집중 → 비중 확대</p>
+          <p>• 쇼검+애드부스트 비중 확대</p>
           <p>• 추가 예산 필요</p>
         </div>
         <div class="proposal recommend">
           <h4>옵션 B · GFA 3만 → 쇼검 3만 이전</h4>
-          <p>• 전환 캠페인 GFA 일 3만원 차단</p>
-          <p>• 쇼핑검색에 일 3만원 추가 투입</p>
-          <p>• <strong>예산 동일 · 분배만 변경</strong></p>
+          <p>• GFA 전환 캠페인 일 3만 차단</p>
+          <p>• 쇼검에 일 3만 추가 투입</p>
+          <p>• <strong>예산 동일 / 분배만 변경</strong></p>
         </div>
       </div>
-
       <div class="review-box">
-        <h4>화경 검토 의견</h4>
-        <p><strong>옵션 B 추천.</strong> GFA ROAS 81%(출혈) → 쇼검 316%로 이전 시 동일 예산으로 약 3.9배 효율 상승 기대. 추가 예산 부담 없이 즉시 실행 가능. 1주 모니터링 후 추가 증액(옵션 A) 검토 권장.</p>
+        <h4>화경 검토 의견 → 옵션 B 추천</h4>
+        GFA ROAS 81% → 쇼검 316% 이전 시 동일 예산으로 약 <strong>3.9배 효율 상승</strong> 기대. 추가 예산 부담 없이 즉시 실행 가능. 1주 모니터링 후 추가 증액(옵션 A) 검토 권장.
       </div>
     </div>
 
-    <!-- 4. 박지현 팀장 결정 -->
+    <!-- 결정 자리 -->
     <div class="section">
-      <div class="section-title">④ 박지현 팀장 결정</div>
+      <div class="section-title">⑤ 박지현 팀장 결정 / 대표 승인</div>
       <div class="decision-box">
         <h4>대행사 회신 (선택 후 클릭하여 작성)</h4>
         <span contenteditable="true" data-key="decision">옵션 B로 진행 / 5/7까지 1주 모니터링 후 결과 공유 요청</span>
-        <h4 style="margin-top:12px">대표 승인 사항</h4>
+        <h4>대표 승인 사항</h4>
         <span contenteditable="true" data-key="ceo">예산 분배 변경(GFA → 쇼검) — 추가 비용 없음 / 보고만</span>
       </div>
     </div>
 
-    <!-- 5. 대표 보고 -->
+    <!-- 대표 보고 한 줄 -->
     <div class="section">
-      <div class="section-title">⑤ 대표 보고 한 줄</div>
-      <div style="background:#fef3c7; padding:14px 18px; border-radius:8px; border-left:4px solid #fbbf24; font-size:14px; font-weight:600;">
-        "기존 비효율 분산 운영을 매체별 효율 분석으로 정리 → 4월 ROAS <strong>369.31%</strong> (목표 300% 달성). 5월은 GFA 출혈(81%) 일 3만원을 쇼검(316%)으로 이전 — <strong>같은 예산으로 효율 추가 상승</strong> 추진."
+      <div class="section-title">⑥ 대표 보고 한 줄</div>
+      <div class="ceo-msg">
+        "기존 비효율 분산 운영을 매체별 효율 분석으로 정리 → 4월 ROAS <strong>369.31%</strong> 달성(목표 300% 돌파). 5월은 GFA 출혈(81%) 일 3만원을 쇼검(316%)으로 이전 — <strong>같은 예산으로 효율 추가 상승</strong> 추진."
       </div>
     </div>
 
@@ -881,16 +619,14 @@
       <h4>귀환 — 천계 공식</h4>
       <ol>
         <li><strong>중심:</strong> 4월 합격(369%), 5월은 매체 분배 최적화로 한 단계 더</li>
-        <li><strong>다음 질문:</strong> 옵션 B 1주 결과가 좋으면 쇼검 추가 증액 폭은 얼마까지?</li>
+        <li><strong>다음 질문:</strong> 옵션 B 1주 결과 좋으면 쇼검 추가 증액 폭은?</li>
         <li><strong>실행 한 점:</strong> 오늘 안에 유승민 담당자에게 옵션 B 회신 + 5/7 결과보고 요청</li>
       </ol>
     </div>
 
   </div>
 
-  <div class="footer">
-    화경 × 박지현 팀장 · 쥬얼아이스 운영 원리 v1.0 · 2026.04.30 작성
-  </div>
+  <div class="footer">화경 × 박지현 팀장 · 쥬얼아이스 운영 원리 v1.0 · 2026.04.30 작성 · A4 2페이지 압축본</div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -902,56 +638,31 @@
     if (saved) el.textContent = saved;
     el.addEventListener('input', () => localStorage.setItem(key, el.textContent));
   });
-
   function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
+    t.textContent = msg; t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 2200);
   }
-
   function copyLink() {
     const url = window.location.href;
     if (navigator.clipboard) {
-      navigator.clipboard.writeText(url).then(() => showToast('✅ 링크가 복사되었습니다'));
+      navigator.clipboard.writeText(url).then(() => showToast('✅ 링크 복사됨'));
     } else {
       const ta = document.createElement('textarea');
       ta.value = url; document.body.appendChild(ta); ta.select();
       document.execCommand('copy'); document.body.removeChild(ta);
-      showToast('✅ 링크가 복사되었습니다');
+      showToast('✅ 링크 복사됨');
     }
   }
-
-  function shareKakao() {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent('4월 광고 운영 보고서 — ROAS 369.31% 달성\n');
-    window.open(`https://story.kakao.com/share?url=${url}&text=${text}`, '_blank');
-  }
-
   function shareEmail() {
     const subject = encodeURIComponent('[쥬얼아이스] 4월 광고 운영 보고서 (ROAS 369.31%)');
     const body = encodeURIComponent(
       '4월 광고 운영 보고서를 공유드립니다.\n\n' +
-      '■ 광고비: 4,519,786원\n' +
-      '■ 매출: 16,692,400원\n' +
-      '■ ROAS: 369.31% (목표 300% 달성)\n\n' +
+      '■ 광고비: 4,519,786원\n■ 매출: 16,692,400원\n■ ROAS: 369.31%\n\n' +
       '추천: GFA 일 3만원 → 쇼검 이전 (예산 동일, 효율 상승)\n\n' +
-      '상세: ' + window.location.href + '\n\n' +
-      '— 박지현 팀장'
+      '상세: ' + window.location.href + '\n\n— 박지현 팀장'
     );
     window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  }
-
-  if (navigator.share) {
-    const btn = document.createElement('button');
-    btn.className = 'btn';
-    btn.innerHTML = '📤 시스템 공유';
-    btn.onclick = () => navigator.share({
-      title: '4월 광고 운영 보고서',
-      text: 'ROAS 369.31% — 박지현 팀장',
-      url: window.location.href
-    }).catch(()=>{});
-    document.querySelector('.action-bar').appendChild(btn);
   }
 </script>
 </body>
