@@ -241,6 +241,104 @@
     background:rgba(255,214,0,0.08);outline:2px dashed #ffd600;
     outline-offset:2px;border-radius:4px
   }
+
+  /* 인쇄·PDF 저장 전용 */
+  @media print{
+    @page{size:A4;margin:14mm 12mm}
+    *{
+      -webkit-print-color-adjust:exact !important;
+      print-color-adjust:exact !important;
+      color-adjust:exact !important;
+      box-shadow:none !important;text-shadow:none !important
+    }
+    html,body{
+      background:#fff !important;color:#1a0a3e !important;
+      padding:0 !important;margin:0 !important;line-height:1.55
+    }
+    .wrap{max-width:100% !important;margin:0 !important;padding:0 !important}
+    .toolbar,#saveStatus,.archive-banner a,#editBtn{display:none !important}
+    .archive-banner{
+      background:#f5f0ff !important;border:1px solid #7c3aed !important;
+      color:#1a0a3e !important
+    }
+
+    /* 히어로 — 흰 배경 + 보라 테두리 */
+    .hero{
+      background:#faf7ff !important;border:2px solid #7c3aed !important;
+      color:#1a0a3e !important;page-break-after:avoid;break-after:avoid;
+      padding:18px 22px;margin-bottom:16px
+    }
+    .hero h1{color:#1a0a3e !important;font-size:24px;margin-bottom:6px}
+    .hero h1 .accent,.hero .crumb{color:#7c3aed !important}
+    .hero .lead{color:#1a0a3e !important;opacity:1;font-size:12px}
+    .hero .lead b{color:#7c3aed !important}
+    .hero .meta span{
+      background:#fff !important;border:1px solid #7c3aed !important;
+      color:#1a0a3e !important;font-size:10px
+    }
+
+    /* 섹션 타이틀 */
+    .section-title{
+      color:#7c3aed !important;font-size:13px;
+      page-break-after:avoid;break-after:avoid;
+      margin:18px 0 8px;border-bottom:1px solid #7c3aed;padding-bottom:4px
+    }
+    .section-title::before{background:#7c3aed !important}
+    .section-sub{color:#444 !important;opacity:1;font-size:10.5px}
+
+    /* 박지현의 생각 카드 */
+    .thought{
+      background:#fff !important;border:1px solid #c8b8e8 !important;
+      color:#1a0a3e !important;padding:16px 18px;margin-bottom:10px;
+      page-break-inside:avoid;break-inside:avoid
+    }
+    .thought h3{color:#7c3aed !important;font-size:13px;margin-bottom:8px}
+    .thought p{color:#1a0a3e !important;opacity:1;font-size:11.5px;line-height:1.7}
+    .thought b.hl{color:#7c3aed !important;background:#fff5cc;padding:0 3px}
+    .thought blockquote{
+      background:#faf7ff !important;border-left:3px solid #7c3aed !important;
+      color:#333 !important;font-size:11px
+    }
+
+    /* 4단계 전략 */
+    .strategy{grid-template-columns:repeat(4,1fr) !important;gap:8px}
+    .step{
+      background:#faf7ff !important;border:1px solid #7c3aed !important;
+      color:#1a0a3e !important;padding:12px;
+      page-break-inside:avoid;break-inside:avoid
+    }
+    .step .num,.step h4{color:#7c3aed !important}
+    .step p,.step li{color:#1a0a3e !important;opacity:1;font-size:10.5px}
+
+    /* 카드 류 공통 */
+    .card,.box,.panel,.issue,.priority,.kpi,.team-card,.tree-item{
+      background:#fff !important;border:1px solid #c8b8e8 !important;
+      color:#1a0a3e !important;
+      page-break-inside:avoid;break-inside:avoid;
+      box-shadow:none !important
+    }
+
+    /* 강조색 보존 */
+    .accent,b.hl,strong{color:#7c3aed}
+    a{color:#5b21b6 !important;text-decoration:underline}
+
+    /* 표 */
+    table{border-collapse:collapse;width:100%;font-size:10.5px;
+      page-break-inside:auto;break-inside:auto}
+    thead{display:table-header-group}
+    tr{page-break-inside:avoid;break-inside:avoid}
+    th,td{border:1px solid #c8b8e8 !important;padding:6px 8px;
+      color:#1a0a3e !important;background:#fff !important}
+    th{background:#faf7ff !important;color:#7c3aed !important;font-weight:800}
+
+    /* 푸터 */
+    .footer{color:#666 !important;border-top:1px solid #c8b8e8 !important;
+      page-break-before:avoid}
+    .footer strong{color:#7c3aed !important}
+
+    /* 편집 모드 표시 제거 */
+    [contenteditable="true"]{background:transparent !important;outline:none !important}
+  }
 </style>
 </head>
 <body>
@@ -254,6 +352,8 @@
     <span id="saveStatus"></span>
     <a class="ctrl-btn" href="jihyun-archive.html">📚 자료실</a>
     <button class="ctrl-btn" onclick="copyShareUrl()">🔗 공유</button>
+    <button class="ctrl-btn" onclick="printPage()">🖨️ 프린트</button>
+    <button class="ctrl-btn" onclick="savePdf()">📄 PDF 저장</button>
     <button class="ctrl-btn" onclick="resetContent()">↺ 초기화</button>
     <button class="ctrl-btn" onclick="toggleEdit()" id="editBtn">✎ 편집</button>
     <button class="ctrl-btn primary" onclick="saveContent()">💾 저장</button>
@@ -987,6 +1087,25 @@ function copyShareUrl(){
   navigator.clipboard.writeText(url).then(()=>{
     document.getElementById('saveStatus').textContent='🔗 주소 복사됨';
   }).catch(()=>{prompt('이 주소를 복사하세요:',url);});
+}
+function printPage(){
+  if(document.getElementById('content').contentEditable==='true'){
+    saveContent();
+    document.getElementById('content').contentEditable='false';
+    document.getElementById('editBtn').textContent='✎ 편집';
+  }
+  document.getElementById('saveStatus').textContent='🖨️ 인쇄 준비…';
+  setTimeout(()=>window.print(),120);
+}
+function savePdf(){
+  if(document.getElementById('content').contentEditable==='true'){
+    saveContent();
+    document.getElementById('content').contentEditable='false';
+    document.getElementById('editBtn').textContent='✎ 편집';
+  }
+  const s=document.getElementById('saveStatus');
+  s.textContent='📄 인쇄 창 → "대상"에서 \'PDF로 저장\' 선택';
+  setTimeout(()=>window.print(),120);
 }
 loadContent();
 window.addEventListener('beforeunload',()=>{
