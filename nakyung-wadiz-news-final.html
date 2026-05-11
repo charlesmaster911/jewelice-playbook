@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>와디즈 새소식 마지막 2건 · 권나경 과장 (D-DAY → 종료 후)</title>
+<style>
+:root {
+  --bg: #0a0a14;
+  --s1: #14141f;
+  --s2: #1c1c2c;
+  --border: #2a2a40;
+  --purple: #7c3aed;
+  --purple-light: #a78bfa;
+  --yellow: #fbbf24;
+  --yellow-light: #fde68a;
+  --white: #eeeef8;
+  --gray: #8888a8;
+  --green: #34d399;
+  --green-light: #6ee7b7;
+  --red: #f87171;
+  --ice: #b8e3f0;
+  --ice-deep: #1ec5d4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, 'Pretendard', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  word-break: keep-all;
+  text-wrap: pretty;
+}
+.glow {
+  position: fixed;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 300px;
+  background: radial-gradient(ellipse, rgba(124,58,237,.15) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; position: relative; z-index: 1; }
+.toolbar {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,10,20,.92); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 24px;
+  display: flex; gap: 12px; align-items: center; justify-content: space-between;
+  margin: -40px -24px 32px;
+}
+.toolbar-title { font-size: 12px; color: var(--gray); letter-spacing: 1px; }
+.toolbar-actions { display: flex; gap: 8px; }
+.btn {
+  background: var(--s2); border: 1px solid var(--border);
+  color: var(--white); padding: 6px 14px;
+  border-radius: 6px; font-size: 12px; cursor: pointer;
+  transition: all .2s;
+}
+.btn:hover { border-color: var(--purple); color: var(--purple-light); }
+
+.eyebrow {
+  font-size: 11px; letter-spacing: 4px; color: var(--purple-light);
+  text-transform: uppercase; margin-bottom: 12px;
+}
+h1 {
+  font-size: clamp(28px, 4vw, 40px); font-weight: 900;
+  letter-spacing: -1px; line-height: 1.2; margin-bottom: 12px;
+  background: linear-gradient(90deg, var(--purple-light), var(--yellow));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.subtitle { color: var(--gray); font-size: 15px; margin-bottom: 8px; }
+.meta-line { font-size: 12px; color: var(--gray); margin-bottom: 32px; }
+.meta-line strong { color: var(--yellow); }
+
+/* ====== 시리즈 마스터 플랜 ====== */
+.master-plan {
+  background: var(--s1);
+  border: 1px solid var(--purple);
+  border-radius: 16px;
+  padding: 28px;
+  margin-bottom: 32px;
+}
+.master-plan h2 {
+  font-size: 22px; font-weight: 800; margin-bottom: 6px;
+}
+.master-plan h2 .accent { color: var(--yellow); }
+.master-plan-desc { color: var(--gray); font-size: 13px; margin-bottom: 20px; }
+.plan-table {
+  width: 100%; border-collapse: collapse;
+  font-size: 13px;
+}
+.plan-table th, .plan-table td {
+  padding: 12px 14px; text-align: left;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.plan-table th {
+  background: var(--s2); color: var(--purple-light);
+  font-size: 11px; letter-spacing: 1px; font-weight: 700;
+  text-transform: uppercase;
+}
+.plan-table tr:last-child td { border-bottom: none; }
+.plan-table .d-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 800;
+  background: var(--red); color: white;
+  padding: 3px 10px; border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.plan-table .d-tag.after { background: var(--green); color: var(--bg); }
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+.kpi-card {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px; text-align: center;
+}
+.kpi-label { font-size: 11px; color: var(--gray); margin-bottom: 6px; letter-spacing: 1px; }
+.kpi-value { font-size: 22px; font-weight: 800; color: var(--yellow); margin-bottom: 4px; }
+.kpi-sub { font-size: 11px; color: var(--gray); }
+
+.callout {
+  background: rgba(251,191,36,.08);
+  border-left: 4px solid var(--yellow);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin: 16px 0;
+  font-size: 13px;
+}
+.callout strong { color: var(--yellow); }
+.callout.purple {
+  background: rgba(124,58,237,.08);
+  border-left-color: var(--purple);
+}
+.callout.purple strong { color: var(--purple-light); }
+.callout.green {
+  background: rgba(52,211,153,.08);
+  border-left-color: var(--green);
+}
+.callout.green strong { color: var(--green); }
+.callout.red {
+  background: rgba(248,113,113,.08);
+  border-left-color: var(--red);
+}
+.callout.red strong { color: var(--red); }
+
+/* ====== 새소식 카드 ====== */
+.news-card {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  margin-bottom: 32px;
+  position: relative;
+}
+.news-card.dday { border-left: 4px solid var(--red); }
+.news-card.after { border-left: 4px solid var(--green); }
+
+.news-head {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.news-d {
+  font-size: 14px; font-weight: 800; letter-spacing: 1px;
+  background: var(--red); color: white;
+  padding: 6px 14px; border-radius: 6px;
+}
+.news-d.after { background: var(--green); color: var(--bg); }
+
+.news-title-block { flex: 1; min-width: 280px; }
+.news-num { font-size: 11px; letter-spacing: 3px; color: var(--gray); margin-bottom: 6px; }
+.news-title {
+  font-size: 22px; font-weight: 800; line-height: 1.3;
+  margin-bottom: 6px;
+}
+.news-meta { font-size: 12px; color: var(--gray); }
+.news-meta strong { color: var(--yellow); }
+
+.message-box {
+  background: linear-gradient(135deg, rgba(124,58,237,.08), rgba(251,191,36,.05));
+  border: 1px solid var(--purple);
+  border-radius: 12px;
+  padding: 28px 24px 24px;
+  margin: 16px 0;
+  position: relative;
+  font-size: 14px; line-height: 1.85;
+  white-space: pre-wrap;
+}
+.message-box .copy-btn {
+  position: absolute; top: 12px; right: 12px;
+  background: var(--purple); color: white;
+  border: none; padding: 6px 12px; border-radius: 6px;
+  font-size: 11px; cursor: pointer;
+  transition: all .2s;
+  z-index: 5;
+}
+.message-box .copy-btn:hover { background: var(--yellow); color: var(--bg); }
+
+.title-box {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 12px 0;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 15px; font-weight: 700;
+  gap: 12px;
+}
+.title-box .copy-mini {
+  background: var(--purple); color: white;
+  border: none; padding: 4px 12px; border-radius: 4px;
+  font-size: 11px; cursor: pointer; flex-shrink: 0;
+}
+.title-box .copy-mini:hover { background: var(--yellow); color: var(--bg); }
+
+/* ====== 이미지 시안 ====== */
+.image-section {
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  padding-top: 24px;
+}
+.image-section-title {
+  font-size: 14px; color: var(--purple-light); font-weight: 700;
+  margin-bottom: 14px; letter-spacing: 1px;
+}
+.image-card-wrap {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+}
+.image-card-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+  font-size: 12px; color: var(--gray); flex-wrap: wrap; gap: 8px;
+}
+.image-card-meta strong { color: var(--yellow); font-weight: 700; }
+.dl-btn {
+  background: var(--yellow); color: var(--bg);
+  border: none; padding: 6px 14px; border-radius: 6px;
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  transition: all .2s;
+}
+.dl-btn:hover { background: var(--purple); color: white; }
+.size-tag {
+  display: inline-block;
+  font-size: 10px;
+  background: rgba(124,58,237,.15);
+  border: 1px solid rgba(124,58,237,.3);
+  color: var(--purple-light);
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-right: 8px;
+}
+
+/* 비주얼 카드 공통 */
+.visual {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+  word-break: keep-all;
+}
+
+/* ===== D-DAY: 마지막 하루 (긴급 + 마감 강조) ===== */
+.v-dday-final {
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(239,68,68,.4) 0%, transparent 60%),
+    linear-gradient(160deg, #1a0606 0%, #2c0e0e 50%, #0a0202 100%);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 56px 48px;
+  color: white; text-align: center;
+}
+.v-dday-final::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 30%, rgba(251,191,36,.2) 0%, transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(239,68,68,.25) 0%, transparent 55%);
+  pointer-events: none;
+}
+.v-dday-final-tag {
+  font-size: 13px; letter-spacing: 8px; color: #fde68a;
+  background: rgba(251,191,36,.15);
+  border: 1px solid rgba(251,191,36,.5);
+  padding: 8px 22px; border-radius: 30px;
+  margin-bottom: 24px;
+  position: relative; z-index: 2;
+  font-weight: 700;
+}
+.v-dday-final-headline {
+  font-size: 220px; font-weight: 900;
+  line-height: 0.85; letter-spacing: -10px;
+  background: linear-gradient(180deg, #fde68a 0%, #fbbf24 50%, #b45309 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  position: relative; z-index: 2;
+  margin-bottom: 4px;
+}
+.v-dday-final-label {
+  font-size: 34px; font-weight: 800;
+  letter-spacing: -1px; color: white;
+  margin-bottom: 22px;
+  position: relative; z-index: 2;
+}
+.v-dday-final-sub {
+  font-size: 19px; color: #fecaca;
+  font-weight: 600; line-height: 1.4;
+  margin-bottom: 28px;
+  position: relative; z-index: 2;
+}
+.v-dday-final-clock {
+  background: rgba(0,0,0,.5);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(239,68,68,.5);
+  border-radius: 16px;
+  padding: 18px 32px;
+  position: relative; z-index: 2;
+}
+.v-dday-final-clock-label { font-size: 12px; letter-spacing: 4px; color: #fca5a5; margin-bottom: 6px; font-weight: 700; }
+.v-dday-final-clock-time {
+  font-size: 28px; font-weight: 900; color: #fde68a;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ===== D-DAY 보조: "오늘 자정" 클락 ===== */
+.v-tonight {
+  background:
+    radial-gradient(ellipse at 30% 30%, rgba(251,191,36,.25) 0%, transparent 55%),
+    linear-gradient(160deg, #0e0a1f 0%, #2a1856 50%, #1a0f2e 100%);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  padding: 56px 48px;
+  color: white; text-align: center;
+}
+.v-tonight::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(124,58,237,.25) 0%, transparent 55%);
+  pointer-events: none;
+}
+.v-tonight-eyebrow {
+  font-size: 13px; letter-spacing: 8px; color: #fde68a;
+  font-weight: 800; margin-bottom: 18px;
+  position: relative; z-index: 2;
+}
+.v-tonight-time {
+  font-size: 140px; font-weight: 900;
+  line-height: 0.95; letter-spacing: -6px;
+  background: linear-gradient(180deg, #ffffff 0%, #fde68a 60%, #fbbf24 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  position: relative; z-index: 2;
+  margin-bottom: 12px;
+}
+.v-tonight-label {
+  font-size: 30px; font-weight: 800;
+  color: white; margin-bottom: 24px;
+  position: relative; z-index: 2;
+}
+.v-tonight-list {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 14px;
+  padding: 18px 28px;
+  position: relative; z-index: 2;
+  font-size: 17px; font-weight: 600;
+  line-height: 1.7;
+  text-align: left;
+}
+.v-tonight-list li { list-style: none; padding-left: 24px; position: relative; }
+.v-tonight-list li::before {
+  content: '✓'; position: absolute; left: 0;
+  color: #fbbf24; font-weight: 900;
+}
+
+/* ===== 종료 후: 감사 + 최종 결과 (아이스 톤 매칭) ===== */
+.v-final-thanks {
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(184,227,240,.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(255,255,255,.4) 0%, transparent 50%),
+    linear-gradient(160deg, #f4fbfd 0%, #d6ecf2 50%, #b8e3f0 100%);
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 56px 48px;
+  color: #0a1a24;
+}
+.v-final-eyebrow {
+  font-size: 13px; letter-spacing: 8px;
+  color: #1ec5d4; font-weight: 800;
+  position: relative; z-index: 2;
+}
+.v-final-headline {
+  font-size: 86px; font-weight: 900;
+  line-height: 1; letter-spacing: -3px;
+  color: #0a1a24;
+  margin: 14px 0 14px;
+  position: relative; z-index: 2;
+}
+.v-final-headline .h-mark {
+  background: #1ec5d4; color: white;
+  padding: 0 14px; border-radius: 6px;
+  display: inline-block;
+}
+.v-final-sub {
+  font-size: 22px; color: #1a3a4a;
+  font-weight: 600; line-height: 1.4;
+  position: relative; z-index: 2;
+}
+.v-final-numbers {
+  display: flex; gap: 24px;
+  position: relative; z-index: 2;
+  border-top: 2px solid #0a1a24;
+  padding-top: 24px;
+}
+.v-final-num-block { flex: 1; }
+.v-final-num-label { font-size: 11px; letter-spacing: 3px; color: #1a3a4a; margin-bottom: 6px; font-weight: 700; }
+.v-final-num-val {
+  font-size: 48px; font-weight: 900; line-height: 1;
+  color: #0a1a24; letter-spacing: -1.5px;
+  font-variant-numeric: tabular-nums;
+}
+.v-final-num-unit { font-size: 16px; color: #1a3a4a; margin-left: 4px; font-weight: 700; }
+.v-final-brand {
+  position: absolute; top: 40px; right: 48px;
+  font-size: 13px; letter-spacing: 4px; color: #1ec5d4;
+  font-weight: 800; z-index: 2;
+}
+
+/* ===== 종료 후 보조: 배송 일정 타임라인 ===== */
+.v-ship {
+  background:
+    radial-gradient(ellipse at 70% 20%, rgba(52,211,153,.3) 0%, transparent 55%),
+    linear-gradient(160deg, #0a1a14 0%, #0e2820 50%, #06120e 100%);
+  padding: 56px 48px;
+  color: white;
+  display: flex; flex-direction: column;
+}
+.v-ship-eyebrow {
+  font-size: 13px; letter-spacing: 6px; color: #6ee7b7;
+  font-weight: 700; margin-bottom: 14px;
+  position: relative; z-index: 2;
+}
+.v-ship-title {
+  font-size: 60px; font-weight: 900;
+  line-height: 1.05; letter-spacing: -2px;
+  margin-bottom: 28px;
+  position: relative; z-index: 2;
+}
+.v-ship-title .g { color: #34d399; }
+.v-ship-timeline {
+  display: flex; flex-direction: column; gap: 14px;
+  position: relative; z-index: 2;
+}
+.v-ship-step {
+  background: rgba(255,255,255,.05);
+  border-left: 4px solid #34d399;
+  border-radius: 8px;
+  padding: 18px 20px;
+  display: flex; align-items: center; gap: 18px;
+}
+.v-ship-step.highlight {
+  background: rgba(52,211,153,.12);
+  border-left-color: #6ee7b7;
+}
+.v-ship-step-date {
+  font-size: 22px; font-weight: 900;
+  color: #6ee7b7; flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 90px;
+}
+.v-ship-step.highlight .v-ship-step-date { color: #fde68a; }
+.v-ship-step-info { flex: 1; }
+.v-ship-step-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.v-ship-step-desc { font-size: 13px; color: #a7f3d0; }
+.v-ship-step.highlight .v-ship-step-desc { color: #fde68a; }
+.v-ship-step-icon { font-size: 26px; }
+
+/* 스크롤 네비 */
+.toc {
+  background: var(--s2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 32px;
+}
+.toc-title { font-size: 11px; letter-spacing: 3px; color: var(--gray); margin-bottom: 12px; }
+.toc-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; }
+.toc-item {
+  background: var(--s1);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: var(--white);
+  transition: all .2s;
+  display: flex; gap: 10px; align-items: center;
+}
+.toc-item:hover { border-color: var(--purple); }
+.toc-item .d { font-size: 11px; font-weight: 800; padding: 3px 8px; border-radius: 4px; background: var(--red); color: white; flex-shrink: 0; }
+.toc-item .d.after { background: var(--green); color: var(--bg); }
+.toc-item .label { font-size: 13px; }
+
+.footer {
+  text-align: center; margin-top: 40px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  font-size: 11px; color: var(--gray); letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .v-dday-final-headline { font-size: 150px; }
+  .v-tonight-time { font-size: 96px; }
+  .v-final-headline { font-size: 60px; }
+  .v-ship-title { font-size: 40px; }
+}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+
+<div class="toolbar">
+  <span class="toolbar-title">와디즈 새소식 마지막 2건 · 권나경 과장 · 2026-05-11</span>
+  <div class="toolbar-actions">
+    <button class="btn" onclick="window.print()">🖨️ 인쇄</button>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="eyebrow">와디즈 새소식 시리즈 · D-DAY → 종료 후 (2건)</div>
+  <h1>마지막 2건 — D-DAY · 펀딩 종료 + 배송 공지</h1>
+  <p class="subtitle">D-7 → D-1 시리즈에 이은 마무리 2건 · 찰스장 1인칭 톤 · 약속 5가지 마감 + 배송 5/14(목)부터 순차 출고</p>
+  <p class="meta-line">실무: <strong>권나경 과장</strong> · 와디즈 PD: <strong>김동기 팀장</strong> · 캠페인: <strong>ABLR 와디즈 펀딩</strong> (4/23 오픈, <strong>5/11 23:59 종료</strong>)</p>
+
+  <!-- ===== 마스터 플랜 ===== -->
+  <div class="master-plan">
+    <h2>마무리 시리즈 <span class="accent">플랜</span></h2>
+    <p class="master-plan-desc">D-1 다음 — 오늘(D-DAY) 마지막 결제 push + 내일(종료 후) 감사·배송 공지. 5가지 약속 모두 마감 처리 + 배송 일정 확정.</p>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">오늘 (5/11)</div>
+        <div class="kpi-value" style="color:var(--red)">D-DAY</div>
+        <div class="kpi-sub">23:59 펀딩 종료</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">결제 완료</div>
+        <div class="kpi-value">5/13 (화)</div>
+        <div class="kpi-sub">와디즈 정산 처리</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">배송 시작</div>
+        <div class="kpi-value" style="color:var(--green)">5/14 (목)</div>
+        <div class="kpi-sub">빠른 순서대로 순차</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">남은 새소식</div>
+        <div class="kpi-value" style="color:var(--purple-light)">2건</div>
+        <div class="kpi-sub">D-DAY · 종료 후</div>
+      </div>
+    </div>
+
+    <table class="plan-table">
+      <thead>
+        <tr>
+          <th style="width: 90px;">회차</th>
+          <th style="width: 120px;">발송일·시간</th>
+          <th>제목</th>
+          <th>핵심 메시지</th>
+          <th>CTA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="d-tag">D-DAY</span></td>
+          <td>5/11 (오늘) 오전·오후 2회 권장</td>
+          <td><strong>🔥 [고별전 D-DAY] 오늘 밤 12시, ABLR 펀딩 마감됩니다</strong></td>
+          <td>마지막 12시간 결제 push + 5가지 약속 자동 적용 마지막 안내</td>
+          <td>오늘 자정 전 결제 + 배송 5/14 시작 안내</td>
+        </tr>
+        <tr>
+          <td><span class="d-tag after">종료+1</span></td>
+          <td>5/12 (월) 오전 10~11시</td>
+          <td><strong>🙏 [감사 인사] 펀딩 종료, 배송은 5/14(목)부터 순차 출고합니다</strong></td>
+          <td>최종 결과 감사 + 5가지 약속 후속 일정 + 배송 5/14 시작 + CS 안내</td>
+          <td>관계 지속 · 후속 새소식 약속</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout red">
+      <strong>D-DAY 핵심 변경 사항:</strong> 기존 D-1 새소식(5/10)에서 "5/13 결제 완료 직후 발송"으로 안내했으나, 출고 일정 조정으로 <strong>실제 배송 시작은 5/14(목)부터 순차</strong>로 확정. D-DAY와 종료 후 새소식에 정확히 반영.
+    </div>
+    <div class="callout purple">
+      <strong>5가지 약속 (모두 마감 처리):</strong> ① 굿네이버스 식수사업 기부(첫 주 매출 3%) ② 아블러 제로 텀블러 선착순 20분 ③ 가정의달 5분 듀오메이커 추첨 ④ 응원 댓글 3분 아블러 제로 추가 ⑤ 빠른 발송(5/14~) — 종료 후 새소식에 후속 일정 명시
+    </div>
+  </div>
+
+  <!-- 빠른 이동 -->
+  <div class="toc">
+    <div class="toc-title">빠른 이동</div>
+    <div class="toc-items">
+      <a href="#dday" class="toc-item"><span class="d">D-DAY</span><span class="label">오늘 마감 · 5/11 (오늘)</span></a>
+      <a href="#after" class="toc-item"><span class="d after">종료+1</span><span class="label">감사·배송 · 5/12 (월)</span></a>
+    </div>
+  </div>
+
+  <!-- ============== D-DAY ============== -->
+  <div class="news-card dday" id="dday">
+    <div class="news-head">
+      <div class="news-title-block">
+        <div class="news-num">새소식 #5 / D-DAY</div>
+        <div class="news-title">마지막 12시간 결제 push + 배송 일정 확정</div>
+        <div class="news-meta"><strong>발송 권장:</strong> 2026-05-11 (오늘) 오전 10시·오후 6시 2회 · 마지막 결제 트래픽 피크</div>
+      </div>
+      <div class="news-d">D-DAY</div>
+    </div>
+
+    <div class="title-box">
+      <span>🔥 [고별전 D-DAY] 오늘 밤 12시, ABLR 펀딩 마감됩니다</span>
+      <button class="copy-mini" onclick="copyText(this, '🔥 [고별전 D-DAY] 오늘 밤 12시, ABLR 펀딩 마감됩니다')">📋 제목</button>
+    </div>
+
+    <div class="message-box">
+      <button class="copy-btn" onclick="copyMessage(this, 'dday-body')">📋 본문 복사</button>
+      <span id="dday-body">안녕하세요, 서포터님.
+쥬얼아이스 대표 찰스장입니다.
+
+오늘이 마지막입니다.
+오늘 밤 11시 59분이면
+ABLR 와디즈 펀딩이 공식 종료됩니다.
+
+[이미지 ① — D-DAY 마지막 하루]
+
+지난 19일 동안
+[N]분의 서포터님과
+누적 [N]원의 결제로
+여기까지 함께 와주셨습니다.
+
+머리 숙여 감사드립니다.
+
+━━━━━━━━━━━━━━━
+⏰ 오늘 자정까지
+━━━━━━━━━━━━━━━
+
+· 마감: 오늘(5/11) 밤 11시 59분
+· 그 이후로는 자사몰 정상가로 전환됩니다
+
+펀딩가 · 와디즈 한정 구성 · 5가지 약속 —
+모두 오늘 자정까지 결제하신 분들께만
+함께 드릴 수 있습니다.
+
+━━━━━━━━━━━━━━━
+🎁 오늘 자정 안에만 받으실 수 있는 것
+━━━━━━━━━━━━━━━
+
+✅ 와디즈 펀딩가 (자사몰 정상가 대비 최대 [N]% 할인)
+✅ 와디즈 한정 BEST 스페셜 세트
+✅ 5가지 약속 자동 적용
+   ├ 굿네이버스 식수사업 기부 동참
+   ├ 아블러 제로 텀블러 (선착순 + 추첨)
+   ├ 가정의달 듀오메이커 5분 추첨 자동 응모
+   ├ 응원 댓글 3분 아블러 제로 추가 응모
+   └ 빠른 발송 우선 순서 확보
+
+━━━━━━━━━━━━━━━
+🚚 결제·배송 일정 (확정)
+━━━━━━━━━━━━━━━
+
+[이미지 ② — 오늘 자정]
+
+· 5/11 (오늘) 23:59  ─  펀딩 종료
+· 5/13 (화)          ─  결제 완료 처리
+· 5/14 (목)부터      ─  빠른 순서대로 순차 출고
+
+순차 발송이므로 출고 일정은
+며칠씩 차이가 날 수 있습니다.
+가장 빠른 분부터, 마지막 한 분까지
+책임지고 보내드리겠습니다.
+
+송장 번호는 출고 시점에
+와디즈 메이커 메시지로 단계별 안내드립니다.
+
+━━━━━━━━━━━━━━━
+🙏 마지막 인사
+━━━━━━━━━━━━━━━
+
+지난 19일 동안
+ABLR을 알아봐 주신 모든 서포터님께
+다시 한번 머리 숙여 감사드립니다.
+
+오늘 자정, 펀딩은 닫히지만
+서포터님 한 분 한 분과의 관계는
+이제 막 시작입니다.
+
+저희는 약속을 숫자로 보여드리는 회사가 되겠습니다.
+좋은 제품을 보내드리는 것은 기본이고,
+펀딩 이후에도 계속 닿는 브랜드가 되도록
+정성껏 마무리하겠습니다.
+
+남은 시간, 끝까지 함께해주세요.
+
+쥬얼아이스 드림</span>
+    </div>
+
+    <div class="callout">
+      <strong>발송 직전 체크 (권나경 과장):</strong> ① 누적 결제액·서포터 수 [N] 값 메이커센터에서 최신화 ② 자사몰 정상가 대비 할인율 % 정확히 입력 ③ 오전 10시 1차 발송 후 오후 6시 2차 리마인드 (제목만 살짝 변경: "🔥 [마감 6시간 전] 오늘 자정 펀딩 종료") ④ 김동기 팀장에게 1차 발송 직후 카톡 1줄 공유
+    </div>
+
+    <div class="image-section">
+      <div class="image-section-title">📷 함께 올릴 이미지 2장</div>
+
+      <div class="image-card-wrap">
+        <div class="image-card-meta">
+          <div><span class="size-tag">1080 × 1080</span><strong>dday_v1_lastday.png</strong> — 도입부 헤드라인 아래</div>
+          <button class="dl-btn" onclick="downloadImage('dday-v1', 'dday_v1_lastday.png')">⬇ PNG 저장</button>
+        </div>
+        <div class="visual v-dday-final" id="dday-v1">
+          <div class="v-dday-final-tag">FINAL DAY · 오늘 마감</div>
+          <div class="v-dday-final-headline">D-DAY</div>
+          <div class="v-dday-final-label">오늘 펀딩 마감</div>
+          <div class="v-dday-final-sub">정말 마지막입니다<br>오늘 자정 23:59 종료</div>
+          <div class="v-dday-final-clock">
+            <div class="v-dday-final-clock-label">FUNDING ENDS TONIGHT</div>
+            <div class="v-dday-final-clock-time">2026.05.11 (오늘) 23:59</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card-wrap">
+        <div class="image-card-meta">
+          <div><span class="size-tag">1080 × 1080</span><strong>dday_v2_tonight.png</strong> — 마감 안내 위</div>
+          <button class="dl-btn" onclick="downloadImage('dday-v2', 'dday_v2_tonight.png')">⬇ PNG 저장</button>
+        </div>
+        <div class="visual v-tonight" id="dday-v2">
+          <div class="v-tonight-eyebrow">CLOSES TONIGHT</div>
+          <div class="v-tonight-time">23:59</div>
+          <div class="v-tonight-label">오늘 자정까지만</div>
+          <ul class="v-tonight-list">
+            <li>와디즈 펀딩가</li>
+            <li>한정 BEST 스페셜 세트</li>
+            <li>5가지 약속 자동 적용</li>
+            <li>빠른 발송 우선 순서</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 종료 후 (5/12) ============== -->
+  <div class="news-card after" id="after">
+    <div class="news-head">
+      <div class="news-title-block">
+        <div class="news-num">새소식 #6 / 종료+1</div>
+        <div class="news-title">감사 인사 + 배송 일정 공식 안내</div>
+        <div class="news-meta"><strong>발송 권장:</strong> 2026-05-12 (월) 오전 10~11시 · 종료 다음 날 첫 푸시</div>
+      </div>
+      <div class="news-d after">종료+1</div>
+    </div>
+
+    <div class="title-box">
+      <span>🙏 [감사 인사] 펀딩 종료, 배송은 5/14(목)부터 순차 출고합니다</span>
+      <button class="copy-mini" onclick="copyText(this, '🙏 [감사 인사] 펀딩 종료, 배송은 5/14(목)부터 순차 출고합니다')">📋 제목</button>
+    </div>
+
+    <div class="message-box">
+      <button class="copy-btn" onclick="copyMessage(this, 'after-body')">📋 본문 복사</button>
+      <span id="after-body">안녕하세요, 서포터님.
+쥬얼아이스 대표 찰스장입니다.
+
+어제 밤 11시 59분,
+ABLR 와디즈 펀딩이 무사히 종료되었습니다.
+
+[이미지 ① — 최종 결과 감사]
+
+펀딩 19일 동안
+누적 결제액 [최종N]원, 달성률 [N]%
+[N]분의 서포터님과 함께였습니다.
+
+먼저, 머리 숙여 감사드립니다.
+
+━━━━━━━━━━━━━━━
+🚚 배송 일정 (공식 안내)
+━━━━━━━━━━━━━━━
+
+[이미지 ② — 배송 타임라인]
+
+· 5/12 (오늘)  ─  결제 처리 준비 중
+· 5/13 (화)    ─  와디즈 정산 · 결제 완료 확정
+· 5/14 (목)    ─  배송 시작 (빠른 순서대로 순차)
+
+5월 14일(목요일)부터
+가장 빠른 분 순서로 순차 출고를 시작합니다.
+
+순차 발송이므로 분에 따라
+출고 일정이 며칠씩 차이가 날 수 있습니다.
+
+송장 번호는 출고 시점에
+와디즈 메이커 메시지로 단계별 안내드리며,
+마지막 한 분까지 책임지고 보내드리겠습니다.
+
+━━━━━━━━━━━━━━━
+✅ 5가지 약속 — 후속 일정
+━━━━━━━━━━━━━━━
+
+① 굿네이버스 식수사업 기부 (첫 주 매출 3%)
+  → 정산 확정 후 기부 영수증을 새소식으로 공개
+
+② 아블러 제로 텀블러 (선착순 20분)
+  → 본 제품과 함께 동봉 발송 (5/14~)
+
+③ 가정의달 듀오메이커 5분 추첨
+  → 5/13 결제 완료 후 추첨 → 새소식으로 발표
+  → 발표 후 본 제품과 함께 발송
+
+④ 응원 댓글 3분 아블러 제로 추가 증정
+  → 5/13 결제 완료 후 추첨 → 새소식으로 발표
+  → 본 제품과 함께 동봉 발송
+
+⑤ 빠른 발송
+  → 5/14 (목)부터 순차 출고 진행
+
+약속 하나하나, 빠지지 않고
+숫자와 사진으로 다시 보고드리겠습니다.
+
+━━━━━━━━━━━━━━━
+📞 문의·CS 채널
+━━━━━━━━━━━━━━━
+
+· 와디즈 메이커 메시지 (24시간 내 회신)
+· 채널톡 (쥬얼아이스 자사몰)
+· 대표 명의 직접 회신 원칙 유지
+
+배송 일정 · 옵션 변경 · 주소 변경 · 환불 문의 등
+무엇이든 위 채널로 편하게 연락 부탁드립니다.
+
+* 주소 변경은 5/13 정산 완료 전까지만 가능합니다.
+  변경이 필요하신 분은 오늘 중으로
+  와디즈 메이커 메시지 부탁드립니다.
+
+━━━━━━━━━━━━━━━
+🙏 다시 한번
+━━━━━━━━━━━━━━━
+
+펀딩이 끝났지만
+ABLR과 쥬얼아이스의 약속은 지금부터입니다.
+
+서포터님 한 분 한 분께
+좋은 제품, 빠른 발송, 정성 어린 응대로
+답하겠습니다.
+
+다음 새소식에서
+첫 출고 시작과 추첨 결과로
+다시 인사드리겠습니다.
+
+진심으로 감사드립니다.
+
+쥬얼아이스 드림</span>
+    </div>
+
+    <div class="callout green">
+      <strong>발송 직전 체크 (권나경 과장):</strong> ① 최종 누적 결제액·달성률·서포터 수 메이커센터에서 확정값 입력 ② 5/14(목) 배송 시작 일정을 사방넷·출고 라인과 사전 confirm ③ 주소 변경 마감 안내(5/13 전) 본문에 명시 ④ CS 응대 인계 — 권수지 대리 협업 라인 가동 ⑤ 김동기 팀장에게 발송 완료 + 최종 KPI 1줄 공유
+    </div>
+    <div class="callout purple">
+      <strong>후속 새소식 (5/13 이후):</strong> ① 5/13 — 가정의달 5분 + 응원 댓글 3분 추첨 결과 발표 ② 5/14 — 첫 출고 시작 사진·송장 안내 ③ 정산 후 — 굿네이버스 기부 영수증 공개 ④ 발송 완료 후 — 후기 요청 + 자사몰 안내
+    </div>
+
+    <div class="image-section">
+      <div class="image-section-title">📷 함께 올릴 이미지 2장</div>
+
+      <div class="image-card-wrap">
+        <div class="image-card-meta">
+          <div><span class="size-tag">1080 × 1080</span><strong>after_v1_thanks.png</strong> — 도입부 헤드라인 아래</div>
+          <button class="dl-btn" onclick="downloadImage('after-v1', 'after_v1_thanks.png')">⬇ PNG 저장</button>
+        </div>
+        <div class="visual v-final-thanks" id="after-v1">
+          <div class="v-final-brand">JEWELICE × ABLR</div>
+          <div>
+            <div class="v-final-eyebrow">THANK YOU · FUNDING ENDED</div>
+            <div class="v-final-headline">함께해<br><span class="h-mark">주셔서</span></div>
+            <div class="v-final-sub">19일간의 펀딩이 종료되었습니다<br>이제 정성껏 보내드릴 차례입니다</div>
+          </div>
+          <div class="v-final-numbers">
+            <div class="v-final-num-block">
+              <div class="v-final-num-label">최종 결제액</div>
+              <div class="v-final-num-val">[N]<span class="v-final-num-unit">원</span></div>
+            </div>
+            <div class="v-final-num-block">
+              <div class="v-final-num-label">달성률</div>
+              <div class="v-final-num-val">[N]<span class="v-final-num-unit">%</span></div>
+            </div>
+            <div class="v-final-num-block">
+              <div class="v-final-num-label">함께한 분</div>
+              <div class="v-final-num-val">[N]<span class="v-final-num-unit">분</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="image-card-wrap">
+        <div class="image-card-meta">
+          <div><span class="size-tag">1080 × 1080</span><strong>after_v2_shipping.png</strong> — 배송 안내 위</div>
+          <button class="dl-btn" onclick="downloadImage('after-v2', 'after_v2_shipping.png')">⬇ PNG 저장</button>
+        </div>
+        <div class="visual v-ship" id="after-v2">
+          <div class="v-ship-eyebrow">SHIPPING SCHEDULE</div>
+          <div class="v-ship-title">배송은 <span class="g">5/14</span>(목)<br>부터 순차 출고</div>
+          <div class="v-ship-timeline">
+            <div class="v-ship-step">
+              <div class="v-ship-step-date">5/12</div>
+              <div class="v-ship-step-info">
+                <div class="v-ship-step-name">결제 처리 준비</div>
+                <div class="v-ship-step-desc">와디즈 정산 대기</div>
+              </div>
+              <div class="v-ship-step-icon">📋</div>
+            </div>
+            <div class="v-ship-step">
+              <div class="v-ship-step-date">5/13</div>
+              <div class="v-ship-step-info">
+                <div class="v-ship-step-name">결제 완료 확정</div>
+                <div class="v-ship-step-desc">와디즈 정산 완료</div>
+              </div>
+              <div class="v-ship-step-icon">✅</div>
+            </div>
+            <div class="v-ship-step highlight">
+              <div class="v-ship-step-date">5/14</div>
+              <div class="v-ship-step-info">
+                <div class="v-ship-step-name">배송 시작 (순차)</div>
+                <div class="v-ship-step-desc">빠른 순서대로 출고</div>
+              </div>
+              <div class="v-ship-step-icon">🚚</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============== 운영 가이드 ============== -->
+  <div class="master-plan">
+    <h2>운영 가이드 — <span class="accent">권나경 과장 체크리스트</span></h2>
+    <p class="master-plan-desc">D-DAY → 종료 → 배송 시작 → 후속 새소식 흐름</p>
+
+    <ol style="margin-left: 24px; line-height: 2.2; font-size: 14px;">
+      <li><strong>5/11 오전 9시</strong> — 메이커센터에서 누적액·달성률·결제 수 최신값 확인 → D-DAY 본문 [N] 표기 모두 교체</li>
+      <li><strong>5/11 오전 10시</strong> — D-DAY 새소식 1차 발송 (제목: "🔥 [고별전 D-DAY] 오늘 밤 12시, ABLR 펀딩 마감됩니다")</li>
+      <li><strong>5/11 오후 6시</strong> — D-DAY 리마인드 발송 (제목만 변경: "🔥 [마감 6시간 전] 오늘 자정 펀딩 종료")</li>
+      <li><strong>5/11 23:59</strong> — 펀딩 공식 종료 · 권수지 대리에게 CS 인계 (응원 댓글 추첨자 명단 확보 시작)</li>
+      <li><strong>5/12 오전 9시</strong> — 최종 누적 결제액·달성률·서포터 수 확정값 추출 → 종료+1 새소식 본문 [N] 모두 교체</li>
+      <li><strong>5/12 오전 10시</strong> — 종료+1 새소식 발송 (제목: "🙏 [감사 인사] 펀딩 종료, 배송은 5/14(목)부터 순차 출고합니다")</li>
+      <li><strong>5/12 오후</strong> — 출고 라인 확인 · 사방넷 송장 등록 사전 준비 · 5/14 출고 우선순위 정리</li>
+      <li><strong>5/13 (화)</strong> — 결제 완료 처리 · 가정의달 5분 + 응원 댓글 3분 추첨 → 새소식 #7 발표</li>
+      <li><strong>5/14 (목)</strong> — 첫 출고 시작 · 새소식 #8로 첫 출고 사진·송장 안내</li>
+      <li><strong>매일 18시</strong> — 출고 진행 현황 · CS 미응대 건수 · 송장 등록 수 김동기 팀장에게 1줄 공유</li>
+    </ol>
+
+    <div class="callout green">
+      <strong>김동기 팀장 협업 룰 유지 (2026-05-04 확정):</strong> 새소식 내용은 권나경 과장 → 김동기 팀장 사전 공유 → 발송. 답글·응대는 쥬얼아이스가 직접 처리. 추가 자원(메이커 팔로워 푸시 월 1회 무료) 활용 시점은 종료 후 별도 협의.
+    </div>
+    <div class="callout">
+      <strong>주소 변경 마감 (중요):</strong> 5/13 정산 완료 전까지만 주소 변경 가능. 종료+1 새소식 본문에 명시되어 있으나, 발송 즉시 메이커 메시지로도 별도 푸시 권장 (24시간 안에 변경 요청 수렴).
+    </div>
+  </div>
+
+  <div class="footer">
+    JEWELICE × ABLR · WADIZ NEWS FINAL · D-DAY → 종료+1<br>
+    권나경 과장 · 2026-05-11 · 김동기 팀장 가이드 반영 · 쥬얼아이스 운영 원리 v2.0 (온 v2)
+  </div>
+
+</div>
+
+<script>
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.innerText;
+    btn.innerText = '✅ 복사됨';
+    btn.style.background = 'var(--yellow)';
+    btn.style.color = 'var(--bg)';
+    setTimeout(() => {
+      btn.innerText = original;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1500);
+  });
+}
+
+function copyMessage(btn, contentId) {
+  const text = document.getElementById(contentId).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const original = btn.innerText;
+    btn.innerText = '✅ 복사됨';
+    btn.style.background = 'var(--yellow)';
+    btn.style.color = 'var(--bg)';
+    setTimeout(() => {
+      btn.innerText = original;
+      btn.style.background = '';
+      btn.style.color = '';
+    }, 1800);
+  });
+}
+
+function downloadImage(elementId, filename) {
+  const btn = event.target;
+  const original = btn.innerText;
+  btn.innerText = '⏳ 생성 중...';
+  btn.disabled = true;
+
+  const proceed = () => {
+    const target = document.getElementById(elementId);
+    html2canvas(target, {
+      backgroundColor: null,
+      scale: 2,
+      useCORS: true,
+      logging: false
+    }).then(canvas => {
+      const link = document.createElement('a');
+      link.download = filename;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      btn.innerText = '✅ 저장됨';
+      setTimeout(() => {
+        btn.innerText = original;
+        btn.disabled = false;
+      }, 1500);
+    }).catch(err => {
+      btn.innerText = '⚠️ 실패';
+      console.error(err);
+      setTimeout(() => {
+        btn.innerText = original;
+        btn.disabled = false;
+      }, 1500);
+    });
+  };
+
+  if (typeof html2canvas === 'undefined') {
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+    s.onload = proceed;
+    s.onerror = () => {
+      btn.innerText = '⚠️ CDN 차단';
+      setTimeout(() => { btn.innerText = original; btn.disabled = false; }, 2000);
+    };
+    document.head.appendChild(s);
+  } else {
+    proceed();
+  }
+}
+</script>
+</body>
+</html>
