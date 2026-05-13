@@ -162,62 +162,76 @@
 
   <!-- Hero -->
   <div class="hero">
-    <span class="hero-badge">📋 인수인계 · 권수지 대리 · Self-Service v3 (이지어드민 멀티채널)</span>
-    <h1>OneBoard API 연동 작업</h1>
-    <p>수지야, v3에서 큰 변화가 있어. <strong>이지어드민이 이미 보유한 멀티채널 매출(쿠팡·네이버·G마켓 등)을 한 번에 자동 수집</strong>하는 길이 열렸어. 그래서 작업 순서가 바뀌었어. <strong>먼저 트랙 A — 이지어드민 API 동의서 제출</strong>(약 10분 · 본 작업) + 발급 대기 3일 동안의 <strong>트랙 B — 매출통계 CSV 임시 업로드</strong>(약 5분). 개별 채널 키 입력(기존 P1~P4)은 광고 채널(META·네이버 검색광고·카카오모먼트) 위주로 남아.</p>
+    <span class="hero-badge">📋 인수인계 · 권수지 대리 · v4 (Drive 매일 자동 머지)</span>
+    <h1>OneBoard 매일 운영 가이드</h1>
+    <p>수지야, 흐름이 단순해졌어. <strong>매일 오전 9:30 이전에 쿠팡·META 매출/광고 자료를 Google Drive 한 폴더에 박기만</strong> 하면 OneBoard 서버가 자동으로 가져가서 카페24·네이버·카카오모먼트 자동 API 데이터와 합쳐서 매출·광고 효율 한 화면에 보여줘. 별도 업로드 버튼 클릭이나 키 입력 없음. 매일 15~20분 작업이면 충분.</p>
     <div class="hero-meta">
-      <div>📅 갱신: <strong>2026-05-13</strong></div>
+      <div>📅 갱신: <strong>2026-05-13 (v4)</strong></div>
       <div>👤 담당: <strong>권수지 대리</strong></div>
-      <div>⏰ 목표: <strong>5/15 (금) 트랙 A 발송 + 5/13 (수) 트랙 B 시범</strong></div>
-      <div>🔐 접근: <strong>JEWELICE</strong></div>
+      <div>⏰ 매일 루틴: <strong>오전 9:30 이전 Drive 박기</strong></div>
+      <div>🔐 OneBoard: <strong>JEWELICE</strong></div>
     </div>
   </div>
 
   <!-- Big CTA -->
   <div class="big-cta">
     <div class="big-cta-text">
-      <div class="big-cta-title">🚀 지금 바로 시작 — OneBoard 설정 열기</div>
-      <div class="big-cta-sub">이 탭 닫고 <strong>OneBoard → ⚙️ 설정 → JEWELICE</strong> 입력하면 키 입력 화면이 나옵니다.</div>
+      <div class="big-cta-title">📂 매일 작업 — Drive 폴더 열기</div>
+      <div class="big-cta-sub">권수지 대리 폴더 → <strong>02 마스터마인딩그룹\oneboard-daily-upload\</strong>에 매출·광고 CSV를 박으면 끝.</div>
     </div>
-    <a href="https://oneboard-kef0.onrender.com" target="_blank" class="big-cta-btn">OneBoard 설정 →</a>
+    <a href="https://oneboard-kef0.onrender.com" target="_blank" class="big-cta-btn">OneBoard 화면 →</a>
   </div>
 
   <!-- Core Workflow -->
   <div class="step-guide">
-    <div class="step-guide-title">📖 핵심 작업 흐름 — 6개 플랫폼 모두 공통</div>
+    <div class="step-guide-title">📖 매일 운영 흐름 — 자동 + 수동 머지</div>
+    <div class="step-row" style="background:#D1FAE5">
+      <div class="step-row-num" style="background:#10B981">A</div>
+      <div class="step-row-content">
+        <div class="step-row-title">자동 API 채널 — <strong>수지가 손 댈 게 없음</strong></div>
+        <div class="step-row-desc">카페24·네이버 스마트스토어·네이버 검색광고·카카오모먼트는 매일 07:00에 서버가 자동으로 매출·광고 데이터를 가져옵니다. 이미 키가 다 박혀 있어요.</div>
+      </div>
+    </div>
+    <div class="step-row" style="background:#FEF3C7">
+      <div class="step-row-num" style="background:#F59E0B">B</div>
+      <div class="step-row-content">
+        <div class="step-row-title">수동 입력 채널 — <strong>매일 오전 9:30 이전 Drive에 박기</strong></div>
+        <div class="step-row-desc">쿠팡 매출(API 발급 불가) + META 광고(현재 오류) 두 가지를 매일 각 플랫폼에서 받아 한 폴더에 박습니다. 15~20분.</div>
+      </div>
+    </div>
     <div class="step-row">
       <div class="step-row-num">1</div>
       <div class="step-row-content">
-        <div class="step-row-title">OneBoard 접속 → ⚙️ 설정 탭 → 비밀번호 <code>JEWELICE</code> 입력</div>
-        <div class="step-row-desc">한 번 입력하면 브라우저에 저장됨. 다시 안 물어봄.</div>
+        <div class="step-row-title">쿠팡 WING 정산내역 → CSV 다운로드 → 파일명 <code>sales_coupang_YYYY-MM-DD.csv</code></div>
+        <div class="step-row-desc">전날(어제) 일자 기준으로 매일.</div>
       </div>
     </div>
     <div class="step-row">
       <div class="step-row-num">2</div>
       <div class="step-row-content">
-        <div class="step-row-title">각 플랫폼 카드에서 <strong>"🔑 키 입력"</strong> 버튼 클릭</div>
-        <div class="step-row-desc">팝업이 열리면 플랫폼에서 발급받은 키를 필드에 붙여넣기만 하면 됨.</div>
+        <div class="step-row-title">META 광고관리자 → 일별 리포트 → CSV → 파일명 <code>ads_meta_YYYY-MM-DD.csv</code></div>
+        <div class="step-row-desc">광고비·노출·클릭·전환·전환매출 컬럼 포함. META API 오류 복구되면 이 단계는 자동 처리로 돌아감.</div>
       </div>
     </div>
     <div class="step-row">
       <div class="step-row-num">3</div>
       <div class="step-row-content">
-        <div class="step-row-title">저장하면 서버에서 <strong>자동 암호화</strong>되어 저장</div>
-        <div class="step-row-desc">키는 브라우저에 저장되지 않고 서버 암호화 DB에만 저장. 안전함.</div>
+        <div class="step-row-title">두 파일을 <code>oneboard-daily-upload/</code> 폴더에 박기</div>
+        <div class="step-row-desc">위치: <code>D:\Google Drive\00_팀원별 업무\권수지 대리\02 마스터마인딩그룹\oneboard-daily-upload\</code></div>
       </div>
     </div>
     <div class="step-row">
       <div class="step-row-num">4</div>
       <div class="step-row-content">
-        <div class="step-row-title">카페24만 특별 — 키 저장 후 <strong>"🔗 OAuth 인증 시작"</strong> 버튼 추가로 클릭</div>
-        <div class="step-row-desc">버튼 누르면 카페24 로그인 페이지로 자동 이동 → "허용" 클릭하면 끝. access_token/refresh_token은 자동 저장됨.</div>
+        <div class="step-row-title">서버가 <strong>9:30부터 30분마다 자동으로 가져감</strong></div>
+        <div class="step-row-desc">처리 완료된 파일은 <code>processed/</code> 하위 폴더로 자동 이동. OneBoard 매출·광고 카드에 반영 (최대 30분 내).</div>
       </div>
     </div>
     <div class="step-row">
       <div class="step-row-num">5</div>
       <div class="step-row-content">
-        <div class="step-row-title">플랫폼 카드 상태가 <strong>🟢 연결됨</strong>으로 바뀌면 완료</div>
-        <div class="step-row-desc">나머지 플랫폼도 같은 방식으로 반복.</div>
+        <div class="step-row-title">OneBoard에서 결과 확인 (선택)</div>
+        <div class="step-row-desc">매출 대시보드에 쿠팡 매출 + META 광고비·ROAS가 자동 반영되었는지 1~2분 훑어보기.</div>
       </div>
     </div>
   </div>
@@ -238,124 +252,145 @@
             <th style="width:20%">OAuth</th>
           </tr>
         </thead>
+        <thead>
+          <tr style="background:var(--purple-light)"><th colspan="5">📂 매일 수동 입력 — Google Drive 폴더에 박기 (15~20분)</th></tr>
+        </thead>
         <tbody>
-          <tr style="background:#FEF3C7"><td><span class="prio-badge" style="background:var(--purple)">P0</span></td><td><strong>🚀 이지어드민 멀티채널 (권장)</strong></td><td>10분 · ⭐ + 3일 대기</td><td><code>company_code</code> <code>api_key</code> <code>seller_id</code></td><td>불필요 (동의서 제출)</td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--red)">P1</span></td><td><strong>🟢 네이버 스마트스토어</strong></td><td>10분 · ⭐</td><td><code>client_id</code> <code>client_secret</code></td><td>불필요 <em style="color:var(--gray-500)">(이지어드민 활성 시 자동 skip)</em></td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--yellow-dark)">P2</span></td><td><strong>🛒 카페24 (자사몰)</strong></td><td>20분 · ⭐⭐</td><td><code>mall_id</code> <code>client_id</code> <code>client_secret</code></td><td><strong>필요</strong> (버튼 1회 클릭) <em style="color:var(--gray-500)">— 이지어드민 활성 시 자동 skip</em></td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--blue)">P3</span></td><td><strong>📘 META</strong></td><td>20분 · ⭐⭐</td><td><code>app_id</code> <code>app_secret</code> <code>access_token</code> <code>ad_account_id</code></td><td>불필요 (광고 채널 — 이지어드민 무관)</td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--blue)">P3</span></td><td><strong>🟢 네이버 검색광고</strong></td><td>15분 · ⭐⭐</td><td><code>api_key</code> <code>secret_key</code> <code>customer_id</code></td><td>불필요 (광고 채널)</td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--gray-400)">P4</span></td><td><strong>🟡 쿠팡 (직접 API — 보류)</strong></td><td>발급 불가</td><td><code>access_key</code> <code>secret_key</code> <code>vendor_id</code></td><td><strong>키 발급 불가</strong> (P0가 대체)</td></tr>
-          <tr><td><span class="prio-badge" style="background:var(--gray-400)">P4</span></td><td><strong>🟡 카카오모먼트</strong></td><td>20분 · ⭐⭐</td><td><code>access_token</code> <code>ad_account_id</code></td><td>불필요 (광고 채널)</td></tr>
+          <tr style="background:#FEF3C7"><td><span class="prio-badge" style="background:var(--purple)">매일</span></td><td><strong>🛍️ 쿠팡 매출</strong></td><td>WING 정산 다운로드 5분</td><td>파일명: <code>sales_coupang_YYYY-MM-DD.csv</code></td><td>API 발급 불가 → Drive</td></tr>
+          <tr style="background:#FEF3C7"><td><span class="prio-badge" style="background:var(--purple)">매일</span></td><td><strong>📘 META 광고</strong></td><td>광고관리자 리포트 5분</td><td>파일명: <code>ads_meta_YYYY-MM-DD.csv</code></td><td>API 오류 → Drive (임시)</td></tr>
+        </tbody>
+        <thead>
+          <tr style="background:#D1FAE5"><th colspan="5">🟢 자동 API 연동 — 수지 손 댈 게 없음</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="prio-badge" style="background:var(--green)">자동</span></td><td><strong>🛒 카페24 (자사몰)</strong></td><td>매일 07:00 자동 수집</td><td>키 이미 박힘 + OAuth 토큰 5/12 갱신</td><td>유지보수 불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--green)">자동</span></td><td><strong>🟢 네이버 스마트스토어</strong></td><td>매일 07:00 자동 수집</td><td>client_id/secret 박힘</td><td>유지보수 불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--green)">자동</span></td><td><strong>🟢 네이버 검색광고</strong></td><td>매일 07:00 자동 수집</td><td>api_key/secret/customer_id 박힘</td><td>유지보수 불필요</td></tr>
+          <tr><td><span class="prio-badge" style="background:var(--green)">자동</span></td><td><strong>💛 카카오모먼트</strong></td><td>매일 07:00 자동 수집</td><td>access_token/ad_account_id 박힘</td><td>유지보수 불필요</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <!-- v3 신규: 이지어드민 ↔ OneBoard 연결 도식 -->
+  <!-- v4 신규: Drive 자동 머지 도식 -->
   <section>
-    <div class="section-header"><h2>🔄 이지어드민으로 무엇을 OneBoard에 연결하는가</h2><span class="tag" style="background:var(--purple)">v3 핵심 변경</span></div>
+    <div class="section-header"><h2>🔄 매일 데이터가 어떻게 OneBoard로 들어오는가</h2><span class="tag" style="background:var(--purple)">v4 핵심 흐름</span></div>
     <div class="step-guide">
       <p style="font-size:14px;margin-bottom:16px;color:var(--gray-700)">
-        v2까지는 <strong>각 플랫폼(쿠팡·네이버·카페24·G마켓 ...) 키를 따로 받아 OneBoard에 일일이 입력</strong>하는 구조였어. v3에서는 <strong>이지어드민이 이미 그 모든 채널의 일별 매출을 자기 안에 통합해 두고 있다는 점</strong>을 활용해서, OneBoard가 이지어드민 한 군데만 보면 모든 매출이 들어오게 만들었어.
+        OneBoard는 <strong>매출과 광고 효율(ROAS·CTR·CPC)을 한 화면에서 함께</strong> 보여줍니다. 자동 API 채널과 매일 수동 Drive 채널이 같은 DB로 머지되어 합산 표시돼요.
       </p>
 
       <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:stretch;margin-bottom:18px">
-        <div style="flex:1;min-width:280px;background:#FEF3C7;border-radius:12px;padding:18px">
-          <div style="font-weight:800;margin-bottom:8px;color:var(--gray-900)">📊 이지어드민이 이미 보유한 데이터</div>
+        <div style="flex:1;min-width:280px;background:#D1FAE5;border-radius:12px;padding:18px">
+          <div style="font-weight:800;margin-bottom:8px;color:#065F46">🟢 자동 (매일 07:00 KST)</div>
           <ul style="font-size:13px;line-height:1.8;padding-left:18px;color:var(--gray-700)">
-            <li>🛍️ <strong>쿠팡</strong> (한반도·네모칩 등 모든 판매처)</li>
-            <li>🟢 <strong>네이버 스마트스토어</strong></li>
-            <li>🛒 <strong>카페24 자사몰</strong></li>
-            <li>🟠 <strong>G마켓 / 옥션</strong></li>
-            <li>🔵 <strong>11번가</strong></li>
-            <li>🟣 <strong>위메프 / 티몬 / 인터파크</strong> 등</li>
+            <li>🛒 <strong>카페24</strong> 자사몰 매출</li>
+            <li>🟢 <strong>네이버 스마트스토어</strong> 매출</li>
+            <li>🟢 <strong>네이버 검색광고</strong> 광고비·노출·클릭·전환</li>
+            <li>💛 <strong>카카오모먼트</strong> 광고비·노출·클릭·전환</li>
           </ul>
-          <div style="font-size:12px;color:var(--gray-500);margin-top:8px;border-top:1px dashed var(--gray-300);padding-top:8px">↑ 이지어드민이 발주·물류 자동화하면서 자동으로 일별 <strong>매출액·주문수</strong>가 채널별로 누적되고 있음</div>
+          <div style="font-size:12px;color:var(--gray-500);margin-top:8px;border-top:1px dashed var(--gray-300);padding-top:8px">↑ 키가 이미 박혀 있어 서버가 알아서 가져옴</div>
+        </div>
+        <div style="flex:0 0 80px;display:flex;align-items:center;justify-content:center;font-size:42px;color:var(--purple);font-weight:800">+</div>
+        <div style="flex:1;min-width:280px;background:#FEF3C7;border-radius:12px;padding:18px">
+          <div style="font-weight:800;margin-bottom:8px;color:#92400E">📂 매일 수동 (Drive 9:30~22:30 폴링)</div>
+          <ul style="font-size:13px;line-height:1.8;padding-left:18px;color:var(--gray-700)">
+            <li>🛍️ <strong>쿠팡 매출</strong> (API 발급 불가)</li>
+            <li>📘 <strong>META 광고</strong> (현재 API 오류 — 임시)</li>
+          </ul>
+          <div style="font-size:12px;color:var(--gray-500);margin-top:8px;border-top:1px dashed var(--gray-300);padding-top:8px">↑ 매일 오전 9:30 이전 Drive 폴더에 박기</div>
         </div>
         <div style="flex:0 0 80px;display:flex;align-items:center;justify-content:center;font-size:42px;color:var(--purple);font-weight:800">→</div>
         <div style="flex:1;min-width:280px;background:var(--purple-light);border-radius:12px;padding:18px">
-          <div style="font-weight:800;margin-bottom:8px;color:var(--purple-dark)">💾 OneBoard로 매일 06:30 자동 수집</div>
+          <div style="font-weight:800;margin-bottom:8px;color:var(--purple-dark)">💾 OneBoard 한 화면</div>
           <ul style="font-size:13px;line-height:1.8;padding-left:18px;color:var(--gray-700)">
-            <li>날짜별·채널별 <strong>총 매출액</strong> (원)</li>
-            <li>날짜별·채널별 <strong>주문 건수</strong></li>
-            <li>매출 채널 카드 <strong>🟢 연결됨</strong> 상태</li>
-            <li>매출 대시보드 합계 그래프 자동 채움</li>
-            <li>주간 KPI · 매출 급락(-20%) 알림에 자동 반영</li>
+            <li>채널별 <strong>총 매출</strong> + <strong>합계</strong></li>
+            <li>채널별 <strong>광고비·ROAS·CTR·CPC</strong></li>
+            <li>매출 급락(-20%) 알림</li>
+            <li>주간 KPI 자동 합산</li>
+            <li>AI 인사이트 자동 분석</li>
           </ul>
-          <div style="font-size:12px;color:var(--gray-500);margin-top:8px;border-top:1px dashed var(--gray-300);padding-top:8px">↑ 권수지 대리·찰스가 매일 수기 입력하던 매출 정리 작업이 사라짐</div>
         </div>
       </div>
 
-      <h4 style="font-size:14px;font-weight:700;margin:6px 0 10px">🗂️ 채널 매핑표 — 이지어드민 판매처가 OneBoard 어디로 들어가는가</h4>
+      <h4 style="font-size:14px;font-weight:700;margin:6px 0 10px">🗂️ 채널별 처리 방식</h4>
       <div class="table-wrap">
         <table>
-          <thead><tr><th style="width:30%">이지어드민 판매처명 (자동 인식)</th><th style="width:30%">OneBoard 채널 키</th><th style="width:40%">OneBoard 매출 카드</th></tr></thead>
+          <thead><tr><th style="width:25%">채널</th><th style="width:20%">처리 방식</th><th style="width:25%">반영 시각</th><th style="width:30%">수지 매일 작업</th></tr></thead>
           <tbody>
-            <tr><td>쿠팡 / 쿠팡(자체) / COUPANG</td><td><code>coupang</code></td><td>🛍️ 쿠팡 한반도 · 네모칩 카드 합산</td></tr>
-            <tr><td>네이버 / 스마트스토어 / NAVER</td><td><code>naver_store</code></td><td>🟢 네이버 스마트스토어 카드</td></tr>
-            <tr><td>카페24 / 자사몰 / CAFE24</td><td><code>cafe24</code></td><td>🛒 카페24 (자사몰) 카드</td></tr>
-            <tr><td>G마켓 / 지마켓</td><td><code>gmarket</code></td><td><em style="color:var(--gray-500)">향후 카드 추가 예정 (DB 보존)</em></td></tr>
-            <tr><td>옥션 / AUCTION</td><td><code>auction</code></td><td><em style="color:var(--gray-500)">향후</em></td></tr>
-            <tr><td>11번가 / 11ST</td><td><code>eleven</code></td><td><em style="color:var(--gray-500)">향후</em></td></tr>
-            <tr><td>위메프 / 티몬 / 인터파크</td><td><code>wemap / tmon / interpark</code></td><td><em style="color:var(--gray-500)">향후</em></td></tr>
-            <tr><td>그 외 새 채널</td><td><code>ezadmin:&lt;원본명&gt;</code></td><td>DB에 자동 보존, 카드는 추후 추가 가능</td></tr>
+            <tr><td>🛒 카페24 매출</td><td><strong style="color:#10B981">자동 API</strong></td><td>매일 07:00</td><td>없음</td></tr>
+            <tr><td>🟢 네이버 스마트스토어 매출</td><td><strong style="color:#10B981">자동 API</strong></td><td>매일 07:00</td><td>없음</td></tr>
+            <tr><td>🟢 네이버 검색광고</td><td><strong style="color:#10B981">자동 API</strong></td><td>매일 07:00</td><td>없음</td></tr>
+            <tr><td>💛 카카오모먼트 광고</td><td><strong style="color:#10B981">자동 API</strong></td><td>매일 07:00</td><td>없음</td></tr>
+            <tr style="background:#FEF3C7"><td>🛍️ 쿠팡 매출</td><td><strong style="color:#F59E0B">📂 Drive 수동</strong></td><td>9:30~22:30 매 30분</td><td>WING 정산 → CSV → Drive</td></tr>
+            <tr style="background:#FEF3C7"><td>📘 META 광고</td><td><strong style="color:#F59E0B">📂 Drive 수동 (임시)</strong></td><td>9:30~22:30 매 30분</td><td>광고관리자 → CSV → Drive</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="info-box" style="margin-top:14px">
-        <strong>📌 무엇이 이지어드민으로 안 들어오는가:</strong> <strong>광고비·노출수·클릭수·ROAS는 이지어드민이 보유하지 않습니다.</strong> 광고 데이터는 그대로 META·네이버 검색광고·카카오모먼트 개별 API로 수집해야 합니다 (P3). 이지어드민은 매출만, 광고는 별도. 그래서 P3 광고 3채널은 v3에서도 그대로 권수지 대리가 진행 부탁드립니다.
-      </div>
-
-      <div class="warn-box" style="margin-top:10px">
-        <strong>⚠️ 중복 우려:</strong> 이지어드민 키가 OneBoard에 저장되면 OneBoard는 자동으로 쿠팡·네이버 스마트스토어·카페24를 <strong>직접 호출하지 않습니다</strong>(이지어드민에서 받은 값이 우선). 따라서 P1·P2 키를 미리 입력해 두어도 충돌 없이 안전합니다.
+        <strong>📌 META 광고:</strong> 원래 자동 API 연동이지만 현재 토큰·권한 오류로 일시적으로 수동 처리합니다. 복구되면 Drive 박지 않아도 됩니다 (이 안내서 v5로 갱신 예정).
       </div>
     </div>
   </section>
 
-  <!-- P0 이지어드민 멀티채널 (NEW v3) -->
+  <!-- P0 Drive 수동 입력 (v4) -->
   <section>
-    <div class="section-header"><h2>🚀 P0 · 이지어드민 멀티채널 자동연동</h2><span class="tag" style="background:var(--purple)">최우선 · 권장</span></div>
+    <div class="section-header"><h2>📂 매일 Drive 수동 입력 — 상세 절차</h2><span class="tag" style="background:var(--purple)">매일 15~20분</span></div>
     <div class="priority-card" style="border-left-color:var(--purple)">
       <div class="priority-head">
-        <div class="title-row"><span class="prio-badge" style="background:var(--purple)">P0</span><h3>트랙 A: API 동의서 제출 · 트랙 B: CSV 임시 업로드</h3></div>
-        <div class="meta">트랙 A 10분 + 3일 대기 / 트랙 B 5분</div>
+        <div class="title-row"><span class="prio-badge" style="background:var(--purple)">매일</span><h3>쿠팡 매출 + META 광고를 Drive 폴더에 박기</h3></div>
+        <div class="meta">매일 오전 15~20분 · 9:30 이전</div>
       </div>
       <div class="priority-body">
         <div class="info-box">
-          <strong>💡 왜 이걸 먼저:</strong> 쿠팡 OpenAPI 키는 판매자ID당 1개만 발급되는데 이미 <strong>이지어드민(발주·물류)</strong>에 들어가 있어. 그런데 이지어드민 자체가 멀티채널 매출을 자기 안에 통합해 두고 있고 <strong>공식 OpenAPI도 제공</strong>해. 그래서 OneBoard가 이지어드민을 한 번 연결하면 쿠팡뿐 아니라 네이버·G마켓 등 매출이 한꺼번에 매일 06:30에 자동 들어와. 개별 채널 키 일일이 받지 않아도 돼.
+          <strong>💡 이 흐름의 핵심:</strong> OneBoard 화면에서 별도 업로드 버튼 클릭 없음. Drive 폴더에 박기만 하면 서버가 9:30부터 30분마다 자동으로 가져갑니다. 처리된 파일은 <code>processed/</code> 하위로 자동 이동돼서 중복 처리 없음.
         </div>
 
-        <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">트랙 A — 이지어드민 OpenAPI 동의서 제출 (본 작업)</h4>
+        <h4 style="font-size:14px;font-weight:700;margin:14px 0 8px">📁 작업 폴더 (Google Drive 자동 동기화됨)</h4>
         <div class="ob-instructions">
-          <strong>흐름 요약:</strong> 이지어드민 로그인 → API 메뉴 → 동의서 다운로드 → 작성·서명 → 메일로 제출 → 약 3영업일 → 회사 보안코드 수령 → OneBoard에 3개 값 입력 → 다음날 06:30 자동 수집 시작
+          <code>D:\Google Drive\00_팀원별 업무\권수지 대리\02 마스터마인딩그룹\oneboard-daily-upload\</code>
         </div>
-        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://www.ezadmin.co.kr" target="_blank" class="link-btn yellow">🔗 이지어드민</a> 평소 사용 계정으로 로그인</div></div>
-        <div class="platform-step"><div class="platform-step-num">2</div><div>상단 또는 좌측 메뉴 → <strong>"API"</strong> 또는 <strong>"OpenAPI"</strong> 페이지 진입 (<a href="https://www.ezadmin.co.kr/api/intro.html" target="_blank">ezadmin.co.kr/api/intro.html</a>)</div></div>
-        <div class="platform-step"><div class="platform-step-num">3</div><div><strong>"API 사용 신청"</strong> 또는 <strong>"동의서 다운로드"</strong> 클릭 → 동의서(PDF) 다운로드</div></div>
-        <div class="platform-step"><div class="platform-step-num">4</div><div>동의서 작성·서명 (사업자등록증 사본 첨부 필요할 수 있음) → 이지어드민이 안내하는 메일·팩스로 제출</div></div>
-        <div class="platform-step"><div class="platform-step-num">5</div><div>약 3영업일 후 메일로 <strong>"회사 보안코드"</strong> 수령 → 찰스에게 알림</div></div>
-        <div class="platform-step"><div class="platform-step-num">6</div><div>이지어드민 관리자 페이지에서 <code>API Key</code> 발급 + <code>판매자 ID</code> 확인</div></div>
-        <div class="platform-step"><div class="platform-step-num">7</div><div>OneBoard 설정 → <strong>"🚀 이지어드민 멀티채널 자동연동"</strong> 카드 (매출 채널 섹션 맨 위, 보라색) → 🔑 키 입력 → <code>company_code</code> · <code>api_key</code> · <code>seller_id</code> 3개 입력 → 저장 ✅</div></div>
-        <div class="platform-step"><div class="platform-step-num">8</div><div>다음날 06:30 KST 첫 자동 수집 → 매출 카드에 쿠팡·네이버 등 자동 반영 확인</div></div>
 
-        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">트랙 B — 3일 대기 동안 CSV 임시 업로드 (5월 13일 시범)</h4>
+        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">📋 파일명 규약 (꼭 지켜주세요 — 자동 인식 트리거)</h4>
         <div class="ob-instructions">
-          <strong>흐름 요약:</strong> 이지어드민 매출통계 → 엑셀 다운로드 → OneBoard 보라색 카드의 <strong>"📁 CSV 업로드 (임시)"</strong> 버튼 클릭 → 파일 선택 → 자동 파싱·저장
+          매출: <code>sales_채널_YYYY-MM-DD.csv</code> 예) <code>sales_coupang_2026-05-13.csv</code><br>
+          광고: <code>ads_채널_YYYY-MM-DD.csv</code> 예) <code>ads_meta_2026-05-13.csv</code>
         </div>
-        <div class="platform-step"><div class="platform-step-num">1</div><div>이지어드민 로그인 → 매출통계 → <strong>판매처상품매출통계</strong> 진입</div></div>
-        <div class="platform-step"><div class="platform-step-num">2</div><div>기간: 최근 7일 · 판매처: 전체 또는 쿠팡 선택 → 조회</div></div>
-        <div class="platform-step"><div class="platform-step-num">3</div><div><strong>"엑셀 다운로드"</strong> 버튼 클릭 → CSV 또는 XLSX 파일 받기<br><em style="color:var(--gray-500)">※ XLSX인 경우: 엑셀에서 열어 "다른 이름으로 저장" → <strong>CSV UTF-8</strong>로 저장</em></div></div>
-        <div class="platform-step"><div class="platform-step-num">4</div><div>OneBoard 설정 → 보라색 카드 → <strong>"📁 CSV 업로드 (임시)"</strong> 버튼 → 파일 선택</div></div>
-        <div class="platform-step"><div class="platform-step-num">5</div><div>결과 알림 확인 (예: "✅ 저장 21건 / 매출 합계 coupang: 12,300,000원 · naver_store: 8,400,000원")</div></div>
-        <div class="platform-step"><div class="platform-step-num">6</div><div>매출 카드 새로고침 → 숫자 반영 확인</div></div>
 
-        <div class="info-box" style="margin-top:14px;background:#FEF3C7">
-          <strong>📁 산출물 저장:</strong> 다운받은 동의서·엑셀·CSV·발급 메일 캡처는 <code>D:\Google Drive\00_팀원별 업무\권수지 대리\02 마스터마인딩그룹\ezadmin-export\</code> 폴더에 누적 저장 부탁드립니다. Google Drive 자동 동기화로 찰스·천계가 즉시 확인 가능.
+        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">1️⃣ 쿠팡 매출 CSV 만들기 (5분)</h4>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://wing.coupang.com" target="_blank" class="link-btn yellow">🔗 쿠팡 WING</a> 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div>정산관리 → 정산내역 또는 매출조회 → 전일(어제) 기간 선택</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>엑셀 다운로드 → 엑셀에서 열어 "다른 이름으로 저장" → <strong>CSV UTF-8</strong>로 저장</div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div>파일명 변경: <code>sales_coupang_2026-05-13.csv</code> (날짜는 어제 날짜)</div></div>
+        <div class="platform-step"><div class="platform-step-num">5</div><div><code>oneboard-daily-upload/</code> 폴더에 박기</div></div>
+
+        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">2️⃣ META 광고 CSV 만들기 (5분, API 오류 복구되면 자동화)</h4>
+        <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://business.facebook.com" target="_blank" class="link-btn yellow">🔗 메타 광고관리자</a> 로그인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div>일별 광고 리포트 → 어제 기간 선택 → 광고비·노출·클릭·전환·전환매출 컬럼 포함</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>CSV 다운로드 → 파일명: <code>ads_meta_2026-05-13.csv</code></div></div>
+        <div class="platform-step"><div class="platform-step-num">4</div><div><code>oneboard-daily-upload/</code> 폴더에 박기</div></div>
+
+        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">📊 CSV 컬럼 형식 (자동 인식 — 한국어·영문 둘 다 OK)</h4>
+        <div class="ob-instructions">
+          <strong>매출 CSV (sales):</strong><br>
+          필수: 날짜 + 매출액 / 선택: 주문수<br>
+          예시 컬럼: <code>판매일, 매출액, 주문수</code> 또는 <code>date, sales_amount, order_count</code><br><br>
+          <strong>광고 CSV (ads):</strong><br>
+          필수: 날짜 + 광고비 / 선택: 노출, 클릭, 전환, 전환매출<br>
+          예시 컬럼: <code>일자, 광고비, 노출, 클릭, 전환, 전환매출</code>
         </div>
+
+        <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">3️⃣ 처리 결과 확인 (10~30분 후)</h4>
+        <div class="platform-step"><div class="platform-step-num">1</div><div>박은 후 30분 이내에 <code>processed/</code> 하위 폴더로 자동 이동되는지 확인</div></div>
+        <div class="platform-step"><div class="platform-step-num">2</div><div><a href="https://oneboard-kef0.onrender.com" target="_blank" class="link-btn yellow">🔗 OneBoard</a> 매출 대시보드에 쿠팡·META 숫자 반영 확인</div></div>
+        <div class="platform-step"><div class="platform-step-num">3</div><div>혹시 processed로 안 옮겨졌으면 같은 폴더의 <code>_errors.log</code> 확인 (또는 찰스에게 잔디 알림)</div></div>
 
         <div class="warn-box">
-          <strong>⚠️ 주의:</strong> 트랙 A의 보안코드가 도착하기 전에는 P1~P2(네이버 스마트스토어·카페24) 개별 키 입력을 굳이 하지 않아도 됩니다. 트랙 B(CSV)로 그 매출이 들어와 있기 때문입니다. 단 트랙 A 발급 후 OneBoard에 ezadmin 키가 저장되면 P1·P2는 자동으로 skip되므로 입력해도 무해합니다.
+          <strong>⚠️ 주의 — 매일 빠뜨리지 않기:</strong>
+          <br>· 토·일 매출도 월요일 아침에 한꺼번에 박아주세요 (3개 파일)
+          <br>· 같은 날짜로 두 번 박으면 두 번째가 첫 번째를 덮어씁니다 (안전)
+          <br>· 파일명 날짜 틀리면 그 날짜로 들어가니 꼭 확인
         </div>
       </div>
     </div>
@@ -363,7 +398,7 @@
 
   <!-- P1 -->
   <section>
-    <div class="section-header"><h2>🟢 P1 · 네이버 스마트스토어</h2><span class="tag">이지어드민 대체 가능</span></div>
+    <div class="section-header"><h2>🟢 P1 · 네이버 스마트스토어</h2><span class="tag" style="background:#10B981">자동 — 키 박힘</span></div>
     <div class="priority-card p1">
       <div class="priority-head">
         <div class="title-row"><span class="prio-badge">P1</span><h3>client_id · client_secret 2개 받아서 OneBoard에 입력</h3></div>
@@ -431,14 +466,20 @@
 
   <!-- P3 META -->
   <section>
-    <div class="section-header"><h2>📘 P3 · META</h2></div>
-    <div class="priority-card p3">
+    <div class="section-header"><h2>📘 P3 · META</h2><span class="tag" style="background:#EF4444">⚠️ 현재 API 오류 — Drive 수동 처리 중</span></div>
+    <div class="priority-card p3" style="border-left-color:#EF4444">
       <div class="priority-head">
-        <div class="title-row"><span class="prio-badge">P3</span><h3>Facebook Developer 앱 → 4개 키 받아서 OneBoard 입력</h3></div>
-        <div class="meta">20분 · ⭐⭐</div>
+        <div class="title-row"><span class="prio-badge" style="background:#EF4444">오류</span><h3>META Marketing API 임시 오류 — Drive 수동으로 처리</h3></div>
+        <div class="meta">복구 시 자동 전환</div>
       </div>
       <div class="priority-body">
-        <div class="ob-instructions">
+        <div class="warn-box">
+          <strong>⚠️ 현재 상태:</strong> META 광고 API에 토큰/권한 오류가 발생해 자동 수집이 멈췄습니다. 복구될 때까지 <strong>위 "📂 매일 Drive 수동 입력" 섹션의 META 광고 부분</strong>대로 매일 CSV로 받아 Drive 폴더에 박아주세요. 복구되면 이 안내서가 v5로 갱신됩니다.
+        </div>
+
+        <details style="margin-top:10px;font-size:12px;color:var(--gray-500)">
+          <summary style="cursor:pointer">예전 자동 연동 절차 (참고만, 복구 시 활성화)</summary>
+        <div class="ob-instructions" style="margin-top:6px">
           <strong>OneBoard 조작:</strong> 설정 → META 카드 → 🔑 키 입력 → 4개 값 입력 → 저장
         </div>
         <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://developers.facebook.com" target="_blank" class="link-btn yellow">🔗 Meta for Developers</a> → 로그인 → 내 앱 → 앱 만들기 → 비즈니스</div></div>
@@ -447,13 +488,14 @@
         <div class="platform-step"><div class="platform-step-num">4</div><div>Graph API Explorer → <code>ads_read</code> · <code>ads_management</code> · <code>business_management</code> 권한으로 <strong>Long-Lived Access Token</strong> 생성 → 복사</div></div>
         <div class="platform-step"><div class="platform-step-num">5</div><div>비즈니스 관리자 → 광고 계정 → <code>ad_account_id</code> 복사 (<code>act_</code>로 시작)</div></div>
         <div class="platform-step"><div class="platform-step-num">6</div><div>OneBoard 설정 → META 카드 → 🔑 키 입력 → 4개 붙여넣기 → 저장 ✅</div></div>
+        </details>
       </div>
     </div>
   </section>
 
   <!-- P3 네이버 검색광고 -->
   <section>
-    <div class="section-header"><h2>🟢 P3 · 네이버 검색광고</h2></div>
+    <div class="section-header"><h2>🟢 P3 · 네이버 검색광고</h2><span class="tag" style="background:#10B981">자동 — 키 박힘</span></div>
     <div class="priority-card p3">
       <div class="priority-head">
         <div class="title-row"><span class="prio-badge">P3</span><h3>API 라이선스 발급 → 3개 키 OneBoard 입력</h3></div>
@@ -475,22 +517,16 @@
   <section>
     <div class="section-header"><h2>🟡 P4 · 쿠팡 & 카카오모먼트</h2><span class="tag">후순위</span></div>
 
-    <div class="priority-card p4">
+    <div class="priority-card p4" style="border-left-color:var(--purple)">
       <div class="priority-head">
-        <div class="title-row"><span class="prio-badge">P4</span><h3>쿠팡 Wing 오픈 API <span style="color:var(--gray-500);font-weight:600">— v3에서 보류</span></h3></div>
-        <div class="meta">키 발급 불가</div>
+        <div class="title-row"><span class="prio-badge" style="background:var(--purple)">매일</span><h3>쿠팡 매출 — Drive 수동 입력 (자동 API 불가)</h3></div>
+        <div class="meta">매일 5분</div>
       </div>
       <div class="priority-body">
-        <div class="warn-box"><strong>⚠️ 2026-05-12 확인:</strong> 쿠팡 OpenAPI 키는 판매자ID당 1개만 발급 가능. 이지어드민이 이미 보유 중 → 별도 발급 불가. <strong>P0 이지어드민 트랙이 쿠팡 매출을 대체 수집</strong>합니다. 본 섹션의 직접 신청은 진행하지 않아도 됩니다.</div>
+        <div class="warn-box"><strong>⚠️ 2026-05-12 확인:</strong> 쿠팡 OpenAPI 키는 판매자ID당 1개만 발급 가능. 이미 다른 곳에 사용 중 → 별도 발급 불가.</div>
         <div class="info-box">
-          <strong>🔄 대체 경로:</strong> P0(이지어드민) 트랙 A 완료 시 쿠팡 매출이 매일 06:30 자동 수집됩니다. 트랙 A 대기 동안은 P0 트랙 B(CSV 업로드)로 처리.
+          <strong>🔄 대체 경로:</strong> 위 "📂 매일 Drive 수동 입력 — 상세 절차" 섹션 1️⃣ 쿠팡 매출 CSV 만들기 참고. 매일 WING 정산내역을 CSV로 받아 <code>oneboard-daily-upload/</code> 폴더에 박으면 9:30~22:30 30분 간격 폴링으로 자동 처리됩니다.
         </div>
-        <details style="margin-top:10px;font-size:12px;color:var(--gray-500)">
-          <summary style="cursor:pointer">예전 직접 신청 절차 (참고만, 진행 X)</summary>
-          <div class="platform-step"><div class="platform-step-num">1</div><div><a href="https://wing.coupang.com" target="_blank">쿠팡 Wing</a> → 계정관리 → 오픈API 관리</div></div>
-          <div class="platform-step"><div class="platform-step-num">2</div><div>"API 사용 신청" → 용도: 매출/주문 조회 → 제출 → 승인 대기</div></div>
-          <div class="platform-step"><div class="platform-step-num">3</div><div>승인 후 access_key · secret_key · vendor_id 받기 — <strong>현재 발급 불가 응답</strong></div></div>
-        </details>
       </div>
     </div>
 
@@ -512,21 +548,27 @@
   <section>
     <div class="section-header"><h2>✅ 진행 체크리스트</h2></div>
     <div class="step-guide">
+      <div style="font-size:13px;color:var(--gray-700);margin-bottom:14px;background:var(--purple-light);padding:12px;border-radius:8px;border-left:4px solid var(--purple)">
+        <strong>📅 매일 오전 9:30 이전 반복 루틴</strong> (월~금, 토·일은 월요일 아침 한꺼번에)<br>
+        체크 박스는 이 브라우저에만 저장됩니다. 매일 새로 시작하시려면 OneBoard 매출 카드 숫자 반영으로 확인하시면 돼요.
+      </div>
       <ul class="checklist">
-        <li><input type="checkbox" id="c0"><label for="c0">OneBoard 접속 (oneboard-kef0.onrender.com) → ⚙️ 설정 → JEWELICE 언락</label></li>
-        <li style="background:#FDE68A"><input type="checkbox" id="c_ez1"><label for="c_ez1"><strong>[P0-A]</strong> 이지어드민 로그인 → API 메뉴 → 동의서 다운로드</label></li>
-        <li style="background:#FDE68A"><input type="checkbox" id="c_ez2"><label for="c_ez2"><strong>[P0-A]</strong> 동의서 작성·서명 → 메일·팩스로 제출 (목표 5/15)</label></li>
-        <li style="background:#FDE68A"><input type="checkbox" id="c_ez3"><label for="c_ez3"><strong>[P0-B]</strong> 이지어드민 매출통계 → CSV 다운로드 → OneBoard 보라색 카드의 "📁 CSV 업로드 (임시)" 버튼으로 업로드 (시범 5/13)</label></li>
-        <li style="background:#FDE68A"><input type="checkbox" id="c_ez4"><label for="c_ez4"><strong>[P0-A 후]</strong> 회사 보안코드·API Key·판매자ID 수령 → OneBoard 보라색 카드에 3개 값 입력 → 🟢 연결됨</label></li>
-        <li style="background:#FDE68A"><input type="checkbox" id="c_ez5"><label for="c_ez5"><strong>[P0]</strong> 다음날 06:30 자동 수집 결과 매출 카드에서 확인 (쿠팡·네이버 등)</label></li>
-        <li><input type="checkbox" id="c1"><label for="c1"><strong>[P1]</strong> 네이버 스마트스토어 client_id/secret 2개 입력 → 🟢 연결됨 <em style="color:var(--gray-500)">(P0 활성 시 자동 skip — 선택)</em></label></li>
-        <li><input type="checkbox" id="c2"><label for="c2"><strong>[P2]</strong> 카페24 mall_id/client_id/client_secret 3개 입력 <em style="color:var(--gray-500)">(P0 활성 시 자동 skip — 선택)</em></label></li>
-        <li><input type="checkbox" id="c3"><label for="c3"><strong>[P2]</strong> 카페24 🔗 OAuth 인증 시작 → 허용 → 🟢 연결됨 <em style="color:var(--gray-500)">(선택)</em></label></li>
-        <li><input type="checkbox" id="c4"><label for="c4"><strong>[P3]</strong> META 4개 키 입력 → 🟢 연결됨 (광고 — 필수)</label></li>
-        <li><input type="checkbox" id="c5"><label for="c5"><strong>[P3]</strong> 네이버 검색광고 3개 키 입력 → 🟢 연결됨 (광고 — 필수)</label></li>
-        <li><input type="checkbox" id="c6" disabled><label for="c6" style="text-decoration:line-through;color:var(--gray-400)"><strong>[P4]</strong> 쿠팡 Wing 오픈API 신청 — <strong>v3에서 보류 (P0가 대체)</strong></label></li>
-        <li><input type="checkbox" id="c7"><label for="c7"><strong>[P4]</strong> 카카오모먼트 2개 키 입력 → 🟢 연결됨 (광고 — 필수)</label></li>
-        <li><input type="checkbox" id="c8"><label for="c8">🎉 전체 채널 상태 확인 (P0 매출 + P3 광고 3채널)</label></li>
+        <li style="background:#FDE68A"><input type="checkbox" id="d1"><label for="d1"><strong>[매일]</strong> 쿠팡 WING → 어제 정산내역 → CSV 다운로드 → 파일명 <code>sales_coupang_YYYY-MM-DD.csv</code></label></li>
+        <li style="background:#FDE68A"><input type="checkbox" id="d2"><label for="d2"><strong>[매일]</strong> META 광고관리자 → 어제 일별 리포트 → CSV 다운로드 → 파일명 <code>ads_meta_YYYY-MM-DD.csv</code></label></li>
+        <li style="background:#FDE68A"><input type="checkbox" id="d3"><label for="d3"><strong>[매일]</strong> 두 파일을 <code>02 마스터마인딩그룹\oneboard-daily-upload\</code> 폴더에 박기 (9:30 이전)</label></li>
+        <li style="background:#FDE68A"><input type="checkbox" id="d4"><label for="d4"><strong>[매일]</strong> 10:00 이후 <code>processed/</code> 폴더로 이동 확인 + OneBoard 매출/광고 숫자 반영 확인</label></li>
+        <li><input type="checkbox" id="d5"><label for="d5"><strong>[월요일]</strong> 토·일 분 2일치 추가로 박기 (총 6개 파일: 쿠팡 3 + META 3)</label></li>
+        <li><input type="checkbox" id="d6"><label for="d6"><strong>[주 1회]</strong> OneBoard 대시보드에서 ROAS·매출 추이 1~2분 훑어보고 이상치 있으면 찰스에게 잔디 알림</label></li>
+      </ul>
+
+      <h4 style="font-size:14px;font-weight:700;margin:18px 0 8px">✅ 초기 설정 (한 번만 — 이미 완료된 항목)</h4>
+      <ul class="checklist">
+        <li style="background:#D1FAE5"><input type="checkbox" id="i1" checked><label for="i1">OneBoard 접속 (oneboard-kef0.onrender.com) → ⚙️ 설정 → JEWELICE 언락</label></li>
+        <li style="background:#D1FAE5"><input type="checkbox" id="i2" checked><label for="i2"><strong>카페24</strong> mall_id/client_id/client_secret 3개 입력 + OAuth 인증 → 🟢 자동 연결됨</label></li>
+        <li style="background:#D1FAE5"><input type="checkbox" id="i3" checked><label for="i3"><strong>네이버 스마트스토어</strong> client_id/secret 2개 입력 → 🟢 자동 연결됨</label></li>
+        <li style="background:#D1FAE5"><input type="checkbox" id="i4" checked><label for="i4"><strong>네이버 검색광고</strong> 3개 키 입력 → 🟢 자동 연결됨</label></li>
+        <li style="background:#D1FAE5"><input type="checkbox" id="i5" checked><label for="i5"><strong>카카오모먼트</strong> 2개 키 입력 → 🟢 자동 연결됨</label></li>
+        <li><input type="checkbox" id="i6"><label for="i6"><strong>Drive 폴더</strong> <code>oneboard-daily-upload/</code> 처음 1회 확인 (이미 천계가 만들어 둠)</label></li>
       </ul>
       <div class="info-box" style="margin-top:16px">
         <strong>💡 체크는 이 브라우저에만 저장됩니다.</strong> OneBoard의 연결 상태는 서버에 저장되니 다른 기기에서도 확인 가능해요.
@@ -540,12 +582,12 @@
     <p>Self-Service라 혼자 할 수 있게 만들었지만, 어디서 막히면 바로 찰스에게 연락주세요.</p>
     <p><strong>가장 흔한 막힘:</strong></p>
     <ul style="margin-left:20px;font-size:13px;line-height:1.8">
-      <li>🚀 <strong>이지어드민 API 메뉴 위치 못 찾음</strong> — <a href="https://www.ezadmin.co.kr/api/intro.html" target="_blank">ezadmin.co.kr/api/intro.html</a> 직접 접속하거나 1668-2343 안내 받기</li>
-      <li>🚀 <strong>이지어드민 CSV 컬럼명이 다름</strong> — 판매처/판매일/매출액 컬럼이 있으면 한국어든 영문이든 자동 인식. 그래도 안 되면 컬럼 첫 행만 캡처해서 찰스에게 전달</li>
-      <li>🟢 스마트스토어 권한 체크 어디 있는지 — API 센터 → 앱 상세 → "권한 편집"</li>
-      <li>🛒 카페24 mall_id 모르겠음 — <code>jewelice.cafe24.com</code>이면 <code>jewelice</code></li>
-      <li>🔗 OAuth 인증 후 에러 페이지 — Redirect URI 불일치. 카페24 앱 설정에 정확히 <code>https://oneboard-server.onrender.com/api/admin/oauth/cafe24/callback</code></li>
-      <li>📘 META Long-Lived Token 만드는 곳 — Graph API Explorer → 토큰 교환 도구</li>
+      <li>📂 <strong>Drive에 박은 파일이 processed로 안 옮겨감</strong> — ① 파일명이 <code>sales_채널_YYYY-MM-DD.csv</code> / <code>ads_채널_YYYY-MM-DD.csv</code> 규약 맞는지 확인 ② 30분 기다리기 ③ 같은 폴더의 <code>_errors.log</code> 확인 ④ 그래도 안 되면 찰스에게 잔디 알림</li>
+      <li>🛍️ <strong>쿠팡 WING CSV 컬럼 다름</strong> — 판매일/매출액 컬럼만 있으면 자동 인식. 첫 행만 캡처해서 보내주세요</li>
+      <li>📘 <strong>META CSV 다운로드 메뉴 못 찾음</strong> — 광고관리자 → 보고서 → 사용자 지정 → "내보내기" → 형식 CSV</li>
+      <li>📊 <strong>OneBoard에 숫자 반영 안 됨</strong> — 새벽 06:30 자동 수집은 다음날 적용. Drive는 9:30~22:30 매 30분. 새벽~9시 사이는 안 들어옴 (정상)</li>
+      <li>🔗 <strong>카페24 OAuth 오류 페이지</strong> — Redirect URI 불일치. 카페24 앱 설정에 <code>https://oneboard-server.onrender.com/api/admin/oauth/cafe24/callback</code> 정확히 등록</li>
+      <li>📅 <strong>토·일 매출은?</strong> — 월요일 아침 한 번에 3일치 박으면 됨 (파일 6개)</li>
     </ul>
     <div class="contact">
       <strong>📞 문의:</strong> Gmail thinkintoreal@gmail.com · 잔디 DM · 긴급 전화
@@ -553,9 +595,9 @@
   </div>
 
   <div class="footer">
-    OneBoard API 인수인계 v3 (Self-Service · 이지어드민 멀티채널) · 2026-05-13 갱신<br>
+    OneBoard 매일 운영 가이드 v4 (Drive 자동 머지) · 2026-05-13 갱신<br>
     담당: 권수지 대리 · 문의: <a href="mailto:thinkintoreal@gmail.com">찰스</a><br>
-    <em style="color:var(--gray-400);font-size:11px">v2(2026-04-24): 6채널 개별 키 입력 / v3(2026-05-13): 이지어드민 멀티채널 자동 + CSV fallback 우선화</em>
+    <em style="color:var(--gray-400);font-size:11px">v2(2026-04-24): 6채널 개별 키 입력 / v3(2026-05-13 오전): 이지어드민 멀티채널 + CSV / v4(2026-05-13 오후): 이지어드민 폐기 → Drive 매일 자동 머지로 단순화</em>
   </div>
 
 </div>
