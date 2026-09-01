@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DUO 컬러박스 v4 최종안</title>
+<style>
+:root{--ink:#111417;--g:#5C6166;--m:#9AA0A6;--teal:#3DB5AC;--bg:#f4f5f6;--line:#e3e5e8;--y:#fff7d6}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Segoe UI","Malgun Gothic",sans-serif;line-height:1.55;word-break:keep-all}
+.wrap{max-width:1180px;margin:0 auto;padding:36px 20px 80px}
+h1{font-size:26px;margin:0 0 4px}.sub{color:var(--g);font-size:14px;margin:0 0 22px}
+h2{font-size:18px;margin:36px 0 10px;padding-left:10px;border-left:3px solid var(--teal)}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.card img{display:block;width:100%;height:auto}.cap{padding:10px 14px;font-size:13px;color:var(--g)}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:800px){.g2,.g3{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;background:#fff;font-size:14px}th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}th{background:#fafbfc;width:14%}
+.ask{background:var(--y);border:1px solid #f1d98a;border-radius:12px;padding:18px 22px;margin-top:20px}.ask h2{margin-top:0;border-color:#e0b93a}
+.ask ol{margin:8px 0 0;padding-left:20px}.ask li{margin:6px 0}
+.tag{display:inline-block;font-size:11px;letter-spacing:.1em;color:var(--teal);border:1px solid var(--teal);border-radius:999px;padding:1px 9px;margin-right:6px}
+.foot{margin-top:30px;font-size:12px;color:var(--m)}
+</style></head><body><div class="wrap">
+<span class="tag">JEWELICE · DUO MAKER</span><span class="tag">v4 최종안 · 2026-09-01</span>
+<h1>듀오메이커 컬러박스 리디자인 — v4 최종안</h1>
+<p class="sub">보는 시간 3분 · 200×125×185mm(기존 구조·칼선 그대로) · 컬러·얼음 모양은 지금처럼 <b>라벨스티커로 봉인</b> · 박스 겉에 사용법·시간 숫자 없음(QR → 가이드 페이지)</p>
+
+<h2>1 · 완성 모습</h2>
+<div class="g3">
+  <div class="card"><img src="img/dev4_mockup_right.jpg" alt="정면"><div class="cap"><b>정면</b> — 무광 백색 · 다이아 블라인드 형압(만져야 보이는 로고) · 티얼 jewelice · 라벨스티커 봉인</div></div>
+  <div class="card"><img src="img/dev4_mockup_back.jpg" alt="후면"><div class="cap"><b>후면</b> — 히어로샷(스틱·큐브·볼 3잔) 전면 · 아래 흰 띠에 표시사항</div></div>
+  <div class="card"><img src="img/dev4_mockup_left.jpg" alt="좌측면"><div class="cap"><b>좌측면</b> — 기존 몰드·물통·케이스 라인드로잉 유지</div></div>
+</div>
+
+<h2>2 · 6면 전개 (고객이 보는 방향)</h2>
+<div class="card"><img src="img/dev4_6faces.jpg" alt="6면 전개"><div class="cap">뚜껑 / 좌측면 · 정면 · 우측면 · 후면 / 바닥(인쇄 없음). 정면 상단 80mm + 뚜껑 앞변 50mm는 라벨스티커 자리라 비워둠.</div></div>
+
+<h2>3 · 면별 크게 보기</h2>
+<div class="g2">
+  <div class="card"><img src="img/dev4_panel_front.jpg" alt="정면"><div class="cap"><b>정면</b> — 다이아 54mm 블라인드 형압(무잉크, 목업은 연회색으로 표현) · jewelice 24mm 티얼 · DUO MAKER</div></div>
+  <div class="card"><img src="img/dev4_panel_back.jpg" alt="후면"><div class="cap"><b>후면</b> — "같은 기다림, 다른 얼음" · 영문 스펙 · 한글 표시사항(1372 포함) · 식품용·분리배출 마크</div></div>
+</div>
+<div class="g3" style="margin-top:16px">
+  <div class="card"><img src="img/dev4_panel_left.jpg" alt="좌측면"><div class="cap"><b>좌측면</b> — 유지</div></div>
+  <div class="card"><img src="img/dev4_panel_right.jpg" alt="우측면"><div class="cap"><b>우측면</b> — "몰드를 바꾸면, 얼음이 바뀝니다" · QR(얼음 준비 가이드)</div></div>
+  <div class="card"><img src="img/dev4_panel_top.jpg" alt="뚜껑"><div class="cap"><b>뚜껑</b> — 로고 · "여기서부터, 기다림이 시작됩니다"</div></div>
+</div>
+
+<h2>4 · 인쇄 사양 요약</h2>
+<table>
+<tr><th>구조</th><td>기존 박스·칼선(보명-38) 그대로 · 수량 10,000개</td></tr>
+<tr><th>인쇄</th><td>4도(후면 사진 · 티얼 로고) + <b>형압 1판</b>(정면 다이아) · 무광 라미네이팅 · 내면 인쇄 없음 · 박 없음</td></tr>
+<tr><th>라벨</th><td>기존 라벨스티커 9색 시스템 그대로(컬러·얼음 모양 표시) — 정면 상단·뚜껑 앞변 자리 비워둠</td></tr>
+<tr><th>QR</th><td>jewelice.kr/first-ice.html (첫 얼음 준비 가이드 · 사용법·시간은 여기서만)</td></tr>
+</table>
+
+<div class="ask"><h2>5 · 의견 받을 지점 (회신: 잔디 또는 카톡 · 9/2 수요일 오후까지)</h2>
+<ol>
+  <li><b>정면</b> — 로고만 있는 "조용한 정면"이 우리 고객에게 맞는가? (기존처럼 제품 설명이 있어야 한다고 보면 그 이유)</li>
+  <li><b>후면 히어로샷</b> — 청록 3잔 사진이 힘이 있는가? 문장 "같은 기다림, 다른 얼음"은 유지 / 삭제 / 다른 문장?</li>
+  <li><b>실물에서 걱정되는 점</b> — 라벨스티커 부착·매장 진열·택배 파손 등 현장에서 보이는 문제 1가지씩</li>
+</ol></div>
+
+<p class="foot">원고·인쇄 데이터: 07_물류 재고 생산 › 02.박스디자인 › 듀오메이커 컬러박스 › 2026-09_리디자인 (DUO_컬러박스_v4.pdf) · 목업 색·질감은 실물과 다를 수 있음 · 문의: Charles</p>
+</div></body></html>
